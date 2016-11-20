@@ -125,6 +125,12 @@
       "tags": ["clicker", "event", "male", "robot", "support"]
     },
     {
+      "displayName": "Graham the Driver",
+      "image": "mini_RoboRabbit.jpg",
+	  "slot": 1,
+      "tags": ["event", "male", "support"]
+    },	  
+    {
       "displayName": "Jim the Lumberjack",
       "image": "mini_Jim.jpg",
 	  "slot": 2,
@@ -232,6 +238,12 @@
 	  "slot": 9,
       "tags": ["male", "female", "support", "gold", "tank", "supernatural", "event"]
     },
+	{
+	  "displayName": "Paul the Pilgrim",
+      "image": "mini_Broot.jpg",
+	  "slot": 9,
+      "tags": ["male", "support", "gold", "tank", "human", "event"]
+	},
     {
       "displayName": "Artaxes, the Lion",
       "image": "mini_Artaxes.jpg",
@@ -369,6 +381,12 @@
       "image": "mini_Bat.jpg",
 	  "slot": 19,
       "tags": ["male", "human", "support", "event"]
+    },
+    {
+      "displayName": "Petra the Pilgrim",
+      "image": "mini_Siri.jpg",
+	  "slot": 19,
+      "tags": ["female", "human", "support", "gold", "event"]
     },
     {
       "displayName": "Nate Dragon",
