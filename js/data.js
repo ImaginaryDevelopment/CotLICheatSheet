@@ -635,6 +635,7 @@ window.jsonData =
     {
       "displayName": "Petra the Pilgrim",
       "slot":19,
+      "image":"PetraThePilgrim_48.png",
       "tags":[
         "female",
         "dps",
