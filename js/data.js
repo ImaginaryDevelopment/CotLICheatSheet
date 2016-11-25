@@ -873,6 +873,28 @@ window.jsonData =
         "human",
         "magical"
       ]
+    },
+    {
+      "displayName": "Greyskull the Pirate",
+      "image": "GreyskullThePirate_48.png",
+      "slot": 23,
+      "tags": [
+        "human",
+        "male",
+        "tank",
+        "gold" 
+      ]
+    },
+    {
+      "displayName": "Eiralon, the Blood Mage",
+      "image": "EiralonTheBloodMage_48.png",
+      "slot": 23,
+      "tags": [
+        "elf",
+        "magical",
+        "male",
+        "support"
+      ]
     }
   ]
 };
