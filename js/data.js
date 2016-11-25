@@ -119,6 +119,7 @@ window.jsonData =
   ],
   "crusaders": [
     {
+      "id": "01",
       "displayName": "The Bush Whacker",
       "image": "mini_Bushwacker.jpg",
       "slot": 1,
@@ -129,6 +130,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "01a",
       "displayName": "RoboRabbit",
       "image": "mini_RoboRabbit.jpg",
       "slot": 1,
@@ -141,6 +143,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "01b",
       "displayName": "Graham the Driver",
       "slot": 1,
       "image": "GrahamTheDriver_48.png",
@@ -150,6 +153,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "02",
       "displayName": "Jim the Lumberjack",
       "image": "mini_Jim.jpg",
       "slot": 2,
@@ -161,6 +165,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "02a",
       "displayName": "Pilot Pam",
       "image": "mini_Pam.jpg",
       "slot": 2,
@@ -173,6 +178,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "02b",
       "displayName": "Veronica, the Android Archer",
       "slot":2,
       "image":"VeronicaTheAndroidArcher_48.png",
@@ -185,6 +191,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "03",
       "displayName": "Emo Werewolf",
       "image": "mini_Emo.jpg",
       "slot": 3,
@@ -196,6 +203,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "03a",
       "displayName": "Sally the Succubus",
       "image": "mini_Sally.jpg",
       "slot": 3,
@@ -208,6 +216,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "03b",
       "displayName":"Karen, the Cat Teenager",
       "image":"KarenTheCatTeenager_48.png",
       "slot": 3,
@@ -219,6 +228,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "04",
       "displayName": "Sasha the Fierce Warrior",
       "image": "mini_Sasha.jpg",
       "slot": 4,
@@ -229,6 +239,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "04a",
       "displayName": "Groklok the Orc",
       "image": "mini_Groklok.jpg",
       "slot": 4,
@@ -242,6 +253,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "04b",
       "displayName":"Mindy the Mime",
       "image": "MindyTheMime_48.png",
       "slot": 4,
@@ -255,6 +267,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "05",
       "displayName": "The Washed Up Hermit",
       "image": "mini_Hermit.jpg",
       "slot": 5,
@@ -265,6 +278,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "05a",
       "displayName": "Kyle the Party Bro",
       "image": "mini_Kyle.jpg",
       "slot": 5,
@@ -276,6 +290,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "05b",
       "displayName": "Serpent King Draco",
       "image": "SerpentKingDraco_48.png",
       "slot":5,
@@ -288,6 +303,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "05c",
       "displayName": "Henry, the Scaredy-Ghoul",
       "image":"HenryTheScaredyGhoul_48.png",
       "slot":5,
@@ -299,6 +315,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "06",
       "displayName": "Detective Kaine",
       "image": "mini_Kaine.jpg",
       "slot": 6,
@@ -309,6 +326,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "06a",
       "displayName": "Mister the Monkey",
       "image": "mini_Mister.jpg",
       "slot": 6,
@@ -320,6 +338,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "06b",
       "displayName": "Larry the Leprechaun",
       "image": "mini_Larry.jpg",
       "slot": 6,
@@ -333,6 +352,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "07",
       "displayName": "The Princess",
       "image": "mini_Princess.jpg",
       "slot": 7,
@@ -344,6 +364,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "07a",
       "displayName": "RoboTurkey",
       "image": "mini_RoboTurkey.jpg",
       "slot": 7,
@@ -355,6 +376,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "07b",
       "displayName": "Ranger Rayna",
       "image": "RangerRayna_48.png",
       "slot":7,
@@ -367,6 +389,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "08",
       "displayName": "Natalie Dragon",
       "image": "mini_Natalie.jpg",
       "slot": 8,
@@ -378,6 +401,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "08a",
       "displayName": "Jack O'Lantern",
       "image": "mini_Jack.jpg",
       "slot": 8,
@@ -391,6 +415,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "08b",
       "displayName" : "President Billy Smithsonian",
       "image":"PresidentBillySmithsonian_48.png",
       "slot": 8,
@@ -403,6 +428,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "09",
       "displayName": "Jason, Master of Shadows",
       "image": "mini_Jason.jpg",
       "slot": 9,
@@ -414,6 +440,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "09a",
       "displayName": "Pete the Carney",
       "image": "mini_Pete.jpg",
       "slot": 9,
@@ -426,6 +453,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "09b",
       "displayName": "Broot",
       "image": "mini_Broot.jpg",
       "slot": 9,
@@ -440,6 +468,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "09c",
       "displayName": "Paul the Pilgrim",
       "image": "PaulThePilgrim_48.png",
       "slot": 9,
@@ -454,6 +483,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "10",
       "displayName": "Artaxes, the Lion",
       "image": "mini_Artaxes.jpg",
       "slot": 10,
@@ -465,6 +495,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "10a",
       "displayName": "Drizzle the Dark Elf",
       "image": "mini_Drizzle.jpg",
       "slot": 10,
@@ -476,6 +507,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "10b",
       "displayName": "Bubba, the Swimming Orc",
       "image": "BubbaTheSwimmingOrc_48.png",
       "slot": 10,
@@ -488,6 +520,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "11",
       "displayName": "Khouri, the Witch Doctor",
       "image": "mini_Khouri.jpg",
       "slot": 11,
@@ -500,6 +533,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "11a",
       "displayName": "Momma Kaine",
       "image": "mini_Momma.jpg",
       "slot": 11,
@@ -512,6 +546,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "11b",
       "displayName": "Brogon, Prince of Dragons",
       "image": "mini_Brogon.jpg",
       "slot": 11,
@@ -526,6 +561,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "11c",
       "displayName": "The Half-Blood Elf",
       "image": "TheHalfBloodElf_48.png",
       "slot": 11,
@@ -539,6 +575,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "12",
       "displayName": "Dark Gryphon",
       "image": "mini_Gryphon.jpg",
       "slot": 12,
@@ -550,6 +587,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "12a",
       "displayName": "Rocky the Rockstar",
       "image": "mini_Rocky.jpg",
       "slot": 12,
@@ -561,6 +599,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "12b",
       "displayName": "Montana James",
       "image": "MontanaJames_48.png",
       "slot": 12,
@@ -572,6 +611,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "13",
       "displayName": "Sarah, the Collector",
       "image": "mini_Sarah.jpg",
       "slot": 13,
@@ -582,6 +622,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "13a",
       "displayName": "The Metal Soldierette",
       "image": "mini_Soldierette.jpg",
       "slot": 13,
@@ -595,6 +636,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "14",
       "displayName": "Gold Panda",
       "image": "mini_Panda.jpg",
       "slot": 14,
@@ -606,6 +648,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "14a",
       "displayName": "RoboSanta",
       "image": "mini_RoboSanta.jpg",
       "slot": 14,
@@ -617,6 +660,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "14b",
       "displayName": "Leerion, the Royal Dwarf",
       "image": "mini_Leerion.jpg",
       "slot": 14,
@@ -630,6 +674,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "15",
       "displayName": "Prince Sal, the Merman",
       "image": "mini_Sal.jpg",
       "slot": 15,
@@ -641,6 +686,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "15b",
       "displayName": "Wendy the Witch",
       "image": "mini_Wendy.jpg",
       "slot": 15,
@@ -653,6 +699,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "15c",
       "displayName": "Robbie Raccoon",
       "image": "mini_Robbie.jpg",
       "slot": 15,
@@ -665,6 +712,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "16",
       "displayName": "Fire Phoenix",
       "image": "mini_Phoenix.jpg",
       "slot": 16,
@@ -676,6 +724,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "16a",
       "displayName": "Alan the ArchAngel",
       "image": "mini_Alan.jpg",
       "slot": 16,
@@ -688,6 +737,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "16b",
       "displayName": "Fright-o-Tron",
       "image":"FrightOTron4000_48.png",
       "slot": 16,
@@ -699,6 +749,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "17",
       "displayName": "King Reginald IV",
       "image": "mini_Reginald.jpg",
       "slot": 17,
@@ -710,6 +761,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "17a",
       "displayName": "Queen Siri",
       "image": "mini_Siri.jpg",
       "slot": 17,
@@ -723,6 +775,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "17b",
       "displayName": "Mr. Boggins, the Substitute",
       "image": "MrBogginsTheSubstitute_48.png",
       "slot": 17,
@@ -735,6 +788,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "18",
       "displayName": "Thalia, the Thunder King",
       "image": "mini_Thalia.jpg",
       "slot": 18,
@@ -748,6 +802,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "18a",
       "displayName": "Frosty the Snowman",
       "image": "mini_Frosty.jpg",
       "slot": 18,
@@ -760,6 +815,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "18b",
       "displayName": "Littlefoot",
       "slot": 18,
       "image":"Littlefoot_48.png",
@@ -773,6 +829,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "19",
       "displayName": "Merci, the Mad Wizard",
       "image": "mini_Merci.jpg",
       "slot": 19,
@@ -784,6 +841,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "19a",
       "displayName": "The Bat Billionaire",
       "image": "mini_Bat.jpg",
       "slot": 19,
@@ -795,6 +853,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "19b",
       "displayName": "Petra the Pilgrim",
       "slot":19,
       "image":"PetraThePilgrim_48.png",
@@ -806,6 +865,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "20",
       "displayName": "Nate Dragon",
       "image": "mini_Nate.jpg",
       "slot": 20,
@@ -817,6 +877,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "20a",
       "displayName": "Kizlblyp, the Alien Traitor",
       "image": "KizlblypTheAlienTraitor_48.png",
       "slot": 20,
@@ -830,6 +891,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "21",
       "displayName": "The Exterminator",
       "image": "TheExterminator_48.png",
       "slot": 21,
@@ -840,6 +902,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "21a",
       "displayName": "Gloria, the Good Witch",
       "image": "GloriaTheGoodWitch_48.png",
       "slot": 21,
@@ -852,6 +915,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "22",
       "displayName": "The Shadow Queen",
       "image": "TheShadowQueen_48.png",
       "slot": 22,
@@ -864,6 +928,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "22a",
       "displayName": "Ilsa, the Insane Wizard",
       "image": "IlsaTheInsaneWizard_48.png",
       "slot": 22,
@@ -875,6 +940,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "23",
       "displayName": "Greyskull the Pirate",
       "image": "GreyskullThePirate_48.png",
       "slot": 23,
@@ -886,6 +952,7 @@ window.jsonData =
       ]
     },
     {
+      "id": "23a",
       "displayName": "Eiralon, the Blood Mage",
       "image": "EiralonTheBloodMage_48.png",
       "slot": 23,
