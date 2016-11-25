@@ -110,6 +110,11 @@ window.jsonData =
       "id": "event",
       "displayName": "Event",
       "image": "event.png"
+    },
+    {
+      "id": "alien",
+      "displayName": "Alien",
+      "image": "MTag_Alien.png"
     }
   ],
   "crusaders": [
@@ -168,6 +173,18 @@ window.jsonData =
       ]
     },
     {
+      "displayName": "Veronica, the Android Archer",
+      "slot":2,
+      "image":"VeronicaTheAndroidArcher_48.png",
+      "tags":[
+        "female",
+        "robot",
+        "support",
+        "elf",
+        "event"
+      ]
+    },
+    {
       "displayName": "Emo Werewolf",
       "image": "mini_Emo.jpg",
       "slot": 3,
@@ -188,6 +205,17 @@ window.jsonData =
         "dps",
         "supernatural",
         "event"
+      ]
+    },
+    {
+      "displayName":"Karen, the Cat Teenager",
+      "image":"KarenTheCatTeenager_48.png",
+      "slot": 3,
+      "tags":[
+        "female",
+        "animal",
+        "dps",
+        "supernatural"
       ]
     },
     {
@@ -214,6 +242,19 @@ window.jsonData =
       ]
     },
     {
+      "displayName":"Mindy the Mime",
+      "image": "MindyTheMime_48.png",
+      "slot": 4,
+      "tags": [
+        "dps",
+        "event",
+        "female",
+        "human",
+        "supernatural",
+        "support"
+      ]
+    },
+    {
       "displayName": "The Washed Up Hermit",
       "image": "mini_Hermit.jpg",
       "slot": 5,
@@ -229,6 +270,29 @@ window.jsonData =
       "slot": 5,
       "tags": [
         "human",
+        "male",
+        "dps",
+        "event"
+      ]
+    },
+    {
+      "displayName": "Serpent King Draco",
+      "image": "SerpentKingDraco_48.png",
+      "slot":5,
+      "tags":[
+        "animal",
+        "male",
+        "dps",
+        "event",
+        "royal"
+      ]
+    },
+    {
+      "displayName": "Henry, the Scaredy-Ghoul",
+      "image":"HenryTheScaredyGhoul_48.png",
+      "slot":5,
+      "tags":[
+        "supernatural",
         "male",
         "dps",
         "event"
@@ -291,6 +355,18 @@ window.jsonData =
       ]
     },
     {
+      "displayName": "Ranger Rayna",
+      "image": "RangerRayna_48.png",
+      "slot":7,
+      "tags":[
+        "dps",
+        "event",
+        "female",
+        "human",
+        "healer"
+      ]
+    },
+    {
       "displayName": "Natalie Dragon",
       "image": "mini_Natalie.jpg",
       "slot": 8,
@@ -312,6 +388,18 @@ window.jsonData =
         "tank",
         "supernatural",
         "event"
+      ]
+    },
+    {
+      "displayName" : "President Billy Smithsonian",
+      "image":"PresidentBillySmithsonian_48.png",
+      "slot": 8,
+      "tags":[
+        "male",
+        "event",
+        "support",
+        "human",
+        "gold"
       ]
     },
     {
@@ -352,6 +440,20 @@ window.jsonData =
       ]
     },
     {
+      "displayName": "Paul the Pilgrim",
+      "image": "PaulThePilgrim_48.png",
+      "slot": 9,
+      "tags": [
+        "male",
+        "gold",
+        "elf",
+        "event",
+        "tank",
+        "support"
+
+      ]
+    },
+    {
       "displayName": "Artaxes, the Lion",
       "image": "mini_Artaxes.jpg",
       "slot": 10,
@@ -371,6 +473,18 @@ window.jsonData =
         "elf",
         "support",
         "event"
+      ]
+    },
+    {
+      "displayName": "Bubba, the Swimming Orc",
+      "image": "BubbaTheSwimmingOrc_48.png",
+      "slot": 10,
+      "tags": [
+        "male",
+        "orc",
+        "gold",
+        "event",
+        "support"
       ]
     },
     {
@@ -412,6 +526,19 @@ window.jsonData =
       ]
     },
     {
+      "displayName": "The Half-Blood Elf",
+      "image": "TheHalfBloodElf_48.png",
+      "slot": 11,
+      "tags": [
+        "elf",
+        "event",
+        "female",
+        "orc",
+        "support",
+        "healer"
+      ]
+    },
+    {
       "displayName": "Dark Gryphon",
       "image": "mini_Gryphon.jpg",
       "slot": 12,
@@ -431,6 +558,17 @@ window.jsonData =
         "human",
         "dps",
         "event"
+      ]
+    },
+    {
+      "displayName": "Montana James",
+      "image": "MontanaJames_48.png",
+      "slot": 12,
+      "tags": [
+        "male",
+        "event",
+        "human",
+        "support"
       ]
     },
     {
@@ -550,6 +688,17 @@ window.jsonData =
       ]
     },
     {
+      "displayName": "Fright-o-Tron",
+      "image":"FrightOTron4000_48.png",
+      "slot": 16,
+      "tags": [
+        "robot",
+        "female",
+        "event",
+        "support"
+      ]
+    },
+    {
       "displayName": "King Reginald IV",
       "image": "mini_Reginald.jpg",
       "slot": 17,
@@ -571,6 +720,18 @@ window.jsonData =
         "gold",
         "royal",
         "event"
+      ]
+    },
+    {
+      "displayName": "Mr. Boggins, the Substitute",
+      "image": "MrBogginsTheSubstitute_48.png",
+      "slot": 17,
+      "tags": [
+        "event",
+        "male",
+        "gold",
+        "leprechaun",
+        "support"
       ]
     },
     {
@@ -601,6 +762,7 @@ window.jsonData =
     {
       "displayName": "Littlefoot",
       "slot": 18,
+      "image":"Littlefoot_48.png",
       "tags": [
         "female",
         "animal",
@@ -652,6 +814,29 @@ window.jsonData =
         "human",
         "dps",
         "support"
+      ]
+    },
+    {
+      "displayName": "Kizlblyp, the Alien Traitor",
+      "image": "KizlblypTheAlienTraitor_48.png",
+      "slot": 20,
+      "tags": [
+        "female",
+        "dps",
+        "event",
+        "alien",
+        "magical",
+        "support"
+      ]
+    },
+    {
+      "displayName": "The Exterminator",
+      "image": "TheExterminator_48.png",
+      "slot": 21,
+      "tags": [
+        "male",
+        "robot",
+        "dps"
       ]
     }
   ]
