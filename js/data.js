@@ -1,3 +1,4 @@
+window.jsonData =
 {
   "missionTags": [
     {
@@ -132,6 +133,15 @@
         "male",
         "robot",
         "support"
+      ]
+    },
+    {
+      "displayName": "Graham the Driver",
+      "slot": 1,
+      "image": "GrahamTheDriver_48.png",
+      "tags": [
+        "clicker",
+        "dps"
       ]
     },
     {
@@ -644,4 +654,4 @@
       ]
     }
   ]
-}
+};
