@@ -838,6 +838,41 @@ window.jsonData =
         "robot",
         "dps"
       ]
+    },
+    {
+      "displayName": "Gloria, the Good Witch",
+      "image": "GloriaTheGoodWitch_48.png",
+      "slot": 21,
+      "tags": [
+        "female",
+        "animal",
+        "healer",
+        "support",
+        "magical"
+      ]
+    },
+    {
+      "displayName": "The Shadow Queen",
+      "image": "TheShadowQueen_48.png",
+      "slot": 22,
+      "tags": [
+        "female",
+        "human",
+        "royal",
+        "supernatural",
+        "support"
+      ]
+    },
+    {
+      "displayName": "Ilsa, the Insane Wizard",
+      "image": "IlsaTheInsaneWizard_48.png",
+      "slot": 22,
+      "tags": [
+        "dps",
+        "female",
+        "human",
+        "magical"
+      ]
     }
   ]
 };
