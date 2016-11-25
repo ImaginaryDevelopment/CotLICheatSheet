@@ -43,11 +43,11 @@ var CruTagGrid = React.createClass({
     <thead>
       <tr>
         <th>Slot</th>
-        <th colSpan="2">Crusader (count:{rows.length})</th>
+        <th colSpan="2">Crusader</th>
         <th>Tags</th>
       </tr>
       <tr>
-    <th></th><th colSpan="2"></th>
+    <th>(count:{rows.length})</th><th colSpan="2"></th>
     <th>{tagCounts}</th>
       </tr>
       </thead>
