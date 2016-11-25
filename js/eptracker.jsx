@@ -7,9 +7,8 @@ var CruTag = React.createClass({
 var CruTagRow = React.createClass({
     render: function () {
         var cru = this.props.crusader;
-        var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
+        var baseUrl = window.location.host === "run.plnkr.co"? 'https://imaginarydevelopment.github.io/CotLICheatSheet/' : '';
         var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
-        console.warn('image',image);
         var tags = [];
         this.props.missionTags.map(function(tag){
           var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
@@ -26,40 +25,71 @@ var CruTagRow = React.createClass({
 });
 var CruTagGrid = React.createClass({
   render:function(){
-  	console.log('rendering tag grid, react');
     var self = this;
     var rows=[];
     this.props.model.crusaders.map(function(crusader){
       rows.push(<CruTagRow key={crusader.displayName} crusader={crusader} missionTags={self.props.model.missionTags} />);
     });
-    var tagCounts =[];
-    this.props.model.missionTags.map(function(tag){
-        var count = self.props.model.crusaders.map(function (crusader){
-            return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
-        }).reduce(function(a,b){ return a + b;});
-        tagCounts.push(<span className="img_tag" title={tag.id} key={tag.id}>{count}</span>);
-    });
     return (<table id="tab">
     <thead>
       <tr>
         <th>Slot</th>
-        <th colSpan="2">Crusader</th>
+        <th colSpan="2">Crusader (count:{rows.length})</th>
         <th>Tags</th>
-      </tr>
-      <tr>
-    <th>(count:{rows.length})</th><th colSpan="2"></th>
-    <th>{tagCounts}</th>
-      </tr>
-      </thead>
+      </tr></thead>
     <tbody>
     {rows}
     </tbody>
     </table>)
   }
 });
-console.log('preparing to render tag grid, react');
-
 ReactDOM.render(
         <CruTagGrid model={jsonData} />,
         document.getElementById('crusaders_holder')
-);
+      );
+var legacy = function () {
+
+
+    var htmlResult = "";
+
+
+	/*
+	for (var i = 0; i < jsonData.missionTags.length; i++) {
+		htmlResult 		+= "<img src='media/tags/" + jsonData.missionTags[i].image + "' title='" + jsonData.missionTags[i].displayName + "' class='img_tag' />";
+	}
+	*/
+
+    htmlResult = "<table id='tab'>";
+    htmlResult += "<thead>";
+    htmlResult += "<tr>";
+    htmlResult += "<th>Slot</th>";
+    htmlResult += "<th colspan='2'>Crusader</th>";
+    htmlResult += "<th>Tags</th>";
+    htmlResult += "</tr>";
+    htmlResult += "</thead>";
+
+    for (var i = 0; i < window.jsonData.crusaders.length; i++) {
+        var crusaderHolder = window.jsonData.crusaders[i];
+
+        htmlResult += "<tr>";
+
+        htmlResult += "<td>" + crusaderHolder.slot + "</td>";
+        htmlResult += "<td><img src='media/portraits/" + crusaderHolder.image + "' class='img_portrait' /></td>";
+        htmlResult += "<td>" + crusaderHolder.displayName + "</td>";
+
+        htmlResult += "<td>"
+        for (var j = 0; j < window.jsonData.missionTags.length; j++) {
+            var tagHolder = window.jsonData.missionTags[j];
+            var tagCssClass = (crusaderHolder.tags.indexOf(tagHolder.id) != -1) ? "img_tag" : "img_tag_off";
+
+            htmlResult += "<img src='media/tags/" + tagHolder.image + "' title='" + tagHolder.displayName + "' class='" + tagCssClass + "' />";
+        }
+        htmlResult += "</td>";
+
+        htmlResult += "</tr>";
+    }
+
+    htmlResult += "</table>";
+
+    pchCrusaders.innerHTML = htmlResult;
+};
