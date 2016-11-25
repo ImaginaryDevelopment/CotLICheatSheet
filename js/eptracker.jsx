@@ -88,10 +88,11 @@ var CruTagGrid = React.createClass({
   onOwnedChange:function(crusader){
     var owned = this.state.ownedCrusaderIds.slice(0);
     var i = owned.indexOf(crusader.id);
+    console.log('i,owned',i,owned);
     if(i == -1){
       owned.push(crusader.id);
     } else {
-      owned.slice(i,1);
+      owned.splice(i,1);
     }
     this.setState({ownedCrusaderIds:owned});
   },
@@ -120,11 +121,12 @@ var CruTagGrid = React.createClass({
         }).reduce(function(a,b){ return a + b;});
         tagCounts.push(<span className="img_tag" title={tag.id} key={tag.id}>{count}</span>);
     });
-    //"fa fa-fw fa-sort-desc"
+    
+    var filterOwnedClasses = this.state.filterOwned ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";  
     return (<table id="tab">
     <thead>
       <tr> 
-        { this.state.mode === "mine" ? <th>Owned <i className="fa fa-fw fa-filter" onClick={this.filterOwnedClick}></i></th> : null}
+        { this.state.mode === "mine" ? <th>Owned <i className={filterOwnedClasses} onClick={this.filterOwnedClick}></i></th> : null}
         <th>Slot<i className={slotSort} onClick={this.slotSortClick}></i></th>
         <th colSpan="2">Crusader</th>
         <th>Tags</th>
