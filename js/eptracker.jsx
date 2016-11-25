@@ -87,9 +87,9 @@ var CruTagGrid = React.createClass({
   },
   onOwnedChange:function(crusader){
     var owned = this.state.ownedCrusaderIds.slice(0);
-    var i = owned.indexOf(crusader);
+    var i = owned.indexOf(crusader.id);
     if(i == -1){
-      owned.push(crusader);
+      owned.push(crusader.id);
     } else {
       owned.slice(i,1);
     }
@@ -104,7 +104,8 @@ var CruTagGrid = React.createClass({
     });
     sortedCrusaders
       .filter(function(crusader){
-        return !self.state.filterOwned || crusader.owned === true;
+        var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
+        return !self.state.filterOwned || owned;
       })
       .map(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
