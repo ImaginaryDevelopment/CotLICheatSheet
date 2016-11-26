@@ -127,7 +127,14 @@ window.jsonData =
         "clicker",
         "human",
         "male"
-      ]
+      ],
+      "upgrades":{
+        "gear":[
+          "clickCrit",
+          "clickCritDmg",
+          "ability"
+        ]
+      }
     },
     {
       "id": "01a",
@@ -162,7 +169,20 @@ window.jsonData =
         "male",
         "dps",
         "support"
-      ]
+      ],
+      "upgrades":{
+        "gear":[
+          "selfdps",
+          "alldps",
+          "selfdps"
+        ],
+        "selfdps":[
+          100,
+          100,
+          100,
+          150
+        ]
+      }
     },
     {
       "id": "02a",
@@ -182,6 +202,19 @@ window.jsonData =
       "displayName": "Veronica, the Android Archer",
       "slot":2,
       "image":"VeronicaTheAndroidArcher_48.png",
+      "upgrades":{
+        "selfdps":[
+          150,
+        ],
+        "alldps":[
+          15
+        ],
+        "gear":[
+          "alldps",
+          "ability",
+          "ability"
+        ]
+      },
       "tags":[
         "female",
         "robot",
@@ -195,6 +228,20 @@ window.jsonData =
       "displayName": "Emo Werewolf",
       "image": "mini_Emo.jpg",
       "slot": 3,
+      "upgrades":{
+        "selfdps":[
+          100,
+          200,
+          100,
+          100,
+          150
+        ],
+        "gear":[
+          "selfdps",
+          "selfdps",
+          "alldps"
+        ]
+      },
       "tags": [
         "animal",
         "male",
@@ -225,13 +272,38 @@ window.jsonData =
         "animal",
         "dps",
         "supernatural"
-      ]
+      ],
+      "upgrades":{
+        "selfdps":[
+          150,
+          150,
+          150
+        ],
+        gear:[
+          "ability",
+          "selfdps",
+          "selfdps"
+        ]
+      }
     },
     {
       "id": "04",
       "displayName": "Sasha the Fierce Warrior",
       "image": "mini_Sasha.jpg",
       "slot": 4,
+      "upgrades":{
+        "gear":[
+          "alldps",
+          "selfdps",
+          "ability"
+        ],
+        "selfdps":[
+          100,
+          100,
+          100,
+          150
+        ]
+      },
       "tags": [
         "human",
         "female",
@@ -275,7 +347,22 @@ window.jsonData =
         "human",
         "male",
         "dps"
-      ]
+      ],
+      "upgrades": {
+        "selfdpsassumptions": "no one in front",
+        "selfdps":[
+          200,
+          100,
+          100,
+          100,
+          100
+        ],
+        "gear":[
+          "selfdps",
+          "alldps",
+          "selfdps"
+        ]        
+      }
     },
     {
       "id": "05a",
@@ -300,7 +387,21 @@ window.jsonData =
         "dps",
         "event",
         "royal"
-      ]
+      ],
+      "upgrades":{
+        "selfdpsassumptions": "gets extra per royal, penalty per non-royal human, bonus per animal, penalty per robot",
+        "selfdps":[
+          100,100,150,100,150
+        ],
+        "alldps":[
+          15
+        ],
+        "gear":[
+          "selfdps",
+          "alldps",
+          "selfdps"
+        ]
+      }
     },
     {
       "id": "05c",
@@ -312,7 +413,16 @@ window.jsonData =
         "male",
         "dps",
         "event"
-      ]
+      ],
+      "upgrades":{
+        "selfdpsassumptions": "no one behind",
+        "selfdps":[
+          100,150,250, 175, 200, 25
+        ],
+        "gear":[
+          "selfdps","selfdps","alldps"
+        ]
+      }
     },
     {
       "id": "06",
@@ -386,7 +496,18 @@ window.jsonData =
         "female",
         "human",
         "healer"
-      ]
+      ],
+      "upgrades":{
+        "selfdpsassumptions": "4 animals in formation, no ability gear",
+        "selfdps":[
+          100,150,100,200
+        ],
+        "gear":[
+          "clickCrit",
+          "selfdps",
+          "ability"
+        ]
+      }
     },
     {
       "id": "08",
@@ -398,7 +519,20 @@ window.jsonData =
         "human",
         "gold",
         "dps"
-      ]
+      ],
+      "upgrades":{
+       "selfdps":[
+         100,100,100,200,150
+       ],
+       "alldps":[
+         15
+       ],
+       "gear": [
+        "selfdps",
+        "gold",
+        "alldps" 
+       ]
+      }
     },
     {
       "id": "08a",
@@ -437,7 +571,16 @@ window.jsonData =
         "human",
         "gold",
         "dps"
-      ]
+      ],
+      "upgrades":{
+        "selfdpsassumptions": "someone in column is under attack",
+        "selfdps":[
+          100,100,100,150,400
+        ],
+        "gear":[
+          "selfdps","gold","alldps"
+        ]
+      }
     },
     {
       "id": "09a",
@@ -450,7 +593,23 @@ window.jsonData =
         "support",
         "gold",
         "event"
-      ]
+      ],
+      "upgrades":{
+        "gear":[
+         "selfdps",
+         "gold",
+         "alldps" 
+        ],
+        "selfdps":[
+          100,
+          100,
+          100,
+          150
+        ],
+        "alldps":[
+          15
+        ]
+      }
     },
     {
       "id": "09b",
@@ -479,8 +638,17 @@ window.jsonData =
         "event",
         "tank",
         "support"
-
-      ]
+      ],
+      "upgrades":{
+        "selfdps":[
+          150
+        ],
+        "gear":[
+          "gold",
+          "alldps",
+          "alldps"
+        ]
+      }
     },
     {
       "id": "10",
@@ -619,7 +787,24 @@ window.jsonData =
         "female",
         "human",
         "dps"
-      ]
+      ],
+      "upgrades":{
+        "selfdps":[
+          100,
+          150,
+          100,
+          100,
+          150
+        ],
+        "clickCrit":[
+          3
+        ],
+        "gear":[
+          "selfdps",
+          "selfdps",
+          "alldps"
+        ]
+      }
     },
     {
       "id": "13a",
@@ -633,7 +818,12 @@ window.jsonData =
         "dps",
         "tank",
         "event"
-      ]
+      ],
+      "upgrades":{
+        "selfdps":[
+          200,400,200
+        ]
+      }
     },
     {
       "id": "14",
@@ -683,7 +873,15 @@ window.jsonData =
         "animal",
         "dps",
         "royal"
-      ]
+      ],
+      "upgrades":{
+        "selfdps":[
+          100,100,150,150
+        ],
+        "alldps":[
+          10
+        ]
+      }
     },
     {
       "id": "15b",
@@ -696,7 +894,12 @@ window.jsonData =
         "magic",
         "dps",
         "event"
-      ]
+      ],
+      "upgrades":{
+        "selfdps":[
+          100,100,100,25,125
+        ]
+      }
     },
     {
       "id": "15c",

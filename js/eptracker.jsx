@@ -41,6 +41,16 @@ var readIt = function(key,defaultValue){
     return defaultValue;
   }
 };
+var add = function(a,b){
+  return a + b;
+};
+var getCrusaderDps = function(crusader){
+  if (!crusader.upgrades){
+    return "no data";
+  }
+  var alldps = crusader.upgrades.alldps ? crusader.upgrades.alldps.reduce(add) : 0;
+  return crusader.upgrades.selfdps ? crusader.upgrades.selfdps.reduce(add) + +alldps : null;
+};
 
 var CheckBox = React.createClass({
   render:function(){
@@ -49,23 +59,25 @@ var CheckBox = React.createClass({
 });
 var CruTagRow = React.createClass({
     render: function () {
-        var cru = this.props.crusader;
-        var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
-        var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null; 
-        var tags = [];
-        this.props.missionTags.map(function(tag){
-          var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
-          tags.push(<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={tag.displayName} />);
-        });
-        
-        return (<tr>
-            {this.props.mode==="mine" ? <td key="owned"><CheckBox checked={this.props.owned} onChange={this.props.onOwnedChange} /></td>: null}
-            <td key="slot">{cru.slot}</td>
-            <td key="image">{image}</td>
-            <td key="display">{cru.displayName}</td>
-            <td key="tags">{tags}</td>
-            <td key="tagcount">{cru.tags.length}</td>
-        </tr>);
+      var self = this; 
+      var cru = this.props.crusader;
+      var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
+      var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null; 
+      var tags = [];
+      this.props.missionTags.map(function(tag){
+        var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
+        var title= tag.id === "dps" ? tag.displayName + ':' + self.props.dps : tag.displayName; 
+        tags.push(<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
+      });
+      
+      return (<tr>
+          {this.props.mode==="mine" ? <td key="owned"><CheckBox checked={this.props.owned} onChange={this.props.onOwnedChange} /></td>: null}
+          <td key="slot" title={cru.id}>{cru.slot}</td>
+          <td key="image">{image}</td>
+          <td key="display">{cru.displayName}</td>
+          <td key="tags">{tags}</td>
+          <td key="tagcount">{cru.tags.length}</td>
+      </tr>);
     }
 });
 var CruTagGrid = React.createClass({
@@ -110,7 +122,8 @@ var CruTagGrid = React.createClass({
       })
       .map(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        rows.push(<CruTagRow key={crusader.displayName} crusader={crusader} owned={owned} missionTags={self.props.model.missionTags} mode={self.state.mode} onOwnedChange={self.onOwnedChange.bind(self,crusader)} />);
+        var dps = getCrusaderDps(crusader);
+        rows.push(<CruTagRow key={crusader.displayName} crusader={crusader} dps={dps} owned={owned} missionTags={self.props.model.missionTags} mode={self.state.mode} onOwnedChange={self.onOwnedChange.bind(self,crusader)} />);
       }
     );
     var tagCounts = [];
