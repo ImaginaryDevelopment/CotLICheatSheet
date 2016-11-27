@@ -51,10 +51,21 @@ var getCrusaderDps = function(crusader){
   var alldps = crusader.upgrades.alldps ? crusader.upgrades.alldps.reduce(add) : 0;
   return crusader.upgrades.selfdps ? crusader.upgrades.selfdps.reduce(add) + +alldps : null;
 };
+var Filter = React.createClass({
+  render:function(){
+    var filterClasses = this.props.on ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";
+    return (<i className={filterClasses} onClick={this.props.filterClick}></i>);
+  }
 
+});
 var CheckBox = React.createClass({
   render:function(){
-    return (<input type="checkbox" onChange={this.props.onChange} checked={this.props.checked} />)
+    // var opts = {};
+    // if(this.props.readonly || this.props.readOnly){
+    //   opts['readOnly'] = 'readOnly';
+    // }
+    // {...opts}
+    return (<input type="checkbox" onChange={this.props.onChange}  disabled={this.props.disabled} checked={this.props.checked} readOnly={this.props.readonly}  />)
   }
 });
 var CruTagRow = React.createClass({
@@ -69,9 +80,17 @@ var CruTagRow = React.createClass({
         var title= tag.id === "dps" ? tag.displayName + ':' + self.props.dps : tag.displayName; 
         tags.push(<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
       });
+      var owned = null;
+      if (this.props.mode === "mine"){
+        if(cru.slot == cru.id && cru.slot < 21){
+          owned = (<td key="owned"><CheckBox checked={true} readonly={true} disabled={true} /></td>);
+        } else {
+          owned = (<td key="owned"><CheckBox checked={this.props.owned} onChange={this.props.onOwnedChange} /></td>);
+        }
+      }
       
       return (<tr>
-          {this.props.mode==="mine" ? <td key="owned"><CheckBox checked={this.props.owned} onChange={this.props.onOwnedChange} /></td>: null}
+          {owned}
           <td key="slot" title={cru.id}>{cru.slot}</td>
           <td key="image">{image}</td>
           <td key="display">{cru.displayName}</td>
@@ -83,7 +102,11 @@ var CruTagRow = React.createClass({
 var CruTagGrid = React.createClass({
   getInitialState:function(){
     // json.stringify this whole thing to make input/html5 storage data
-    return readIt("cruTagGrid", {slotSort:"up",mode:"",filterOwned:false,ownedCrusaderIds:[]});
+    var init = readIt("cruTagGrid", {slotSort:"up",mode:"",filterOwned:false,ownedCrusaderIds:[], filterTags:{}});
+    if(typeof(init.filterTags) === "undefined"){
+      init.filterTags = {};
+    }
+    return init; 
   },
   componentDidUpdate:function(prevProps, prevState){
     storeIt("cruTagGrid",this.state);
@@ -108,6 +131,17 @@ var CruTagGrid = React.createClass({
     }
     this.setState({ownedCrusaderIds:owned});
   },
+  onFilterTag:function(tagId){
+    var self = this;
+    console.log('onFilterTag', tagId, self.state.filterTags);
+    var tagFilter = {};
+    Object.keys(this.state.filterTags).map(function(tagId){
+      tagFilter[tagId] = self.state.filterTags[tagId] ? true : false;
+    });
+    tagFilter[tagId] = tagFilter[tagId] ? false : true;
+    console.log('filterTags', tagFilter);
+    this.setState({filterTags:tagFilter});
+  },
   render:function(){
   	console.info('rendering tag grid, react');
     var self = this;
@@ -118,7 +152,11 @@ var CruTagGrid = React.createClass({
     sortedCrusaders
       .filter(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        return !self.state.filterOwned || owned;
+        var ownershipFilter = owned || !self.state.filterOwned || (crusader.slot == crusader.id && crusader.slot < 21);
+        var tagFilter = Object.keys(self.state.filterTags).map(function(tagId) {
+          return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
+        }).reduce(function(a,b){ return a && b},true); 
+        return owned && tagFilter;
       })
       .map(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
@@ -132,14 +170,18 @@ var CruTagGrid = React.createClass({
         var count = self.props.model.crusaders.map(function (crusader){
             return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
         }).reduce(function(a,b){ return a + b;});
-        tagCounts.push(<span className="img_tag" title={tag.id} key={tag.id}>{count}</span>);
+        var classes = "img_tag";
+        if(self.state.filterTags[tag.id]){
+          classes += " active";
+        }
+        tagCounts.push(<span key={tag.id} className={classes} title={tag.id} onClick={self.onFilterTag.bind(self,tag.id)}>{count}</span>);
     });
     
     var filterOwnedClasses = this.state.filterOwned ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";  
     return (<table id="tab">
     <thead>
       <tr> 
-        { this.state.mode === "mine" ? <th>Owned <i className={filterOwnedClasses} onClick={this.filterOwnedClick}></i></th> : null}
+        { this.state.mode === "mine" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th> : null}
         <th>Slot<i className={slotSort} onClick={this.slotSortClick}></i></th>
         <th colSpan="2">Crusader</th>
         <th>Tags</th>
