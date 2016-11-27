@@ -149,6 +149,7 @@ var CruTagGrid = React.createClass({
     var sortedCrusaders = this.state.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0; 
     });
+    console.log('filterOwned', self.state.filterOwned);
     sortedCrusaders
       .filter(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
@@ -156,7 +157,8 @@ var CruTagGrid = React.createClass({
         var tagFilter = Object.keys(self.state.filterTags).map(function(tagId) {
           return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
         }).reduce(function(a,b){ return a && b},true); 
-        return owned && tagFilter;
+        console.log('owned', crusader.displayName, owned);
+        return ownershipFilter && tagFilter;
       })
       .map(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
