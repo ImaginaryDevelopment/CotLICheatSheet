@@ -156,7 +156,10 @@ window.jsonData =
       "image": "GrahamTheDriver_48.png",
       "tags": [
         "clicker",
-        "dps"
+        "dps",
+        "human",
+        "male",
+        "support"
       ]
     },
     {
