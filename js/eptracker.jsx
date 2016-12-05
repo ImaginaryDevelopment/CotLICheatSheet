@@ -204,11 +204,11 @@ var CruTagGrid = React.createClass({
 });
 
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('crusaders_holder')
-);
 // ReactDOM.render(
-//         <CruTagGrid model={jsonData} />,
-//         document.getElementById('crusaders_holder')
+//   <App />,
+//   document.getElementById('crusaders_holder')
 // );
+ReactDOM.render(
+        <CruTagGrid model={jsonData} />,
+        document.getElementById('crusaders_holder')
+);
