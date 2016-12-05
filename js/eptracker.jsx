@@ -93,7 +93,7 @@ var CruTagRow = React.createClass({
           {owned}
           <td key="slot" title={cru.id}>{cru.slot}</td>
           <td key="image">{image}</td>
-          <td key="display">{cru.displayName}</td>
+          <td key="display"><a href={self.props.wikibase + cru.displayName.replace(" ","_")}>{cru.displayName}</a></td>
           <td key="tags">{tags}</td>
           <td key="tagcount">{cru.tags.length}</td>
       </tr>);
@@ -163,7 +163,7 @@ var CruTagGrid = React.createClass({
       .map(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
         var dps = getCrusaderDps(crusader);
-        rows.push(<CruTagRow key={crusader.displayName} crusader={crusader} dps={dps} owned={owned} missionTags={self.props.model.missionTags} mode={self.state.mode} onOwnedChange={self.onOwnedChange.bind(self,crusader)} />);
+        rows.push(<CruTagRow key={crusader.displayName} wikibase={self.props.model.wikibase} crusader={crusader} dps={dps} owned={owned} missionTags={self.props.model.missionTags} mode={self.state.mode} onOwnedChange={self.onOwnedChange.bind(self,crusader)} />);
       }
     );
     var tagCounts = [];
@@ -202,9 +202,13 @@ var CruTagGrid = React.createClass({
     </table>)
   }
 });
-console.info('preparing to render tag grid, react');
+
 
 ReactDOM.render(
-        <CruTagGrid model={jsonData} />,
-        document.getElementById('crusaders_holder')
+  <App />,
+  document.getElementById('crusaders_holder')
 );
+// ReactDOM.render(
+//         <CruTagGrid model={jsonData} />,
+//         document.getElementById('crusaders_holder')
+// );

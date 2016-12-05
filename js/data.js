@@ -1,6 +1,6 @@
 window.jsonData =
 {
-  "wikibase":"http://crusaders-of-the-lost-idols.wikia.com/wiki/",
+  "wikibase": "http://crusaders-of-the-lost-idols.wikia.com/wiki/",
   "missionTags": [
     {
       "id": "male",
