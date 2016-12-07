@@ -146,6 +146,7 @@ var CruTagGrid = React.createClass({
   	console.info('rendering tag grid, react');
     var self = this;
     var rows=[];
+    var totalCrusaders = this.props.model.crusaders.length;
     var sortedCrusaders = this.state.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0; 
     });
@@ -178,7 +179,7 @@ var CruTagGrid = React.createClass({
         }
         tagCounts.push(<span key={tag.id} className={classes} title={tag.id} onClick={self.onFilterTag.bind(self,tag.id)}>{count}</span>);
     });
-    
+    var countDisplay = totalCrusaders === rows.length ? totalCrusaders : (rows.length + " of " + totalCrusaders);
     var filterOwnedClasses = this.state.filterOwned ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";  
     return (<table id="tab">
     <thead>
@@ -191,7 +192,7 @@ var CruTagGrid = React.createClass({
       </tr>
       <tr>
         {this.state.mode === "mine" ? <th></th> : null}
-        <th>(count:{rows.length})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
+        <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
         <th>{tagCounts}</th>
         <th>Counts</th>
       </tr>
