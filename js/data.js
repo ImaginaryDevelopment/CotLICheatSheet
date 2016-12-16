@@ -783,6 +783,19 @@ window.jsonData =
       ]
     },
     {
+      "id": "12c",
+      "displayName": "The Dark Helper",
+      "image": "TheDarkHelper_48.png",
+      "slot": 12,
+      "tags":[
+        "female",
+        "elf",
+        "event",
+        "support",
+        "gold"
+      ]
+    },
+    {
       "id": "13",
       "displayName": "Sarah, the Collector",
       "image": "mini_Sarah.jpg",
