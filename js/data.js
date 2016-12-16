@@ -1098,6 +1098,18 @@ window.jsonData =
       ]
     },
     {
+      "id":"20b",
+      "displayName": "Robo-Rudolph",
+      "image":"RoboRudolph_48.png",
+      "slot": 20,
+      "tags": [
+       "male",
+       "dps",
+       "event",
+       "robot"
+      ]
+    },
+    {
       "id": "21",
       "displayName": "The Exterminator",
       "image": "TheExterminator_48.png",
