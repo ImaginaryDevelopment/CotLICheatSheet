@@ -99,6 +99,41 @@ var CruTagRow = React.createClass({
       </tr>);
     }
 });
+
+// all crusaders for a slot
+var CruSlot = React.createClass({
+  render:function(){
+    var self = this; 
+    var crusaders = this.props.crusaders;
+    var selected = this.props.selected;
+    var renderCrusader = function(crusader){
+      return(
+      <CruTagRow 
+        key={crusader.displayName} 
+        wikibase={self.props.model.wikibase} 
+        crusader={crusader} 
+        dps={dps} 
+        owned={owned} 
+        missionTags={self.props.model.missionTags} 
+        mode={self.state.mode} 
+        onOwnedChange={self.onOwnedChange.bind(self,crusader)} />
+      );
+    };
+    if (selected === "hide"){
+      return (<tr key={"hide" + self.props.slot}><td /> </tr>);
+    } else if (!(!selected) || selected === "all") {
+      return (<text>
+        {self.props.crusaders.map(renderCrusader)}
+        </text>);
+    } else if (selected) {
+      var crusader = crusaders.filter(function(crusader){
+        return crusader.id === selected;
+      })[0];
+      return renderCrusader(crusader);
+    }
+  }
+});
+
 var CruTagGrid = React.createClass({
   getInitialState:function(){
     // json.stringify this whole thing to make input/html5 storage data

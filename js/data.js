@@ -466,6 +466,19 @@ window.jsonData =
       ]
     },
     {
+      "id": "06c",
+      "displayName": "Bernard the Bartender",
+      "image": "BernardTheBartender_48.png",
+      "slot": 6,
+      "tags": [
+        "human",
+        "male",
+        "gold",
+        "support",
+        "event"
+      ]
+    },
+    {
       "id": "07",
       "displayName": "The Princess",
       "image": "mini_Princess.jpg",
@@ -929,6 +942,19 @@ window.jsonData =
         "dps",
         "support",
         "event"
+      ]
+    },
+    {
+      "id": "15d",
+      "displayName": "Princess Val the Mermaid",
+      "image": "PrincessValTheMermaid_48.png",
+      "slot": 15,
+      "tags": [
+        "female",
+        "animal",
+        "healer",
+        "event",
+        "royal"
       ]
     },
     {
