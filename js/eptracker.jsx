@@ -133,11 +133,37 @@ var CruSlot = React.createClass({
     }
   }
 });
-
+function padLeft(nr, n, str){
+    return Array(n-String(nr).length+1).join(str||'0')+nr;
+}
 var CruTagGrid = React.createClass({
   getInitialState:function(){
     // json.stringify this whole thing to make input/html5 storage data
     var init = readIt("cruTagGrid", {slotSort:"up",mode:"",filterOwned:false,ownedCrusaderIds:[], filterTags:{}});
+    var toRemove=[];
+    init.ownedCrusaderIds.sort();
+    var x = init.ownedCrusaderIds;
+    x.sort();
+    for(var i = 0; i < x.length; i++){
+      var value = x[i];
+      
+      if(typeof(value) === "number" || value.length < 2 || value.length > 3 || x.indexOf(value,i + 1) >= 0){
+        console.log('removing ownedId', value, 'index', i,'dupAt',  x.indexOf(value, i + 1));
+        toRemove.push(value);
+      }
+    }
+    toRemove.map(v =>x.splice(x.indexOf(v),1));
+
+    for(var i = 1; i <= 20; i++)
+    {
+      var proposedValue = padLeft(i,2);
+      if(x.indexOf(proposedValue) < 0){
+        x.push(proposedValue);
+      }
+    }
+    x.sort();
+    console.log('init ownedIds',x, x.length);
+    
     if(typeof(init.filterTags) === "undefined"){
       init.filterTags = {};
     }
@@ -182,6 +208,7 @@ var CruTagGrid = React.createClass({
     var self = this;
     var rows=[];
     var totalCrusaders = this.props.model.crusaders.length;
+    var totalOwned = this.state.ownedCrusaderIds? this.state.ownedCrusaderIds.length : '';
     var sortedCrusaders = this.state.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0; 
     });
@@ -193,7 +220,9 @@ var CruTagGrid = React.createClass({
         var tagFilter = Object.keys(self.state.filterTags).map(function(tagId) {
           return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
         }).reduce(function(a,b){ return a && b},true); 
-        console.log('owned', crusader.displayName, owned);
+        if(!owned){
+          console.log('owned', crusader.displayName, owned);
+        }
         return ownershipFilter && tagFilter;
       })
       .map(function(crusader){
@@ -214,6 +243,7 @@ var CruTagGrid = React.createClass({
         }
         tagCounts.push(<span key={tag.id} className={classes} title={tag.id} onClick={self.onFilterTag.bind(self,tag.id)}>{count}</span>);
     });
+
     var countDisplay = totalCrusaders === rows.length ? totalCrusaders : (rows.length + " of " + totalCrusaders);
     var filterOwnedClasses = this.state.filterOwned ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";  
     return (<table id="tab">
@@ -226,7 +256,7 @@ var CruTagGrid = React.createClass({
         <th></th>
       </tr>
       <tr>
-        {this.state.mode === "mine" ? <th></th> : null}
+        {this.state.mode === "mine" ? <th>{totalOwned}</th> : null}
         <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
         <th>{tagCounts}</th>
         <th>Counts</th>
