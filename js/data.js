@@ -329,6 +329,8 @@ window.jsonData =
       "displayName": "Groklok the Orc",
       "image": "mini_Groklok.jpg",
       "slot": 4,
+      "event": "January: Carnage Cup",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
         "orc",
         "male",
@@ -597,6 +599,21 @@ window.jsonData =
       ]
     },
     {
+      "id": "08c",
+      "displayName": "Karl the Kicker",
+      "slot": 8,
+      // "image":"Littlefoot_48.png",
+      "event": "January: Carnage Cup",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
+      "tags": [
+        "male",
+        "gold",
+        "human",
+        "support",
+        "event"
+      ]
+    },
+    {
       "id": "09",
       "displayName": "Jason, Master of Shadows",
       "image": "mini_Jason.jpg",
@@ -706,6 +723,8 @@ window.jsonData =
       "displayName": "Drizzle the Dark Elf",
       "image": "mini_Drizzle.jpg",
       "slot": 10,
+      "event": "January: Carnage Cup",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
         "female",
         "elf",
@@ -1111,6 +1130,20 @@ window.jsonData =
         "tank",
         "support",
         "supernatural",
+        "event"
+      ]
+    },
+    {
+      "id": "18c",
+      "displayName": "Cindy the Cheer-Orc",
+      "slot": 18,
+      // "image":"Littlefoot_48.png",
+      "event": "January: Carnage Cup",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
+      "tags": [
+        "female",
+        "support",
+        "orc",
         "event"
       ]
     },
