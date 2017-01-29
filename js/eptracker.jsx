@@ -77,8 +77,25 @@ var CruTagRow = React.createClass({
       var tags = [];
       this.props.missionTags.map(function(tag){
         var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
-        var title= tag.id === "dps" ? tag.displayName + ':' + self.props.dps : tag.displayName; 
-        tags.push(<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
+        var title = tag.displayName;
+        switch (tag.id){
+          case "dps":
+            title += ':' + self.props.dps;
+          break;
+          case "event":
+            if(cru.event){
+              title += ":" + cru.event;
+            }
+          break;
+        }
+          
+          tag.id === "dps" ? tag.displayName  : tag.displayName; 
+          var imgTag = (<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
+        if(tag.id === "event" && cru.eventLink){
+          tags.push(<a href={cru.eventLink}>{imgTag}</a>);
+        } else {
+          tags.push(imgTag);
+        }
       });
       var owned = null;
       if (this.props.mode === "mine"){

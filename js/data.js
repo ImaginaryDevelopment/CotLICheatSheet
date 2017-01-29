@@ -142,6 +142,8 @@ window.jsonData =
       "displayName": "RoboRabbit",
       "image": "mini_RoboRabbit.jpg",
       "slot": 1,
+      "event": "March: Nate's Candy Conundrum",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
       "tags": [
         "clicker",
         "event",
@@ -193,6 +195,8 @@ window.jsonData =
       "displayName": "Pilot Pam",
       "image": "mini_Pam.jpg",
       "slot": 2,
+      "event": "January: Princess Pool Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "human",
         "female",
@@ -206,6 +210,8 @@ window.jsonData =
       "displayName": "Veronica, the Android Archer",
       "slot":2,
       "image":"VeronicaTheAndroidArcher_48.png",
+      "event": "August: Dr. Evil's Summer Sabotage",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
       "upgrades":{
         "selfdps":[
           150,
@@ -258,6 +264,8 @@ window.jsonData =
       "displayName": "Sally the Succubus",
       "image": "mini_Sally.jpg",
       "slot": 3,
+      "event": "February: Merci's Mix-up",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
       "tags": [
         "demon",
         "female",
@@ -271,6 +279,8 @@ window.jsonData =
       "displayName":"Karen, the Cat Teenager",
       "image":"KarenTheCatTeenager_48.png",
       "slot": 3,
+      "event": "September: Sasha's Schoolhouse Scourge",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
       "tags":[
         "female",
         "animal",
@@ -333,6 +343,8 @@ window.jsonData =
       "displayName":"Mindy the Mime",
       "image": "MindyTheMime_48.png",
       "slot": 4,
+      "event": "September: Carnival of Sorrows",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "dps",
         "event",
@@ -444,6 +456,8 @@ window.jsonData =
       "displayName": "Mister the Monkey",
       "image": "mini_Mister.jpg",
       "slot": 6,
+      "event": "September: Carnival of Sorrows",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "animal",
         "male",
@@ -470,6 +484,8 @@ window.jsonData =
       "displayName": "Bernard the Bartender",
       "image": "BernardTheBartender_48.png",
       "slot": 6,
+      "event": "January: Princess Pool Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "human",
         "male",
@@ -507,6 +523,8 @@ window.jsonData =
       "displayName": "Ranger Rayna",
       "image": "RangerRayna_48.png",
       "slot":7,
+      "event": "July: Littlefoot's Big Adventure",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
       "tags":[
         "dps",
         "event",
@@ -604,6 +622,8 @@ window.jsonData =
       "displayName": "Pete the Carney",
       "image": "mini_Pete.jpg",
       "slot": 9,
+      "event": "September: Carnival of Sorrows",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "male",
         "human",
@@ -633,6 +653,8 @@ window.jsonData =
       "displayName": "Broot",
       "image": "mini_Broot.jpg",
       "slot": 9,
+      "event": "April/May: Gardeners of the Galaxy",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
       "tags": [
         "male",
         "female",
@@ -696,6 +718,8 @@ window.jsonData =
       "displayName": "Bubba, the Swimming Orc",
       "image": "BubbaTheSwimmingOrc_48.png",
       "slot": 10,
+      "event": "August: Dr. Evil's Summer Sabotage",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
       "tags": [
         "male",
         "orc",
@@ -750,6 +774,8 @@ window.jsonData =
       "displayName": "The Half-Blood Elf",
       "image": "TheHalfBloodElf_48.png",
       "slot": 11,
+      "event": "September: Carnival of Sorrows",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "elf",
         "event",
@@ -776,6 +802,8 @@ window.jsonData =
       "displayName": "Rocky the Rockstar",
       "image": "mini_Rocky.jpg",
       "slot": 12,
+      "event": "February: Merci's Mix-up",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
       "tags": [
         "male",
         "human",
@@ -936,6 +964,8 @@ window.jsonData =
       "displayName": "Robbie Raccoon",
       "image": "mini_Robbie.jpg",
       "slot": 15,
+      "event": "April/May: Gardeners of the Galaxy",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
       "tags": [
         "male",
         "animal",
@@ -949,6 +979,8 @@ window.jsonData =
       "displayName": "Princess Val the Mermaid",
       "image": "PrincessValTheMermaid_48.png",
       "slot": 15,
+      "event": "January: Princess Pool Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "female",
         "animal",
@@ -974,6 +1006,8 @@ window.jsonData =
       "displayName": "Alan the ArchAngel",
       "image": "mini_Alan.jpg",
       "slot": 16,
+      "event": "March: Nate's Candy Conundrum",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
       "tags": [
         "male",
         "angel",
@@ -1011,6 +1045,8 @@ window.jsonData =
       "displayName": "Queen Siri",
       "image": "mini_Siri.jpg",
       "slot": 17,
+      "event": "January: Princess Pool Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "female",
         "human",
@@ -1025,6 +1061,8 @@ window.jsonData =
       "displayName": "Mr. Boggins, the Substitute",
       "image": "MrBogginsTheSubstitute_48.png",
       "slot": 17,
+      "event": "September: Sasha's Schoolhouse Scourge",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
       "tags": [
         "event",
         "male",
@@ -1065,6 +1103,8 @@ window.jsonData =
       "displayName": "Littlefoot",
       "slot": 18,
       "image":"Littlefoot_48.png",
+      "event": "July: Littlefoot's Big Adventure",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
       "tags": [
         "female",
         "animal",
