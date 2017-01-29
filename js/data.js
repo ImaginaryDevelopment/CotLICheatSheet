@@ -778,6 +778,8 @@ window.jsonData =
       "displayName": "Brogon, Prince of Dragons",
       "image": "mini_Brogon.jpg",
       "slot": 11,
+      "event": "May: A Song of Thrones",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/A_Song_of_Thrones",
       "tags": [
         "male",
         "animal",
@@ -931,6 +933,8 @@ window.jsonData =
       "displayName": "Leerion, the Royal Dwarf",
       "image": "mini_Leerion.jpg",
       "slot": 14,
+      "event": "May: A Song of Thrones",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/A_Song_of_Thrones",
       "tags": [
         "male",
         "human",

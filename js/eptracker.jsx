@@ -92,7 +92,7 @@ var CruTagRow = React.createClass({
           tag.id === "dps" ? tag.displayName  : tag.displayName; 
           var imgTag = (<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
         if(tag.id === "event" && cru.eventLink){
-          tags.push(<a href={cru.eventLink}>{imgTag}</a>);
+          tags.push(<a key={tag.id} className="tooltip" href={cru.eventLink}>{imgTag}</a>);
         } else {
           tags.push(imgTag);
         }
@@ -111,7 +111,7 @@ var CruTagRow = React.createClass({
           <td key="slot" title={cru.id}>{cru.slot}</td>
           <td key="image">{image}</td>
           <td key="display"><a href={self.props.wikibase + cru.displayName.replace(" ","_")}>{cru.displayName}</a></td>
-          <td key="tags">{tags}</td>
+          <td key="tags" className="tags">{tags}</td>
           <td key="tagcount">{cru.tags.length}</td>
       </tr>);
     }
@@ -269,13 +269,13 @@ var CruTagGrid = React.createClass({
         { this.state.mode === "mine" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th> : null}
         <th>Slot<i className={slotSort} onClick={this.slotSortClick}></i></th>
         <th colSpan="2">Crusader</th>
-        <th>Tags</th>
+        <th className="tags">Tags</th>
         <th></th>
       </tr>
       <tr>
         {this.state.mode === "mine" ? <th>{totalOwned}</th> : null}
         <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
-        <th>{tagCounts}</th>
+        <th className="tags">{tagCounts}</th>
         <th>Counts</th>
       </tr>
       </thead>
