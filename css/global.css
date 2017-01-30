@@ -37,6 +37,7 @@ outline-color: green;
 .clickable, .hoverShowClickable:hover{
     outline-style: dotted;
     outline-color: lightblue;
+    cursor: pointer;
 }
 .img_tag_off { -webkit-filter: grayscale(100%) opacity(30%); filter: grayscale(100%) opacity(30%);  }
 .img_portrait { height: 50px; margin: 0; display: block; }

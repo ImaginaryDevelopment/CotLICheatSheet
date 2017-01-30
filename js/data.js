@@ -401,6 +401,8 @@ window.jsonData =
       "displayName": "Serpent King Draco",
       "image": "SerpentKingDraco_48.png",
       "slot":5,
+      "event": "June: Trek Through the Hidden Temple",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
       "tags":[
         "animal",
         "male",
@@ -428,6 +430,8 @@ window.jsonData =
       "displayName": "Henry, the Scaredy-Ghoul",
       "image":"HenryTheScaredyGhoul_48.png",
       "slot":5,
+      "event": "October: Emo's New Moon",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
       "tags":[
         "supernatural",
         "male",
@@ -517,6 +521,8 @@ window.jsonData =
       "displayName": "RoboTurkey",
       "image": "mini_RoboTurkey.jpg",
       "slot": 7,
+      "event": "November: Kaines' Dinner of Doom",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
       "tags": [
         "male",
         "robot",
@@ -580,6 +586,8 @@ window.jsonData =
       "displayName": "Jack O'Lantern",
       "image": "mini_Jack.jpg",
       "slot": 8,
+      "event": "October: Emo's New Moon",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
       "tags": [
         "male",
         "animal",
@@ -594,6 +602,8 @@ window.jsonData =
       "displayName" : "President Billy Smithsonian",
       "image":"PresidentBillySmithsonian_48.png",
       "slot": 8,
+      "event": "July: Alien Invasion Day",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
       "tags":[
         "male",
         "event",
@@ -691,6 +701,8 @@ window.jsonData =
       "displayName": "Paul the Pilgrim",
       "image": "PaulThePilgrim_48.png",
       "slot": 9,
+      "event": "November: Kaines' Dinner of Doom",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
       "tags": [
         "male",
         "gold",
@@ -769,6 +781,8 @@ window.jsonData =
       "displayName": "Momma Kaine",
       "image": "mini_Momma.jpg",
       "slot": 11,
+      "event": "November: Kaines' Dinner of Doom",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
       "tags": [
         "female",
         "human",
@@ -841,6 +855,8 @@ window.jsonData =
       "displayName": "Montana James",
       "image": "MontanaJames_48.png",
       "slot": 12,
+      "event": "June: Trek Through the Hidden Temple",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
       "tags": [
         "male",
         "event",
@@ -853,6 +869,8 @@ window.jsonData =
       "displayName": "The Dark Helper",
       "image": "TheDarkHelper_48.png",
       "slot": 12,
+      "event": "December: The Nate Before Christmas",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
       "tags":[
         "female",
         "elf",
@@ -894,6 +912,8 @@ window.jsonData =
       "displayName": "The Metal Soldierette",
       "image": "mini_Soldierette.jpg",
       "slot": 13,
+      "event": "April: Superhero Spring",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
       "tags": [
         "female",
         "human",
@@ -925,6 +945,8 @@ window.jsonData =
       "displayName": "RoboSanta",
       "image": "mini_RoboSanta.jpg",
       "slot": 14,
+      "event": "December: The Nate Before Christmas",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
       "tags": [
         "male",
         "robot",
@@ -973,6 +995,8 @@ window.jsonData =
       "displayName": "Wendy the Witch",
       "image": "mini_Wendy.jpg",
       "slot": 15,
+      "event": "October: Emo's New Moon",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
       "tags": [
         "female",
         "human",
@@ -1048,6 +1072,8 @@ window.jsonData =
       "displayName": "Fright-o-Tron",
       "image":"FrightOTron4000_48.png",
       "slot": 16,
+      "event": "October: Emo's New Moon",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
       "tags": [
         "robot",
         "female",
@@ -1117,6 +1143,8 @@ window.jsonData =
       "displayName": "Frosty the Snowman",
       "image": "mini_Frosty.jpg",
       "slot": 18,
+      "event": "December: The Nate Before Christmas",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
       "tags": [
         "male",
         "animal",
@@ -1172,6 +1200,8 @@ window.jsonData =
       "displayName": "The Bat Billionaire",
       "image": "mini_Bat.jpg",
       "slot": 19,
+      "event": "April: Superhero Spring",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
       "tags": [
         "male",
         "human",
@@ -1184,6 +1214,8 @@ window.jsonData =
       "displayName": "Petra the Pilgrim",
       "slot":19,
       "image":"PetraThePilgrim_48.png",
+      "event": "November: Kaines' Dinner of Doom",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
       "tags":[
         "female",
         "dps",
@@ -1208,6 +1240,8 @@ window.jsonData =
       "displayName": "Kizlblyp, the Alien Traitor",
       "image": "KizlblypTheAlienTraitor_48.png",
       "slot": 20,
+      "event": "July: Alien Invasion Day",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
       "tags": [
         "female",
         "dps",
@@ -1222,6 +1256,8 @@ window.jsonData =
       "displayName": "Robo-Rudolph",
       "image":"RoboRudolph_48.png",
       "slot": 20,
+      "event": "December: The Nate Before Christmas",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
       "tags": [
        "male",
        "dps",
