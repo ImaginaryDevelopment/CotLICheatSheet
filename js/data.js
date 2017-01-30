@@ -387,6 +387,8 @@ window.jsonData =
       "displayName": "Kyle the Party Bro",
       "image": "mini_Kyle.jpg",
       "slot": 5,
+      "event": "March: Hermit's Premature Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
       "tags": [
         "human",
         "male",
@@ -472,6 +474,8 @@ window.jsonData =
       "displayName": "Larry the Leprechaun",
       "image": "mini_Larry.jpg",
       "slot": 6,
+      "event": "March: Hermit's Premature Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
       "tags": [
         "leprechaun",
         "male",

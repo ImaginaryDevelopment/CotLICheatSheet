@@ -53,7 +53,7 @@ var getCrusaderDps = function(crusader){
 };
 var Filter = React.createClass({
   render:function(){
-    var filterClasses = this.props.on ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";
+    var filterClasses = this.props.on ? "fa fa-fw fa-filter active hoverShowClickable" : "fa fa-fw fa-filter hoverShowClickable";
     return (<i className={filterClasses} onClick={this.props.filterClick}></i>);
   }
 
@@ -275,7 +275,7 @@ var CruTagGrid = React.createClass({
       <tr>
         {this.state.mode === "mine" ? <th>{totalOwned}</th> : null}
         <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
-        <th className="tags">{tagCounts}</th>
+        <th className="tags clickable">{tagCounts}</th>
         <th>Counts</th>
       </tr>
       </thead>
