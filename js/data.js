@@ -616,7 +616,7 @@ window.jsonData =
       "id": "08c",
       "displayName": "Karl the Kicker",
       "slot": 8,
-      // "image":"Littlefoot_48.png",
+      "image":"KarlTheKicker_48.png",
       "event": "January: Carnage Cup",
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
@@ -1173,7 +1173,7 @@ window.jsonData =
       "id": "18c",
       "displayName": "Cindy the Cheer-Orc",
       "slot": 18,
-      // "image":"Littlefoot_48.png",
+      "image":"CindyTheCheerOrc_48.png",
       "event": "January: Carnage Cup",
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
