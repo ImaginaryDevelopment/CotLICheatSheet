@@ -1079,7 +1079,7 @@ window.jsonData =
       "id": "16b",
       "tier": 2,
       "displayName": "Fright-o-Tron 4000",
-      "link": "Fright-o-Tron_4000",
+      // "link": "Fright-o-Tron_4000",
       "image":"FrightOTron4000_48.png",
       "slot": 16,
       "event": "October: Emo's New Moon",

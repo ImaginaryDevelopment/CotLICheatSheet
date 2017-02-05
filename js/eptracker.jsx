@@ -288,7 +288,8 @@ var CruTagGrid = React.createClass({
     return (<table id="tab">
     <thead>
       <tr> 
-        { this.state.mode === "mine" && this.state.formation !== "formation" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th> : null}
+        { this.state.mode === "mine" && this.state.formation !== "formation" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th> 
+          : this.state.mode ==="mine" && this.state.formation ==="formation"? <th></th> : null}
         <th>Slot<i className={slotSort} onClick={this.slotSortClick}></i></th>
         <th colSpan="2">Crusader</th>
         <th className="tags">Tags</th>
