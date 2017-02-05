@@ -112,13 +112,17 @@ var CruTagRow = React.createClass({
           owned = (<td key="owned"><CheckBox checked={this.props.owned} onChange={this.props.onOwnedChange} /></td>);
         }
       }
+      var link = cru.link && cru.link.indexOf('/') < 0 ? (self.props.wikibase + cru.link) 
+      : cru.link? 
+        cru.link
+      : self.props.wikibase + cru.displayName.replace(" ","_");
       
       return (<tr>
           {formation}
           {owned}
-          <td key="slot" data-key="slot id" title={cru.id}>{cru.slot}</td>
+          <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={cru.id}>{cru.slot}</td>
           <td key="image" data-key="image">{image}</td>
-          <td key="display" data-key="display"><a href={self.props.wikibase + cru.displayName.replace(" ","_")}>{cru.displayName}</a></td>
+          <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
           <td key="tags" className="tags" data-key="tags">{tags}</td>
           <td key="tagcount" data-key="tagcount">{cru.tags.length}</td>
       </tr>);

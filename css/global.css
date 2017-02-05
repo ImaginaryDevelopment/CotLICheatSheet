@@ -29,6 +29,10 @@ a:hover	{ color: #fff; }
 #tab td.tags > .tooltip{
     margin: 2px 2px;
 }
+#tab td.tier2 {
+    font-weight: bolder;
+    color:#44c201;
+}
 .tooltip, #tab td.tags > .tooltip{
 outline-style: dotted; /* 2px solid; */
 outline-color: green; 

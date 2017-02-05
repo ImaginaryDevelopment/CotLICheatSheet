@@ -342,6 +342,7 @@ window.jsonData =
     },
     {
       "id": "04b",
+      "tier": 2,
       "displayName":"Mindy the Mime",
       "image": "MindyTheMime_48.png",
       "slot": 4,
@@ -427,6 +428,7 @@ window.jsonData =
     },
     {
       "id": "05c",
+      "tier": 2,
       "displayName": "Henry, the Scaredy-Ghoul",
       "image":"HenryTheScaredyGhoul_48.png",
       "slot":5,
@@ -491,6 +493,7 @@ window.jsonData =
     },
     {
       "id": "06c",
+      "tier": 2,
       "displayName": "Bernard the Bartender",
       "image": "BernardTheBartender_48.png",
       "slot": 6,
@@ -614,6 +617,7 @@ window.jsonData =
     },
     {
       "id": "08c",
+      "tier": 2,
       "displayName": "Karl the Kicker",
       "slot": 8,
       "image":"KarlTheKicker_48.png",
@@ -698,6 +702,7 @@ window.jsonData =
     },
     {
       "id": "09c",
+      "tier": 2,
       "displayName": "Paul the Pilgrim",
       "image": "PaulThePilgrim_48.png",
       "slot": 9,
@@ -810,6 +815,7 @@ window.jsonData =
     },
     {
       "id": "11c",
+      "tier": 2,
       "displayName": "The Half-Blood Elf",
       "image": "TheHalfBloodElf_48.png",
       "slot": 11,
@@ -866,6 +872,7 @@ window.jsonData =
     },
     {
       "id": "12c",
+      "tier": 2,
       "displayName": "The Dark Helper",
       "image": "TheDarkHelper_48.png",
       "slot": 12,
@@ -1027,6 +1034,7 @@ window.jsonData =
     },
     {
       "id": "15d",
+      "tier": 2,
       "displayName": "Princess Val the Mermaid",
       "image": "PrincessValTheMermaid_48.png",
       "slot": 15,
@@ -1069,7 +1077,9 @@ window.jsonData =
     },
     {
       "id": "16b",
-      "displayName": "Fright-o-Tron",
+      "tier": 2,
+      "displayName": "Fright-o-Tron 4000",
+      "link": "Fright-o-Tron_4000",
       "image":"FrightOTron4000_48.png",
       "slot": 16,
       "event": "October: Emo's New Moon",
@@ -1171,6 +1181,7 @@ window.jsonData =
     },
     {
       "id": "18c",
+      "tier": 2,
       "displayName": "Cindy the Cheer-Orc",
       "slot": 18,
       "image":"CindyTheCheerOrc_48.png",
@@ -1211,6 +1222,7 @@ window.jsonData =
     },
     {
       "id": "19b",
+      "tier": 2,
       "displayName": "Petra the Pilgrim",
       "slot":19,
       "image":"PetraThePilgrim_48.png",
@@ -1253,6 +1265,7 @@ window.jsonData =
     },
     {
       "id":"20b",
+      "tier": 2,
       "displayName": "Robo-Rudolph",
       "image":"RoboRudolph_48.png",
       "slot": 20,
