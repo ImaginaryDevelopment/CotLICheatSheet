@@ -1286,7 +1286,8 @@ window.jsonData =
       "tags": [
         "male",
         "robot",
-        "dps"
+        "dps",
+        "gold"
       ]
     },
     {
@@ -1348,6 +1349,7 @@ window.jsonData =
         "elf",
         "magical",
         "male",
+        "gold",
         "support"
       ]
     }
