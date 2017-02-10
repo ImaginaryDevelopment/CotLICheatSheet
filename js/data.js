@@ -166,6 +166,18 @@ window.jsonData =
       ]
     },
     {
+      "id": "01c",
+      "displayName": "Warwick the Warlock",
+      "slot": 1,
+      "image": "",
+      "event": "February: Merci's Mix-up",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
+      "tags": [
+        "male",
+        "event"
+      ]
+    },
+    {
       "id": "02",
       "displayName": "Jim the Lumberjack",
       "image": "mini_Jim.jpg",
