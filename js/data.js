@@ -990,6 +990,19 @@ window.jsonData =
       ]
     },
     {
+      "id": "14c",
+      "displayName": "Katie the Cupid",
+      "image": "",
+      "slot": 14,
+      "event": "February: Merci's Mix-up",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
+      "tags": [
+        "female",
+        "gold",
+        "supernatural"
+      ]
+    },
+    {
       "id": "15",
       "displayName": "Prince Sal, the Merman",
       "image": "mini_Sal.jpg",
