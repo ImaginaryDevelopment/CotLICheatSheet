@@ -361,14 +361,10 @@ var CruTagGrid = React.createClass({
           })
           .reduce(function(a,b){ return a && b},true); 
 
-        var formationFilter = owned && self.state.formation ==="formation" 
-          && //nothing in slot selected
-            (!(self.state.formationIds[crusader.slot] != null) 
-            ||  // this one is not selected
-            self.state.formationIds[crusader.slot] === crusader.id);
+        var formationFilter = !owned || self.state.formation !=="formation" || (!(self.state.formationIds[crusader.slot] != null)) || self.state.formationIds[crusader.slot] === crusader.id;
         // if(!owned){
         if(crusader.slot==1){
-          console.log('filtering this slot 1?',crusader.id, owned,ownershipFilter,tagFilter,formationFilter);
+          console.log('filtering this slot 1?',owned,ownershipFilter,tagFilter,formationFilter);
         }
         //   console.log('owned', crusader.displayName, owned);
         // }
