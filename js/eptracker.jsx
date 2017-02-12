@@ -364,8 +364,8 @@ var CruTagGrid = React.createClass({
           })
           .reduce(function(a,b){ return a && b},true); 
 
-        var formationFilter = owned && self.state.formation ==="formation" 
-          && //nothing in slot selected
+        var formationFilter = self.state.formation !== "formation" 
+          || //nothing in slot selected
             (!(self.state.formationIds[crusader.slot] != null) 
             ||  // this one is not selected
             self.state.formationIds[crusader.slot] === crusader.id);
@@ -376,6 +376,7 @@ var CruTagGrid = React.createClass({
         //   console.log('owned', crusader.displayName, owned);
         // }
         return ownershipFilter && tagFilter && formationFilter;
+
       })
       .map(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
