@@ -169,6 +169,7 @@ window.jsonData =
       "id": "01c",
       "displayName": "Warwick the Warlock",
       "slot": 1,
+      "tier": 2,
       "image": "WarwickTheWarlock_48.png",
       "event": "February: Merci's Mix-up",
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
@@ -996,6 +997,7 @@ window.jsonData =
     {
       "id": "14c",
       "displayName": "Katie the Cupid",
+      "tier": 2,
       "image": "KatieTheCupid_48.png",
       "slot": 14,
       "event": "February: Merci's Mix-up",
