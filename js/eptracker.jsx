@@ -355,17 +355,11 @@ var CruTagGrid = React.createClass({
       .filter(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
         var ownershipFilter = owned || !self.state.filterOwned || (crusader.slot == crusader.id && crusader.slot < 21);
-        var tagFilter = 
-          Object.keys(self.state.filterTags).map(function(tagId) {
-            return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
-          })
-          .reduce(function(a,b){ return a && b},true); 
-
+        var tagFilter = Object.keys(self.state.filterTags).map(function(tagId) {
+          return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
+        }).reduce(function(a,b){ return a && b},true); 
         var formationFilter = !owned || self.state.formation !=="formation" || (!(self.state.formationIds[crusader.slot] != null)) || self.state.formationIds[crusader.slot] === crusader.id;
         // if(!owned){
-        if(crusader.slot==1){
-          console.log('filtering this slot 1?',owned,ownershipFilter,tagFilter,formationFilter);
-        }
         //   console.log('owned', crusader.displayName, owned);
         // }
         return ownershipFilter && tagFilter && formationFilter;
