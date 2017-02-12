@@ -121,7 +121,8 @@ var storeIt = function(key,value){
 var readIt = function(key,defaultValue){
   if(getIsLocalStorageAvailable()){
     var item = localStorage.getItem(key);
-    if(typeof(item) !== 'undefined' && item !== null){
+    console.log(item);
+    if(typeof(item) !== 'undefined' && item != null){
       console.info("read item from localStorage", key,item);
       return JSON.parse(item);
     } else {
@@ -226,8 +227,15 @@ function padLeft(nr, n, str){
 }
 var CruTagGrid = React.createClass({
   getInitialState:function(){
+    let defaultValue = {slotSort:"up",mode:"",epMode:false,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
     // json.stringify this whole thing to make input/html5 storage data
-    var init = readIt(cruTagGridKey, {slotSort:"up",mode:"",epMode:false,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}});
+    var init = readIt(cruTagGridKey, defaultValue);
+    if(init != null){
+      console.log('initRaw', init);
+
+    } else {
+      init = defaultValue;
+    }
     var toRemove=[];
     init.ownedCrusaderIds.sort();
     var x = init.ownedCrusaderIds;
@@ -455,8 +463,15 @@ var CruApp = React.createClass({
     var state = {lastRead:read};
     return state;
   },
-  onGetClick(){
-
+  onSetClick(){
+    console.log('onSetClick',arguments);
+    if(this.state.textState){
+      storeIt(cruTagGridKey, JSON.parse(this.state.textState));
+    }
+    else{
+      storeIt(cruTagGridKey, undefined);
+    }
+      window.location.reload(false);
   },
   render(){
     var w = window,
@@ -470,14 +485,14 @@ var CruApp = React.createClass({
       maxWidth:x,
       overflowWrap:"break-word"
     };
-    if(x > 600){
-        // stateStyle.maxWidth = stateStyle.maxWidth - 200;
-    }
+    var importText = this.state.textState ? 'Import Data from Textbox' : 'Clear All Saved Data';
     return (<div>
             <CruTagGrid model={props.jsonData} />
             <div>
-              <button onClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}>GetSaveText</button>
-              <div style={stateStyle}>{JSON.stringify(this.state.lastRead)}</div>
+              <TextInputUnc onChange={val => this.setState({textState:val})} />
+              <button onClick={this.onSetClick} >{importText}</button>
+              <button onClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}>Update Export Text</button>
+              <div title="export text" style={stateStyle}>{JSON.stringify(this.state.lastRead)}</div>
               </div>
 
       </div>);
