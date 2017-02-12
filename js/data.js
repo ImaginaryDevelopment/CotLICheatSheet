@@ -174,6 +174,9 @@ window.jsonData =
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
       "tags": [
         "male",
+        "clicker",
+        "leprechaun",
+        "magic",
         "event"
       ]
     },
@@ -999,7 +1002,9 @@ window.jsonData =
       "tags": [
         "female",
         "gold",
-        "supernatural"
+        "supernatural",
+        "event",
+        "support"
       ]
     },
     {
