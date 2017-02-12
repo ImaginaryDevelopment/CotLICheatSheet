@@ -220,14 +220,14 @@ var CruTagRow = React.createClass({
       </tr>);
     }
 });
-
+var cruTagGridKey = "cruTagGrid"
 function padLeft(nr, n, str){
     return Array(n-String(nr).length+1).join(str||'0')+nr;
 }
 var CruTagGrid = React.createClass({
   getInitialState:function(){
     // json.stringify this whole thing to make input/html5 storage data
-    var init = readIt("cruTagGrid", {slotSort:"up",mode:"",epMode:false,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}});
+    var init = readIt(cruTagGridKey, {slotSort:"up",mode:"",epMode:false,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}});
     var toRemove=[];
     init.ownedCrusaderIds.sort();
     var x = init.ownedCrusaderIds;
@@ -348,6 +348,7 @@ var CruTagGrid = React.createClass({
     var self = this;
     var rows=[];
     var totalCrusaders = this.props.model.crusaders.length;
+    // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.state.ownedCrusaderIds? this.state.ownedCrusaderIds.length : '';
     var sortedCrusaders = this.state.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0; 
@@ -448,12 +449,46 @@ var CruTagGrid = React.createClass({
   }
 });
 
+var CruApp = React.createClass({
+  getInitialState(){
+    var read= readIt(cruTagGridKey,undefined);
+    var state = {lastRead:read};
+    return state;
+  },
+  onGetClick(){
 
+  },
+  render(){
+    var w = window,
+    d = document,
+    e = d.documentElement,
+    g = d.getElementsByTagName('body')[0],
+    x = w.innerWidth || e.clientWidth || g.clientWidth,
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+    var props = this.props;
+    var stateStyle = {
+      maxWidth:x,
+      overflowWrap:"break-word"
+    };
+    if(x > 600){
+        // stateStyle.maxWidth = stateStyle.maxWidth - 200;
+    }
+    return (<div>
+            <CruTagGrid model={props.jsonData} />
+            <div>
+              <button onClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}>GetSaveText</button>
+              <div style={stateStyle}>{JSON.stringify(this.state.lastRead)}</div>
+              </div>
+
+      </div>);
+  }
+});
+  
 // ReactDOM.render(
 //   <App />,
 //   document.getElementById('crusaders_holder')
 // );
 ReactDOM.render(
-        <CruTagGrid model={jsonData} />,
+      <CruApp jsonData={jsonData} />,
         document.getElementById('crusaders_holder')
 );
