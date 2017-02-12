@@ -1289,7 +1289,7 @@ window.jsonData =
         "dps",
         "event",
         "alien",
-        "magical",
+        "magic",
         "support"
       ]
     },
@@ -1330,7 +1330,7 @@ window.jsonData =
         "animal",
         "healer",
         "support",
-        "magical"
+        "magic"
       ]
     },
     {
@@ -1355,7 +1355,7 @@ window.jsonData =
         "dps",
         "female",
         "human",
-        "magical"
+        "magic"
       ]
     },
     {
@@ -1377,7 +1377,7 @@ window.jsonData =
       "slot": 23,
       "tags": [
         "elf",
-        "magical",
+        "magic",
         "male",
         "gold",
         "support"
