@@ -302,6 +302,7 @@ window.jsonData =
         "female",
         "animal",
         "dps",
+        "event",
         "supernatural"
       ],
       "upgrades":{
