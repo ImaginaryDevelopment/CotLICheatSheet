@@ -13,6 +13,16 @@ window.jsonData =
       "image": "female.png"
     },
     {
+      "id": "dps",
+      "displayName": "DPS",
+      "image": "dps.png"
+    },
+    {
+      "id": "event",
+      "displayName": "Event",
+      "image": "event.png"
+    },
+    {
       "id": "human",
       "displayName": "Human",
       "image": "human.png"
@@ -73,11 +83,6 @@ window.jsonData =
       "image": "supernatural.png"
     },
     {
-      "id": "dps",
-      "displayName": "DPS",
-      "image": "dps.png"
-    },
-    {
       "id": "tank",
       "displayName": "Tank",
       "image": "tank.png"
@@ -106,11 +111,6 @@ window.jsonData =
       "id": "clicker",
       "displayName": "Clicker",
       "image": "clicker.png"
-    },
-    {
-      "id": "event",
-      "displayName": "Event",
-      "image": "event.png"
     },
     {
       "id": "alien",
@@ -246,7 +246,6 @@ window.jsonData =
         "robot",
         "support",
         "elf",
-        "orc",
         "event"
       ]
     },
