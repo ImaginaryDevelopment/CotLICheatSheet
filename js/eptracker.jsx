@@ -495,7 +495,7 @@ var CruApp = React.createClass({
     var clipper = null;
     var json = JSON.stringify(this.state.lastRead);
     if(Clipboard && Clipboard.isSupported()){
-      clipper = (<button className="btn" data-clipboard-text={json}>Copy to Clipboard</button>);
+      clipper = (<button className="btn" data-clipboard-target="#clipperText" >Copy to Clipboard</button>);
     }
     return (<div>
             <CruTagGrid model={props.jsonData} />
