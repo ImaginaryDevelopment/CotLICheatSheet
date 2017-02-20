@@ -461,6 +461,10 @@ var CruApp = React.createClass({
   getInitialState(){
     var read= readIt(cruTagGridKey,undefined);
     var state = {lastRead:read};
+    if (Clipboard)
+    {
+      state.clipboard = new Clipboard('.btn');
+    }
     return state;
   },
   onSetClick(){
@@ -483,16 +487,24 @@ var CruApp = React.createClass({
     var props = this.props;
     var stateStyle = {
       maxWidth:x,
-      overflowWrap:"break-word"
+      overflowWrap:"break-word",
+      color:"white",
+      background:"black"
     };
     var importText = this.state.textState ? 'Import Data from Textbox' : 'Clear All Saved Data';
+    var clipper = null;
+    var json = JSON.stringify(this.state.lastRead);
+    if(Clipboard && Clipboard.isSupported()){
+      clipper = (<button className="btn" data-clipboard-text={json}>Copy to Clipboard</button>);
+    }
     return (<div>
             <CruTagGrid model={props.jsonData} />
             <div>
               <TextInputUnc onChange={val => this.setState({textState:val})} />
               <button onClick={this.onSetClick} >{importText}</button>
               <button onClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}>Update Export Text</button>
-              <div title="export text" style={stateStyle}>{JSON.stringify(this.state.lastRead)}</div>
+              {clipper}
+              <div title="export text" id="clipperText" style={stateStyle}>{json}</div>
               </div>
 
       </div>);
