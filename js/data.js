@@ -953,6 +953,26 @@ window.jsonData =
       }
     },
     {
+      "id": "13b",
+      "displayName": "Snickette the Sneaky",
+      "image": "",
+      "slot": 13,
+      "event": "March: Hermit's Premature Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
+      "tags": [
+        "female",
+        "leprechaun",
+        "magic",
+        "support",
+        "event"
+      ],
+      "upgrades":{
+        "selfdps":[
+          200,400,200
+        ]
+      }
+    },
+    {
       "id": "14",
       "displayName": "Gold Panda",
       "image": "mini_Panda.jpg",
@@ -1165,6 +1185,20 @@ window.jsonData =
         "gold",
         "leprechaun",
         "support"
+      ]
+    },
+    {
+      "id": "17c",
+      "displayName": "Squiggles the Clown",
+      "image": "",
+      "slot": 17,
+      "event": "March: Hermit's Premature Party",
+      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
+      "tags": [
+        "male",
+        "human",
+        "dps",
+        "event"
       ]
     },
     {
