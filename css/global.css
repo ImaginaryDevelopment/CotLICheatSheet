@@ -16,15 +16,15 @@ a:hover	{ color: #fff; }
 #tab tr:hover td { border-top-color: #44c201; border-bottom-color: #44c201; }
 #tab tr:hover td:first-child { border-left-color: #44c201; }
 #tab tr:hover td:last-child { border-right-color: #44c201; }
-#tab td.tags > .img_tag_off, 
+#tab td.tags > .img_tag_off,
     #tab td.tags > .img_tag
-    { 
-         border: 0; 
+    {
+         border: 0;
          margin: 2px 2px;
     }
 #tab th.tags > .img_tag { display: block; float: left; width: 31px; height: 31px; border: 0; margin: 2px 2px; }
 #tab td.tags > *{
-    display: block; float: left; width: 31px; height: 31px; 
+    display: block; float: left; width: 31px; height: 31px;
 }
 #tab td.tags > .tooltip{
     margin: 2px 2px;
@@ -35,7 +35,7 @@ a:hover	{ color: #fff; }
 }
 .tooltip, #tab td.tags > .tooltip{
 outline-style: dotted; /* 2px solid; */
-outline-color: green; 
+outline-color: green;
 
 }
 .clickable, .hoverShowClickable:hover{
@@ -45,4 +45,37 @@ outline-color: green;
 }
 .img_tag_off { -webkit-filter: grayscale(100%) opacity(30%); filter: grayscale(100%) opacity(30%);  }
 .img_portrait { height: 50px; margin: 0; display: block; }
+.rarities{
+    display:inline;
+    margin-left:2px;
+    margin-right:-2px;
+}
+.rarity{
+    width:10px;
+    height:10px;
+    display:inline-block;
+    /* line up the text with the boxes*/
+    margin-top:1px;
+    margin-left: 2px;
+    margin-right:2px;
+    border: 1px solid black;
+}
+.rarity0{
+    background:black;
+}
+.rarity1{
+    background:white;
+}
+.rarity2{
+    background:green;
+}
+.rarity3{
+    background:blue;
+}
+.rarity4{
+    background:purple;
+}
+.rarity5{
+    background:orange;
+}
 

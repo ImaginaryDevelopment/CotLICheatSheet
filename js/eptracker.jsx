@@ -220,16 +220,26 @@ var CruTagRow = React.createClass({
       : cru.link?
         cru.link
       : self.props.wikibase + cru.displayName.replace(" ","_");
+
+      var cruGear = this.props.gear ? this.props.gear : {};
+      var slotGear;
+      // extract the 3 slots with qualities
+      var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
+        console.log(cruGearQ);
+        if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
+          var makeBox = slot => {
+            return (<div className={"rarity rarity" + cruGearQ[slot]} />);
+          };
+          slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
+        }
       var gearTd = null;
       if (this.props.mode ==="mine" && this.props.gearMode){
         var gearPossibilities = this.props.gearTypes;
 
         var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
-        var cruGear = this.props.gear? this.props.gear : {};
         if(cru.id === "01"){
           console.log(cruGear);
           console.log('crusader' + cru.id + 'gear', cruGear);
-
         }
 
         var makeSelect = slot => (<select key={"gear" + slot} value={cruGear["slot" + slot]? +cruGear["slot" + slot]: 0} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
@@ -250,7 +260,7 @@ var CruTagRow = React.createClass({
       return (<tr>
           {formation}
           {owned}
-          <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={cru.id}>{cru.slot}</td>
+          <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={cru.id}>{cru.slot}{slotGear}</td>
           <td key="image" data-key="image">{image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
           {tagColumn}
@@ -575,8 +585,11 @@ var CruApp = React.createClass({
               <button onClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}>Update Export Text</button>
               {clipper}
               <div title="export text" id="clipperText" style={stateStyle}>{json}</div>
-              </div>
-
+            </div>
+            {/*<div>
+              <label>import game data</label>
+                <TextInputUnc onChange={val => this.setState({importState:val})} />
+            </div>*/}
       </div>);
   }
 });
