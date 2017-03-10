@@ -536,7 +536,20 @@ var CruTagGrid = React.createClass({
     </table>)
   }
 });
-
+    // {/*<div>
+    //   <label>import game data</label>
+    //     <TextInputUnc onChange={val => this.setState({importState:val})} />
+    // </div>*/}
+var Exporter = props =>
+(
+    <div>
+      <TextInputUnc onChange={props.onTextChange} />
+      <button onClick={props.onSetClick} >{props.importText}</button>
+      <button onClick={props.onUpdateClick}>Update Export Text</button>
+      {props.clipper}
+      <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
+    </div>
+);
 var CruApp = React.createClass({
   getInitialState(){
     var read= readIt(cruTagGridKey,undefined);
@@ -577,19 +590,24 @@ var CruApp = React.createClass({
     if(Clipboard && Clipboard.isSupported()){
       clipper = (<button className="btn" data-clipboard-target="#clipperText" >Copy to Clipboard</button>);
     }
+    var toggleHide = () =>
+      this.setState({showImportExport:(this.state.showImportExport ? false : true)});
+    var importArea = this.state.showImportExport ?
+      (<Exporter  onHideclick={toggleHide}
+                  onTextChange={val => this.setState({textState:val})}
+                  onSetClick={this.onSetClick}
+                  onUpdateClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}
+                  clipper={clipper}
+                  stateStyle={stateStyle}
+                  json={json}
+                  importText={importText}
+                  />) :
+      ( <button onClick={toggleHide}>Show Import/Export </button>);
     return (<div>
             <CruTagGrid model={props.jsonData} />
-            <div>
-              <TextInputUnc onChange={val => this.setState({textState:val})} />
-              <button onClick={this.onSetClick} >{importText}</button>
-              <button onClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}>Update Export Text</button>
-              {clipper}
-              <div title="export text" id="clipperText" style={stateStyle}>{json}</div>
+            <div className="onGreen">
+            {importArea}
             </div>
-            {/*<div>
-              <label>import game data</label>
-                <TextInputUnc onChange={val => this.setState({importState:val})} />
-            </div>*/}
       </div>);
   }
 });
