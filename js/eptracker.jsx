@@ -3,6 +3,13 @@ var loggedStorageFailure = false;
 const isDefined = function(o){
     return typeof(o) !== 'undefined' && o !== null;
 };
+const copyObject = (source,toMerge) =>{
+    var target = toMerge ? toMerge : {};
+    Object.keys(source).map(function(prop){
+      target[prop] = source[prop];
+    });
+    return target;
+};
 const trim = function(s) {
     return s.trim();
 };
@@ -16,7 +23,7 @@ const debounce = (function(){
             timer = setTimeout(callback,ms); //setTimeout(callback,ms);
         });
     })();
-let debounceChange = function (callback, e, ...args) {
+var debounceChange = function (callback, e, ...args) {
     if(!isDefined(callback)){
         console.info('no callback for debounceChange',e.target, typeof(callback),callback);
         return;
@@ -25,19 +32,20 @@ let debounceChange = function (callback, e, ...args) {
     args.unshift(e.target.value);
     debounce(() => callback(...args), 500);
 };
+// reworked without let, since the browser support for it is low
 const flattenArrays = (a,b) => {
         var isAa = Array.isArray(a),isAb = Array.isArray(b);
         if(isAa && !isAb){
-            let result = a.slice(0);
-            result.push(b);
-            return result;
+            var result1 = a.slice(0);
+            result1.push(b);
+            return result1;
         }
         if(isAa && isAb){
             return a.concat(b);
         }
         if(!isAa && isAb){
-            let result = [a].concat(b);
-            return result;
+            var result2 = [a].concat(b);
+            return result2;
         }
         return [a,b];
     };
@@ -76,9 +84,9 @@ var TextInputUnc = React.createClass({
   render(){
     var props = this.props;
     var state = this.state;
-    return (<TextInput2 
-          name={props.name} 
-          defaultValue={props.defaultValue} 
+    return (<TextInput2
+          name={props.name}
+          defaultValue={props.defaultValue}
           value={state.value? state.value : ''}
           type={props.type}
           min={props.min}
@@ -159,13 +167,12 @@ var CheckBox = React.createClass({
     return (<input type="checkbox" onChange={this.props.onChange}  disabled={this.props.disabled} checked={this.props.checked} readOnly={this.props.readonly}  />)
   }
 });
-// unused code?
 var CruTagRow = React.createClass({
     render: function () {
-      var self = this; 
+      var self = this;
       var cru = this.props.crusader;
       var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
-      var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null; 
+      var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
       var tags = [];
       this.props.missionTags.map(function(tag){
         var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
@@ -180,8 +187,8 @@ var CruTagRow = React.createClass({
             }
           break;
         }
-          
-          tag.id === "dps" ? tag.displayName  : tag.displayName; 
+
+          tag.id === "dps" ? tag.displayName  : tag.displayName;
           var imgTag = (<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
         if(tag.id === "event" && cru.eventLink){
           tags.push(<a key={tag.id} className="tooltip" href={cru.eventLink}>{imgTag}</a>);
@@ -205,18 +212,41 @@ var CruTagRow = React.createClass({
           owned = (<td key="owned"><CheckBox checked={this.props.owned} onChange={this.props.onOwnedChange} />{epBox}</td>);
         }
       }
-      var link = cru.link && cru.link.indexOf('/') < 0 ? (self.props.wikibase + cru.link) 
-      : cru.link? 
+      var link = cru.link && cru.link.indexOf('/') < 0 ? (self.props.wikibase + cru.link)
+      : cru.link?
         cru.link
       : self.props.wikibase + cru.displayName.replace(" ","_");
-      
+      var gearTd = null;
+      if (this.props.mode ==="mine" && this.props.gearMode){
+        var gearPossibilities = this.props.gearTypes;
+
+        var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+        var cruGear = this.props.gear? this.props.gear : {};
+        if(cru.id === "01"){
+          console.log(cruGear);
+          console.log('crusader' + cru.id + 'gear', cruGear);
+
+        }
+
+        var makeSelect = slot => (<select key={"gear" + slot} value={cruGear["slot" + slot]? +cruGear["slot" + slot]: 0} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
+                    // <select key="gear0" onChange={e => this.props.onGearChange(cru.id, 0, e.target.value)} name="slot0">{options}</select>
+                    // <select key="gear1" onChange={e => this.props.onGearChange(cru.id, 1, e.target.value)} name="slot1">{options}</select>
+        gearTd = (<td key="gear" data-key="gear">
+                    {makeSelect(0)}
+                    {makeSelect(1)}
+                    {makeSelect(2)}
+                    </td>);
+
+      }
+
+      var tagsTd = this.props.mode !== "mine" || !this.props.gearMode ? ( <td key="tags" className="tags" data-key="tags">{tags}</td>) : gearTd;
       return (<tr>
           {formation}
           {owned}
           <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={cru.id}>{cru.slot}</td>
           <td key="image" data-key="image">{image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
-          <td key="tags" className="tags" data-key="tags">{tags}</td>
+          {tagsTd}
           <td key="tagcount" data-key="tagcount">{cru.tags.length}</td>
       </tr>);
     }
@@ -227,7 +257,7 @@ function padLeft(nr, n, str){
 }
 var CruTagGrid = React.createClass({
   getInitialState:function(){
-    let defaultValue = {slotSort:"up",mode:"",epMode:false,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
+    var defaultValue = {slotSort:"up",mode:"",epMode:false,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
     // json.stringify this whole thing to make input/html5 storage data
     var init = readIt(cruTagGridKey, defaultValue);
     if(init != null){
@@ -242,7 +272,7 @@ var CruTagGrid = React.createClass({
     x.sort();
     for(var i = 0; i < x.length; i++){
       var value = x[i];
-      
+
       if(typeof(value) === "number" || value.length < 2 || value.length > 3 || x.indexOf(value,i + 1) >= 0){
         console.log('removing ownedId', value, 'index', i,'dupAt',  x.indexOf(value, i + 1));
         toRemove.push(value);
@@ -259,7 +289,7 @@ var CruTagGrid = React.createClass({
     }
     x.sort();
     console.log('init ownedIds',x, x.length);
-    
+
     if(typeof(init.filterTags) === "undefined"){
       init.filterTags = {};
     }
@@ -270,10 +300,12 @@ var CruTagGrid = React.createClass({
       init.enchantmentPoints = {};
     }
     console.log('initialState', init);
-    return init; 
+    window.state = init;
+    return init;
   },
   componentDidUpdate:function(prevProps, prevState){
     storeIt("cruTagGrid",this.state);
+    window.state = this.state;
   },
   slotSortClick:function(){
     this.setState({slotSort: this.state.slotSort === "up" ? "desc":"up"});
@@ -292,6 +324,11 @@ var CruTagGrid = React.createClass({
   onEpClick: function(){
     var stateMods = {epMode:this.state.epMode? false:true};
     console.log('epClick',stateMods);
+    this.setState(stateMods);
+  },
+  onGearClick: function(){
+    var stateMods = {gearMode: this.state.gearMode? false: true};
+    console.log('gearClick', stateMods);
     this.setState(stateMods);
   },
   onEpChange:function(crusaderId, epValue){
@@ -340,6 +377,27 @@ var CruTagGrid = React.createClass({
     }
     this.setState({ownedCrusaderIds:owned});
   },
+  onGearChange:function(cruId,slot,gearTypeIndex){
+    console.log('onGearChange', cruId,slot, gearTypeIndex);
+    var stateMods = {};
+    if(!this.state.crusaderGear){
+      stateMods.crusaderGear = {};
+    } else {
+      var merged = copyObject(this.state.crusaderGear);
+      stateMods.crusaderGear = merged;
+    }
+    var cruGear;
+    if(!stateMods.crusaderGear[cruId]){
+      cruGear = {};
+    }
+    else {
+      cruGear = copyObject(stateMods.crusaderGear[cruId]);
+    }
+    stateMods.crusaderGear[cruId] = cruGear;
+    stateMods.crusaderGear[cruId]["slot" + slot] = +gearTypeIndex;
+    console.log('gearChangeMods', stateMods);
+    this.setState(stateMods);
+  },
   onFilterTag:function(tagId){
     var self = this;
     console.log('onFilterTag', tagId, self.state.filterTags);
@@ -359,7 +417,7 @@ var CruTagGrid = React.createClass({
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.state.ownedCrusaderIds? this.state.ownedCrusaderIds.length : '';
     var sortedCrusaders = this.state.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
-      return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0; 
+      return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
     });
     console.log('filterOwned', self.state.filterOwned);
     console.log('formationIds', self.state.formationIds);
@@ -367,44 +425,42 @@ var CruTagGrid = React.createClass({
       .filter(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
         var ownershipFilter = owned || !self.state.filterOwned || (crusader.slot == crusader.id && crusader.slot < 21);
-        var tagFilter = 
+        var tagFilter =
           Object.keys(self.state.filterTags).map(function(tagId) {
             return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
           })
-          .reduce(function(a,b){ return a && b},true); 
+          .reduce(function(a,b){ return a && b},true);
 
-        var formationFilter = self.state.formation !== "formation" 
+        var formationFilter = self.state.formation !== "formation"
           || //nothing in slot selected
-            (!(self.state.formationIds[crusader.slot] != null) 
+            (!(self.state.formationIds[crusader.slot] != null)
             ||  // this one is not selected
             self.state.formationIds[crusader.slot] === crusader.id);
-        // if(!owned){
-        if(crusader.slot==1){
-          console.log('filtering this slot 1?',crusader.id, owned,ownershipFilter,tagFilter,formationFilter);
-        }
-        //   console.log('owned', crusader.displayName, owned);
-        // }
         return ownershipFilter && tagFilter && formationFilter;
 
       })
       .map(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        
+        var gear = self.state.crusaderGear ? self.state.crusaderGear[crusader.id]: [];
         var dps = getCrusaderDps(crusader);
-        
-        rows.push(<CruTagRow key={crusader.displayName} 
-          formationIds={self.state.formationIds} 
-          epMode={self.state.epMode} 
+
+        rows.push(<CruTagRow key={crusader.displayName}
+          formationIds={self.state.formationIds}
+          epMode={self.state.epMode}
+          gearMode={self.state.gearMode}
+          gearTypes={self.props.model.gearTypes}
+          gear={gear}
+          onGearChange={self.onGearChange}
           enchantmentPoints={self.state.enchantmentPoints[crusader.id]}
           onEpChange={self.onEpChange.bind(null,crusader.id)}
-          isFormationMode={self.state.formation === "formation"} 
-          wikibase={self.props.model.wikibase} 
-          crusader={crusader} 
-          dps={dps} 
-          owned={owned} 
-          missionTags={self.props.model.missionTags} 
-          mode={self.state.mode} 
-          onOwnedChange={self.onOwnedChange.bind(self,crusader)} 
+          isFormationMode={self.state.formation === "formation"}
+          wikibase={self.props.model.wikibase}
+          crusader={crusader}
+          dps={dps}
+          owned={owned}
+          missionTags={self.props.model.missionTags}
+          mode={self.state.mode}
+          onOwnedChange={self.onOwnedChange.bind(self,crusader)}
           onFormationChange={self.onFormationChange.bind(self,crusader)} />);
       }
     );
@@ -422,33 +478,37 @@ var CruTagGrid = React.createClass({
     });
 
     var countDisplay = totalCrusaders === rows.length ? totalCrusaders : (rows.length + " of " + totalCrusaders);
-    var filterOwnedClasses = this.state.filterOwned ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";  
+    var filterOwnedClasses = this.state.filterOwned ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";
     var formationRow;
     if(this.state.mode === "mine"){
       formationRow=(
         <tr>
           <th><CheckBox checked={this.state.formation === "formation"} onChange={this.onFormationClick} /> Build Formation</th>
-          <th><CheckBox checked={this.state.epMode} onChange={this.onEpClick} /> Track EP</th>
+          <th><CheckBox checked={this.state.epMode} onChange={this.onEpClick} />Track EP</th>
+          <th colSpan="2"><CheckBox checked={this.state.gearMode} onChange={this.onGearClick} />Track gear</th>
         </tr>
       );
     }
+    var tagsTh = this.state.mode !== "mine" || !this.state.gearMode ? (<th className="tags">Tags</th>) : null;
+    var tagsTh2 = this.state.mode !== "mine" || !this.state.gearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
     return (<table id="tab">
     <thead>
-      <tr> 
-        { this.state.mode === "mine" && this.state.formation !== "formation" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th> 
-          : this.state.mode ==="mine" && this.state.formation ==="formation"? <th></th> : null}
+      <tr>
+        { this.state.mode === "mine" && this.state.formation !== "formation" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th>
+          : this.state.mode ==="mine" && this.state.formation ==="formation" ? <th></th> : null}
         <th>Slot<i className={slotSort} onClick={this.slotSortClick}></i></th>
         <th colSpan="2">Crusader</th>
-        <th className="tags">Tags</th>
+        {tagsTh}
         <th></th>
       </tr>
       <tr>
         {this.state.mode === "mine" ? <th>{totalOwned}</th> : null}
         <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
-        <th className="tags clickable">{tagCounts}</th>
+        {tagsTh2}
         <th>Counts</th>
       </tr>
       { formationRow }
+
       </thead>
     <tbody>
     {rows}
@@ -510,7 +570,7 @@ var CruApp = React.createClass({
       </div>);
   }
 });
-  
+
 // ReactDOM.render(
 //   <App />,
 //   document.getElementById('crusaders_holder')

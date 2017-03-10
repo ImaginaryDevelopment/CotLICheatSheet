@@ -1,6 +1,14 @@
 window.jsonData =
 {
   "wikibase": "http://crusaders-of-the-lost-idols.wikia.com/wiki/",
+  "gearTypes": [
+    "none",
+    "common",
+    "uncommon",
+    "rare",
+    "epic",
+    "legendary"
+    ],
   "missionTags": [
     {
       "id": "male",
@@ -397,7 +405,7 @@ window.jsonData =
           "selfdps",
           "alldps",
           "selfdps"
-        ]        
+        ]
       }
     },
     {
@@ -597,7 +605,7 @@ window.jsonData =
        "gear": [
         "selfdps",
         "gold",
-        "alldps" 
+        "alldps"
        ]
       }
     },
@@ -687,7 +695,7 @@ window.jsonData =
         "gear":[
          "selfdps",
          "gold",
-         "alldps" 
+         "alldps"
         ],
         "selfdps":[
           100,
@@ -1404,7 +1412,7 @@ window.jsonData =
         "human",
         "male",
         "tank",
-        "gold" 
+        "gold"
       ]
     },
     {
