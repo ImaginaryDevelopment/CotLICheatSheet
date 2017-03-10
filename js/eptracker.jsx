@@ -3,7 +3,7 @@ var loggedStorageFailure = false;
 const isDefined = function(o){
     return typeof(o) !== 'undefined' && o !== null;
 };
-const copyObject = (source,toMerge) =>{
+const copyObject = (source,toMerge) => {
     var target = toMerge ? toMerge : {};
     Object.keys(source).map(function(prop){
       target[prop] = source[prop];
@@ -161,12 +161,36 @@ var Filter = React.createClass({
 });
 var CheckBox = React.createClass({
   render:function(){
-    // var opts = {};
-    // if(this.props.readonly || this.props.readOnly){
-    //   opts['readOnly'] = 'readOnly';
-    // }
-    // {...opts}
     return (<input type="checkbox" onChange={this.props.onChange}  disabled={this.props.disabled} checked={this.props.checked} readOnly={this.props.readonly}  />)
+  }
+});
+var TagsTd = React.createClass({
+  render:function(){
+      var self = this;
+      var cru = this.props.crusader;
+      var tags = [];
+      this.props.missionTags.map(function(tag){
+          var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
+          var title = tag.displayName;
+          switch (tag.id){
+            case "dps":
+              title += ':' + self.props.dps;
+            break;
+            case "event":
+              if(cru.event){
+                title += ":" + cru.event;
+              }
+            break;
+          }
+          tag.id === "dps" ? tag.displayName  : tag.displayName;
+          var imgTag = (<img key={tag.id} src={self.props.baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
+          if(tag.id === "event" && cru.eventLink){
+            tags.push(<a key={tag.id} className="tooltip" href={cru.eventLink}>{imgTag}</a>);
+          } else {
+            tags.push(imgTag);
+          }
+      });
+      return (<td key="tags" className="tags" data-key="tags">{tags}</td>);
   }
 });
 var CruTagRow = React.createClass({
@@ -175,29 +199,7 @@ var CruTagRow = React.createClass({
       var cru = this.props.crusader;
       var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
       var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
-      var tags = [];
-      this.props.missionTags.map(function(tag){
-        var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
-        var title = tag.displayName;
-        switch (tag.id){
-          case "dps":
-            title += ':' + self.props.dps;
-          break;
-          case "event":
-            if(cru.event){
-              title += ":" + cru.event;
-            }
-          break;
-        }
 
-          tag.id === "dps" ? tag.displayName  : tag.displayName;
-          var imgTag = (<img key={tag.id} src={baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
-        if(tag.id === "event" && cru.eventLink){
-          tags.push(<a key={tag.id} className="tooltip" href={cru.eventLink}>{imgTag}</a>);
-        } else {
-          tags.push(imgTag);
-        }
-      });
       var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
       var owned = null;
       var formation = null;
@@ -240,15 +242,18 @@ var CruTagRow = React.createClass({
                     </td>);
 
       }
-
-      var tagsTd = this.props.mode !== "mine" || !this.props.gearMode ? ( <td key="tags" className="tags" data-key="tags">{tags}</td>) : gearTd;
+      var tagsTd;
+      if(this.props.mode !== "mine" || !this.props.gearMode ){
+        tagsTd = (<TagsTd dps={this.props.dps} missionTags={this.props.missionTags} crusader={cru} baseUrl={baseUrl} />) ;
+      }
+      var tagColumn = tagsTd ? tagsTd : gearTd;
       return (<tr>
           {formation}
           {owned}
           <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={cru.id}>{cru.slot}</td>
           <td key="image" data-key="image">{image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
-          {tagsTd}
+          {tagColumn}
           <td key="tagcount" data-key="tagcount">{cru.tags.length}</td>
       </tr>);
     }
@@ -489,8 +494,8 @@ var CruTagGrid = React.createClass({
       formationRow=(
         <tr>
           <th title="American or otherwise">Idols <TextInputUnc onChange={this.onIdolChange} value={this.state.Idols} /></th>
-          <th><CheckBox checked={this.state.formation === "formation"} onChange={this.onFormationClick} /> Build Formation</th>
-          <th colSpan="2"><CheckBox checked={this.state.epMode} onChange={this.onEpClick} />Track EP</th>
+          <th><CheckBox checked={this.state.epMode} onChange={this.onEpClick} />Track EP</th>
+          <th colSpan="2"><CheckBox checked={this.state.formation === "formation"} onChange={this.onFormationClick} /> Build Formation</th>
           <th><CheckBox checked={this.state.gearMode} onChange={this.onGearClick} />Track gear</th>
         </tr>
       );
