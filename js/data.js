@@ -963,7 +963,7 @@ window.jsonData =
     {
       "id": "13b",
       "displayName": "Snickette the Sneaky",
-      "image": "",
+      "image": "SnicketteTheSneaky_48.png",
       "slot": 13,
       "event": "March: Hermit's Premature Party",
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
@@ -1198,7 +1198,7 @@ window.jsonData =
     {
       "id": "17c",
       "displayName": "Squiggles the Clown",
-      "image": "",
+      "image": "SquigglesTheClown_48.png",
       "slot": 17,
       "event": "March: Hermit's Premature Party",
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",

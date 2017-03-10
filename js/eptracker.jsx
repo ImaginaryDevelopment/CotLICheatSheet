@@ -72,6 +72,8 @@ var TextInput2 = props =>
         }
         onBlur={props.onBlur}
         {...props.spread} />);
+
+// looks uncontrolled, but is not under the hood. better user experience
 var TextInputUnc = React.createClass({
   getInitialState(){
     return {value:this.props.value};
@@ -316,6 +318,9 @@ var CruTagGrid = React.createClass({
   onModeChangeClicked: function(){
     this.setState({mode:this.state.mode === "" ? "mine": ""});
   },
+  onIdolChange: function(e){
+    this.setState({Idols:e.target.value});
+  },
   onFormationClick: function(){
     var stateMods = {formation:this.state.formation != null ? null : "formation"};
     console.log('formationClick', stateMods);
@@ -483,9 +488,10 @@ var CruTagGrid = React.createClass({
     if(this.state.mode === "mine"){
       formationRow=(
         <tr>
+          <th title="American or otherwise">Idols <TextInputUnc onChange={this.onIdolChange} value={this.state.Idols} /></th>
           <th><CheckBox checked={this.state.formation === "formation"} onChange={this.onFormationClick} /> Build Formation</th>
-          <th><CheckBox checked={this.state.epMode} onChange={this.onEpClick} />Track EP</th>
-          <th colSpan="2"><CheckBox checked={this.state.gearMode} onChange={this.onGearClick} />Track gear</th>
+          <th colSpan="2"><CheckBox checked={this.state.epMode} onChange={this.onEpClick} />Track EP</th>
+          <th><CheckBox checked={this.state.gearMode} onChange={this.onGearClick} />Track gear</th>
         </tr>
       );
     }
@@ -508,7 +514,6 @@ var CruTagGrid = React.createClass({
         <th>Counts</th>
       </tr>
       { formationRow }
-
       </thead>
     <tbody>
     {rows}
