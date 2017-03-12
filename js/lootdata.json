@@ -1,0 +1,1370 @@
+1;0;1;Brass Ring
+2;0;2;Silver Ring
+3;0;3;Golden Ring
+4;0;4;Diamond Ring
+5;1;1;Ratty Green Hat
+6;1;2;Soft Velvet Hat
+7;1;3;Enchanted Elf Hat
+8;1;4;Tri-Pointed Hat of Linking
+9;1;1;Dull Sword
+10;1;2;Shiny Sword
+11;1;3;Sharp Sword
+12;1;4;Butchering Sword of Bloodiness
+13;1;1;Newbie Wand
+14;1;2;Polished Wand
+15;1;3;Unsuspecting Wand
+16;1;4;Ancient Wand of Wanding
+17;2;1;Rusty Axe
+18;2;2;Less Rusty Axe
+19;2;3;Shiny Axe
+20;2;4;Super Friggin' Sharp Axe
+21;2;1;Motheaten Toque
+22;2;2;Itchy Wool Cap
+23;2;3;Snug Cashmere Cap
+24;2;4;Titanium-Infused Angora Beret
+25;2;1;Furry Work Gloves
+26;2;2;Stiff Leather Work Gloves
+27;2;3;Cobra Hide Mittens
+28;2;4;Dragon Scale Gauntlets
+29;5;1;Ratty Backpack
+30;5;2;Adventurer's Backpack
+31;5;3;Hero's Backpack
+32;5;4;Backpack of Infinite Holding
+33;5;1;Tattered Straw Boater
+34;5;2;Shrunken Panama Hat
+35;5;3;Fancy Felt Fedora
+36;5;4;Basilisk-Hide Stetson
+37;5;1;Rusted Iron Ring
+38;5;2;Shiny Tin Ring
+39;5;3;Enchanted Silver Ring
+40;5;4;Pain-Relieving Platinum Ring
+41;4;1;Rusty Iron Fisticovers
+42;4;2;Gleaming Tin Fenderbenders
+43;4;3;Elegant Chainmail Gauntlets
+44;4;4;Mythril Chainmail Gauntlets
+45;4;1;Old Wooden Shield
+46;4;2;New Wooden Shield
+47;4;3;Polished Ash Wood Shield
+48;4;4;Unobtainium Wood Shield
+49;4;1;Helm of the Cook
+50;4;2;Gleaming Tin Hat
+51;4;3;Charmed Chainmail Cloche
+52;4;4;Mithril Chainmail Turban
+53;12;1;Reading Glasses
+54;12;2;Prescription Glasses
+55;12;3;Silver and Quartz Shades
+56;12;4;All-Seeing Spectacles
+57;12;1;Dried Out Vial of Power Potion
+58;12;2;Power Necklace-on-a-Rope
+59;12;3;Necklace of Destruction
+60;12;4;Gleaming Amulet of Disturbing Power
+61;12;1;Poorly-Plated Bird Charm
+62;12;2;Shining Gryphon Token
+63;12;3;Solid Gold Amulet
+64;12;4;Enchanted Gold and Jade Figurine
+65;7;1;Tinder-Spark Gloves
+66;7;2;Four-Burner Gloves
+67;7;3;Blazing Fury Gauntlets
+68;7;4;Phoenix Feather Flame Gloves
+69;7;1;Flame Cape
+70;7;2;Blaze Cape
+71;7;3;Inferno Cape
+72;7;4;Wildfire Cape
+73;7;1;Dull Golden Necklace
+74;7;2;Shiny Golden Necklace
+75;7;3;Blood Stone Golden Necklace
+76;7;4;Necklace of Captured Souls
+77;6;1;Polyester Hat
+78;6;2;Worn Wool Topper
+79;6;3;The Holmes Chapeau
+80;6;4;Enchanted Wooly Helmet of Perception
+81;6;1;Cracked Magnifying Glass
+82;6;2;Clear Magnifying Glass
+83;6;3;Titanium and Quartz Glass of Clarity
+84;6;4;Enhanced Sapphire and Crystal Glass
+85;6;1;Old Grey Wool Cape
+86;6;2;Elegant Gabardine Cape
+87;6;3;Supple Leather Mantle
+88;6;4;Enchanted Leather Invisibility Cloak
+89;8;1;Dual Bladed Knife
+90;8;2;Really Sharp Dual Bladed Knife
+91;8;3;Moonstone Dual Bladed Knife
+92;8;4;Enchanted Dual Bladed Knife
+93;8;1;Worn Lizardskin Mitts
+94;8;2;Stiff Crocodile Gauntlets
+95;8;3;Elegant Basilisk Scale Handwraps
+96;8;4;Enchanted Dragonscale Gauntlets
+97;8;1;Ripped Lizardskin Poncho
+98;8;2;Massive Crocodile Mantle
+99;8;3;Cobraskin Cloak
+100;8;4;Enchanted Dragonscale Cape of Secrecy
+101;9;1;Run of the Mill Night Goggles
+102;9;2;Military Grade Night Goggles
+103;9;3;CIA Night Goggles
+104;9;4;Fifth Freedom Goggle
+105;9;1;Dull Samurai Sword
+106;9;2;Sharp Samurai Sword
+107;9;3;Tamahagane Steel Katana
+108;9;4;Dragon Head Katana
+109;9;1;Moth Mantle
+110;9;2;Grey Hooded Cape
+111;9;3;Cloak of Shadows
+112;9;4;Mantle of the Blackshadow Spider
+113;10;1;Slightly Damaged Goggles
+114;10;2;Seeing Eye Goggles
+115;10;3;Power Grid Goggles
+116;10;4;Lion's Pride Gold and Emerald Goggles
+117;10;1;Faded Wool Stove Pipe
+118;10;2;Old Evening Chapeau
+119;10;3;Charmed Spider Silk Hat
+120;10;4;Impeccable Mosshide Velvet Top hat
+121;10;1;Green Tin Pendant
+122;10;2;Gold and Peridot Amulet
+123;10;3;Jade Amulet of Twisting Power
+124;10;4;Emerald Amulet of the Dancing Power Lion
+125;11;1;Standard Skull Staff
+126;11;2;Skull Staff
+127;11;3;Enchanted Skull Staff
+128;11;4;Possessed Skull Staff
+129;11;1;Pinky Bone Necklace
+130;11;2;Rib Bone Necklace
+131;11;3;Skull Bone Necklace
+132;11;4;Dino Bone Necklace
+133;11;1;Pigeon Feather Hat
+134;11;2;Raven Feather Hat
+135;11;3;Eagle Feather Hat
+136;11;4;Phoenix Feather Hat
+137;3;1;Dim Blood Crystal
+138;3;2;Pulsing Blood Crystal
+139;3;3;Pure Blood Crystal
+140;3;4;Dripping Blood Crystal
+141;3;1;Moon Cape
+142;3;2;More Moon Cape
+143;3;3;Howling Moon Cape
+144;3;4;Goth Moon Cape
+145;3;1;Week Old Ham
+146;3;2;Leftover Ham
+147;3;3;Honey-Cured Ham
+148;3;4;Enchanted Ham of Hamminess
+149;13;1;Chipped Horn Helmet
+150;13;2;Viking Helmet
+151;13;3;Ivory Horned Helmet
+152;13;4;Crystal Horned Helmet of Pointiness
+153;13;1;Imitation Chain Vest
+154;13;2;Well-Used Chain Vest
+155;13;3;Gleaming Chainmail
+156;13;4;Flawless Chainmail of Thorns
+157;13;1;Tattered Loot Sack
+158;13;2;Small Loot Sack
+159;13;3;Massive Loot Sack
+160;13;4;Bag of Holding
+161;19;1;Dim Wizard Orb
+162;19;2;Stone Wizard Orb
+163;19;3;Blue Dragon Orb
+164;19;4;Sapphire Dragon Orb of Destruction
+165;19;1;Ratty Mage Robe
+166;19;2;Comfortable Mage Robe
+167;19;3;Velvet Wizard Cape
+168;19;4;Enchanted Gold-Trimmed Wizard Cape
+169;19;1;Imitation Blasting Wand
+170;19;2;Magic Blasting Wand
+171;19;3;Molten Blasting Wand
+172;19;4;Unlimited Inferno Blasting Wand
+173;15;1;Training Trident
+174;15;2;Mana Trident
+175;15;3;Enchanted Trident
+176;15;4;King Neptune's Trident
+177;15;1;Stuffed Shark
+178;15;2;Baby Shark
+179;15;3;Tiger Shark
+180;15;4;Great White Shark
+181;15;1;Tangled Cape
+182;15;2;Seaweed Cape
+183;15;3;Cape of Ocean Currents
+184;15;4;Cape of Storms
+185;14;1;Broken Pocket Watch
+186;14;2;Mostly Accurate Pocket Watch
+187;14;3;Inscribed Pocket Watch
+188;14;4;Time Travelling Pocket Watch
+189;14;1;Brittle Cape
+190;14;2;Solid Cape
+191;14;3;Crystal Cape
+192;14;4;Solid Gold Cape
+193;14;1;Unlucky Golden Clover
+194;14;2;Lucky Golden Clover
+195;14;3;Very Lucky Golden Clover
+196;14;4;Luckiest Golden Clover
+197;17;1;Disgraced Crown
+198;17;2;Royal Crown
+199;17;3;Crown of Swords
+200;17;4;Golden Crown of the Emperor
+201;17;1;Woven Wool Robe
+202;17;2;Royal Cloth Cape
+203;17;3;Expensive Silk Cape
+204;17;4;Enchanted Cape of His Majesty
+205;17;1;Idle Thoughts
+206;17;2;Royal Decree
+207;17;3;Constitutional Ideas
+208;17;4;Freedom and Prosperity
+209;18;1;Decrepit Ring of Lightning
+210;18;2;Old Ring of Lightning
+211;18;3;Ancient Ring of Lightning
+212;18;4;Venerable Ring of Lightning
+213;18;1;Bronze Amulet of Thunderstorms
+214;18;2;Silver Amulet of Thunderstorms
+215;18;3;Gold Amulet of Thunderstorms
+216;18;4;Platinum Amulet of Thunderstorms
+217;18;1;Used Electric Orb of Storms
+218;18;2;Dusty Electric Orb of Storms
+219;18;3;Orb of Hurricane and Lightning
+220;18;4;Whirlwinding Orb of Tornados
+221;16;1;Gem of Crystallized Ember
+222;16;2;Gem of Crystallized Fire
+223;16;3;Gem of Crystallized Inferno
+224;16;4;Sea of Crystallized Flames
+225;16;1;Tattered Feather of Darkness
+226;16;2;Crisp Feather of Darkness
+227;16;3;Obsidian Feather of Blackness
+228;16;4;Obsidian Black Feather of Eternal Dark Blackness
+229;16;1;Ring of Fire Bath
+230;16;2;Ring of Fiery Sauna
+231;16;3;Ring of Incandescent Souls
+232;16;4;Fire Ring of Rebirth
+233;20;1;Sealed Dynamite
+234;20;2;Stable Dynamite
+235;20;3;Old Dynamite
+236;20;4;Unstable Dynamite
+237;20;1;Ineffective Fire Extinguisher
+238;20;2;Leaky Fire Extinguisher
+239;20;3;High Pressure Fire Extinguisher
+240;20;4;Immediate Fire Extinguisher
+241;20;1;Cursed Sword
+242;20;2;\Decursed\ Sword
+243;20;3;A Different Sword
+244;20;4;Totally Free Non-Cursed Sword
+245;0;1;Primitive Amulet
+246;0;2;Silver Amulet
+247;0;3;Gemmed Amulet
+248;0;4;Ornate Amulet
+249;0;1;Wooden Horn
+250;0;2;Bronze Horn
+251;0;3;Flowered Cornucopia
+252;0;4;Silver Cornucopia
+253;0;1;Wooden Lucky Coin
+254;0;2;Bronze Lucky Coin
+255;0;3;Silver Lucky Coin
+256;0;4;Lucky Gold Bar
+257;2;4;Super Friggin' Sharp Axe
+258;21;1;Flappy Bird
+259;21;2;Annoyed Bird
+260;21;3;Three-Eyed Crow
+261;21;4;Spongy Toy
+262;21;1;Last Year's Bowler Hat
+263;21;2;This Year's Bowler Hat
+264;21;3;Slightly Dapper Bowler Hat
+265;21;4;Over-the-top Bowler Hat
+266;21;1;Twiggy Cane
+267;21;2;Perfectly Fine Cane
+268;21;3;Investigator's Cane
+269;21;4;Ancient Silver Cane of Walking
+270;22;1;Ratty Boxing Glove
+271;22;2;Padded Boxing Glove
+272;22;3;Bloodied Boxing Glove
+273;22;4;Hilarious Spiked Boxing Glove
+274;22;1;Knotted Clown Shoe
+275;22;2;Perfectly Okay Clown Shoe
+276;22;3;Polished Clown Shoe
+277;22;4;Pair of Spiked Clown Shoes
+278;22;1;Cloth Chicken
+279;22;2;Leaking Rubber Chicken
+280;22;3;Expensive Rubber Chicken
+281;22;4;Solid Gold Rubber Chicken
+282;23;4;Nimbus 2000
+283;23;1;Wormy Apple
+284;23;2;Gnawed Apple
+285;23;3;Poisoned Apple
+286;23;4;All-Seeing Apple
+287;23;1;Broken Broom
+288;23;2;Straight Broom
+289;23;3;Broomba
+290;23;4;Nimbus 2000
+291;23;1;Leaky Cauldron
+292;23;2;Bubbling Cauldron
+293;23;3;Glowing Cauldron
+294;23;4;Magnificent Cauldron
+295;24;1;Ye Olde Breadslicer
+296;24;2;Chef's Boning Knife
+297;24;3;HenkelMeister Slicer
+298;24;4;Jackie Scissorhands
+299;24;1;Ratty Team Garb
+300;24;2;Used Game Shirt
+301;24;3;Hero's Lucky Jersey
+302;24;4;Superstar's Sweatsuit
+303;24;1;Waxy Burnt Stub
+304;24;2;Kobold Candle
+305;24;3;Gothic Candelabra
+306;24;4;Galondrial's Light
+307;13;4;Crystal Horned Helmet of Pointiness
+308;25;1;Leaky Second-Hand Battery
+309;25;2;Simple Alkaline Battery
+310;25;3;Rechargable AA Lithium Battery
+311;25;4;Bottomless Ultracapacitor Battery
+312;25;1;Bargain-bin Mystery Chip
+313;25;2;Dated Multi-use Computer Chip
+314;25;3;Next Gen TurkeyTech Motherboard
+315;25;4;Quantum Computer Chip
+316;25;1;Painted Ceramic Plate
+317;25;2;Iron Plate
+318;25;3;Fancy Titanium Composite Plate
+319;25;4;Diamond-Infused Future-Alloy Plate
+320;26;1;Compromised Safety Goggles
+321;26;2;Regulation Safety Goggles
+322;26;3;20X Zoom Lense Goggles
+323;26;4;200X Zoom Cortex-linked Goggles of Inquiry
+324;26;1;High-intensity Laser Pointer
+325;26;2;Microwave Heat-Ray
+326;26;3;Phased-Energy Rectifier
+327;26;4;Nano-Disintegrator Raygun
+328;26;1;Broken Vial
+329;26;2;Cracked Vial of Black Market 'Stimulant'
+330;26;3;Vial of Pure Caffeine
+331;26;4;Unstable Vial of Adrenaline Cocktail
+332;25;4;Bottomless Ultracapacitor Battery
+334;27;1;Sooty Red Stocking Cap
+335;27;2;Santa Impersonator Cap
+336;27;3;Pristine Red Stocking Cap
+337;27;4;RoboSaint's Christmas Cap of Coal Giving
+338;27;1;Bent Iron Buckle
+339;27;2;Steel Belt Buckle
+340;27;3;Gold Plated Belt Buckle
+341;27;4;Enchanted Belly Buckle of Laughter
+342;27;1;Repurposed Potato Cannon
+343;27;2;Prototype Gift Cannon
+344;27;3;Retrofitted Buster Cannon
+345;27;4;Christmas Cannon 2000
+346;28;1;Tousled Twig Pauldrons
+347;28;2;Bark Pauldrons
+348;28;3;Studded Leather Pauldrons
+349;28;4;Platinum Pauldrons of Frostbite
+350;28;1;Cracked Corncob Pipe
+351;28;2;Worn Briar Billiard Pipe
+352;28;3;Antique Morta Chimney Pipe
+353;28;4;Gourd Calabash Pipe of Chilling
+354;28;1;Ratty Red Scarf
+355;28;2;Decent Thrift Shop Scarf
+356;28;3;Trendy Striped Christmas Scarf
+357;28;4;Caroller's Scarf of Song and Dance
+358;27;4;RoboSaint's Christmas Cap of Coal Giving
+359;29;1;Busted Sunglasses
+360;29;2;Basic Aviators
+361;29;3;Hotshot's Aviators
+362;29;4;Eagle Eye Aviators of True-Sight
+363;29;1;Pilot Costume Hat
+364;29;2;Recruit Pilot Hat
+365;29;3;Veteran Pilot Hat
+366;29;4;Baron's Bomber Hat of Bombastic Bombardiering
+367;29;1;Styrofoam Airplane
+368;29;2;Last Year's Model Plane
+369;29;3;Mint P-51 Mustang
+370;29;4;RZ-1 A-Wing Interceptor
+371;30;1;Christmas Cracker 'Crown'
+372;30;2;Copper Crown
+373;30;3;Brillant Golden Crown
+374;30;4;Ornate Crown of Blinding Majesty
+375;30;1;Pig Iron Sceptre
+376;30;2;Simple Iron Sceptre
+377;30;3;Golden Ruby Sceptre
+378;30;4;Amethyst Sceptre of Unequivocal Sovereignty
+379;30;1;Moth-eaten Pillow
+380;30;2;Dusty Pillow
+381;30;3;Cushy Sitting Pillow
+382;30;4;Magic Pillow of Effortless Travel
+383;30;4;Ornate Crown of Blinding Majesty
+384;31;1;Broken Tooth
+385;31;2;Stained Baby Tooth
+386;31;3;Sparkling Wisdom Tooth
+387;31;4;Pierced Tooth of Dentists' Nightmares
+388;31;1;Cloth Bracer
+389;31;2;Padded Fur Bracer
+390;31;3;Tempered Leather Bracer
+391;31;4;Impractical Jeweled Bracer of Power
+392;31;1;Deflated Football
+393;31;2;Brown Leather Handegg
+394;31;3;Sturdy Stitched Football
+395;31;4;Deadly Spiked Football of Bleeding
+396;32;1;Shoddy Bronze Amulet
+397;32;2;Shiny Metal Amulet
+398;32;3;Dazzling Silver Amulet
+399;32;4;Mystical Golden Elf Amulet of Elfing
+400;32;1;Training Sword
+401;32;2;Dulled Steel Sword
+402;32;3;Sharpened Silver Sword
+403;32;4;Ancient Runed Sword of Ancients
+404;32;1;Stiched Plastic Pauldron
+405;32;2;Sturdy Padded Pauldron
+406;32;3;Hardened Metal Pauldron
+407;32;4;Royal Champion's Pauldron of Flubflug
+408;32;4;Ancient Runed Sword of Ancients
+409;6;4;Enchanted Leather Invisibility Cloak
+410;33;1;4-String Hand-Me-Down
+411;33;2;Starter Acoustic
+412;33;3;Quality Rickenbacker
+413;33;4;Gibson Les Paul
+414;33;1;The Swayze
+415;33;2;The Norris
+416;33;3;The Macgyver
+417;33;4;The McCartney
+418;33;1;Nylon Pick
+419;33;2;Acrylic Pick
+420;33;3;Stainless Steel Pick
+421;33;4;Tortoiseshell Pick
+422;33;4;Fender Stratocaster
+423;34;1;Comfy Yarn Whip
+424;34;2;Wooden Whip
+425;34;3;Smooth Leather Whip
+426;34;4;Snakeskin Whip of Power
+427;34;1;Frayed Corset
+428;34;2;Too-Tight Corset
+429;34;3;Quality Leather Corset
+430;34;4;Flowery Silk Corset of Seduction
+431;34;1;Essence De Poo
+432;34;2;Flowery Perfume
+433;34;3;Aluring Perfume
+434;34;4;Ridiculously Expensive French Perfume
+435;3;4;Ether Bonded Blood Crystal
+436;11;4;Black Phoenix Death Mask
+437;35;1;Terrible Hat
+438;35;2;Ratty Hat
+439;35;3;Much Better Hat
+440;35;4;Incredibly Magic Greenest Tophat
+441;35;1;Crappy Cane
+442;35;2;Knotty Cane
+443;35;3;Fairly Good Cane
+444;35;4;Magical Fancy Cane of Magic
+445;35;1;Rusty Pot Of Gold
+446;35;2;Mostly Empty Pot Of Gold
+447;35;3;Full Pot Of Gold
+448;35;4;Golden Pot Of So Much Gold
+449;36;1;Old Cap
+450;36;2;Fairly Weathered Cap
+451;36;3;Brand New Brand Name Cap
+452;36;4;Tagged Magical Cap of the Bro
+453;36;1;Bad White Shirt
+454;36;2;Sweat-Stained Undershirt
+455;36;3;Ironed Blue T-Shirt
+456;36;4;Popped Green Shirt of the Bro
+457;36;1;Rusty Keg
+458;36;2;Spoiled Old Keg
+459;36;3;Solid Beer-Filled Keg
+460;36;4;Runed Keg of the Bro
+461;35;4;Clover Encrusted Pot Of So Much Gold
+462;37;1;Stiff Unmoving Wings
+463;37;2;Ragged Gray Wings
+464;37;3;Light Feather Wings
+465;37;4;Angelic Wings of Imperious Hovering
+466;37;1;Rutted Staff
+467;37;2;Copper Staff
+468;37;3;Bronzed Staff
+469;37;4;Jeweled Golden Staff of Hope
+470;37;1;Wooden Helmet
+471;37;2;Metal Helmet
+472;37;3;Golden Coif
+473;37;4;Imbued Sacred Helm of Tear'eal
+474;38;1;Rusted Gear
+475;38;2;Stone Gear
+476;38;3;Fine Steel Gear
+477;38;4;Magical Dwarven Gear of Overburdening
+478;38;1;Rotted Mecha-Carrot
+479;38;2;Copper Mecha-Carrot
+480;38;3;Refurbished Mecha-Carrot
+481;38;4;Special Edition Souped-Up Mecha-Carrot
+482;38;1;Damaged Capacitor
+483;38;2;Cracked Plasma Tube
+484;38;3;Glowing Plasma Tube
+485;38;4;FutureTech Plasma Coil 9001b
+486;38;4;Pristine Superfluid Gear of Obliteration
+487;7;4;Molten Gloves of Annihilation
+488;39;1;Used Car Salesman's Tie
+489;39;2;Second Hand Tie
+490;39;3;Swanky New Tie
+491;39;4;Striped Wallstreet Tie of Moneymaking
+492;39;1;Torn Utility Belt
+493;39;2;Sparse Utility Belt
+494;39;3;Multipurpose Utility Belt
+495;39;4;Ironwoven Belt of Endless Utility
+496;39;1;Last Year's Cape
+497;39;2;Butler-Sewn Cape
+498;39;3;Flexweave Cape
+499;39;4;Bulletproof Cape of the Night
+500;40;1;Failing Power Source
+501;40;2;Cracked Power Source
+502;40;3;Glowing Power Source
+503;40;4;Neverending Iridium Power Source
+504;40;1;Cold War Jet Pack
+505;40;2;Ballistic Jet Pack
+506;40;3;Somewhat Stable Jet Pack
+507;40;4;Mk3 Jet Pack of Workshop Destruction
+508;40;1;Unstabilizer Glove
+509;40;2;Restrictive Suit Glove
+510;40;3;Powered Stabilizer Glove
+511;40;4;Overpowered Suit Glove of Pew Pew Pew
+512;39;4;Electric Cape of Orphan Enshroudment
+513;10;4;Frickin' Amazing Amulet of Explosions 'n Shit
+514;41;1;Tiny Amber Morsel
+515;41;2;Respectable Chunk of Amber
+516;41;3;Polished Amber Skull
+517;41;4;Glowing Amber Bust of the Nose
+518;41;1;Small Bundle of Twigs
+519;41;2;Stout Cord of Wood
+520;41;3;Wrapped Cord of Hardwood
+521;41;4;Polished Horned Armor of Broot
+522;41;1;Poisoned Berries
+523;41;2;Tasty Berries
+524;41;3;Blue Berries of Buffing
+525;41;4;Purple Plum of Forest Fun
+526;42;1;Inert Grenade
+527;42;2;Ticking Grenade
+528;42;3;Blazing Molotov
+529;42;4;Exploding Canister of Explosions
+530;42;1;Painted Wooden Gun
+531;42;2;Ancient Rusty Gun
+532;42;3;Polished Modern Gun
+533;42;4;Blast Co. Death Ray Mk. 5
+534;42;1;Unstable Rocket
+535;42;2;Low Range Rocket
+536;42;3;Purple Guided Missile
+537;42;4;Heat Seeking Missile of Obliteration
+538;42;4;Triple Barrelled Rocket Launcher of DooM
+539;15;4;Laser Shark
+540;43;1;Ratty Stained Book
+541;43;2;Aged Finance Book
+542;43;3;Well-Printed Bookmarked Book
+543;43;4;Legendary Ledger of Liquidity
+544;43;1;Cheap Rum
+545;43;2;Recently Bottled Whiskey
+546;43;3;Fine Mulled Wine
+547;43;4;Crystal Decanter of Incredulity
+548;43;1;Tarnished Lead Coin
+549;43;2;Chipped Silvered Coin
+550;43;3;Inscribed Golden Coin
+551;43;4;Jewelled Hexagonal Coin of Fortune
+552;43;4;Dragonborn Coin of Legends
+553;44;1;Cavity-Filled Tooth
+554;44;2;Chipped Tooth
+555;44;3;Perfect Bleached Tooth
+556;44;4;Gold-Coated Tooth of Embers
+557;44;1;Young Dragon Scale
+558;44;2;Red Dragon Scale
+559;44;3;Mature Red Scale
+560;44;4;Obsidian Scale of Impenetrability
+561;44;1;Cracked Flame Orb
+562;44;2;Luke-Warm Flame Orb
+563;44;3;Smooth Blazing Orb
+564;44;4;Scalding Orb of Blue Fire
+565;5;4;Unicorn Backpack of Murderation
+566;4;4;Flappity Flap Helm of Battering
+567;45;1;Bargain Bin Grail
+568;45;2;Stout Wooden Chalice
+569;45;3;Polished Stone Chalice
+570;45;4;Sparkling Golden Chalice of Sprinkles
+571;45;1;Ratty Wooden Whip
+572;45;2;Basic Hide Whip
+573;45;3;Fine Leather Whip
+574;45;4;Treasure Hunter's Whip of Tickling
+575;45;1;Pewter Llama
+576;45;2;Stone Llama
+577;45;3;Gemmed Llama
+578;45;4;Impatient Golden Llama of Kuzco
+579;46;1;Garden Snake Crown
+580;46;2;Green Snake Crown
+581;46;3;Crafted Snake Crown
+582;46;4;Slimey Golden Snake Crown of Hissing
+583;46;1;Rotting Snake Idol
+584;46;2;Fine Wooden Idol
+585;46;3;Magical Birch Idol
+586;46;4;Glowing Stone Snake Idol of Secrets
+587;46;1;Common Snake Sceptre
+588;46;2;Smooth Snake Sceptre
+589;46;3;Poisoned Snake Sceptre
+590;46;4;Gilded Stone Sceptre of Slithering
+591;46;4;Spellbinding Scepter of Spiraling Serpents
+592;2;4;Super Scary Bear Hat of Roaring
+593;4;4;Evil Infinity Gauntlet of Fair Use
+594;5;4;Bling Bling Wing Ring
+595;6;4;Superior Disguise of Investigation
+596;7;4;Flaming Cape of Burning Backs
+597;11;4;Jumbo Eyeball Skull Staff of Seeing
+598;47;1;Cheap Cereal Cufflink
+599;47;2;Mister Meows Cufflink
+600;47;3;Golden Seal Cufflink
+601;47;4;Shiny Diamond Cufflink of Linking
+602;47;1;Ratty Mildewy Suit
+603;47;2;Used Car Salesman Suit
+604;47;3;Expensive Sharp Suit
+605;47;4;Freshly Dry Cleaned Suit of Illusions
+606;47;1;Dull Razor
+607;47;2;Knicked Razor
+608;47;3;Dollar Club Razor
+609;47;4;Lithium Battery Powered Razor of Closeness
+610;47;4;Ridiculously Garish Diamond Encrusted Cufflink of Doom
+611;48;1;Malfunctioning Mech Leg
+612;48;2;Obsolete Mech Leg
+613;48;3;High Tech Mech Leg
+614;48;4;Cryofused Mech Leg of Invasion
+615;48;1;Tickling Blaster
+616;48;2;Ancient Blaster
+617;48;3;Disintigrating Blaster
+618;48;4;Overpowered Alien Blaster of Intimidation
+619;48;1;Empty Fuel Pod
+620;48;2;Stale Fuel Pod
+621;48;3;Half-Full Fuel Pod
+622;48;4;Overflowing Fuel Pod of Stomping
+623;49;1;Dull Knife
+624;49;2;Cracked Knife
+625;49;3;Sharpened Knife
+626;49;4;Magically Enhanced Slicey-Slicey Knife of Slicing
+627;49;1;Oozing Bandaid
+628;49;2;Bloody Bandaid
+629;49;3;Clean Bandaid
+630;49;4;Fully Equipped Ranger Medkit of Ranging
+631;49;1;Cheap Ranger Badge
+632;49;2;Fading Ranger Badge
+633;49;3;Fine Ranger Badge
+634;49;4;Employee of the Month Ranger Badge
+635;49;4;Pink Power Ranger Badge of Mighty Morphin' Time
+636;50;1;Nonfunctional Security Camera
+637;50;2;Grainy Security Camera
+638;50;3;Handheld Camcorder
+639;50;4;High-tech Night-vision Tablet of Spotting
+640;50;1;Stone Spear
+641;50;2;Metal Spear
+642;50;3;Crossed Spears
+643;50;4;Ancient Family Heirloom Spear of Stabbing
+644;50;1;Single Sneaker
+645;50;2;Ratty Sneakers
+646;50;3;Hiking Shoes
+647;50;4;Soft-Soled Hiking Boots of Rumor Chasing
+648;51;1;Ratty Cardboard Armguard
+649;51;2;Fake Pleather Armguard
+650;51;3;Fine Leather Armguard
+651;51;4;Biomechanical Red Leather Armguard of Destruction
+652;51;1;Shottily Crafted Bow
+653;51;2;Homemade Bow
+654;51;3;Well Constructed Bow
+655;51;4;Overly Elaborate Scoped Bow of Precision
+656;51;1;Empty Quiver
+657;51;2;Hastily Stiched Quiver
+658;51;3;Well Stocked Quiver
+659;51;4;Auto-refilling Technological Quiver of Endless Arrows
+660;52;1;Leaking Snorkel
+661;52;2;Rusty Snorkel
+662;52;3;Solid Snorkel
+663;52;4;Scientifically Impossible O2-Generating Snorkel of Breathing
+664;52;1;Fogged Up Goggles
+665;52;2;Flimsy Goggles
+666;52;3;Great Goggles
+667;52;4;Custom-Fitted Polarized Swimming Goggles of Speed
+668;52;4;Legitimately Scary Horned Goggles of Water Current Analysis
+669;52;1;Knit Swimming Cap
+670;52;2;Child's Swimming Cap
+671;52;3;Slightly Too-Big Cap
+672;52;4;Unique Form-Fitting Swimming Cap of Low Friction
+673;18;4;Musky Unobtainium Amulet of Megastorms
+674;9;4;Multibladed Jelly-Covered Katana of Decapitation
+675;17;4;Freedom-Loving AI-Controlled Tablet of Mobility
+676;12;4;Pure Jade Serpent Statue of Hardiness
+677;10;4;Cat-Eye Synth Goggles of Celebration
+678;14;4;Sickeniningly Rich Golden Clover of Golllllld
+679;20;4;Futuretech Extinguisher Bomb of Explosive Dousing
+680;8;4;Spring-Loaded Dual-Bladed Knife of Accidental De-Handation
+681;16;4;Literally On Fire Ring of Literally Being On Fire
+682;1;4;Unnecessarily Bisected Bush-Destroying Sword of Criticals
+683;19;4;Arcane Winged Wand of Ridiculous Splash Damage
+684;15;4;Impervious Fish-Scale Cape of the Golden Royal Seal
+685;53;1;Moldy Catnip
+686;53;2;Dusty Catnip
+687;53;3;Name Brand Catnip
+688;53;4;Locally-Sourced Artisanal Catnip of Sopor
+689;53;1;Tight Plastic Collar
+690;53;2;Faux-Leather Collar
+691;53;3;Shiny Collar
+692;53;4;Sky-Forged Collar of Resonant Chimes
+693;53;1;Battered Notebook
+694;53;2;Over-Utilized Notebook
+695;53;3;Prim and Proper Notebook
+696;53;4;Learned Notebook of the Burgeoning Mind
+697;54;1;Broken Plastic Glasses
+698;54;2;Cracked Glasses
+699;54;3;Glossy Glasses
+700;54;4;Bespoke Spectacles of Acuity
+701;54;1;Slack Suspenders
+702;54;2;Ragged Suspenders
+703;54;3;Slick Suspenders
+704;54;4;Clover-Pin Suspenders of Steadfastness
+705;54;4;Star-Bound Emerald Suspenders of Cosmic Joining
+706;54;1;Taped-Up Ruler
+707;54;2;Warped Ruler
+708;54;3;Keen Ruler
+709;54;4;Demonic Ruler of Ineffable Precision
+710;55;1;Broken Arm Cannon
+711;55;2;Sputtering Arm Cannon
+712;55;3;Blazing Arm Cannon
+713;55;4;Futuretech Nuclear Powered Arm Cannon of Disintigration
+714;55;1;Broken Computer Chip
+715;55;2;Hacked Computer Chip
+716;55;3;Multicore Computer Chip
+717;55;4;Quantum Computer Chip of One Billion Blazing Cores
+718;55;1;Smashed Sunglasses
+719;55;2;Cracked Sunglasses
+720;55;3;Stylish Sunglasses
+721;55;4;Computerized Electrified Sunglasses of X-Ray Lasers
+722;56;1;Ratty Grey Cloak
+723;56;2;Woolen Grey Cloak
+724;56;3;Stylish Shadow Cloak
+725;56;4;Gold-Threaded Pooling Shadow Cloak of the Night
+726;56;1;Depleted Soul Gem
+727;56;2;Slim Soul Gem
+728;56;3;Set Soul Gem
+729;56;4;Light-Dampening Necklace of Empowered Soul Gems
+730;56;1;Blob Familiar
+731;56;2;Cellular Shadow
+732;56;3;Shadow Kitty
+733;56;4;Shadow-Infused Dark Wyrm of Critical Stalking
+734;57;1;Stuffed Parrot
+735;57;2;Featherless Parrot
+736;57;3;Angry Parrot
+737;57;4;Cracker-Eating Polly Parrot of Manic Mimicking
+738;57;1;Tattered Treasure Map
+739;57;2;Well Used Treasure Map
+740;57;3;Fresh Treasure Map
+741;57;4;Magically Enhanced Radar Featuring Treasure Map of Easiness
+742;57;1;Broken Cannon
+743;57;2;Static Cannon
+744;57;3;Effective Cannon
+745;57;4;Ornate Cast-Iron Cannon of Exploding Cannonballs
+746;58;1;Rotted Acorn
+747;58;2;Last Year's Acorn
+748;58;3;Magical Acorn
+749;58;4;Solid Sapphire Acorn of Mystical Forest Power
+750;58;1;Beginner's Spell Book
+751;58;2;Well Used Spell Book
+752;58;3;Mystical Spell Book
+753;58;4;Magically Locked Heirloom Spell Book of Ancient Mysticism
+754;58;1;Knotted Walking Stick
+755;58;2;Low Power Staff
+756;58;3;Knobby Magic Staff
+757;58;4;Blue Poppy Tipped Magician's Staff of Discombobulation
+758;59;1;Depleted Amulet
+759;59;2;Copper Amulet
+760;59;3;Astrological Amulet
+761;59;4;Insane Tidal Amulet of the Sun and Moon
+762;59;1;Magical Dunce Cap
+763;59;2;Pointy Cardboard Hat
+764;59;3;Swirly Wizard Hat
+765;59;4;Sentient But Clearly Insane Wizard Hat of Voices
+766;59;1;Crackerjack Wand
+767;59;2;Non-Magical Wand
+768;59;3;Twisted Opal Wand
+769;59;4;Maddeningly Inaccurate Wand of Solar Flares and Moon Smashes
+770;60;1;Butter Knife
+771;60;2;Bloodied Butter Knife
+772;60;3;Pointy Dagger
+773;60;4;Blood Wicking Sharpened Dagger of Rituals
+774;60;1;Mothballed Cloak
+775;60;2;Patched Cloak
+776;60;3;Fine Silk Cloak
+777;60;4;Bloody Stained Spidersilk Robe of Impending Sacrifice
+778;60;1;Dusty Notebook
+779;60;2;Secret Diary
+780;60;3;Diabolical Grimoire
+781;60;4;Bone-Bound Quasi-Sentient Grimoire of Whispers
+782;61;1;Leaking Hourglass
+783;61;2;Cracked Hourglass
+784;61;3;Ornate Hourglass
+785;61;4;Mystical Liquid Sand Hourglass of Impossibly Precise Timing
+786;61;1;Crackerjack Headband
+787;61;2;Tarnished Headdress
+788;61;3;Golden Headdress
+789;61;4;Spikey Solid Gold Headdress of Timelord Convocation
+790;61;1;Dull Time Staff
+791;61;2;Creaking Time Staff
+792;61;3;Singularity Time Staff
+793;61;4;Continuously Pulsing Staff of Limitless Possibilities
+794;13;4;Gleaming Scalemail of the Couragous Collector
+795;62;1;Ratty Hat
+796;62;2;Mothballed Hat
+797;62;3;Rosey Hat
+798;62;4;Overly Rosed Rosey Rose Hat of Roses
+799;62;1;Invisible Box
+800;62;2;Pretend Plexiglass Box
+801;62;3;Knotted Made-Up Rope
+802;62;4;Extremely Heavy Imaginary Anvil of Imaginary Toe-Stubs
+803;62;1;Dried Up Makeup
+804;62;2;Basic Makeup
+805;62;3;Powdery Makeup
+806;62;4;Extensive and Expensive Makeup Kit of Amazingness
+807;63;1;Extremely Loose Corset
+808;63;2;Faded Costume
+809;63;3;Feathered Costume
+810;63;4;Fluffy Form-Fitting Carnival Costume of the Can-Can
+811;63;1;Flea-Market Tiara
+812;63;2;Faux Feather Tiara
+813;63;3;Feather Headdress
+814;63;4;Mirrored Golden Feather Headdress of Bling Bling Bling
+815;63;1;Leaking Umbrella
+816;63;2;Rusty Umbrella
+817;63;3;Lightweight Umbrella
+818;63;4;Feather-Form Stylish Umbrella of the Goose
+819;22;4;Squacking Rubber Chicken of Squaaaaa aaaa aaa aa a
+820;20;4;Guaranteed Curseless Sword of Normality
+821;64;1;Dismal Gravestone
+822;64;2;Chipped Gravestone
+823;64;3;Polished Gravestone
+824;64;4;Sentient Cursed Gravestone of Undead Fury
+825;64;1;Ratty Blanket
+826;64;2;Torn Blanket
+827;64;3;Blue Security Blanket
+828;64;4;Magical Star-Woven Security Blanket of Friendship
+829;64;1;Plastic Torch
+830;64;2;Flickering Torch
+831;64;3;LED Flashlight
+832;64;4;Nuclear Powered 32,000 Lux Headlamp of Daylight
+833;65;1;Used Mask
+834;65;2;Red Mask
+835;65;3;Bone Mask
+836;65;4;Frighteningly Frightening Frightful Mask of Fright
+837;65;1;Leaded Nightmare Fuel
+838;65;2;Unleaded Nightmare Fuel
+839;65;3;Decanted Nightmare Fuel
+840;65;4;Furiously Powerful Nightmare Fuel of Endless Jump-Scares
+841;65;1;Factory Model Tail
+842;65;2;Reinforced Steel Tail
+843;65;3;Spiked Alloy Tail
+844;65;4;Modded Carbon-Nanotube Tail of Flaming Terror
+845;24;4;Dancing Blades of Haunted Pumpkin Carving
+846;52;4;Magically Enhanced Gold-Plated Snorkel of Fish-Speaking
+847;43;4;Gold Medal Winning Dragonglass Crystal Flask of Power
+848;51;4;Intricately Carved Armguard of Holographic Flower Petals
+849;44;4;Light Deflecting Scale of Golden Rainbows
+850;3;4;Incredibly Dense Cape of Gravitational Power
+851;12;4;Far-Seeing Spectacles of Perfect True-Sight
+852;66;1;Mothballed Hat
+853;66;2;Fuzzy Cowboy Hat
+854;66;3;Festive Chicken Hat
+855;66;4;Bob Ross Wig of Amazing Greenscreen Art Skillz
+856;66;1;Ratty Trekky Skirt
+857;66;2;Alluring Trekky Skirt
+858;66;3;Vroomy Car Costume
+859;66;4;QWOPy QWOPing QWOPer of QWOPification
+860;66;1;Ratty Driver's Hat
+861;66;2;Stitched Driver's Hat
+862;66;3;Certified Driver's Hat
+863;66;4;Brand New Desert Bus Driver's Hat of Points
+864;8;4;Gold Collared Wyrmskin Cape of Remembrance
+865;67;1;Rusty Anchor
+866;67;2;Blood-Stained Anchor
+867;67;3;Shiny Iron Anchor
+868;67;4;Ornamental Golden Anchor of the HMS Victory
+869;67;1;Holey Pilgrim Hat
+870;67;2;Patched Pilgrim Hat
+871;67;3;Fine Pilgrim Hat
+872;67;4;Masterful Straw Pilgrim Hat of Epic Pilgrim Plundering
+873;67;1;Snapped Pitchfork
+874;67;2;Bended Pitchfork
+875;67;3;Solid Oak Pitchfork
+876;67;4;Razor Sharpened Pitchfork of the Aggressive Villager
+877;68;1;Ratty Gray Bonnet
+878;68;2;Plain Wool Bonnet
+879;68;3;Soft Cotton Bonnet
+880;68;4;Embroidered Silk Bonnet of the Malicious Milk Maid
+881;68;1;Extinguished Lantern
+882;68;2;Cold Iron Lantern
+883;68;3;Fine Brass Lantern
+884;68;4;Everburning Gold-Plated Lantern of the Sleepless Night
+885;68;1;Counterfeit Aztec Coin
+886;68;2;Chipped Aztec Coin
+887;68;3;Silver Plated Aztec Coin
+888;68;4;Amethyst-Embedded Coin of a Thousand Aztec Treasures
+889;26;4;Quantum Locked Vial of Life-Giving Goo
+890;17;4;Royal Yeti-fur Cape of Tantalizing Scents
+891;19;4;Heirloom Dragon Orb of the Adorable Tiny Dragon
+892;14;4;Multi-Dimentional Cosmic Pocket Watch of Infinite Time
+893;1;5;Engraved Silken Adventurer's Hat of Clicks
+894;1;5;Fantastic Bush Slicing Sword of Amythysts
+895;1;5;Enchanted Ivory Wand of Diamond Finding
+896;22;4;Banned Adamantium Spiked Boxing Glove of Mutilation
+897;69;1;Pilling Sleeve
+898;69;2;Faded Sleeve
+899;69;3;Well Laundered Sleeve
+900;69;4;Jewelled Padded Shirt Sleeve of Christmas Cheer
+901;69;1;Dull Christmas Dagger
+902;69;2;Chipped Christmas Dagger
+903;69;3;Candy Christmas Dagger
+904;69;4;Minty Fresh Candy Dagger of Sharpened Sweets
+905;69;1;Holey Gift Bag
+906;69;2;Leather Gift Bag
+907;69;3;Well-lit Christmas Bag
+908;69;4;Powered Velvet Gift Bag of Infinite Holding
+909;70;1;Broken Lightbulb
+910;70;2;Smashed Lightbulb
+911;70;3;Bright LED
+912;70;4;Ancient Red Bulb of Bright and Merry Christmases
+913;70;1;Stuffed Antler
+914;70;2;Robotic Antler
+915;70;3;Full Powered Antler
+916;70;4;Optically Wired Reindeer Antler of Epic Goring
+917;70;1;Cracked Bulb
+918;70;2;Sharpened Bulb
+919;70;3;Crisscrossed Bulb
+920;70;4;Cursed Christmas Bulb of Kris Kringle's Christmas Curse
+921;28;4;Self-Referencing Teak Pipe of Magical Snowman Smoke
+922;16;4;Masterfully Cut Phoenix Gem of Destruction and Rebirth
+923;9;4;Elite Octovision Goggles of the Deadly Assassin
+924;71;1;Empty Bottle
+925;71;2;Half-Empty Bottle
+926;71;3;Opaque Bottle
+927;71;4;Shiny Liquor Bottle of Flashy Bar Tending
+928;71;1;Busted Shot Glass
+929;71;2;Broken Shot Glass
+930;71;3;Sturdy Shot Glass
+931;71;4;Shot Shot Glass of Shoddy Shots
+932;71;1;Pilling Bar Cloth
+933;71;2;Ragged Bar Cloth
+934;71;3;New Bar Cloth
+935;71;4;Super Absorbsant Striped Bar Cloth of A Thousand Spills
+936;72;1;Dying Coral Tiara
+937;72;2;Dead Coral Tiara
+938;72;3;Living Coral Tiara
+939;72;4;Smooth Golden Coral Tiara of the Undersea Tempest
+940;72;1;2-Pronged Trident
+941;72;2;Rusted Trident
+942;72;3;Pointy Trident
+943;72;4;Shell-wrapped Golden Trident of Storms
+944;72;1;Dead Seahorse
+945;72;2;Reanimated Seahorse
+946;72;3;Shiny Armored Seahorse
+947;72;4;Royal Saddled Seahorse of the Intrepid Princess
+948;1;5;Fantastic Bush Slicing Sword of Amythysts
+949;2;5;Dwarven Forged Axe of Slaying
+950;2;5;Dwarven Forged Axe of Slaying
+951;2;5;Cashmere Cap of Unsustainable Deforestation
+952;2;5;Cashmere Cap of Unsustainable Deforestation
+953;2;5;Gold Inlaid Plaid Gloves of Lumberjacking
+954;29;4;Ace Pilot Helmet of Wind Tunnel Tested Aerodynamics
+955;5;4;Totally Normal Average Hat of Normalness
+956;18;4;All Powerful Nuclear Winter Orb of Barely Contained Lightning
+957;3;4;Spikey Smoked Hardcore Ham of Souls
+958;15;4;Crab Claw Trident of Deep Sea Stabbing
+959;3;5;Tear-Infused Blood Crystal of Weresouls
+960;3;5;Tear-Infused Blood Crystal of Weresouls
+961;3;5;Strange Moon Cape of Emotional Distance
+962;3;5;Strange Moon Cape of Emotional Distance
+963;3;5;Cursed Ham Cheese and Lettuce Sandwich of Destruction
+964;3;5;Cursed Ham Cheese and Lettuce Sandwich of Destruction
+965;4;5;Fierce Warrior's Gauntlet of Menacing Pointing
+966;4;5;Fierce Warrior's Gauntlet of Menacing Pointing
+967;4;5;Super Pointy Legendary Shield of Impaled Enemies
+968;4;5;Full Plate Helmet of Pointy Purple Power
+969;4;5;Full Plate Helmet of Pointy Purple Power
+970;5;5;Empowered Backpack of the Long Lonely March
+971;5;5;Empowered Backpack of the Long Lonely March
+972;5;5;Decked Out Cowboy Hat of the Lone Wanderer
+973;5;5;Decked Out Cowboy Hat of the Lone Wanderer
+974;5;5;Jade Imbued Promise Ring of Lost Love
+975;5;5;Jade Imbued Promise Ring of Lost Love
+976;6;5;Confusing Disguise of the Samurai Lumberjack Detective
+977;6;5;Confusing Disguise of the Samurai Lumberjack Detective
+978;6;5;All-Seeing Magnifying Glass of Alternate Dimension Scrying
+979;6;5;Anti-Invisibility Cape of the Subtle Investigator
+980;6;5;Anti-Invisibility Cape of the Subtle Investigator
+981;7;5;Flaming Four-Fingered Gloves of the Phoenix
+982;7;5;Flaming Four-Fingered Gloves of the Phoenix
+983;7;5;Pearl-Tied Winged Cape of Royal Endeavors
+984;7;5;Pearl-Tied Winged Cape of Royal Endeavors
+985;7;5;Flame-Imbued Fire Familiar Necklace of Burning
+986;8;5;Double-Ended Dual-Bladed 'Knife' of Ridiculousness
+987;8;5;Double-Ended Dual-Bladed 'Knife' of Ridiculousness
+988;8;5;Lizard-Scale Gauntlets of Curse Avoidance
+989;8;5;Scaley Silken Cloak of the Big Sister
+990;8;5;Scaley Silken Cloak of the Big Sister
+991;9;5;X-Ray Infrared Day-Vision Goggles of the Night
+992;9;5;X-Ray Infrared Day-Vision Goggles of the Night
+993;9;5;Cloud Serpent Engraved Samurai Dagger of Backstabs
+994;9;5;Cloud Serpent Engraved Samurai Dagger of Backstabs
+995;9;5;Rain Proof Whole Body Cloak of the Shadows
+996;10;5;Emerald Cat-Vision Goggles of the Forgotten Pride
+997;10;5;Emerald Cat-Vision Goggles of the Forgotten Pride
+998;10;5;Swirling Poison Cap of Unbreakable Will
+999;10;5;All-Seeing Amulet of the Prowling Hunter
+1000;10;5;All-Seeing Amulet of the Prowling Hunter
+1001;11;5;Horned Sorcerer's Skull Staff of a Million Curses
+1002;11;5;Horned Sorcerer's Skull Staff of a Million Curses
+1003;11;5;Long Lost Witch Doctor's Necklace of a Billion Curses
+1004;11;5;Extinct Raptor Feathered Hat of a Few Dozen Curses
+1005;11;5;Extinct Raptor Feathered Hat of a Few Dozen Curses
+1006;12;5;Omni-focal Spectacles of Perfect Vision
+1007;12;5;Omni-focal Spectacles of Perfect Vision
+1008;12;5;Crowing Mask Amulet of Volcanic Legeacies
+1009;12;5;Obsidian Sphinx Figurine of a Thousand Wings
+1010;12;5;Obsidian Sphinx Figurine of a Thousand Wings
+1011;13;5;Super Intimidating Horned Helmet of the Demon Slabberslakerginbin
+1012;13;5;Super Intimidating Horned Helmet of the Demon Slabberslakerginbin
+1013;13;5;Lightweight Adventurer's Armor of Rapid Collection
+1014;13;5;Lightweight Adventurer's Armor of Rapid Collection
+1015;13;5;Slobbering Devouring Sack of Lost Loot
+1016;14;5;Omni-Dimensional Pocket Watch of Daylight Saving Time
+1017;14;5;Omni-Dimensional Pocket Watch of Daylight Saving Time
+1018;14;5;Solid Gold Striped Cape of Ridiculous Wealth
+1019;14;5;Satin Wrapped Bundle of Gemmed Golden Clovers
+1020;14;5;Satin Wrapped Bundle of Gemmed Golden Clovers
+1021;15;5;Finned Tasselled Trident of Extreme Pokiness
+1022;15;5;Finned Tasselled Trident of Extreme Pokiness
+1023;15;5;Four-Eyed Horned Megalodon of Destruction
+1024;15;5;Four-Eyed Horned Megalodon of Destruction
+1025;15;5;First-Born Royal Sea-Cape of Succession
+1026;15;5;First-Born Royal Sea-Cape of Succession
+1027;16;5;Laser Cut 12-Edged Flame Gem of Sacrifice and Rebirth
+1028;16;5;Laser Cut 12-Edged Flame Gem of Sacrifice and Rebirth
+1029;16;5;Scorching Tri-Feather Display of Flames
+1030;16;5;Dual-Banded Molten Ring of Raining Death
+1031;16;5;Dual-Banded Molten Ring of Raining Death
+1032;17;5;Thousand-Year-Old King's Crown of Jewels
+1033;17;5;Legendary Purple Royal Cape of Royal Purpleness
+1034;17;5;Legendary Purple Royal Cape of Royal Purpleness
+1035;17;5;Golden Scrolled Proclamation of Royal Inheritance
+1036;17;5;Golden Scrolled Proclamation of Royal Inheritance
+1037;18;5;Lightning-Imbued Signet Ring of Godly Power
+1038;18;5;Sparkling Amulet of Annoying Static Shocks
+1039;18;5;Sparkling Amulet of Annoying Static Shocks
+1040;18;5;Tornado Orb of Literally Having a Tornado Inside It
+1041;18;5;Tornado Orb of Literally Having a Tornado Inside It
+1042;19;5;Ichor-Filled Orb of Dragon Cat-Nip
+1043;19;5;Ichor-Filled Orb of Dragon Cat-Nip
+1044;19;5;Long-Hooded Wizard's Robe of Sparkly Magic
+1045;19;5;Dragon-Headed Sceptre of Extra Area Damage
+1046;19;5;Dragon-Headed Sceptre of Extra Area Damage
+1047;20;5;Timed Hydroglycerin Explosive of Misfortune
+1048;20;5;Time Travelling Fire Extinguisher of Pre-Extinguishing
+1049;20;5;Time Travelling Fire Extinguisher of Pre-Extinguishing
+1050;20;5;Insanely Cursed Sword of Who Really Cares Anymore
+1051;20;5;Insanely Cursed Sword of Who Really Cares Anymore
+1052;21;5;Sparkling Squeaking Unicorn Toy of Amusement
+1053;21;5;Rocket-Powered Bowler Hat of Explosions
+1054;21;5;Suave Serpect Cane of Sauntering Sapiens
+1055;22;5;Banned Boxing Glove of Laser Sighted Accuracy
+1056;22;5;Banned Boxing Glove of Laser Sighted Accuracy
+1057;22;5;Incredibly Dangerous Boot of Don't Ever Kick People With It
+1058;22;5;Super Life-like Rubber Chicken of Masterful Crafting
+1059;22;5;Super Life-like Rubber Chicken of Masterful Crafting
+1060;23;5;Ruby Carved Poison Vial of Apple-like Appearance
+1061;23;5;Superbroom 9000 With Optional Air-Bag Attachment
+1062;23;5;Superbroom 9000 With Optional Air-Bag Attachment
+1063;23;5;Molten Metal Cauldron of Burning Potions
+1064;24;5;Powered Meat Knife of Legendary Carving
+1065;24;5;Powered Meat Knife of Legendary Carving
+1066;24;5;Unlucky Jersey of Spiked Pauldrons
+1067;24;5;Magical Hanging Chandelier of Dual Candles
+1068;25;5;Dual-Chambered Battery of Infinite Power
+1069;25;5;Dual-Chambered Battery of Infinite Power
+1070;25;5;Super Duper Computer Chip of Ones and Zeroes
+1071;25;5;Forged Vibranium Plating of Denting
+1072;26;5;Reinforced Leather Gas Mask of True Sight
+1073;26;5;Dangerous Zapping Ray Gun of Orange Zaps
+1074;26;5;Steaming Dripping Vial of Innocuous Concoctions
+1075;26;5;Steaming Dripping Vial of Innocuous Concoctions
+1076;27;5;Plated Santa Cap of Jolly Emerald Holly
+1077;27;5;Plated Santa Cap of Jolly Emerald Holly
+1078;27;5;Self-Powered LED Belt Buckle of Holiday Cheer
+1079;27;5;Naughty-Seeking Death Missile Launcher of Joy
+1080;28;5;Frozen Frosty Pauldron With Optional Glove Component
+1081;28;5;Freezing Snowman Pipe of Ice Cold Smoke
+1082;28;5;Freezing Snowman Pipe of Ice Cold Smoke
+1083;28;5;Jewel-Stitched Silk Scarf of Melting Memories
+1084;29;5;Incredibly Obnoxious Flared Aviators of Calculation
+1085;29;5;Ace Jet Fighter Helmet of Extreme G-Forces
+1086;29;5;Ace Jet Fighter Helmet of Extreme G-Forces
+1087;29;5;Itty Bitty Model Stealth Fighter of Inspiration
+1088;30;5;Golden Flamingo Crown of a Thousand Feathers
+1089;30;5;Golden Flamingo Crown of a Thousand Feathers
+1090;30;5;Solid Pink Sceptre of Royal Empowerment
+1091;30;5;Creepy Animated Pillow of Laziness
+1092;31;5;Imbued Tooth Dagger of Rabid Orcish Stabbing
+1093;31;5;Magical Steel Pauldron of the Linebacker
+1094;31;5;Solid Emerald Football of Painful Catches
+1095;32;5;Magnetically Imbued Spikey Amulet of the Elf
+1096;32;5;Cursed Blood Crystal Sword of Stabbing
+1097;32;5;Cursed Blood Crystal Sword of Stabbing
+1098;32;5;Elven Pauldron of Dangerous Running Plays
+1099;33;5;Rainbow Keytar of Infinite Songs
+1100;33;5;Rainbow Keytar of Infinite Songs
+1101;33;5;Striped Blond Mullet of a Decade Long Past
+1102;33;5;Lightning Pick of Picket Picking
+1103;34;5;Love Taser of Erotic Tasing
+1104;34;5;Way-Too-Tight Corset of Impossible Measurements
+1105;34;5;Infuriating Perfume of Infinite Lovers
+1106;35;5;Three-Leafed Crown of the Non-Royal Leprechaun
+1107;35;5;Soft Sprig of the Virgin Tree
+1108;35;5;Locked Four-Leaf Chest of Rainbows
+1109;35;5;Locked Four-Leaf Chest of Rainbows
+1110;36;5;Beer Keg Cap of Reckless Overindulgence
+1111;36;5;Popped Collar Shirt of Multiple Shirts
+1112;36;5;Stolen Gold Inlaid Dwarven Inn Keg of Ages
+1113;37;5;Bladed Angel Wings of Mortal Decapitation
+1114;37;5;Angelic Staff of Impervious Phallanxes
+1115;37;5;Gold Scale Full Helm of Penetrating Stares
+1116;38;5;Up-Gearing Sun Gear of Geared Up Gears
+1117;38;5;Up-Gearing Sun Gear of Geared Up Gears
+1118;38;5;Radioactive Glowing Glass Carrot of the Munchies
+1119;38;5;Grade Ten Science Experiment Capacitor of Danger
+1120;39;5;Darkened Bat-o-tie of the Knight
+1121;39;5;High-Utility Bat-o-belt of the Darkening Night
+1122;39;5;Gliding Bat-o-cape of the Silent Attacker
+1123;39;5;Gliding Bat-o-cape of the Silent Attacker
+1124;40;5;Recolored Power Source of Infinite Possibilities
+1125;40;5;Super Accurate Jet Pack of Precise Flying
+1126;40;5;Blindness Inducing Power Glove of Bright Flashes
+1127;41;5;Billion Year Old Amber Bust of the Forefather
+1128;41;5;Hardened Solidwood Branch Armor of Friendship
+1129;41;5;Perfectly Flavorful Fuzzy Peach of Succulence
+1130;42;5;Everburning Molotov Canister of Flames
+1131;42;5;Plunger-Launching Infinity Gun of Rodents
+1132;42;5;Fallout Causing Mini-Nuke of Pipping
+1133;42;5;Fallout Causing Mini-Nuke of Pipping
+1134;43;5;Royal Leather Bound Book of Scandelous Secrets
+1135;43;5;Ivory Flask of the Drunken Sages
+1136;43;5;Ivory Flask of the Drunken Sages
+1137;43;5;Six-sided Mark of the Royal Son
+1138;43;5;Six-sided Mark of the Royal Son
+1139;44;5;Extravegently Detailed Dragon Tooth of Princes
+1140;44;5;Ancient Gold-Covered Scale of the Dragon Queen
+1141;44;5;Ancient Gold-Covered Scale of the Dragon Queen
+1142;44;5;Pristine Scrying Orb of the Lost Dragon Kingdoms
+1143;45;5;Skull Shaped Chalice of a Thousand Deaths
+1144;45;5;Magically Imbued Force Whip of Exploration
+1145;45;5;Groovey Emperor's Llama of Power
+1146;46;5;Twisted Crown of Conflicting Snake Morals
+1147;46;5;Scaley Snake Idol of Eternal Suffocation
+1148;46;5;Golden Sceptre of Slithering Gems and Jewels
+1149;46;5;Golden Sceptre of Slithering Gems and Jewels
+1150;47;5;Elegant Platinum Cufflinks of the Impartial Executive
+1151;47;5;Elegant Platinum Cufflinks of the Impartial Executive
+1152;47;5;Finely Tailored Suit of Extreme Charisma
+1153;47;5;Alternative Shaving Kit of Facts and Figures
+1154;48;5;Centari Alien Leg of Rapid Invasions
+1155;48;5;Disintigrating Gun of Human Sufferage
+1156;48;5;Unstable Fuel Pod of Alien Inginuity
+1157;49;5;Survival Knife of the Fittest Ranger
+1158;49;5;Well Stocked Emergency Kit of the Outdoorswoman
+1159;49;5;Impervious Ranger Badge of Unlimited Oversight
+1160;49;5;Impervious Ranger Badge of Unlimited Oversight
+1161;50;5;3D IMOX Camera of the 8K Resolution
+1162;50;5;Extravagent Primal Spear of Camper Reduction
+1163;50;5;Fairly Normal Human Shoes of the Misleading Trail
+1164;51;5;Cyborg's Armguard of the Perfect Shot
+1165;51;5;Cyborg's Armguard of the Perfect Shot
+1166;51;5;Overcomplicated Bow of Arrow Shooting
+1167;51;5;Scaled Quiver of the Impossible Arrows
+1168;52;5;Dual-Snorkelled Snorkel of Extreme Snorkling
+1169;52;5;Dual-Snorkelled Snorkel of Extreme Snorkling
+1170;52;5;Fish-Lensed Goggles of Perfect Underwater Vision
+1171;52;5;Fish-Lensed Goggles of Perfect Underwater Vision
+1172;52;5;Streamlined Swimming Cap of Limitless Strokes
+1173;53;5;Catnip Filled Baggy of Unfortunate Distractions
+1174;53;5;Oversized Collar Bell of Unlimited Stealth
+1175;53;5;Annotated Notebook of Amazing Fish Recipes
+1176;54;5;Cheater-Detecting Glasses of Incredible Intuition
+1177;54;5;Super Stretchy Suspenders of Stylish Boggining
+1178;54;5;Super Stretchy Suspenders of Stylish Boggining
+1179;54;5;Customized Ruler of the Hidden Blade
+1180;55;5;Tri-Barrelled Arm Cannon of Laser Guided Destruction
+1181;55;5;Impossibly Dense Computer Chip of Infinite Computations
+1182;55;5;Sun-Safe Sunglasses of Looking Directly At The Sun
+1183;56;5;Star-Speckled Shadow Cloak of the Moonless Night
+1184;56;5;Eternally Locked Soul Gem of the Righteous Hero
+1185;56;5;Star-Studded Shadow Hippogryph of Destruction
+1186;57;5;Greystone Parrot of Limited Squacking
+1187;57;5;Electronic Treasure Map of Specific GPS Coordinates
+1188;57;5;Metalic Hypercannon of Radioactive Explosions
+1189;58;5;Delicate Acorn of the Extremely Careful Witch
+1190;58;5;Wood-bound Spell Book of the Mystical Rodent
+1191;58;5;Flowering Magician's Staff of Hiking and Spellcasting
+1192;59;5;Chainlinked Moonsun Amulet of the Eternal Cycle
+1193;59;5;Flimsy Reversable Wizard Hat of the Night and Day
+1194;59;5;Long Mystical Wizard's Wand of Insanity
+1195;60;5;Dripping Sacrificial Dagger of Blood Magic
+1196;60;5;Full-Length Blood Robe of the Illegal Magician
+1197;60;5;Carefully Locked Grimoire of Beastial Might
+1198;61;5;Eternal Hourglass of Neverending Time
+1199;61;5;Midnight Headdress of the Endless Cycle
+1200;61;5;Glowing Symbolized Staff of Limitless Endurance
+1201;62;5;Flower-Shaped Hat of the Limp Pink Flower
+1202;62;5;Invisible Piano of Haunting Tunes
+1203;62;5;Mauve Makeup of a Million Mauling Mines
+1204;63;5;Elegant Half Blood Costume of Feathers
+1205;63;5;Peacock Tiara of Golden Beauty
+1206;63;5;Not At All Weatherproof Umbrella of Patterns
+1207;64;5;Demonic Gravestone of Undead Deadness
+1208;64;5;Hand-crafted Safety Blanky of Unfounded Fright
+1209;64;5;Mighty Morphin' Flashlight of Demonic True-sight
+1210;65;5;Satanic Helmet of the Robo-Reaper
+1211;65;5;Unlimited Fuel Source of Robotic Superiority
+1212;65;5;Multi-bladed Tail of Dead-causing Options
+1213;66;5;10-Year Veteran's Driving Cap of Crashes
+1214;66;5;Meta Bus Costume of Bustling Bussing
+1215;66;5;Magic Carp Cap of Magical Crap
+1216;67;5;Solid Gold Anchor of Wasteful Ship Anchoring
+1217;67;5;Super Rigid Pilgrim's Hat of Sparkling Rubies
+1218;67;5;Spring-Loaded Pitchfork of Springy-Pitches
+1219;68;5;Silky Soft Pilgrim's Bonnet of Resourcefulness
+1220;68;5;Spooky Blue Lantern of Ghostly Visions
+1221;68;5;Overcomplicated Golden Coin of Unimaginable Riches
+1222;69;5;Cheery Christmas Exoskeleton Arm of Toy Making
+1223;69;5;Visciously Curved Elf Blade of Hooking
+1224;69;5;Magical Silk Gift Bag of Regifted Gifts
+1225;70;5;Seasonally Appropriate Nose Bulb of Direction
+1226;70;5;Festively Decorated Robo-Antler of Galloping
+1227;70;5;Meticulously Detailed Delicate Bulb of Breaking
+1228;71;5;Gold and Ivory Bottle of Pristine Godly Liquid
+1229;71;5;Molded Skull Shotglass of the Badass Patron
+1230;71;5;Golden Cloth of the Perfectly Clean Golden Counter
+1231;72;5;Seahorse Crafted Tiara of the Ocean Princess
+1232;72;5;Whale Bone Trident of Ten Thousand Leagues
+1233;72;5;Purebread Seaweed Seahorse of the Rapid Currents
+1234;75;1;Ratty Warlock Cape
+1235;75;2;Holey Warlock Cape
+1236;75;3;Satin Warlock Cape
+1237;75;4;Corpse-Craving Carnivorous Cape of Criticals
+1238;75;1;Old Magician's Hat
+1239;75;2;Moth-balled Hat
+1240;75;3;Fuzzy Purple Hat
+1241;75;4;Seriously Magical Top Hat of Curses
+1242;75;1;Patched Warlock Focus
+1243;75;2;Ratty Catty Focus
+1244;75;3;Emerald-Eyed Focus
+1245;75;4;Solid Amythyst Feline Focus of Ferocity
+1246;76;1;Snapped String Bow
+1247;76;2;Weak Cupid's Bow
+1248;76;3;Strong Cupid's Bow
+1249;76;4;Golden True-shot Cupid's Bow of Matchmaking
+1250;76;1;Chipped Halo
+1251;76;2;Dented Halo
+1252;76;3;Pure Gold Halo
+1253;76;4;Shining Golden Halo of Chaste Loving
+1254;76;1;Empty Quiver
+1255;76;2;Nice Quiver
+1256;76;3;Perfectly Good Quiver
+1257;76;4;Magical Neverending Quiver of +1 Love Arrows
+1258;73;1;Participation Trophy
+1259;73;2;Third Place Trophy
+1260;73;3;Second Place Trophy
+1261;73;4;Perpetual First Place Trophy of Tremendous Winning
+1262;73;1;Fake Foam Helmet
+1263;73;2;Scuffed Helmet
+1264;73;3;Gently Used Helmet
+1265;73;4;Windtunnel Tested Carbon Fibre Helmet of Smashing
+1266;73;1;Sole-less Kicking Shoe
+1267;73;2;Well Used Kicking Shoe
+1268;73;3;Brand New Kicking Shoe
+1269;73;4;Cheaty Kicking Shoe of Springs and Magnets and Whatnot
+1270;74;1;Dusty Feather Duster
+1271;74;2;Ratty Old Pom-Pom
+1272;74;3;Brand New Pom-Pom
+1273;74;4;Silk-Pommed Pom-Pom of Pomme-Colored Pomming
+1274;74;1;Plastic Twist Tie
+1275;74;2;Faded Cheer Ribbon
+1276;74;3;Long Tasseled Ribbon
+1277;74;4;Patterned Cheer Ribbon of a Thousand Peppy Cheers
+1278;74;1;Patched Cheer-Orc Uniform
+1279;74;2;Ratty Cheer-Orc Uniform
+1280;74;3;Ironed Cheer-Orc Uniform
+1281;74;4;Sparkling Poofy Cheer-Orc Uniform of a Million Victories
+1282;31;4;Pierced Golden Tooth of Antigravity Blood
+1283;46;4;Golden Slithering Serpent Crown of Emeralds
+1284;26;4;Customized Fully Automatic Poison Ray 9000
+1285;21;4;Hidden Blade Cane of Secret Stabby Stabby
+1286;10;4;Mighty Morphin' Magic Hat of the Pride
+1287;46;5;Twisted Crown of Conflicting Snake Morals
+1288;26;5;Dangerous Zapping Ray Gun of Orange Zaps
+1289;21;5;Suave Serpent Cane of Sauntering Sapiens
+1290;10;5;Swirling Poison Cap of Unbreakable Will
+1291;75;5;Super Evil Warlock's Cape of Curses
+1292;75;5;Dapperest Dapper Hat of the Dapper Leprechaun
+1293;75;5;Long-Tailed Feline Focus of Purring
+1294;76;5;Perfectly Strung Cupid's Bow of Decisiveness
+1295;76;5;Magical Pointy Halo of the Prime Cupid
+1296;76;5;Unknowable Quiver of Quivering Quails
+1297;34;4;Familiar Whip of Nibbling Agony
+1298;34;5;Love Taser of Erotic Tasing
+1299;73;5;Platinum-Plated Universal Trophy of Victory
+1300;73;5;Dangerously Spiked Safety Helmet of Murder
+1301;73;5;Surprisingly Light Kicker's Shoes of Kicking
+1302;74;5;Viciously Pommed Pom Pom of Razors
+1303;74;5;Overly Complex Cheerleader Ribbon of Cheers
+1304;74;5;Tastefully Decorated Uniform of Cheering
+1305;77;1;Patched Urchin's Cloak
+1306;77;2;Torn Leprechaun Cloak
+1307;77;3;Fine Leprechaun Cloak
+1308;77;4;Long Flowing Sneaker's Cloak of Subtle Sneaking
+1309;77;1;Pilling Corset
+1310;77;2;Torn Corset
+1311;77;3;Tight Corset
+1312;77;4;Soft Velvet Well-Fitted Sneaker's Outfit of Origins
+1313;77;1;Ratty Fingerless Gloves
+1314;77;2;Uncomfortable Gloves
+1315;77;3;Soft Thieves' Gloves
+1316;77;4;Carefully Stiched Sneaker's Gloves of Stealing
+1317;78;1;Depressing Clown Hat
+1318;78;2;Faded Clown Hat
+1319;78;3;Brand New Clown Hat
+1320;78;4;Extremely Lucky Clover-Ringed Clown Hat of Laughter
+1321;78;1;Dried Up Make-Up
+1322;78;2;Almost-Spent Make-Up
+1323;78;3;Stylish Make-Up
+1324;78;4;Multicolored Make-Up of A Billion Shades of Silly
+1325;78;1;Soggy Clown Shoe
+1326;78;2;Cracked Clown Shoe
+1327;78;3;Decent Clown Shoe
+1328;78;4;Fancily Decorated Shoe of the One-Legged Clown
+1329;31;5;Imbued Tooth Dagger of Rabid Orcish Stabbing
+1330;77;5;Hooded Hunter's Cloak of Extreme Parkour
+1331;77;5;Padded Sneaker's Attire of Very Quick Fingers
+1332;77;5;Luck-infused Thieves' Gloves of Never Getting Caught
+1333;78;5;Famous Clown Hat of A Thousand Clever Limericks
+1334;78;5;Extremely Stylish Rounded Make-Up Case of Hilarity
+1335;78;5;Star-Imbued Shoe of the Legendary Lawyer Joke
+1336;35;4;Hypnotic Runed Cane of the Ancient Leprechaun
+1337;35;5;Soft Sprig of the Virgin Tree
+1338;79;1;Half-Broken Spider Web
+1339;79;2;Well-Formed Spider Web
+1340;79;3;Steel Re-enforced Spider Web
+1341;79;4;Titanium Spider Web of Perfect Walking-Through Height
+1342;79;1;Patched-Up Arachno-Suit
+1343;79;2;Second-Hand Arachno-Suit
+1344;79;3;Gleaming Arachno-Suit
+1345;79;4;Well-Tailored Arachno-Suit of Many Cosplays
+1346;79;1;Smelly Mask
+1347;79;2;Comfortable Mask
+1348;79;3;Sleek, Well-Fitting Mask
+1349;79;4;Smooth Cotton Mask of Identity Hiding
+1350;80;1;8-Bit Processor
+1351;80;2;16-Bit Processor
+1352;80;3;32-Bit Processor
+1353;80;4;64-Bit Processor of Quantum Computing
+1354;80;1;Dull, Rusty Cape
+1355;80;2;Tin-Foil Cape
+1356;80;3;Shiny Bronze Cape
+1357;80;4;Polished Copper Cape of Robotic Energy
+1358;80;1;Hazy Robotic Eye
+1359;80;2;Dull Robotic Eye
+1360;80;3;Clear Robotic Eye
+1361;80;4;High-Res Robotic Eye of Penetrating Glares
+1362;16;4;Molton Lava Adamantium Feather of Melting Enemies
+1363;16;5;Scorching Tri-Feather Display of Flames
+1364;36;4;Decadent Naturally Green Beer Keg of Regrets
+1365;36;5;Stolen Gold Inlaid Dwarven Inn Keg of Ages
+1366;31;4;Groklok Bracer GE
+1367;31;5;Magical Steel Pauldron of the Linebacker
+1368;39;4;Bat Billionaire Tie GE
+1369;39;5;Darkened Bat-o-tie of the Knight
+1370;30;4;Siri Sceptre GE
+1371;30;5;Solid Pink Sceptre of Royal Empowerment
