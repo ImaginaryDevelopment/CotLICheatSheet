@@ -8,7 +8,7 @@ window.jsonData =
     "rare",
     "epic",
     "legendary"
-    ],
+  ],
   "missionTags": [
     {
       "id": "male",
@@ -137,8 +137,8 @@ window.jsonData =
         "human",
         "male"
       ],
-      "upgrades":{
-        "gear":[
+      "upgrades": {
+        "gear": [
           "clickCrit",
           "clickCritDmg",
           "ability"
@@ -151,7 +151,7 @@ window.jsonData =
       "image": "mini_RoboRabbit.jpg",
       "slot": 1,
       "event": "March: Nate's Candy Conundrum",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
       "tags": [
         "clicker",
         "event",
@@ -180,7 +180,7 @@ window.jsonData =
       "tier": 2,
       "image": "WarwickTheWarlock_48.png",
       "event": "February: Merci's Mix-up",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
       "tags": [
         "male",
         "clicker",
@@ -200,13 +200,13 @@ window.jsonData =
         "dps",
         "support"
       ],
-      "upgrades":{
-        "gear":[
+      "upgrades": {
+        "gear": [
           "selfdps",
           "alldps",
           "selfdps"
         ],
-        "selfdps":[
+        "selfdps": [
           100,
           100,
           100,
@@ -220,7 +220,7 @@ window.jsonData =
       "image": "mini_Pam.jpg",
       "slot": 2,
       "event": "January: Princess Pool Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "human",
         "female",
@@ -232,24 +232,24 @@ window.jsonData =
     {
       "id": "02b",
       "displayName": "Veronica, the Android Archer",
-      "slot":2,
-      "image":"VeronicaTheAndroidArcher_48.png",
+      "slot": 2,
+      "image": "VeronicaTheAndroidArcher_48.png",
       "event": "August: Dr. Evil's Summer Sabotage",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
-      "upgrades":{
-        "selfdps":[
-          150,
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
+      "upgrades": {
+        "selfdps": [
+          150
         ],
-        "alldps":[
+        "alldps": [
           15
         ],
-        "gear":[
+        "gear": [
           "alldps",
           "ability",
           "ability"
         ]
       },
-      "tags":[
+      "tags": [
         "female",
         "robot",
         "support",
@@ -262,15 +262,15 @@ window.jsonData =
       "displayName": "Emo Werewolf",
       "image": "mini_Emo.jpg",
       "slot": 3,
-      "upgrades":{
-        "selfdps":[
+      "upgrades": {
+        "selfdps": [
           100,
           200,
           100,
           100,
           150
         ],
-        "gear":[
+        "gear": [
           "selfdps",
           "selfdps",
           "alldps"
@@ -289,7 +289,7 @@ window.jsonData =
       "image": "mini_Sally.jpg",
       "slot": 3,
       "event": "February: Merci's Mix-up",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
       "tags": [
         "demon",
         "female",
@@ -300,25 +300,25 @@ window.jsonData =
     },
     {
       "id": "03b",
-      "displayName":"Karen, the Cat Teenager",
-      "image":"KarenTheCatTeenager_48.png",
+      "displayName": "Karen, the Cat Teenager",
+      "image": "KarenTheCatTeenager_48.png",
       "slot": 3,
       "event": "September: Sasha's Schoolhouse Scourge",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
-      "tags":[
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
+      "tags": [
         "female",
         "animal",
         "dps",
         "event",
         "supernatural"
       ],
-      "upgrades":{
-        "selfdps":[
+      "upgrades": {
+        "selfdps": [
           150,
           150,
           150
         ],
-        gear:[
+        "gear": [
           "ability",
           "selfdps",
           "selfdps"
@@ -330,13 +330,13 @@ window.jsonData =
       "displayName": "Sasha the Fierce Warrior",
       "image": "mini_Sasha.jpg",
       "slot": 4,
-      "upgrades":{
-        "gear":[
+      "upgrades": {
+        "gear": [
           "alldps",
           "selfdps",
           "ability"
         ],
-        "selfdps":[
+        "selfdps": [
           100,
           100,
           100,
@@ -355,7 +355,7 @@ window.jsonData =
       "image": "mini_Groklok.jpg",
       "slot": 4,
       "event": "January: Carnage Cup",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
         "orc",
         "male",
@@ -368,11 +368,11 @@ window.jsonData =
     {
       "id": "04b",
       "tier": 2,
-      "displayName":"Mindy the Mime",
+      "displayName": "Mindy the Mime",
       "image": "MindyTheMime_48.png",
       "slot": 4,
       "event": "September: Carnival of Sorrows",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "dps",
         "event",
@@ -394,14 +394,14 @@ window.jsonData =
       ],
       "upgrades": {
         "selfdpsassumptions": "no one in front",
-        "selfdps":[
+        "selfdps": [
           200,
           100,
           100,
           100,
           100
         ],
-        "gear":[
+        "gear": [
           "selfdps",
           "alldps",
           "selfdps"
@@ -414,7 +414,7 @@ window.jsonData =
       "image": "mini_Kyle.jpg",
       "slot": 5,
       "event": "March: Hermit's Premature Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
       "tags": [
         "human",
         "male",
@@ -426,25 +426,29 @@ window.jsonData =
       "id": "05b",
       "displayName": "Serpent King Draco",
       "image": "SerpentKingDraco_48.png",
-      "slot":5,
+      "slot": 5,
       "event": "June: Trek Through the Hidden Temple",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
-      "tags":[
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
+      "tags": [
         "animal",
         "male",
         "dps",
         "event",
         "royal"
       ],
-      "upgrades":{
+      "upgrades": {
         "selfdpsassumptions": "gets extra per royal, penalty per non-royal human, bonus per animal, penalty per robot",
-        "selfdps":[
-          100,100,150,100,150
+        "selfdps": [
+          100,
+          100,
+          150,
+          100,
+          150
         ],
-        "alldps":[
+        "alldps": [
           15
         ],
-        "gear":[
+        "gear": [
           "selfdps",
           "alldps",
           "selfdps"
@@ -455,23 +459,30 @@ window.jsonData =
       "id": "05c",
       "tier": 2,
       "displayName": "Henry, the Scaredy-Ghoul",
-      "image":"HenryTheScaredyGhoul_48.png",
-      "slot":5,
+      "image": "HenryTheScaredyGhoul_48.png",
+      "slot": 5,
       "event": "October: Emo's New Moon",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
-      "tags":[
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
+      "tags": [
         "supernatural",
         "male",
         "dps",
         "event"
       ],
-      "upgrades":{
+      "upgrades": {
         "selfdpsassumptions": "no one behind",
-        "selfdps":[
-          100,150,250, 175, 200, 25
+        "selfdps": [
+          100,
+          150,
+          250,
+          175,
+          200,
+          25
         ],
-        "gear":[
-          "selfdps","selfdps","alldps"
+        "gear": [
+          "selfdps",
+          "selfdps",
+          "alldps"
         ]
       }
     },
@@ -492,7 +503,7 @@ window.jsonData =
       "image": "mini_Mister.jpg",
       "slot": 6,
       "event": "September: Carnival of Sorrows",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "animal",
         "male",
@@ -506,7 +517,7 @@ window.jsonData =
       "image": "mini_Larry.jpg",
       "slot": 6,
       "event": "March: Hermit's Premature Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
       "tags": [
         "leprechaun",
         "male",
@@ -523,7 +534,7 @@ window.jsonData =
       "image": "BernardTheBartender_48.png",
       "slot": 6,
       "event": "January: Princess Pool Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "human",
         "male",
@@ -550,7 +561,7 @@ window.jsonData =
       "image": "mini_RoboTurkey.jpg",
       "slot": 7,
       "event": "November: Kaines' Dinner of Doom",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
       "tags": [
         "male",
         "robot",
@@ -562,22 +573,25 @@ window.jsonData =
       "id": "07b",
       "displayName": "Ranger Rayna",
       "image": "RangerRayna_48.png",
-      "slot":7,
+      "slot": 7,
       "event": "July: Littlefoot's Big Adventure",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
-      "tags":[
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
+      "tags": [
         "dps",
         "event",
         "female",
         "human",
         "healer"
       ],
-      "upgrades":{
+      "upgrades": {
         "selfdpsassumptions": "4 animals in formation, no ability gear",
-        "selfdps":[
-          100,150,100,200
+        "selfdps": [
+          100,
+          150,
+          100,
+          200
         ],
-        "gear":[
+        "gear": [
           "clickCrit",
           "selfdps",
           "ability"
@@ -595,18 +609,22 @@ window.jsonData =
         "gold",
         "dps"
       ],
-      "upgrades":{
-       "selfdps":[
-         100,100,100,200,150
-       ],
-       "alldps":[
-         15
-       ],
-       "gear": [
-        "selfdps",
-        "gold",
-        "alldps"
-       ]
+      "upgrades": {
+        "selfdps": [
+          100,
+          100,
+          100,
+          200,
+          150
+        ],
+        "alldps": [
+          15
+        ],
+        "gear": [
+          "selfdps",
+          "gold",
+          "alldps"
+        ]
       }
     },
     {
@@ -615,7 +633,7 @@ window.jsonData =
       "image": "mini_Jack.jpg",
       "slot": 8,
       "event": "October: Emo's New Moon",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
       "tags": [
         "male",
         "animal",
@@ -627,12 +645,12 @@ window.jsonData =
     },
     {
       "id": "08b",
-      "displayName" : "President Billy Smithsonian",
-      "image":"PresidentBillySmithsonian_48.png",
+      "displayName": "President Billy Smithsonian",
+      "image": "PresidentBillySmithsonian_48.png",
       "slot": 8,
       "event": "July: Alien Invasion Day",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
-      "tags":[
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
+      "tags": [
         "male",
         "event",
         "support",
@@ -645,9 +663,9 @@ window.jsonData =
       "tier": 2,
       "displayName": "Karl the Kicker",
       "slot": 8,
-      "image":"KarlTheKicker_48.png",
+      "image": "KarlTheKicker_48.png",
       "event": "January: Carnage Cup",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
         "male",
         "gold",
@@ -667,13 +685,19 @@ window.jsonData =
         "gold",
         "dps"
       ],
-      "upgrades":{
+      "upgrades": {
         "selfdpsassumptions": "someone in column is under attack",
-        "selfdps":[
-          100,100,100,150,400
+        "selfdps": [
+          100,
+          100,
+          100,
+          150,
+          400
         ],
-        "gear":[
-          "selfdps","gold","alldps"
+        "gear": [
+          "selfdps",
+          "gold",
+          "alldps"
         ]
       }
     },
@@ -683,7 +707,7 @@ window.jsonData =
       "image": "mini_Pete.jpg",
       "slot": 9,
       "event": "September: Carnival of Sorrows",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "male",
         "human",
@@ -691,19 +715,19 @@ window.jsonData =
         "gold",
         "event"
       ],
-      "upgrades":{
-        "gear":[
-         "selfdps",
-         "gold",
-         "alldps"
+      "upgrades": {
+        "gear": [
+          "selfdps",
+          "gold",
+          "alldps"
         ],
-        "selfdps":[
+        "selfdps": [
           100,
           100,
           100,
           150
         ],
-        "alldps":[
+        "alldps": [
           15
         ]
       }
@@ -714,7 +738,7 @@ window.jsonData =
       "image": "mini_Broot.jpg",
       "slot": 9,
       "event": "April/May: Gardeners of the Galaxy",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
       "tags": [
         "male",
         "female",
@@ -732,7 +756,7 @@ window.jsonData =
       "image": "PaulThePilgrim_48.png",
       "slot": 9,
       "event": "November: Kaines' Dinner of Doom",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
       "tags": [
         "male",
         "gold",
@@ -741,11 +765,11 @@ window.jsonData =
         "tank",
         "support"
       ],
-      "upgrades":{
-        "selfdps":[
+      "upgrades": {
+        "selfdps": [
           150
         ],
-        "gear":[
+        "gear": [
           "gold",
           "alldps",
           "alldps"
@@ -770,7 +794,7 @@ window.jsonData =
       "image": "mini_Drizzle.jpg",
       "slot": 10,
       "event": "January: Carnage Cup",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
         "female",
         "elf",
@@ -784,7 +808,7 @@ window.jsonData =
       "image": "BubbaTheSwimmingOrc_48.png",
       "slot": 10,
       "event": "August: Dr. Evil's Summer Sabotage",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
       "tags": [
         "male",
         "orc",
@@ -812,7 +836,7 @@ window.jsonData =
       "image": "mini_Momma.jpg",
       "slot": 11,
       "event": "November: Kaines' Dinner of Doom",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
       "tags": [
         "female",
         "human",
@@ -827,7 +851,7 @@ window.jsonData =
       "image": "mini_Brogon.jpg",
       "slot": 11,
       "event": "May: A Song of Thrones",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/A_Song_of_Thrones",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/A_Song_of_Thrones",
       "tags": [
         "male",
         "animal",
@@ -845,7 +869,7 @@ window.jsonData =
       "image": "TheHalfBloodElf_48.png",
       "slot": 11,
       "event": "September: Carnival of Sorrows",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "tags": [
         "elf",
         "event",
@@ -873,7 +897,7 @@ window.jsonData =
       "image": "mini_Rocky.jpg",
       "slot": 12,
       "event": "February: Merci's Mix-up",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
       "tags": [
         "male",
         "human",
@@ -887,7 +911,7 @@ window.jsonData =
       "image": "MontanaJames_48.png",
       "slot": 12,
       "event": "June: Trek Through the Hidden Temple",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
       "tags": [
         "male",
         "event",
@@ -902,8 +926,8 @@ window.jsonData =
       "image": "TheDarkHelper_48.png",
       "slot": 12,
       "event": "December: The Nate Before Christmas",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
-      "tags":[
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
+      "tags": [
         "female",
         "elf",
         "event",
@@ -921,18 +945,18 @@ window.jsonData =
         "human",
         "dps"
       ],
-      "upgrades":{
-        "selfdps":[
+      "upgrades": {
+        "selfdps": [
           100,
           150,
           100,
           100,
           150
         ],
-        "clickCrit":[
+        "clickCrit": [
           3
         ],
-        "gear":[
+        "gear": [
           "selfdps",
           "selfdps",
           "alldps"
@@ -945,7 +969,7 @@ window.jsonData =
       "image": "mini_Soldierette.jpg",
       "slot": 13,
       "event": "April: Superhero Spring",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
       "tags": [
         "female",
         "human",
@@ -954,9 +978,11 @@ window.jsonData =
         "tank",
         "event"
       ],
-      "upgrades":{
-        "selfdps":[
-          200,400,200
+      "upgrades": {
+        "selfdps": [
+          200,
+          400,
+          200
         ]
       }
     },
@@ -966,7 +992,7 @@ window.jsonData =
       "image": "SnicketteTheSneaky_48.png",
       "slot": 13,
       "event": "March: Hermit's Premature Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
       "tags": [
         "female",
         "leprechaun",
@@ -974,9 +1000,11 @@ window.jsonData =
         "support",
         "event"
       ],
-      "upgrades":{
-        "selfdps":[
-          200,400,200
+      "upgrades": {
+        "selfdps": [
+          200,
+          400,
+          200
         ]
       }
     },
@@ -998,7 +1026,7 @@ window.jsonData =
       "image": "mini_RoboSanta.jpg",
       "slot": 14,
       "event": "December: The Nate Before Christmas",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
       "tags": [
         "male",
         "robot",
@@ -1012,7 +1040,7 @@ window.jsonData =
       "image": "mini_Leerion.jpg",
       "slot": 14,
       "event": "May: A Song of Thrones",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/A_Song_of_Thrones",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/A_Song_of_Thrones",
       "tags": [
         "male",
         "human",
@@ -1029,7 +1057,7 @@ window.jsonData =
       "image": "KatieTheCupid_48.png",
       "slot": 14,
       "event": "February: Merci's Mix-up",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Merci%27s_Mix-up",
       "tags": [
         "female",
         "gold",
@@ -1049,11 +1077,14 @@ window.jsonData =
         "dps",
         "royal"
       ],
-      "upgrades":{
-        "selfdps":[
-          100,100,150,150
+      "upgrades": {
+        "selfdps": [
+          100,
+          100,
+          150,
+          150
         ],
-        "alldps":[
+        "alldps": [
           10
         ]
       }
@@ -1064,7 +1095,7 @@ window.jsonData =
       "image": "mini_Wendy.jpg",
       "slot": 15,
       "event": "October: Emo's New Moon",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
       "tags": [
         "female",
         "human",
@@ -1072,9 +1103,13 @@ window.jsonData =
         "dps",
         "event"
       ],
-      "upgrades":{
-        "selfdps":[
-          100,100,100,25,125
+      "upgrades": {
+        "selfdps": [
+          100,
+          100,
+          100,
+          25,
+          125
         ]
       }
     },
@@ -1084,7 +1119,7 @@ window.jsonData =
       "image": "mini_Robbie.jpg",
       "slot": 15,
       "event": "April/May: Gardeners of the Galaxy",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
       "tags": [
         "male",
         "animal",
@@ -1100,7 +1135,7 @@ window.jsonData =
       "image": "PrincessValTheMermaid_48.png",
       "slot": 15,
       "event": "January: Princess Pool Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "female",
         "animal",
@@ -1127,7 +1162,7 @@ window.jsonData =
       "image": "mini_Alan.jpg",
       "slot": 16,
       "event": "March: Nate's Candy Conundrum",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
       "tags": [
         "male",
         "angel",
@@ -1140,11 +1175,10 @@ window.jsonData =
       "id": "16b",
       "tier": 2,
       "displayName": "Fright-o-Tron 4000",
-      // "link": "Fright-o-Tron_4000",
-      "image":"FrightOTron4000_48.png",
+      "image": "FrightOTron4000_48.png",
       "slot": 16,
       "event": "October: Emo's New Moon",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Emo%27s_New_Moon",
       "tags": [
         "robot",
         "female",
@@ -1170,7 +1204,7 @@ window.jsonData =
       "image": "mini_Siri.jpg",
       "slot": 17,
       "event": "January: Princess Pool Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Princess%27_Pool_Party",
       "tags": [
         "female",
         "human",
@@ -1186,7 +1220,7 @@ window.jsonData =
       "image": "MrBogginsTheSubstitute_48.png",
       "slot": 17,
       "event": "September: Sasha's Schoolhouse Scourge",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
       "tags": [
         "event",
         "male",
@@ -1201,7 +1235,7 @@ window.jsonData =
       "image": "SquigglesTheClown_48.png",
       "slot": 17,
       "event": "March: Hermit's Premature Party",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
       "tags": [
         "male",
         "human",
@@ -1229,7 +1263,7 @@ window.jsonData =
       "image": "mini_Frosty.jpg",
       "slot": 18,
       "event": "December: The Nate Before Christmas",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
       "tags": [
         "male",
         "animal",
@@ -1242,9 +1276,9 @@ window.jsonData =
       "id": "18b",
       "displayName": "Littlefoot",
       "slot": 18,
-      "image":"Littlefoot_48.png",
+      "image": "Littlefoot_48.png",
       "event": "July: Littlefoot's Big Adventure",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
       "tags": [
         "female",
         "animal",
@@ -1259,9 +1293,9 @@ window.jsonData =
       "tier": 2,
       "displayName": "Cindy the Cheer-Orc",
       "slot": 18,
-      "image":"CindyTheCheerOrc_48.png",
+      "image": "CindyTheCheerOrc_48.png",
       "event": "January: Carnage Cup",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnage_Cup",
       "tags": [
         "female",
         "support",
@@ -1287,7 +1321,7 @@ window.jsonData =
       "image": "mini_Bat.jpg",
       "slot": 19,
       "event": "April: Superhero Spring",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
       "tags": [
         "male",
         "human",
@@ -1299,11 +1333,11 @@ window.jsonData =
       "id": "19b",
       "tier": 2,
       "displayName": "Petra the Pilgrim",
-      "slot":19,
-      "image":"PetraThePilgrim_48.png",
+      "slot": 19,
+      "image": "PetraThePilgrim_48.png",
       "event": "November: Kaines' Dinner of Doom",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
-      "tags":[
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Kaines%27_Dinner_of_Doom",
+      "tags": [
         "female",
         "dps",
         "event",
@@ -1328,7 +1362,7 @@ window.jsonData =
       "image": "KizlblypTheAlienTraitor_48.png",
       "slot": 20,
       "event": "July: Alien Invasion Day",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
       "tags": [
         "female",
         "dps",
@@ -1339,18 +1373,18 @@ window.jsonData =
       ]
     },
     {
-      "id":"20b",
+      "id": "20b",
       "tier": 2,
       "displayName": "Robo-Rudolph",
-      "image":"RoboRudolph_48.png",
+      "image": "RoboRudolph_48.png",
       "slot": 20,
       "event": "December: The Nate Before Christmas",
-      "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/The_Nate_Before_Christmas",
       "tags": [
-       "male",
-       "dps",
-       "event",
-       "robot"
+        "male",
+        "dps",
+        "event",
+        "robot"
       ]
     },
     {
