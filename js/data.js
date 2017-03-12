@@ -1,6 +1,14 @@
 window.jsonData =
 {
   "wikibase": "http://crusaders-of-the-lost-idols.wikia.com/wiki/",
+  "gearTypes": [
+    "none",
+    "common",
+    "uncommon",
+    "rare",
+    "epic",
+    "legendary"
+    ],
   "missionTags": [
     {
       "id": "male",
@@ -397,7 +405,7 @@ window.jsonData =
           "selfdps",
           "alldps",
           "selfdps"
-        ]        
+        ]
       }
     },
     {
@@ -597,7 +605,7 @@ window.jsonData =
        "gear": [
         "selfdps",
         "gold",
-        "alldps" 
+        "alldps"
        ]
       }
     },
@@ -687,7 +695,7 @@ window.jsonData =
         "gear":[
          "selfdps",
          "gold",
-         "alldps" 
+         "alldps"
         ],
         "selfdps":[
           100,
@@ -955,7 +963,7 @@ window.jsonData =
     {
       "id": "13b",
       "displayName": "Snickette the Sneaky",
-      "image": "",
+      "image": "SnicketteTheSneaky_48.png",
       "slot": 13,
       "event": "March: Hermit's Premature Party",
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
@@ -1190,7 +1198,7 @@ window.jsonData =
     {
       "id": "17c",
       "displayName": "Squiggles the Clown",
-      "image": "",
+      "image": "SquigglesTheClown_48.png",
       "slot": 17,
       "event": "March: Hermit's Premature Party",
       "eventLink":"http://crusaders-of-the-lost-idols.wikia.com/wiki/Hermit%27s_Premature_Party",
@@ -1404,7 +1412,7 @@ window.jsonData =
         "human",
         "male",
         "tank",
-        "gold" 
+        "gold"
       ]
     },
     {
