@@ -143,7 +143,8 @@ window.jsonData =
           "clickCritDmg",
           "ability"
         ]
-      }
+      },
+      "heroId": 1
     },
     {
       "id": "01a",
@@ -158,7 +159,8 @@ window.jsonData =
         "male",
         "robot",
         "support"
-      ]
+      ],
+      "heroId": 38
     },
     {
       "id": "01b",
@@ -171,7 +173,8 @@ window.jsonData =
         "human",
         "male",
         "support"
-      ]
+      ],
+      "heroId": 66
     },
     {
       "id": "01c",
@@ -187,7 +190,8 @@ window.jsonData =
         "leprechaun",
         "magic",
         "event"
-      ]
+      ],
+      "heroId": 75
     },
     {
       "id": "02",
@@ -212,7 +216,8 @@ window.jsonData =
           100,
           150
         ]
-      }
+      },
+      "heroId": 2
     },
     {
       "id": "02a",
@@ -227,7 +232,8 @@ window.jsonData =
         "dps",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 29
     },
     {
       "id": "02b",
@@ -255,7 +261,8 @@ window.jsonData =
         "support",
         "elf",
         "event"
-      ]
+      ],
+      "heroId": 51
     },
     {
       "id": "03",
@@ -281,7 +288,8 @@ window.jsonData =
         "male",
         "dps",
         "supernatural"
-      ]
+      ],
+      "heroId": 3
     },
     {
       "id": "03a",
@@ -296,7 +304,8 @@ window.jsonData =
         "dps",
         "supernatural",
         "event"
-      ]
+      ],
+      "heroId": 34
     },
     {
       "id": "03b",
@@ -323,7 +332,8 @@ window.jsonData =
           "selfdps",
           "selfdps"
         ]
-      }
+      },
+      "heroId": 53
     },
     {
       "id": "04",
@@ -347,7 +357,8 @@ window.jsonData =
         "human",
         "female",
         "support"
-      ]
+      ],
+      "heroId": 4
     },
     {
       "id": "04a",
@@ -363,7 +374,8 @@ window.jsonData =
         "dps",
         "tank",
         "event"
-      ]
+      ],
+      "heroId": 31
     },
     {
       "id": "04b",
@@ -380,7 +392,8 @@ window.jsonData =
         "human",
         "supernatural",
         "support"
-      ]
+      ],
+      "heroId": 62
     },
     {
       "id": "05",
@@ -406,7 +419,8 @@ window.jsonData =
           "alldps",
           "selfdps"
         ]
-      }
+      },
+      "heroId": 5
     },
     {
       "id": "05a",
@@ -420,7 +434,8 @@ window.jsonData =
         "male",
         "dps",
         "event"
-      ]
+      ],
+      "heroId": 36
     },
     {
       "id": "05b",
@@ -453,7 +468,8 @@ window.jsonData =
           "alldps",
           "selfdps"
         ]
-      }
+      },
+      "heroId": 46
     },
     {
       "id": "05c",
@@ -484,7 +500,8 @@ window.jsonData =
           "selfdps",
           "alldps"
         ]
-      }
+      },
+      "heroId": 64
     },
     {
       "id": "06",
@@ -495,7 +512,8 @@ window.jsonData =
         "human",
         "male",
         "gold"
-      ]
+      ],
+      "heroId": 6
     },
     {
       "id": "06a",
@@ -509,7 +527,8 @@ window.jsonData =
         "male",
         "gold",
         "event"
-      ]
+      ],
+      "heroId": 21
     },
     {
       "id": "06b",
@@ -525,7 +544,8 @@ window.jsonData =
         "magic",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 35
     },
     {
       "id": "06c",
@@ -541,7 +561,8 @@ window.jsonData =
         "gold",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 71
     },
     {
       "id": "07",
@@ -553,7 +574,8 @@ window.jsonData =
         "human",
         "support",
         "royal"
-      ]
+      ],
+      "heroId": 7
     },
     {
       "id": "07a",
@@ -567,7 +589,8 @@ window.jsonData =
         "robot",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 25
     },
     {
       "id": "07b",
@@ -596,7 +619,8 @@ window.jsonData =
           "selfdps",
           "ability"
         ]
-      }
+      },
+      "heroId": 49
     },
     {
       "id": "08",
@@ -625,7 +649,8 @@ window.jsonData =
           "gold",
           "alldps"
         ]
-      }
+      },
+      "heroId": 8
     },
     {
       "id": "08a",
@@ -641,7 +666,8 @@ window.jsonData =
         "tank",
         "supernatural",
         "event"
-      ]
+      ],
+      "heroId": 24
     },
     {
       "id": "08b",
@@ -656,7 +682,8 @@ window.jsonData =
         "support",
         "human",
         "gold"
-      ]
+      ],
+      "heroId": 47
     },
     {
       "id": "08c",
@@ -672,7 +699,8 @@ window.jsonData =
         "human",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 73
     },
     {
       "id": "09",
@@ -699,7 +727,8 @@ window.jsonData =
           "gold",
           "alldps"
         ]
-      }
+      },
+      "heroId": 9
     },
     {
       "id": "09a",
@@ -730,7 +759,8 @@ window.jsonData =
         "alldps": [
           15
         ]
-      }
+      },
+      "heroId": 22
     },
     {
       "id": "09b",
@@ -747,7 +777,8 @@ window.jsonData =
         "tank",
         "supernatural",
         "event"
-      ]
+      ],
+      "heroId": 41
     },
     {
       "id": "09c",
@@ -774,7 +805,8 @@ window.jsonData =
           "alldps",
           "alldps"
         ]
-      }
+      },
+      "heroId": 67
     },
     {
       "id": "10",
@@ -786,7 +818,8 @@ window.jsonData =
         "animal",
         "support",
         "supernatural"
-      ]
+      ],
+      "heroId": 10
     },
     {
       "id": "10a",
@@ -800,7 +833,8 @@ window.jsonData =
         "elf",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 32
     },
     {
       "id": "10b",
@@ -815,7 +849,8 @@ window.jsonData =
         "gold",
         "event",
         "support"
-      ]
+      ],
+      "heroId": 52
     },
     {
       "id": "11",
@@ -828,7 +863,8 @@ window.jsonData =
         "magic",
         "healer",
         "support"
-      ]
+      ],
+      "heroId": 11
     },
     {
       "id": "11a",
@@ -843,7 +879,8 @@ window.jsonData =
         "healer",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 26
     },
     {
       "id": "11b",
@@ -860,7 +897,8 @@ window.jsonData =
         "support",
         "royal",
         "event"
-      ]
+      ],
+      "heroId": 44
     },
     {
       "id": "11c",
@@ -877,7 +915,8 @@ window.jsonData =
         "orc",
         "support",
         "healer"
-      ]
+      ],
+      "heroId": 63
     },
     {
       "id": "12",
@@ -889,7 +928,8 @@ window.jsonData =
         "animal",
         "support",
         "supernatural"
-      ]
+      ],
+      "heroId": 12
     },
     {
       "id": "12a",
@@ -903,7 +943,8 @@ window.jsonData =
         "human",
         "dps",
         "event"
-      ]
+      ],
+      "heroId": 33
     },
     {
       "id": "12b",
@@ -917,7 +958,8 @@ window.jsonData =
         "event",
         "human",
         "support"
-      ]
+      ],
+      "heroId": 45
     },
     {
       "id": "12c",
@@ -933,7 +975,8 @@ window.jsonData =
         "event",
         "support",
         "gold"
-      ]
+      ],
+      "heroId": 69
     },
     {
       "id": "13",
@@ -961,7 +1004,8 @@ window.jsonData =
           "selfdps",
           "alldps"
         ]
-      }
+      },
+      "heroId": 13
     },
     {
       "id": "13a",
@@ -984,7 +1028,8 @@ window.jsonData =
           400,
           200
         ]
-      }
+      },
+      "heroId": 40
     },
     {
       "id": "13b",
@@ -1006,7 +1051,8 @@ window.jsonData =
           400,
           200
         ]
-      }
+      },
+      "heroId": 77
     },
     {
       "id": "14",
@@ -1018,7 +1064,8 @@ window.jsonData =
         "animal",
         "gold",
         "supernatural"
-      ]
+      ],
+      "heroId": 14
     },
     {
       "id": "14a",
@@ -1032,7 +1079,8 @@ window.jsonData =
         "robot",
         "gold",
         "event"
-      ]
+      ],
+      "heroId": 27
     },
     {
       "id": "14b",
@@ -1048,7 +1096,8 @@ window.jsonData =
         "royal",
         "gold",
         "event"
-      ]
+      ],
+      "heroId": 43
     },
     {
       "id": "14c",
@@ -1064,7 +1113,8 @@ window.jsonData =
         "supernatural",
         "event",
         "support"
-      ]
+      ],
+      "heroId": 76
     },
     {
       "id": "15",
@@ -1087,7 +1137,8 @@ window.jsonData =
         "alldps": [
           10
         ]
-      }
+      },
+      "heroId": 15
     },
     {
       "id": "15b",
@@ -1111,7 +1162,8 @@ window.jsonData =
           25,
           125
         ]
-      }
+      },
+      "heroId": 42
     },
     {
       "id": "15c",
@@ -1126,7 +1178,8 @@ window.jsonData =
         "dps",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 72
     },
     {
       "id": "15d",
@@ -1154,7 +1207,8 @@ window.jsonData =
         "animal",
         "support",
         "supernatural"
-      ]
+      ],
+      "heroId": 16
     },
     {
       "id": "16a",
@@ -1169,7 +1223,8 @@ window.jsonData =
         "support",
         "supernatural",
         "event"
-      ]
+      ],
+      "heroId": 37
     },
     {
       "id": "16b",
@@ -1184,7 +1239,8 @@ window.jsonData =
         "female",
         "event",
         "support"
-      ]
+      ],
+      "heroId": 65
     },
     {
       "id": "17",
@@ -1196,7 +1252,8 @@ window.jsonData =
         "human",
         "support",
         "royal"
-      ]
+      ],
+      "heroId": 17
     },
     {
       "id": "17a",
@@ -1212,7 +1269,8 @@ window.jsonData =
         "gold",
         "royal",
         "event"
-      ]
+      ],
+      "heroId": 30
     },
     {
       "id": "17b",
@@ -1227,7 +1285,8 @@ window.jsonData =
         "gold",
         "leprechaun",
         "support"
-      ]
+      ],
+      "heroId": 54
     },
     {
       "id": "17c",
@@ -1241,7 +1300,8 @@ window.jsonData =
         "human",
         "dps",
         "event"
-      ]
+      ],
+      "heroId": 78
     },
     {
       "id": "18",
@@ -1255,7 +1315,8 @@ window.jsonData =
         "tank",
         "magic",
         "royal"
-      ]
+      ],
+      "heroId": 18
     },
     {
       "id": "18a",
@@ -1270,7 +1331,8 @@ window.jsonData =
         "dps",
         "supernatural",
         "event"
-      ]
+      ],
+      "heroId": 28
     },
     {
       "id": "18b",
@@ -1286,7 +1348,8 @@ window.jsonData =
         "support",
         "supernatural",
         "event"
-      ]
+      ],
+      "heroId": 50
     },
     {
       "id": "18c",
@@ -1301,7 +1364,8 @@ window.jsonData =
         "support",
         "orc",
         "event"
-      ]
+      ],
+      "heroId": 74
     },
     {
       "id": "19",
@@ -1313,7 +1377,8 @@ window.jsonData =
         "human",
         "magic",
         "support"
-      ]
+      ],
+      "heroId": 19
     },
     {
       "id": "19a",
@@ -1327,7 +1392,8 @@ window.jsonData =
         "human",
         "support",
         "event"
-      ]
+      ],
+      "heroId": 39
     },
     {
       "id": "19b",
@@ -1342,7 +1408,8 @@ window.jsonData =
         "dps",
         "event",
         "elf"
-      ]
+      ],
+      "heroId": 68
     },
     {
       "id": "20",
@@ -1354,7 +1421,8 @@ window.jsonData =
         "human",
         "dps",
         "support"
-      ]
+      ],
+      "heroId": 20
     },
     {
       "id": "20a",
@@ -1370,7 +1438,8 @@ window.jsonData =
         "alien",
         "magic",
         "support"
-      ]
+      ],
+      "heroId": 48
     },
     {
       "id": "20b",
@@ -1385,7 +1454,8 @@ window.jsonData =
         "dps",
         "event",
         "robot"
-      ]
+      ],
+      "heroId": 70
     },
     {
       "id": "21",
@@ -1397,7 +1467,8 @@ window.jsonData =
         "robot",
         "dps",
         "gold"
-      ]
+      ],
+      "heroId": 55
     },
     {
       "id": "21a",
@@ -1410,7 +1481,8 @@ window.jsonData =
         "healer",
         "support",
         "magic"
-      ]
+      ],
+      "heroId": 58
     },
     {
       "id": "22",
@@ -1423,7 +1495,8 @@ window.jsonData =
         "royal",
         "supernatural",
         "support"
-      ]
+      ],
+      "heroId": 56
     },
     {
       "id": "22a",
@@ -1435,7 +1508,8 @@ window.jsonData =
         "female",
         "human",
         "magic"
-      ]
+      ],
+      "heroId": 59
     },
     {
       "id": "23",
@@ -1447,7 +1521,8 @@ window.jsonData =
         "male",
         "tank",
         "gold"
-      ]
+      ],
+      "heroId": 57
     },
     {
       "id": "23a",
@@ -1460,7 +1535,8 @@ window.jsonData =
         "male",
         "gold",
         "support"
-      ]
+      ],
+      "heroId": 60
     }
   ]
 };
