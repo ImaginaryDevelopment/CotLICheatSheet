@@ -470,7 +470,13 @@ var CruApp = React.createClass({
   onSetClick(){
     console.log('onSetClick',arguments);
     if(this.state.textState){
-      storeIt(cruTagGridKey, JSON.parse(this.state.textState));
+      // not 2, because if the index is 2 it could be {"ownedCrusaderIds"} which isn't a partial load
+      if(this.state.textState.indexOf('ownedCrusaderIds') == 0 || this.state.textState.indexOf('ownedCrusaderIds') == 1){
+          var data = JSON.parse("{" + this.state.textState + "}");
+          this.setState({ownedCrusaderIds:data.ownedCrusaderIds});
+      } else {
+        storeIt(cruTagGridKey, JSON.parse(this.state.textState));
+      }
     }
     else{
       storeIt(cruTagGridKey, undefined);
