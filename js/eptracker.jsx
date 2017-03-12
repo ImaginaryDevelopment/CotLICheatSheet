@@ -55,6 +55,25 @@ const addClasses = (defaultClasses=[], otherClasses=[]) =>{
     unwrappedClasses = otherClasses.reduce(flattenArrays,[]).concat(unwrappedClasses);
     return unwrappedClasses.filter(isDefined).map(trim).join(' ').trim();
 };
+var TextAreaInput2 = props =>
+(<textarea
+name={props.name}
+        className={addClasses(['form-control'],props.className)}
+        type={props.type}
+        value={props.value}
+        defaultValue={props.defaultValue}
+        onChange={ e =>
+            {
+            if(props.onControlledChange){
+                props.onControlledChange(e);
+            }
+            return debounceChange(props.onChange,e)
+          }
+        }
+        onBlur={props.onBlur}
+        {...props.spread} />
+);
+
 var TextInput2 = props =>
 (<input
         name={props.name}
@@ -100,6 +119,34 @@ var TextInputUnc = React.createClass({
       );
   }
 });
+var TextAreaInputUnc = React.createClass({
+  getInitialState(){
+    return {value:this.props.value};
+  },
+  componentWillReceiveProps(nextProps){
+    if(this.props.value !== nextProps.value && this.props.id !== nextProps.id){
+      this.setState({value:nextProps.value});
+    }
+  },
+  render(){
+    var props = this.props;
+    var state = this.state;
+    return (<TextAreaInput2
+          name={props.name}
+          defaultValue={props.defaultValue}
+          value={state.value? state.value : ''}
+          type={props.type}
+          min={props.min}
+          onControlledChange={e => this.setState({value: e.target.value})}
+          onChange={e => props.onChange(e)}
+          onBlur={e => e.target.value === '' ? {} : e.target.value = (+e.target.value)}
+          spread={props.spread}
+      />
+      );
+  }
+
+
+});
 function getIsLocalStorageAvailable() {
   if (typeof(localStorage) !== 'undefined' && (typeof(localStorage.setItem) === 'function') && typeof(localStorage.getItem) === 'function'){
     return true;
@@ -131,7 +178,6 @@ var storeIt = function(key,value){
 var readIt = function(key,defaultValue){
   if(getIsLocalStorageAvailable()){
     var item = localStorage.getItem(key);
-    console.log(item);
     if(typeof(item) !== 'undefined' && item != null){
       console.info("read item from localStorage", key,item);
       return JSON.parse(item);
@@ -205,9 +251,6 @@ var CruTagRow = React.createClass({
       var formation = null;
       var epBox = this.props.epMode && isOwned ? <TextInputUnc type="number" min="0" onChange={this.props.onEpChange} value={this.props.enchantmentPoints} /> : null;
       if(this.props.mode === "mine" && this.props.isFormationMode){
-        if(this.props.formationIds[cru.slot]){
-          console.log('formation',this.props.formationIds,cru);
-        }
         formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
       } else if (this.props.mode === "mine" && !this.props.isFormationMode){
         if(cru.slot == cru.id && cru.slot < 21){
@@ -225,7 +268,6 @@ var CruTagRow = React.createClass({
       var slotGear;
       // extract the 3 slots with qualities
       var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
-        console.log(cruGearQ);
         if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
           var makeBox = slot => {
             return (<div className={"rarity rarity" + cruGearQ[slot]} />);
@@ -237,10 +279,6 @@ var CruTagRow = React.createClass({
         var gearPossibilities = this.props.gearTypes;
 
         var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
-        if(cru.id === "01"){
-          console.log(cruGear);
-          console.log('crusader' + cru.id + 'gear', cruGear);
-        }
 
         var makeSelect = slot => (<select key={"gear" + slot} value={cruGear["slot" + slot]? +cruGear["slot" + slot]: 0} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
                     // <select key="gear0" onChange={e => this.props.onGearChange(cru.id, 0, e.target.value)} name="slot0">{options}</select>
@@ -536,10 +574,25 @@ var CruTagGrid = React.createClass({
     </table>)
   }
 });
-    // {/*<div>
-    //   <label>import game data</label>
-    //     <TextInputUnc onChange={val => this.setState({importState:val})} />
-    // </div>*/}
+// data pull 
+var HeroGameData = React.createClass({
+  render(){
+    console.log('rendering hero game data');
+    // account for pasting just the heroes section of json, or the whole data packet
+    var target = (this.props.data && this.props.data.heroes) || (this.props.data && this.props.data.details && this.props.data.details.heroes);
+    var data = Array.isArray(target) ? target.map(h => (<li>{JSON.stringify({HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false})}</li>)) : null;
+    return (<div>
+        <button>import</button>
+        <div>
+          <ul>
+            {data}
+            </ul>
+          <pre>{JSON.stringify(this.props.data,null,2)}</pre></div>
+    </div>);
+
+  }
+});
+
 var Exporter = props =>
 (
     <div>
@@ -547,7 +600,15 @@ var Exporter = props =>
       <button onClick={props.onSetClick} >{props.importText}</button>
       <button onClick={props.onUpdateClick}>Update Export Text</button>
       {props.clipper}
+      <button onClick={props.onHideClick}>Hide Exporter</button>
       <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
+      <div>
+        <label>Game data importer</label>
+        {/*while this usage does not require a text area, this is a good place to POC/test the idea*/}
+        <TextAreaInputUnc onChange={props.onGameTextInputChange} />
+        {props.gameJson? (<HeroGameData data={props.gameJson} />) : null}
+        <button onClick={props.onLoadGameDataClick}>Load game data</button>
+      </div>
     </div>
 );
 var CruApp = React.createClass({
@@ -560,11 +621,25 @@ var CruApp = React.createClass({
     }
     return state;
   },
+  loadGameData(){
+    if(!this.state.gameText){
+      return;
+    }
+    try{
+      this.setState({gameJson:JSON.parse(this.state.gameText)});
+      console.log('parse success');
+    } catch (ex){
+      console.error(ex);
+      this.setState({error:ex});
+    }
+  },
   onSetClick(){
     console.log('onSetClick',arguments);
+    // this does an overwrite, not a merge, perhaps allow a merge button?
     if(this.state.textState){
       // not 2, because if the index is 2 it could be {"ownedCrusaderIds"} which isn't a partial load
       if(this.state.textState.indexOf('ownedCrusaderIds') == 0 || this.state.textState.indexOf('ownedCrusaderIds') == 1){
+          // special load from the .linq script, not direct game data, or page state
           var data = JSON.parse("{" + this.state.textState + "}");
           this.setState({ownedCrusaderIds:data.ownedCrusaderIds});
       } else {
@@ -599,8 +674,11 @@ var CruApp = React.createClass({
     var toggleHide = () =>
       this.setState({showImportExport:(this.state.showImportExport ? false : true)});
     var importArea = this.state.showImportExport ?
-      (<Exporter  onHideclick={toggleHide}
+      (<Exporter  onHideClick={toggleHide}
                   onTextChange={val => this.setState({textState:val})}
+                  onGameTextInputChange={val => this.setState({gameText:val})}
+                  onLoadGameDataClick={this.loadGameData}
+                  gameJson={this.state.gameJson}
                   onSetClick={this.onSetClick}
                   onUpdateClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}
                   clipper={clipper}
