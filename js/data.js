@@ -1141,7 +1141,7 @@ window.jsonData =
       "heroId": 15
     },
     {
-      "id": "15b",
+      "id": "15a",
       "displayName": "Wendy the Witch",
       "image": "mini_Wendy.jpg",
       "slot": 15,
@@ -1163,10 +1163,10 @@ window.jsonData =
           125
         ]
       },
-      "heroId": 42
+      "heroId": 23
     },
     {
-      "id": "15c",
+      "id": "15b",
       "displayName": "Robbie Raccoon",
       "image": "mini_Robbie.jpg",
       "slot": 15,
@@ -1179,10 +1179,10 @@ window.jsonData =
         "support",
         "event"
       ],
-      "heroId": 72
+      "heroId": 42
     },
     {
-      "id": "15d",
+      "id": "15c",
       "tier": 2,
       "displayName": "Princess Val the Mermaid",
       "image": "PrincessValTheMermaid_48.png",
@@ -1195,7 +1195,8 @@ window.jsonData =
         "healer",
         "event",
         "royal"
-      ]
+      ],
+      "heroId":72
     },
     {
       "id": "16",
@@ -1537,6 +1538,20 @@ window.jsonData =
         "support"
       ],
       "heroId": 60
+    },
+    {
+      "id": "24",
+      "displayName": "Priestess of Time",
+      "image": "",
+      "slot": 24,
+      "tags": [
+        "female",
+        "angel",
+        "dps",
+        "support",
+        "supernatural",
+      ],
+      "heroId": 61
     }
   ]
 };
