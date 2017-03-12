@@ -1,4 +1,6 @@
 // data is in window.jsonData
+// reference heroId data at http://pastebin.com/Bf5UgsBC
+// reference lootId data at http://pastebin.com/vJNceSJZ
 var loggedStorageFailure = false;
 const isDefined = function(o){
     return typeof(o) !== 'undefined' && o !== null;
@@ -579,8 +581,20 @@ var HeroGameData = React.createClass({
   render(){
     console.log('rendering hero game data');
     // account for pasting just the heroes section of json, or the whole data packet
+
     var target = (this.props.data && this.props.data.heroes) || (this.props.data && this.props.data.details && this.props.data.details.heroes);
-    var data = Array.isArray(target) ? target.map(h => (<li>{JSON.stringify({HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false})}</li>)) : null;
+    window.heroMap = this.props.heroMap;
+
+    var data = Array.isArray(target) ? target.map(h => {
+      var crusader;
+      try{
+        crusader = this.props.heroMap[h.hero_id];
+      } catch(ex)
+      {
+        console.error('failed to parse',h,ex);
+      }
+    return (<li data-key={h.hero_id} key={h.hero_id}>{JSON.stringify({Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false})}</li>);
+   }) : null;
     return (<div>
         <button>import</button>
         <div>
@@ -606,7 +620,7 @@ var Exporter = props =>
         <label>Game data importer</label>
         {/*while this usage does not require a text area, this is a good place to POC/test the idea*/}
         <TextAreaInputUnc onChange={props.onGameTextInputChange} />
-        {props.gameJson? (<HeroGameData data={props.gameJson} />) : null}
+        {props.gameJson? (<HeroGameData heroMap={props.heroMap} data={props.gameJson} />) : null}
         <button onClick={props.onLoadGameDataClick}>Load game data</button>
       </div>
     </div>
@@ -615,6 +629,8 @@ var CruApp = React.createClass({
   getInitialState(){
     var read= readIt(cruTagGridKey,undefined);
     var state = {lastRead:read};
+    var gameDataJson = readIt("gameDataJson",undefined);
+    state.gameJson=gameDataJson;
     if (Clipboard)
     {
       state.clipboard = new Clipboard('.btn');
@@ -625,12 +641,17 @@ var CruApp = React.createClass({
     if(!this.state.gameText){
       return;
     }
+    var json;
     try{
-      this.setState({gameJson:JSON.parse(this.state.gameText)});
+      json = JSON.parse(this.state.gameText);
       console.log('parse success');
     } catch (ex){
       console.error(ex);
       this.setState({error:ex});
+    }
+    if(json){
+      storeIt("gameDataJson",json);
+      this.setState({gameJson:json});
     }
   },
   onSetClick(){
@@ -673,12 +694,18 @@ var CruApp = React.createClass({
     }
     var toggleHide = () =>
       this.setState({showImportExport:(this.state.showImportExport ? false : true)});
+    var heroMap = {};
+    
+    this.props.jsonData.crusaders.map(c =>{
+      heroMap[c.heroId] = c;
+    });
     var importArea = this.state.showImportExport ?
       (<Exporter  onHideClick={toggleHide}
                   onTextChange={val => this.setState({textState:val})}
                   onGameTextInputChange={val => this.setState({gameText:val})}
                   onLoadGameDataClick={this.loadGameData}
                   gameJson={this.state.gameJson}
+                  heroMap={heroMap}
                   onSetClick={this.onSetClick}
                   onUpdateClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}
                   clipper={clipper}
@@ -689,6 +716,7 @@ var CruApp = React.createClass({
       ( <button onClick={toggleHide}>Show Import/Export </button>);
     return (<div>
             <CruTagGrid model={props.jsonData} />
+            <div>{this.state.error}</div>
             <div className="onGreen">
             {importArea}
             </div>
