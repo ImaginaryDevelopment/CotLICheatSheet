@@ -631,6 +631,7 @@ var Exporter = props =>
         {/*while this usage does not require a text area, this is a good place to POC/test the idea*/}
         <TextAreaInputUnc onChange={props.onGameTextInputChange} value={props.gameRaw} />
         <button onClick={props.onLoadGameDataClick}>Parse game data</button>
+        <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
         {props.gameJson? (<HeroGameData heroMap={props.heroMap} data={props.gameJson} crusaderReferenceData={props.crusaderReferenceData} onImportGameDataClick={props.onImportGameDataClick} />) : null}
         
       </div>
@@ -665,11 +666,24 @@ var CruApp = React.createClass({
       this.setState({gameJson:json});
     }
   },
+  onClearGameDataParseClick(){
+    console.log('onClearGameDataParseClick');
+    this.setState({gameJson:null});
+  },
   onImportGameDataClick(heroes,loot){
+    // heroes looks like this:
+    // return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
     var cruTagGrid = readIt(cruTagGridKey,undefined);
     var data = copyObject(cruTagGrid);
     var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
     data.ownedCrusaderIds = ownedCrusaderIds;
+    // set this to "enchantmentPoints"
+    var ep = {}
+    heroes.filter(h => h.Owned).map(h => {
+      var crusader = this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0];
+      ep[crusader.id] = h.Ep;
+    });
+    data.enchantmentPoints = ep;
     storeIt(cruTagGridKey,data);
     window.location.reload(false);
     
@@ -728,6 +742,7 @@ var CruApp = React.createClass({
                   gameJson={this.state.gameJson}
                   heroMap={heroMap}
                   onImportGameDataClick={this.onImportGameDataClick}
+                  onClearGameDataParseClick={this.onClearGameDataParseClick}
                   onSetClick={this.onSetClick}
                   onUpdateClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}
                   clipper={clipper}
