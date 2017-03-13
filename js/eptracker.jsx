@@ -576,18 +576,18 @@ var CruTagGrid = React.createClass({
     </table>)
   }
 });
-// data pull 
+// data pull
 var HeroGameData = React.createClass({
   render(){
     console.log('rendering hero game data');
-    
+
     // does not yet account for loot data contained in data.loot
     // account for pasting just the heroes section of json, or the whole data packet
     var targetHeroesOpt = (this.props.data && this.props.data.heroes) || (this.props.data && this.props.data.details && this.props.data.details.heroes);
-    
+
     var lootOpt = (this.props.data && this.props.data.loot) || (this.props.data && this.props.data.details && this.props.data.details.loot);
     window.heroMap = this.props.heroMap;
-    var mapped = Array.isArray(targetHeroesOpt) ? 
+    var mapped = Array.isArray(targetHeroesOpt) ?
       targetHeroesOpt.map(h => {
         var crusader;
         try{
@@ -599,12 +599,12 @@ var HeroGameData = React.createClass({
         return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
         }
       ) : [];
-    
-    var data =  mapped.map(h => 
+
+    var data =  mapped.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
     );
     //return (<li data-key={h.hero_id} key={h.hero_id}>{JSON.stringify({Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false})}</li>);
-    
+
     return (<div>
         <button onClick={() =>this.props.onImportGameDataClick(mapped,lootOpt)}>import</button>
         <div><div>{ data.length + " items"}</div>
@@ -633,7 +633,7 @@ var Exporter = props =>
         <button onClick={props.onLoadGameDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
         {props.gameJson? (<HeroGameData heroMap={props.heroMap} data={props.gameJson} crusaderReferenceData={props.crusaderReferenceData} onImportGameDataClick={props.onImportGameDataClick} />) : null}
-        
+
       </div>
     </div>
 );
@@ -686,7 +686,7 @@ var CruApp = React.createClass({
     data.enchantmentPoints = ep;
     storeIt(cruTagGridKey,data);
     window.location.reload(false);
-    
+
   },
   onSetClick(){
     console.log('onSetClick',arguments);
@@ -729,7 +729,7 @@ var CruApp = React.createClass({
     var toggleHide = () =>
       this.setState({showImportExport:(this.state.showImportExport ? false : true)});
     var heroMap = {};
-    
+
     this.props.jsonData.crusaders.map(c =>{
       heroMap[c.heroId] = c;
     });
@@ -753,7 +753,7 @@ var CruApp = React.createClass({
       ( <button onClick={toggleHide}>Show Import/Export </button>);
     return (<div>
             <CruTagGrid model={props.jsonData} />
-            <div>{this.state.error}</div>
+            <div>{JSON.stringify(this.state.error)}</div>
             <div className="onGreen">
             {importArea}
             </div>
