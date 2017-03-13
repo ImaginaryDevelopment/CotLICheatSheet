@@ -187,7 +187,7 @@ var readIt = function(key,defaultValue){
       }
       catch (ex)
       {
-        return defaultvalue;
+        return defaultValue;
       }
     } else {
       return defaultValue;
