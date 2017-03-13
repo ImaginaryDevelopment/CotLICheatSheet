@@ -699,7 +699,7 @@ var parseLoot = (crusaders,lootData) =>{
             })
             .filter(l => l.crusader != null)
             .map(x => (
-              {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, slotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity})
+              {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity})
             ).sort(lootComparer);
           console.log('lootMapped',lootMapped);
           return lootMapped;
@@ -855,9 +855,13 @@ var CruApp = React.createClass({
     if(loot && Array.isArray(loot)){
       try{
         console.log('loot merge step not implemented',loot)
-        var crusaderGear = loot.map(l =>
+        var crusaderGear = {};
 
+
+        var crusaderGear = loot.map(l =>
+          l.heroSlotId
         );
+        // data.crusaderGear = crusaderGear;
 
 
       } catch(ex){
