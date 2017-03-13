@@ -299,7 +299,8 @@ var CruTagRow = React.createClass({
 
       }
       var tagsTd;
-      if(this.props.mode === "mine" && !this.props.gearMode ){
+      // enable tags if mine mode is off, or gear mode is off
+      if(this.props.mode !== "mine" || !this.props.gearMode ){
         tagsTd = (<TagsTd dps={this.props.dps} missionTags={this.props.missionTags} crusader={cru} baseUrl={baseUrl} />) ;
       }
       var tagColumn = tagsTd ? tagsTd : gearTd;
