@@ -556,8 +556,6 @@ var CruTagGrid = React.createClass({
     var sortedCrusaders = this.state.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
     });
-    console.log('filterOwned', self.state.filterOwned);
-    console.log('formationIds', self.state.formationIds);
     sortedCrusaders
       .filter(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
@@ -588,10 +586,6 @@ var CruTagGrid = React.createClass({
         var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
         var effectiveEp = Number(Math.round(rawSharedEp)) + +self.state.enchantmentPoints[crusader.id];
 
-        if(crusader.slot=="1"){
-          console.log(crusader.displayName,otherEp, sharingIsCaring, rawSharedEp, effectiveEp);
-          window.otherEp = otherEp;
-        }
         rows.push(<CruTagRow key={crusader.displayName}
           formationIds={self.state.formationIds}
           epMode={self.state.epMode}
@@ -670,22 +664,54 @@ var CruTagGrid = React.createClass({
     </table>)
   }
 });
-// data pull
-var HeroGameData = React.createClass({
-  render(){
-    console.log('rendering hero game data');
+var parseLoot = (crusaders,lootData) =>{
+        console.log('attempting to parse loot');
+        var refC = crusaders;
+        var lootComparer = (a,b) =>{
+          if(a.heroBenchSlot > b.heroBenchSlot)
+            return 1;
+          if(a.heroBenchSlot < b.heroBenchSlot)
+            return -1;
+          if(a.heroId > b.heroId)
+            return 1;
+          if(a.heroId < b.heroId)
+            return -1;
+          if(a.lot != null && !(b.slot != null))
+            return 1;
+          if(!(a.lot != null) && b.slot != null)
+            return -1;
+          if(a.slot > b.slot)
+            return 1;
+          if(a.slot < b.slot)
+            return -1;
 
-    // does not yet account for loot data contained in data.loot
-    // account for pasting just the heroes section of json, or the whole data packet
-    var targetHeroesOpt = (this.props.data && this.props.data.heroes) || (this.props.data && this.props.data.details && this.props.data.details.heroes);
+          return 0;
+        };
+        var lootMapped =
+          lootData
+            .map(l =>
+            {
+              var crusader = refC.find(cru => cru.loot.find(cl => cl.lootId == l.loot_id));
+              var lootItem = crusader && crusader.loot.find(cl => cl.lootId == l.loot_id);
+              // console.log('lootDataMap',l, crusader,lootItem);
 
-    var lootOpt = (this.props.data && this.props.data.loot) || (this.props.data && this.props.data.details && this.props.data.details.loot);
-    window.heroMap = this.props.heroMap;
-    var mapped = Array.isArray(targetHeroesOpt) ?
-      targetHeroesOpt.map(h => {
+              return {loot:l, crusader:crusader,lootItem:lootItem};
+            })
+            .filter(l => l.crusader != null)
+            .map(x => (
+              {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroId : x.crusader.heroId, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity})
+            ).sort(lootComparer);
+          console.log('lootMapped',lootMapped);
+          return lootMapped;
+};
+
+var parseNetworkDataHeroesSection = (heroMap, heroes) => {
+  console.log('parseNetworkDataHeroesSection', heroes.length);
+    var mapped = Array.isArray(heroes) ?
+      heroes.map(h => {
         var crusader;
         try{
-          crusader = this.props.heroMap[h.hero_id];
+          crusader = heroMap[h.hero_id];
         } catch(ex)
         {
           console.error('failed to parse',h,ex);
@@ -693,19 +719,51 @@ var HeroGameData = React.createClass({
         return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
         }
       ) : [];
+    return mapped;
+};
+// data pull
+var HeroGameData = React.createClass({
+  render(){
+    console.log('rendering hero game data');
 
-    var data =  mapped.map(h =>
+    // does not yet account for loot data contained in data.loot
+    // account for pasting just the heroes section of json, or the whole data packet
+    var heroesSection = (this.props.data && this.props.data.heroes) || (this.props.data && this.props.data.details && this.props.data.details.heroes);
+    var mappedHeroes = parseNetworkDataHeroesSection(this.props.heroMap, heroesSection);
+    var mappedLoot = parseLoot(this.props.crusaders,(this.props.data && this.props.data.loot) || (this.props.data && this.props.data.details && this.props.data.details.loot));
+
+    window.heroMap = this.props.heroMap;
+
+
+    var heroLIs =  mappedHeroes.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
+    );
+    var lootLIs = mappedLoot.map(l =>
+      (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
     );
     //return (<li data-key={h.hero_id} key={h.hero_id}>{JSON.stringify({Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false})}</li>);
 
     return (<div>
-        <button onClick={() =>this.props.onImportGameDataClick(mapped,lootOpt)}>import</button>
-        <div><div>{ data.length + " items"}</div>
-          <ul>
-            {data}
-            </ul>
-          <pre>{JSON.stringify(this.props.data,null,2)}</pre></div>
+        <button onClick={() => this.props.onImportGameDataClick(mappedHeroes,mappedLoot)}>import</button>
+        <Tabs>
+          <Pane label="Heroes and EP">
+            <div><div>{ heroLIs.length + " items"}</div>
+              <ul>
+                {heroLIs}
+              </ul>
+            </div>
+          </Pane>
+          <Pane label="Loot">
+            <div><div>{lootLIs.length + " loot items"}</div>
+            <ul>
+              {lootLIs}
+              </ul>
+            </div>
+          </Pane>
+          <Pane label="Parsed Raw">
+              <pre>{JSON.stringify(this.props.data,null,2)}</pre>
+          </Pane>
+        </Tabs>
     </div>);
 
   }
@@ -730,16 +788,20 @@ var Exporter = props =>
         <TextAreaInputUnc onChange={props.onGameTextInputChange} value={props.gameRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
         <button onClick={props.onLoadGameDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
-        {props.gameJson? (<HeroGameData heroMap={props.heroMap} data={props.gameJson} crusaderReferenceData={props.crusaderReferenceData} onImportGameDataClick={props.onImportGameDataClick} />) : null}
+        {props.gameJson? (<HeroGameData heroMap={props.heroMap} crusaders={props.crusaders} data={props.gameJson} crusaderReferenceData={props.crusaderReferenceData} onImportGameDataClick={props.onImportGameDataClick} />) : null}
     </div>
       </Pane>
     </Tabs>
     </div>
 );
+// var ImportExporter = React.createClass({
+
+// });
 var CruApp = React.createClass({
   getInitialState(){
     var read= readIt(cruTagGridKey,undefined);
     var state = {lastRead:read};
+    // this is convienent for dev, but should it really stay here in prod?
     var gameDataJson = readIt("gameDataJson",undefined);
     state.gameJson=gameDataJson;
     if (Clipboard)
@@ -748,6 +810,7 @@ var CruApp = React.createClass({
     }
     return state;
   },
+  // import/exporter NOT network-data importer
   loadGameData(){
     if(!this.state.gameText){
       return;
@@ -769,20 +832,35 @@ var CruApp = React.createClass({
     console.log('onClearGameDataParseClick');
     this.setState({gameJson:null});
   },
+  // network data merge method
   onImportGameDataClick(heroes,loot){
     // heroes looks like this:
     // return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
     var cruTagGrid = readIt(cruTagGridKey,undefined);
     var data = copyObject(cruTagGrid);
-    var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
-    data.ownedCrusaderIds = ownedCrusaderIds;
-    // set this to "enchantmentPoints"
-    var ep = {}
-    heroes.filter(h => h.Owned).map(h => {
-      var crusader = this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0];
-      ep[crusader.id] = h.Ep;
-    });
-    data.enchantmentPoints = ep;
+    try
+    {
+      var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
+      data.ownedCrusaderIds = ownedCrusaderIds;
+      var ep = {}
+      heroes.filter(h => h.Owned).map(h => {
+        var crusader = this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0];
+        ep[crusader.id] = h.Ep;
+      });
+      data.enchantmentPoints = ep;
+    }
+    catch (ex){
+      console.error('could not import hero game data', ex);
+    }
+    if(loot && Array.isArray(loot)){
+      try{
+        console.log('loot merge step not implemented')
+
+
+      } catch(ex){
+          console.error('could not import loot game data', ex);
+      }
+    }
     storeIt(cruTagGridKey,data);
     window.location.reload(false);
 
@@ -793,9 +871,9 @@ var CruApp = React.createClass({
     if(this.state.textState){
       // not 2, because if the index is 2 it could be {"ownedCrusaderIds"} which isn't a partial load
       if(this.state.textState.indexOf('ownedCrusaderIds') == 0 || this.state.textState.indexOf('ownedCrusaderIds') == 1){
-          // special load from the .linq script, not direct game data, or page state
-          var data = JSON.parse("{" + this.state.textState + "}");
-          this.setState({ownedCrusaderIds:data.ownedCrusaderIds});
+        // special load from the .linq script, not direct game data, or page state
+        var data = JSON.parse("{" + this.state.textState + "}");
+        this.setState({ownedCrusaderIds:data.ownedCrusaderIds});
       } else {
         storeIt(cruTagGridKey, JSON.parse(this.state.textState));
       }
@@ -842,6 +920,7 @@ var CruApp = React.createClass({
                   gameRaw={this.state.gameText}
                   gameJson={this.state.gameJson}
                   heroMap={heroMap}
+                  crusaders={props.jsonData.crusaders}
                   onImportGameDataClick={this.onImportGameDataClick}
                   onClearGameDataParseClick={this.onClearGameDataParseClick}
                   onSetClick={this.onSetClick}
