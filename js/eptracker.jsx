@@ -174,7 +174,7 @@ var Tabs = React.createClass({
   },
   _renderTitles(){
     function labels(child,index){
-      var activeClass = this.state.selected === index ? 'active':'';
+      var activeClass = this.state.selected === index ? 'activeTab':'';
       return(
         <li key={index}>
           <a href="#"
