@@ -584,6 +584,7 @@ var HeroGameData = React.createClass({
     // does not yet account for loot data contained in data.loot
     // account for pasting just the heroes section of json, or the whole data packet
     var targetHeroesOpt = (this.props.data && this.props.data.heroes) || (this.props.data && this.props.data.details && this.props.data.details.heroes);
+    
     var lootOpt = (this.props.data && this.props.data.loot) || (this.props.data && this.props.data.details && this.props.data.details.loot);
     window.heroMap = this.props.heroMap;
     var mapped = Array.isArray(targetHeroesOpt) ? 
@@ -667,17 +668,10 @@ var CruApp = React.createClass({
   onImportGameDataClick(heroes,loot){
     var cruTagGrid = readIt(cruTagGridKey,undefined);
     var data = copyObject(cruTagGrid);
-    // why is squiggles missing? 
-    //var referenceData = 
-    //console.log('crusaders', this.props.jsonData.crusaders.sort((a,b) => a.heroId > b.heroId ? 1 : b.heroId > a.heroId? -1 : 0));
-    //crusaderReferenceData={this.props.jsonData.crusaders}
-    //var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
-    //console.log(heroes,data.ownedCrusaderIds,'changing owned from -> to',ownedCrusaderIds);
-    // my last save, if this import goes poorly
-    // {"slotSort":"up","mode":"mine","filterOwned":false,"ownedCrusaderIds":["01","01a","01c","02","02a","02b","03","03a","03b","04","04a","05","05a","05b","05c","06","06a","06b","06c","07","07a","07b","08","08a","08b","08c","09","09a","09b","09c","10","10a","10b","11","11a","11b","12","12a","12b","12c","13","13a","14","14a","15","15b","15c","15d","16","16b","17","17a","17b","18","18a","18b","18c","19","19a","19b","20","20a","20b","21","21a"],"filterTags":{"dps":false,"support":false,"human":false,"animal":false,"event":false,"supernatural":false},"formation":null,"formationIds":{"1":"01a","2":null,"3":null,"4":"04b","5":"05a","6":null,"7":null},"ep":true,"epMode":false,"enchantmentPoints":{"23":"1","01":"123","01c":"2","01a":""}}
+    var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
     data.ownedCrusaderIds = ownedCrusaderIds;
     storeIt(cruTagGridKey,data);
-    //window.location.reload(false);
+    window.location.reload(false);
     
   },
   onSetClick(){
