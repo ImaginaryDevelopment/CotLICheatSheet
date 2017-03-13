@@ -86,3 +86,10 @@ div.ep{
 input.ep{
     max-width: 60px;
 }
+tr .sharedEp{
+ color:grey;
+}
+tr.dps .sharedEp{
+    color:white;
+
+}

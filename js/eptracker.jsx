@@ -257,7 +257,7 @@ var CruTagRow = React.createClass({
       var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
       var owned = null;
       var formation = null;
-      var epBox = this.props.epMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["ep"]} value={this.props.enchantmentPoints} /><div>Shared:{this.props.effectiveEp}</div></div>) : null;
+      var epBox = this.props.epMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["ep"]} value={this.props.enchantmentPoints} /><div className="sharedEp">Shared:{this.props.effectiveEp}</div></div>) : null;
       if(this.props.mode === "mine" && this.props.isFormationMode){
         formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
       } else if (this.props.mode === "mine" && !this.props.isFormationMode){
@@ -304,7 +304,8 @@ var CruTagRow = React.createClass({
         tagsTd = (<TagsTd dps={this.props.dps} missionTags={this.props.missionTags} crusader={cru} baseUrl={baseUrl} />) ;
       }
       var tagColumn = tagsTd ? tagsTd : gearTd;
-      return (<tr>
+      var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
+      return (<tr className={trClasses}>
           {formation}
           {owned}
           <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={cru.id}>{cru.slot}{slotGear}</td>
