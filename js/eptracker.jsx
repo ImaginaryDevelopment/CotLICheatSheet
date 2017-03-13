@@ -113,6 +113,7 @@ var TextInputUnc = React.createClass({
           value={state.value? state.value : ''}
           type={props.type}
           min={props.min}
+          className={props.className}
           onControlledChange={e => this.setState({value: e.target.value})}
           onChange={e => props.onChange(e)}
           onBlur={e => e.target.value === '' ? {} : e.target.value = (+e.target.value)}
@@ -253,11 +254,10 @@ var CruTagRow = React.createClass({
       var cru = this.props.crusader;
       var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
       var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
-
       var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
       var owned = null;
       var formation = null;
-      var epBox = this.props.epMode && isOwned ? <TextInputUnc type="number" min="0" onChange={this.props.onEpChange} value={this.props.enchantmentPoints} /> : null;
+      var epBox = this.props.epMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["ep"]} value={this.props.enchantmentPoints} /><div>Shared:{this.props.effectiveEp}</div></div>) : null;
       if(this.props.mode === "mine" && this.props.isFormationMode){
         formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
       } else if (this.props.mode === "mine" && !this.props.isFormationMode){
@@ -321,7 +321,7 @@ function padLeft(nr, n, str){
 }
 var CruTagGrid = React.createClass({
   getInitialState:function(){
-    var defaultValue = {slotSort:"up",mode:"",epMode:false,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
+    var defaultValue = {slotSort:"up",mode:"",epMode:false,sharingIsCaringLevel:0,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
     // json.stringify this whole thing to make input/html5 storage data
     var init = readIt(cruTagGridKey, defaultValue);
     if(init != null){
@@ -510,7 +510,18 @@ var CruTagGrid = React.createClass({
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
         var gear = self.state.crusaderGear ? self.state.crusaderGear[crusader.id]: [];
         var dps = getCrusaderDps(crusader);
+        var otherSlotCrusaders = sortedCrusaders.filter(c => c.slot == crusader.slot && c.id != crusader.id).map(c => c.id);
+        var otherEp = otherSlotCrusaders.map(cId => +self.state.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
+        // account for sharing is caring here, once you have it
+        var sharingIsCaring = 6 + +(self.state.sharingIsCaringLevel || 0);
+        // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
+        var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
+        var effectiveEp = Number(Math.round(rawSharedEp)) + +self.state.enchantmentPoints[crusader.id];
 
+        if(crusader.slot=="1"){
+          console.log(crusader.displayName,otherEp, sharingIsCaring, rawSharedEp, effectiveEp);
+          window.otherEp = otherEp;
+        }
         rows.push(<CruTagRow key={crusader.displayName}
           formationIds={self.state.formationIds}
           epMode={self.state.epMode}
@@ -519,6 +530,7 @@ var CruTagGrid = React.createClass({
           gear={gear}
           onGearChange={self.onGearChange}
           enchantmentPoints={self.state.enchantmentPoints[crusader.id]}
+          effectiveEp={effectiveEp}
           onEpChange={self.onEpChange.bind(null,crusader.id)}
           isFormationMode={self.state.formation === "formation"}
           wikibase={self.props.model.wikibase}
@@ -554,6 +566,7 @@ var CruTagGrid = React.createClass({
           <th><CheckBox checked={this.state.epMode} onChange={this.onEpClick} />Track EP</th>
           <th colSpan="2"><CheckBox checked={this.state.formation === "formation"} onChange={this.onFormationClick} /> Build Formation</th>
           <th><CheckBox checked={this.state.gearMode} onChange={this.onGearClick} />Track gear</th>
+          <th></th>
         </tr>
       );
     }
@@ -576,6 +589,7 @@ var CruTagGrid = React.createClass({
         <th>Counts</th>
       </tr>
       { formationRow }
+      <tr><th /><th /><th colSpan="2">SharingIsCaring <TextInputUnc value={this.state.sharingIsCaringLevel} onChange={val => this.setState({sharingIsCaringLevel: +val})} /></th></tr>
       </thead>
     <tbody>
     {rows}

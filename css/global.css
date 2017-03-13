@@ -80,3 +80,9 @@ outline-color: green;
 }
 
 .onGreen{ background: #44c201; font-size: 16px; text-shadow: 1px 1px 1px black; }
+div.ep{
+    display:inline;
+}
+input.ep{
+    max-width: 60px;
+}
