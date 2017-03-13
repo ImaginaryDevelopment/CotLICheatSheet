@@ -257,7 +257,7 @@ var CruTagRow = React.createClass({
       var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
       var owned = null;
       var formation = null;
-      var epBox = this.props.epMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["ep"]} value={this.props.enchantmentPoints} /><div className="sharedEp">Shared:{this.props.effectiveEp}</div></div>) : null;
+      var epBox = this.props.epMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["medium"]} value={this.props.enchantmentPoints} /><div className="sharedEp">Shared:{this.props.effectiveEp}</div></div>) : null;
       if(this.props.mode === "mine" && this.props.isFormationMode){
         formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
       } else if (this.props.mode === "mine" && !this.props.isFormationMode){
@@ -304,6 +304,7 @@ var CruTagRow = React.createClass({
         tagsTd = (<TagsTd dps={this.props.dps} missionTags={this.props.missionTags} crusader={cru} baseUrl={baseUrl} />) ;
       }
       var tagColumn = tagsTd ? tagsTd : gearTd;
+      var tagCountColumn = this.props.mode !== "mine" || !this.props.gearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
       var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
       return (<tr className={trClasses}>
           {formation}
@@ -312,7 +313,7 @@ var CruTagRow = React.createClass({
           <td key="image" data-key="image">{image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
           {tagColumn}
-          <td key="tagcount" data-key="tagcount">{cru.tags.length}</td>
+          {tagCountColumn}
       </tr>);
     }
 });
@@ -381,8 +382,8 @@ var CruTagGrid = React.createClass({
   onModeChangeClicked: function(){
     this.setState({mode:this.state.mode === "" ? "mine": ""});
   },
-  onIdolChange: function(e){
-    this.setState({Idols:e.target.value});
+  onIdolChange: function(val){
+    this.setState({Idols:val});
   },
   onFormationClick: function(){
     var stateMods = {formation:this.state.formation != null ? null : "formation"};
@@ -573,6 +574,9 @@ var CruTagGrid = React.createClass({
     }
     var tagsTh = this.state.mode !== "mine" || !this.state.gearMode ? (<th className="tags">Tags</th>) : null;
     var tagsTh2 = this.state.mode !== "mine" || !this.state.gearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
+    var countsTh = this.state.mode !== "mine" || !this.state.gearMode? (<th>Counts</th>) : null;
+    var sharingTh = this.state.mode ==="mine" && this.state.epMode ?
+    (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.state.sharingIsCaringLevel} onChange={val => this.setState({sharingIsCaringLevel: +val})} /></th>): null;
     return (<table id="tab">
     <thead>
       <tr>
@@ -587,10 +591,10 @@ var CruTagGrid = React.createClass({
         {this.state.mode === "mine" ? <th>{totalOwned}</th> : null}
         <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
         {tagsTh2}
-        <th>Counts</th>
+        {countsTh}
       </tr>
       { formationRow }
-      <tr><th /><th /><th colSpan="2">SharingIsCaring <TextInputUnc value={this.state.sharingIsCaringLevel} onChange={val => this.setState({sharingIsCaringLevel: +val})} /></th></tr>
+      <tr><th /><th />{sharingTh}</tr>
       </thead>
     <tbody>
     {rows}
