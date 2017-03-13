@@ -54,7 +54,8 @@ const flattenArrays = (a,b) => {
 // otherClasses: allows/adapts to inputs of type string or array
 const addClasses = (defaultClasses=[], otherClasses=[]) =>{
     var unwrappedClasses = defaultClasses.reduce(flattenArrays,[]);
-    unwrappedClasses = otherClasses.reduce(flattenArrays,[]).concat(unwrappedClasses);
+    var otherClassesX = Array.isArray(otherClasses) ? otherClasses : otherClasses.split(" ");
+    unwrappedClasses = otherClassesX.reduce(flattenArrays,[]).concat(unwrappedClasses);
     return unwrappedClasses.filter(isDefined).map(trim).join(' ').trim();
 };
 var TextAreaInput2 = props =>
@@ -64,6 +65,7 @@ name={props.name}
         type={props.type}
         value={props.value}
         defaultValue={props.defaultValue}
+        placeholder={props.placeHolder}
         onChange={ e =>
             {
             if(props.onControlledChange){
@@ -83,6 +85,7 @@ var TextInput2 = props =>
         type={props.type}
         value={props.value}
         defaultValue={props.defaultValue}
+        placeholder={props.placeHolder}
         onChange={ e =>
             {
             if(props.onControlledChange){
@@ -113,6 +116,7 @@ var TextInputUnc = React.createClass({
           value={state.value? state.value : ''}
           type={props.type}
           min={props.min}
+          placeHolder={props.placeHolder}
           className={props.className}
           onControlledChange={e => this.setState({value: e.target.value})}
           onChange={e => props.onChange(e)}
@@ -136,8 +140,10 @@ var TextAreaInputUnc = React.createClass({
     var state = this.state;
     return (<TextAreaInput2
           name={props.name}
+          className={props.className}
           defaultValue={props.defaultValue}
           value={state.value? state.value : ''}
+          placeHolder={props.placeHolder}
           type={props.type}
           min={props.min}
           onControlledChange={e => this.setState({value: e.target.value})}
@@ -149,6 +155,68 @@ var TextAreaInputUnc = React.createClass({
   }
 
 
+});
+
+// from https://toddmotto.com/creating-a-tabs-component-with-react/
+var Tabs = React.createClass({
+  displayName: 'Tabs',
+  getDefaultProps(){
+    return {selected:0};
+  },
+  getInitialState(){
+    return {selected:this.props.selected};
+  },
+  handleClick(index,event){
+    event.preventDefault();
+    this.setState({
+      selected: index
+    });
+  },
+  _renderTitles(){
+    function labels(child,index){
+      var activeClass = this.state.selected === index ? 'active':'';
+      return(
+        <li key={index}>
+          <a href="#"
+            onClick={this.handleClick.bind(this,index)}
+            className={activeClass}
+          >
+            {child.props.label}
+          </a>
+        </li>
+      );
+    }
+    return (<ul className="tabs__labels">
+        {this.props.children.map(labels.bind(this))}
+        </ul>
+      );
+
+  },
+  _renderContent(){
+    return (
+      <div className="tabs__content">
+        {this.props.children[this.state.selected]}
+      </div>
+    );
+  },
+  render(){
+    return (
+    <div className="tabs">
+      {this._renderTitles()}
+      {this._renderContent()}
+    </div>);
+  }
+
+});
+var Pane = React.createClass({
+  displayName:'Pane',
+  propTypes: {
+    label: React.PropTypes.string.isRequired,
+    children: React.PropTypes.element.isRequired
+  },
+  render(){
+    return(<div>{this.props.children}</div>);
+  }
 });
 function getIsLocalStorageAvailable() {
   if (typeof(localStorage) !== 'undefined' && (typeof(localStorage.setItem) === 'function') && typeof(localStorage.getItem) === 'function'){
@@ -645,22 +713,27 @@ var HeroGameData = React.createClass({
 
 var Exporter = props =>
 (
-    <div>
-      <TextInputUnc onChange={props.onTextChange} />
+  <div>
+  <button onClick={props.onHideClick}>Hide Exporter</button>
+  <Tabs>
+    <Pane label="Import/Export">
+      <div>
+      <TextAreaInputUnc className={'fullwidth'} onChange={props.onTextChange} placeHolder='{"slotSort":"up","mode":"mine","epMode":true,"enchantmentPoints":'/>
       <button onClick={props.onSetClick} >{props.importText}</button>
       <button onClick={props.onUpdateClick}>Update Export Text</button>
       {props.clipper}
-      <button onClick={props.onHideClick}>Hide Exporter</button>
       <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
+      </div>
+    </Pane>
+    <Pane label="Network-Data Importer">
       <div>
-        <label>Game data importer</label>
-        {/*while this usage does not require a text area, this is a good place to POC/test the idea*/}
-        <TextAreaInputUnc onChange={props.onGameTextInputChange} value={props.gameRaw} />
+        <TextAreaInputUnc onChange={props.onGameTextInputChange} value={props.gameRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
         <button onClick={props.onLoadGameDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
         {props.gameJson? (<HeroGameData heroMap={props.heroMap} data={props.gameJson} crusaderReferenceData={props.crusaderReferenceData} onImportGameDataClick={props.onImportGameDataClick} />) : null}
-
-      </div>
+    </div>
+      </Pane>
+    </Tabs>
     </div>
 );
 var CruApp = React.createClass({
@@ -740,6 +813,7 @@ var CruApp = React.createClass({
     x = w.innerWidth || e.clientWidth || g.clientWidth,
     y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     var props = this.props;
+    var maxWidth = x - 40;
     var stateStyle = {
       maxWidth:x,
       overflowWrap:"break-word",
@@ -761,6 +835,7 @@ var CruApp = React.createClass({
     });
     var importArea = this.state.showImportExport ?
       (<Exporter  onHideClick={toggleHide}
+                  maxWidth={maxWidth}
                   onTextChange={val => this.setState({textState:val})}
                   onGameTextInputChange={val => { console.log("setting gameText"); this.setState({gameText:val});}}
                   onLoadGameDataClick={this.loadGameData}
