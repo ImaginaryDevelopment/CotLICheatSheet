@@ -182,7 +182,13 @@ var readIt = function(key,defaultValue){
     var item = localStorage.getItem(key);
     if(typeof(item) !== 'undefined' && item != null){
       console.info("read item from localStorage", key,item);
-      return JSON.parse(item);
+      try{
+        return JSON.parse(item);
+      }
+      catch (ex)
+      {
+        return defaultvalue;
+      }
     } else {
       return defaultValue;
     }
