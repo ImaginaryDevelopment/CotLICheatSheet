@@ -121,6 +121,11 @@ window.jsonData =
       "image": "clicker.png"
     },
     {
+      "id": "superhero",
+      "displayName": "Super Hero",
+      "image": "MTag_Alien.png"
+    },
+    {
       "id": "alien",
       "displayName": "Alien",
       "image": "MTag_Alien.png"
@@ -5810,7 +5815,8 @@ window.jsonData =
         "robot",
         "dps",
         "tank",
-        "event"
+        "event",
+        "supernatural"
       ],
       "upgrades": {
         "selfdps": [
@@ -8528,7 +8534,8 @@ window.jsonData =
         "male",
         "human",
         "support",
-        "event"
+        "event",
+        "superhero"
       ],
       "heroId": 39,
       "loot": [
