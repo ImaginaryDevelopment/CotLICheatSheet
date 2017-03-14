@@ -438,7 +438,9 @@ var CruTagGrid = React.createClass({
     return init;
   },
   componentDidUpdate:function(prevProps, prevState){
-    storeIt(cruTagGridKey,this.state);
+    // disable writes to storage if they arrived here from someone else's data link
+    if(!getParameterByName("appGameState"))
+      storeIt(cruTagGridKey,this.state);
     window.state = this.state;
   },
   slotSortClick:function(){
