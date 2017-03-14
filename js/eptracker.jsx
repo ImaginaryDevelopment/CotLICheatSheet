@@ -250,7 +250,7 @@ var readIt = function(key,defaultValue){
   if(getIsLocalStorageAvailable()){
     var item = localStorage.getItem(key);
     if(typeof(item) !== 'undefined' && item != null){
-      console.info("read item from localStorage", key,item);
+      // console.info("read item from localStorage", key,item);
       try{
         return JSON.parse(item);
       }
@@ -438,7 +438,7 @@ var CruTagGrid = React.createClass({
     return init;
   },
   componentDidUpdate:function(prevProps, prevState){
-    storeIt("cruTagGrid",this.state);
+    storeIt(cruTagGridKey,this.state);
     window.state = this.state;
   },
   slotSortClick:function(){
@@ -725,23 +725,20 @@ var parseNetworkDataHeroesSection = (heroMap, heroes) => {
 var HeroGameData = React.createClass({
   render(){
     console.log('rendering hero game data');
+    //legacy data/usage would not have these in state (but also legacy data shouldn't be stored anywhere in prod)
+    if(!this.props.mappedHeroes)
+      return null;
+    if(! this.props.mappedLoot)
+      return null;
 
-    // does not yet account for loot data contained in data.loot
-    // account for pasting just the heroes section of json, or the whole data packet
-    var heroesSection = (this.props.data && this.props.data.heroes) || (this.props.data && this.props.data.details && this.props.data.details.heroes);
-    var mappedHeroes = parseNetworkDataHeroesSection(this.props.heroMap, heroesSection);
-    var mappedLoot = parseLoot(this.props.crusaders,(this.props.data && this.props.data.loot) || (this.props.data && this.props.data.details && this.props.data.details.loot));
-
-    window.heroMap = this.props.heroMap;
-
-
-    var heroLIs =  mappedHeroes.map(h =>
+    var heroLIs =  this.props.mappedHeroes.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
     );
-    var lootLIs = mappedLoot.map(l =>
+    var lootLIs = this.props.mappedLoot.map(l =>
       (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
     );
-    //return (<li data-key={h.hero_id} key={h.hero_id}>{JSON.stringify({Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false})}</li>);
+
+    // consider maping the parsed raw section collapsible at least at the highest level
 
     return (<div>
         <button onClick={() => this.props.onImportGameDataClick(mappedHeroes,mappedLoot)}>import</button>
@@ -765,72 +762,132 @@ var HeroGameData = React.createClass({
           </Pane>
         </Tabs>
     </div>);
-
   }
 });
+var LegendaryReduction = props =>
+(props.networkDataJson && props.networkDataJson.details && props.networkDataJson.details.stats && props.networkDataJson.details.stats.legendary_reduction_date) ?
+  (<div>Legendary Cost Reduction at {new Date(+props.networkDataJson.details.stats.legendary_reduction_date * 1000).toLocaleString()}</div>)
+  : null
+
 
 var Exporter = props =>
 (
   <div>
+    <LegendaryReduction networkDataJson={props.networkDataJson} />
   <button onClick={props.onHideClick}>Hide Exporter</button>
   <Tabs>
     <Pane label="Import/Export">
       <div>
-      <TextAreaInputUnc className={'fullwidth'} onChange={props.onTextChange} placeHolder='{"slotSort":"up","mode":"mine","epMode":true,"enchantmentPoints":'/>
-      <button onClick={props.onSetClick} >{props.importText}</button>
+      <button onClick={ () => props.onImportAppStateFromUrlClick()}>Import AppStateFrom Url</button>
+      <button onClick={ props.onGenerateUrlClick}>Generate AppState Url</button>
+      <TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","epMode":true,"enchantmentPoints":'/>
+      <button onClick={props.onImportSiteStateClick} >{props.importText}</button>
       <button onClick={props.onUpdateClick}>Update Export Text</button>
-      {props.clipper}
+      {/*<button onClick={props.toggleAppStateVisibility}>Toggle AppState Visibility</button>*/}
       <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
+      {props.clipper}
       </div>
     </Pane>
     <Pane label="Network-Data Importer">
       <div>
-        <TextAreaInputUnc onChange={props.onGameTextInputChange} value={props.gameRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
-        <button onClick={props.onLoadGameDataClick}>Parse game data</button>
+        <TextAreaInputUnc onChange={props.onNetworkDataTextInputChange} value={props.networkDataRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
+        <button onClick={props.onLoadNetworkDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
-        {props.gameJson? (<HeroGameData heroMap={props.heroMap} crusaders={props.crusaders} data={props.gameJson} crusaderReferenceData={props.crusaderReferenceData} onImportGameDataClick={props.onImportGameDataClick} />) : null}
+        {props.networkDataJson? (<HeroGameData heroMap={props.heroMap} crusaders={props.crusaders} data={props.networkDataJson} crusaderReferenceData={props.crusaderReferenceData} mappedHeroes={props.mappedHeroes} mappedLoot={props.mappedLoot} onImportGameDataClick={props.onImportGameDataClick} />) : null}
     </div>
       </Pane>
     </Tabs>
     </div>
 );
+// expect data is a string, and it starts with { or [
+var exportToUrl = (key,data) =>
+{
+  if(!data.startsWith("{") && !data.startsWith("["))
+    throw "error data is bad";
+  // hints from http://stackoverflow.com/questions/6807180/how-to-escape-a-json-string-to-have-it-in-a-url
+  var encoded = encodeURIComponent(data);
+  var decoded = decodeURIComponent(encoded);
+  if(data != decoded)
+    throw "Decoded didn't match original data";
+  return '?' + key + '=' + encoded;
+};
+// from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+var importFromUrl = key =>
+{
+ return getParameterByName(key);
+};
 // var ImportExporter = React.createClass({
 
 // });
+var IsLocalFileSystem = () => window.location.protocol && window.location.protocol == "file:" ;
 var CruApp = React.createClass({
   getInitialState(){
+    // if(readIt("allowUrlDataOnLoad",false))
+    //   try
+    //   {
+    //     var urlData = getParameterByName("appGameState");
+    //     this.importAppState(urlData);
+    //   }
+    //   catch (ex){
+
+    //   }
     var read= readIt(cruTagGridKey,undefined);
     var state = {lastRead:read};
-    // this is convienent for dev, but should it really stay here in prod?
-    var gameDataJson = readIt("gameDataJson",undefined);
-    state.gameJson=gameDataJson;
+    // this is convienent for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
+    if(IsLocalFileSystem()){
+      var networkDataJson = readIt("gameDataJson",undefined);
+      state.networkDataJson=networkDataJson;
+    }
     if (Clipboard)
     {
       state.clipboard = new Clipboard('.btn');
     }
     return state;
   },
-  // import/exporter NOT network-data importer
-  loadGameData(){
-    if(!this.state.gameText){
+  // network-data importer
+  loadNetworkData(){
+    if(!this.state.networkDataRaw){
       return;
     }
     var json;
     try{
-      json = JSON.parse(this.state.gameText);
+      json = JSON.parse(this.state.networkDataRaw);
       console.log('parse success');
     } catch (ex){
       console.error(ex);
       this.setState({error:ex});
+      return;
     }
-    if(json){
-      storeIt("gameDataJson",json);
-      this.setState({gameJson:json});
-    }
+      if(IsLocalFileSystem()){
+        storeIt("gameDataJson",json);
+      }
+      var heroMap = {};
+      this.props.jsonData.crusaders.map(c =>{
+        heroMap[c.heroId] = c;
+      });
+
+      // account for pasting just the heroes section of json, or the whole data packet
+      var heroesSection = (json.heroes) || (json.details && json.details.heroes);
+      var mappedHeroes = parseNetworkDataHeroesSection(heroMap, heroesSection);
+      var mappedLoot = parseLoot(this.props.jsonData.crusaders,(json.loot) || (json.details && json.details.loot));
+
+      window.heroMap = this.props.heroMap;
+      this.setState({networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes});
   },
   onClearGameDataParseClick(){
     console.log('onClearGameDataParseClick');
-    this.setState({gameJson:null});
+    this.setState({networkDataJson:null});
   },
   // network data merge method
   onImportGameDataClick(heroes,loot){
@@ -856,8 +913,6 @@ var CruApp = React.createClass({
       try{
         console.log('loot merge step not implemented',loot)
         var crusaderGear = {};
-
-
         var crusaderGear = loot.map(l =>
           l.heroSlotId
         );
@@ -869,11 +924,12 @@ var CruApp = React.createClass({
       }
     }
     storeIt(cruTagGridKey,data);
-    window.location.reload(false);
+    if(!IsLocalFileSystem())
+      window.location.reload(false);
 
   },
-  onSetClick(){
-    console.log('onSetClick',arguments);
+  onImportSiteStateClick(){
+    console.log('onImportSiteStateClick',arguments);
     // this does an overwrite, not a merge, perhaps allow a merge button?
     if(this.state.textState){
       // not 2, because if the index is 2 it could be {"ownedCrusaderIds"} which isn't a partial load
@@ -889,6 +945,24 @@ var CruApp = React.createClass({
       storeIt(cruTagGridKey, undefined);
     }
       window.location.reload(false);
+  },
+  importAppState(data,reload){
+    if(!data && IsLocalFileSystem())
+    throw "importAppState called without any data";
+    if(!data)
+      return;
+    var parsed = JSON.parse(data);
+    // this potentially can add lots of unused properties into the state that will be stored into html5 local storage and never deleted.
+    storeIt(cruTagGridKey, parsed);
+    if(reload)
+      window.location.reload(false);
+  },
+  onGenerateUrlClick(){
+    var data = readIt(cruTagGridKey);
+    var stringified = JSON.stringify(data);
+    var baseUrl = window.location.origin + window.location.pathname;
+    var url = baseUrl + exportToUrl("appGameState", stringified);
+    this.setState({url:url,urlBase:baseUrl,showImportExport:false});
   },
   render(){
     var w = window,
@@ -909,7 +983,7 @@ var CruApp = React.createClass({
     var clipper = null;
     var json = JSON.stringify(this.state.lastRead);
     if(Clipboard && Clipboard.isSupported()){
-      clipper = (<button className="btn" data-clipboard-target="#clipperText" >Copy to Clipboard</button>);
+      clipper = (<button className="btn" data-clipboard-target="#clipperText">Copy to Clipboard</button>);
     }
     var toggleHide = () =>
       this.setState({showImportExport:(this.state.showImportExport ? false : true)});
@@ -918,19 +992,26 @@ var CruApp = React.createClass({
     this.props.jsonData.crusaders.map(c =>{
       heroMap[c.heroId] = c;
     });
+    window.networkDataJson = this.state.networkDataJson;
     var importArea = this.state.showImportExport ?
       (<Exporter  onHideClick={toggleHide}
                   maxWidth={maxWidth}
-                  onTextChange={val => this.setState({textState:val})}
-                  onGameTextInputChange={val => { console.log("setting gameText"); this.setState({gameText:val});}}
-                  onLoadGameDataClick={this.loadGameData}
-                  gameRaw={this.state.gameText}
-                  gameJson={this.state.gameJson}
+                  onImportTextChange={val => this.setState({textState:val})}
+                  // networkgame section?
+                  onNetworkDataTextInputChange={val => { console.log("setting networkDataRaw"); this.setState({networkDataRaw:val});}}
+                  onLoadNetworkDataClick={this.loadNetworkData}
+                  networkDataRaw={this.state.networkDataRaw}
+                  networkDataJson={this.state.networkDataJson}
                   heroMap={heroMap}
                   crusaders={props.jsonData.crusaders}
                   onImportGameDataClick={this.onImportGameDataClick}
                   onClearGameDataParseClick={this.onClearGameDataParseClick}
-                  onSetClick={this.onSetClick}
+                  mappedLoot={this.state.mappedLoot}
+                  mappedHeroes={this.state.mappedHeroes}
+                  // network game section end?
+                  onImportSiteStateClick={this.onImportSiteStateClick}
+                  onGenerateUrlClick={this.onGenerateUrlClick}
+                  onImportAppStateFromUrlClick={() => this.importAppState(importFromUrl("appGameState"),true)}
                   onUpdateClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}
                   clipper={clipper}
                   stateStyle={stateStyle}
@@ -939,10 +1020,12 @@ var CruApp = React.createClass({
                   />) :
       ( <button onClick={toggleHide}>Show Import/Export </button>);
     return (<div>
+        {getParameterByName("appGameState") ? <button onClick={() => this.importAppState(importFromUrl("appGameState"), true)}>Import AppState from Url</button> : null}
             <CruTagGrid model={props.jsonData} />
             <div>{JSON.stringify(this.state.error)}</div>
             <div className="onGreen">
             {importArea}
+              {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}
             </div>
       </div>);
   }
