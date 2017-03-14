@@ -920,12 +920,12 @@ var CruApp = React.createClass({
         console.log('loot merge step not implemented',loot)
         var crusaderGear = {};
         loot.map(l =>{
-          console.log('mapping loot', l);
 
           if(!crusaderGear.hasOwnProperty(l.heroSlotId))
             crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
-          if(l.slot)
+          if(l.slot != null)
             crusaderGear[l.heroSlotId]["slot" + l.slot] = l.rarity;
+          console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
         });
         data.crusaderGear = crusaderGear;
         console.log('loot import phase 1 complete', data.crusaderGear);
