@@ -147,101 +147,108 @@ window.jsonData =
       "heroId": 1,
       "loot": [
         {
-          "lootId": 5,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Green Hat"
+          "name": "Ratty Green Hat",
+          "lootId": 5
         },
         {
-          "lootId": 6,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Soft Velvet Hat"
+          "name": "Soft Velvet Hat",
+          "lootId": 6
         },
         {
-          "lootId": 7,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Enchanted Elf Hat"
+          "name": "Enchanted Elf Hat",
+          "lootId": 7
         },
         {
-          "lootId": 8,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Tri-Pointed Hat of Linking"
+          "name": "Tri-Pointed Hat of Linking",
+          "lootId": 8
         },
         {
-          "lootId": 9,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Engraved Silken Adventurer's Hat of Clicks",
+          "lootId": 893
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Dull Sword"
+          "name": "Dull Sword",
+          "lootId": 9
         },
         {
-          "lootId": 10,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Shiny Sword"
+          "name": "Shiny Sword",
+          "lootId": 10
         },
         {
-          "lootId": 11,
+          "slot": 1,
           "rarity": 3,
+          "name": "Sharp Sword",
+          "lootId": 11
+        },
+        {
           "slot": 1,
-          "name": "Sharp Sword"
+          "rarity": 4,
+          "name": "Butchering Sword of Bloodiness",
+          "lootId": 12
         },
         {
-          "lootId": 12,
-          "rarity": 4,
           "slot": 1,
-          "name": "Butchering Sword of Bloodiness"
-        },
-        {
-          "lootId": 13,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Newbie Wand"
-        },
-        {
-          "lootId": 14,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Polished Wand"
-        },
-        {
-          "lootId": 15,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Unsuspecting Wand"
-        },
-        {
-          "lootId": 16,
           "rarity": 4,
-          "slot": 2,
-          "name": "Ancient Wand of Wanding"
-        },
-        {
+          "name": "Unnecessarily Bisected Bush-Destroying Sword of Criticals",
           "lootId": 682,
-          "rarity": 4,
-          "name": "Unnecessarily Bisected Bush-Destroying Sword of Criticals"
+          "golden": true
         },
         {
-          "lootId": 893,
+          "slot": 1,
           "rarity": 5,
-          "name": "Engraved Silken Adventurer's Hat of Clicks"
+          "name": "Fantastic Bush Slicing Sword of Amythysts",
+          "lootId": 894
         },
         {
-          "lootId": 894,
+          "slot": 1,
           "rarity": 5,
-          "name": "Fantastic Bush Slicing Sword of Amythysts"
-        },
-        {
-          "lootId": 895,
-          "rarity": 5,
-          "name": "Enchanted Ivory Wand of Diamond Finding"
-        },
-        {
+          "name": "Fantastic Bush Slicing Sword of Amythysts",
           "lootId": 948,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Newbie Wand",
+          "lootId": 13
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Polished Wand",
+          "lootId": 14
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Unsuspecting Wand",
+          "lootId": 15
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Ancient Wand of Wanding",
+          "lootId": 16
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Fantastic Bush Slicing Sword of Amythysts"
+          "name": "Enchanted Ivory Wand of Diamond Finding",
+          "lootId": 895
         }
       ]
     },
@@ -262,101 +269,108 @@ window.jsonData =
       "heroId": 38,
       "loot": [
         {
-          "lootId": 474,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Rusted Gear"
+          "name": "Rusted Gear",
+          "lootId": 474
         },
         {
-          "lootId": 475,
+          "slot": 0,
           "rarity": 2,
+          "name": "Stone Gear",
+          "lootId": 475
+        },
+        {
           "slot": 0,
-          "name": "Stone Gear"
+          "rarity": 3,
+          "name": "Fine Steel Gear",
+          "lootId": 476
         },
         {
-          "lootId": 476,
-          "rarity": 3,
           "slot": 0,
-          "name": "Fine Steel Gear"
+          "rarity": 4,
+          "name": "Magical Dwarven Gear of Overburdening",
+          "lootId": 477
         },
         {
-          "lootId": 477,
-          "rarity": 4,
           "slot": 0,
-          "name": "Magical Dwarven Gear of Overburdening"
-        },
-        {
-          "lootId": 478,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Rotted Mecha-Carrot"
-        },
-        {
-          "lootId": 479,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Copper Mecha-Carrot"
-        },
-        {
-          "lootId": 480,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Refurbished Mecha-Carrot"
-        },
-        {
-          "lootId": 481,
           "rarity": 4,
-          "slot": 1,
-          "name": "Special Edition Souped-Up Mecha-Carrot"
-        },
-        {
-          "lootId": 482,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Damaged Capacitor"
-        },
-        {
-          "lootId": 483,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Cracked Plasma Tube"
-        },
-        {
-          "lootId": 484,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Glowing Plasma Tube"
-        },
-        {
-          "lootId": 485,
-          "rarity": 4,
-          "slot": 2,
-          "name": "FutureTech Plasma Coil 9001b"
-        },
-        {
+          "name": "Pristine Superfluid Gear of Obliteration",
           "lootId": 486,
-          "rarity": 4,
-          "name": "Pristine Superfluid Gear of Obliteration"
+          "golden": true
         },
         {
-          "lootId": 1116,
+          "slot": 0,
           "rarity": 5,
-          "name": "Up-Gearing Sun Gear of Geared Up Gears"
+          "name": "Up-Gearing Sun Gear of Geared Up Gears",
+          "lootId": 1116
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Up-Gearing Sun Gear of Geared Up Gears",
           "lootId": 1117,
-          "rarity": 5,
-          "name": "Up-Gearing Sun Gear of Geared Up Gears"
+          "golden": true
         },
         {
-          "lootId": 1118,
-          "rarity": 5,
-          "name": "Radioactive Glowing Glass Carrot of the Munchies"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Rotted Mecha-Carrot",
+          "lootId": 478
         },
         {
-          "lootId": 1119,
+          "slot": 1,
+          "rarity": 2,
+          "name": "Copper Mecha-Carrot",
+          "lootId": 479
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Refurbished Mecha-Carrot",
+          "lootId": 480
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Special Edition Souped-Up Mecha-Carrot",
+          "lootId": 481
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Grade Ten Science Experiment Capacitor of Danger"
+          "name": "Radioactive Glowing Glass Carrot of the Munchies",
+          "lootId": 1118
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Damaged Capacitor",
+          "lootId": 482
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Cracked Plasma Tube",
+          "lootId": 483
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Glowing Plasma Tube",
+          "lootId": 484
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "FutureTech Plasma Coil 9001b",
+          "lootId": 485
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Grade Ten Science Experiment Capacitor of Danger",
+          "lootId": 1119
         }
       ]
     },
@@ -375,91 +389,94 @@ window.jsonData =
       "heroId": 66,
       "loot": [
         {
-          "lootId": 852,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Mothballed Hat"
+          "name": "Mothballed Hat",
+          "lootId": 852
         },
         {
-          "lootId": 853,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Fuzzy Cowboy Hat"
+          "name": "Fuzzy Cowboy Hat",
+          "lootId": 853
         },
         {
-          "lootId": 854,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Festive Chicken Hat"
+          "name": "Festive Chicken Hat",
+          "lootId": 854
         },
         {
-          "lootId": 855,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Bob Ross Wig of Amazing Greenscreen Art Skillz"
+          "name": "Bob Ross Wig of Amazing Greenscreen Art Skillz",
+          "lootId": 855
         },
         {
-          "lootId": 856,
+          "slot": 0,
+          "rarity": 5,
+          "name": "10-Year Veteran's Driving Cap of Crashes",
+          "lootId": 1213
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Ratty Trekky Skirt"
+          "name": "Ratty Trekky Skirt",
+          "lootId": 856
         },
         {
-          "lootId": 857,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Alluring Trekky Skirt"
+          "name": "Alluring Trekky Skirt",
+          "lootId": 857
         },
         {
-          "lootId": 858,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Vroomy Car Costume"
+          "name": "Vroomy Car Costume",
+          "lootId": 858
         },
         {
-          "lootId": 859,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "QWOPy QWOPing QWOPer of QWOPification"
+          "name": "QWOPy QWOPing QWOPer of QWOPification",
+          "lootId": 859
         },
         {
-          "lootId": 860,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Meta Bus Costume of Bustling Bussing",
+          "lootId": 1214
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Ratty Driver's Hat"
+          "name": "Ratty Driver's Hat",
+          "lootId": 860
         },
         {
-          "lootId": 861,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Stitched Driver's Hat"
+          "name": "Stitched Driver's Hat",
+          "lootId": 861
         },
         {
-          "lootId": 862,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Certified Driver's Hat"
+          "name": "Certified Driver's Hat",
+          "lootId": 862
         },
         {
-          "lootId": 863,
+          "slot": 2,
           "rarity": 4,
+          "name": "Brand New Desert Bus Driver's Hat of Points",
+          "lootId": 863
+        },
+        {
           "slot": 2,
-          "name": "Brand New Desert Bus Driver's Hat of Points"
-        },
-        {
-          "lootId": 1213,
           "rarity": 5,
-          "name": "10-Year Veteran's Driving Cap of Crashes"
-        },
-        {
-          "lootId": 1214,
-          "rarity": 5,
-          "name": "Meta Bus Costume of Bustling Bussing"
-        },
-        {
-          "lootId": 1215,
-          "rarity": 5,
-          "name": "Magic Carp Cap of Magical Crap"
+          "name": "Magic Carp Cap of Magical Crap",
+          "lootId": 1215
         }
       ]
     },
@@ -481,91 +498,94 @@ window.jsonData =
       "heroId": 75,
       "loot": [
         {
-          "lootId": 1234,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Warlock Cape"
+          "name": "Ratty Warlock Cape",
+          "lootId": 1234
         },
         {
-          "lootId": 1235,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Holey Warlock Cape"
+          "name": "Holey Warlock Cape",
+          "lootId": 1235
         },
         {
-          "lootId": 1236,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Satin Warlock Cape"
+          "name": "Satin Warlock Cape",
+          "lootId": 1236
         },
         {
-          "lootId": 1237,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Corpse-Craving Carnivorous Cape of Criticals"
+          "name": "Corpse-Craving Carnivorous Cape of Criticals",
+          "lootId": 1237
         },
         {
-          "lootId": 1238,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Super Evil Warlock's Cape of Curses",
+          "lootId": 1291
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Old Magician's Hat"
+          "name": "Old Magician's Hat",
+          "lootId": 1238
         },
         {
-          "lootId": 1239,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Moth-balled Hat"
+          "name": "Moth-balled Hat",
+          "lootId": 1239
         },
         {
-          "lootId": 1240,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Fuzzy Purple Hat"
+          "name": "Fuzzy Purple Hat",
+          "lootId": 1240
         },
         {
-          "lootId": 1241,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Seriously Magical Top Hat of Curses"
+          "name": "Seriously Magical Top Hat of Curses",
+          "lootId": 1241
         },
         {
-          "lootId": 1242,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Dapperest Dapper Hat of the Dapper Leprechaun",
+          "lootId": 1292
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Patched Warlock Focus"
+          "name": "Patched Warlock Focus",
+          "lootId": 1242
         },
         {
-          "lootId": 1243,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Ratty Catty Focus"
+          "name": "Ratty Catty Focus",
+          "lootId": 1243
         },
         {
-          "lootId": 1244,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Emerald-Eyed Focus"
+          "name": "Emerald-Eyed Focus",
+          "lootId": 1244
         },
         {
-          "lootId": 1245,
+          "slot": 2,
           "rarity": 4,
+          "name": "Solid Amythyst Feline Focus of Ferocity",
+          "lootId": 1245
+        },
+        {
           "slot": 2,
-          "name": "Solid Amythyst Feline Focus of Ferocity"
-        },
-        {
-          "lootId": 1291,
           "rarity": 5,
-          "name": "Super Evil Warlock's Cape of Curses"
-        },
-        {
-          "lootId": 1292,
-          "rarity": 5,
-          "name": "Dapperest Dapper Hat of the Dapper Leprechaun"
-        },
-        {
-          "lootId": 1293,
-          "rarity": 5,
-          "name": "Long-Tailed Feline Focus of Purring"
+          "name": "Long-Tailed Feline Focus of Purring",
+          "lootId": 1293
         }
       ]
     },
@@ -596,111 +616,122 @@ window.jsonData =
       "heroId": 2,
       "loot": [
         {
-          "lootId": 17,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Rusty Axe"
+          "name": "Rusty Axe",
+          "lootId": 17
         },
         {
-          "lootId": 18,
+          "slot": 0,
           "rarity": 2,
+          "name": "Less Rusty Axe",
+          "lootId": 18
+        },
+        {
           "slot": 0,
-          "name": "Less Rusty Axe"
+          "rarity": 3,
+          "name": "Shiny Axe",
+          "lootId": 19
         },
         {
-          "lootId": 19,
-          "rarity": 3,
           "slot": 0,
-          "name": "Shiny Axe"
+          "rarity": 4,
+          "name": "Super Friggin' Sharp Axe",
+          "lootId": 20
         },
         {
-          "lootId": 20,
-          "rarity": 4,
           "slot": 0,
-          "name": "Super Friggin' Sharp Axe"
-        },
-        {
-          "lootId": 21,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Motheaten Toque"
-        },
-        {
-          "lootId": 22,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Itchy Wool Cap"
-        },
-        {
-          "lootId": 23,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Snug Cashmere Cap"
-        },
-        {
-          "lootId": 24,
           "rarity": 4,
-          "slot": 1,
-          "name": "Titanium-Infused Angora Beret"
-        },
-        {
-          "lootId": 25,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Furry Work Gloves"
-        },
-        {
-          "lootId": 26,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Stiff Leather Work Gloves"
-        },
-        {
-          "lootId": 27,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Cobra Hide Mittens"
-        },
-        {
-          "lootId": 28,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Dragon Scale Gauntlets"
-        },
-        {
+          "name": "Super Friggin' Sharp Axe",
           "lootId": 257,
-          "rarity": 4,
-          "name": "Super Friggin' Sharp Axe"
+          "golden": true
         },
         {
-          "lootId": 592,
-          "rarity": 4,
-          "name": "Super Scary Bear Hat of Roaring"
-        },
-        {
-          "lootId": 949,
+          "slot": 0,
           "rarity": 5,
-          "name": "Dwarven Forged Axe of Slaying"
+          "name": "Dwarven Forged Axe of Slaying",
+          "lootId": 949
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Dwarven Forged Axe of Slaying",
           "lootId": 950,
-          "rarity": 5,
-          "name": "Dwarven Forged Axe of Slaying"
+          "golden": true
         },
         {
-          "lootId": 951,
-          "rarity": 5,
-          "name": "Cashmere Cap of Unsustainable Deforestation"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Motheaten Toque",
+          "lootId": 21
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Itchy Wool Cap",
+          "lootId": 22
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Snug Cashmere Cap",
+          "lootId": 23
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Titanium-Infused Angora Beret",
+          "lootId": 24
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Super Scary Bear Hat of Roaring",
+          "lootId": 592,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Cashmere Cap of Unsustainable Deforestation",
+          "lootId": 951
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Cashmere Cap of Unsustainable Deforestation",
           "lootId": 952,
-          "rarity": 5,
-          "name": "Cashmere Cap of Unsustainable Deforestation"
+          "golden": true
         },
         {
-          "lootId": 953,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Furry Work Gloves",
+          "lootId": 25
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Stiff Leather Work Gloves",
+          "lootId": 26
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Cobra Hide Mittens",
+          "lootId": 27
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Dragon Scale Gauntlets",
+          "lootId": 28
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Gold Inlaid Plaid Gloves of Lumberjacking"
+          "name": "Gold Inlaid Plaid Gloves of Lumberjacking",
+          "lootId": 953
         }
       ]
     },
@@ -721,101 +752,108 @@ window.jsonData =
       "heroId": 29,
       "loot": [
         {
-          "lootId": 359,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Busted Sunglasses"
+          "name": "Busted Sunglasses",
+          "lootId": 359
         },
         {
-          "lootId": 360,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Basic Aviators"
+          "name": "Basic Aviators",
+          "lootId": 360
         },
         {
-          "lootId": 361,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Hotshot's Aviators"
+          "name": "Hotshot's Aviators",
+          "lootId": 361
         },
         {
-          "lootId": 362,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Eagle Eye Aviators of True-Sight"
+          "name": "Eagle Eye Aviators of True-Sight",
+          "lootId": 362
         },
         {
-          "lootId": 363,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Incredibly Obnoxious Flared Aviators of Calculation",
+          "lootId": 1084
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Pilot Costume Hat"
+          "name": "Pilot Costume Hat",
+          "lootId": 363
         },
         {
-          "lootId": 364,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Recruit Pilot Hat"
+          "name": "Recruit Pilot Hat",
+          "lootId": 364
         },
         {
-          "lootId": 365,
+          "slot": 1,
           "rarity": 3,
+          "name": "Veteran Pilot Hat",
+          "lootId": 365
+        },
+        {
           "slot": 1,
-          "name": "Veteran Pilot Hat"
+          "rarity": 4,
+          "name": "Baron's Bomber Hat of Bombastic Bombardiering",
+          "lootId": 366
         },
         {
-          "lootId": 366,
-          "rarity": 4,
           "slot": 1,
-          "name": "Baron's Bomber Hat of Bombastic Bombardiering"
-        },
-        {
-          "lootId": 367,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Styrofoam Airplane"
-        },
-        {
-          "lootId": 368,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Last Year's Model Plane"
-        },
-        {
-          "lootId": 369,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Mint P-51 Mustang"
-        },
-        {
-          "lootId": 370,
           "rarity": 4,
-          "slot": 2,
-          "name": "RZ-1 A-Wing Interceptor"
-        },
-        {
+          "name": "Ace Pilot Helmet of Wind Tunnel Tested Aerodynamics",
           "lootId": 954,
-          "rarity": 4,
-          "name": "Ace Pilot Helmet of Wind Tunnel Tested Aerodynamics"
+          "golden": true
         },
         {
-          "lootId": 1084,
+          "slot": 1,
           "rarity": 5,
-          "name": "Incredibly Obnoxious Flared Aviators of Calculation"
+          "name": "Ace Jet Fighter Helmet of Extreme G-Forces",
+          "lootId": 1085
         },
         {
-          "lootId": 1085,
+          "slot": 1,
           "rarity": 5,
-          "name": "Ace Jet Fighter Helmet of Extreme G-Forces"
-        },
-        {
+          "name": "Ace Jet Fighter Helmet of Extreme G-Forces",
           "lootId": 1086,
-          "rarity": 5,
-          "name": "Ace Jet Fighter Helmet of Extreme G-Forces"
+          "golden": true
         },
         {
-          "lootId": 1087,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Styrofoam Airplane ",
+          "lootId": 367
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Last Year's Model Plane",
+          "lootId": 368
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Mint P-51 Mustang",
+          "lootId": 369
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "RZ-1 A-Wing Interceptor",
+          "lootId": 370
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Itty Bitty Model Stealth Fighter of Inspiration"
+          "name": "Itty Bitty Model Stealth Fighter of Inspiration",
+          "lootId": 1087
         }
       ]
     },
@@ -849,101 +887,108 @@ window.jsonData =
       "heroId": 51,
       "loot": [
         {
-          "lootId": 648,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Cardboard Armguard"
+          "name": "Ratty Cardboard Armguard",
+          "lootId": 648
         },
         {
-          "lootId": 649,
+          "slot": 0,
           "rarity": 2,
+          "name": "Fake Pleather Armguard",
+          "lootId": 649
+        },
+        {
           "slot": 0,
-          "name": "Fake Pleather Armguard"
+          "rarity": 3,
+          "name": "Fine Leather Armguard",
+          "lootId": 650
         },
         {
-          "lootId": 650,
-          "rarity": 3,
           "slot": 0,
-          "name": "Fine Leather Armguard"
+          "rarity": 4,
+          "name": "Biomechanical Red Leather Armguard of Destruction",
+          "lootId": 651
         },
         {
-          "lootId": 651,
-          "rarity": 4,
           "slot": 0,
-          "name": "Biomechanical Red Leather Armguard of Destruction"
-        },
-        {
-          "lootId": 652,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Shottily Crafted Bow"
-        },
-        {
-          "lootId": 653,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Homemade Bow"
-        },
-        {
-          "lootId": 654,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Well Constructed Bow"
-        },
-        {
-          "lootId": 655,
           "rarity": 4,
-          "slot": 1,
-          "name": "Overly Elaborate Scoped Bow of Precision"
-        },
-        {
-          "lootId": 656,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Empty Quiver"
-        },
-        {
-          "lootId": 657,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Hastily Stiched Quiver"
-        },
-        {
-          "lootId": 658,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Well Stocked Quiver"
-        },
-        {
-          "lootId": 659,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Auto-refilling Technological Quiver of Endless Arrows"
-        },
-        {
+          "name": "Intricately Carved Armguard of Holographic Flower Petals",
           "lootId": 848,
-          "rarity": 4,
-          "name": "Intricately Carved Armguard of Holographic Flower Petals"
+          "golden": true
         },
         {
-          "lootId": 1164,
+          "slot": 0,
           "rarity": 5,
-          "name": "Cyborg's Armguard of the Perfect Shot"
+          "name": "Cyborg's Armguard of the Perfect Shot",
+          "lootId": 1164
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Cyborg's Armguard of the Perfect Shot",
           "lootId": 1165,
-          "rarity": 5,
-          "name": "Cyborg's Armguard of the Perfect Shot"
+          "golden": true
         },
         {
-          "lootId": 1166,
-          "rarity": 5,
-          "name": "Overcomplicated Bow of Arrow Shooting"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Shottily Crafted Bow",
+          "lootId": 652
         },
         {
-          "lootId": 1167,
+          "slot": 1,
+          "rarity": 2,
+          "name": "Homemade Bow",
+          "lootId": 653
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Well Constructed Bow",
+          "lootId": 654
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Overly Elaborate Scoped Bow of Precision",
+          "lootId": 655
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Scaled Quiver of the Impossible Arrows"
+          "name": "Overcomplicated Bow of Arrow Shooting",
+          "lootId": 1166
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Empty Quiver",
+          "lootId": 656
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Hastily Stiched Quiver",
+          "lootId": 657
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Well Stocked Quiver",
+          "lootId": 658
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Auto-refilling Technological Quiver of Endless Arrows",
+          "lootId": 659
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Scaled Quiver of the Impossible Arrows",
+          "lootId": 1167
         }
       ]
     },
@@ -975,121 +1020,136 @@ window.jsonData =
       "heroId": 3,
       "loot": [
         {
-          "lootId": 137,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Dim Blood Crystal"
+          "name": "Dim Blood Crystal",
+          "lootId": 137
         },
         {
-          "lootId": 138,
+          "slot": 0,
           "rarity": 2,
+          "name": "Pulsing Blood Crystal",
+          "lootId": 138
+        },
+        {
           "slot": 0,
-          "name": "Pulsing Blood Crystal"
+          "rarity": 3,
+          "name": "Pure Blood Crystal",
+          "lootId": 139
         },
         {
-          "lootId": 139,
-          "rarity": 3,
           "slot": 0,
-          "name": "Pure Blood Crystal"
+          "rarity": 4,
+          "name": "Dripping Blood Crystal",
+          "lootId": 140
         },
         {
-          "lootId": 140,
-          "rarity": 4,
           "slot": 0,
-          "name": "Dripping Blood Crystal"
-        },
-        {
-          "lootId": 141,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Moon Cape"
-        },
-        {
-          "lootId": 142,
-          "rarity": 2,
-          "slot": 1,
-          "name": "More Moon Cape"
-        },
-        {
-          "lootId": 143,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Howling Moon Cape"
-        },
-        {
-          "lootId": 144,
           "rarity": 4,
-          "slot": 1,
-          "name": "Goth Moon Cape"
-        },
-        {
-          "lootId": 145,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Week Old Ham"
-        },
-        {
-          "lootId": 146,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Leftover Ham"
-        },
-        {
-          "lootId": 147,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Honey-Cured Ham"
-        },
-        {
-          "lootId": 148,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Enchanted Ham of Hamminess"
-        },
-        {
+          "name": "Ether Bonded Blood Crystal",
           "lootId": 435,
-          "rarity": 4,
-          "name": "Ether Bonded Blood Crystal"
+          "golden": true
         },
         {
-          "lootId": 850,
-          "rarity": 4,
-          "name": "Incredibly Dense Cape of Gravitational Power"
-        },
-        {
-          "lootId": 957,
-          "rarity": 4,
-          "name": "Spikey Smoked Hardcore Ham of Souls"
-        },
-        {
-          "lootId": 959,
+          "slot": 0,
           "rarity": 5,
-          "name": "Tear-Infused Blood Crystal of Weresouls"
+          "name": "Tear-Infused Blood Crystal of Weresouls",
+          "lootId": 959
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Tear-Infused Blood Crystal of Weresouls",
           "lootId": 960,
-          "rarity": 5,
-          "name": "Tear-Infused Blood Crystal of Weresouls"
+          "golden": true
         },
         {
-          "lootId": 961,
-          "rarity": 5,
-          "name": "Strange Moon Cape of Emotional Distance"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Moon Cape",
+          "lootId": 141
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "More Moon Cape",
+          "lootId": 142
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Howling Moon Cape",
+          "lootId": 143
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Goth Moon Cape",
+          "lootId": 144
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Incredibly Dense Cape of Gravitational Power",
+          "lootId": 850,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Strange Moon Cape of Emotional Distance",
+          "lootId": 961
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Strange Moon Cape of Emotional Distance",
           "lootId": 962,
-          "rarity": 5,
-          "name": "Strange Moon Cape of Emotional Distance"
+          "golden": true
         },
         {
-          "lootId": 963,
-          "rarity": 5,
-          "name": "Cursed Ham Cheese and Lettuce Sandwich of Destruction"
+          "slot": 2,
+          "rarity": 1,
+          "name": "Week Old Ham",
+          "lootId": 145
         },
         {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Leftover Ham",
+          "lootId": 146
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Honey-Cured Ham",
+          "lootId": 147
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Enchanted Ham of Hamminess",
+          "lootId": 148
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Spikey Smoked Hardcore Ham of Souls",
+          "lootId": 957,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Cursed Ham Cheese and Lettuce Sandwich of Destruction",
+          "lootId": 963
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Cursed Ham Cheese and Lettuce Sandwich of Destruction",
           "lootId": 964,
-          "rarity": 5,
-          "name": "Cursed Ham Cheese and Lettuce Sandwich of Destruction"
+          "golden": true
         }
       ]
     },
@@ -1110,101 +1170,108 @@ window.jsonData =
       "heroId": 34,
       "loot": [
         {
-          "lootId": 423,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Comfy Yarn Whip"
+          "name": "Comfy Yarn Whip",
+          "lootId": 423
         },
         {
-          "lootId": 424,
+          "slot": 0,
           "rarity": 2,
+          "name": "Wooden Whip",
+          "lootId": 424
+        },
+        {
           "slot": 0,
-          "name": "Wooden Whip"
+          "rarity": 3,
+          "name": "Smooth Leather Whip",
+          "lootId": 425
         },
         {
-          "lootId": 425,
-          "rarity": 3,
           "slot": 0,
-          "name": "Smooth Leather Whip"
+          "rarity": 4,
+          "name": "Snakeskin Whip of Power",
+          "lootId": 426
         },
         {
-          "lootId": 426,
-          "rarity": 4,
           "slot": 0,
-          "name": "Snakeskin Whip of Power"
-        },
-        {
-          "lootId": 427,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Frayed Corset"
-        },
-        {
-          "lootId": 428,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Too-Tight Corset"
-        },
-        {
-          "lootId": 429,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Quality Leather Corset"
-        },
-        {
-          "lootId": 430,
           "rarity": 4,
-          "slot": 1,
-          "name": "Flowery Silk Corset of Seduction"
-        },
-        {
-          "lootId": 431,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Essence De Poo"
-        },
-        {
-          "lootId": 432,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Flowery Perfume"
-        },
-        {
-          "lootId": 433,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Aluring Perfume"
-        },
-        {
-          "lootId": 434,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Ridiculously Expensive French Perfume"
-        },
-        {
-          "lootId": 1103,
-          "rarity": 5,
-          "name": "Love Taser of Erotic Tasing"
-        },
-        {
-          "lootId": 1104,
-          "rarity": 5,
-          "name": "Way-Too-Tight Corset of Impossible Measurements"
-        },
-        {
-          "lootId": 1105,
-          "rarity": 5,
-          "name": "Infuriating Perfume of Infinite Lovers"
-        },
-        {
+          "name": "Familiar Whip of Nibbling Agony",
           "lootId": 1297,
-          "rarity": 4,
-          "name": "Familiar Whip of Nibbling Agony"
+          "golden": true
         },
         {
-          "lootId": 1298,
+          "slot": 0,
           "rarity": 5,
-          "name": "Love Taser of Erotic Tasing"
+          "name": "Love Taser of Erotic Tasing",
+          "lootId": 1103
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Love Taser of Erotic Tasing",
+          "lootId": 1298,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Frayed Corset",
+          "lootId": 427
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Too-Tight Corset",
+          "lootId": 428
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Quality Leather Corset",
+          "lootId": 429
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Flowery Silk Corset of Seduction",
+          "lootId": 430
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Way-Too-Tight Corset of Impossible Measurements",
+          "lootId": 1104
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Essence De Poo",
+          "lootId": 431
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Flowery Perfume",
+          "lootId": 432
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Aluring Perfume",
+          "lootId": 433
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Ridiculously Expensive French Perfume",
+          "lootId": 434
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Infuriating Perfume of Infinite Lovers",
+          "lootId": 1105
         }
       ]
     },
@@ -1237,91 +1304,94 @@ window.jsonData =
       "heroId": 53,
       "loot": [
         {
-          "lootId": 685,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Moldy Catnip"
+          "name": "Moldy Catnip",
+          "lootId": 685
         },
         {
-          "lootId": 686,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Dusty Catnip"
+          "name": "Dusty Catnip",
+          "lootId": 686
         },
         {
-          "lootId": 687,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Name Brand Catnip"
+          "name": "Name Brand Catnip",
+          "lootId": 687
         },
         {
-          "lootId": 688,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Locally-Sourced Artisanal Catnip of Sopor"
+          "name": "Locally-Sourced Artisanal Catnip of Sopor",
+          "lootId": 688
         },
         {
-          "lootId": 689,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Catnip Filled Baggy of Unfortunate Distractions",
+          "lootId": 1173
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Tight Plastic Collar"
+          "name": "Tight Plastic Collar",
+          "lootId": 689
         },
         {
-          "lootId": 690,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Faux-Leather Collar"
+          "name": "Faux-Leather Collar",
+          "lootId": 690
         },
         {
-          "lootId": 691,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Shiny Collar"
+          "name": "Shiny Collar",
+          "lootId": 691
         },
         {
-          "lootId": 692,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Sky-Forged Collar of Resonant Chimes"
+          "name": "Sky-Forged Collar of Resonant Chimes",
+          "lootId": 692
         },
         {
-          "lootId": 693,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Oversized Collar Bell of Unlimited Stealth",
+          "lootId": 1174
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Battered Notebook"
+          "name": "Battered Notebook",
+          "lootId": 693
         },
         {
-          "lootId": 694,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Over-Utilized Notebook"
+          "name": "Over-Utilized Notebook",
+          "lootId": 694
         },
         {
-          "lootId": 695,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Prim and Proper Notebook"
+          "name": "Prim and Proper Notebook",
+          "lootId": 695
         },
         {
-          "lootId": 696,
+          "slot": 2,
           "rarity": 4,
+          "name": "Learned Notebook of the Burgeoning Mind",
+          "lootId": 696
+        },
+        {
           "slot": 2,
-          "name": "Learned Notebook of the Burgeoning Mind"
-        },
-        {
-          "lootId": 1173,
           "rarity": 5,
-          "name": "Catnip Filled Baggy of Unfortunate Distractions"
-        },
-        {
-          "lootId": 1174,
-          "rarity": 5,
-          "name": "Oversized Collar Bell of Unlimited Stealth"
-        },
-        {
-          "lootId": 1175,
-          "rarity": 5,
-          "name": "Annotated Notebook of Amazing Fish Recipes"
+          "name": "Annotated Notebook of Amazing Fish Recipes",
+          "lootId": 1175
         }
       ]
     },
@@ -1351,111 +1421,122 @@ window.jsonData =
       "heroId": 4,
       "loot": [
         {
-          "lootId": 41,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Rusty Iron Fisticovers"
+          "name": "Rusty Iron Fisticovers",
+          "lootId": 41
         },
         {
-          "lootId": 42,
+          "slot": 0,
           "rarity": 2,
+          "name": "Gleaming Tin Fenderbenders",
+          "lootId": 42
+        },
+        {
           "slot": 0,
-          "name": "Gleaming Tin Fenderbenders"
+          "rarity": 3,
+          "name": "Elegant Chainmail Gauntlets",
+          "lootId": 43
         },
         {
-          "lootId": 43,
-          "rarity": 3,
           "slot": 0,
-          "name": "Elegant Chainmail Gauntlets"
+          "rarity": 4,
+          "name": "Mythril Chainmail Gauntlets",
+          "lootId": 44
         },
         {
-          "lootId": 44,
-          "rarity": 4,
           "slot": 0,
-          "name": "Mythril Chainmail Gauntlets"
-        },
-        {
-          "lootId": 45,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Old Wooden Shield"
-        },
-        {
-          "lootId": 46,
-          "rarity": 2,
-          "slot": 1,
-          "name": "New Wooden Shield"
-        },
-        {
-          "lootId": 47,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Polished Ash Wood Shield"
-        },
-        {
-          "lootId": 48,
           "rarity": 4,
-          "slot": 1,
-          "name": "Unobtainium Wood Shield"
-        },
-        {
-          "lootId": 49,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Helm of the Cook"
-        },
-        {
-          "lootId": 50,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Gleaming Tin Hat"
-        },
-        {
-          "lootId": 51,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Charmed Chainmail Cloche"
-        },
-        {
-          "lootId": 52,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Mithril Chainmail Turban"
-        },
-        {
-          "lootId": 566,
-          "rarity": 4,
-          "name": "Flappity Flap Helm of Battering"
-        },
-        {
+          "name": "Evil Infinity Gauntlet of Fair Use",
           "lootId": 593,
-          "rarity": 4,
-          "name": "Evil Infinity Gauntlet of Fair Use"
+          "golden": true
         },
         {
-          "lootId": 965,
+          "slot": 0,
           "rarity": 5,
-          "name": "Fierce Warrior's Gauntlet of Menacing Pointing"
+          "name": "Fierce Warrior's Gauntlet of Menacing Pointing",
+          "lootId": 965
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Fierce Warrior's Gauntlet of Menacing Pointing",
           "lootId": 966,
-          "rarity": 5,
-          "name": "Fierce Warrior's Gauntlet of Menacing Pointing"
+          "golden": true
         },
         {
-          "lootId": 967,
-          "rarity": 5,
-          "name": "Super Pointy Legendary Shield of Impaled Enemies"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Old Wooden Shield",
+          "lootId": 45
         },
         {
-          "lootId": 968,
-          "rarity": 5,
-          "name": "Full Plate Helmet of Pointy Purple Power"
+          "slot": 1,
+          "rarity": 2,
+          "name": "New Wooden Shield",
+          "lootId": 46
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Polished Ash Wood Shield",
+          "lootId": 47
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Unobtainium Wood Shield",
+          "lootId": 48
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Super Pointy Legendary Shield of Impaled Enemies",
+          "lootId": 967
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Helm of the Cook",
+          "lootId": 49
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Gleaming Tin Hat",
+          "lootId": 50
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Charmed Chainmail Cloche",
+          "lootId": 51
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Mithril Chainmail Turban",
+          "lootId": 52
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Flappity Flap Helm of Battering",
+          "lootId": 566,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Full Plate Helmet of Pointy Purple Power",
+          "lootId": 968
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Full Plate Helmet of Pointy Purple Power",
           "lootId": 969,
-          "rarity": 5,
-          "name": "Full Plate Helmet of Pointy Purple Power"
+          "golden": true
         }
       ]
     },
@@ -1477,111 +1558,122 @@ window.jsonData =
       "heroId": 31,
       "loot": [
         {
-          "lootId": 384,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Broken Tooth"
+          "name": "Broken Tooth",
+          "lootId": 384
         },
         {
-          "lootId": 385,
+          "slot": 0,
           "rarity": 2,
+          "name": "Stained Baby Tooth",
+          "lootId": 385
+        },
+        {
           "slot": 0,
-          "name": "Stained Baby Tooth"
+          "rarity": 3,
+          "name": "Sparkling Wisdom Tooth",
+          "lootId": 386
         },
         {
-          "lootId": 386,
-          "rarity": 3,
           "slot": 0,
-          "name": "Sparkling Wisdom Tooth"
+          "rarity": 4,
+          "name": "Pierced Tooth of Dentists' Nightmares",
+          "lootId": 387
         },
         {
-          "lootId": 387,
-          "rarity": 4,
           "slot": 0,
-          "name": "Pierced Tooth of Dentists' Nightmares"
-        },
-        {
-          "lootId": 388,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Cloth Bracer"
-        },
-        {
-          "lootId": 389,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Padded Fur Bracer"
-        },
-        {
-          "lootId": 390,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Tempered Leather Bracer"
-        },
-        {
-          "lootId": 391,
           "rarity": 4,
-          "slot": 1,
-          "name": "Impractical Jeweled Bracer of Power"
-        },
-        {
-          "lootId": 392,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Deflated Football"
-        },
-        {
-          "lootId": 393,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Brown Leather Handegg"
-        },
-        {
-          "lootId": 394,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Sturdy Stitched Football"
-        },
-        {
-          "lootId": 395,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Deadly Spiked Football of Bleeding"
-        },
-        {
-          "lootId": 1092,
-          "rarity": 5,
-          "name": "Imbued Tooth Dagger of Rabid Orcish Stabbing"
-        },
-        {
-          "lootId": 1093,
-          "rarity": 5,
-          "name": "Magical Steel Pauldron of the Linebacker"
-        },
-        {
-          "lootId": 1094,
-          "rarity": 5,
-          "name": "Solid Emerald Football of Painful Catches"
-        },
-        {
+          "name": "Pierced Golden Tooth of Antigravity Blood",
           "lootId": 1282,
-          "rarity": 4,
-          "name": "Pierced Golden Tooth of Antigravity Blood"
+          "golden": true
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Imbued Tooth Dagger of Rabid Orcish Stabbing",
+          "lootId": 1092
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Imbued Tooth Dagger of Rabid Orcish Stabbing",
           "lootId": 1329,
-          "rarity": 5,
-          "name": "Imbued Tooth Dagger of Rabid Orcish Stabbing"
+          "golden": true
         },
         {
-          "lootId": 1366,
+          "slot": 1,
+          "rarity": 1,
+          "name": "Cloth Bracer",
+          "lootId": 388
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Padded Fur Bracer",
+          "lootId": 389
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Tempered Leather Bracer",
+          "lootId": 390
+        },
+        {
+          "slot": 1,
           "rarity": 4,
-          "name": "Groklok Bracer GE"
+          "name": "Impractical Jeweled Bracer of Power",
+          "lootId": 391
         },
         {
-          "lootId": 1367,
+          "slot": 1,
+          "rarity": 4,
+          "name": "Groklok Bracer GE",
+          "lootId": 1366,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Magical Steel Pauldron of the Linebacker"
+          "name": "Magical Steel Pauldron of the Linebacker",
+          "lootId": 1093
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Magical Steel Pauldron of the Linebacker",
+          "lootId": 1367,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Deflated Football",
+          "lootId": 392
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Brown Leather Handegg",
+          "lootId": 393
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Sturdy Stitched Football",
+          "lootId": 394
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Deadly Spiked Football of Bleeding",
+          "lootId": 395
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Solid Emerald Football of Painful Catches",
+          "lootId": 1094
         }
       ]
     },
@@ -1604,91 +1696,94 @@ window.jsonData =
       "heroId": 62,
       "loot": [
         {
-          "lootId": 795,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Hat"
+          "name": "Ratty Hat",
+          "lootId": 795
         },
         {
-          "lootId": 796,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Mothballed Hat"
+          "name": "Mothballed Hat",
+          "lootId": 796
         },
         {
-          "lootId": 797,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Rosey Hat"
+          "name": "Rosey Hat",
+          "lootId": 797
         },
         {
-          "lootId": 798,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Overly Rosed Rosey Rose Hat of Roses"
+          "name": "Overly Rosed Rosey Rose Hat of Roses",
+          "lootId": 798
         },
         {
-          "lootId": 799,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Flower-Shaped Hat of the Limp Pink Flower",
+          "lootId": 1201
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Invisible Box"
+          "name": "Invisible Box",
+          "lootId": 799
         },
         {
-          "lootId": 800,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Pretend Plexiglass Box"
+          "name": "Pretend Plexiglass Box",
+          "lootId": 800
         },
         {
-          "lootId": 801,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Knotted Made-Up Rope"
+          "name": "Knotted Made-Up Rope",
+          "lootId": 801
         },
         {
-          "lootId": 802,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Extremely Heavy Imaginary Anvil of Imaginary Toe-Stubs"
+          "name": "Extremely Heavy Imaginary Anvil of Imaginary Toe-Stubs",
+          "lootId": 802
         },
         {
-          "lootId": 803,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Invisible Piano of Haunting Tunes",
+          "lootId": 1202
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Dried Up Makeup"
+          "name": "Dried Up Makeup",
+          "lootId": 803
         },
         {
-          "lootId": 804,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Basic Makeup"
+          "name": "Basic Makeup",
+          "lootId": 804
         },
         {
-          "lootId": 805,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Powdery Makeup"
+          "name": "Powdery Makeup",
+          "lootId": 805
         },
         {
-          "lootId": 806,
+          "slot": 2,
           "rarity": 4,
+          "name": "Extensive and Expensive Makeup Kit of Amazingness",
+          "lootId": 806
+        },
+        {
           "slot": 2,
-          "name": "Extensive and Expensive Makeup Kit of Amazingness"
-        },
-        {
-          "lootId": 1201,
           "rarity": 5,
-          "name": "Flower-Shaped Hat of the Limp Pink Flower"
-        },
-        {
-          "lootId": 1202,
-          "rarity": 5,
-          "name": "Invisible Piano of Haunting Tunes"
-        },
-        {
-          "lootId": 1203,
-          "rarity": 5,
-          "name": "Mauve Makeup of a Million Mauling Mines"
+          "name": "Mauve Makeup of a Million Mauling Mines",
+          "lootId": 1203
         }
       ]
     },
@@ -1720,121 +1815,136 @@ window.jsonData =
       "heroId": 5,
       "loot": [
         {
-          "lootId": 29,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Backpack"
+          "name": "Ratty Backpack",
+          "lootId": 29
         },
         {
-          "lootId": 30,
+          "slot": 0,
           "rarity": 2,
+          "name": "Adventurer's Backpack",
+          "lootId": 30
+        },
+        {
           "slot": 0,
-          "name": "Adventurer's Backpack"
+          "rarity": 3,
+          "name": "Hero's Backpack",
+          "lootId": 31
         },
         {
-          "lootId": 31,
-          "rarity": 3,
           "slot": 0,
-          "name": "Hero's Backpack"
+          "rarity": 4,
+          "name": "Backpack of Infinite Holding",
+          "lootId": 32
         },
         {
-          "lootId": 32,
-          "rarity": 4,
           "slot": 0,
-          "name": "Backpack of Infinite Holding"
-        },
-        {
-          "lootId": 33,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Tattered Straw Boater"
-        },
-        {
-          "lootId": 34,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Shrunken Panama Hat"
-        },
-        {
-          "lootId": 35,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Fancy Felt Fedora"
-        },
-        {
-          "lootId": 36,
           "rarity": 4,
-          "slot": 1,
-          "name": "Basilisk-Hide Stetson"
-        },
-        {
-          "lootId": 37,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Rusted Iron Ring"
-        },
-        {
-          "lootId": 38,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Shiny Tin Ring"
-        },
-        {
-          "lootId": 39,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Enchanted Silver Ring"
-        },
-        {
-          "lootId": 40,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Pain-Relieving Platinum Ring"
-        },
-        {
+          "name": "Unicorn Backpack of Murderation",
           "lootId": 565,
-          "rarity": 4,
-          "name": "Unicorn Backpack of Murderation"
+          "golden": true
         },
         {
-          "lootId": 594,
-          "rarity": 4,
-          "name": "Bling Bling Wing Ring"
-        },
-        {
-          "lootId": 955,
-          "rarity": 4,
-          "name": "Totally Normal Average Hat of Normalness"
-        },
-        {
-          "lootId": 970,
+          "slot": 0,
           "rarity": 5,
-          "name": "Empowered Backpack of the Long Lonely March"
+          "name": "Empowered Backpack of the Long Lonely March",
+          "lootId": 970
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Empowered Backpack of the Long Lonely March",
           "lootId": 971,
-          "rarity": 5,
-          "name": "Empowered Backpack of the Long Lonely March"
+          "golden": true
         },
         {
-          "lootId": 972,
-          "rarity": 5,
-          "name": "Decked Out Cowboy Hat of the Lone Wanderer"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Tattered Straw Boater",
+          "lootId": 33
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Shrunken Panama Hat",
+          "lootId": 34
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Fancy Felt Fedora",
+          "lootId": 35
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Basilisk-Hide Stetson",
+          "lootId": 36
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Totally Normal Average Hat of Normalness",
+          "lootId": 955,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Decked Out Cowboy Hat of the Lone Wanderer",
+          "lootId": 972
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Decked Out Cowboy Hat of the Lone Wanderer",
           "lootId": 973,
-          "rarity": 5,
-          "name": "Decked Out Cowboy Hat of the Lone Wanderer"
+          "golden": true
         },
         {
-          "lootId": 974,
-          "rarity": 5,
-          "name": "Jade Imbued Promise Ring of Lost Love"
+          "slot": 2,
+          "rarity": 1,
+          "name": "Rusted Iron Ring",
+          "lootId": 37
         },
         {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Shiny Tin Ring",
+          "lootId": 38
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Enchanted Silver Ring",
+          "lootId": 39
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Pain-Relieving Platinum Ring",
+          "lootId": 40
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Bling Bling Wing Ring",
+          "lootId": 594,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Jade Imbued Promise Ring of Lost Love",
+          "lootId": 974
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Jade Imbued Promise Ring of Lost Love",
           "lootId": 975,
-          "rarity": 5,
-          "name": "Jade Imbued Promise Ring of Lost Love"
+          "golden": true
         }
       ]
     },
@@ -1854,101 +1964,108 @@ window.jsonData =
       "heroId": 36,
       "loot": [
         {
-          "lootId": 449,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Old Cap"
+          "name": "Old Cap",
+          "lootId": 449
         },
         {
-          "lootId": 450,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Fairly Weathered Cap"
+          "name": "Fairly Weathered Cap",
+          "lootId": 450
         },
         {
-          "lootId": 451,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Brand New Brand Name Cap"
+          "name": "Brand New Brand Name Cap",
+          "lootId": 451
         },
         {
-          "lootId": 452,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Tagged Magical Cap of the Bro"
+          "name": "Tagged Magical Cap of the Bro",
+          "lootId": 452
         },
         {
-          "lootId": 453,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Beer Keg Cap of Reckless Overindulgence",
+          "lootId": 1110
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Bad White Shirt"
+          "name": "Bad White Shirt",
+          "lootId": 453
         },
         {
-          "lootId": 454,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Sweat-Stained Undershirt"
+          "name": "Sweat-Stained Undershirt",
+          "lootId": 454
         },
         {
-          "lootId": 455,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Ironed Blue T-Shirt"
+          "name": "Ironed Blue T-Shirt",
+          "lootId": 455
         },
         {
-          "lootId": 456,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Popped Green Shirt of the Bro"
+          "name": "Popped Green Shirt of the Bro",
+          "lootId": 456
         },
         {
-          "lootId": 457,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Popped Collar Shirt of Multiple Shirts",
+          "lootId": 1111
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Rusty Keg"
+          "name": "Rusty Keg",
+          "lootId": 457
         },
         {
-          "lootId": 458,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Spoiled Old Keg"
+          "name": "Spoiled Old Keg",
+          "lootId": 458
         },
         {
-          "lootId": 459,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Solid Beer-Filled Keg"
+          "name": "Solid Beer-Filled Keg",
+          "lootId": 459
         },
         {
-          "lootId": 460,
+          "slot": 2,
           "rarity": 4,
+          "name": "Runed Keg of the Bro",
+          "lootId": 460
+        },
+        {
           "slot": 2,
-          "name": "Runed Keg of the Bro"
-        },
-        {
-          "lootId": 1110,
-          "rarity": 5,
-          "name": "Beer Keg Cap of Reckless Overindulgence"
-        },
-        {
-          "lootId": 1111,
-          "rarity": 5,
-          "name": "Popped Collar Shirt of Multiple Shirts"
-        },
-        {
-          "lootId": 1112,
-          "rarity": 5,
-          "name": "Stolen Gold Inlaid Dwarven Inn Keg of Ages"
-        },
-        {
+          "rarity": 4,
+          "name": "Decadent Naturally Green Beer Keg of Regrets",
           "lootId": 1364,
-          "rarity": 4,
-          "name": "Decadent Naturally Green Beer Keg of Regrets"
+          "golden": true
         },
         {
-          "lootId": 1365,
+          "slot": 2,
           "rarity": 5,
-          "name": "Stolen Gold Inlaid Dwarven Inn Keg of Ages"
+          "name": "Stolen Gold Inlaid Dwarven Inn Keg of Ages",
+          "lootId": 1112
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Stolen Gold Inlaid Dwarven Inn Keg of Ages",
+          "lootId": 1365,
+          "golden": true
         }
       ]
     },
@@ -1987,111 +2104,122 @@ window.jsonData =
       "heroId": 46,
       "loot": [
         {
-          "lootId": 579,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Garden Snake Crown"
+          "name": "Garden Snake Crown",
+          "lootId": 579
         },
         {
-          "lootId": 580,
+          "slot": 0,
           "rarity": 2,
+          "name": "Green Snake Crown",
+          "lootId": 580
+        },
+        {
           "slot": 0,
-          "name": "Green Snake Crown"
+          "rarity": 3,
+          "name": "Crafted Snake Crown",
+          "lootId": 581
         },
         {
-          "lootId": 581,
-          "rarity": 3,
           "slot": 0,
-          "name": "Crafted Snake Crown"
+          "rarity": 4,
+          "name": "Slimey Golden Snake Crown of Hissing",
+          "lootId": 582
         },
         {
-          "lootId": 582,
-          "rarity": 4,
           "slot": 0,
-          "name": "Slimey Golden Snake Crown of Hissing"
-        },
-        {
-          "lootId": 583,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Rotting Snake Idol"
-        },
-        {
-          "lootId": 584,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Fine Wooden Idol"
-        },
-        {
-          "lootId": 585,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Magical Birch Idol"
-        },
-        {
-          "lootId": 586,
           "rarity": 4,
-          "slot": 1,
-          "name": "Glowing Stone Snake Idol of Secrets"
-        },
-        {
-          "lootId": 587,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Common Snake Sceptre"
-        },
-        {
-          "lootId": 588,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Smooth Snake Sceptre"
-        },
-        {
-          "lootId": 589,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Poisoned Snake Sceptre"
-        },
-        {
-          "lootId": 590,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Gilded Stone Sceptre of Slithering"
-        },
-        {
-          "lootId": 591,
-          "rarity": 4,
-          "name": "Spellbinding Scepter of Spiraling Serpents"
-        },
-        {
-          "lootId": 1146,
-          "rarity": 5,
-          "name": "Twisted Crown of Conflicting Snake Morals"
-        },
-        {
-          "lootId": 1147,
-          "rarity": 5,
-          "name": "Scaley Snake Idol of Eternal Suffocation"
-        },
-        {
-          "lootId": 1148,
-          "rarity": 5,
-          "name": "Golden Sceptre of Slithering Gems and Jewels"
-        },
-        {
-          "lootId": 1149,
-          "rarity": 5,
-          "name": "Golden Sceptre of Slithering Gems and Jewels"
-        },
-        {
+          "name": "Golden Slithering Serpent Crown of Emeralds",
           "lootId": 1283,
-          "rarity": 4,
-          "name": "Golden Slithering Serpent Crown of Emeralds"
+          "golden": true
         },
         {
-          "lootId": 1287,
+          "slot": 0,
           "rarity": 5,
-          "name": "Twisted Crown of Conflicting Snake Morals"
+          "name": "Twisted Crown of Conflicting Snake Morals",
+          "lootId": 1146
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Twisted Crown of Conflicting Snake Morals",
+          "lootId": 1287,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Rotting Snake Idol",
+          "lootId": 583
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Fine Wooden Idol",
+          "lootId": 584
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Magical Birch Idol",
+          "lootId": 585
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Glowing Stone Snake Idol of Secrets",
+          "lootId": 586
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Scaley Snake Idol of Eternal Suffocation",
+          "lootId": 1147
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Common Snake Sceptre",
+          "lootId": 587
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Smooth Snake Sceptre",
+          "lootId": 588
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Poisoned Snake Sceptre",
+          "lootId": 589
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Gilded Stone Sceptre of Slithering",
+          "lootId": 590
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Spellbinding Scepter of Spiraling Serpents",
+          "lootId": 591,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Golden Sceptre of Slithering Gems and Jewels",
+          "lootId": 1148
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Golden Sceptre of Slithering Gems and Jewels",
+          "lootId": 1149,
+          "golden": true
         }
       ]
     },
@@ -2128,91 +2256,94 @@ window.jsonData =
       "heroId": 64,
       "loot": [
         {
-          "lootId": 821,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Dismal Gravestone"
+          "name": "Dismal Gravestone",
+          "lootId": 821
         },
         {
-          "lootId": 822,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Chipped Gravestone"
+          "name": "Chipped Gravestone",
+          "lootId": 822
         },
         {
-          "lootId": 823,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Polished Gravestone"
+          "name": "Polished Gravestone",
+          "lootId": 823
         },
         {
-          "lootId": 824,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Sentient Cursed Gravestone of Undead Fury"
+          "name": "Sentient Cursed Gravestone of Undead Fury",
+          "lootId": 824
         },
         {
-          "lootId": 825,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Demonic Gravestone of Undead Deadness",
+          "lootId": 1207
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Ratty Blanket"
+          "name": "Ratty Blanket",
+          "lootId": 825
         },
         {
-          "lootId": 826,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Torn Blanket"
+          "name": "Torn Blanket",
+          "lootId": 826
         },
         {
-          "lootId": 827,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Blue Security Blanket"
+          "name": "Blue Security Blanket",
+          "lootId": 827
         },
         {
-          "lootId": 828,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Magical Star-Woven Security Blanket of Friendship"
+          "name": "Magical Star-Woven Security Blanket of Friendship",
+          "lootId": 828
         },
         {
-          "lootId": 829,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Hand-crafted Safety Blanky of Unfounded Fright",
+          "lootId": 1208
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Plastic Torch"
+          "name": "Plastic Torch",
+          "lootId": 829
         },
         {
-          "lootId": 830,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Flickering Torch"
+          "name": "Flickering Torch",
+          "lootId": 830
         },
         {
-          "lootId": 831,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "LED Flashlight"
+          "name": "LED Flashlight",
+          "lootId": 831
         },
         {
-          "lootId": 832,
+          "slot": 2,
           "rarity": 4,
+          "name": "Nuclear Powered 32,000 Lux Headlamp of Daylight",
+          "lootId": 832
+        },
+        {
           "slot": 2,
-          "name": "Nuclear Powered 32,000 Lux Headlamp of Daylight"
-        },
-        {
-          "lootId": 1207,
           "rarity": 5,
-          "name": "Demonic Gravestone of Undead Deadness"
-        },
-        {
-          "lootId": 1208,
-          "rarity": 5,
-          "name": "Hand-crafted Safety Blanky of Unfounded Fright"
-        },
-        {
-          "lootId": 1209,
-          "rarity": 5,
-          "name": "Mighty Morphin' Flashlight of Demonic True-sight"
+          "name": "Mighty Morphin' Flashlight of Demonic True-sight",
+          "lootId": 1209
         }
       ]
     },
@@ -2229,111 +2360,122 @@ window.jsonData =
       "heroId": 6,
       "loot": [
         {
-          "lootId": 77,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Polyester Hat"
+          "name": "Polyester Hat",
+          "lootId": 77
         },
         {
-          "lootId": 78,
+          "slot": 0,
           "rarity": 2,
+          "name": "Worn Wool Topper",
+          "lootId": 78
+        },
+        {
           "slot": 0,
-          "name": "Worn Wool Topper"
+          "rarity": 3,
+          "name": "The Holmes Chapeau",
+          "lootId": 79
         },
         {
-          "lootId": 79,
-          "rarity": 3,
           "slot": 0,
-          "name": "The Holmes Chapeau"
+          "rarity": 4,
+          "name": "Enchanted Wooly Helmet of Perception",
+          "lootId": 80
         },
         {
-          "lootId": 80,
-          "rarity": 4,
           "slot": 0,
-          "name": "Enchanted Wooly Helmet of Perception"
-        },
-        {
-          "lootId": 81,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Cracked Magnifying Glass"
-        },
-        {
-          "lootId": 82,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Clear Magnifying Glass"
-        },
-        {
-          "lootId": 83,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Titanium and Quartz Glass of Clarity"
-        },
-        {
-          "lootId": 84,
           "rarity": 4,
-          "slot": 1,
-          "name": "Enhanced Sapphire and Crystal Glass"
-        },
-        {
-          "lootId": 85,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Old Grey Wool Cape"
-        },
-        {
-          "lootId": 86,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Elegant Gabardine Cape"
-        },
-        {
-          "lootId": 87,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Supple Leather Mantle"
-        },
-        {
-          "lootId": 88,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Enchanted Leather Invisibility Cloak"
-        },
-        {
-          "lootId": 409,
-          "rarity": 4,
-          "name": "Enchanted Leather Invisibility Cloak"
-        },
-        {
+          "name": "Superior Disguise of Investigation",
           "lootId": 595,
-          "rarity": 4,
-          "name": "Superior Disguise of Investigation"
+          "golden": true
         },
         {
-          "lootId": 976,
+          "slot": 0,
           "rarity": 5,
-          "name": "Confusing Disguise of the Samurai Lumberjack Detective"
+          "name": "Confusing Disguise of the Samurai Lumberjack Detective",
+          "lootId": 976
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Confusing Disguise of the Samurai Lumberjack Detective",
           "lootId": 977,
-          "rarity": 5,
-          "name": "Confusing Disguise of the Samurai Lumberjack Detective"
+          "golden": true
         },
         {
-          "lootId": 978,
-          "rarity": 5,
-          "name": "All-Seeing Magnifying Glass of Alternate Dimension Scrying"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Cracked Magnifying Glass",
+          "lootId": 81
         },
         {
-          "lootId": 979,
-          "rarity": 5,
-          "name": "Anti-Invisibility Cape of the Subtle Investigator"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Clear Magnifying Glass",
+          "lootId": 82
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Titanium and Quartz Glass of Clarity",
+          "lootId": 83
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Enhanced Sapphire and Crystal Glass",
+          "lootId": 84
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "All-Seeing Magnifying Glass of Alternate Dimension Scrying",
+          "lootId": 978
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Old Grey Wool Cape",
+          "lootId": 85
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Elegant Gabardine Cape",
+          "lootId": 86
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Supple Leather Mantle",
+          "lootId": 87
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Enchanted Leather Invisibility Cloak",
+          "lootId": 88
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Enchanted Leather Invisibility Cloak",
+          "lootId": 409,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Anti-Invisibility Cape of the Subtle Investigator",
+          "lootId": 979
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Anti-Invisibility Cape of the Subtle Investigator",
           "lootId": 980,
-          "rarity": 5,
-          "name": "Anti-Invisibility Cape of the Subtle Investigator"
+          "golden": true
         }
       ]
     },
@@ -2353,101 +2495,108 @@ window.jsonData =
       "heroId": 21,
       "loot": [
         {
-          "lootId": 258,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Flappy Bird"
+          "name": "Flappy Bird",
+          "lootId": 258
         },
         {
-          "lootId": 259,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Annoyed Bird"
+          "name": "Annoyed Bird",
+          "lootId": 259
         },
         {
-          "lootId": 260,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Three-Eyed Crow"
+          "name": "Three-Eyed Crow",
+          "lootId": 260
         },
         {
-          "lootId": 261,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Spongy Toy"
+          "name": "Spongy Toy",
+          "lootId": 261
         },
         {
-          "lootId": 262,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Sparkling Squeaking Unicorn Toy of Amusement",
+          "lootId": 1052
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Last Year's Bowler Hat"
+          "name": "Last Year's Bowler Hat",
+          "lootId": 262
         },
         {
-          "lootId": 263,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "This Year's Bowler Hat"
+          "name": "This Year's Bowler Hat",
+          "lootId": 263
         },
         {
-          "lootId": 264,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Slightly Dapper Bowler Hat"
+          "name": "Slightly Dapper Bowler Hat",
+          "lootId": 264
         },
         {
-          "lootId": 265,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Over-the-top Bowler Hat"
+          "name": "Over-the-top Bowler Hat",
+          "lootId": 265
         },
         {
-          "lootId": 266,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Rocket-Powered Bowler Hat of Explosions",
+          "lootId": 1053
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Twiggy Cane"
+          "name": "Twiggy Cane",
+          "lootId": 266
         },
         {
-          "lootId": 267,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Perfectly Fine Cane"
+          "name": "Perfectly Fine Cane",
+          "lootId": 267
         },
         {
-          "lootId": 268,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Investigator's Cane"
+          "name": "Investigator's Cane",
+          "lootId": 268
         },
         {
-          "lootId": 269,
+          "slot": 2,
           "rarity": 4,
+          "name": "Ancient Silver Cane of Walking",
+          "lootId": 269
+        },
+        {
           "slot": 2,
-          "name": "Ancient Silver Cane of Walking"
-        },
-        {
-          "lootId": 1052,
-          "rarity": 5,
-          "name": "Sparkling Squeaking Unicorn Toy of Amusement"
-        },
-        {
-          "lootId": 1053,
-          "rarity": 5,
-          "name": "Rocket-Powered Bowler Hat of Explosions"
-        },
-        {
-          "lootId": 1054,
-          "rarity": 5,
-          "name": "Suave Serpect Cane of Sauntering Sapiens"
-        },
-        {
+          "rarity": 4,
+          "name": "Hidden Blade Cane of Secret Stabby Stabby",
           "lootId": 1285,
-          "rarity": 4,
-          "name": "Hidden Blade Cane of Secret Stabby Stabby"
+          "golden": true
         },
         {
-          "lootId": 1289,
+          "slot": 2,
           "rarity": 5,
-          "name": "Suave Serpent Cane of Sauntering Sapiens"
+          "name": "Suave Serpect Cane of Sauntering Sapiens",
+          "lootId": 1054
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Suave Serpent Cane of Sauntering Sapiens",
+          "lootId": 1289,
+          "golden": true
         }
       ]
     },
@@ -2469,111 +2618,122 @@ window.jsonData =
       "heroId": 35,
       "loot": [
         {
-          "lootId": 437,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Terrible Hat"
+          "name": "Terrible Hat",
+          "lootId": 437
         },
         {
-          "lootId": 438,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Ratty Hat"
+          "name": "Ratty Hat",
+          "lootId": 438
         },
         {
-          "lootId": 439,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Much Better Hat"
+          "name": "Much Better Hat",
+          "lootId": 439
         },
         {
-          "lootId": 440,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Incredibly Magic Greenest Tophat"
+          "name": "Incredibly Magic Greenest Tophat",
+          "lootId": 440
         },
         {
-          "lootId": 441,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Three-Leafed Crown of the Non-Royal Leprechaun",
+          "lootId": 1106
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Crappy Cane"
+          "name": "Crappy Cane",
+          "lootId": 441
         },
         {
-          "lootId": 442,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Knotty Cane"
+          "name": "Knotty Cane",
+          "lootId": 442
         },
         {
-          "lootId": 443,
+          "slot": 1,
           "rarity": 3,
+          "name": "Fairly Good Cane",
+          "lootId": 443
+        },
+        {
           "slot": 1,
-          "name": "Fairly Good Cane"
+          "rarity": 4,
+          "name": "Magical Fancy Cane of Magic",
+          "lootId": 444
         },
         {
-          "lootId": 444,
-          "rarity": 4,
           "slot": 1,
-          "name": "Magical Fancy Cane of Magic"
-        },
-        {
-          "lootId": 445,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Rusty Pot Of Gold"
-        },
-        {
-          "lootId": 446,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Mostly Empty Pot Of Gold"
-        },
-        {
-          "lootId": 447,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Full Pot Of Gold"
-        },
-        {
-          "lootId": 448,
           "rarity": 4,
-          "slot": 2,
-          "name": "Golden Pot Of So Much Gold"
-        },
-        {
-          "lootId": 461,
-          "rarity": 4,
-          "name": "Clover Encrusted Pot Of So Much Gold"
-        },
-        {
-          "lootId": 1106,
-          "rarity": 5,
-          "name": "Three-Leafed Crown of the Non-Royal Leprechaun"
-        },
-        {
-          "lootId": 1107,
-          "rarity": 5,
-          "name": "Soft Sprig of the Virgin Tree"
-        },
-        {
-          "lootId": 1108,
-          "rarity": 5,
-          "name": "Locked Four-Leaf Chest of Rainbows"
-        },
-        {
-          "lootId": 1109,
-          "rarity": 5,
-          "name": "Locked Four-Leaf Chest of Rainbows"
-        },
-        {
+          "name": "Hypnotic Runed Cane of the Ancient Leprechaun",
           "lootId": 1336,
-          "rarity": 4,
-          "name": "Hypnotic Runed Cane of the Ancient Leprechaun"
+          "golden": true
         },
         {
-          "lootId": 1337,
+          "slot": 1,
           "rarity": 5,
-          "name": "Soft Sprig of the Virgin Tree"
+          "name": "Soft Sprig of the Virgin Tree",
+          "lootId": 1107
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Soft Sprig of the Virgin Tree",
+          "lootId": 1337,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Rusty Pot Of Gold",
+          "lootId": 445
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Mostly Empty Pot Of Gold",
+          "lootId": 446
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Full Pot Of Gold",
+          "lootId": 447
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Golden Pot Of So Much Gold",
+          "lootId": 448
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Clover Encrusted Pot Of So Much Gold",
+          "lootId": 461,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Locked Four-Leaf Chest of Rainbows",
+          "lootId": 1108
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Locked Four-Leaf Chest of Rainbows",
+          "lootId": 1109,
+          "golden": true
         }
       ]
     },
@@ -2595,91 +2755,94 @@ window.jsonData =
       "heroId": 71,
       "loot": [
         {
-          "lootId": 924,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Empty Bottle"
+          "name": "Empty Bottle",
+          "lootId": 924
         },
         {
-          "lootId": 925,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Half-Empty Bottle"
+          "name": "Half-Empty Bottle",
+          "lootId": 925
         },
         {
-          "lootId": 926,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Opaque Bottle"
+          "name": "Opaque Bottle",
+          "lootId": 926
         },
         {
-          "lootId": 927,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Shiny Liquor Bottle of Flashy Bar Tending"
+          "name": "Shiny Liquor Bottle of Flashy Bar Tending",
+          "lootId": 927
         },
         {
-          "lootId": 928,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Gold and Ivory Bottle of Pristine Godly Liquid",
+          "lootId": 1228
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Busted Shot Glass"
+          "name": "Busted Shot Glass",
+          "lootId": 928
         },
         {
-          "lootId": 929,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Broken Shot Glass"
+          "name": "Broken Shot Glass",
+          "lootId": 929
         },
         {
-          "lootId": 930,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Sturdy Shot Glass"
+          "name": "Sturdy Shot Glass",
+          "lootId": 930
         },
         {
-          "lootId": 931,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Shot Shot Glass of Shoddy Shots"
+          "name": "Shot Shot Glass of Shoddy Shots",
+          "lootId": 931
         },
         {
-          "lootId": 932,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Molded Skull Shotglass of the Badass Patron",
+          "lootId": 1229
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Pilling Bar Cloth"
+          "name": "Pilling Bar Cloth",
+          "lootId": 932
         },
         {
-          "lootId": 933,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Ragged Bar Cloth"
+          "name": "Ragged Bar Cloth",
+          "lootId": 933
         },
         {
-          "lootId": 934,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "New Bar Cloth"
+          "name": "New Bar Cloth",
+          "lootId": 934
         },
         {
-          "lootId": 935,
+          "slot": 2,
           "rarity": 4,
+          "name": "Super Absorbsant Striped Bar Cloth of A Thousand Spills",
+          "lootId": 935
+        },
+        {
           "slot": 2,
-          "name": "Super Absorbsant Striped Bar Cloth of A Thousand Spills"
-        },
-        {
-          "lootId": 1228,
           "rarity": 5,
-          "name": "Gold and Ivory Bottle of Pristine Godly Liquid"
-        },
-        {
-          "lootId": 1229,
-          "rarity": 5,
-          "name": "Molded Skull Shotglass of the Badass Patron"
-        },
-        {
-          "lootId": 1230,
-          "rarity": 5,
-          "name": "Golden Cloth of the Perfectly Clean Golden Counter"
+          "name": "Golden Cloth of the Perfectly Clean Golden Counter",
+          "lootId": 1230
         }
       ]
     },
@@ -2697,111 +2860,122 @@ window.jsonData =
       "heroId": 7,
       "loot": [
         {
-          "lootId": 65,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Tinder-Spark Gloves"
+          "name": "Tinder-Spark Gloves",
+          "lootId": 65
         },
         {
-          "lootId": 66,
+          "slot": 0,
           "rarity": 2,
+          "name": "Four-Burner Gloves",
+          "lootId": 66
+        },
+        {
           "slot": 0,
-          "name": "Four-Burner Gloves"
+          "rarity": 3,
+          "name": "Blazing Fury Gauntlets",
+          "lootId": 67
         },
         {
-          "lootId": 67,
-          "rarity": 3,
           "slot": 0,
-          "name": "Blazing Fury Gauntlets"
+          "rarity": 4,
+          "name": "Phoenix Feather Flame Gloves",
+          "lootId": 68
         },
         {
-          "lootId": 68,
-          "rarity": 4,
           "slot": 0,
-          "name": "Phoenix Feather Flame Gloves"
-        },
-        {
-          "lootId": 69,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Flame Cape"
-        },
-        {
-          "lootId": 70,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Blaze Cape"
-        },
-        {
-          "lootId": 71,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Inferno Cape"
-        },
-        {
-          "lootId": 72,
           "rarity": 4,
-          "slot": 1,
-          "name": "Wildfire Cape"
-        },
-        {
-          "lootId": 73,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Dull Golden Necklace"
-        },
-        {
-          "lootId": 74,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Shiny Golden Necklace"
-        },
-        {
-          "lootId": 75,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Blood Stone Golden Necklace"
-        },
-        {
-          "lootId": 76,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Necklace of Captured Souls"
-        },
-        {
+          "name": "Molten Gloves of Annihilation",
           "lootId": 487,
-          "rarity": 4,
-          "name": "Molten Gloves of Annihilation"
+          "golden": true
         },
         {
-          "lootId": 596,
-          "rarity": 4,
-          "name": "Flaming Cape of Burning Backs"
-        },
-        {
-          "lootId": 981,
+          "slot": 0,
           "rarity": 5,
-          "name": "Flaming Four-Fingered Gloves of the Phoenix"
+          "name": "Flaming Four-Fingered Gloves of the Phoenix",
+          "lootId": 981
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Flaming Four-Fingered Gloves of the Phoenix",
           "lootId": 982,
-          "rarity": 5,
-          "name": "Flaming Four-Fingered Gloves of the Phoenix"
+          "golden": true
         },
         {
-          "lootId": 983,
-          "rarity": 5,
-          "name": "Pearl-Tied Winged Cape of Royal Endeavors"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Flame Cape",
+          "lootId": 69
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Blaze Cape",
+          "lootId": 70
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Inferno Cape",
+          "lootId": 71
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Wildfire Cape",
+          "lootId": 72
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Flaming Cape of Burning Backs",
+          "lootId": 596,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Pearl-Tied Winged Cape of Royal Endeavors",
+          "lootId": 983
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Pearl-Tied Winged Cape of Royal Endeavors",
           "lootId": 984,
-          "rarity": 5,
-          "name": "Pearl-Tied Winged Cape of Royal Endeavors"
+          "golden": true
         },
         {
-          "lootId": 985,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Dull Golden Necklace",
+          "lootId": 73
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Shiny Golden Necklace",
+          "lootId": 74
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Blood Stone Golden Necklace",
+          "lootId": 75
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Necklace of Captured Souls",
+          "lootId": 76
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Flame-Imbued Fire Familiar Necklace of Burning"
+          "name": "Flame-Imbued Fire Familiar Necklace of Burning",
+          "lootId": 985
         }
       ]
     },
@@ -2821,101 +2995,108 @@ window.jsonData =
       "heroId": 25,
       "loot": [
         {
-          "lootId": 308,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Leaky Second-Hand Battery"
+          "name": "Leaky Second-Hand Battery",
+          "lootId": 308
         },
         {
-          "lootId": 309,
+          "slot": 0,
           "rarity": 2,
+          "name": "Simple Alkaline Battery",
+          "lootId": 309
+        },
+        {
           "slot": 0,
-          "name": "Simple Alkaline Battery"
+          "rarity": 3,
+          "name": "Rechargable AA Lithium Battery",
+          "lootId": 310
         },
         {
-          "lootId": 310,
-          "rarity": 3,
           "slot": 0,
-          "name": "Rechargable AA Lithium Battery"
+          "rarity": 4,
+          "name": "Bottomless Ultracapacitor Battery",
+          "lootId": 311
         },
         {
-          "lootId": 311,
-          "rarity": 4,
           "slot": 0,
-          "name": "Bottomless Ultracapacitor Battery"
-        },
-        {
-          "lootId": 312,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Bargain-bin Mystery Chip"
-        },
-        {
-          "lootId": 313,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Dated Multi-use Computer Chip"
-        },
-        {
-          "lootId": 314,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Next Gen TurkeyTech Motherboard"
-        },
-        {
-          "lootId": 315,
           "rarity": 4,
-          "slot": 1,
-          "name": "Quantum Computer Chip"
-        },
-        {
-          "lootId": 316,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Painted Ceramic Plate"
-        },
-        {
-          "lootId": 317,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Iron Plate"
-        },
-        {
-          "lootId": 318,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Fancy Titanium Composite Plate"
-        },
-        {
-          "lootId": 319,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Diamond-Infused Future-Alloy Plate"
-        },
-        {
+          "name": "Bottomless Ultracapacitor Battery",
           "lootId": 332,
-          "rarity": 4,
-          "name": "Bottomless Ultracapacitor Battery"
+          "golden": true
         },
         {
-          "lootId": 1068,
+          "slot": 0,
           "rarity": 5,
-          "name": "Dual-Chambered Battery of Infinite Power"
+          "name": "Dual-Chambered Battery of Infinite Power",
+          "lootId": 1068
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Dual-Chambered Battery of Infinite Power",
           "lootId": 1069,
-          "rarity": 5,
-          "name": "Dual-Chambered Battery of Infinite Power"
+          "golden": true
         },
         {
-          "lootId": 1070,
-          "rarity": 5,
-          "name": "Super Duper Computer Chip of Ones and Zeroes"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Bargain-bin Mystery Chip",
+          "lootId": 312
         },
         {
-          "lootId": 1071,
+          "slot": 1,
+          "rarity": 2,
+          "name": "Dated Multi-use Computer Chip",
+          "lootId": 313
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Next Gen TurkeyTech Motherboard",
+          "lootId": 314
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Quantum Computer Chip",
+          "lootId": 315
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Forged Vibranium Plating of Denting"
+          "name": "Super Duper Computer Chip of Ones and Zeroes",
+          "lootId": 1070
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Painted Ceramic Plate",
+          "lootId": 316
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Iron Plate",
+          "lootId": 317
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Fancy Titanium Composite Plate",
+          "lootId": 318
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Diamond-Infused Future-Alloy Plate",
+          "lootId": 319
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Forged Vibranium Plating of Denting",
+          "lootId": 1071
         }
       ]
     },
@@ -2950,101 +3131,108 @@ window.jsonData =
       "heroId": 49,
       "loot": [
         {
-          "lootId": 623,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Dull Knife"
+          "name": "Dull Knife",
+          "lootId": 623
         },
         {
-          "lootId": 624,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Cracked Knife"
+          "name": "Cracked Knife",
+          "lootId": 624
         },
         {
-          "lootId": 625,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Sharpened Knife"
+          "name": "Sharpened Knife",
+          "lootId": 625
         },
         {
-          "lootId": 626,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Magically Enhanced Slicey-Slicey Knife of Slicing"
+          "name": "Magically Enhanced Slicey-Slicey Knife of Slicing",
+          "lootId": 626
         },
         {
-          "lootId": 627,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Survival Knife of the Fittest Ranger",
+          "lootId": 1157
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Oozing Bandaid"
+          "name": "Oozing Bandaid",
+          "lootId": 627
         },
         {
-          "lootId": 628,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Bloody Bandaid"
+          "name": "Bloody Bandaid",
+          "lootId": 628
         },
         {
-          "lootId": 629,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Clean Bandaid"
+          "name": "Clean Bandaid",
+          "lootId": 629
         },
         {
-          "lootId": 630,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Fully Equipped Ranger Medkit of Ranging"
+          "name": "Fully Equipped Ranger Medkit of Ranging",
+          "lootId": 630
         },
         {
-          "lootId": 631,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Well Stocked Emergency Kit of the Outdoorswoman",
+          "lootId": 1158
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Cheap Ranger Badge"
+          "name": "Cheap Ranger Badge",
+          "lootId": 631
         },
         {
-          "lootId": 632,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Fading Ranger Badge"
+          "name": "Fading Ranger Badge",
+          "lootId": 632
         },
         {
-          "lootId": 633,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Fine Ranger Badge"
+          "name": "Fine Ranger Badge",
+          "lootId": 633
         },
         {
-          "lootId": 634,
+          "slot": 2,
           "rarity": 4,
-          "slot": 2,
-          "name": "Employee of the Month Ranger Badge"
+          "name": "Employee of the Month Ranger Badge",
+          "lootId": 634
         },
         {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Pink Power Ranger Badge of Mighty Morphin' Time",
           "lootId": 635,
-          "rarity": 4,
-          "name": "Pink Power Ranger Badge of Mighty Morphin' Time"
+          "golden": true
         },
         {
-          "lootId": 1157,
+          "slot": 2,
           "rarity": 5,
-          "name": "Survival Knife of the Fittest Ranger"
+          "name": "Impervious Ranger Badge of Unlimited Oversight",
+          "lootId": 1159
         },
         {
-          "lootId": 1158,
+          "slot": 2,
           "rarity": 5,
-          "name": "Well Stocked Emergency Kit of the Outdoorswoman"
-        },
-        {
-          "lootId": 1159,
-          "rarity": 5,
-          "name": "Impervious Ranger Badge of Unlimited Oversight"
-        },
-        {
+          "name": "Impervious Ranger Badge of Unlimited Oversight",
           "lootId": 1160,
-          "rarity": 5,
-          "name": "Impervious Ranger Badge of Unlimited Oversight"
+          "golden": true
         }
       ]
     },
@@ -3079,111 +3267,122 @@ window.jsonData =
       "heroId": 8,
       "loot": [
         {
-          "lootId": 89,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Dual Bladed Knife"
+          "name": "Dual Bladed Knife",
+          "lootId": 89
         },
         {
-          "lootId": 90,
+          "slot": 0,
           "rarity": 2,
+          "name": "Really Sharp Dual Bladed Knife",
+          "lootId": 90
+        },
+        {
           "slot": 0,
-          "name": "Really Sharp Dual Bladed Knife"
+          "rarity": 3,
+          "name": "Moonstone Dual Bladed Knife",
+          "lootId": 91
         },
         {
-          "lootId": 91,
-          "rarity": 3,
           "slot": 0,
-          "name": "Moonstone Dual Bladed Knife"
+          "rarity": 4,
+          "name": "Enchanted Dual Bladed Knife",
+          "lootId": 92
         },
         {
-          "lootId": 92,
-          "rarity": 4,
           "slot": 0,
-          "name": "Enchanted Dual Bladed Knife"
-        },
-        {
-          "lootId": 93,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Worn Lizardskin Mitts"
-        },
-        {
-          "lootId": 94,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Stiff Crocodile Gauntlets"
-        },
-        {
-          "lootId": 95,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Elegant Basilisk Scale Handwraps"
-        },
-        {
-          "lootId": 96,
           "rarity": 4,
-          "slot": 1,
-          "name": "Enchanted Dragonscale Gauntlets"
-        },
-        {
-          "lootId": 97,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Ripped Lizardskin Poncho"
-        },
-        {
-          "lootId": 98,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Massive Crocodile Mantle"
-        },
-        {
-          "lootId": 99,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Cobraskin Cloak"
-        },
-        {
-          "lootId": 100,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Enchanted Dragonscale Cape of Secrecy"
-        },
-        {
+          "name": "Spring-Loaded Dual-Bladed Knife of Accidental De-Handation",
           "lootId": 680,
-          "rarity": 4,
-          "name": "Spring-Loaded Dual-Bladed Knife of Accidental De-Handation"
+          "golden": true
         },
         {
-          "lootId": 864,
-          "rarity": 4,
-          "name": "Gold Collared Wyrmskin Cape of Remembrance"
-        },
-        {
-          "lootId": 986,
+          "slot": 0,
           "rarity": 5,
-          "name": "Double-Ended Dual-Bladed 'Knife' of Ridiculousness"
+          "name": "Double-Ended Dual-Bladed 'Knife' of Ridiculousness",
+          "lootId": 986
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Double-Ended Dual-Bladed 'Knife' of Ridiculousness",
           "lootId": 987,
-          "rarity": 5,
-          "name": "Double-Ended Dual-Bladed 'Knife' of Ridiculousness"
+          "golden": true
         },
         {
-          "lootId": 988,
-          "rarity": 5,
-          "name": "Lizard-Scale Gauntlets of Curse Avoidance"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Worn Lizardskin Mitts",
+          "lootId": 93
         },
         {
-          "lootId": 989,
-          "rarity": 5,
-          "name": "Scaley Silken Cloak of the Big Sister"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Stiff Crocodile Gauntlets",
+          "lootId": 94
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Elegant Basilisk Scale Handwraps",
+          "lootId": 95
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Enchanted Dragonscale Gauntlets",
+          "lootId": 96
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Lizard-Scale Gauntlets of Curse Avoidance",
+          "lootId": 988
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Ripped Lizardskin Poncho",
+          "lootId": 97
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Massive Crocodile Mantle",
+          "lootId": 98
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Cobraskin Cloak",
+          "lootId": 99
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Enchanted Dragonscale Cape of Secrecy",
+          "lootId": 100
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Gold Collared Wyrmskin Cape of Remembrance",
+          "lootId": 864,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Scaley Silken Cloak of the Big Sister",
+          "lootId": 989
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Scaley Silken Cloak of the Big Sister",
           "lootId": 990,
-          "rarity": 5,
-          "name": "Scaley Silken Cloak of the Big Sister"
+          "golden": true
         }
       ]
     },
@@ -3205,101 +3404,108 @@ window.jsonData =
       "heroId": 24,
       "loot": [
         {
-          "lootId": 295,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ye Olde Breadslicer"
+          "name": "Ye Olde Breadslicer",
+          "lootId": 295
         },
         {
-          "lootId": 296,
+          "slot": 0,
           "rarity": 2,
+          "name": "Chef's Boning Knife",
+          "lootId": 296
+        },
+        {
           "slot": 0,
-          "name": "Chef's Boning Knife"
+          "rarity": 3,
+          "name": "HenkelMeister Slicer",
+          "lootId": 297
         },
         {
-          "lootId": 297,
-          "rarity": 3,
           "slot": 0,
-          "name": "HenkelMeister Slicer"
+          "rarity": 4,
+          "name": "Jackie Scissorhands",
+          "lootId": 298
         },
         {
-          "lootId": 298,
-          "rarity": 4,
           "slot": 0,
-          "name": "Jackie Scissorhands"
-        },
-        {
-          "lootId": 299,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Ratty Team Garb"
-        },
-        {
-          "lootId": 300,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Used Game Shirt"
-        },
-        {
-          "lootId": 301,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Hero's Lucky Jersey"
-        },
-        {
-          "lootId": 302,
           "rarity": 4,
-          "slot": 1,
-          "name": "Superstar's Sweatsuit"
-        },
-        {
-          "lootId": 303,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Waxy Burnt Stub"
-        },
-        {
-          "lootId": 304,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Kobold Candle"
-        },
-        {
-          "lootId": 305,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Gothic Candelabra"
-        },
-        {
-          "lootId": 306,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Galondrial's Light"
-        },
-        {
+          "name": "Dancing Blades of Haunted Pumpkin Carving",
           "lootId": 845,
-          "rarity": 4,
-          "name": "Dancing Blades of Haunted Pumpkin Carving"
+          "golden": true
         },
         {
-          "lootId": 1064,
+          "slot": 0,
           "rarity": 5,
-          "name": "Powered Meat Knife of Legendary Carving"
+          "name": "Powered Meat Knife of Legendary Carving",
+          "lootId": 1064
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Powered Meat Knife of Legendary Carving",
           "lootId": 1065,
-          "rarity": 5,
-          "name": "Powered Meat Knife of Legendary Carving"
+          "golden": true
         },
         {
-          "lootId": 1066,
-          "rarity": 5,
-          "name": "Unlucky Jersey of Spiked Pauldrons"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Ratty Team Garb",
+          "lootId": 299
         },
         {
-          "lootId": 1067,
+          "slot": 1,
+          "rarity": 2,
+          "name": "Used Game Shirt",
+          "lootId": 300
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Hero's Lucky Jersey",
+          "lootId": 301
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Superstar's Sweatsuit",
+          "lootId": 302
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Magical Hanging Chandelier of Dual Candles"
+          "name": "Unlucky Jersey of Spiked Pauldrons",
+          "lootId": 1066
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Waxy Burnt Stub",
+          "lootId": 303
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Kobold Candle",
+          "lootId": 304
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Gothic Candelabra",
+          "lootId": 305
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Galondrial's Light",
+          "lootId": 306
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Magical Hanging Chandelier of Dual Candles",
+          "lootId": 1067
         }
       ]
     },
@@ -3320,101 +3526,108 @@ window.jsonData =
       "heroId": 47,
       "loot": [
         {
-          "lootId": 598,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Cheap Cereal Cufflink"
+          "name": "Cheap Cereal Cufflink",
+          "lootId": 598
         },
         {
-          "lootId": 599,
+          "slot": 0,
           "rarity": 2,
+          "name": "Mister Meows Cufflink",
+          "lootId": 599
+        },
+        {
           "slot": 0,
-          "name": "Mister Meows Cufflink"
+          "rarity": 3,
+          "name": "Golden Seal Cufflink",
+          "lootId": 600
         },
         {
-          "lootId": 600,
-          "rarity": 3,
           "slot": 0,
-          "name": "Golden Seal Cufflink"
+          "rarity": 4,
+          "name": "Shiny Diamond Cufflink of Linking",
+          "lootId": 601
         },
         {
-          "lootId": 601,
-          "rarity": 4,
           "slot": 0,
-          "name": "Shiny Diamond Cufflink of Linking"
-        },
-        {
-          "lootId": 602,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Ratty Mildewy Suit"
-        },
-        {
-          "lootId": 603,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Used Car Salesman Suit"
-        },
-        {
-          "lootId": 604,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Expensive Sharp Suit"
-        },
-        {
-          "lootId": 605,
           "rarity": 4,
-          "slot": 1,
-          "name": "Freshly Dry Cleaned Suit of Illusions"
-        },
-        {
-          "lootId": 606,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Dull Razor"
-        },
-        {
-          "lootId": 607,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Knicked Razor"
-        },
-        {
-          "lootId": 608,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Dollar Club Razor"
-        },
-        {
-          "lootId": 609,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Lithium Battery Powered Razor of Closeness"
-        },
-        {
+          "name": "Ridiculously Garish Diamond Encrusted Cufflink of Doom",
           "lootId": 610,
-          "rarity": 4,
-          "name": "Ridiculously Garish Diamond Encrusted Cufflink of Doom"
+          "golden": true
         },
         {
-          "lootId": 1150,
+          "slot": 0,
           "rarity": 5,
-          "name": "Elegant Platinum Cufflinks of the Impartial Executive"
+          "name": "Elegant Platinum Cufflinks of the Impartial Executive",
+          "lootId": 1150
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Elegant Platinum Cufflinks of the Impartial Executive",
           "lootId": 1151,
-          "rarity": 5,
-          "name": "Elegant Platinum Cufflinks of the Impartial Executive"
+          "golden": true
         },
         {
-          "lootId": 1152,
-          "rarity": 5,
-          "name": "Finely Tailored Suit of Extreme Charisma"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Ratty Mildewy Suit",
+          "lootId": 602
         },
         {
-          "lootId": 1153,
+          "slot": 1,
+          "rarity": 2,
+          "name": "Used Car Salesman Suit",
+          "lootId": 603
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Expensive Sharp Suit",
+          "lootId": 604
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Freshly Dry Cleaned Suit of Illusions",
+          "lootId": 605
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Alternative Shaving Kit of Facts and Figures"
+          "name": "Finely Tailored Suit of Extreme Charisma",
+          "lootId": 1152
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Dull Razor",
+          "lootId": 606
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Knicked Razor",
+          "lootId": 607
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Dollar Club Razor",
+          "lootId": 608
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Lithium Battery Powered Razor of Closeness",
+          "lootId": 609
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Alternative Shaving Kit of Facts and Figures",
+          "lootId": 1153
         }
       ]
     },
@@ -3436,91 +3649,94 @@ window.jsonData =
       "heroId": 73,
       "loot": [
         {
-          "lootId": 1258,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Participation Trophy"
+          "name": "Participation Trophy",
+          "lootId": 1258
         },
         {
-          "lootId": 1259,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Third Place Trophy"
+          "name": "Third Place Trophy",
+          "lootId": 1259
         },
         {
-          "lootId": 1260,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Second Place Trophy"
+          "name": "Second Place Trophy",
+          "lootId": 1260
         },
         {
-          "lootId": 1261,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Perpetual First Place Trophy of Tremendous Winning"
+          "name": "Perpetual First Place Trophy of Tremendous Winning",
+          "lootId": 1261
         },
         {
-          "lootId": 1262,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Platinum-Plated Universal Trophy of Victory",
+          "lootId": 1299
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Fake Foam Helmet"
+          "name": "Fake Foam Helmet",
+          "lootId": 1262
         },
         {
-          "lootId": 1263,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Scuffed Helmet"
+          "name": "Scuffed Helmet",
+          "lootId": 1263
         },
         {
-          "lootId": 1264,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Gently Used Helmet"
+          "name": "Gently Used Helmet",
+          "lootId": 1264
         },
         {
-          "lootId": 1265,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Windtunnel Tested Carbon Fibre Helmet of Smashing"
+          "name": "Windtunnel Tested Carbon Fibre Helmet of Smashing",
+          "lootId": 1265
         },
         {
-          "lootId": 1266,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Dangerously Spiked Safety Helmet of Murder",
+          "lootId": 1300
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Sole-less Kicking Shoe"
+          "name": "Sole-less Kicking Shoe",
+          "lootId": 1266
         },
         {
-          "lootId": 1267,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Well Used Kicking Shoe"
+          "name": "Well Used Kicking Shoe",
+          "lootId": 1267
         },
         {
-          "lootId": 1268,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Brand New Kicking Shoe"
+          "name": "Brand New Kicking Shoe",
+          "lootId": 1268
         },
         {
-          "lootId": 1269,
+          "slot": 2,
           "rarity": 4,
+          "name": "Cheaty Kicking Shoe of Springs and Magnets and Whatnot",
+          "lootId": 1269
+        },
+        {
           "slot": 2,
-          "name": "Cheaty Kicking Shoe of Springs and Magnets and Whatnot"
-        },
-        {
-          "lootId": 1299,
           "rarity": 5,
-          "name": "Platinum-Plated Universal Trophy of Victory"
-        },
-        {
-          "lootId": 1300,
-          "rarity": 5,
-          "name": "Dangerously Spiked Safety Helmet of Murder"
-        },
-        {
-          "lootId": 1301,
-          "rarity": 5,
-          "name": "Surprisingly Light Kicker's Shoes of Kicking"
+          "name": "Surprisingly Light Kicker's Shoes of Kicking",
+          "lootId": 1301
         }
       ]
     },
@@ -3553,111 +3769,122 @@ window.jsonData =
       "heroId": 9,
       "loot": [
         {
-          "lootId": 101,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Run of the Mill Night Goggles"
+          "name": "Run of the Mill Night Goggles",
+          "lootId": 101
         },
         {
-          "lootId": 102,
+          "slot": 0,
           "rarity": 2,
+          "name": "Military Grade Night Goggles",
+          "lootId": 102
+        },
+        {
           "slot": 0,
-          "name": "Military Grade Night Goggles"
+          "rarity": 3,
+          "name": "CIA Night Goggles",
+          "lootId": 103
         },
         {
-          "lootId": 103,
-          "rarity": 3,
           "slot": 0,
-          "name": "CIA Night Goggles"
+          "rarity": 4,
+          "name": "Fifth Freedom Goggle",
+          "lootId": 104
         },
         {
-          "lootId": 104,
-          "rarity": 4,
           "slot": 0,
-          "name": "Fifth Freedom Goggle"
-        },
-        {
-          "lootId": 105,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Dull Samurai Sword"
-        },
-        {
-          "lootId": 106,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Sharp Samurai Sword"
-        },
-        {
-          "lootId": 107,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Tamahagane Steel Katana"
-        },
-        {
-          "lootId": 108,
           "rarity": 4,
-          "slot": 1,
-          "name": "Dragon Head Katana"
-        },
-        {
-          "lootId": 109,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Moth Mantle"
-        },
-        {
-          "lootId": 110,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Grey Hooded Cape"
-        },
-        {
-          "lootId": 111,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Cloak of Shadows"
-        },
-        {
-          "lootId": 112,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Mantle of the Blackshadow Spider"
-        },
-        {
-          "lootId": 674,
-          "rarity": 4,
-          "name": "Multibladed Jelly-Covered Katana of Decapitation"
-        },
-        {
+          "name": "Elite Octovision Goggles of the Deadly Assassin",
           "lootId": 923,
-          "rarity": 4,
-          "name": "Elite Octovision Goggles of the Deadly Assassin"
+          "golden": true
         },
         {
-          "lootId": 991,
+          "slot": 0,
           "rarity": 5,
-          "name": "X-Ray Infrared Day-Vision Goggles of the Night"
+          "name": "X-Ray Infrared Day-Vision Goggles of the Night",
+          "lootId": 991
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "X-Ray Infrared Day-Vision Goggles of the Night",
           "lootId": 992,
-          "rarity": 5,
-          "name": "X-Ray Infrared Day-Vision Goggles of the Night"
+          "golden": true
         },
         {
-          "lootId": 993,
-          "rarity": 5,
-          "name": "Cloud Serpent Engraved Samurai Dagger of Backstabs"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Dull Samurai Sword",
+          "lootId": 105
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Sharp Samurai Sword",
+          "lootId": 106
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Tamahagane Steel Katana",
+          "lootId": 107
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Dragon Head Katana",
+          "lootId": 108
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Multibladed Jelly-Covered Katana of Decapitation",
+          "lootId": 674,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Cloud Serpent Engraved Samurai Dagger of Backstabs",
+          "lootId": 993
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Cloud Serpent Engraved Samurai Dagger of Backstabs",
           "lootId": 994,
-          "rarity": 5,
-          "name": "Cloud Serpent Engraved Samurai Dagger of Backstabs"
+          "golden": true
         },
         {
-          "lootId": 995,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Moth Mantle",
+          "lootId": 109
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Grey Hooded Cape",
+          "lootId": 110
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Cloak of Shadows",
+          "lootId": 111
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Mantle of the Blackshadow Spider",
+          "lootId": 112
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Rain Proof Whole Body Cloak of the Shadows"
+          "name": "Rain Proof Whole Body Cloak of the Shadows",
+          "lootId": 995
         }
       ]
     },
@@ -3694,111 +3921,122 @@ window.jsonData =
       "heroId": 22,
       "loot": [
         {
-          "lootId": 270,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Boxing Glove"
+          "name": "Ratty Boxing Glove",
+          "lootId": 270
         },
         {
-          "lootId": 271,
+          "slot": 0,
           "rarity": 2,
+          "name": "Padded Boxing Glove",
+          "lootId": 271
+        },
+        {
           "slot": 0,
-          "name": "Padded Boxing Glove"
+          "rarity": 3,
+          "name": "Bloodied Boxing Glove",
+          "lootId": 272
         },
         {
-          "lootId": 272,
-          "rarity": 3,
           "slot": 0,
-          "name": "Bloodied Boxing Glove"
+          "rarity": 4,
+          "name": "Hilarious Spiked Boxing Glove",
+          "lootId": 273
         },
         {
-          "lootId": 273,
-          "rarity": 4,
           "slot": 0,
-          "name": "Hilarious Spiked Boxing Glove"
-        },
-        {
-          "lootId": 274,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Knotted Clown Shoe"
-        },
-        {
-          "lootId": 275,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Perfectly Okay Clown Shoe"
-        },
-        {
-          "lootId": 276,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Polished Clown Shoe"
-        },
-        {
-          "lootId": 277,
           "rarity": 4,
-          "slot": 1,
-          "name": "Pair of Spiked Clown Shoes"
-        },
-        {
-          "lootId": 278,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Cloth Chicken"
-        },
-        {
-          "lootId": 279,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Leaking Rubber Chicken"
-        },
-        {
-          "lootId": 280,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Expensive Rubber Chicken"
-        },
-        {
-          "lootId": 281,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Solid Gold Rubber Chicken"
-        },
-        {
-          "lootId": 819,
-          "rarity": 4,
-          "name": "Squacking Rubber Chicken of Squaaaaa aaaa aaa aa a"
-        },
-        {
+          "name": "Banned Adamantium Spiked Boxing Glove of Mutilation",
           "lootId": 896,
-          "rarity": 4,
-          "name": "Banned Adamantium Spiked Boxing Glove of Mutilation"
+          "golden": true
         },
         {
-          "lootId": 1055,
+          "slot": 0,
           "rarity": 5,
-          "name": "Banned Boxing Glove of Laser Sighted Accuracy"
+          "name": "Banned Boxing Glove of Laser Sighted Accuracy",
+          "lootId": 1055
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Banned Boxing Glove of Laser Sighted Accuracy",
           "lootId": 1056,
-          "rarity": 5,
-          "name": "Banned Boxing Glove of Laser Sighted Accuracy"
+          "golden": true
         },
         {
-          "lootId": 1057,
-          "rarity": 5,
-          "name": "Incredibly Dangerous Boot of Don't Ever Kick People With It"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Knotted Clown Shoe",
+          "lootId": 274
         },
         {
-          "lootId": 1058,
-          "rarity": 5,
-          "name": "Super Life-like Rubber Chicken of Masterful Crafting"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Perfectly Okay Clown Shoe",
+          "lootId": 275
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Polished Clown Shoe",
+          "lootId": 276
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Pair of Spiked Clown Shoes",
+          "lootId": 277
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Incredibly Dangerous Boot of Don't Ever Kick People With It",
+          "lootId": 1057
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Cloth Chicken",
+          "lootId": 278
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Leaking Rubber Chicken",
+          "lootId": 279
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Expensive Rubber Chicken",
+          "lootId": 280
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Solid Gold Rubber Chicken",
+          "lootId": 281
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Squacking Rubber Chicken of Squaaaaa aaaa aaa aa a",
+          "lootId": 819,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Super Life-like Rubber Chicken of Masterful Crafting",
+          "lootId": 1058
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Super Life-like Rubber Chicken of Masterful Crafting",
           "lootId": 1059,
-          "rarity": 5,
-          "name": "Super Life-like Rubber Chicken of Masterful Crafting"
+          "golden": true
         }
       ]
     },
@@ -3821,91 +4059,94 @@ window.jsonData =
       "heroId": 41,
       "loot": [
         {
-          "lootId": 514,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Tiny Amber Morsel"
+          "name": "Tiny Amber Morsel",
+          "lootId": 514
         },
         {
-          "lootId": 515,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Respectable Chunk of Amber"
+          "name": "Respectable Chunk of Amber",
+          "lootId": 515
         },
         {
-          "lootId": 516,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Polished Amber Skull"
+          "name": "Polished Amber Skull",
+          "lootId": 516
         },
         {
-          "lootId": 517,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Glowing Amber Bust of the Nose"
+          "name": "Glowing Amber Bust of the Nose",
+          "lootId": 517
         },
         {
-          "lootId": 518,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Billion Year Old Amber Bust of the Forefather",
+          "lootId": 1127
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Small Bundle of Twigs"
+          "name": "Small Bundle of Twigs",
+          "lootId": 518
         },
         {
-          "lootId": 519,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Stout Cord of Wood"
+          "name": "Stout Cord of Wood",
+          "lootId": 519
         },
         {
-          "lootId": 520,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Wrapped Cord of Hardwood"
+          "name": "Wrapped Cord of Hardwood",
+          "lootId": 520
         },
         {
-          "lootId": 521,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Polished Horned Armor of Broot"
+          "name": "Polished Horned Armor of Broot",
+          "lootId": 521
         },
         {
-          "lootId": 522,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Hardened Solidwood Branch Armor of Friendship",
+          "lootId": 1128
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Poisoned Berries"
+          "name": "Poisoned Berries",
+          "lootId": 522
         },
         {
-          "lootId": 523,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Tasty Berries"
+          "name": "Tasty Berries",
+          "lootId": 523
         },
         {
-          "lootId": 524,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Blue Berries of Buffing"
+          "name": "Blue Berries of Buffing",
+          "lootId": 524
         },
         {
-          "lootId": 525,
+          "slot": 2,
           "rarity": 4,
+          "name": "Purple Plum of Forest Fun",
+          "lootId": 525
+        },
+        {
           "slot": 2,
-          "name": "Purple Plum of Forest Fun"
-        },
-        {
-          "lootId": 1127,
           "rarity": 5,
-          "name": "Billion Year Old Amber Bust of the Forefather"
-        },
-        {
-          "lootId": 1128,
-          "rarity": 5,
-          "name": "Hardened Solidwood Branch Armor of Friendship"
-        },
-        {
-          "lootId": 1129,
-          "rarity": 5,
-          "name": "Perfectly Flavorful Fuzzy Peach of Succulence"
+          "name": "Perfectly Flavorful Fuzzy Peach of Succulence",
+          "lootId": 1129
         }
       ]
     },
@@ -3938,91 +4179,94 @@ window.jsonData =
       "heroId": 67,
       "loot": [
         {
-          "lootId": 865,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Rusty Anchor"
+          "name": "Rusty Anchor",
+          "lootId": 865
         },
         {
-          "lootId": 866,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Blood-Stained Anchor"
+          "name": "Blood-Stained Anchor",
+          "lootId": 866
         },
         {
-          "lootId": 867,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Shiny Iron Anchor"
+          "name": "Shiny Iron Anchor",
+          "lootId": 867
         },
         {
-          "lootId": 868,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Ornamental Golden Anchor of the HMS Victory"
+          "name": "Ornamental Golden Anchor of the HMS Victory",
+          "lootId": 868
         },
         {
-          "lootId": 869,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Solid Gold Anchor of Wasteful Ship Anchoring",
+          "lootId": 1216
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Holey Pilgrim Hat"
+          "name": "Holey Pilgrim Hat",
+          "lootId": 869
         },
         {
-          "lootId": 870,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Patched Pilgrim Hat"
+          "name": "Patched Pilgrim Hat",
+          "lootId": 870
         },
         {
-          "lootId": 871,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Fine Pilgrim Hat"
+          "name": "Fine Pilgrim Hat",
+          "lootId": 871
         },
         {
-          "lootId": 872,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Masterful Straw Pilgrim Hat of Epic Pilgrim Plundering"
+          "name": "Masterful Straw Pilgrim Hat of Epic Pilgrim Plundering",
+          "lootId": 872
         },
         {
-          "lootId": 873,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Super Rigid Pilgrim's Hat of Sparkling Rubies",
+          "lootId": 1217
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Snapped Pitchfork"
+          "name": "Snapped Pitchfork",
+          "lootId": 873
         },
         {
-          "lootId": 874,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Bended Pitchfork"
+          "name": "Bended Pitchfork",
+          "lootId": 874
         },
         {
-          "lootId": 875,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Solid Oak Pitchfork"
+          "name": "Solid Oak Pitchfork",
+          "lootId": 875
         },
         {
-          "lootId": 876,
+          "slot": 2,
           "rarity": 4,
+          "name": "Razor Sharpened Pitchfork of the Aggressive Villager",
+          "lootId": 876
+        },
+        {
           "slot": 2,
-          "name": "Razor Sharpened Pitchfork of the Aggressive Villager"
-        },
-        {
-          "lootId": 1216,
           "rarity": 5,
-          "name": "Solid Gold Anchor of Wasteful Ship Anchoring"
-        },
-        {
-          "lootId": 1217,
-          "rarity": 5,
-          "name": "Super Rigid Pilgrim's Hat of Sparkling Rubies"
-        },
-        {
-          "lootId": 1218,
-          "rarity": 5,
-          "name": "Spring-Loaded Pitchfork of Springy-Pitches"
+          "name": "Spring-Loaded Pitchfork of Springy-Pitches",
+          "lootId": 1218
         }
       ]
     },
@@ -4040,121 +4284,136 @@ window.jsonData =
       "heroId": 10,
       "loot": [
         {
-          "lootId": 113,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Slightly Damaged Goggles"
+          "name": "Slightly Damaged Goggles",
+          "lootId": 113
         },
         {
-          "lootId": 114,
+          "slot": 0,
           "rarity": 2,
+          "name": "Seeing Eye Goggles",
+          "lootId": 114
+        },
+        {
           "slot": 0,
-          "name": "Seeing Eye Goggles"
+          "rarity": 3,
+          "name": "Power Grid Goggles",
+          "lootId": 115
         },
         {
-          "lootId": 115,
-          "rarity": 3,
           "slot": 0,
-          "name": "Power Grid Goggles"
+          "rarity": 4,
+          "name": "Lion's Pride Gold and Emerald Goggles",
+          "lootId": 116
         },
         {
-          "lootId": 116,
-          "rarity": 4,
           "slot": 0,
-          "name": "Lion's Pride Gold and Emerald Goggles"
-        },
-        {
-          "lootId": 117,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Faded Wool Stove Pipe"
-        },
-        {
-          "lootId": 118,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Old Evening Chapeau"
-        },
-        {
-          "lootId": 119,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Charmed Spider Silk Hat"
-        },
-        {
-          "lootId": 120,
           "rarity": 4,
-          "slot": 1,
-          "name": "Impeccable Mosshide Velvet Top hat"
-        },
-        {
-          "lootId": 121,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Green Tin Pendant"
-        },
-        {
-          "lootId": 122,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Gold and Peridot Amulet"
-        },
-        {
-          "lootId": 123,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Jade Amulet of Twisting Power"
-        },
-        {
-          "lootId": 124,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Emerald Amulet of the Dancing Power Lion"
-        },
-        {
-          "lootId": 513,
-          "rarity": 4,
-          "name": "Frickin' Amazing Amulet of Explosions 'n Shit"
-        },
-        {
+          "name": "Cat-Eye Synth Goggles of Celebration",
           "lootId": 677,
-          "rarity": 4,
-          "name": "Cat-Eye Synth Goggles of Celebration"
+          "golden": true
         },
         {
-          "lootId": 996,
+          "slot": 0,
           "rarity": 5,
-          "name": "Emerald Cat-Vision Goggles of the Forgotten Pride"
+          "name": "Emerald Cat-Vision Goggles of the Forgotten Pride",
+          "lootId": 996
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Emerald Cat-Vision Goggles of the Forgotten Pride",
           "lootId": 997,
-          "rarity": 5,
-          "name": "Emerald Cat-Vision Goggles of the Forgotten Pride"
+          "golden": true
         },
         {
-          "lootId": 998,
-          "rarity": 5,
-          "name": "Swirling Poison Cap of Unbreakable Will"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Faded Wool Stove Pipe",
+          "lootId": 117
         },
         {
-          "lootId": 999,
-          "rarity": 5,
-          "name": "All-Seeing Amulet of the Prowling Hunter"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Old Evening Chapeau",
+          "lootId": 118
         },
         {
-          "lootId": 1000,
-          "rarity": 5,
-          "name": "All-Seeing Amulet of the Prowling Hunter"
+          "slot": 1,
+          "rarity": 3,
+          "name": "Charmed Spider Silk Hat",
+          "lootId": 119
         },
         {
-          "lootId": 1286,
+          "slot": 1,
           "rarity": 4,
-          "name": "Mighty Morphin' Magic Hat of the Pride"
+          "name": "Impeccable Mosshide Velvet Top hat",
+          "lootId": 120
         },
         {
-          "lootId": 1290,
+          "slot": 1,
+          "rarity": 4,
+          "name": "Mighty Morphin' Magic Hat of the Pride",
+          "lootId": 1286,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Swirling Poison Cap of Unbreakable Will"
+          "name": "Swirling Poison Cap of Unbreakable Will",
+          "lootId": 998
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Swirling Poison Cap of Unbreakable Will",
+          "lootId": 1290,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Green Tin Pendant",
+          "lootId": 121
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Gold and Peridot Amulet",
+          "lootId": 122
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Jade Amulet of Twisting Power",
+          "lootId": 123
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Emerald Amulet of the Dancing Power Lion",
+          "lootId": 124
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Frickin' Amazing Amulet of Explosions 'n Shit",
+          "lootId": 513,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "All-Seeing Amulet of the Prowling Hunter",
+          "lootId": 999
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "All-Seeing Amulet of the Prowling Hunter",
+          "lootId": 1000,
+          "golden": true
         }
       ]
     },
@@ -4174,101 +4433,108 @@ window.jsonData =
       "heroId": 32,
       "loot": [
         {
-          "lootId": 396,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Shoddy Bronze Amulet"
+          "name": "Shoddy Bronze Amulet",
+          "lootId": 396
         },
         {
-          "lootId": 397,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Shiny Metal Amulet"
+          "name": "Shiny Metal Amulet",
+          "lootId": 397
         },
         {
-          "lootId": 398,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Dazzling Silver Amulet"
+          "name": "Dazzling Silver Amulet",
+          "lootId": 398
         },
         {
-          "lootId": 399,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Mystical Golden Elf Amulet of Elfing"
+          "name": "Mystical Golden Elf Amulet of Elfing",
+          "lootId": 399
         },
         {
-          "lootId": 400,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Magnetically Imbued Spikey Amulet of the Elf",
+          "lootId": 1095
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Training Sword"
+          "name": "Training Sword",
+          "lootId": 400
         },
         {
-          "lootId": 401,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Dulled Steel Sword"
+          "name": "Dulled Steel Sword",
+          "lootId": 401
         },
         {
-          "lootId": 402,
+          "slot": 1,
           "rarity": 3,
+          "name": "Sharpened Silver Sword",
+          "lootId": 402
+        },
+        {
           "slot": 1,
-          "name": "Sharpened Silver Sword"
+          "rarity": 4,
+          "name": "Ancient Runed Sword of Ancients",
+          "lootId": 403
         },
         {
-          "lootId": 403,
-          "rarity": 4,
           "slot": 1,
-          "name": "Ancient Runed Sword of Ancients"
-        },
-        {
-          "lootId": 404,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Stiched Plastic Pauldron"
-        },
-        {
-          "lootId": 405,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Sturdy Padded Pauldron"
-        },
-        {
-          "lootId": 406,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Hardened Metal Pauldron"
-        },
-        {
-          "lootId": 407,
           "rarity": 4,
-          "slot": 2,
-          "name": "Royal Champion's Pauldron of Flubflug"
-        },
-        {
+          "name": "Ancient Runed Sword of Ancients",
           "lootId": 408,
-          "rarity": 4,
-          "name": "Ancient Runed Sword of Ancients"
+          "golden": true
         },
         {
-          "lootId": 1095,
+          "slot": 1,
           "rarity": 5,
-          "name": "Magnetically Imbued Spikey Amulet of the Elf"
+          "name": "Cursed Blood Crystal Sword of Stabbing",
+          "lootId": 1096
         },
         {
-          "lootId": 1096,
+          "slot": 1,
           "rarity": 5,
-          "name": "Cursed Blood Crystal Sword of Stabbing"
-        },
-        {
+          "name": "Cursed Blood Crystal Sword of Stabbing",
           "lootId": 1097,
-          "rarity": 5,
-          "name": "Cursed Blood Crystal Sword of Stabbing"
+          "golden": true
         },
         {
-          "lootId": 1098,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Stiched Plastic Pauldron",
+          "lootId": 404
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Sturdy Padded Pauldron",
+          "lootId": 405
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Hardened Metal Pauldron",
+          "lootId": 406
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Royal Champion's Pauldron of Flubflug",
+          "lootId": 407
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Elven Pauldron of Dangerous Running Plays"
+          "name": "Elven Pauldron of Dangerous Running Plays",
+          "lootId": 1098
         }
       ]
     },
@@ -4289,112 +4555,122 @@ window.jsonData =
       "heroId": 52,
       "loot": [
         {
-          "lootId": 660,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Leaking Snorkel"
+          "name": "Leaking Snorkel",
+          "lootId": 660
         },
         {
-          "lootId": 661,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Rusty Snorkel"
+          "name": "Rusty Snorkel",
+          "lootId": 661
         },
         {
-          "lootId": 662,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Solid Snorkel"
+          "name": "Solid Snorkel",
+          "lootId": 662
         },
         {
-          "lootId": 663,
+          "slot": 0,
           "rarity": 4,
+          "name": "Scientifically Impossible O2-Generating Snorkel of Breathing",
+          "lootId": 663
+        },
+        {
           "slot": 0,
-          "name": "Scientifically Impossible O2-Generating Snorkel of Breathing"
-        },
-        {
-          "lootId": 664,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Fogged Up Goggles"
-        },
-        {
-          "lootId": 665,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Flimsy Goggles"
-        },
-        {
-          "lootId": 666,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Great Goggles"
-        },
-        {
-          "lootId": 667,
           "rarity": 4,
-          "slot": 1,
-          "name": "Custom-Fitted Polarized Swimming Goggles of Speed"
-        },
-        {
-          "lootId": 668,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Legitimately Scary Horned Goggles of Water Current Analysis"
-        },
-        {
-          "lootId": 669,
-          "rarity": 1,
-          "slot": 0,
-          "name": "Knit Swimming Cap"
-        },
-        {
-          "lootId": 670,
-          "rarity": 2,
-          "slot": 0,
-          "name": "Child's Swimming Cap"
-        },
-        {
-          "lootId": 671,
-          "rarity": 3,
-          "slot": 0,
-          "name": "Slightly Too-Big Cap"
-        },
-        {
-          "lootId": 672,
-          "rarity": 4,
-          "slot": 0,
-          "name": "Unique Form-Fitting Swimming Cap of Low Friction"
-        },
-        {
+          "name": "Magically Enhanced Gold-Plated Snorkel of Fish-Speaking",
           "lootId": 846,
-          "rarity": 4,
-          "name": "Magically Enhanced Gold-Plated Snorkel of Fish-Speaking"
+          "golden": true
         },
         {
-          "lootId": 1168,
+          "slot": 0,
           "rarity": 5,
-          "name": "Dual-Snorkelled Snorkel of Extreme Snorkling"
+          "name": "Dual-Snorkelled Snorkel of Extreme Snorkling",
+          "lootId": 1168
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Dual-Snorkelled Snorkel of Extreme Snorkling",
           "lootId": 1169,
-          "rarity": 5,
-          "name": "Dual-Snorkelled Snorkel of Extreme Snorkling"
+          "golden": true
         },
         {
-          "lootId": 1170,
-          "rarity": 5,
-          "name": "Fish-Lensed Goggles of Perfect Underwater Vision"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Fogged Up Goggles",
+          "lootId": 664
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Flimsy Goggles",
+          "lootId": 665
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Great Goggles",
+          "lootId": 666
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Custom-Fitted Polarized Swimming Goggles of Speed",
+          "lootId": 667
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Legitimately Scary Horned Goggles of Water Current Analysis",
+          "lootId": 668,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Fish-Lensed Goggles of Perfect Underwater Vision",
+          "lootId": 1170
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Fish-Lensed Goggles of Perfect Underwater Vision",
           "lootId": 1171,
-          "rarity": 5,
-          "name": "Fish-Lensed Goggles of Perfect Underwater Vision"
+          "golden": true
         },
         {
-          "lootId": 1172,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Knit Swimming Cap",
+          "lootId": 669
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Child's Swimming Cap",
+          "lootId": 670
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Slightly Too-Big Cap",
+          "lootId": 671
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Unique Form-Fitting Swimming Cap of Low Friction",
+          "lootId": 672
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Streamlined Swimming Cap of Limitless Strokes"
+          "name": "Streamlined Swimming Cap of Limitless Strokes",
+          "lootId": 1172
         }
       ]
     },
@@ -4413,111 +4689,122 @@ window.jsonData =
       "heroId": 11,
       "loot": [
         {
-          "lootId": 125,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Standard Skull Staff"
+          "name": "Standard Skull Staff",
+          "lootId": 125
         },
         {
-          "lootId": 126,
+          "slot": 0,
           "rarity": 2,
+          "name": "Skull Staff",
+          "lootId": 126
+        },
+        {
           "slot": 0,
-          "name": "Skull Staff"
+          "rarity": 3,
+          "name": "Enchanted Skull Staff",
+          "lootId": 127
         },
         {
-          "lootId": 127,
-          "rarity": 3,
           "slot": 0,
-          "name": "Enchanted Skull Staff"
+          "rarity": 4,
+          "name": "Possessed Skull Staff",
+          "lootId": 128
         },
         {
-          "lootId": 128,
-          "rarity": 4,
           "slot": 0,
-          "name": "Possessed Skull Staff"
-        },
-        {
-          "lootId": 129,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Pinky Bone Necklace"
-        },
-        {
-          "lootId": 130,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Rib Bone Necklace"
-        },
-        {
-          "lootId": 131,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Skull Bone Necklace"
-        },
-        {
-          "lootId": 132,
           "rarity": 4,
-          "slot": 1,
-          "name": "Dino Bone Necklace"
-        },
-        {
-          "lootId": 133,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Pigeon Feather Hat"
-        },
-        {
-          "lootId": 134,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Raven Feather Hat"
-        },
-        {
-          "lootId": 135,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Eagle Feather Hat"
-        },
-        {
-          "lootId": 136,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Phoenix Feather Hat"
-        },
-        {
-          "lootId": 436,
-          "rarity": 4,
-          "name": "Black Phoenix Death Mask"
-        },
-        {
+          "name": "Jumbo Eyeball Skull Staff of Seeing",
           "lootId": 597,
-          "rarity": 4,
-          "name": "Jumbo Eyeball Skull Staff of Seeing"
+          "golden": true
         },
         {
-          "lootId": 1001,
+          "slot": 0,
           "rarity": 5,
-          "name": "Horned Sorcerer's Skull Staff of a Million Curses"
+          "name": "Horned Sorcerer's Skull Staff of a Million Curses",
+          "lootId": 1001
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Horned Sorcerer's Skull Staff of a Million Curses",
           "lootId": 1002,
-          "rarity": 5,
-          "name": "Horned Sorcerer's Skull Staff of a Million Curses"
+          "golden": true
         },
         {
-          "lootId": 1003,
-          "rarity": 5,
-          "name": "Long Lost Witch Doctor's Necklace of a Billion Curses"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Pinky Bone Necklace",
+          "lootId": 129
         },
         {
-          "lootId": 1004,
-          "rarity": 5,
-          "name": "Extinct Raptor Feathered Hat of a Few Dozen Curses"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Rib Bone Necklace",
+          "lootId": 130
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Skull Bone Necklace",
+          "lootId": 131
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Dino Bone Necklace",
+          "lootId": 132
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Long Lost Witch Doctor's Necklace of a Billion Curses",
+          "lootId": 1003
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Pigeon Feather Hat",
+          "lootId": 133
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Raven Feather Hat",
+          "lootId": 134
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Eagle Feather Hat",
+          "lootId": 135
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Phoenix Feather Hat",
+          "lootId": 136
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Black Phoenix Death Mask",
+          "lootId": 436,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Extinct Raptor Feathered Hat of a Few Dozen Curses",
+          "lootId": 1004
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Extinct Raptor Feathered Hat of a Few Dozen Curses",
           "lootId": 1005,
-          "rarity": 5,
-          "name": "Extinct Raptor Feathered Hat of a Few Dozen Curses"
+          "golden": true
         }
       ]
     },
@@ -4538,111 +4825,122 @@ window.jsonData =
       "heroId": 26,
       "loot": [
         {
-          "lootId": 320,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Compromised Safety Goggles"
+          "name": "Compromised Safety Goggles",
+          "lootId": 320
         },
         {
-          "lootId": 321,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Regulation Safety Goggles"
+          "name": "Regulation Safety Goggles",
+          "lootId": 321
         },
         {
-          "lootId": 322,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "20X Zoom Lense Goggles"
+          "name": "20X Zoom Lense Goggles",
+          "lootId": 322
         },
         {
-          "lootId": 323,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "200X Zoom Cortex-linked Goggles of Inquiry"
+          "name": "200X Zoom Cortex-linked Goggles of Inquiry",
+          "lootId": 323
         },
         {
-          "lootId": 324,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Reinforced Leather Gas Mask of True Sight",
+          "lootId": 1072
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "High-intensity Laser Pointer"
+          "name": "High-intensity Laser Pointer",
+          "lootId": 324
         },
         {
-          "lootId": 325,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Microwave Heat-Ray"
+          "name": "Microwave Heat-Ray",
+          "lootId": 325
         },
         {
-          "lootId": 326,
+          "slot": 1,
           "rarity": 3,
+          "name": "Phased-Energy Rectifier",
+          "lootId": 326
+        },
+        {
           "slot": 1,
-          "name": "Phased-Energy Rectifier"
+          "rarity": 4,
+          "name": "Nano-Disintegrator Raygun",
+          "lootId": 327
         },
         {
-          "lootId": 327,
-          "rarity": 4,
           "slot": 1,
-          "name": "Nano-Disintegrator Raygun"
-        },
-        {
-          "lootId": 328,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Broken Vial"
-        },
-        {
-          "lootId": 329,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Cracked Vial of Black Market 'Stimulant'"
-        },
-        {
-          "lootId": 330,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Vial of Pure Caffeine"
-        },
-        {
-          "lootId": 331,
           "rarity": 4,
-          "slot": 2,
-          "name": "Unstable Vial of Adrenaline Cocktail"
-        },
-        {
-          "lootId": 889,
-          "rarity": 4,
-          "name": "Quantum Locked Vial of Life-Giving Goo"
-        },
-        {
-          "lootId": 1072,
-          "rarity": 5,
-          "name": "Reinforced Leather Gas Mask of True Sight"
-        },
-        {
-          "lootId": 1073,
-          "rarity": 5,
-          "name": "Dangerous Zapping Ray Gun of Orange Zaps"
-        },
-        {
-          "lootId": 1074,
-          "rarity": 5,
-          "name": "Steaming Dripping Vial of Innocuous Concoctions"
-        },
-        {
-          "lootId": 1075,
-          "rarity": 5,
-          "name": "Steaming Dripping Vial of Innocuous Concoctions"
-        },
-        {
+          "name": "Customized Fully Automatic Poison Ray 9000",
           "lootId": 1284,
-          "rarity": 4,
-          "name": "Customized Fully Automatic Poison Ray 9000"
+          "golden": true
         },
         {
-          "lootId": 1288,
+          "slot": 1,
           "rarity": 5,
-          "name": "Dangerous Zapping Ray Gun of Orange Zaps"
+          "name": "Dangerous Zapping Ray Gun of Orange Zaps",
+          "lootId": 1073
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Dangerous Zapping Ray Gun of Orange Zaps",
+          "lootId": 1288,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Broken Vial",
+          "lootId": 328
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Cracked Vial of Black Market 'Stimulant'",
+          "lootId": 329
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Vial of Pure Caffeine",
+          "lootId": 330
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Unstable Vial of Adrenaline Cocktail",
+          "lootId": 331
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Quantum Locked Vial of Life-Giving Goo",
+          "lootId": 889,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Steaming Dripping Vial of Innocuous Concoctions",
+          "lootId": 1074
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Steaming Dripping Vial of Innocuous Concoctions",
+          "lootId": 1075,
+          "golden": true
         }
       ]
     },
@@ -4665,101 +4963,108 @@ window.jsonData =
       "heroId": 44,
       "loot": [
         {
-          "lootId": 553,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Cavity-Filled Tooth"
+          "name": "Cavity-Filled Tooth",
+          "lootId": 553
         },
         {
-          "lootId": 554,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Chipped Tooth"
+          "name": "Chipped Tooth",
+          "lootId": 554
         },
         {
-          "lootId": 555,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Perfect Bleached Tooth"
+          "name": "Perfect Bleached Tooth",
+          "lootId": 555
         },
         {
-          "lootId": 556,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Gold-Coated Tooth of Embers"
+          "name": "Gold-Coated Tooth of Embers",
+          "lootId": 556
         },
         {
-          "lootId": 557,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Extravegently Detailed Dragon Tooth of Princes",
+          "lootId": 1139
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Young Dragon Scale"
+          "name": "Young Dragon Scale",
+          "lootId": 557
         },
         {
-          "lootId": 558,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Red Dragon Scale"
+          "name": "Red Dragon Scale",
+          "lootId": 558
         },
         {
-          "lootId": 559,
+          "slot": 1,
           "rarity": 3,
+          "name": "Mature Red Scale",
+          "lootId": 559
+        },
+        {
           "slot": 1,
-          "name": "Mature Red Scale"
+          "rarity": 4,
+          "name": "Obsidian Scale of Impenetrability",
+          "lootId": 560
         },
         {
-          "lootId": 560,
-          "rarity": 4,
           "slot": 1,
-          "name": "Obsidian Scale of Impenetrability"
-        },
-        {
-          "lootId": 561,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Cracked Flame Orb"
-        },
-        {
-          "lootId": 562,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Luke-Warm Flame Orb"
-        },
-        {
-          "lootId": 563,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Smooth Blazing Orb"
-        },
-        {
-          "lootId": 564,
           "rarity": 4,
-          "slot": 2,
-          "name": "Scalding Orb of Blue Fire"
-        },
-        {
+          "name": "Light Deflecting Scale of Golden Rainbows",
           "lootId": 849,
-          "rarity": 4,
-          "name": "Light Deflecting Scale of Golden Rainbows"
+          "golden": true
         },
         {
-          "lootId": 1139,
+          "slot": 1,
           "rarity": 5,
-          "name": "Extravegently Detailed Dragon Tooth of Princes"
+          "name": "Ancient Gold-Covered Scale of the Dragon Queen",
+          "lootId": 1140
         },
         {
-          "lootId": 1140,
+          "slot": 1,
           "rarity": 5,
-          "name": "Ancient Gold-Covered Scale of the Dragon Queen"
-        },
-        {
+          "name": "Ancient Gold-Covered Scale of the Dragon Queen",
           "lootId": 1141,
-          "rarity": 5,
-          "name": "Ancient Gold-Covered Scale of the Dragon Queen"
+          "golden": true
         },
         {
-          "lootId": 1142,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Cracked Flame Orb",
+          "lootId": 561
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Luke-Warm Flame Orb",
+          "lootId": 562
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Smooth Blazing Orb",
+          "lootId": 563
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Scalding Orb of Blue Fire",
+          "lootId": 564
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Pristine Scrying Orb of the Lost Dragon Kingdoms"
+          "name": "Pristine Scrying Orb of the Lost Dragon Kingdoms",
+          "lootId": 1142
         }
       ]
     },
@@ -4782,91 +5087,94 @@ window.jsonData =
       "heroId": 63,
       "loot": [
         {
-          "lootId": 807,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Extremely Loose Corset"
+          "name": "Extremely Loose Corset",
+          "lootId": 807
         },
         {
-          "lootId": 808,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Faded Costume"
+          "name": "Faded Costume",
+          "lootId": 808
         },
         {
-          "lootId": 809,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Feathered Costume"
+          "name": "Feathered Costume",
+          "lootId": 809
         },
         {
-          "lootId": 810,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Fluffy Form-Fitting Carnival Costume of the Can-Can"
+          "name": "Fluffy Form-Fitting Carnival Costume of the Can-Can",
+          "lootId": 810
         },
         {
-          "lootId": 811,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Elegant Half Blood Costume of Feathers",
+          "lootId": 1204
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Flea-Market Tiara"
+          "name": "Flea-Market Tiara",
+          "lootId": 811
         },
         {
-          "lootId": 812,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Faux Feather Tiara"
+          "name": "Faux Feather Tiara",
+          "lootId": 812
         },
         {
-          "lootId": 813,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Feather Headdress"
+          "name": "Feather Headdress",
+          "lootId": 813
         },
         {
-          "lootId": 814,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Mirrored Golden Feather Headdress of Bling Bling Bling"
+          "name": "Mirrored Golden Feather Headdress of Bling Bling Bling",
+          "lootId": 814
         },
         {
-          "lootId": 815,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Peacock Tiara of Golden Beauty",
+          "lootId": 1205
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Leaking Umbrella"
+          "name": "Leaking Umbrella",
+          "lootId": 815
         },
         {
-          "lootId": 816,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Rusty Umbrella"
+          "name": "Rusty Umbrella",
+          "lootId": 816
         },
         {
-          "lootId": 817,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Lightweight Umbrella"
+          "name": "Lightweight Umbrella",
+          "lootId": 817
         },
         {
-          "lootId": 818,
+          "slot": 2,
           "rarity": 4,
+          "name": "Feather-Form Stylish Umbrella of the Goose",
+          "lootId": 818
+        },
+        {
           "slot": 2,
-          "name": "Feather-Form Stylish Umbrella of the Goose"
-        },
-        {
-          "lootId": 1204,
           "rarity": 5,
-          "name": "Elegant Half Blood Costume of Feathers"
-        },
-        {
-          "lootId": 1205,
-          "rarity": 5,
-          "name": "Peacock Tiara of Golden Beauty"
-        },
-        {
-          "lootId": 1206,
-          "rarity": 5,
-          "name": "Not At All Weatherproof Umbrella of Patterns"
+          "name": "Not At All Weatherproof Umbrella of Patterns",
+          "lootId": 1206
         }
       ]
     },
@@ -4884,111 +5192,122 @@ window.jsonData =
       "heroId": 12,
       "loot": [
         {
-          "lootId": 53,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Reading Glasses"
+          "name": "Reading Glasses",
+          "lootId": 53
         },
         {
-          "lootId": 54,
+          "slot": 0,
           "rarity": 2,
+          "name": "Prescription Glasses",
+          "lootId": 54
+        },
+        {
           "slot": 0,
-          "name": "Prescription Glasses"
+          "rarity": 3,
+          "name": "Silver and Quartz Shades",
+          "lootId": 55
         },
         {
-          "lootId": 55,
-          "rarity": 3,
           "slot": 0,
-          "name": "Silver and Quartz Shades"
+          "rarity": 4,
+          "name": "All-Seeing Spectacles",
+          "lootId": 56
         },
         {
-          "lootId": 56,
-          "rarity": 4,
           "slot": 0,
-          "name": "All-Seeing Spectacles"
-        },
-        {
-          "lootId": 57,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Dried Out Vial of Power Potion"
-        },
-        {
-          "lootId": 58,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Power Necklace-on-a-Rope"
-        },
-        {
-          "lootId": 59,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Necklace of Destruction"
-        },
-        {
-          "lootId": 60,
           "rarity": 4,
-          "slot": 1,
-          "name": "Gleaming Amulet of Disturbing Power"
-        },
-        {
-          "lootId": 61,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Poorly-Plated Bird Charm"
-        },
-        {
-          "lootId": 62,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Shining Gryphon Token"
-        },
-        {
-          "lootId": 63,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Solid Gold Amulet"
-        },
-        {
-          "lootId": 64,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Enchanted Gold and Jade Figurine"
-        },
-        {
-          "lootId": 676,
-          "rarity": 4,
-          "name": "Pure Jade Serpent Statue of Hardiness"
-        },
-        {
+          "name": "Far-Seeing Spectacles of Perfect True-Sight",
           "lootId": 851,
-          "rarity": 4,
-          "name": "Far-Seeing Spectacles of Perfect True-Sight"
+          "golden": true
         },
         {
-          "lootId": 1006,
+          "slot": 0,
           "rarity": 5,
-          "name": "Omni-focal Spectacles of Perfect Vision"
+          "name": "Omni-focal Spectacles of Perfect Vision",
+          "lootId": 1006
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Omni-focal Spectacles of Perfect Vision",
           "lootId": 1007,
-          "rarity": 5,
-          "name": "Omni-focal Spectacles of Perfect Vision"
+          "golden": true
         },
         {
-          "lootId": 1008,
-          "rarity": 5,
-          "name": "Crowing Mask Amulet of Volcanic Legeacies"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Dried Out Vial of Power Potion",
+          "lootId": 57
         },
         {
-          "lootId": 1009,
-          "rarity": 5,
-          "name": "Obsidian Sphinx Figurine of a Thousand Wings"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Power Necklace-on-a-Rope",
+          "lootId": 58
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Necklace of Destruction",
+          "lootId": 59
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Gleaming Amulet of Disturbing Power",
+          "lootId": 60
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Crowing Mask Amulet of Volcanic Legeacies",
+          "lootId": 1008
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Poorly-Plated Bird Charm",
+          "lootId": 61
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Shining Gryphon Token",
+          "lootId": 62
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Solid Gold Amulet",
+          "lootId": 63
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Enchanted Gold and Jade Figurine",
+          "lootId": 64
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Pure Jade Serpent Statue of Hardiness",
+          "lootId": 676,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Obsidian Sphinx Figurine of a Thousand Wings",
+          "lootId": 1009
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Obsidian Sphinx Figurine of a Thousand Wings",
           "lootId": 1010,
-          "rarity": 5,
-          "name": "Obsidian Sphinx Figurine of a Thousand Wings"
+          "golden": true
         }
       ]
     },
@@ -5008,101 +5327,108 @@ window.jsonData =
       "heroId": 33,
       "loot": [
         {
-          "lootId": 410,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "4-String Hand-Me-Down"
+          "name": "4-String Hand-Me-Down",
+          "lootId": 410
         },
         {
-          "lootId": 411,
+          "slot": 0,
           "rarity": 2,
+          "name": "Starter Acoustic",
+          "lootId": 411
+        },
+        {
           "slot": 0,
-          "name": "Starter Acoustic"
+          "rarity": 3,
+          "name": "Quality Rickenbacker",
+          "lootId": 412
         },
         {
-          "lootId": 412,
-          "rarity": 3,
           "slot": 0,
-          "name": "Quality Rickenbacker"
+          "rarity": 4,
+          "name": "Gibson Les Paul",
+          "lootId": 413
         },
         {
-          "lootId": 413,
-          "rarity": 4,
           "slot": 0,
-          "name": "Gibson Les Paul"
-        },
-        {
-          "lootId": 414,
-          "rarity": 1,
-          "slot": 1,
-          "name": "The Swayze"
-        },
-        {
-          "lootId": 415,
-          "rarity": 2,
-          "slot": 1,
-          "name": "The Norris"
-        },
-        {
-          "lootId": 416,
-          "rarity": 3,
-          "slot": 1,
-          "name": "The Macgyver"
-        },
-        {
-          "lootId": 417,
           "rarity": 4,
-          "slot": 1,
-          "name": "The McCartney"
-        },
-        {
-          "lootId": 418,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Nylon Pick"
-        },
-        {
-          "lootId": 419,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Acrylic Pick"
-        },
-        {
-          "lootId": 420,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Stainless Steel Pick"
-        },
-        {
-          "lootId": 421,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Tortoiseshell Pick"
-        },
-        {
+          "name": "Fender Stratocaster",
           "lootId": 422,
-          "rarity": 4,
-          "name": "Fender Stratocaster"
+          "golden": true
         },
         {
-          "lootId": 1099,
+          "slot": 0,
           "rarity": 5,
-          "name": "Rainbow Keytar of Infinite Songs"
+          "name": "Rainbow Keytar of Infinite Songs",
+          "lootId": 1099
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Rainbow Keytar of Infinite Songs",
           "lootId": 1100,
-          "rarity": 5,
-          "name": "Rainbow Keytar of Infinite Songs"
+          "golden": true
         },
         {
-          "lootId": 1101,
-          "rarity": 5,
-          "name": "Striped Blond Mullet of a Decade Long Past"
+          "slot": 1,
+          "rarity": 1,
+          "name": "The Swayze",
+          "lootId": 414
         },
         {
-          "lootId": 1102,
+          "slot": 1,
+          "rarity": 2,
+          "name": "The Norris",
+          "lootId": 415
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "The Macgyver",
+          "lootId": 416
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "The McCartney",
+          "lootId": 417
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Lightning Pick of Picket Picking"
+          "name": "Striped Blond Mullet of a Decade Long Past",
+          "lootId": 1101
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Nylon Pick",
+          "lootId": 418
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Acrylic Pick",
+          "lootId": 419
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Stainless Steel Pick",
+          "lootId": 420
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Tortoiseshell Pick",
+          "lootId": 421
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Lightning Pick of Picket Picking",
+          "lootId": 1102
         }
       ]
     },
@@ -5122,91 +5448,94 @@ window.jsonData =
       "heroId": 45,
       "loot": [
         {
-          "lootId": 567,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Bargain Bin Grail"
+          "name": "Bargain Bin Grail",
+          "lootId": 567
         },
         {
-          "lootId": 568,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Stout Wooden Chalice"
+          "name": "Stout Wooden Chalice",
+          "lootId": 568
         },
         {
-          "lootId": 569,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Polished Stone Chalice"
+          "name": "Polished Stone Chalice",
+          "lootId": 569
         },
         {
-          "lootId": 570,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Sparkling Golden Chalice of Sprinkles"
+          "name": "Sparkling Golden Chalice of Sprinkles",
+          "lootId": 570
         },
         {
-          "lootId": 571,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Skull Shaped Chalice of a Thousand Deaths",
+          "lootId": 1143
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Ratty Wooden Whip"
+          "name": "Ratty Wooden Whip",
+          "lootId": 571
         },
         {
-          "lootId": 572,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Basic Hide Whip"
+          "name": "Basic Hide Whip",
+          "lootId": 572
         },
         {
-          "lootId": 573,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Fine Leather Whip"
+          "name": "Fine Leather Whip",
+          "lootId": 573
         },
         {
-          "lootId": 574,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Treasure Hunter's Whip of Tickling"
+          "name": "Treasure Hunter's Whip of Tickling",
+          "lootId": 574
         },
         {
-          "lootId": 575,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Magically Imbued Force Whip of Exploration",
+          "lootId": 1144
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Pewter Llama"
+          "name": "Pewter Llama",
+          "lootId": 575
         },
         {
-          "lootId": 576,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Stone Llama"
+          "name": "Stone Llama",
+          "lootId": 576
         },
         {
-          "lootId": 577,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Gemmed Llama"
+          "name": "Gemmed Llama",
+          "lootId": 577
         },
         {
-          "lootId": 578,
+          "slot": 2,
           "rarity": 4,
+          "name": "Impatient Golden Llama of Kuzco",
+          "lootId": 578
+        },
+        {
           "slot": 2,
-          "name": "Impatient Golden Llama of Kuzco"
-        },
-        {
-          "lootId": 1143,
           "rarity": 5,
-          "name": "Skull Shaped Chalice of a Thousand Deaths"
-        },
-        {
-          "lootId": 1144,
-          "rarity": 5,
-          "name": "Magically Imbued Force Whip of Exploration"
-        },
-        {
-          "lootId": 1145,
-          "rarity": 5,
-          "name": "Groovey Emperor's Llama of Power"
+          "name": "Groovey Emperor's Llama of Power",
+          "lootId": 1145
         }
       ]
     },
@@ -5228,91 +5557,94 @@ window.jsonData =
       "heroId": 69,
       "loot": [
         {
-          "lootId": 897,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Pilling Sleeve"
+          "name": "Pilling Sleeve",
+          "lootId": 897
         },
         {
-          "lootId": 898,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Faded Sleeve"
+          "name": "Faded Sleeve",
+          "lootId": 898
         },
         {
-          "lootId": 899,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Well Laundered Sleeve"
+          "name": "Well Laundered Sleeve",
+          "lootId": 899
         },
         {
-          "lootId": 900,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Jewelled Padded Shirt Sleeve of Christmas Cheer"
+          "name": "Jewelled Padded Shirt Sleeve of Christmas Cheer",
+          "lootId": 900
         },
         {
-          "lootId": 901,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Cheery Christmas Exoskeleton Arm of Toy Making",
+          "lootId": 1222
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Dull Christmas Dagger"
+          "name": "Dull Christmas Dagger",
+          "lootId": 901
         },
         {
-          "lootId": 902,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Chipped Christmas Dagger"
+          "name": "Chipped Christmas Dagger",
+          "lootId": 902
         },
         {
-          "lootId": 903,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Candy Christmas Dagger"
+          "name": "Candy Christmas Dagger",
+          "lootId": 903
         },
         {
-          "lootId": 904,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Minty Fresh Candy Dagger of Sharpened Sweets"
+          "name": "Minty Fresh Candy Dagger of Sharpened Sweets",
+          "lootId": 904
         },
         {
-          "lootId": 905,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Visciously Curved Elf Blade of Hooking",
+          "lootId": 1223
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Holey Gift Bag"
+          "name": "Holey Gift Bag",
+          "lootId": 905
         },
         {
-          "lootId": 906,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Leather Gift Bag"
+          "name": "Leather Gift Bag",
+          "lootId": 906
         },
         {
-          "lootId": 907,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Well-lit Christmas Bag"
+          "name": "Well-lit Christmas Bag",
+          "lootId": 907
         },
         {
-          "lootId": 908,
+          "slot": 2,
           "rarity": 4,
+          "name": "Powered Velvet Gift Bag of Infinite Holding",
+          "lootId": 908
+        },
+        {
           "slot": 2,
-          "name": "Powered Velvet Gift Bag of Infinite Holding"
-        },
-        {
-          "lootId": 1222,
           "rarity": 5,
-          "name": "Cheery Christmas Exoskeleton Arm of Toy Making"
-        },
-        {
-          "lootId": 1223,
-          "rarity": 5,
-          "name": "Visciously Curved Elf Blade of Hooking"
-        },
-        {
-          "lootId": 1224,
-          "rarity": 5,
-          "name": "Magical Silk Gift Bag of Regifted Gifts"
+          "name": "Magical Silk Gift Bag of Regifted Gifts",
+          "lootId": 1224
         }
       ]
     },
@@ -5346,111 +5678,122 @@ window.jsonData =
       "heroId": 13,
       "loot": [
         {
-          "lootId": 149,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Chipped Horn Helmet"
+          "name": "Chipped Horn Helmet",
+          "lootId": 149
         },
         {
-          "lootId": 150,
+          "slot": 0,
           "rarity": 2,
+          "name": "Viking Helmet",
+          "lootId": 150
+        },
+        {
           "slot": 0,
-          "name": "Viking Helmet"
+          "rarity": 3,
+          "name": "Ivory Horned Helmet",
+          "lootId": 151
         },
         {
-          "lootId": 151,
-          "rarity": 3,
           "slot": 0,
-          "name": "Ivory Horned Helmet"
+          "rarity": 4,
+          "name": "Crystal Horned Helmet of Pointiness",
+          "lootId": 152
         },
         {
-          "lootId": 152,
-          "rarity": 4,
           "slot": 0,
-          "name": "Crystal Horned Helmet of Pointiness"
-        },
-        {
-          "lootId": 153,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Imitation Chain Vest"
-        },
-        {
-          "lootId": 154,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Well-Used Chain Vest"
-        },
-        {
-          "lootId": 155,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Gleaming Chainmail"
-        },
-        {
-          "lootId": 156,
           "rarity": 4,
-          "slot": 1,
-          "name": "Flawless Chainmail of Thorns"
-        },
-        {
-          "lootId": 157,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Tattered Loot Sack"
-        },
-        {
-          "lootId": 158,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Small Loot Sack"
-        },
-        {
-          "lootId": 159,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Massive Loot Sack"
-        },
-        {
-          "lootId": 160,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Bag of Holding"
-        },
-        {
+          "name": "Crystal Horned Helmet of Pointiness",
           "lootId": 307,
-          "rarity": 4,
-          "name": "Crystal Horned Helmet of Pointiness"
+          "golden": true
         },
         {
-          "lootId": 794,
-          "rarity": 4,
-          "name": "Gleaming Scalemail of the Couragous Collector"
-        },
-        {
-          "lootId": 1011,
+          "slot": 0,
           "rarity": 5,
-          "name": "Super Intimidating Horned Helmet of the Demon Slabberslakerginbin"
+          "name": "Super Intimidating Horned Helmet of the Demon Slabberslakerginbin",
+          "lootId": 1011
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Super Intimidating Horned Helmet of the Demon Slabberslakerginbin",
           "lootId": 1012,
-          "rarity": 5,
-          "name": "Super Intimidating Horned Helmet of the Demon Slabberslakerginbin"
+          "golden": true
         },
         {
-          "lootId": 1013,
-          "rarity": 5,
-          "name": "Lightweight Adventurer's Armor of Rapid Collection"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Imitation Chain Vest",
+          "lootId": 153
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Well-Used Chain Vest",
+          "lootId": 154
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Gleaming Chainmail",
+          "lootId": 155
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Flawless Chainmail of Thorns",
+          "lootId": 156
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Gleaming Scalemail of the Couragous Collector",
+          "lootId": 794,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Lightweight Adventurer's Armor of Rapid Collection",
+          "lootId": 1013
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Lightweight Adventurer's Armor of Rapid Collection",
           "lootId": 1014,
-          "rarity": 5,
-          "name": "Lightweight Adventurer's Armor of Rapid Collection"
+          "golden": true
         },
         {
-          "lootId": 1015,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Tattered Loot Sack",
+          "lootId": 157
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Small Loot Sack",
+          "lootId": 158
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Massive Loot Sack",
+          "lootId": 159
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Bag of Holding",
+          "lootId": 160
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Slobbering Devouring Sack of Lost Loot"
+          "name": "Slobbering Devouring Sack of Lost Loot",
+          "lootId": 1015
         }
       ]
     },
@@ -5479,91 +5822,94 @@ window.jsonData =
       "heroId": 40,
       "loot": [
         {
-          "lootId": 500,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Failing Power Source"
+          "name": "Failing Power Source",
+          "lootId": 500
         },
         {
-          "lootId": 501,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Cracked Power Source"
+          "name": "Cracked Power Source",
+          "lootId": 501
         },
         {
-          "lootId": 502,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Glowing Power Source"
+          "name": "Glowing Power Source",
+          "lootId": 502
         },
         {
-          "lootId": 503,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Neverending Iridium Power Source"
+          "name": "Neverending Iridium Power Source",
+          "lootId": 503
         },
         {
-          "lootId": 504,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Recolored Power Source of Infinite Possibilities",
+          "lootId": 1124
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Cold War Jet Pack"
+          "name": "Cold War Jet Pack",
+          "lootId": 504
         },
         {
-          "lootId": 505,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Ballistic Jet Pack"
+          "name": "Ballistic Jet Pack",
+          "lootId": 505
         },
         {
-          "lootId": 506,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Somewhat Stable Jet Pack"
+          "name": "Somewhat Stable Jet Pack",
+          "lootId": 506
         },
         {
-          "lootId": 507,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Mk3 Jet Pack of Workshop Destruction"
+          "name": "Mk3 Jet Pack of Workshop Destruction",
+          "lootId": 507
         },
         {
-          "lootId": 508,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Super Accurate Jet Pack of Precise Flying",
+          "lootId": 1125
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Unstabilizer Glove"
+          "name": "Unstabilizer Glove",
+          "lootId": 508
         },
         {
-          "lootId": 509,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Restrictive Suit Glove"
+          "name": "Restrictive Suit Glove",
+          "lootId": 509
         },
         {
-          "lootId": 510,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Powered Stabilizer Glove"
+          "name": "Powered Stabilizer Glove",
+          "lootId": 510
         },
         {
-          "lootId": 511,
+          "slot": 2,
           "rarity": 4,
+          "name": "Overpowered Suit Glove of Pew Pew Pew",
+          "lootId": 511
+        },
+        {
           "slot": 2,
-          "name": "Overpowered Suit Glove of Pew Pew Pew"
-        },
-        {
-          "lootId": 1124,
           "rarity": 5,
-          "name": "Recolored Power Source of Infinite Possibilities"
-        },
-        {
-          "lootId": 1125,
-          "rarity": 5,
-          "name": "Super Accurate Jet Pack of Precise Flying"
-        },
-        {
-          "lootId": 1126,
-          "rarity": 5,
-          "name": "Blindness Inducing Power Glove of Bright Flashes"
+          "name": "Blindness Inducing Power Glove of Bright Flashes",
+          "lootId": 1126
         }
       ]
     },
@@ -5591,91 +5937,94 @@ window.jsonData =
       "heroId": 77,
       "loot": [
         {
-          "lootId": 1305,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Patched Urchin's Cloak"
+          "name": "Patched Urchin's Cloak",
+          "lootId": 1305
         },
         {
-          "lootId": 1306,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Torn Leprechaun Cloak"
+          "name": "Torn Leprechaun Cloak",
+          "lootId": 1306
         },
         {
-          "lootId": 1307,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Fine Leprechaun Cloak"
+          "name": "Fine Leprechaun Cloak",
+          "lootId": 1307
         },
         {
-          "lootId": 1308,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Long Flowing Sneaker's Cloak of Subtle Sneaking"
+          "name": "Long Flowing Sneaker's Cloak of Subtle Sneaking",
+          "lootId": 1308
         },
         {
-          "lootId": 1309,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Hooded Hunter's Cloak of Extreme Parkour",
+          "lootId": 1330
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Pilling Corset"
+          "name": "Pilling Corset",
+          "lootId": 1309
         },
         {
-          "lootId": 1310,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Torn Corset"
+          "name": "Torn Corset",
+          "lootId": 1310
         },
         {
-          "lootId": 1311,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Tight Corset"
+          "name": "Tight Corset",
+          "lootId": 1311
         },
         {
-          "lootId": 1312,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Soft Velvet Well-Fitted Sneaker's Outfit of Origins"
+          "name": "Soft Velvet Well-Fitted Sneaker's Outfit of Origins",
+          "lootId": 1312
         },
         {
-          "lootId": 1313,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Padded Sneaker's Attire of Very Quick Fingers",
+          "lootId": 1331
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Ratty Fingerless Gloves"
+          "name": "Ratty Fingerless Gloves",
+          "lootId": 1313
         },
         {
-          "lootId": 1314,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Uncomfortable Gloves"
+          "name": "Uncomfortable Gloves",
+          "lootId": 1314
         },
         {
-          "lootId": 1315,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Soft Thieves' Gloves"
+          "name": "Soft Thieves' Gloves",
+          "lootId": 1315
         },
         {
-          "lootId": 1316,
+          "slot": 2,
           "rarity": 4,
+          "name": "Carefully Stiched Sneaker's Gloves of Stealing",
+          "lootId": 1316
+        },
+        {
           "slot": 2,
-          "name": "Carefully Stiched Sneaker's Gloves of Stealing"
-        },
-        {
-          "lootId": 1330,
           "rarity": 5,
-          "name": "Hooded Hunter's Cloak of Extreme Parkour"
-        },
-        {
-          "lootId": 1331,
-          "rarity": 5,
-          "name": "Padded Sneaker's Attire of Very Quick Fingers"
-        },
-        {
-          "lootId": 1332,
-          "rarity": 5,
-          "name": "Luck-infused Thieves' Gloves of Never Getting Caught"
+          "name": "Luck-infused Thieves' Gloves of Never Getting Caught",
+          "lootId": 1332
         }
       ]
     },
@@ -5693,111 +6042,122 @@ window.jsonData =
       "heroId": 14,
       "loot": [
         {
-          "lootId": 185,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Broken Pocket Watch"
+          "name": "Broken Pocket Watch",
+          "lootId": 185
         },
         {
-          "lootId": 186,
+          "slot": 0,
           "rarity": 2,
+          "name": "Mostly Accurate Pocket Watch",
+          "lootId": 186
+        },
+        {
           "slot": 0,
-          "name": "Mostly Accurate Pocket Watch"
+          "rarity": 3,
+          "name": "Inscribed Pocket Watch",
+          "lootId": 187
         },
         {
-          "lootId": 187,
-          "rarity": 3,
           "slot": 0,
-          "name": "Inscribed Pocket Watch"
+          "rarity": 4,
+          "name": "Time Travelling Pocket Watch",
+          "lootId": 188
         },
         {
-          "lootId": 188,
-          "rarity": 4,
           "slot": 0,
-          "name": "Time Travelling Pocket Watch"
-        },
-        {
-          "lootId": 189,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Brittle Cape"
-        },
-        {
-          "lootId": 190,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Solid Cape"
-        },
-        {
-          "lootId": 191,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Crystal Cape"
-        },
-        {
-          "lootId": 192,
           "rarity": 4,
-          "slot": 1,
-          "name": "Solid Gold Cape"
-        },
-        {
-          "lootId": 193,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Unlucky Golden Clover"
-        },
-        {
-          "lootId": 194,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Lucky Golden Clover"
-        },
-        {
-          "lootId": 195,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Very Lucky Golden Clover"
-        },
-        {
-          "lootId": 196,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Luckiest Golden Clover"
-        },
-        {
-          "lootId": 678,
-          "rarity": 4,
-          "name": "Sickeniningly Rich Golden Clover of Golllllld"
-        },
-        {
+          "name": "Multi-Dimentional Cosmic Pocket Watch of Infinite Time",
           "lootId": 892,
-          "rarity": 4,
-          "name": "Multi-Dimentional Cosmic Pocket Watch of Infinite Time"
+          "golden": true
         },
         {
-          "lootId": 1016,
+          "slot": 0,
           "rarity": 5,
-          "name": "Omni-Dimensional Pocket Watch of Daylight Saving Time"
+          "name": "Omni-Dimensional Pocket Watch of Daylight Saving Time",
+          "lootId": 1016
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Omni-Dimensional Pocket Watch of Daylight Saving Time",
           "lootId": 1017,
-          "rarity": 5,
-          "name": "Omni-Dimensional Pocket Watch of Daylight Saving Time"
+          "golden": true
         },
         {
-          "lootId": 1018,
-          "rarity": 5,
-          "name": "Solid Gold Striped Cape of Ridiculous Wealth"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Brittle Cape",
+          "lootId": 189
         },
         {
-          "lootId": 1019,
-          "rarity": 5,
-          "name": "Satin Wrapped Bundle of Gemmed Golden Clovers"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Solid Cape",
+          "lootId": 190
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Crystal Cape",
+          "lootId": 191
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Solid Gold Cape",
+          "lootId": 192
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Solid Gold Striped Cape of Ridiculous Wealth",
+          "lootId": 1018
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Unlucky Golden Clover",
+          "lootId": 193
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Lucky Golden Clover",
+          "lootId": 194
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Very Lucky Golden Clover",
+          "lootId": 195
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Luckiest Golden Clover",
+          "lootId": 196
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Sickeniningly Rich Golden Clover of Golllllld",
+          "lootId": 678,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Satin Wrapped Bundle of Gemmed Golden Clovers",
+          "lootId": 1019
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Satin Wrapped Bundle of Gemmed Golden Clovers",
           "lootId": 1020,
-          "rarity": 5,
-          "name": "Satin Wrapped Bundle of Gemmed Golden Clovers"
+          "golden": true
         }
       ]
     },
@@ -5817,101 +6177,108 @@ window.jsonData =
       "heroId": 27,
       "loot": [
         {
-          "lootId": 334,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Sooty Red Stocking Cap"
+          "name": "Sooty Red Stocking Cap",
+          "lootId": 334
         },
         {
-          "lootId": 335,
+          "slot": 0,
           "rarity": 2,
+          "name": "Santa Impersonator Cap",
+          "lootId": 335
+        },
+        {
           "slot": 0,
-          "name": "Santa Impersonator Cap"
+          "rarity": 3,
+          "name": "Pristine Red Stocking Cap",
+          "lootId": 336
         },
         {
-          "lootId": 336,
-          "rarity": 3,
           "slot": 0,
-          "name": "Pristine Red Stocking Cap"
+          "rarity": 4,
+          "name": "RoboSaint's Christmas Cap of Coal Giving",
+          "lootId": 337
         },
         {
-          "lootId": 337,
-          "rarity": 4,
           "slot": 0,
-          "name": "RoboSaint's Christmas Cap of Coal Giving"
-        },
-        {
-          "lootId": 338,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Bent Iron Buckle"
-        },
-        {
-          "lootId": 339,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Steel Belt Buckle"
-        },
-        {
-          "lootId": 340,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Gold Plated Belt Buckle"
-        },
-        {
-          "lootId": 341,
           "rarity": 4,
-          "slot": 1,
-          "name": "Enchanted Belly Buckle of Laughter"
-        },
-        {
-          "lootId": 342,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Repurposed Potato Cannon"
-        },
-        {
-          "lootId": 343,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Prototype Gift Cannon"
-        },
-        {
-          "lootId": 344,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Retrofitted Buster Cannon"
-        },
-        {
-          "lootId": 345,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Christmas Cannon 2000"
-        },
-        {
+          "name": "RoboSaint's Christmas Cap of Coal Giving",
           "lootId": 358,
-          "rarity": 4,
-          "name": "RoboSaint's Christmas Cap of Coal Giving"
+          "golden": true
         },
         {
-          "lootId": 1076,
+          "slot": 0,
           "rarity": 5,
-          "name": "Plated Santa Cap of Jolly Emerald Holly"
+          "name": "Plated Santa Cap of Jolly Emerald Holly",
+          "lootId": 1076
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Plated Santa Cap of Jolly Emerald Holly",
           "lootId": 1077,
-          "rarity": 5,
-          "name": "Plated Santa Cap of Jolly Emerald Holly"
+          "golden": true
         },
         {
-          "lootId": 1078,
-          "rarity": 5,
-          "name": "Self-Powered LED Belt Buckle of Holiday Cheer"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Bent Iron Buckle",
+          "lootId": 338
         },
         {
-          "lootId": 1079,
+          "slot": 1,
+          "rarity": 2,
+          "name": "Steel Belt Buckle",
+          "lootId": 339
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Gold Plated Belt Buckle",
+          "lootId": 340
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Enchanted Belly Buckle of Laughter ",
+          "lootId": 341
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Naughty-Seeking Death Missile Launcher of Joy"
+          "name": "Self-Powered LED Belt Buckle of Holiday Cheer",
+          "lootId": 1078
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Repurposed Potato Cannon",
+          "lootId": 342
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Prototype Gift Cannon",
+          "lootId": 343
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Retrofitted Buster Cannon",
+          "lootId": 344
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Christmas Cannon 2000",
+          "lootId": 345
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Naughty-Seeking Death Missile Launcher of Joy",
+          "lootId": 1079
         }
       ]
     },
@@ -5933,111 +6300,122 @@ window.jsonData =
       "heroId": 43,
       "loot": [
         {
-          "lootId": 540,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Stained Book"
+          "name": "Ratty Stained Book",
+          "lootId": 540
         },
         {
-          "lootId": 541,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Aged Finance Book"
+          "name": "Aged Finance Book",
+          "lootId": 541
         },
         {
-          "lootId": 542,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Well-Printed Bookmarked Book"
+          "name": "Well-Printed Bookmarked Book",
+          "lootId": 542
         },
         {
-          "lootId": 543,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Legendary Ledger of Liquidity"
+          "name": "Legendary Ledger of Liquidity",
+          "lootId": 543
         },
         {
-          "lootId": 544,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Royal Leather Bound Book of Scandelous Secrets",
+          "lootId": 1134
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Cheap Rum"
+          "name": "Cheap Rum",
+          "lootId": 544
         },
         {
-          "lootId": 545,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Recently Bottled Whiskey"
+          "name": "Recently Bottled Whiskey",
+          "lootId": 545
         },
         {
-          "lootId": 546,
+          "slot": 1,
           "rarity": 3,
+          "name": "Fine Mulled Wine",
+          "lootId": 546
+        },
+        {
           "slot": 1,
-          "name": "Fine Mulled Wine"
+          "rarity": 4,
+          "name": "Crystal Decanter of Incredulity",
+          "lootId": 547
         },
         {
-          "lootId": 547,
-          "rarity": 4,
           "slot": 1,
-          "name": "Crystal Decanter of Incredulity"
-        },
-        {
-          "lootId": 548,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Tarnished Lead Coin"
-        },
-        {
-          "lootId": 549,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Chipped Silvered Coin"
-        },
-        {
-          "lootId": 550,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Inscribed Golden Coin"
-        },
-        {
-          "lootId": 551,
           "rarity": 4,
-          "slot": 2,
-          "name": "Jewelled Hexagonal Coin of Fortune"
-        },
-        {
-          "lootId": 552,
-          "rarity": 4,
-          "name": "Dragonborn Coin of Legends"
-        },
-        {
+          "name": "Gold Medal Winning Dragonglass Crystal Flask of Power",
           "lootId": 847,
-          "rarity": 4,
-          "name": "Gold Medal Winning Dragonglass Crystal Flask of Power"
+          "golden": true
         },
         {
-          "lootId": 1134,
+          "slot": 1,
           "rarity": 5,
-          "name": "Royal Leather Bound Book of Scandelous Secrets"
+          "name": "Ivory Flask of the Drunken Sages",
+          "lootId": 1135
         },
         {
-          "lootId": 1135,
+          "slot": 1,
           "rarity": 5,
-          "name": "Ivory Flask of the Drunken Sages"
-        },
-        {
+          "name": "Ivory Flask of the Drunken Sages",
           "lootId": 1136,
-          "rarity": 5,
-          "name": "Ivory Flask of the Drunken Sages"
+          "golden": true
         },
         {
-          "lootId": 1137,
-          "rarity": 5,
-          "name": "Six-sided Mark of the Royal Son"
+          "slot": 2,
+          "rarity": 1,
+          "name": "Tarnished Lead Coin",
+          "lootId": 548
         },
         {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Chipped Silvered Coin",
+          "lootId": 549
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Inscribed Golden Coin",
+          "lootId": 550
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Jewelled Hexagonal Coin of Fortune",
+          "lootId": 551
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Dragonborn Coin of Legends",
+          "lootId": 552,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Six-sided Mark of the Royal Son",
+          "lootId": 1137
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Six-sided Mark of the Royal Son",
           "lootId": 1138,
-          "rarity": 5,
-          "name": "Six-sided Mark of the Royal Son"
+          "golden": true
         }
       ]
     },
@@ -6059,91 +6437,94 @@ window.jsonData =
       "heroId": 76,
       "loot": [
         {
-          "lootId": 1246,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Snapped String Bow"
+          "name": "Snapped String Bow",
+          "lootId": 1246
         },
         {
-          "lootId": 1247,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Weak Cupid's Bow"
+          "name": "Weak Cupid's Bow",
+          "lootId": 1247
         },
         {
-          "lootId": 1248,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Strong Cupid's Bow"
+          "name": "Strong Cupid's Bow",
+          "lootId": 1248
         },
         {
-          "lootId": 1249,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Golden True-shot Cupid's Bow of Matchmaking"
+          "name": "Golden True-shot Cupid's Bow of Matchmaking",
+          "lootId": 1249
         },
         {
-          "lootId": 1250,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Perfectly Strung Cupid's Bow of Decisiveness",
+          "lootId": 1294
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Chipped Halo"
+          "name": "Chipped Halo",
+          "lootId": 1250
         },
         {
-          "lootId": 1251,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Dented Halo"
+          "name": "Dented Halo",
+          "lootId": 1251
         },
         {
-          "lootId": 1252,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Pure Gold Halo"
+          "name": "Pure Gold Halo",
+          "lootId": 1252
         },
         {
-          "lootId": 1253,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Shining Golden Halo of Chaste Loving"
+          "name": "Shining Golden Halo of Chaste Loving",
+          "lootId": 1253
         },
         {
-          "lootId": 1254,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Magical Pointy Halo of the Prime Cupid",
+          "lootId": 1295
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Empty Quiver"
+          "name": "Empty Quiver",
+          "lootId": 1254
         },
         {
-          "lootId": 1255,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Nice Quiver"
+          "name": "Nice Quiver",
+          "lootId": 1255
         },
         {
-          "lootId": 1256,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Perfectly Good Quiver"
+          "name": "Perfectly Good Quiver",
+          "lootId": 1256
         },
         {
-          "lootId": 1257,
+          "slot": 2,
           "rarity": 4,
+          "name": "Magical Neverending Quiver of +1 Love Arrows",
+          "lootId": 1257
+        },
+        {
           "slot": 2,
-          "name": "Magical Neverending Quiver of +1 Love Arrows"
-        },
-        {
-          "lootId": 1294,
           "rarity": 5,
-          "name": "Perfectly Strung Cupid's Bow of Decisiveness"
-        },
-        {
-          "lootId": 1295,
-          "rarity": 5,
-          "name": "Magical Pointy Halo of the Prime Cupid"
-        },
-        {
-          "lootId": 1296,
-          "rarity": 5,
-          "name": "Unknowable Quiver of Quivering Quails"
+          "name": "Unknowable Quiver of Quivering Quails",
+          "lootId": 1296
         }
       ]
     },
@@ -6172,121 +6553,136 @@ window.jsonData =
       "heroId": 15,
       "loot": [
         {
-          "lootId": 173,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Training Trident"
+          "name": "Training Trident",
+          "lootId": 173
         },
         {
-          "lootId": 174,
+          "slot": 0,
           "rarity": 2,
+          "name": "Mana Trident",
+          "lootId": 174
+        },
+        {
           "slot": 0,
-          "name": "Mana Trident"
+          "rarity": 3,
+          "name": "Enchanted Trident",
+          "lootId": 175
         },
         {
-          "lootId": 175,
-          "rarity": 3,
           "slot": 0,
-          "name": "Enchanted Trident"
+          "rarity": 4,
+          "name": "King Neptune's Trident",
+          "lootId": 176
         },
         {
-          "lootId": 176,
-          "rarity": 4,
           "slot": 0,
-          "name": "King Neptune's Trident"
-        },
-        {
-          "lootId": 177,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Stuffed Shark"
-        },
-        {
-          "lootId": 178,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Baby Shark"
-        },
-        {
-          "lootId": 179,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Tiger Shark"
-        },
-        {
-          "lootId": 180,
           "rarity": 4,
-          "slot": 1,
-          "name": "Great White Shark"
-        },
-        {
-          "lootId": 181,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Tangled Cape"
-        },
-        {
-          "lootId": 182,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Seaweed Cape"
-        },
-        {
-          "lootId": 183,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Cape of Ocean Currents"
-        },
-        {
-          "lootId": 184,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Cape of Storms"
-        },
-        {
-          "lootId": 539,
-          "rarity": 4,
-          "name": "Laser Shark"
-        },
-        {
-          "lootId": 684,
-          "rarity": 4,
-          "name": "Impervious Fish-Scale Cape of the Golden Royal Seal"
-        },
-        {
+          "name": "Crab Claw Trident of Deep Sea Stabbing",
           "lootId": 958,
-          "rarity": 4,
-          "name": "Crab Claw Trident of Deep Sea Stabbing"
+          "golden": true
         },
         {
-          "lootId": 1021,
+          "slot": 0,
           "rarity": 5,
-          "name": "Finned Tasselled Trident of Extreme Pokiness"
+          "name": "Finned Tasselled Trident of Extreme Pokiness",
+          "lootId": 1021
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Finned Tasselled Trident of Extreme Pokiness",
           "lootId": 1022,
-          "rarity": 5,
-          "name": "Finned Tasselled Trident of Extreme Pokiness"
+          "golden": true
         },
         {
-          "lootId": 1023,
-          "rarity": 5,
-          "name": "Four-Eyed Horned Megalodon of Destruction"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Stuffed Shark",
+          "lootId": 177
         },
         {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Baby Shark",
+          "lootId": 178
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Tiger Shark",
+          "lootId": 179
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Great White Shark",
+          "lootId": 180
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Laser Shark",
+          "lootId": 539,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Four-Eyed Horned Megalodon of Destruction",
+          "lootId": 1023
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Four-Eyed Horned Megalodon of Destruction",
           "lootId": 1024,
-          "rarity": 5,
-          "name": "Four-Eyed Horned Megalodon of Destruction"
+          "golden": true
         },
         {
-          "lootId": 1025,
-          "rarity": 5,
-          "name": "First-Born Royal Sea-Cape of Succession"
+          "slot": 2,
+          "rarity": 1,
+          "name": "Tangled Cape",
+          "lootId": 181
         },
         {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Seaweed Cape",
+          "lootId": 182
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Cape of Ocean Currents",
+          "lootId": 183
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Cape of Storms",
+          "lootId": 184
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Impervious Fish-Scale Cape of the Golden Royal Seal",
+          "lootId": 684,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "First-Born Royal Sea-Cape of Succession",
+          "lootId": 1025
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "First-Born Royal Sea-Cape of Succession",
           "lootId": 1026,
-          "rarity": 5,
-          "name": "First-Born Royal Sea-Cape of Succession"
+          "golden": true
         }
       ]
     },
@@ -6316,101 +6712,108 @@ window.jsonData =
       "heroId": 23,
       "loot": [
         {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Wormy Apple",
+          "lootId": 283
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Gnawed Apple",
+          "lootId": 284
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Poisoned Apple",
+          "lootId": 285
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "All-Seeing Apple",
+          "lootId": 286
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Ruby Carved Poison Vial of Apple-like Appearance",
+          "lootId": 1060
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Broken Broom",
+          "lootId": 287
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Straight Broom",
+          "lootId": 288
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Broomba",
+          "lootId": 289
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Nimbus 2000",
+          "lootId": 290
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Nimbus 2000",
           "lootId": 282,
-          "rarity": 4,
-          "slot": 0,
-          "name": "Nimbus 2000"
+          "golden": true
         },
         {
-          "lootId": 283,
-          "rarity": 1,
           "slot": 1,
-          "name": "Wormy Apple"
-        },
-        {
-          "lootId": 284,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Gnawed Apple"
-        },
-        {
-          "lootId": 285,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Poisoned Apple"
-        },
-        {
-          "lootId": 286,
-          "rarity": 4,
-          "slot": 1,
-          "name": "All-Seeing Apple"
-        },
-        {
-          "lootId": 287,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Broken Broom"
-        },
-        {
-          "lootId": 288,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Straight Broom"
-        },
-        {
-          "lootId": 289,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Broomba"
-        },
-        {
-          "lootId": 290,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Nimbus 2000"
-        },
-        {
-          "lootId": 291,
-          "rarity": 1,
-          "slot": 0,
-          "name": "Leaky Cauldron"
-        },
-        {
-          "lootId": 292,
-          "rarity": 2,
-          "slot": 0,
-          "name": "Bubbling Cauldron"
-        },
-        {
-          "lootId": 293,
-          "rarity": 3,
-          "slot": 0,
-          "name": "Glowing Cauldron"
-        },
-        {
-          "lootId": 294,
-          "rarity": 4,
-          "name": "Magnificent Cauldron"
-        },
-        {
-          "lootId": 1060,
           "rarity": 5,
-          "name": "Ruby Carved Poison Vial of Apple-like Appearance"
+          "name": "Superbroom 9000 With Optional Air-Bag Attachment",
+          "lootId": 1061
         },
         {
-          "lootId": 1061,
+          "slot": 1,
           "rarity": 5,
-          "name": "Superbroom 9000 With Optional Air-Bag Attachment"
-        },
-        {
+          "name": "Superbroom 9000 With Optional Air-Bag Attachment",
           "lootId": 1062,
-          "rarity": 5,
-          "name": "Superbroom 9000 With Optional Air-Bag Attachment"
+          "golden": true
         },
         {
-          "lootId": 1063,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Leaky Cauldron",
+          "lootId": 291
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Bubbling Cauldron",
+          "lootId": 292
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Glowing Cauldron",
+          "lootId": 293
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Magnificent Cauldron",
+          "lootId": 294
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Molten Metal Cauldron of Burning Potions"
+          "name": "Molten Metal Cauldron of Burning Potions",
+          "lootId": 1063
         }
       ]
     },
@@ -6431,101 +6834,108 @@ window.jsonData =
       "heroId": 42,
       "loot": [
         {
-          "lootId": 526,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Inert Grenade"
+          "name": "Inert Grenade",
+          "lootId": 526
         },
         {
-          "lootId": 527,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Ticking Grenade"
+          "name": "Ticking Grenade",
+          "lootId": 527
         },
         {
-          "lootId": 528,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Blazing Molotov"
+          "name": "Blazing Molotov",
+          "lootId": 528
         },
         {
-          "lootId": 529,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Exploding Canister of Explosions"
+          "name": "Exploding Canister of Explosions",
+          "lootId": 529
         },
         {
-          "lootId": 530,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Everburning Molotov Canister of Flames",
+          "lootId": 1130
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Painted Wooden Gun"
+          "name": "Painted Wooden Gun",
+          "lootId": 530
         },
         {
-          "lootId": 531,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Ancient Rusty Gun"
+          "name": "Ancient Rusty Gun",
+          "lootId": 531
         },
         {
-          "lootId": 532,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Polished Modern Gun"
+          "name": "Polished Modern Gun",
+          "lootId": 532
         },
         {
-          "lootId": 533,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Blast Co. Death Ray Mk. 5"
+          "name": "Blast Co. Death Ray Mk. 5",
+          "lootId": 533
         },
         {
-          "lootId": 534,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Plunger-Launching Infinity Gun of Rodents",
+          "lootId": 1131
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Unstable Rocket"
+          "name": "Unstable Rocket",
+          "lootId": 534
         },
         {
-          "lootId": 535,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Low Range Rocket"
+          "name": "Low Range Rocket",
+          "lootId": 535
         },
         {
-          "lootId": 536,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Purple Guided Missile"
+          "name": "Purple Guided Missile",
+          "lootId": 536
         },
         {
-          "lootId": 537,
+          "slot": 2,
           "rarity": 4,
-          "slot": 2,
-          "name": "Heat Seeking Missile of Obliteration"
+          "name": "Heat Seeking Missile of Obliteration",
+          "lootId": 537
         },
         {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Triple Barrelled Rocket Launcher of DooM",
           "lootId": 538,
-          "rarity": 4,
-          "name": "Triple Barrelled Rocket Launcher of DooM"
+          "golden": true
         },
         {
-          "lootId": 1130,
+          "slot": 2,
           "rarity": 5,
-          "name": "Everburning Molotov Canister of Flames"
+          "name": "Fallout Causing Mini-Nuke of Pipping",
+          "lootId": 1132
         },
         {
-          "lootId": 1131,
+          "slot": 2,
           "rarity": 5,
-          "name": "Plunger-Launching Infinity Gun of Rodents"
-        },
-        {
-          "lootId": 1132,
-          "rarity": 5,
-          "name": "Fallout Causing Mini-Nuke of Pipping"
-        },
-        {
+          "name": "Fallout Causing Mini-Nuke of Pipping",
           "lootId": 1133,
-          "rarity": 5,
-          "name": "Fallout Causing Mini-Nuke of Pipping"
+          "golden": true
         }
       ]
     },
@@ -6547,91 +6957,94 @@ window.jsonData =
       "heroId": 72,
       "loot": [
         {
-          "lootId": 936,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Dying Coral Tiara"
+          "name": "Dying Coral Tiara",
+          "lootId": 936
         },
         {
-          "lootId": 937,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Dead Coral Tiara"
+          "name": "Dead Coral Tiara",
+          "lootId": 937
         },
         {
-          "lootId": 938,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Living Coral Tiara"
+          "name": "Living Coral Tiara",
+          "lootId": 938
         },
         {
-          "lootId": 939,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Smooth Golden Coral Tiara of the Undersea Tempest"
+          "name": "Smooth Golden Coral Tiara of the Undersea Tempest",
+          "lootId": 939
         },
         {
-          "lootId": 940,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Seahorse Crafted Tiara of the Ocean Princess",
+          "lootId": 1231
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "2-Pronged Trident"
+          "name": "2-Pronged Trident",
+          "lootId": 940
         },
         {
-          "lootId": 941,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Rusted Trident"
+          "name": "Rusted Trident",
+          "lootId": 941
         },
         {
-          "lootId": 942,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Pointy Trident"
+          "name": "Pointy Trident",
+          "lootId": 942
         },
         {
-          "lootId": 943,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Shell-wrapped Golden Trident of Storms"
+          "name": "Shell-wrapped Golden Trident of Storms",
+          "lootId": 943
         },
         {
-          "lootId": 944,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Whale Bone Trident of Ten Thousand Leagues",
+          "lootId": 1232
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Dead Seahorse"
+          "name": "Dead Seahorse",
+          "lootId": 944
         },
         {
-          "lootId": 945,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Reanimated Seahorse"
+          "name": "Reanimated Seahorse",
+          "lootId": 945
         },
         {
-          "lootId": 946,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Shiny Armored Seahorse"
+          "name": "Shiny Armored Seahorse",
+          "lootId": 946
         },
         {
-          "lootId": 947,
+          "slot": 2,
           "rarity": 4,
+          "name": "Royal Saddled Seahorse of the Intrepid Princess",
+          "lootId": 947
+        },
+        {
           "slot": 2,
-          "name": "Royal Saddled Seahorse of the Intrepid Princess"
-        },
-        {
-          "lootId": 1231,
           "rarity": 5,
-          "name": "Seahorse Crafted Tiara of the Ocean Princess"
-        },
-        {
-          "lootId": 1232,
-          "rarity": 5,
-          "name": "Whale Bone Trident of Ten Thousand Leagues"
-        },
-        {
-          "lootId": 1233,
-          "rarity": 5,
-          "name": "Purebread Seaweed Seahorse of the Rapid Currents"
+          "name": "Purebread Seaweed Seahorse of the Rapid Currents",
+          "lootId": 1233
         }
       ]
     },
@@ -6649,121 +7062,136 @@ window.jsonData =
       "heroId": 16,
       "loot": [
         {
-          "lootId": 221,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Gem of Crystallized Ember"
+          "name": "Gem of Crystallized Ember",
+          "lootId": 221
         },
         {
-          "lootId": 222,
+          "slot": 0,
           "rarity": 2,
+          "name": "Gem of Crystallized Fire",
+          "lootId": 222
+        },
+        {
           "slot": 0,
-          "name": "Gem of Crystallized Fire"
+          "rarity": 3,
+          "name": "Gem of Crystallized Inferno",
+          "lootId": 223
         },
         {
-          "lootId": 223,
-          "rarity": 3,
           "slot": 0,
-          "name": "Gem of Crystallized Inferno"
+          "rarity": 4,
+          "name": "Sea of Crystallized Flames",
+          "lootId": 224
         },
         {
-          "lootId": 224,
-          "rarity": 4,
           "slot": 0,
-          "name": "Sea of Crystallized Flames"
-        },
-        {
-          "lootId": 225,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Tattered Feather of Darkness"
-        },
-        {
-          "lootId": 226,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Crisp Feather of Darkness"
-        },
-        {
-          "lootId": 227,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Obsidian Feather of Blackness"
-        },
-        {
-          "lootId": 228,
           "rarity": 4,
-          "slot": 1,
-          "name": "Obsidian Black Feather of Eternal Dark Blackness"
-        },
-        {
-          "lootId": 229,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Ring of Fire Bath"
-        },
-        {
-          "lootId": 230,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Ring of Fiery Sauna"
-        },
-        {
-          "lootId": 231,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Ring of Incandescent Souls"
-        },
-        {
-          "lootId": 232,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Fire Ring of Rebirth"
-        },
-        {
-          "lootId": 681,
-          "rarity": 4,
-          "name": "Literally On Fire Ring of Literally Being On Fire"
-        },
-        {
+          "name": "Masterfully Cut Phoenix Gem of Destruction and Rebirth",
           "lootId": 922,
-          "rarity": 4,
-          "name": "Masterfully Cut Phoenix Gem of Destruction and Rebirth"
+          "golden": true
         },
         {
-          "lootId": 1027,
+          "slot": 0,
           "rarity": 5,
-          "name": "Laser Cut 12-Edged Flame Gem of Sacrifice and Rebirth"
+          "name": "Laser Cut 12-Edged Flame Gem of Sacrifice and Rebirth",
+          "lootId": 1027
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Laser Cut 12-Edged Flame Gem of Sacrifice and Rebirth",
           "lootId": 1028,
-          "rarity": 5,
-          "name": "Laser Cut 12-Edged Flame Gem of Sacrifice and Rebirth"
+          "golden": true
         },
         {
-          "lootId": 1029,
-          "rarity": 5,
-          "name": "Scorching Tri-Feather Display of Flames"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Tattered Feather of Darkness",
+          "lootId": 225
         },
         {
-          "lootId": 1030,
-          "rarity": 5,
-          "name": "Dual-Banded Molten Ring of Raining Death"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Crisp Feather of Darkness",
+          "lootId": 226
         },
         {
-          "lootId": 1031,
-          "rarity": 5,
-          "name": "Dual-Banded Molten Ring of Raining Death"
+          "slot": 1,
+          "rarity": 3,
+          "name": "Obsidian Feather of Blackness",
+          "lootId": 227
         },
         {
-          "lootId": 1362,
+          "slot": 1,
           "rarity": 4,
-          "name": "Molton Lava Adamantium Feather of Melting Enemies"
+          "name": "Obsidian Black Feather of Eternal Dark Blackness",
+          "lootId": 228
         },
         {
-          "lootId": 1363,
+          "slot": 1,
+          "rarity": 4,
+          "name": "Molton Lava Adamantium Feather of Melting Enemies",
+          "lootId": 1362,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Scorching Tri-Feather Display of Flames"
+          "name": "Scorching Tri-Feather Display of Flames",
+          "lootId": 1029
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Scorching Tri-Feather Display of Flames",
+          "lootId": 1363,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Ring of Fire Bath",
+          "lootId": 229
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Ring of Fiery Sauna",
+          "lootId": 230
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Ring of Incandescent Souls",
+          "lootId": 231
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Fire Ring of Rebirth",
+          "lootId": 232
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Literally On Fire Ring of Literally Being On Fire",
+          "lootId": 681,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Dual-Banded Molten Ring of Raining Death",
+          "lootId": 1030
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Dual-Banded Molten Ring of Raining Death",
+          "lootId": 1031,
+          "golden": true
         }
       ]
     },
@@ -6784,91 +7212,94 @@ window.jsonData =
       "heroId": 37,
       "loot": [
         {
-          "lootId": 462,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Stiff Unmoving Wings"
+          "name": "Stiff Unmoving Wings",
+          "lootId": 462
         },
         {
-          "lootId": 463,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Ragged Gray Wings"
+          "name": "Ragged Gray Wings",
+          "lootId": 463
         },
         {
-          "lootId": 464,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Light Feather Wings"
+          "name": "Light Feather Wings",
+          "lootId": 464
         },
         {
-          "lootId": 465,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Angelic Wings of Imperious Hovering"
+          "name": "Angelic Wings of Imperious Hovering",
+          "lootId": 465
         },
         {
-          "lootId": 466,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Bladed Angel Wings of Mortal Decapitation",
+          "lootId": 1113
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Rutted Staff"
+          "name": "Rutted Staff",
+          "lootId": 466
         },
         {
-          "lootId": 467,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Copper Staff"
+          "name": "Copper Staff",
+          "lootId": 467
         },
         {
-          "lootId": 468,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Bronzed Staff"
+          "name": "Bronzed Staff",
+          "lootId": 468
         },
         {
-          "lootId": 469,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Jeweled Golden Staff of Hope"
+          "name": "Jeweled Golden Staff of Hope",
+          "lootId": 469
         },
         {
-          "lootId": 470,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Angelic Staff of Impervious Phallanxes",
+          "lootId": 1114
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Wooden Helmet"
+          "name": "Wooden Helmet",
+          "lootId": 470
         },
         {
-          "lootId": 471,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Metal Helmet"
+          "name": "Metal Helmet",
+          "lootId": 471
         },
         {
-          "lootId": 472,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Golden Coif"
+          "name": "Golden Coif",
+          "lootId": 472
         },
         {
-          "lootId": 473,
+          "slot": 2,
           "rarity": 4,
+          "name": "Imbued Sacred Helm of Tear'eal",
+          "lootId": 473
+        },
+        {
           "slot": 2,
-          "name": "Imbued Sacred Helm of Tear'eal"
-        },
-        {
-          "lootId": 1113,
           "rarity": 5,
-          "name": "Bladed Angel Wings of Mortal Decapitation"
-        },
-        {
-          "lootId": 1114,
-          "rarity": 5,
-          "name": "Angelic Staff of Impervious Phallanxes"
-        },
-        {
-          "lootId": 1115,
-          "rarity": 5,
-          "name": "Gold Scale Full Helm of Penetrating Stares"
+          "name": "Gold Scale Full Helm of Penetrating Stares",
+          "lootId": 1115
         }
       ]
     },
@@ -6889,91 +7320,94 @@ window.jsonData =
       "heroId": 65,
       "loot": [
         {
-          "lootId": 833,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Used Mask"
+          "name": "Used Mask",
+          "lootId": 833
         },
         {
-          "lootId": 834,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Red Mask"
+          "name": "Red Mask",
+          "lootId": 834
         },
         {
-          "lootId": 835,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Bone Mask"
+          "name": "Bone Mask",
+          "lootId": 835
         },
         {
-          "lootId": 836,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Frighteningly Frightening Frightful Mask of Fright"
+          "name": "Frighteningly Frightening Frightful Mask of Fright",
+          "lootId": 836
         },
         {
-          "lootId": 837,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Satanic Helmet of the Robo-Reaper",
+          "lootId": 1210
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Leaded Nightmare Fuel"
+          "name": "Leaded Nightmare Fuel",
+          "lootId": 837
         },
         {
-          "lootId": 838,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Unleaded Nightmare Fuel"
+          "name": "Unleaded Nightmare Fuel",
+          "lootId": 838
         },
         {
-          "lootId": 839,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Decanted Nightmare Fuel"
+          "name": "Decanted Nightmare Fuel",
+          "lootId": 839
         },
         {
-          "lootId": 840,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Furiously Powerful Nightmare Fuel of Endless Jump-Scares"
+          "name": "Furiously Powerful Nightmare Fuel of Endless Jump-Scares",
+          "lootId": 840
         },
         {
-          "lootId": 841,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Unlimited Fuel Source of Robotic Superiority",
+          "lootId": 1211
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Factory Model Tail"
+          "name": "Factory Model Tail",
+          "lootId": 841
         },
         {
-          "lootId": 842,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Reinforced Steel Tail"
+          "name": "Reinforced Steel Tail",
+          "lootId": 842
         },
         {
-          "lootId": 843,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Spiked Alloy Tail"
+          "name": "Spiked Alloy Tail",
+          "lootId": 843
         },
         {
-          "lootId": 844,
+          "slot": 2,
           "rarity": 4,
+          "name": "Modded Carbon-Nanotube Tail of Flaming Terror",
+          "lootId": 844
+        },
+        {
           "slot": 2,
-          "name": "Modded Carbon-Nanotube Tail of Flaming Terror"
-        },
-        {
-          "lootId": 1210,
           "rarity": 5,
-          "name": "Satanic Helmet of the Robo-Reaper"
-        },
-        {
-          "lootId": 1211,
-          "rarity": 5,
-          "name": "Unlimited Fuel Source of Robotic Superiority"
-        },
-        {
-          "lootId": 1212,
-          "rarity": 5,
-          "name": "Multi-bladed Tail of Dead-causing Options"
+          "name": "Multi-bladed Tail of Dead-causing Options",
+          "lootId": 1212
         }
       ]
     },
@@ -6991,111 +7425,122 @@ window.jsonData =
       "heroId": 17,
       "loot": [
         {
-          "lootId": 197,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Disgraced Crown"
+          "name": "Disgraced Crown",
+          "lootId": 197
         },
         {
-          "lootId": 198,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Royal Crown"
+          "name": "Royal Crown",
+          "lootId": 198
         },
         {
-          "lootId": 199,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Crown of Swords"
+          "name": "Crown of Swords",
+          "lootId": 199
         },
         {
-          "lootId": 200,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Golden Crown of the Emperor"
+          "name": "Golden Crown of the Emperor",
+          "lootId": 200
         },
         {
-          "lootId": 201,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Thousand-Year-Old King's Crown of Jewels",
+          "lootId": 1032
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Woven Wool Robe"
+          "name": "Woven Wool Robe",
+          "lootId": 201
         },
         {
-          "lootId": 202,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Royal Cloth Cape"
+          "name": "Royal Cloth Cape",
+          "lootId": 202
         },
         {
-          "lootId": 203,
+          "slot": 1,
           "rarity": 3,
+          "name": "Expensive Silk Cape",
+          "lootId": 203
+        },
+        {
           "slot": 1,
-          "name": "Expensive Silk Cape"
+          "rarity": 4,
+          "name": "Enchanted Cape of His Majesty",
+          "lootId": 204
         },
         {
-          "lootId": 204,
-          "rarity": 4,
           "slot": 1,
-          "name": "Enchanted Cape of His Majesty"
-        },
-        {
-          "lootId": 205,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Idle Thoughts"
-        },
-        {
-          "lootId": 206,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Royal Decree"
-        },
-        {
-          "lootId": 207,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Constitutional Ideas"
-        },
-        {
-          "lootId": 208,
           "rarity": 4,
-          "slot": 2,
-          "name": "Freedom and Prosperity"
-        },
-        {
-          "lootId": 675,
-          "rarity": 4,
-          "name": "Freedom-Loving AI-Controlled Tablet of Mobility"
-        },
-        {
+          "name": "Royal Yeti-fur Cape of Tantalizing Scents",
           "lootId": 890,
-          "rarity": 4,
-          "name": "Royal Yeti-fur Cape of Tantalizing Scents"
+          "golden": true
         },
         {
-          "lootId": 1032,
+          "slot": 1,
           "rarity": 5,
-          "name": "Thousand-Year-Old King's Crown of Jewels"
+          "name": "Legendary Purple Royal Cape of Royal Purpleness",
+          "lootId": 1033
         },
         {
-          "lootId": 1033,
+          "slot": 1,
           "rarity": 5,
-          "name": "Legendary Purple Royal Cape of Royal Purpleness"
-        },
-        {
+          "name": "Legendary Purple Royal Cape of Royal Purpleness",
           "lootId": 1034,
-          "rarity": 5,
-          "name": "Legendary Purple Royal Cape of Royal Purpleness"
+          "golden": true
         },
         {
-          "lootId": 1035,
-          "rarity": 5,
-          "name": "Golden Scrolled Proclamation of Royal Inheritance"
+          "slot": 2,
+          "rarity": 1,
+          "name": "Idle Thoughts",
+          "lootId": 205
         },
         {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Royal Decree",
+          "lootId": 206
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Constitutional Ideas",
+          "lootId": 207
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Freedom and Prosperity",
+          "lootId": 208
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Freedom-Loving AI-Controlled Tablet of Mobility",
+          "lootId": 675,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Golden Scrolled Proclamation of Royal Inheritance",
+          "lootId": 1035
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Golden Scrolled Proclamation of Royal Inheritance",
           "lootId": 1036,
-          "rarity": 5,
-          "name": "Golden Scrolled Proclamation of Royal Inheritance"
+          "golden": true
         }
       ]
     },
@@ -7117,111 +7562,122 @@ window.jsonData =
       "heroId": 30,
       "loot": [
         {
-          "lootId": 371,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Christmas Cracker 'Crown'"
+          "name": "Christmas Cracker 'Crown'",
+          "lootId": 371
         },
         {
-          "lootId": 372,
+          "slot": 0,
           "rarity": 2,
+          "name": "Copper Crown",
+          "lootId": 372
+        },
+        {
           "slot": 0,
-          "name": "Copper Crown"
+          "rarity": 3,
+          "name": "Brillant Golden Crown",
+          "lootId": 373
         },
         {
-          "lootId": 373,
-          "rarity": 3,
           "slot": 0,
-          "name": "Brillant Golden Crown"
+          "rarity": 4,
+          "name": "Ornate Crown of Blinding Majesty ",
+          "lootId": 374
         },
         {
-          "lootId": 374,
-          "rarity": 4,
           "slot": 0,
-          "name": "Ornate Crown of Blinding Majesty"
-        },
-        {
-          "lootId": 375,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Pig Iron Sceptre"
-        },
-        {
-          "lootId": 376,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Simple Iron Sceptre"
-        },
-        {
-          "lootId": 377,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Golden Ruby Sceptre"
-        },
-        {
-          "lootId": 378,
           "rarity": 4,
-          "slot": 1,
-          "name": "Amethyst Sceptre of Unequivocal Sovereignty"
-        },
-        {
-          "lootId": 379,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Moth-eaten Pillow"
-        },
-        {
-          "lootId": 380,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Dusty Pillow"
-        },
-        {
-          "lootId": 381,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Cushy Sitting Pillow"
-        },
-        {
-          "lootId": 382,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Magic Pillow of Effortless Travel"
-        },
-        {
+          "name": "Ornate Crown of Blinding Majesty ",
           "lootId": 383,
-          "rarity": 4,
-          "name": "Ornate Crown of Blinding Majesty"
+          "golden": true
         },
         {
-          "lootId": 1088,
+          "slot": 0,
           "rarity": 5,
-          "name": "Golden Flamingo Crown of a Thousand Feathers"
+          "name": "Golden Flamingo Crown of a Thousand Feathers",
+          "lootId": 1088
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Golden Flamingo Crown of a Thousand Feathers",
           "lootId": 1089,
-          "rarity": 5,
-          "name": "Golden Flamingo Crown of a Thousand Feathers"
+          "golden": true
         },
         {
-          "lootId": 1090,
-          "rarity": 5,
-          "name": "Solid Pink Sceptre of Royal Empowerment"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Pig Iron Sceptre",
+          "lootId": 375
         },
         {
-          "lootId": 1091,
-          "rarity": 5,
-          "name": "Creepy Animated Pillow of Laziness"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Simple Iron Sceptre",
+          "lootId": 376
         },
         {
-          "lootId": 1370,
+          "slot": 1,
+          "rarity": 3,
+          "name": "Golden Ruby Sceptre",
+          "lootId": 377
+        },
+        {
+          "slot": 1,
           "rarity": 4,
-          "name": "Siri Sceptre GE"
+          "name": "Amethyst Sceptre of Unequivocal Sovereignty",
+          "lootId": 378
         },
         {
-          "lootId": 1371,
+          "slot": 1,
+          "rarity": 4,
+          "name": "Siri Sceptre GE",
+          "lootId": 1370,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Solid Pink Sceptre of Royal Empowerment"
+          "name": "Solid Pink Sceptre of Royal Empowerment",
+          "lootId": 1090
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Solid Pink Sceptre of Royal Empowerment",
+          "lootId": 1371,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Moth-eaten Pillow",
+          "lootId": 379
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Dusty Pillow",
+          "lootId": 380
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Cushy Sitting Pillow",
+          "lootId": 381
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Magic Pillow of Effortless Travel",
+          "lootId": 382
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Creepy Animated Pillow of Laziness",
+          "lootId": 1091
         }
       ]
     },
@@ -7242,102 +7698,108 @@ window.jsonData =
       "heroId": 54,
       "loot": [
         {
-          "lootId": 697,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Broken Plastic Glasses"
+          "name": "Broken Plastic Glasses",
+          "lootId": 697
         },
         {
-          "lootId": 698,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Cracked Glasses"
+          "name": "Cracked Glasses",
+          "lootId": 698
         },
         {
-          "lootId": 699,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Glossy Glasses"
+          "name": "Glossy Glasses",
+          "lootId": 699
         },
         {
-          "lootId": 700,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Bespoke Spectacles of Acuity"
+          "name": "Bespoke Spectacles of Acuity",
+          "lootId": 700
         },
         {
-          "lootId": 701,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Cheater-Detecting Glasses of Incredible Intuition",
+          "lootId": 1176
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Slack Suspenders"
+          "name": "Slack Suspenders",
+          "lootId": 701
         },
         {
-          "lootId": 702,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Ragged Suspenders"
+          "name": "Ragged Suspenders",
+          "lootId": 702
         },
         {
-          "lootId": 703,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Slick Suspenders"
+          "name": "Slick Suspenders",
+          "lootId": 703
         },
         {
-          "lootId": 704,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Clover-Pin Suspenders of Steadfastness"
+          "name": "Clover-Pin Suspenders of Steadfastness",
+          "lootId": 704
         },
         {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Star-Bound Emerald Suspenders of Cosmic Joining",
           "lootId": 705,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Star-Bound Emerald Suspenders of Cosmic Joining"
+          "golden": true
         },
         {
-          "lootId": 706,
-          "rarity": 1,
-          "slot": 0,
-          "name": "Taped-Up Ruler"
-        },
-        {
-          "lootId": 707,
-          "rarity": 2,
-          "slot": 0,
-          "name": "Warped Ruler"
-        },
-        {
-          "lootId": 708,
-          "rarity": 3,
-          "slot": 0,
-          "name": "Keen Ruler"
-        },
-        {
-          "lootId": 709,
-          "rarity": 4,
-          "slot": 0,
-          "name": "Demonic Ruler of Ineffable Precision"
-        },
-        {
-          "lootId": 1176,
+          "slot": 1,
           "rarity": 5,
-          "name": "Cheater-Detecting Glasses of Incredible Intuition"
+          "name": "Super Stretchy Suspenders of Stylish Boggining",
+          "lootId": 1177
         },
         {
-          "lootId": 1177,
+          "slot": 1,
           "rarity": 5,
-          "name": "Super Stretchy Suspenders of Stylish Boggining"
-        },
-        {
+          "name": "Super Stretchy Suspenders of Stylish Boggining",
           "lootId": 1178,
-          "rarity": 5,
-          "name": "Super Stretchy Suspenders of Stylish Boggining"
+          "golden": true
         },
         {
-          "lootId": 1179,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Taped-Up Ruler",
+          "lootId": 706
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Warped Ruler",
+          "lootId": 707
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Keen Ruler",
+          "lootId": 708
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Demonic Ruler of Ineffable Precision",
+          "lootId": 709
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Customized Ruler of the Hidden Blade"
+          "name": "Customized Ruler of the Hidden Blade",
+          "lootId": 1179
         }
       ]
     },
@@ -7357,91 +7819,94 @@ window.jsonData =
       "heroId": 78,
       "loot": [
         {
-          "lootId": 1317,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Depressing Clown Hat"
+          "name": "Depressing Clown Hat",
+          "lootId": 1317
         },
         {
-          "lootId": 1318,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Faded Clown Hat"
+          "name": "Faded Clown Hat",
+          "lootId": 1318
         },
         {
-          "lootId": 1319,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Brand New Clown Hat"
+          "name": "Brand New Clown Hat",
+          "lootId": 1319
         },
         {
-          "lootId": 1320,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Extremely Lucky Clover-Ringed Clown Hat of Laughter"
+          "name": "Extremely Lucky Clover-Ringed Clown Hat of Laughter",
+          "lootId": 1320
         },
         {
-          "lootId": 1321,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Famous Clown Hat of A Thousand Clever Limericks",
+          "lootId": 1333
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Dried Up Make-Up"
+          "name": "Dried Up Make-Up",
+          "lootId": 1321
         },
         {
-          "lootId": 1322,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Almost-Spent Make-Up"
+          "name": "Almost-Spent Make-Up",
+          "lootId": 1322
         },
         {
-          "lootId": 1323,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Stylish Make-Up"
+          "name": "Stylish Make-Up",
+          "lootId": 1323
         },
         {
-          "lootId": 1324,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Multicolored Make-Up of A Billion Shades of Silly"
+          "name": "Multicolored Make-Up of A Billion Shades of Silly",
+          "lootId": 1324
         },
         {
-          "lootId": 1325,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Extremely Stylish Rounded Make-Up Case of Hilarity",
+          "lootId": 1334
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Soggy Clown Shoe"
+          "name": "Soggy Clown Shoe",
+          "lootId": 1325
         },
         {
-          "lootId": 1326,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Cracked Clown Shoe"
+          "name": "Cracked Clown Shoe",
+          "lootId": 1326
         },
         {
-          "lootId": 1327,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Decent Clown Shoe"
+          "name": "Decent Clown Shoe",
+          "lootId": 1327
         },
         {
-          "lootId": 1328,
+          "slot": 2,
           "rarity": 4,
+          "name": "Fancily Decorated Shoe of the One-Legged Clown",
+          "lootId": 1328
+        },
+        {
           "slot": 2,
-          "name": "Fancily Decorated Shoe of the One-Legged Clown"
-        },
-        {
-          "lootId": 1333,
           "rarity": 5,
-          "name": "Famous Clown Hat of A Thousand Clever Limericks"
-        },
-        {
-          "lootId": 1334,
-          "rarity": 5,
-          "name": "Extremely Stylish Rounded Make-Up Case of Hilarity"
-        },
-        {
-          "lootId": 1335,
-          "rarity": 5,
-          "name": "Star-Imbued Shoe of the Legendary Lawyer Joke"
+          "name": "Star-Imbued Shoe of the Legendary Lawyer Joke",
+          "lootId": 1335
         }
       ]
     },
@@ -7461,111 +7926,122 @@ window.jsonData =
       "heroId": 18,
       "loot": [
         {
-          "lootId": 209,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Decrepit Ring of Lightning"
+          "name": "Decrepit Ring of Lightning",
+          "lootId": 209
         },
         {
-          "lootId": 210,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Old Ring of Lightning"
+          "name": "Old Ring of Lightning",
+          "lootId": 210
         },
         {
-          "lootId": 211,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Ancient Ring of Lightning"
+          "name": "Ancient Ring of Lightning",
+          "lootId": 211
         },
         {
-          "lootId": 212,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Venerable Ring of Lightning"
+          "name": "Venerable Ring of Lightning",
+          "lootId": 212
         },
         {
-          "lootId": 213,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Lightning-Imbued Signet Ring of Godly Power",
+          "lootId": 1037
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Bronze Amulet of Thunderstorms"
+          "name": "Bronze Amulet of Thunderstorms",
+          "lootId": 213
         },
         {
-          "lootId": 214,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Silver Amulet of Thunderstorms"
+          "name": "Silver Amulet of Thunderstorms",
+          "lootId": 214
         },
         {
-          "lootId": 215,
+          "slot": 1,
           "rarity": 3,
+          "name": "Gold Amulet of Thunderstorms",
+          "lootId": 215
+        },
+        {
           "slot": 1,
-          "name": "Gold Amulet of Thunderstorms"
+          "rarity": 4,
+          "name": "Platinum Amulet of Thunderstorms",
+          "lootId": 216
         },
         {
-          "lootId": 216,
-          "rarity": 4,
           "slot": 1,
-          "name": "Platinum Amulet of Thunderstorms"
-        },
-        {
-          "lootId": 217,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Used Electric Orb of Storms"
-        },
-        {
-          "lootId": 218,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Dusty Electric Orb of Storms"
-        },
-        {
-          "lootId": 219,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Orb of Hurricane and Lightning"
-        },
-        {
-          "lootId": 220,
           "rarity": 4,
-          "slot": 2,
-          "name": "Whirlwinding Orb of Tornados"
-        },
-        {
+          "name": "Musky Unobtainium Amulet of Megastorms",
           "lootId": 673,
-          "rarity": 4,
-          "name": "Musky Unobtainium Amulet of Megastorms"
+          "golden": true
         },
         {
-          "lootId": 956,
-          "rarity": 4,
-          "name": "All Powerful Nuclear Winter Orb of Barely Contained Lightning"
-        },
-        {
-          "lootId": 1037,
+          "slot": 1,
           "rarity": 5,
-          "name": "Lightning-Imbued Signet Ring of Godly Power"
+          "name": "Sparkling Amulet of Annoying Static Shocks",
+          "lootId": 1038
         },
         {
-          "lootId": 1038,
+          "slot": 1,
           "rarity": 5,
-          "name": "Sparkling Amulet of Annoying Static Shocks"
-        },
-        {
+          "name": "Sparkling Amulet of Annoying Static Shocks",
           "lootId": 1039,
-          "rarity": 5,
-          "name": "Sparkling Amulet of Annoying Static Shocks"
+          "golden": true
         },
         {
-          "lootId": 1040,
-          "rarity": 5,
-          "name": "Tornado Orb of Literally Having a Tornado Inside It"
+          "slot": 2,
+          "rarity": 1,
+          "name": "Used Electric Orb of Storms",
+          "lootId": 217
         },
         {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Dusty Electric Orb of Storms",
+          "lootId": 218
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Orb of Hurricane and Lightning",
+          "lootId": 219
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Whirlwinding Orb of Tornados",
+          "lootId": 220
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "All Powerful Nuclear Winter Orb of Barely Contained Lightning",
+          "lootId": 956,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Tornado Orb of Literally Having a Tornado Inside It",
+          "lootId": 1040
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Tornado Orb of Literally Having a Tornado Inside It",
           "lootId": 1041,
-          "rarity": 5,
-          "name": "Tornado Orb of Literally Having a Tornado Inside It"
+          "golden": true
         }
       ]
     },
@@ -7586,101 +8062,108 @@ window.jsonData =
       "heroId": 28,
       "loot": [
         {
-          "lootId": 346,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Tousled Twig Pauldrons"
+          "name": "Tousled Twig Pauldrons",
+          "lootId": 346
         },
         {
-          "lootId": 347,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Bark Pauldrons"
+          "name": "Bark Pauldrons",
+          "lootId": 347
         },
         {
-          "lootId": 348,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Studded Leather Pauldrons"
+          "name": "Studded Leather Pauldrons",
+          "lootId": 348
         },
         {
-          "lootId": 349,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Platinum Pauldrons of Frostbite"
+          "name": "Platinum Pauldrons of Frostbite",
+          "lootId": 349
         },
         {
-          "lootId": 350,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Frozen Frosty Pauldron With Optional Glove Component",
+          "lootId": 1080
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Cracked Corncob Pipe"
+          "name": "Cracked Corncob Pipe",
+          "lootId": 350
         },
         {
-          "lootId": 351,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Worn Briar Billiard Pipe"
+          "name": "Worn Briar Billiard Pipe",
+          "lootId": 351
         },
         {
-          "lootId": 352,
+          "slot": 1,
           "rarity": 3,
+          "name": "Antique Morta Chimney Pipe",
+          "lootId": 352
+        },
+        {
           "slot": 1,
-          "name": "Antique Morta Chimney Pipe"
+          "rarity": 4,
+          "name": "Gourd Calabash Pipe of Chilling",
+          "lootId": 353
         },
         {
-          "lootId": 353,
-          "rarity": 4,
           "slot": 1,
-          "name": "Gourd Calabash Pipe of Chilling"
-        },
-        {
-          "lootId": 354,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Ratty Red Scarf"
-        },
-        {
-          "lootId": 355,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Decent Thrift Shop Scarf"
-        },
-        {
-          "lootId": 356,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Trendy Striped Christmas Scarf"
-        },
-        {
-          "lootId": 357,
           "rarity": 4,
-          "slot": 2,
-          "name": "Caroller's Scarf of Song and Dance"
-        },
-        {
+          "name": "Self-Referencing Teak Pipe of Magical Snowman Smoke",
           "lootId": 921,
-          "rarity": 4,
-          "name": "Self-Referencing Teak Pipe of Magical Snowman Smoke"
+          "golden": true
         },
         {
-          "lootId": 1080,
+          "slot": 1,
           "rarity": 5,
-          "name": "Frozen Frosty Pauldron With Optional Glove Component"
+          "name": "Freezing Snowman Pipe of Ice Cold Smoke",
+          "lootId": 1081
         },
         {
-          "lootId": 1081,
+          "slot": 1,
           "rarity": 5,
-          "name": "Freezing Snowman Pipe of Ice Cold Smoke"
-        },
-        {
+          "name": "Freezing Snowman Pipe of Ice Cold Smoke",
           "lootId": 1082,
-          "rarity": 5,
-          "name": "Freezing Snowman Pipe of Ice Cold Smoke"
+          "golden": true
         },
         {
-          "lootId": 1083,
+          "slot": 2,
+          "rarity": 1,
+          "name": "Ratty Red Scarf",
+          "lootId": 354
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Decent Thrift Shop Scarf",
+          "lootId": 355
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Trendy Striped Christmas Scarf",
+          "lootId": 356
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Caroller's Scarf of Song and Dance",
+          "lootId": 357
+        },
+        {
+          "slot": 2,
           "rarity": 5,
-          "name": "Jewel-Stitched Silk Scarf of Melting Memories"
+          "name": "Jewel-Stitched Silk Scarf of Melting Memories",
+          "lootId": 1083
         }
       ]
     },
@@ -7702,91 +8185,94 @@ window.jsonData =
       "heroId": 50,
       "loot": [
         {
-          "lootId": 636,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Nonfunctional Security Camera"
+          "name": "Nonfunctional Security Camera",
+          "lootId": 636
         },
         {
-          "lootId": 637,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Grainy Security Camera"
+          "name": "Grainy Security Camera",
+          "lootId": 637
         },
         {
-          "lootId": 638,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Handheld Camcorder"
+          "name": "Handheld Camcorder",
+          "lootId": 638
         },
         {
-          "lootId": 639,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "High-tech Night-vision Tablet of Spotting"
+          "name": "High-tech Night-vision Tablet of Spotting",
+          "lootId": 639
         },
         {
-          "lootId": 640,
+          "slot": 0,
+          "rarity": 5,
+          "name": "3D IMOX Camera of the 8K Resolution",
+          "lootId": 1161
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Stone Spear"
+          "name": "Stone Spear",
+          "lootId": 640
         },
         {
-          "lootId": 641,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Metal Spear"
+          "name": "Metal Spear",
+          "lootId": 641
         },
         {
-          "lootId": 642,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Crossed Spears"
+          "name": "Crossed Spears",
+          "lootId": 642
         },
         {
-          "lootId": 643,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Ancient Family Heirloom Spear of Stabbing"
+          "name": "Ancient Family Heirloom Spear of Stabbing",
+          "lootId": 643
         },
         {
-          "lootId": 644,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Extravagent Primal Spear of Camper Reduction",
+          "lootId": 1162
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Single Sneaker"
+          "name": "Single Sneaker",
+          "lootId": 644
         },
         {
-          "lootId": 645,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Ratty Sneakers"
+          "name": "Ratty Sneakers",
+          "lootId": 645
         },
         {
-          "lootId": 646,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Hiking Shoes"
+          "name": "Hiking Shoes",
+          "lootId": 646
         },
         {
-          "lootId": 647,
+          "slot": 2,
           "rarity": 4,
+          "name": "Soft-Soled Hiking Boots of Rumor Chasing",
+          "lootId": 647
+        },
+        {
           "slot": 2,
-          "name": "Soft-Soled Hiking Boots of Rumor Chasing"
-        },
-        {
-          "lootId": 1161,
           "rarity": 5,
-          "name": "3D IMOX Camera of the 8K Resolution"
-        },
-        {
-          "lootId": 1162,
-          "rarity": 5,
-          "name": "Extravagent Primal Spear of Camper Reduction"
-        },
-        {
-          "lootId": 1163,
-          "rarity": 5,
-          "name": "Fairly Normal Human Shoes of the Misleading Trail"
+          "name": "Fairly Normal Human Shoes of the Misleading Trail",
+          "lootId": 1163
         }
       ]
     },
@@ -7807,91 +8293,94 @@ window.jsonData =
       "heroId": 74,
       "loot": [
         {
-          "lootId": 1270,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Dusty Feather Duster"
+          "name": "Dusty Feather Duster",
+          "lootId": 1270
         },
         {
-          "lootId": 1271,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Ratty Old Pom-Pom"
+          "name": "Ratty Old Pom-Pom",
+          "lootId": 1271
         },
         {
-          "lootId": 1272,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Brand New Pom-Pom"
+          "name": "Brand New Pom-Pom",
+          "lootId": 1272
         },
         {
-          "lootId": 1273,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Silk-Pommed Pom-Pom of Pomme-Colored Pomming"
+          "name": "Silk-Pommed Pom-Pom of Pomme-Colored Pomming",
+          "lootId": 1273
         },
         {
-          "lootId": 1274,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Viciously Pommed Pom Pom of Razors",
+          "lootId": 1302
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Plastic Twist Tie"
+          "name": "Plastic Twist Tie",
+          "lootId": 1274
         },
         {
-          "lootId": 1275,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Faded Cheer Ribbon"
+          "name": "Faded Cheer Ribbon",
+          "lootId": 1275
         },
         {
-          "lootId": 1276,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Long Tasseled Ribbon"
+          "name": "Long Tasseled Ribbon",
+          "lootId": 1276
         },
         {
-          "lootId": 1277,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Patterned Cheer Ribbon of a Thousand Peppy Cheers"
+          "name": "Patterned Cheer Ribbon of a Thousand Peppy Cheers",
+          "lootId": 1277
         },
         {
-          "lootId": 1278,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Overly Complex Cheerleader Ribbon of Cheers",
+          "lootId": 1303
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Patched Cheer-Orc Uniform"
+          "name": "Patched Cheer-Orc Uniform",
+          "lootId": 1278
         },
         {
-          "lootId": 1279,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Ratty Cheer-Orc Uniform"
+          "name": "Ratty Cheer-Orc Uniform",
+          "lootId": 1279
         },
         {
-          "lootId": 1280,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Ironed Cheer-Orc Uniform"
+          "name": "Ironed Cheer-Orc Uniform",
+          "lootId": 1280
         },
         {
-          "lootId": 1281,
+          "slot": 2,
           "rarity": 4,
+          "name": "Sparkling Poofy Cheer-Orc Uniform of a Million Victories",
+          "lootId": 1281
+        },
+        {
           "slot": 2,
-          "name": "Sparkling Poofy Cheer-Orc Uniform of a Million Victories"
-        },
-        {
-          "lootId": 1302,
           "rarity": 5,
-          "name": "Viciously Pommed Pom Pom of Razors"
-        },
-        {
-          "lootId": 1303,
-          "rarity": 5,
-          "name": "Overly Complex Cheerleader Ribbon of Cheers"
-        },
-        {
-          "lootId": 1304,
-          "rarity": 5,
-          "name": "Tastefully Decorated Uniform of Cheering"
+          "name": "Tastefully Decorated Uniform of Cheering",
+          "lootId": 1304
         }
       ]
     },
@@ -7909,111 +8398,122 @@ window.jsonData =
       "heroId": 19,
       "loot": [
         {
-          "lootId": 161,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Dim Wizard Orb"
+          "name": "Dim Wizard Orb",
+          "lootId": 161
         },
         {
-          "lootId": 162,
+          "slot": 0,
           "rarity": 2,
+          "name": "Stone Wizard Orb",
+          "lootId": 162
+        },
+        {
           "slot": 0,
-          "name": "Stone Wizard Orb"
+          "rarity": 3,
+          "name": "Blue Dragon Orb",
+          "lootId": 163
         },
         {
-          "lootId": 163,
-          "rarity": 3,
           "slot": 0,
-          "name": "Blue Dragon Orb"
+          "rarity": 4,
+          "name": "Sapphire Dragon Orb of Destruction",
+          "lootId": 164
         },
         {
-          "lootId": 164,
-          "rarity": 4,
           "slot": 0,
-          "name": "Sapphire Dragon Orb of Destruction"
-        },
-        {
-          "lootId": 165,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Ratty Mage Robe"
-        },
-        {
-          "lootId": 166,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Comfortable Mage Robe"
-        },
-        {
-          "lootId": 167,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Velvet Wizard Cape"
-        },
-        {
-          "lootId": 168,
           "rarity": 4,
-          "slot": 1,
-          "name": "Enchanted Gold-Trimmed Wizard Cape"
-        },
-        {
-          "lootId": 169,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Imitation Blasting Wand"
-        },
-        {
-          "lootId": 170,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Magic Blasting Wand"
-        },
-        {
-          "lootId": 171,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Molten Blasting Wand"
-        },
-        {
-          "lootId": 172,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Unlimited Inferno Blasting Wand"
-        },
-        {
-          "lootId": 683,
-          "rarity": 4,
-          "name": "Arcane Winged Wand of Ridiculous Splash Damage"
-        },
-        {
+          "name": "Heirloom Dragon Orb of the Adorable Tiny Dragon",
           "lootId": 891,
-          "rarity": 4,
-          "name": "Heirloom Dragon Orb of the Adorable Tiny Dragon"
+          "golden": true
         },
         {
-          "lootId": 1042,
+          "slot": 0,
           "rarity": 5,
-          "name": "Ichor-Filled Orb of Dragon Cat-Nip"
+          "name": "Ichor-Filled Orb of Dragon Cat-Nip",
+          "lootId": 1042
         },
         {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Ichor-Filled Orb of Dragon Cat-Nip",
           "lootId": 1043,
-          "rarity": 5,
-          "name": "Ichor-Filled Orb of Dragon Cat-Nip"
+          "golden": true
         },
         {
-          "lootId": 1044,
-          "rarity": 5,
-          "name": "Long-Hooded Wizard's Robe of Sparkly Magic"
+          "slot": 1,
+          "rarity": 1,
+          "name": "Ratty Mage Robe",
+          "lootId": 165
         },
         {
-          "lootId": 1045,
-          "rarity": 5,
-          "name": "Dragon-Headed Sceptre of Extra Area Damage"
+          "slot": 1,
+          "rarity": 2,
+          "name": "Comfortable Mage Robe",
+          "lootId": 166
         },
         {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Velvet Wizard Cape",
+          "lootId": 167
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Enchanted Gold-Trimmed Wizard Cape",
+          "lootId": 168
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Long-Hooded Wizard's Robe of Sparkly Magic",
+          "lootId": 1044
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Imitation Blasting Wand",
+          "lootId": 169
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Magic Blasting Wand",
+          "lootId": 170
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Molten Blasting Wand",
+          "lootId": 171
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Unlimited Inferno Blasting Wand",
+          "lootId": 172
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Arcane Winged Wand of Ridiculous Splash Damage",
+          "lootId": 683,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Dragon-Headed Sceptre of Extra Area Damage",
+          "lootId": 1045
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Dragon-Headed Sceptre of Extra Area Damage",
           "lootId": 1046,
-          "rarity": 5,
-          "name": "Dragon-Headed Sceptre of Extra Area Damage"
+          "golden": true
         }
       ]
     },
@@ -8033,111 +8533,122 @@ window.jsonData =
       "heroId": 39,
       "loot": [
         {
-          "lootId": 488,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Used Car Salesman's Tie"
+          "name": "Used Car Salesman's Tie",
+          "lootId": 488
         },
         {
-          "lootId": 489,
+          "slot": 0,
           "rarity": 2,
+          "name": "Second Hand Tie",
+          "lootId": 489
+        },
+        {
           "slot": 0,
-          "name": "Second Hand Tie"
+          "rarity": 3,
+          "name": "Swanky New Tie",
+          "lootId": 490
         },
         {
-          "lootId": 490,
-          "rarity": 3,
           "slot": 0,
-          "name": "Swanky New Tie"
+          "rarity": 4,
+          "name": "Striped Wallstreet Tie of Moneymaking",
+          "lootId": 491
         },
         {
-          "lootId": 491,
-          "rarity": 4,
           "slot": 0,
-          "name": "Striped Wallstreet Tie of Moneymaking"
-        },
-        {
-          "lootId": 492,
-          "rarity": 1,
-          "slot": 1,
-          "name": "Torn Utility Belt"
-        },
-        {
-          "lootId": 493,
-          "rarity": 2,
-          "slot": 1,
-          "name": "Sparse Utility Belt"
-        },
-        {
-          "lootId": 494,
-          "rarity": 3,
-          "slot": 1,
-          "name": "Multipurpose Utility Belt"
-        },
-        {
-          "lootId": 495,
           "rarity": 4,
-          "slot": 1,
-          "name": "Ironwoven Belt of Endless Utility"
-        },
-        {
-          "lootId": 496,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Last Year's Cape"
-        },
-        {
-          "lootId": 497,
-          "rarity": 2,
-          "slot": 2,
-          "name": "Butler-Sewn Cape"
-        },
-        {
-          "lootId": 498,
-          "rarity": 3,
-          "slot": 2,
-          "name": "Flexweave Cape"
-        },
-        {
-          "lootId": 499,
-          "rarity": 4,
-          "slot": 2,
-          "name": "Bulletproof Cape of the Night"
-        },
-        {
-          "lootId": 512,
-          "rarity": 4,
-          "name": "Electric Cape of Orphan Enshroudment"
-        },
-        {
-          "lootId": 1120,
-          "rarity": 5,
-          "name": "Darkened Bat-o-tie of the Knight"
-        },
-        {
-          "lootId": 1121,
-          "rarity": 5,
-          "name": "High-Utility Bat-o-belt of the Darkening Night"
-        },
-        {
-          "lootId": 1122,
-          "rarity": 5,
-          "name": "Gliding Bat-o-cape of the Silent Attacker"
-        },
-        {
-          "lootId": 1123,
-          "rarity": 5,
-          "name": "Gliding Bat-o-cape of the Silent Attacker"
-        },
-        {
+          "name": "Bat Billionaire Tie GE",
           "lootId": 1368,
-          "rarity": 4,
-          "name": "Bat Billionaire Tie GE"
+          "golden": true
         },
         {
-          "lootId": 1369,
+          "slot": 0,
           "rarity": 5,
-          "name": "Darkened Bat-o-tie of the Knight"
+          "name": "Darkened Bat-o-tie of the Knight",
+          "lootId": 1120
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Darkened Bat-o-tie of the Knight",
+          "lootId": 1369,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Torn Utility Belt",
+          "lootId": 492
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Sparse Utility Belt",
+          "lootId": 493
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Multipurpose Utility Belt",
+          "lootId": 494
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Ironwoven Belt of Endless Utility",
+          "lootId": 495
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "High-Utility Bat-o-belt of the Darkening Night",
+          "lootId": 1121
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Last Year's Cape",
+          "lootId": 496
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Butler-Sewn Cape",
+          "lootId": 497
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Flexweave Cape",
+          "lootId": 498
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Bulletproof Cape of the Night",
+          "lootId": 499
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Electric Cape of Orphan Enshroudment",
+          "lootId": 512,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Gliding Bat-o-cape of the Silent Attacker",
+          "lootId": 1122
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Gliding Bat-o-cape of the Silent Attacker",
+          "lootId": 1123,
+          "golden": true
         }
       ]
     },
@@ -8158,91 +8669,94 @@ window.jsonData =
       "heroId": 68,
       "loot": [
         {
-          "lootId": 877,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Gray Bonnet"
+          "name": "Ratty Gray Bonnet",
+          "lootId": 877
         },
         {
-          "lootId": 878,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Plain Wool Bonnet"
+          "name": "Plain Wool Bonnet",
+          "lootId": 878
         },
         {
-          "lootId": 879,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Soft Cotton Bonnet"
+          "name": "Soft Cotton Bonnet",
+          "lootId": 879
         },
         {
-          "lootId": 880,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Embroidered Silk Bonnet of the Malicious Milk Maid"
+          "name": "Embroidered Silk Bonnet of the Malicious Milk Maid",
+          "lootId": 880
         },
         {
-          "lootId": 881,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Silky Soft Pilgrim's Bonnet of Resourcefulness",
+          "lootId": 1219
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Extinguished Lantern"
+          "name": "Extinguished Lantern",
+          "lootId": 881
         },
         {
-          "lootId": 882,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Cold Iron Lantern"
+          "name": "Cold Iron Lantern",
+          "lootId": 882
         },
         {
-          "lootId": 883,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Fine Brass Lantern"
+          "name": "Fine Brass Lantern",
+          "lootId": 883
         },
         {
-          "lootId": 884,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Everburning Gold-Plated Lantern of the Sleepless Night"
+          "name": "Everburning Gold-Plated Lantern of the Sleepless Night",
+          "lootId": 884
         },
         {
-          "lootId": 885,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Spooky Blue Lantern of Ghostly Visions",
+          "lootId": 1220
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Counterfeit Aztec Coin"
+          "name": "Counterfeit Aztec Coin",
+          "lootId": 885
         },
         {
-          "lootId": 886,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Chipped Aztec Coin"
+          "name": "Chipped Aztec Coin",
+          "lootId": 886
         },
         {
-          "lootId": 887,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Silver Plated Aztec Coin"
+          "name": "Silver Plated Aztec Coin",
+          "lootId": 887
         },
         {
-          "lootId": 888,
+          "slot": 2,
           "rarity": 4,
+          "name": "Amethyst-Embedded Coin of a Thousand Aztec Treasures",
+          "lootId": 888
+        },
+        {
           "slot": 2,
-          "name": "Amethyst-Embedded Coin of a Thousand Aztec Treasures"
-        },
-        {
-          "lootId": 1219,
           "rarity": 5,
-          "name": "Silky Soft Pilgrim's Bonnet of Resourcefulness"
-        },
-        {
-          "lootId": 1220,
-          "rarity": 5,
-          "name": "Spooky Blue Lantern of Ghostly Visions"
-        },
-        {
-          "lootId": 1221,
-          "rarity": 5,
-          "name": "Overcomplicated Golden Coin of Unimaginable Riches"
+          "name": "Overcomplicated Golden Coin of Unimaginable Riches",
+          "lootId": 1221
         }
       ]
     },
@@ -8260,111 +8774,122 @@ window.jsonData =
       "heroId": 20,
       "loot": [
         {
-          "lootId": 233,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Sealed Dynamite"
+          "name": "Sealed Dynamite",
+          "lootId": 233
         },
         {
-          "lootId": 234,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Stable Dynamite"
+          "name": "Stable Dynamite",
+          "lootId": 234
         },
         {
-          "lootId": 235,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Old Dynamite"
+          "name": "Old Dynamite",
+          "lootId": 235
         },
         {
-          "lootId": 236,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Unstable Dynamite"
+          "name": "Unstable Dynamite",
+          "lootId": 236
         },
         {
-          "lootId": 237,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Timed Hydroglycerin Explosive of Misfortune",
+          "lootId": 1047
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Ineffective Fire Extinguisher"
+          "name": "Ineffective Fire Extinguisher",
+          "lootId": 237
         },
         {
-          "lootId": 238,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Leaky Fire Extinguisher"
+          "name": "Leaky Fire Extinguisher",
+          "lootId": 238
         },
         {
-          "lootId": 239,
+          "slot": 1,
           "rarity": 3,
+          "name": "High Pressure Fire Extinguisher",
+          "lootId": 239
+        },
+        {
           "slot": 1,
-          "name": "High Pressure Fire Extinguisher"
+          "rarity": 4,
+          "name": "Immediate Fire Extinguisher",
+          "lootId": 240
         },
         {
-          "lootId": 240,
-          "rarity": 4,
           "slot": 1,
-          "name": "Immediate Fire Extinguisher"
-        },
-        {
-          "lootId": 241,
-          "rarity": 1,
-          "slot": 2,
-          "name": "Cursed Sword"
-        },
-        {
-          "lootId": 242,
-          "rarity": 2,
-          "slot": 2,
-          "name": "\\Decursed\\ Sword"
-        },
-        {
-          "lootId": 243,
-          "rarity": 3,
-          "slot": 2,
-          "name": "A Different Sword"
-        },
-        {
-          "lootId": 244,
           "rarity": 4,
-          "slot": 2,
-          "name": "Totally Free Non-Cursed Sword"
-        },
-        {
+          "name": "Futuretech Extinguisher Bomb of Explosive Dousing",
           "lootId": 679,
-          "rarity": 4,
-          "name": "Futuretech Extinguisher Bomb of Explosive Dousing"
+          "golden": true
         },
         {
-          "lootId": 820,
-          "rarity": 4,
-          "name": "Guaranteed Curseless Sword of Normality"
-        },
-        {
-          "lootId": 1047,
+          "slot": 1,
           "rarity": 5,
-          "name": "Timed Hydroglycerin Explosive of Misfortune"
+          "name": "Time Travelling Fire Extinguisher of Pre-Extinguishing",
+          "lootId": 1048
         },
         {
-          "lootId": 1048,
+          "slot": 1,
           "rarity": 5,
-          "name": "Time Travelling Fire Extinguisher of Pre-Extinguishing"
-        },
-        {
+          "name": "Time Travelling Fire Extinguisher of Pre-Extinguishing",
           "lootId": 1049,
-          "rarity": 5,
-          "name": "Time Travelling Fire Extinguisher of Pre-Extinguishing"
+          "golden": true
         },
         {
-          "lootId": 1050,
-          "rarity": 5,
-          "name": "Insanely Cursed Sword of Who Really Cares Anymore"
+          "slot": 2,
+          "rarity": 1,
+          "name": "Cursed Sword",
+          "lootId": 241
         },
         {
+          "slot": 2,
+          "rarity": 2,
+          "name": "\"Decursed\" Sword",
+          "lootId": 242
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "A Different Sword",
+          "lootId": 243
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Totally Free Non-Cursed Sword",
+          "lootId": 244
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Guaranteed Curseless Sword of Normality",
+          "lootId": 820,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Insanely Cursed Sword of Who Really Cares Anymore",
+          "lootId": 1050
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Insanely Cursed Sword of Who Really Cares Anymore",
           "lootId": 1051,
-          "rarity": 5,
-          "name": "Insanely Cursed Sword of Who Really Cares Anymore"
+          "golden": true
         }
       ]
     },
@@ -8386,91 +8911,94 @@ window.jsonData =
       "heroId": 48,
       "loot": [
         {
-          "lootId": 611,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Malfunctioning Mech Leg"
+          "name": "Malfunctioning Mech Leg",
+          "lootId": 611
         },
         {
-          "lootId": 612,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Obsolete Mech Leg"
+          "name": "Obsolete Mech Leg",
+          "lootId": 612
         },
         {
-          "lootId": 613,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "High Tech Mech Leg"
+          "name": "High Tech Mech Leg",
+          "lootId": 613
         },
         {
-          "lootId": 614,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Cryofused Mech Leg of Invasion"
+          "name": "Cryofused Mech Leg of Invasion",
+          "lootId": 614
         },
         {
-          "lootId": 615,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Centari Alien Leg of Rapid Invasions",
+          "lootId": 1154
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Tickling Blaster"
+          "name": "Tickling Blaster",
+          "lootId": 615
         },
         {
-          "lootId": 616,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Ancient Blaster"
+          "name": "Ancient Blaster",
+          "lootId": 616
         },
         {
-          "lootId": 617,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Disintigrating Blaster"
+          "name": "Disintigrating Blaster",
+          "lootId": 617
         },
         {
-          "lootId": 618,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Overpowered Alien Blaster of Intimidation"
+          "name": "Overpowered Alien Blaster of Intimidation",
+          "lootId": 618
         },
         {
-          "lootId": 619,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Disintigrating Gun of Human Sufferage",
+          "lootId": 1155
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Empty Fuel Pod"
+          "name": "Empty Fuel Pod",
+          "lootId": 619
         },
         {
-          "lootId": 620,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Stale Fuel Pod"
+          "name": "Stale Fuel Pod",
+          "lootId": 620
         },
         {
-          "lootId": 621,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Half-Full Fuel Pod"
+          "name": "Half-Full Fuel Pod",
+          "lootId": 621
         },
         {
-          "lootId": 622,
+          "slot": 2,
           "rarity": 4,
+          "name": "Overflowing Fuel Pod of Stomping",
+          "lootId": 622
+        },
+        {
           "slot": 2,
-          "name": "Overflowing Fuel Pod of Stomping"
-        },
-        {
-          "lootId": 1154,
           "rarity": 5,
-          "name": "Centari Alien Leg of Rapid Invasions"
-        },
-        {
-          "lootId": 1155,
-          "rarity": 5,
-          "name": "Disintigrating Gun of Human Sufferage"
-        },
-        {
-          "lootId": 1156,
-          "rarity": 5,
-          "name": "Unstable Fuel Pod of Alien Inginuity"
+          "name": "Unstable Fuel Pod of Alien Inginuity",
+          "lootId": 1156
         }
       ]
     },
@@ -8491,91 +9019,94 @@ window.jsonData =
       "heroId": 70,
       "loot": [
         {
-          "lootId": 909,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Broken Lightbulb"
+          "name": "Broken Lightbulb",
+          "lootId": 909
         },
         {
-          "lootId": 910,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Smashed Lightbulb"
+          "name": "Smashed Lightbulb",
+          "lootId": 910
         },
         {
-          "lootId": 911,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Bright LED"
+          "name": "Bright LED",
+          "lootId": 911
         },
         {
-          "lootId": 912,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Ancient Red Bulb of Bright and Merry Christmases"
+          "name": "Ancient Red Bulb of Bright and Merry Christmases",
+          "lootId": 912
         },
         {
-          "lootId": 913,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Seasonally Appropriate Nose Bulb of Direction",
+          "lootId": 1225
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Stuffed Antler"
+          "name": "Stuffed Antler",
+          "lootId": 913
         },
         {
-          "lootId": 914,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Robotic Antler"
+          "name": "Robotic Antler",
+          "lootId": 914
         },
         {
-          "lootId": 915,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Full Powered Antler"
+          "name": "Full Powered Antler",
+          "lootId": 915
         },
         {
-          "lootId": 916,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Optically Wired Reindeer Antler of Epic Goring"
+          "name": "Optically Wired Reindeer Antler of Epic Goring",
+          "lootId": 916
         },
         {
-          "lootId": 917,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Festively Decorated Robo-Antler of Galloping",
+          "lootId": 1226
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Cracked Bulb"
+          "name": "Cracked Bulb",
+          "lootId": 917
         },
         {
-          "lootId": 918,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Sharpened Bulb"
+          "name": "Sharpened Bulb",
+          "lootId": 918
         },
         {
-          "lootId": 919,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Crisscrossed Bulb"
+          "name": "Crisscrossed Bulb",
+          "lootId": 919
         },
         {
-          "lootId": 920,
+          "slot": 2,
           "rarity": 4,
+          "name": "Cursed Christmas Bulb of Kris Kringle's Christmas Curse",
+          "lootId": 920
+        },
+        {
           "slot": 2,
-          "name": "Cursed Christmas Bulb of Kris Kringle's Christmas Curse"
-        },
-        {
-          "lootId": 1225,
           "rarity": 5,
-          "name": "Seasonally Appropriate Nose Bulb of Direction"
-        },
-        {
-          "lootId": 1226,
-          "rarity": 5,
-          "name": "Festively Decorated Robo-Antler of Galloping"
-        },
-        {
-          "lootId": 1227,
-          "rarity": 5,
-          "name": "Meticulously Detailed Delicate Bulb of Breaking"
+          "name": "Meticulously Detailed Delicate Bulb of Breaking",
+          "lootId": 1227
         }
       ]
     },
@@ -8593,91 +9124,94 @@ window.jsonData =
       "heroId": 55,
       "loot": [
         {
-          "lootId": 710,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Broken Arm Cannon"
+          "name": "Broken Arm Cannon",
+          "lootId": 710
         },
         {
-          "lootId": 711,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Sputtering Arm Cannon"
+          "name": "Sputtering Arm Cannon",
+          "lootId": 711
         },
         {
-          "lootId": 712,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Blazing Arm Cannon"
+          "name": "Blazing Arm Cannon",
+          "lootId": 712
         },
         {
-          "lootId": 713,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Futuretech Nuclear Powered Arm Cannon of Disintigration"
+          "name": "Futuretech Nuclear Powered Arm Cannon of Disintigration",
+          "lootId": 713
         },
         {
-          "lootId": 714,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Tri-Barrelled Arm Cannon of Laser Guided Destruction",
+          "lootId": 1180
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Broken Computer Chip"
+          "name": "Broken Computer Chip",
+          "lootId": 714
         },
         {
-          "lootId": 715,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Hacked Computer Chip"
+          "name": "Hacked Computer Chip",
+          "lootId": 715
         },
         {
-          "lootId": 716,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Multicore Computer Chip"
+          "name": "Multicore Computer Chip",
+          "lootId": 716
         },
         {
-          "lootId": 717,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Quantum Computer Chip of One Billion Blazing Cores"
+          "name": "Quantum Computer Chip of One Billion Blazing Cores",
+          "lootId": 717
         },
         {
-          "lootId": 718,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Impossibly Dense Computer Chip of Infinite Computations",
+          "lootId": 1181
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Smashed Sunglasses"
+          "name": "Smashed Sunglasses",
+          "lootId": 718
         },
         {
-          "lootId": 719,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Cracked Sunglasses"
+          "name": "Cracked Sunglasses",
+          "lootId": 719
         },
         {
-          "lootId": 720,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Stylish Sunglasses"
+          "name": "Stylish Sunglasses",
+          "lootId": 720
         },
         {
-          "lootId": 721,
+          "slot": 2,
           "rarity": 4,
+          "name": "Computerized Electrified Sunglasses of X-Ray Lasers",
+          "lootId": 721
+        },
+        {
           "slot": 2,
-          "name": "Computerized Electrified Sunglasses of X-Ray Lasers"
-        },
-        {
-          "lootId": 1180,
           "rarity": 5,
-          "name": "Tri-Barrelled Arm Cannon of Laser Guided Destruction"
-        },
-        {
-          "lootId": 1181,
-          "rarity": 5,
-          "name": "Impossibly Dense Computer Chip of Infinite Computations"
-        },
-        {
-          "lootId": 1182,
-          "rarity": 5,
-          "name": "Sun-Safe Sunglasses of Looking Directly At The Sun"
+          "name": "Sun-Safe Sunglasses of Looking Directly At The Sun",
+          "lootId": 1182
         }
       ]
     },
@@ -8696,91 +9230,94 @@ window.jsonData =
       "heroId": 58,
       "loot": [
         {
-          "lootId": 746,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Rotted Acorn"
+          "name": "Rotted Acorn",
+          "lootId": 746
         },
         {
-          "lootId": 747,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Last Year's Acorn"
+          "name": "Last Year's Acorn",
+          "lootId": 747
         },
         {
-          "lootId": 748,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Magical Acorn"
+          "name": "Magical Acorn",
+          "lootId": 748
         },
         {
-          "lootId": 749,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Solid Sapphire Acorn of Mystical Forest Power"
+          "name": "Solid Sapphire Acorn of Mystical Forest Power",
+          "lootId": 749
         },
         {
-          "lootId": 750,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Delicate Acorn of the Extremely Careful Witch",
+          "lootId": 1189
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Beginner's Spell Book"
+          "name": "Beginner's Spell Book",
+          "lootId": 750
         },
         {
-          "lootId": 751,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Well Used Spell Book"
+          "name": "Well Used Spell Book",
+          "lootId": 751
         },
         {
-          "lootId": 752,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Mystical Spell Book"
+          "name": "Mystical Spell Book",
+          "lootId": 752
         },
         {
-          "lootId": 753,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Magically Locked Heirloom Spell Book of Ancient Mysticism"
+          "name": "Magically Locked Heirloom Spell Book of Ancient Mysticism",
+          "lootId": 753
         },
         {
-          "lootId": 754,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Wood-bound Spell Book of the Mystical Rodent",
+          "lootId": 1190
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Knotted Walking Stick"
+          "name": "Knotted Walking Stick",
+          "lootId": 754
         },
         {
-          "lootId": 755,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Low Power Staff"
+          "name": "Low Power Staff",
+          "lootId": 755
         },
         {
-          "lootId": 756,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Knobby Magic Staff"
+          "name": "Knobby Magic Staff",
+          "lootId": 756
         },
         {
-          "lootId": 757,
+          "slot": 2,
           "rarity": 4,
+          "name": "Blue Poppy Tipped Magician's Staff of Discombobulation",
+          "lootId": 757
+        },
+        {
           "slot": 2,
-          "name": "Blue Poppy Tipped Magician's Staff of Discombobulation"
-        },
-        {
-          "lootId": 1189,
           "rarity": 5,
-          "name": "Delicate Acorn of the Extremely Careful Witch"
-        },
-        {
-          "lootId": 1190,
-          "rarity": 5,
-          "name": "Wood-bound Spell Book of the Mystical Rodent"
-        },
-        {
-          "lootId": 1191,
-          "rarity": 5,
-          "name": "Flowering Magician's Staff of Hiking and Spellcasting"
+          "name": "Flowering Magician's Staff of Hiking and Spellcasting",
+          "lootId": 1191
         }
       ]
     },
@@ -8799,91 +9336,94 @@ window.jsonData =
       "heroId": 56,
       "loot": [
         {
-          "lootId": 722,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Ratty Grey Cloak"
+          "name": "Ratty Grey Cloak",
+          "lootId": 722
         },
         {
-          "lootId": 723,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Woolen Grey Cloak"
+          "name": "Woolen Grey Cloak",
+          "lootId": 723
         },
         {
-          "lootId": 724,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Stylish Shadow Cloak"
+          "name": "Stylish Shadow Cloak",
+          "lootId": 724
         },
         {
-          "lootId": 725,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Gold-Threaded Pooling Shadow Cloak of the Night"
+          "name": "Gold-Threaded Pooling Shadow Cloak of the Night",
+          "lootId": 725
         },
         {
-          "lootId": 726,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Star-Speckled Shadow Cloak of the Moonless Night",
+          "lootId": 1183
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Depleted Soul Gem"
+          "name": "Depleted Soul Gem",
+          "lootId": 726
         },
         {
-          "lootId": 727,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Slim Soul Gem"
+          "name": "Slim Soul Gem",
+          "lootId": 727
         },
         {
-          "lootId": 728,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Set Soul Gem"
+          "name": "Set Soul Gem",
+          "lootId": 728
         },
         {
-          "lootId": 729,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Light-Dampening Necklace of Empowered Soul Gems"
+          "name": "Light-Dampening Necklace of Empowered Soul Gems",
+          "lootId": 729
         },
         {
-          "lootId": 730,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Eternally Locked Soul Gem of the Righteous Hero",
+          "lootId": 1184
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Blob Familiar"
+          "name": "Blob Familiar",
+          "lootId": 730
         },
         {
-          "lootId": 731,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Cellular Shadow"
+          "name": "Cellular Shadow",
+          "lootId": 731
         },
         {
-          "lootId": 732,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Shadow Kitty"
+          "name": "Shadow Kitty",
+          "lootId": 732
         },
         {
-          "lootId": 733,
+          "slot": 2,
           "rarity": 4,
+          "name": "Shadow-Infused Dark Wyrm of Critical Stalking",
+          "lootId": 733
+        },
+        {
           "slot": 2,
-          "name": "Shadow-Infused Dark Wyrm of Critical Stalking"
-        },
-        {
-          "lootId": 1183,
           "rarity": 5,
-          "name": "Star-Speckled Shadow Cloak of the Moonless Night"
-        },
-        {
-          "lootId": 1184,
-          "rarity": 5,
-          "name": "Eternally Locked Soul Gem of the Righteous Hero"
-        },
-        {
-          "lootId": 1185,
-          "rarity": 5,
-          "name": "Star-Studded Shadow Hippogryph of Destruction"
+          "name": "Star-Studded Shadow Hippogryph of Destruction",
+          "lootId": 1185
         }
       ]
     },
@@ -8901,91 +9441,94 @@ window.jsonData =
       "heroId": 59,
       "loot": [
         {
-          "lootId": 758,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Depleted Amulet"
+          "name": "Depleted Amulet",
+          "lootId": 758
         },
         {
-          "lootId": 759,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Copper Amulet"
+          "name": "Copper Amulet",
+          "lootId": 759
         },
         {
-          "lootId": 760,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Astrological Amulet"
+          "name": "Astrological Amulet",
+          "lootId": 760
         },
         {
-          "lootId": 761,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Insane Tidal Amulet of the Sun and Moon"
+          "name": "Insane Tidal Amulet of the Sun and Moon",
+          "lootId": 761
         },
         {
-          "lootId": 762,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Chainlinked Moonsun Amulet of the Eternal Cycle",
+          "lootId": 1192
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Magical Dunce Cap"
+          "name": "Magical Dunce Cap",
+          "lootId": 762
         },
         {
-          "lootId": 763,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Pointy Cardboard Hat"
+          "name": "Pointy Cardboard Hat",
+          "lootId": 763
         },
         {
-          "lootId": 764,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Swirly Wizard Hat"
+          "name": "Swirly Wizard Hat",
+          "lootId": 764
         },
         {
-          "lootId": 765,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Sentient But Clearly Insane Wizard Hat of Voices"
+          "name": "Sentient But Clearly Insane Wizard Hat of Voices",
+          "lootId": 765
         },
         {
-          "lootId": 766,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Flimsy Reversable Wizard Hat of the Night and Day",
+          "lootId": 1193
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Crackerjack Wand"
+          "name": "Crackerjack Wand",
+          "lootId": 766
         },
         {
-          "lootId": 767,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Non-Magical Wand"
+          "name": "Non-Magical Wand",
+          "lootId": 767
         },
         {
-          "lootId": 768,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Twisted Opal Wand"
+          "name": "Twisted Opal Wand",
+          "lootId": 768
         },
         {
-          "lootId": 769,
+          "slot": 2,
           "rarity": 4,
+          "name": "Maddeningly Inaccurate Wand of Solar Flares and Moon Smashes",
+          "lootId": 769
+        },
+        {
           "slot": 2,
-          "name": "Maddeningly Inaccurate Wand of Solar Flares and Moon Smashes"
-        },
-        {
-          "lootId": 1192,
           "rarity": 5,
-          "name": "Chainlinked Moonsun Amulet of the Eternal Cycle"
-        },
-        {
-          "lootId": 1193,
-          "rarity": 5,
-          "name": "Flimsy Reversable Wizard Hat of the Night and Day"
-        },
-        {
-          "lootId": 1194,
-          "rarity": 5,
-          "name": "Long Mystical Wizard's Wand of Insanity"
+          "name": "Long Mystical Wizard's Wand of Insanity",
+          "lootId": 1194
         }
       ]
     },
@@ -9003,91 +9546,94 @@ window.jsonData =
       "heroId": 57,
       "loot": [
         {
-          "lootId": 734,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Stuffed Parrot"
+          "name": "Stuffed Parrot",
+          "lootId": 734
         },
         {
-          "lootId": 735,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Featherless Parrot"
+          "name": "Featherless Parrot",
+          "lootId": 735
         },
         {
-          "lootId": 736,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Angry Parrot"
+          "name": "Angry Parrot",
+          "lootId": 736
         },
         {
-          "lootId": 737,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Cracker-Eating Polly Parrot of Manic Mimicking"
+          "name": "Cracker-Eating Polly Parrot of Manic Mimicking",
+          "lootId": 737
         },
         {
-          "lootId": 738,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Greystone Parrot of Limited Squacking",
+          "lootId": 1186
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Tattered Treasure Map"
+          "name": "Tattered Treasure Map",
+          "lootId": 738
         },
         {
-          "lootId": 739,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Well Used Treasure Map"
+          "name": "Well Used Treasure Map",
+          "lootId": 739
         },
         {
-          "lootId": 740,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Fresh Treasure Map"
+          "name": "Fresh Treasure Map",
+          "lootId": 740
         },
         {
-          "lootId": 741,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Magically Enhanced Radar Featuring Treasure Map of Easiness"
+          "name": "Magically Enhanced Radar Featuring Treasure Map of Easiness",
+          "lootId": 741
         },
         {
-          "lootId": 742,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Electronic Treasure Map of Specific GPS Coordinates",
+          "lootId": 1187
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Broken Cannon"
+          "name": "Broken Cannon",
+          "lootId": 742
         },
         {
-          "lootId": 743,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Static Cannon"
+          "name": "Static Cannon",
+          "lootId": 743
         },
         {
-          "lootId": 744,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Effective Cannon"
+          "name": "Effective Cannon",
+          "lootId": 744
         },
         {
-          "lootId": 745,
+          "slot": 2,
           "rarity": 4,
+          "name": "Ornate Cast-Iron Cannon of Exploding Cannonballs",
+          "lootId": 745
+        },
+        {
           "slot": 2,
-          "name": "Ornate Cast-Iron Cannon of Exploding Cannonballs"
-        },
-        {
-          "lootId": 1186,
           "rarity": 5,
-          "name": "Greystone Parrot of Limited Squacking"
-        },
-        {
-          "lootId": 1187,
-          "rarity": 5,
-          "name": "Electronic Treasure Map of Specific GPS Coordinates"
-        },
-        {
-          "lootId": 1188,
-          "rarity": 5,
-          "name": "Metalic Hypercannon of Radioactive Explosions"
+          "name": "Metalic Hypercannon of Radioactive Explosions",
+          "lootId": 1188
         }
       ]
     },
@@ -9106,91 +9652,94 @@ window.jsonData =
       "heroId": 60,
       "loot": [
         {
-          "lootId": 770,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Butter Knife"
+          "name": "Butter Knife",
+          "lootId": 770
         },
         {
-          "lootId": 771,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Bloodied Butter Knife"
+          "name": "Bloodied Butter Knife",
+          "lootId": 771
         },
         {
-          "lootId": 772,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Pointy Dagger"
+          "name": "Pointy Dagger",
+          "lootId": 772
         },
         {
-          "lootId": 773,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Blood Wicking Sharpened Dagger of Rituals"
+          "name": "Blood Wicking Sharpened Dagger of Rituals",
+          "lootId": 773
         },
         {
-          "lootId": 774,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Dripping Sacrificial Dagger of Blood Magic",
+          "lootId": 1195
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Mothballed Cloak"
+          "name": "Mothballed Cloak",
+          "lootId": 774
         },
         {
-          "lootId": 775,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Patched Cloak"
+          "name": "Patched Cloak",
+          "lootId": 775
         },
         {
-          "lootId": 776,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Fine Silk Cloak"
+          "name": "Fine Silk Cloak",
+          "lootId": 776
         },
         {
-          "lootId": 777,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Bloody Stained Spidersilk Robe of Impending Sacrifice"
+          "name": "Bloody Stained Spidersilk Robe of Impending Sacrifice",
+          "lootId": 777
         },
         {
-          "lootId": 778,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Full-Length Blood Robe of the Illegal Magician",
+          "lootId": 1196
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Dusty Notebook"
+          "name": "Dusty Notebook",
+          "lootId": 778
         },
         {
-          "lootId": 779,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Secret Diary"
+          "name": "Secret Diary",
+          "lootId": 779
         },
         {
-          "lootId": 780,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Diabolical Grimoire"
+          "name": "Diabolical Grimoire",
+          "lootId": 780
         },
         {
-          "lootId": 781,
+          "slot": 2,
           "rarity": 4,
+          "name": "Bone-Bound Quasi-Sentient Grimoire of Whispers",
+          "lootId": 781
+        },
+        {
           "slot": 2,
-          "name": "Bone-Bound Quasi-Sentient Grimoire of Whispers"
-        },
-        {
-          "lootId": 1195,
           "rarity": 5,
-          "name": "Dripping Sacrificial Dagger of Blood Magic"
-        },
-        {
-          "lootId": 1196,
-          "rarity": 5,
-          "name": "Full-Length Blood Robe of the Illegal Magician"
-        },
-        {
-          "lootId": 1197,
-          "rarity": 5,
-          "name": "Carefully Locked Grimoire of Beastial Might"
+          "name": "Carefully Locked Grimoire of Beastial Might",
+          "lootId": 1197
         }
       ]
     },
@@ -9209,91 +9758,94 @@ window.jsonData =
       "heroId": 61,
       "loot": [
         {
-          "lootId": 782,
+          "slot": 0,
           "rarity": 1,
-          "slot": 0,
-          "name": "Leaking Hourglass"
+          "name": "Leaking Hourglass",
+          "lootId": 782
         },
         {
-          "lootId": 783,
+          "slot": 0,
           "rarity": 2,
-          "slot": 0,
-          "name": "Cracked Hourglass"
+          "name": "Cracked Hourglass",
+          "lootId": 783
         },
         {
-          "lootId": 784,
+          "slot": 0,
           "rarity": 3,
-          "slot": 0,
-          "name": "Ornate Hourglass"
+          "name": "Ornate Hourglass",
+          "lootId": 784
         },
         {
-          "lootId": 785,
+          "slot": 0,
           "rarity": 4,
-          "slot": 0,
-          "name": "Mystical Liquid Sand Hourglass of Impossibly Precise Timing"
+          "name": "Mystical Liquid Sand Hourglass of Impossibly Precise Timing",
+          "lootId": 785
         },
         {
-          "lootId": 786,
+          "slot": 0,
+          "rarity": 5,
+          "name": "Eternal Hourglass of Neverending Time",
+          "lootId": 1198
+        },
+        {
+          "slot": 1,
           "rarity": 1,
-          "slot": 1,
-          "name": "Crackerjack Headband"
+          "name": "Crackerjack Headband",
+          "lootId": 786
         },
         {
-          "lootId": 787,
+          "slot": 1,
           "rarity": 2,
-          "slot": 1,
-          "name": "Tarnished Headdress"
+          "name": "Tarnished Headdress",
+          "lootId": 787
         },
         {
-          "lootId": 788,
+          "slot": 1,
           "rarity": 3,
-          "slot": 1,
-          "name": "Golden Headdress"
+          "name": "Golden Headdress",
+          "lootId": 788
         },
         {
-          "lootId": 789,
+          "slot": 1,
           "rarity": 4,
-          "slot": 1,
-          "name": "Spikey Solid Gold Headdress of Timelord Convocation"
+          "name": "Spikey Solid Gold Headdress of Timelord Convocation",
+          "lootId": 789
         },
         {
-          "lootId": 790,
+          "slot": 1,
+          "rarity": 5,
+          "name": "Midnight Headdress of the Endless Cycle",
+          "lootId": 1199
+        },
+        {
+          "slot": 2,
           "rarity": 1,
-          "slot": 2,
-          "name": "Dull Time Staff"
+          "name": "Dull Time Staff",
+          "lootId": 790
         },
         {
-          "lootId": 791,
+          "slot": 2,
           "rarity": 2,
-          "slot": 2,
-          "name": "Creaking Time Staff"
+          "name": "Creaking Time Staff",
+          "lootId": 791
         },
         {
-          "lootId": 792,
+          "slot": 2,
           "rarity": 3,
-          "slot": 2,
-          "name": "Singularity Time Staff"
+          "name": "Singularity Time Staff",
+          "lootId": 792
         },
         {
-          "lootId": 793,
+          "slot": 2,
           "rarity": 4,
+          "name": "Continuously Pulsing Staff of Limitless Possibilities",
+          "lootId": 793
+        },
+        {
           "slot": 2,
-          "name": "Continuously Pulsing Staff of Limitless Possibilities"
-        },
-        {
-          "lootId": 1198,
           "rarity": 5,
-          "name": "Eternal Hourglass of Neverending Time"
-        },
-        {
-          "lootId": 1199,
-          "rarity": 5,
-          "name": "Midnight Headdress of the Endless Cycle"
-        },
-        {
-          "lootId": 1200,
-          "rarity": 5,
-          "name": "Glowing Symbolized Staff of Limitless Endurance"
+          "name": "Glowing Symbolized Staff of Limitless Endurance",
+          "lootId": 1200
         }
       ]
     }
