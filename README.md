@@ -28,6 +28,7 @@ the number on the left side of a crusader is what slot they are in, and on the r
  - Generate urls to share your game status (ep, crusaders owned, gear)
  - Local storage
  - Game data import via the network tab of your browser
+   - Automatically imports ownership and EP data
 
 https://imaginarydevelopment.github.io/CotLICheatSheet/
 

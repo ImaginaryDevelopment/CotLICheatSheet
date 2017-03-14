@@ -743,7 +743,7 @@ var HeroGameData = React.createClass({
     // consider maping the parsed raw section collapsible at least at the highest level
 
     return (<div>
-        <button onClick={() => this.props.onImportGameDataClick(mappedHeroes,mappedLoot)}>import</button>
+        <button onClick={() => this.props.onImportGameDataClick(this.props.mappedHeroes,this.props.mappedLoot)}>import</button>
         <Tabs>
           <Pane label="Heroes and EP">
             <div><div>{ heroLIs.length + " items"}</div>
@@ -911,16 +911,24 @@ var CruApp = React.createClass({
     catch (ex){
       console.error('could not import hero game data', ex);
     }
+    // loot looks like this:
+    // {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity})
+    // merged should look like this :
+    // crusaderGear:{"01":{"slot0":4,"slot1":4,"slot2":4},
     if(loot && Array.isArray(loot)){
       try{
         console.log('loot merge step not implemented',loot)
         var crusaderGear = {};
-        var crusaderGear = loot.map(l =>
-          l.heroSlotId
-        );
-        // data.crusaderGear = crusaderGear;
+        loot.map(l =>{
+          console.log('mapping loot', l);
 
-
+          if(!crusaderGear.hasOwnProperty(l.heroSlotId))
+            crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
+          if(l.slot)
+            crusaderGear[l.heroSlotId]["slot" + l.slot] = l.rarity;
+        });
+        data.crusaderGear = crusaderGear;
+        console.log('loot import phase 1 complete', data.crusaderGear);
       } catch(ex){
           console.error('could not import loot game data', ex);
       }
