@@ -835,15 +835,15 @@ var importFromUrl = key =>
 var IsLocalFileSystem = () => window.location.protocol && window.location.protocol == "file:" ;
 var CruApp = React.createClass({
   getInitialState(){
-    // if(readIt("allowUrlDataOnLoad",false))
-    //   try
-    //   {
-    //     var urlData = getParameterByName("appGameState");
-    //     this.importAppState(urlData);
-    //   }
-    //   catch (ex){
+    // auto import is safe now, the storage mechanism will not allow saves with a custom url
+      try
+      {
+        var urlData = getParameterByName("appGameState");
+        this.importAppState(urlData);
+      }
+      catch (ex){
 
-    //   }
+      }
     var read= readIt(cruTagGridKey,undefined);
     var state = {lastRead:read};
     // this is convienent for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
