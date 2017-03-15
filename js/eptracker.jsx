@@ -1,63 +1,7 @@
 // data is in window.jsonData
 // reference heroId data at http://pastebin.com/Bf5UgsBC
 // reference lootId data at http://pastebin.com/vJNceSJZ
-var loggedStorageFailure = false;
-const isDefined = function(o){
-    return typeof(o) !== 'undefined' && o !== null;
-};
-const copyObject = (source,toMerge) => {
-    var target = toMerge ? toMerge : {};
-    Object.keys(source).map(function(prop){
-      target[prop] = source[prop];
-    });
-    return target;
-};
-const trim = function(s) {
-    return s.trim();
-};
-const debounce = (function(){
-        var timer = 0;
-        return (function(callback, ms){
-            if(typeof(callback) !== "function")
-                throw callback;
-            // this method does not ever throw, or complain if passed an invalid id
-            clearTimeout(timer);
-            timer = setTimeout(callback,ms); //setTimeout(callback,ms);
-        });
-    })();
-var debounceChange = function (callback, e, ...args) {
-    if(!isDefined(callback)){
-        console.info('no callback for debounceChange',e.target, typeof(callback),callback);
-        return;
-    }
-    e.persist();
-    args.unshift(e.target.value);
-    debounce(() => callback(...args), 500);
-};
-// reworked without let, since the browser support for it is low
-const flattenArrays = (a,b) => {
-        var isAa = Array.isArray(a),isAb = Array.isArray(b);
-        if(isAa && !isAb){
-            var result1 = a.slice(0);
-            result1.push(b);
-            return result1;
-        }
-        if(isAa && isAb){
-            return a.concat(b);
-        }
-        if(!isAa && isAb){
-            var result2 = [a].concat(b);
-            return result2;
-        }
-        return [a,b];
-    };
-// otherClasses: allows/adapts to inputs of type string or array
-const addClasses = (defaultClasses=[], otherClasses=[]) =>{
-    var unwrappedClasses = defaultClasses.reduce(flattenArrays,[]);
-    var otherClassesX = Array.isArray(otherClasses) ? otherClasses : otherClasses.split(" ");
-    unwrappedClasses = otherClassesX.reduce(flattenArrays,[]).concat(unwrappedClasses);
-    return unwrappedClasses.filter(isDefined).map(trim).join(' ').trim();
-};
+
 var TextAreaInput2 = props =>
 (<textarea
 name={props.name}
@@ -206,7 +150,6 @@ var Tabs = React.createClass({
       {this._renderContent()}
     </div>);
   }
-
 });
 var Pane = React.createClass({
   displayName:'Pane',
@@ -218,56 +161,7 @@ var Pane = React.createClass({
     return(<div>{this.props.children}</div>);
   }
 });
-function getIsLocalStorageAvailable() {
-  if (typeof(localStorage) !== 'undefined' && (typeof(localStorage.setItem) === 'function') && typeof(localStorage.getItem) === 'function'){
-    return true;
-  }
-	try {
-		var storage = window[type],
-			x = '__storage_test__';
-		storage.setItem(x, x);
-		storage.removeItem(x);
-    console.info('storage is available!');
-		return true;
-	}
-	catch(e) {
-    if(!loggedStorageFailure){
-      loggedStorageFailure = true;
-      console.info('failed to test storage available');
-    }
-		return false;
-	}
-}
-var storeIt = function(key,value){
-  var canStore = getIsLocalStorageAvailable();
-  if(canStore){
-    var stringy = JSON.stringify(value);
-    //console.info('storing:' + key,value);
-    localStorage.setItem(key,stringy);
-  }
-};
-var readIt = function(key,defaultValue){
-  if(getIsLocalStorageAvailable()){
-    var item = localStorage.getItem(key);
-    if(typeof(item) !== 'undefined' && item != null){
-      // console.info("read item from localStorage", key,item);
-      try{
-        return JSON.parse(item);
-      }
-      catch (ex)
-      {
-        return defaultValue;
-      }
-    } else {
-      return defaultValue;
-    }
-  } else {
-    return defaultValue;
-  }
-};
-var add = function(a,b){
-  return a + b;
-};
+
 var getCrusaderDps = function(crusader){
   if (!crusader.upgrades){
     return "no data";
@@ -278,8 +172,8 @@ var getCrusaderDps = function(crusader){
 var Filter = React.createClass({
   render:function(){
     // var filterClasses = this.props.on ? "fa fa-fw fa-filter active hoverShowClickable" : "fa fa-fw fa-filter hoverShowClickable";
-        var filterClasses = 
-      this.props.on == 1 ? "fa fa-fw fa-filter active" 
+        var filterClasses =
+      this.props.on == 1 ? "fa fa-fw fa-filter active"
       : this.props.on == 0 || !(this.props.on != null) ? "fa fa-fw fa-filter" :
       "fa fa-fw fa-filter activeNegative";
     return (<i className={filterClasses} onClick={this.props.filterClick}></i>);
@@ -329,7 +223,7 @@ var CruTagRow = React.createClass({
       var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
       var owned = null;
       var formation = null;
-      var epBox = this.props.epMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["medium"]} value={this.props.enchantmentPoints} /><div className="sharedEp">Shared:{this.props.effectiveEp}</div></div>) : null;
+      var epBox = this.props.isEpMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["medium"]} value={this.props.enchantmentPoints} /><div className="sharedEp">Shared:{this.props.effectiveEp}</div></div>) : null;
       if(this.props.mode === "mine" && this.props.isFormationMode){
         formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
       } else if (this.props.mode === "mine" && !this.props.isFormationMode){
@@ -369,7 +263,7 @@ var CruTagRow = React.createClass({
         var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
 
         var makeSelect = slot => {
-          // var slot = (typeof(slot) === "string" && slot.length > 1 ? slot[0] && +slot === slot ? +slot 
+          // var slot = (typeof(slot) === "string" && slot.length > 1 ? slot[0] && +slot === slot ? +slot
           var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
           var rarity = !itemInfo ? 0 : (typeof(itemInfo) === "string" && itemInfo.length > 1 ? +itemInfo[0] : +itemInfo);
           // if(typeof(ItemInfo) !== "number"){
@@ -406,18 +300,17 @@ var CruTagRow = React.createClass({
       </tr>);
     }
 });
-var cruTagGridKey = "cruTagGrid"
-function padLeft(nr, n, str){
-    return Array(n-String(nr).length+1).join(str||'0')+nr;
-}
+
+
+// get most of the state out of here, so more display stuff can be attached, leave things that don't need to be stored in state
 var CruTagGrid = React.createClass({
   getInitialState:function(){
-    var defaultValue = {slotSort:"up",mode:"",epMode:false,sharingIsCaringLevel:0,enchantmentPoints:{},filterOwned:0,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
+    var defaultValue = {ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
+
     // json.stringify this whole thing to make input/html5 storage data
-    var init = readIt(cruTagGridKey, defaultValue);
+    var init = cruTagGrid.readOrDefault(defaultValue);
     if(init != null){
       console.log('initRaw', init);
-
     } else {
       init = defaultValue;
     }
@@ -457,21 +350,20 @@ var CruTagGrid = React.createClass({
     if(typeof(init.formationIds) === "undefined"){
       init.formationIds = {};
     }
-    if(typeof(init.enchantmentPoints) === "undefined"){
-      init.enchantmentPoints = {};
-    }
+
     console.log('initialState', init);
     window.state = init;
     return init;
   },
+  // for the conversion to work, this has to come out of here
   componentDidUpdate:function(prevProps, prevState){
-    // disable writes to storage if they arrived here from someone else's data link
-    if(!getParameterByName("appGameState"))
-      storeIt(cruTagGridKey,this.state);
+    cruTagGrid.store(this.state);
     window.state = this.state;
   },
   slotSortClick:function(){
-    this.setState({slotSort: this.state.slotSort === "up" ? "desc":"up"});
+    var update = {slotSort: this.props.slotSort === "up" ? "desc":"up"};
+    console.log('slotSortClick', ' was ' + this.props.slotSort, update);
+    this.props.updateSave(update);
   },
   filterOwnedClick:function(){
     //(i + 2) % 3 - 1)
@@ -480,7 +372,11 @@ var CruTagGrid = React.createClass({
     this.setState({filterOwned: filterOwned});
   },
   onModeChangeClicked: function(){
-    this.setState({mode:this.state.mode === "" ? "mine": ""});
+    console.log('onModeChangeClicked');
+    this.props.updateSave({mode:this.props.mode === "" ? "mine": ""});
+  },
+  onEpClick: function(){
+    this.props.updateSave({isEpMode: this.props.isEpMode? false : true})
   },
   onIdolChange: function(val){
     this.setState({Idols:val});
@@ -490,11 +386,6 @@ var CruTagGrid = React.createClass({
     console.log('formationClick', stateMods);
     this.setState(stateMods);
   },
-  onEpClick: function(){
-    var stateMods = {epMode:this.state.epMode? false:true};
-    console.log('epClick',stateMods);
-    this.setState(stateMods);
-  },
   onGearClick: function(){
     var stateMods = {gearMode: this.state.gearMode? false: true};
     console.log('gearClick', stateMods);
@@ -502,7 +393,7 @@ var CruTagGrid = React.createClass({
   },
   onEpChange:function(crusaderId, epValue){
     console.log('onEpChange',arguments);
-    var oldEp = this.state.enchantmentPoints;
+    var oldEp = this.props.enchantmentPoints;
     var newEp = {};
     for(var attr in oldEp){
       if (oldEp.hasOwnProperty(attr)) {
@@ -511,7 +402,7 @@ var CruTagGrid = React.createClass({
     }
     newEp[crusaderId] = epValue;
     var stateMods = {enchantmentPoints:newEp};
-    this.setState(stateMods);
+    this.props.updateSave(stateMods);
   },
   onFormationChange: function(crusader){
     console.log('formation change');
@@ -584,15 +475,15 @@ var CruTagGrid = React.createClass({
     var rows=[];
     var totalCrusaders = this.props.model.crusaders.length;
     // this may not be reliable, if any dirty data gets in the state from versioning changes
-    var totalOwned = this.state.ownedCrusaderIds? this.state.ownedCrusaderIds.length : '';
-    var sortedCrusaders = this.state.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
+    var totalOwned = this.state.ownedCrusaderIds ? this.state.ownedCrusaderIds.length : '';
+    var sortedCrusaders = this.props.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
     });
     sortedCrusaders
       .filter(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
         // var ownershipFilter = (owned || !self.state.filterOwned) || (crusader.slot == crusader.id && crusader.slot < 21);
-        var ownershipFilter = 
+        var ownershipFilter =
           (self.state.filterOwned==1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
           || (self.state.filterOwned == 0)
           || (self.state.filterOwned== -1 && !owned);
@@ -615,21 +506,21 @@ var CruTagGrid = React.createClass({
         var gear = self.state.crusaderGear ? self.state.crusaderGear[crusader.id]: [];
         var dps = getCrusaderDps(crusader);
         var otherSlotCrusaders = sortedCrusaders.filter(c => c.slot == crusader.slot && c.id != crusader.id).map(c => c.id);
-        var otherEp = otherSlotCrusaders.map(cId => +self.state.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
+        var otherEp = otherSlotCrusaders.map(cId => +self.props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
         // account for sharing is caring here, once you have it
-        var sharingIsCaring = 6 + +(self.state.sharingIsCaringLevel || 0);
+        var sharingIsCaring = 6 + +(self.props.sharingIsCaringLevel || 0);
         // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
         var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
-        var effectiveEp = Number(Math.round(rawSharedEp)) + +self.state.enchantmentPoints[crusader.id];
+        var effectiveEp = Number(Math.round(rawSharedEp)) + +self.props.enchantmentPoints[crusader.id];
 
         rows.push(<CruTagRow key={crusader.displayName}
           formationIds={self.state.formationIds}
-          epMode={self.state.epMode}
+          isEpMode={self.props.isEpMode}
           gearMode={self.state.gearMode}
           gearTypes={self.props.model.gearTypes}
           gear={gear}
           onGearChange={self.onGearChange}
-          enchantmentPoints={self.state.enchantmentPoints[crusader.id]}
+          enchantmentPoints={self.props.enchantmentPoints[crusader.id]}
           effectiveEp={effectiveEp}
           onEpChange={self.onEpChange.bind(null,crusader.id)}
           isFormationMode={self.state.formation === "formation"}
@@ -638,13 +529,13 @@ var CruTagGrid = React.createClass({
           dps={dps}
           owned={owned}
           missionTags={self.props.model.missionTags}
-          mode={self.state.mode}
+          mode={self.props.mode}
           onOwnedChange={self.onOwnedChange.bind(self,crusader)}
           onFormationChange={self.onFormationChange.bind(self,crusader)} />);
       }
     );
     var tagCounts = [];
-    var slotSort = this.state.slotSort === "up" ? "fa fa-fw fa-sort-up" : "fa fa-fw fa-sort-desc";
+    var slotSortClasses = this.props.slotSort === "up" ? "fa fa-fw fa-sort-up" : "fa fa-fw fa-sort-desc";
     this.props.model.missionTags.map(function(tag){
         var count = self.props.model.crusaders.map(function (crusader){
             return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
@@ -658,35 +549,35 @@ var CruTagGrid = React.createClass({
 
     var countDisplay = totalCrusaders === rows.length ? totalCrusaders : (rows.length + " of " + totalCrusaders);
     var formationRow;
-    if(this.state.mode === "mine"){
+    if(this.props.mode === "mine"){
       formationRow=(
         <tr>
           <th title="American or otherwise">Idols <TextInputUnc onChange={this.onIdolChange} value={this.state.Idols} /></th>
-          <th><CheckBox checked={this.state.epMode} onChange={this.onEpClick} />Track EP</th>
+          <th><CheckBox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
           <th colSpan="2"><CheckBox checked={this.state.formation === "formation"} onChange={this.onFormationClick} /> Build Formation</th>
           <th><CheckBox checked={this.state.gearMode} onChange={this.onGearClick} />Track gear</th>
           <th></th>
         </tr>
       );
     }
-    var tagsTh = this.state.mode !== "mine" || !this.state.gearMode ? (<th className="tags">Tags</th>) : null;
-    var tagsTh2 = this.state.mode !== "mine" || !this.state.gearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
-    var countsTh = this.state.mode !== "mine" || !this.state.gearMode? (<th>Counts</th>) : null;
-    var sharingTh = this.state.mode ==="mine" && this.state.epMode ?
-    (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.state.sharingIsCaringLevel} onChange={val => this.setState({sharingIsCaringLevel: +val})} /></th>): null;
+    var tagsTh = this.props.mode !== "mine" || !this.state.gearMode ? (<th className="tags">Tags</th>) : null;
+    var tagsTh2 = this.props.mode !== "mine" || !this.state.gearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
+    var countsTh = this.props.mode !== "mine" || !this.state.gearMode? (<th>Counts</th>) : null;
+    var sharingTh = this.props.mode ==="mine" && this.props.isEpMode ?
+    (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaringLevel} onChange={val => this.props.updateSave({sharingIsCaringLevel: +val})} /></th>): null;
     return (<table id="tab">
     <thead>
       <tr>
-        { this.state.mode === "mine" && this.state.formation !== "formation" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th>
-          : this.state.mode ==="mine" && this.state.formation ==="formation" ? <th></th> : null}
-        <th>Slot<i className={slotSort} onClick={this.slotSortClick}></i></th>
+        { this.props.mode === "mine" && this.state.formation !== "formation" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th>
+          : this.props.mode ==="mine" && this.state.formation ==="formation" ? <th></th> : null}
+        <th>Slot<i className={slotSortClasses} onClick={this.slotSortClick}></i></th>
         <th colSpan="2">Crusader</th>
         {tagsTh}
         <th></th>
       </tr>
       <tr>
-        {this.state.mode === "mine" ? <th>{totalOwned}</th> : null}
-        <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.state.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
+        {this.props.mode === "mine" ? <th>{totalOwned}</th> : null}
+        <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={this.props.mode === "mine"} onChange={this.onModeChangeClicked}  />Mine</th>
         {tagsTh2}
         {countsTh}
       </tr>
@@ -699,73 +590,7 @@ var CruTagGrid = React.createClass({
     </table>)
   }
 });
-var parseLoot = (crusaders,lootData) =>{
-        console.log('attempting to parse loot');
-        var refC = crusaders;
-        var lootComparer = (a,b) =>{
-          if(a.heroBenchSlot > b.heroBenchSlot)
-            return 1;
-          if(a.heroBenchSlot < b.heroBenchSlot)
-            return -1;
-          if(a.slotId > b.slotId)
-            return 1;
-          if(a.slotId < b.slotId)
-            return -1;
-          if(a.slot != null && !(b.slot != null))
-            return 1;
-          if(!(a.slot != null) && b.slot != null)
-            return -1;
-          if(a.slot > b.slot)
-            return 1;
-          if(a.slot < b.slot)
-            return -1;
 
-          return 0;
-        };
-        var lootMapped =
-          lootData
-            .map(l =>
-            {
-              var crusader = refC.find(cru => cru.loot.find(cl => cl.lootId == l.loot_id));
-              var lootItem = crusader && crusader.loot.find(cl => cl.lootId == l.loot_id);
-              // console.log('lootDataMap',l, crusader,lootItem);
-
-              return {loot:l, crusader:crusader,lootItem:lootItem};
-            })
-            .filter(l => l.crusader != null)
-            .map(x => 
-            {
-              var result = {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity};
-              // console.log('lootmapping working on x', x);
-              if(x.loot.count)
-                result.countOrLegendaryLevel=x.loot.count;
-              if(x.lootItem.golden)
-                result.isGolden = true;
-              if(x.crusader.id ==="15")
-              console.log('lootmapping',result,x);
-              return result;
-            }
-            ).sort(lootComparer);
-          // console.log('lootMapped',lootMapped);
-          return lootMapped;
-};
-
-var parseNetworkDataHeroesSection = (heroMap, heroes) => {
-  console.log('parseNetworkDataHeroesSection', heroes.length);
-    var mapped = Array.isArray(heroes) ?
-      heroes.map(h => {
-        var crusader;
-        try{
-          crusader = heroMap[h.hero_id];
-        } catch(ex)
-        {
-          console.error('failed to parse',h,ex);
-        }
-        return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
-        }
-      ) : [];
-    return mapped;
-};
 // data pull
 var HeroGameData = React.createClass({
   render(){
@@ -825,9 +650,9 @@ var Exporter = props =>
       <div>
       <button onClick={ () => props.onImportAppStateFromUrlClick()}>Import AppStateFrom Url</button>
       <button onClick={ props.onGenerateUrlClick}>Generate AppState Url</button>
-      <TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","epMode":true,"enchantmentPoints":'/>
+      <TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","isEpMode":true,"enchantmentPoints":'/>
       <button onClick={props.onImportSiteStateClick} >{props.importText}</button>
-      <button onClick={props.onUpdateClick}>Update Export Text</button>
+      {getIsUrlLoaded() ? null : <button onClick={props.onUpdateClick}>Update Export Text</button> }
       {/*<button onClick={props.toggleAppStateVisibility}>Toggle AppState Visibility</button>*/}
       <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
       {props.clipper}
@@ -844,59 +669,47 @@ var Exporter = props =>
     </Tabs>
     </div>
 );
-// expect data is a string, and it starts with { or [
-var exportToUrl = (key,data) =>
-{
-  if(!data.startsWith("{") && !data.startsWith("["))
-    throw "error data is bad";
-  // hints from http://stackoverflow.com/questions/6807180/how-to-escape-a-json-string-to-have-it-in-a-url
-  var encoded = encodeURIComponent(data);
-  var decoded = decodeURIComponent(encoded);
-  if(data != decoded)
-    throw "Decoded didn't match original data";
-  return '?' + key + '=' + encoded;
+var provideSavedDefaults = saved =>{
+    if(!(saved.slotSort != null))
+      saved.slotSort = "up";
+    if(typeof(saved.mode) !== 'string' || !(saved.mode != null))
+      saved.mode="";
+    if(typeof(saved.isEpMode) !== 'boolean' || !(saved.isEpMode != null))
+      saved.isEpMode = false;
+    if(!(saved.enchantmentPoints != null))
+      saved.enchantmentPoints = {};
 };
-// from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-var importFromUrl = key =>
-{
- return getParameterByName(key);
-};
-// var ImportExporter = React.createClass({
 
-// });
-var IsLocalFileSystem = () => window.location.protocol && window.location.protocol == "file:" ;
 var CruApp = React.createClass({
   getInitialState(){
+    if (Clipboard)
+    {
+      window.clipboard = new Clipboard('.btn');
+    }
     // auto import is safe now, the storage mechanism will not allow saves with a custom url
+    if(getIsUrlLoaded())
       try
       {
         var urlData = getParameterByName("appGameState");
-        this.importAppState(urlData);
+        var state = this.importAppState(urlData);
+        return state;
       }
       catch (ex){
-
+        return {};
       }
-    var read= readIt(cruTagGridKey,undefined);
+
+
+    var read= cruTagGrid.readOrDefault(undefined);
     var state = {lastRead:read};
+    state.saved = read ? read : {};
+    // provide defaults
+    provideSavedDefaults(state.saved);
+
+
     // this is convienent for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
-    if(IsLocalFileSystem()){
+    if(getIsLocalFileSystem()){
       var networkDataJson = readIt("gameDataJson",undefined);
       state.networkDataJson=networkDataJson;
-    }
-    if (Clipboard)
-    {
-      state.clipboard = new Clipboard('.btn');
     }
     return state;
   },
@@ -914,7 +727,7 @@ var CruApp = React.createClass({
       this.setState({error:ex});
       return;
     }
-      if(IsLocalFileSystem()){
+      if(getIsLocalFileSystem()){
         storeIt("gameDataJson",json);
       }
       var heroMap = {};
@@ -938,8 +751,8 @@ var CruApp = React.createClass({
   onImportGameDataClick(heroes,loot){
     // heroes looks like this:
     // return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
-    var cruTagGrid = readIt(cruTagGridKey,undefined);
-    var data = copyObject(cruTagGrid);
+    var cruTagGridData = cruTagGrid.readOrDefault(undefined);
+    var data = copyObject(cruTagGridData);
     try
     {
       var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
@@ -985,8 +798,8 @@ var CruApp = React.createClass({
         console.error('could not import loot game data', ex);
       }
     }
-    storeIt(cruTagGridKey,data);
-    if(!IsLocalFileSystem())
+    cruTagGrid.store(data);
+    if(!getIsLocalFileSystem())
       window.location.reload(false);
 
   },
@@ -1009,15 +822,16 @@ var CruApp = React.createClass({
       window.location.reload(false);
   },
   importAppState(data,reload){
-    if(!data && IsLocalFileSystem())
+    if(!data && getIsLocalFileSystem())
     throw "importAppState called without any data";
     if(!data)
       return;
     var parsed = JSON.parse(data);
     // this potentially can add lots of unused properties into the state that will be stored into html5 local storage and never deleted.
-    storeIt(cruTagGridKey, parsed);
+    cruTagGrid.store(cruTagGridKey, parsed);
     if(reload)
       window.location.reload(false);
+    return parsed;
   },
   onGenerateUrlClick(){
     var data = readIt(cruTagGridKey);
@@ -1025,6 +839,12 @@ var CruApp = React.createClass({
     var baseUrl = window.location.origin + window.location.pathname;
     var url = baseUrl + exportToUrl("appGameState", stringified);
     this.setState({url:url,urlBase:baseUrl,showImportExport:false});
+  },
+  onChangeSaveState(newData){
+    console.log('onChangeSaveState', newData, this.state.saved.slotSort);
+    var newData = copyObject(this.state.saved,newData);
+    console.log('onChangeSaveState',newData);
+    this.setState({saved: newData});
   },
   render(){
     var w = window,
@@ -1055,7 +875,7 @@ var CruApp = React.createClass({
       heroMap[c.heroId] = c;
     });
     window.networkDataJson = this.state.networkDataJson;
-    var importArea = this.state.showImportExport ?
+    var importArea = getIsUrlLoaded() ? null : this.state.showImportExport ?
       (<Exporter  onHideClick={toggleHide}
                   maxWidth={maxWidth}
                   onImportTextChange={val => this.setState({textState:val})}
@@ -1074,7 +894,7 @@ var CruApp = React.createClass({
                   onImportSiteStateClick={this.onImportSiteStateClick}
                   onGenerateUrlClick={this.onGenerateUrlClick}
                   onImportAppStateFromUrlClick={() => this.importAppState(importFromUrl("appGameState"),true)}
-                  onUpdateClick={() => this.setState({lastRead:readIt(cruTagGridKey,undefined)})}
+                  onUpdateClick={() => !getIsUrlLoaded() ?  this.setState({lastRead:cruTagGrid.readOrDefault(undefined)}): null}
                   clipper={clipper}
                   stateStyle={stateStyle}
                   json={json}
@@ -1083,7 +903,12 @@ var CruApp = React.createClass({
       ( <button onClick={toggleHide}>Show Import/Export </button>);
     return (<div>
         {getParameterByName("appGameState") ? <button onClick={() => this.importAppState(importFromUrl("appGameState"), true)}>Import AppState from Url</button> : null}
-            <CruTagGrid model={props.jsonData} />
+            <CruTagGrid model={props.jsonData}
+                        slotSort={this.state.saved.slotSort}
+                        mode={this.state.saved.mode}
+                        isEpMode={this.state.saved.isEpMode}
+                        enchantmentPoints={this.state.enchantmentPoints}
+                        updateSave={this.onChangeSaveState} />
             <div>{JSON.stringify(this.state.error)}</div>
             <div className="onGreen">
             {importArea}
