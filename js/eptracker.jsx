@@ -345,12 +345,20 @@ var CruTagRow = React.createClass({
       : self.props.wikibase + cru.displayName.replace(" ","_");
 
       var cruGear = this.props.gear ? this.props.gear : {};
+      if(cru.id==="15")
+      console.log('cruGear for boxes', cruGear);
       var slotGear;
       // extract the 3 slots with qualities
       var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
         if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
           var makeBox = slot => {
-            return (<div className={"rarity rarity" + cruGearQ[slot]} />);
+            var itemRarityCompound = cruGearQ[slot];
+            var rarity = !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : itemRarityCompound[0];
+            var golden = !(itemRarityCompound != null) || typeof(itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
+            var classes = "rarity rarity" + rarity + golden;
+            if(cru.id =="15")
+            console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
+            return (<div className={classes} />);
           };
           slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
         }
@@ -360,7 +368,16 @@ var CruTagRow = React.createClass({
 
         var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
 
-        var makeSelect = slot => (<select key={"gear" + slot} value={cruGear["slot" + slot]? +cruGear["slot" + slot]: 0} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
+        var makeSelect = slot => {
+          // var slot = (typeof(slot) === "string" && slot.length > 1 ? slot[0] && +slot === slot ? +slot 
+          var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
+          var rarity = !itemInfo ? 0 : (typeof(itemInfo) === "string" && itemInfo.length > 1 ? +itemInfo[0] : +itemInfo);
+          // if(typeof(ItemInfo) !== "number"){
+          //   console.log('making select for item with info', slot,itemInfo,rarity);
+          // }
+
+          return (<select key={"gear" + slot} value={rarity} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
+        }
                     // <select key="gear0" onChange={e => this.props.onGearChange(cru.id, 0, e.target.value)} name="slot0">{options}</select>
                     // <select key="gear1" onChange={e => this.props.onGearChange(cru.id, 1, e.target.value)} name="slot1">{options}</select>
         gearTd = (<td key="gear" data-key="gear">
@@ -579,7 +596,6 @@ var CruTagGrid = React.createClass({
           (self.state.filterOwned==1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
           || (self.state.filterOwned == 0)
           || (self.state.filterOwned== -1 && !owned);
-        console.log('ownershipFilter',ownershipFilter, crusader.id, crusader.slot, self.state.filterOwned);
         var tagFilter =
           Object.keys(self.state.filterTags).map(function(tagId) {
             return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
@@ -717,10 +733,20 @@ var parseLoot = (crusaders,lootData) =>{
               return {loot:l, crusader:crusader,lootItem:lootItem};
             })
             .filter(l => l.crusader != null)
-            .map(x => (
-              {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity,countOrLegendaryLevel:x.lootItem.count})
+            .map(x => 
+            {
+              var result = {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity};
+              // console.log('lootmapping working on x', x);
+              if(x.loot.count)
+                result.countOrLegendaryLevel=x.loot.count;
+              if(x.lootItem.golden)
+                result.isGolden = true;
+              if(x.crusader.id ==="15")
+              console.log('lootmapping',result,x);
+              return result;
+            }
             ).sort(lootComparer);
-          console.log('lootMapped',lootMapped);
+          // console.log('lootMapped',lootMapped);
           return lootMapped;
 };
 
@@ -929,25 +955,34 @@ var CruApp = React.createClass({
       console.error('could not import hero game data', ex);
     }
     // loot looks like this:
-    // {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity})
+    // {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity,countOrLegendaryLevel:x.lootItem.count})
     // merged should look like this :
     // crusaderGear:{"01":{"slot0":4,"slot1":4,"slot2":4},
     if(loot && Array.isArray(loot)){
       try{
-        console.log('loot merge step not implemented',loot)
         var crusaderGear = {};
         loot.map(l =>{
 
           if(!crusaderGear.hasOwnProperty(l.heroSlotId))
             crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
-          if(l.slot != null)
-            crusaderGear[l.heroSlotId]["slot" + l.slot] = l.rarity;
+          if(l.slot != null){
+            var rarity = l.rarity;
+            if(l.isGolden || l.rarity === 5){
+              rarity = rarity + (l.isGolden? "g":"_");
+              if(rarity === 5 && !(l.countOrLegendaryLevel != null))
+                console.log('failing to map properly', l);
+              rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
+            }
+
+            crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
+          }
+          if(l.heroSlotId==="15")
           console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
         });
         data.crusaderGear = crusaderGear;
         console.log('loot import phase 1 complete', data.crusaderGear);
       } catch(ex){
-          console.error('could not import loot game data', ex);
+        console.error('could not import loot game data', ex);
       }
     }
     storeIt(cruTagGridKey,data);
