@@ -277,7 +277,11 @@ var getCrusaderDps = function(crusader){
 };
 var Filter = React.createClass({
   render:function(){
-    var filterClasses = this.props.on ? "fa fa-fw fa-filter active hoverShowClickable" : "fa fa-fw fa-filter hoverShowClickable";
+    // var filterClasses = this.props.on ? "fa fa-fw fa-filter active hoverShowClickable" : "fa fa-fw fa-filter hoverShowClickable";
+        var filterClasses = 
+      this.props.on == 1 ? "fa fa-fw fa-filter active" 
+      : this.props.on == 0 || !(this.props.on != null) ? "fa fa-fw fa-filter" :
+      "fa fa-fw fa-filter activeNegative";
     return (<i className={filterClasses} onClick={this.props.filterClick}></i>);
   }
 
@@ -391,7 +395,7 @@ function padLeft(nr, n, str){
 }
 var CruTagGrid = React.createClass({
   getInitialState:function(){
-    var defaultValue = {slotSort:"up",mode:"",epMode:false,sharingIsCaringLevel:0,enchantmentPoints:{},filterOwned:false,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
+    var defaultValue = {slotSort:"up",mode:"",epMode:false,sharingIsCaringLevel:0,enchantmentPoints:{},filterOwned:0,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
     // json.stringify this whole thing to make input/html5 storage data
     var init = readIt(cruTagGridKey, defaultValue);
     if(init != null){
@@ -401,28 +405,34 @@ var CruTagGrid = React.createClass({
       init = defaultValue;
     }
     var toRemove=[];
-    init.ownedCrusaderIds.sort();
-    var x = init.ownedCrusaderIds;
-    x.sort();
-    for(var i = 0; i < x.length; i++){
-      var value = x[i];
-
-      if(typeof(value) === "number" || value.length < 2 || value.length > 3 || x.indexOf(value,i + 1) >= 0){
-        console.log('removing ownedId', value, 'index', i,'dupAt',  x.indexOf(value, i + 1));
-        toRemove.push(value);
-      }
-    }
-    toRemove.map(v => x.splice(x.indexOf(v),1));
-
-    for(var i = 1; i <= 20; i++)
+    if(init.ownedCrusaderIds)
     {
-      var proposedValue = padLeft(i,2);
-      if(x.indexOf(proposedValue) < 0){
-        x.push(proposedValue);
+      init.ownedCrusaderIds.sort();
+      var x = init.ownedCrusaderIds;
+      x.sort();
+
+      for(var i = 0; i < x.length; i++){
+        var value = x[i];
+
+        if(typeof(value) === "number" || value.length < 2 || value.length > 3 || x.indexOf(value,i + 1) >= 0){
+          console.log('removing ownedId', value, 'index', i,'dupAt',  x.indexOf(value, i + 1));
+          toRemove.push(value);
+        }
       }
+      toRemove.map(v => x.splice(x.indexOf(v),1));
+
+      for(var i = 1; i <= 20; i++)
+      {
+        var proposedValue = padLeft(i,2);
+        if(x.indexOf(proposedValue) < 0){
+          x.push(proposedValue);
+        }
+      }
+      x.sort();
+      console.log('init ownedIds',x, x.length);
+    } else {
+      init.ownedCrusaderIds = [];
     }
-    x.sort();
-    console.log('init ownedIds',x, x.length);
 
     if(typeof(init.filterTags) === "undefined"){
       init.filterTags = {};
@@ -447,7 +457,10 @@ var CruTagGrid = React.createClass({
     this.setState({slotSort: this.state.slotSort === "up" ? "desc":"up"});
   },
   filterOwnedClick:function(){
-    this.setState({filterOwned: !this.state.filterOwned});
+    //(i + 2) % 3 - 1)
+    var filterOwned = (this.state.filterOwned + 2) % 3 - 1;
+    console.log(this.state.filterOwned,' will become ', filterOwned);
+    this.setState({filterOwned: filterOwned});
   },
   onModeChangeClicked: function(){
     this.setState({mode:this.state.mode === "" ? "mine": ""});
@@ -561,7 +574,12 @@ var CruTagGrid = React.createClass({
     sortedCrusaders
       .filter(function(crusader){
         var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        var ownershipFilter = owned || !self.state.filterOwned || (crusader.slot == crusader.id && crusader.slot < 21);
+        // var ownershipFilter = (owned || !self.state.filterOwned) || (crusader.slot == crusader.id && crusader.slot < 21);
+        var ownershipFilter = 
+          (self.state.filterOwned==1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
+          || (self.state.filterOwned == 0)
+          || (self.state.filterOwned== -1 && !owned);
+        console.log('ownershipFilter',ownershipFilter, crusader.id, crusader.slot, self.state.filterOwned);
         var tagFilter =
           Object.keys(self.state.filterTags).map(function(tagId) {
             return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
@@ -623,7 +641,6 @@ var CruTagGrid = React.createClass({
     });
 
     var countDisplay = totalCrusaders === rows.length ? totalCrusaders : (rows.length + " of " + totalCrusaders);
-    var filterOwnedClasses = this.state.filterOwned ? "fa fa-fw fa-filter active" : "fa fa-fw fa-filter";
     var formationRow;
     if(this.state.mode === "mine"){
       formationRow=(
@@ -701,7 +718,7 @@ var parseLoot = (crusaders,lootData) =>{
             })
             .filter(l => l.crusader != null)
             .map(x => (
-              {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity})
+              {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity,countOrLegendaryLevel:x.lootItem.count})
             ).sort(lootComparer);
           console.log('lootMapped',lootMapped);
           return lootMapped;

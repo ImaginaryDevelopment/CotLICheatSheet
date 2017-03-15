@@ -6,6 +6,7 @@ footer	{ padding: 25px 10px 15px; text-align: center; font-size: 12px; color: #7
 a		{ color: #eee; }
 a:hover	{ color: #fff; }
 .active {color: black;}
+.activeNegative {color: red;}
 
 .clear { clear: both; }
 
