@@ -313,43 +313,6 @@ var CruTagRow = React.createClass({
 
 var CruGridBody = props =>{
   var self = {props:props};
-   /*.map(function(crusader){
-        console.log('mapping a crusader!');
-        var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        var gear = self.props.crusaderGear ? self.props.crusaderGear[crusader.id]: [];
-        var dps = getCrusaderDps(crusader);
-        var otherSlotCrusaders = sortedCrusaders.filter(c => c.slot == crusader.slot && c.id != crusader.id).map(c => c.id);
-        var otherEp = otherSlotCrusaders.map(cId => +self.props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
-        // account for sharing is caring here, once you have it
-        var sharingIsCaring = 6 + +(self.props.sharingIsCaringLevel || 0);
-        // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
-        var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
-        var effectiveEp = Number(Math.round(rawSharedEp)) + +self.props.enchantmentPoints[crusader.id];
-        console.log(sharingIsCaring, rawSharedEp, effectiveEp);
-      });
-
-
-        rows.push(<CruTagRow key={crusader.displayName}
-          formationIds={self.props.formationIds}
-          isEpMode={self.props.isEpMode}
-          gearMode={self.props.gearMode}
-          gearTypes={self.props.model.gearTypes}
-          gear={gear}
-          onGearChange={self.onGearChange}
-          enchantmentPoints={self.props.enchantmentPoints[crusader.id]}
-          effectiveEp={effectiveEp}
-          onEpChange={self.onEpChange.bind(null,crusader.id)}
-          isFormationMode={isBuildingFormation}
-          wikibase={self.props.model.wikibase}
-          crusader={crusader}
-          dps={dps}
-          owned={owned}
-          missionTags={self.props.model.missionTags}
-          mode={self.props.mode}
-          onOwnedChange={self.onOwnedChange.bind(self,crusader)}
-          onFormationChange={self.onFormationChange.bind(self,crusader)} />);
-      }
-    );*/
   var rows = props.sortedCrusaders
         .map(function(crusader){
         // console.log('mapping a crusader!');
