@@ -1,0 +1,5817 @@
+{
+    "db_stats": {
+        "1": {
+            "total": "0.00000",
+            "query": "0.00000",
+            "other": "0.00000",
+            "connect": "0.00000",
+            "fetch": "0.00000"
+        },
+        "13": {
+            "total": "0.00000",
+            "query": "0.00000",
+            "other": "0.00000",
+            "connect": "0.00000",
+            "fetch": "0.00000"
+        },
+        "14": {
+            "total": "0.00000",
+            "query": "0.00000",
+            "other": "0.00000",
+            "connect": "0.00000",
+            "fetch": "0.00000"
+        }
+    },
+    "current_time": 1489375131,
+    "memory_usage": "11 mb",
+    "success": true,
+    "processing_time": "1.43247",
+    "linked_accounts": [
+    ],
+    "objective_completed": false,
+    "actions": [
+        {
+            "action": "offline_event_tokens",
+            "event_id": "9",
+            "amount": 620,
+            "added": 10,
+            "event_instance": "1"
+        }
+    ],
+    "current_sales": [],
+    "details": {
+        "abilities": [
+            {
+                "ability_id": 1,
+                "use_count": 0,
+                "cooldown_remaining": 0
+            },
+            {
+                "ability_id": 2,
+                "use_count": 4,
+                "cooldown_remaining": 297
+            },
+            {
+                "ability_id": 3,
+                "use_count": 0,
+                "cooldown_remaining": 0
+            },
+            {
+                "ability_id": 4,
+                "use_count": 0,
+                "cooldown_remaining": 0
+            },
+            {
+                "ability_id": 5,
+                "use_count": 0,
+                "cooldown_remaining": 0
+            },
+            {
+                "ability_id": 6,
+                "use_count": 0,
+                "cooldown_remaining": 0
+            },
+            {
+                "ability_id": 7,
+                "use_count": 4,
+                "cooldown_remaining": 3448
+            },
+            {
+                "ability_id": 8,
+                "use_count": 0,
+                "cooldown_remaining": 0
+            }
+        ],
+        "red_rubies_spent": 20800,
+        "gold": "5.85777328957239e+97",
+        "buffs": [
+            {
+                "buff_id": 1,
+                "inventory_amount": 250,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 2,
+                "inventory_amount": 208,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 3,
+                "inventory_amount": 124,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 4,
+                "inventory_amount": 2,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 5,
+                "inventory_amount": 327,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 6,
+                "inventory_amount": 299,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 7,
+                "inventory_amount": 178,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 8,
+                "inventory_amount": 3,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 9,
+                "inventory_amount": 266,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 10,
+                "inventory_amount": 299,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 11,
+                "inventory_amount": 136,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 12,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 13,
+                "inventory_amount": 16,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 14,
+                "inventory_amount": 31,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 15,
+                "inventory_amount": 38,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 16,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 17,
+                "inventory_amount": 213,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 18,
+                "inventory_amount": 273,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 19,
+                "inventory_amount": 153,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 20,
+                "inventory_amount": 2,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 21,
+                "inventory_amount": 186,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 22,
+                "inventory_amount": 221,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 23,
+                "inventory_amount": 126,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 24,
+                "inventory_amount": 1,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 25,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 26,
+                "inventory_amount": 84,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 27,
+                "inventory_amount": 42,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 28,
+                "inventory_amount": 20,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 29,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 30,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 31,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 32,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 33,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 34,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 35,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 36,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 37,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 38,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 39,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 40,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 41,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 43,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 44,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 45,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 46,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 47,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 48,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 49,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 50,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 51,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 52,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 53,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 54,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 55,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 56,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 57,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 58,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 59,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 60,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 61,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 62,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 63,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 64,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 65,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 66,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 67,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 68,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 69,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 70,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 71,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 72,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 73,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 74,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 75,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 76,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 77,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 78,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 79,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 80,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 81,
+                "inventory_amount": 0,
+                "remaining_time": 56717.800000000003,
+                "total_duration": 261000
+            },
+            {
+                "buff_id": 82,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 83,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            },
+            {
+                "buff_id": 84,
+                "inventory_amount": 0,
+                "remaining_time": 0,
+                "total_duration": 0
+            }
+        ],
+        "levels_per_reset_currency": 250,
+        "formation_saves": {
+            "campaign13": [
+                {
+                    "formation": [
+                        52,
+                        18,
+                        54,
+                        57,
+                        69,
+                        35,
+                        67,
+                        47,
+                        68,
+                        15,
+                        14
+                    ],
+                    "save_id": 2
+                },
+                {
+                    "formation": [
+                        69,
+                        57,
+                        74,
+                        73,
+                        67,
+                        52,
+                        54,
+                        68,
+                        15,
+                        26,
+                        25
+                    ],
+                    "save_id": 1
+                },
+                {
+                    "formation": [
+                        52,
+                        69,
+                        21,
+                        68,
+                        18,
+                        47,
+                        67,
+                        53,
+                        27,
+                        15,
+                        54
+                    ],
+                    "save_id": 3
+                }
+            ],
+            "campaign16": [
+                {
+                    "formation": [
+                        57,
+                        50,
+                        69,
+                        35,
+                        11,
+                        77,
+                        54,
+                        9,
+                        14,
+                        52,
+                        56,
+                        51,
+                        64,
+                        25
+                    ],
+                    "save_id": 1
+                },
+                {
+                    "formation": [
+                        73,
+                        52,
+                        69,
+                        77,
+                        35,
+                        31,
+                        14,
+                        51,
+                        56,
+                        11,
+                        19,
+                        18,
+                        54,
+                        25
+                    ],
+                    "save_id": 2
+                },
+                {
+                    "formation": [
+                        57,
+                        50,
+                        69,
+                        14,
+                        11,
+                        77,
+                        54,
+                        68,
+                        35,
+                        52,
+                        56,
+                        51,
+                        64,
+                        25
+                    ],
+                    "save_id": 3
+                }
+            ]
+        },
+        "last_changelog_seen": "110",
+        "red_rubies": 80,
+        "current_objective_id": 107,
+        "signed_up_for_newsletter": false,
+        "objective_status": [
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "1",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "2",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "3",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "4",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "5",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "7",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "8",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "9",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "10",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "11",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "12",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "13",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "14",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "15",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "16",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "17",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "18",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "19",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "21",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "22",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "23",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "24",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "25",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "26",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "27",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "28",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "29",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "32",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "33",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "34",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "35",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "36",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "37",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "38",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "39",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "40",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "41",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "42",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "43",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "44",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "52",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "53",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "54",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "55",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "56",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "57",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "58",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "59",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "60",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "61",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "62",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "63",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "64",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "65",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "66",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "67",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "68",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "69",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "70",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "71",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "72",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "73",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "74",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "75",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "76",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "77",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "78",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "79",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "80",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "81",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "82",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "83",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "84",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "85",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "86",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "87",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "88",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "89",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "90",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "91",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "92",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "93",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "94",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "95",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "96",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "97",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "98",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "99",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "100",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "101",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "102",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "103",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "104",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "105",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "106",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "107",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "108",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "109",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "110",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "111",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "112",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "113",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "114",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "115",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "116",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "117",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "118",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "119",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "120",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "121",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "122",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "123",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "124",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "125",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "126",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "127",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "128",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "129",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "130",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "131",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "132",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "133",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "134",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "135",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "136",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "137",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "138",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "139",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "140",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "141",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "142",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "143",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "144",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "145",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "146",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "147",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "148",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "149",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "150",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "151",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "152",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "153",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "154",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "155",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "156",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "157",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "158",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "159",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "160",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "161",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "162",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "163",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "164",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "165",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "166",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "167",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "168",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "169",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "170",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "171",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "172",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "173",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "174",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "175",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "176",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "177",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "178",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "179",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "180",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "181",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "182",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "183",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "184",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "185",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "186",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "188",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "189",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "190",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "191",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "192",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "193",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "194",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "195",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "196",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "197",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "198",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "199",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "200",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "201",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "202",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "203",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "204",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "205",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "206",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "207",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "208",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "209",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "211",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "212",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "213",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "214",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "215",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "216",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "217",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "218",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "219",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "220",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "221",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "222",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "223",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "224",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "225",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "226",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "227",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "228",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "229",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "230",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "231",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "232",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "233",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "234",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "235",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "236",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "237",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "238",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "239",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "240",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "241",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "243",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "244",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "245",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "247",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "248",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "249",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "250",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "251",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "252",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "253",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "254",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "255",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "256",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "257",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "258",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "259",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "260",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "261",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "262",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "263",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "264",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "265",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "266",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "267",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "268",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "269",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "270",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "271",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "272",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "273",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "274",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "275",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "276",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "277",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "278",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "279",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "280",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "281",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "282",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "283",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "284",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "285",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "286",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "287",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "288",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "289",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "290",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "291",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "292",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "293",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "294",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "295",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "296",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "297",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "298",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "299",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "300",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "301",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "302",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "303",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "304",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "305",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "306",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "307",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "308",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "309",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "310",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "311",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "312",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "313",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "314",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "315",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "316",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "317",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "318",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "319",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "320",
+                "can_start": true,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "321",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "322",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "323",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "324",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "325",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "326",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "327",
+                "can_start": false,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "328",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "329",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "330",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "331",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": true,
+                "id": "332",
+                "can_start": true,
+                "complete": 1
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "336",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "337",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "338",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "339",
+                "can_start": false,
+                "complete": 0
+            },
+            {
+                "progress": 0,
+                "should_show": false,
+                "id": "340",
+                "can_start": false,
+                "complete": 0
+            }
+        ],
+        "owned_crafting_recipes": [
+            56,
+            155,
+            183,
+            228,
+            261,
+            293,
+            323,
+            336,
+            464,
+            474,
+            475,
+            478,
+            479,
+            480,
+            482,
+            483,
+            488,
+            489,
+            490,
+            492,
+            493,
+            496,
+            497,
+            514,
+            515,
+            516,
+            518,
+            519,
+            520,
+            522,
+            523,
+            526,
+            527,
+            530,
+            531,
+            534,
+            535,
+            536,
+            546,
+            553,
+            554,
+            557,
+            558,
+            561,
+            562,
+            563,
+            585,
+            621,
+            660,
+            661,
+            664,
+            665,
+            669,
+            670,
+            697,
+            698,
+            701,
+            702,
+            706,
+            707,
+            712,
+            722,
+            723,
+            726,
+            727,
+            729,
+            730,
+            731,
+            824,
+            884,
+            930,
+            934,
+            1244,
+            1256,
+            5,
+            6,
+            9,
+            10,
+            13,
+            14,
+            17,
+            18,
+            21,
+            22,
+            25,
+            26,
+            29,
+            30,
+            33,
+            34,
+            37,
+            38,
+            41,
+            42,
+            45,
+            46,
+            49,
+            50,
+            53,
+            54,
+            57,
+            58,
+            61,
+            62,
+            65,
+            66,
+            69,
+            70,
+            73,
+            74,
+            77,
+            78,
+            81,
+            82,
+            85,
+            86,
+            89,
+            90,
+            93,
+            94,
+            97,
+            98,
+            101,
+            102,
+            105,
+            106,
+            109,
+            110,
+            113,
+            114,
+            117,
+            118,
+            121,
+            122,
+            125,
+            126,
+            129,
+            130,
+            133,
+            134,
+            137,
+            138,
+            141,
+            142,
+            145,
+            146,
+            149,
+            150,
+            153,
+            154,
+            157,
+            158,
+            161,
+            162,
+            165,
+            166,
+            169,
+            170,
+            173,
+            174,
+            177,
+            178,
+            181,
+            182,
+            185,
+            186,
+            189,
+            190,
+            193,
+            194,
+            197,
+            198,
+            201,
+            202,
+            205,
+            206,
+            209,
+            210,
+            213,
+            214,
+            217,
+            218,
+            221,
+            222,
+            225,
+            226,
+            229,
+            230,
+            233,
+            234,
+            237,
+            238,
+            241,
+            242
+        ],
+        "current_campaign_id": 13,
+        "stats": {
+            "chests_opened_type_41": "8",
+            "chests_opened_type_40": "6",
+            "chests_opened_type_43": "10",
+            "chests_opened_type_42": "6",
+            "chests_opened_type_45": "7",
+            "chests_opened_type_44": "7",
+            "gold": "5.85777328957239e+97",
+            "chests_opened_type_46": "1",
+            "chests_opened_type_49": "1",
+            "basic_loot_crafted": "24",
+            "time_warps_used_this_reset": "0",
+            "foresight_most_heal_nonhuman_male": "0",
+            "rate_us_protip_seen": "0",
+            "bench_protip_seen": "1",
+            "most_percent_of_total_dps_from_short_circuit_absorb": "2147483647",
+            "foresight_most_heal_combinations_made": "0",
+            "torch_tokens_spent": "5800",
+            "rare_generic_chests_bought_premium": 57,
+            "snickette_squiggles_fully_buffed": "1",
+            "max_legendary_level": "4",
+            "difficult_missions_protip_seen": "1",
+            "rocky_sally_fas_maxed": "1",
+            "hero_levels_lost_to_resets": "20959684",
+            "chat_popup_seen": "1",
+            "boss_defeats": "1262",
+            "chests_opened_type_48": "1",
+            "premium_item_purchases_1": "1",
+            "last_abandon_time": "1481918793",
+            "premium_item_purchases_7": "3",
+            "rare_chests_bought_premium": 18,
+            "chests_opened_type_52": "1",
+            "chests_opened_type_53": "8",
+            "chests_opened_type_50": "1",
+            "chests_opened_type_51": "1",
+            "chests_opened_type_56": "1",
+            "chests_opened_type_57": "4",
+            "chests_opened_type_54": "8",
+            "chests_opened_type_55": "11",
+            "spawn_speed_buffs_used_this_reset": "0",
+            "rare_chests_opened": "385",
+            "chests_opened_type_58": "1",
+            "chests_opened_type_59": "4",
+            "premium_item_purchases_6": "12",
+            "forced_win_counter_19": "2",
+            "crafting_recipes_learned": "74",
+            "forced_win_counter_12": "8",
+            "forced_win_counter_10": "9",
+            "forced_win_counter_16": "2",
+            "forced_win_counter_14": "5",
+            "monster_kills": "9552251",
+            "recoveries_normal": "5968",
+            "total_hero_levels": "66084",
+            "dps": "4.52980833598517e+97",
+            "missions_succeeded": "4615",
+            "boss_kills": "90225",
+            "frosty_decreased_more_than_increased": "1",
+            "storm_rider_mult": "600",
+            "legendary_loot_crafted": "4",
+            "epic_loot_gained": "108",
+            "normal_chests_opened": "7533",
+            "heroes_killed": "57176",
+            "total_heroes_sent_on_missions": "11183",
+            "most_heroes_unlocked": "33",
+            "foresight_most_heal_human_male": "0",
+            "forced_win_counter_40": "8",
+            "candy_hearts_spent": "43000",
+            "most_simultaneous_broot_robbie_effects_applied": "0",
+            "highest_area_completed_ever_c19": "193",
+            "chests_opened_type_68": "1",
+            "chests_opened_type_67": "1",
+            "chests_opened_type_66": "1",
+            "chests_opened_type_65": "1",
+            "chests_opened_type_64": "1",
+            "highest_area_completed_ever_c13": "801",
+            "chests_opened_type_62": "1",
+            "chests_opened_type_61": "1",
+            "chests_opened_type_60": "1",
+            "wipes_this_reset": "2",
+            "crusaders_recruited": "9146",
+            "storm_rider_gold_bonus_mult": "800",
+            "gold_gained": "6.90235303691724e+97",
+            "resets": "396",
+            "four_leaf_clovers_spent": "44700",
+            "premium_item_purchases_18": "1",
+            "global_click_damage_dps_percent": "0",
+            "injured_crusaders_protip_seen": "1",
+            "max_katie_gold_buffers": "8",
+            "common_loot_gained": "1727",
+            "sunscreens_spent": "34800",
+            "mobile_rate_us_protip_seen": "1",
+            "halloween_tickets_spent": "53000",
+            "hero_upgrades_lost_to_resets": "45258",
+            "legendary_craft_cost": "2.7556",
+            "total_heroes_injured": "20",
+            "legendary_reduction_date": "1488928741",
+            "normal_defeats": "2468",
+            "gold_gained_in_last_minute": "4.49576200176606e+97",
+            "foresight_most_heal_nonhuman_female": "0",
+            "chests_opened_type_70": "1",
+            "chests_opened_type_71": "4",
+            "highest_draco_buffs_percent": "1000",
+            "chests_opened_type_73": "4",
+            "chests_opened_type_74": "1",
+            "chests_opened_type_75": "1",
+            "apple_tokens_spent": "41500",
+            "tutorial_seen": "0",
+            "formation_ability_77_triggered": "1",
+            "time_warped_admin": "0",
+            "dark_helper_buff_rudolph": "1",
+            "marketing_promo_3_seen": "1",
+            "mimic_pete_and_mister_monkey": "0",
+            "highest_area_completed_ever": "601",
+            "chests_opened_type_12": "11",
+            "talent_respecs_done": "3",
+            "highest_hero_unlocked_ever": "24",
+            "boss_defeats_on_highest_level": "1145",
+            "mission_dialog_protip_seen": "1",
+            "marshmallow_tokens_spent": "34000",
+            "candy_canes_spent": "48000",
+            "highest_area_completed_ever_c9": "781",
+            "highest_area_completed_ever_c8": "775",
+            "highest_area_completed_ever_c7": "667",
+            "highest_area_completed_ever_c6": "676",
+            "highest_area_completed_ever_c5": "601",
+            "highest_area_completed_ever_c4": "479",
+            "highest_area_completed_ever_c3": "690",
+            "highest_area_completed_ever_c2": "627",
+            "highest_area_completed_ever_c1": "601",
+            "firework_tokens_spent": "41500",
+            "talent_levels_purchased": "260",
+            "forced_win_counter_2": "7",
+            "forced_win_counter_4": "1",
+            "disenchanted_gear_count": "785",
+            "forced_win_counter_6": "8",
+            "forced_win_counter_8": "9",
+            "buff_inventory_shown": "1",
+            "forced_win_counter_45": "7",
+            "forced_win_counter_44": "5",
+            "forced_win_counter_46": "3",
+            "chests_opened_type_8": "12",
+            "chests_opened_type_9": "10",
+            "forced_win_counter_42": "8",
+            "chests_opened_type_4": "10",
+            "chests_opened_type_5": "12",
+            "chests_opened_type_6": "16",
+            "chests_opened_type_7": "8",
+            "forced_win_counter_49": "3",
+            "forced_win_counter_48": "3",
+            "chests_opened_type_3": "11",
+            "ability_bar_shown": "1",
+            "highest_area_completed_ever_c18": "0",
+            "local_device_install_time": "3477046136",
+            "highest_area_completed_ever_c17": "0",
+            "swapping_protip_seen": "1",
+            "highest_area_completed_ever_c16": "627",
+            "mission_tags_protip_seen": "1",
+            "highest_area_completed_ever_c15": "0",
+            "forced_tutorial_done": "1",
+            "highest_area_completed_ever_c24": "417",
+            "highest_area_completed_ever_c14": "0",
+            "highest_area_completed_ever_c22": "401",
+            "highest_area_completed_ever_c23": "430",
+            "highest_area_completed_ever_c20": "311",
+            "highest_area_completed_ever_c21": "397",
+            "highest_area_completed_ever_c11": "676",
+            "highest_area_completed_ever_c12": "651",
+            "forced_win_counter_56": "3",
+            "forced_win_counter_57": "10",
+            "forced_win_counter_55": "10",
+            "forced_win_counter_52": "3",
+            "forced_win_counter_53": "6",
+            "forced_win_counter_50": "3",
+            "forced_win_counter_51": "3",
+            "credits_seen": "1",
+            "highest_area_completed_ever_c10": "736",
+            "forced_win_counter_58": "10",
+            "forced_win_counter_59": "8",
+            "pumpkin_pies_spent": "42900",
+            "formation_ability_76_triggered": "1",
+            "highest_minutes_wind_up_bunny_maxed": "26",
+            "gold_gained_on_previous_resets": "3.93493764037740e+165",
+            "highest_center_of_the_universe_dps_buff": "335",
+            "highest_gold_hoarded": "5.85777328957239e+97",
+            "highest_gold_hoarded_ever": "1.71850524660610e+165",
+            "highest_talent_levels_purchased": "293",
+            "carnival_tickets_spent": "41500",
+            "chests_opened_type_18": "9",
+            "chests_opened_type_19": "11",
+            "chests_opened_type_16": "12",
+            "highest_area_completed_ever_c25": "477",
+            "chests_opened_type_14": "12",
+            "chests_opened_type_15": "8",
+            "crusaders_on_missions_protip_seen": "1",
+            "chests_opened_type_13": "12",
+            "chests_opened_type_10": "14",
+            "chests_opened_type_11": "6",
+            "participation_ribbons_spent": "41500",
+            "missions_completed": "4717",
+            "num_heroes_benched": "1209",
+            "multi_level_talents_maxed": "3",
+            "forced_win_counter_62": "3",
+            "forced_win_counter_61": "3",
+            "forced_win_counter_60": "3",
+            "forced_win_counter_67": "3",
+            "forced_win_counter_66": "3",
+            "forced_win_counter_65": "3",
+            "forced_win_counter_64": "3",
+            "forced_win_counter_68": "3",
+            "karl_cindy_clutch_play": "1",
+            "highest_mult_from_syncronized_swimming_and_splish_splash_abilities": "2",
+            "escort_deaths_this_reset": "0",
+            "most_attackers_on_metal_soldierette_with_sidekick": "0",
+            "highest_multi_level_talents_maxed": "3",
+            "last_daily_quest_time": "1489363991",
+            "ad_bonus_protip_seen": "1",
+            "fastest_carnival_reset_time": "1679",
+            "formation_ability_75_triggered": "1",
+            "last_choose_objective_time": "1489360216",
+            "loot_gained": "3235",
+            "remote_detonation_kills": "19",
+            "clicks": "281502",
+            "helmets_spent": "53000",
+            "chests_opened_type_37": "2",
+            "max_monster_extra_gold_percent": "300",
+            "highest_mult_from_growing_up_ability": "11560",
+            "walk_away_proptip_seen": "1",
+            "highest_leerion_gold_bonus": "165",
+            "chests_opened_type_39": "11",
+            "reset_using_effective_demonstration_ability": "1",
+            "objective_previously_completed": "0",
+            "forced_win_counter_74": "3",
+            "forced_win_counter_75": "3",
+            "highest_area_completed_ever_c-1": "291",
+            "paul_petra_synergy": "1",
+            "forced_win_counter_70": "3",
+            "forced_win_counter_71": "10",
+            "forced_win_counter_73": "10",
+            "highest_dps_ever": "4.98168601461660e+158",
+            "rare_loot_gained": "404",
+            "highest_percent_dps_from_females": "1.640953252472E+34",
+            "foresight_most_heal_human_female": "0",
+            "global_dps_multiplier": "65866125.400399",
+            "uncommon_loot_gained": "996",
+            "recoveries_boss": "1050",
+            "most_halloween_monsters_on_screen_free_play": "0",
+            "click_damage": "1.00976772136890e+94",
+            "kyle_highest_buff_count": "6"
+        },
+        "flash_sales": [],
+        "event_details": [
+            {
+                "ends_in": 142869,
+                "end_purchases_in": 315669,
+                "name": "Hermit's Premature Party",
+                "total_duration": 1029600,
+                "event_id": "9",
+                "analytics_name": "Hermit's Premature Party",
+                "user_data": {
+                    "bought_in_event": true,
+                    "warp_time": 0,
+                    "event_tokens": 620,
+                    "last_token_time": 1489375131
+                },
+                "active": true,
+                "details": {
+                    "garnish_bg": 7802,
+                    "shop_desc": "Each St. Patrick's Jeweled Chest contains five cards: two are guaranteed to be gear for the four Event Crusaders (at least one of which will be rare or better); two are random trinkets; one is a time warp card. Chests will weight their gear drops towards unfilled slots and upgrades. Gear will only appear for Snickette and Squiggles if you have unlocked those Crusaders.",
+                    "event_token": {
+                        "win_range": 30,
+                        "win_every": 30,
+                        "name": "Four-Leaf Clover",
+                        "graphic_id": 3861,
+                        "name_plural": "Four-Leaf Clover"
+                    },
+                    "equipment_to_display": [
+                        455,
+                        448,
+                        459,
+                        1308,
+                        1311,
+                        1320
+                    ],
+                    "notification_type": "event",
+                    "crusader_objectives": {
+                        "102": 35,
+                        "103": 36,
+                        "328": 77,
+                        "329": 78
+                    },
+                    "notification": 7806,
+                    "shop_bg": 7809,
+                    "achievement_ids": [
+                        219,
+                        220,
+                        221,
+                        222,
+                        223,
+                        224,
+                        347,
+                        348,
+                        349,
+                        350,
+                        351,
+                        352
+                    ],
+                    "campaign_border": 7807,
+                    "campaign_id": 13,
+                    "formation_upgrade_ids": [
+                        258,
+                        265,
+                        564,
+                        571
+                    ],
+                    "hero_ids": [
+                        35,
+                        36,
+                        77,
+                        78
+                    ],
+                    "premium_chest_type_id": 19,
+                    "notification_background": 7806,
+                    "payers_get_at_end": [
+                        {
+                            "reward": "claim_crusader",
+                            "crusader_id": 35
+                        },
+                        {
+                            "reward": "claim_crusader",
+                            "crusader_id": 36
+                        }
+                    ],
+                    "garnish_graphics": [
+                        7803,
+                        7804
+                    ],
+                    "allow_premium_chest_purchase": true,
+                    "chest_ids": [
+                        18,
+                        19
+                    ],
+                    "title_graphic": 7810,
+                    "promo_bg": 7808,
+                    "premium_chest_token_cost": 11250
+                },
+                "event_instance": "1",
+                "description": "The Washed-Up Hermit's taking some friends out for St. Patrick's Day a few days ahead of schedule. Who knows what'll happen!"
+            },
+            {
+                "ends_in": 56469,
+                "end_purchases_in": 229269,
+                "name": "Party Harder",
+                "total_duration": 261000,
+                "event_id": "52",
+                "analytics_name": "Party Harder",
+                "user_data": {
+                    "warp_time": 72000,
+                    "event_tokens": 0,
+                    "last_token_time": 1489170600
+                },
+                "active": true,
+                "details": {
+                    "is_mini_event": true,
+                    "time_store_available_for_after_event": 0,
+                    "shop_desc": "Each Party Jeweled Chest contains five cards, of which two are guaranteed to be equipment for Jim the Lumberjack, Kyle the Party Bro, Detective Kaine, Leerion the Royal Dwarf, or Nate Dragon (at least one of which will be rare or better). Also guarantees two random trinkets and one time warp card.",
+                    "hero_ids": [
+                        2,
+                        36,
+                        6,
+                        43,
+                        20
+                    ],
+                    "allow_premium_chest_purchase": true,
+                    "notification": "gold",
+                    "promo_buff_title": "Party Harder",
+                    "promo_chest_desc": "Check out these limited-time Party Chests that contain equipment for just the five Crusaders above! (Only for previously unlocked Crusaders)",
+                    "effects_by_crusader": {
+                        "43": [
+                            "buff_formation_ability,200,149"
+                        ],
+                        "2": [
+                            "buff_formation_ability,200,9"
+                        ],
+                        "20": [
+                            "global_dps_multiplier_mult,200"
+                        ],
+                        "36": [
+                            "buff_formation_ability,200,93"
+                        ],
+                        "6": [
+                            "gold_multiplier_mult,200"
+                        ]
+                    },
+                    "chest_ids": [
+                        75
+                    ],
+                    "promo_header": 7907,
+                    "notification_type": "gold",
+                    "premium_chest_type_id": 75,
+                    "notification_background": 4014,
+                    "shop_title_graphic": 7907,
+                    "buff_id": 81,
+                    "promo_buff_desc": "It's time to start wearing buckets on your head and professing your love for vegetables! You just weren't partying hard enough before!"
+                },
+                "event_instance": "0",
+                "description": "[Not Shown In Game For Mini Events]"
+            }
+        ],
+        "crafting_enabled": true,
+        "crafting_materials": {
+            "1": 388,
+            "3": 86,
+            "2": 429,
+            "5": 9,
+            "4": 6
+        },
+        "mission_data": {
+            "new_mission_available": true,
+            "available_missions": [
+                {
+                    "mission_id": 2,
+                    "expires_in": 172800
+                },
+                {
+                    "mission_id": 26,
+                    "expires_in": 59950
+                },
+                {
+                    "mission_id": 45,
+                    "expires_in": 69909
+                },
+                {
+                    "mission_id": 46,
+                    "expires_in": 7222
+                },
+                {
+                    "mission_id": 110,
+                    "expires_in": 166428
+                },
+                {
+                    "mission_id": 114,
+                    "expires_in": 72420
+                },
+                {
+                    "mission_id": 117,
+                    "expires_in": 59647
+                }
+            ],
+            "active_missions": [
+                {
+                    "mission_id": 97,
+                    "ready_to_complete": false,
+                    "crusaders": [
+                        23,
+                        24,
+                        12,
+                        3,
+                        26
+                    ],
+                    "complete_timer": 172437
+                },
+                {
+                    "mission_id": 104,
+                    "ready_to_complete": false,
+                    "crusaders": [
+                        44,
+                        40
+                    ],
+                    "complete_timer": 69
+                },
+                {
+                    "mission_id": 106,
+                    "ready_to_complete": false,
+                    "crusaders": [
+                        77,
+                        43,
+                        72
+                    ],
+                    "complete_timer": 4116
+                },
+                {
+                    "mission_id": 108,
+                    "ready_to_complete": false,
+                    "crusaders": [
+                        75,
+                        29,
+                        28,
+                        58
+                    ],
+                    "complete_timer": 53919
+                },
+                {
+                    "mission_id": 140,
+                    "ready_to_complete": false,
+                    "crusaders": [
+                        57,
+                        14,
+                        13
+                    ],
+                    "complete_timer": 1959
+                },
+                {
+                    "mission_id": 159,
+                    "ready_to_complete": false,
+                    "crusaders": [
+                        51,
+                        46
+                    ],
+                    "complete_timer": 1525
+                }
+            ],
+            "time_to_next_update": 70,
+            "ready_to_complete": false
+        },
+        "legendary_upgrade_costs": {
+            "1": 250,
+            "3": 50,
+            "2": 100,
+            "4": 25
+        },
+        "shown_newsletter_dialog": true,
+        "dont_show_kong_mobile_link": [],
+        "levels_per_chest": 2000,
+        "achievements": [],
+        "is_new_game": 0,
+        "current_area": 452,
+        "reset_currency": 3016,
+        "seconds_since_last_save": 291,
+        "seconds_since_reset": 14930,
+        "talents": {
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "20": 25,
+            "21": 1,
+            "22": 0,
+            "23": 2,
+            "1": 1,
+            "3": 41,
+            "2": 1,
+            "5": 23,
+            "4": 35,
+            "7": 0,
+            "6": 23,
+            "9": 0,
+            "8": 0,
+            "11": 0,
+            "10": 7,
+            "13": 15,
+            "12": 0,
+            "15": 15,
+            "14": 15,
+            "17": 15,
+            "16": 15,
+            "19": 25,
+            "18": 1
+        },
+        "formation": [
+            52,
+            69,
+            21,
+            68,
+            18,
+            47,
+            67,
+            53,
+            27,
+            15,
+            54
+        ],
+        "rare_loot_chests": 0,
+        "package_deals": [
+            {
+                "time_remaining": -1,
+                "name": "Epic Starter Pack",
+                "value_key": "start_pack_value_message",
+                "chest_type_id": 2,
+                "notification_icon_id": 5437,
+                "notification_text": "Epic Starter Pack!",
+                "sale": false,
+                "title_text": "Jim's Epic Starter Pack",
+                "chests": 5,
+                "discount": "",
+                "background_graphic_id": 5436,
+                "cost": 9.9900000000000002,
+                "title_graphic_id": 5435,
+                "notification_background_id": 4014,
+                "item_id": 16,
+                "loot_ids": [
+                    592,
+                    19,
+                    27
+                ],
+                "original_cost": 0,
+                "selector_button_graphic": 6851,
+                "value_amount": 20,
+                "description": "Contains 5 Jeweled Chests and awesome gear for Jim the Lumberjack"
+            },
+            {
+                "time_remaining": -1,
+                "name": "Summer Sabotage Starter Pack",
+                "value_key": "start_pack_value_message",
+                "chest_type_id": 44,
+                "notification_icon_id": 6857,
+                "notification_text": "Summer Sabotage Starter Pack",
+                "sale": false,
+                "title_text": "Summer Sabotage Starter Pack",
+                "chests": 10,
+                "discount": "",
+                "background_graphic_id": 0,
+                "cost": 19.989999999999998,
+                "title_graphic_id": 0,
+                "notification_background_id": 4014,
+                "item_id": 19,
+                "loot_ids": [
+                    848,
+                    654,
+                    658,
+                    846,
+                    666,
+                    671
+                ],
+                "original_cost": 0,
+                "selector_button_graphic": 6855,
+                "value_amount": 40,
+                "description": "Contains 10 Jeweled Summer Chests and awesome gear for Veronica and Bubba"
+            },
+            {
+                "time_remaining": -1,
+                "name": "Song of Thrones Starter Pack",
+                "value_key": "start_pack_value_message",
+                "chest_type_id": 34,
+                "notification_icon_id": 6858,
+                "notification_text": "Song of Thrones Starter Pack",
+                "sale": false,
+                "title_text": "Song of Thrones Starter Pack",
+                "chests": 10,
+                "discount": "",
+                "background_graphic_id": 0,
+                "cost": 19.989999999999998,
+                "title_graphic_id": 0,
+                "notification_background_id": 4014,
+                "item_id": 20,
+                "loot_ids": [
+                    847,
+                    542,
+                    550,
+                    849,
+                    555,
+                    563
+                ],
+                "original_cost": 0,
+                "selector_button_graphic": 6854,
+                "value_amount": 40,
+                "description": "Contains 10 Jeweled Thrones Chests and awesome gear for Leerion and Brogon"
+            }
+        ],
+        "reset_currency_spent": 220203,
+        "normal_loot_chests": 1660,
+        "heroes": [
+            {
+                "level": 3172,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 478,
+                "upgrades": [
+                    8,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    125
+                ],
+                "health": 3178,
+                "hero_id": 1
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 452,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 2
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 594,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 3
+            },
+            {
+                "level": 3093,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 41,
+                "disenchant": 470,
+                "upgrades": [
+                    99,
+                    19,
+                    20,
+                    21,
+                    22,
+                    128
+                ],
+                "health": 3129,
+                "hero_id": 4
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 500,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 5
+            },
+            {
+                "level": 101,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 41,
+                "disenchant": 380,
+                "upgrades": [
+                    33,
+                    123,
+                    34,
+                    101,
+                    35,
+                    36
+                ],
+                "health": 167,
+                "hero_id": 6
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 501,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 7
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 549,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 8
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 453,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 9
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 452,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 10
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 541,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 11
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 527,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 12
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 585,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 13
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 424,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 14
+            },
+            {
+                "level": 2850,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 203,
+                "disenchant": 812,
+                "upgrades": [
+                    69,
+                    70,
+                    71,
+                    72,
+                    73,
+                    218,
+                    139
+                ],
+                "health": 3150,
+                "hero_id": 15
+            },
+            {
+                "level": 2767,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 649,
+                "upgrades": [
+                    124,
+                    90,
+                    89,
+                    91,
+                    92,
+                    221,
+                    140
+                ],
+                "health": 3103,
+                "hero_id": 16
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 406,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 17
+            },
+            {
+                "level": 2702,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 202,
+                "disenchant": 498,
+                "upgrades": [
+                    88,
+                    110,
+                    85,
+                    86,
+                    111,
+                    87,
+                    142
+                ],
+                "health": 3116,
+                "hero_id": 18
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 553,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 19
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 495,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 20
+            },
+            {
+                "level": 3046,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 199,
+                "disenchant": 158,
+                "upgrades": [
+                    145,
+                    146,
+                    147,
+                    148,
+                    149,
+                    150,
+                    151
+                ],
+                "health": 3112,
+                "hero_id": 21
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 132,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 22
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 280,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 23
+            },
+            {
+                "level": 1,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 155,
+                "upgrades": [],
+                "health": 105,
+                "hero_id": 24
+            },
+            {
+                "level": 3025,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 41,
+                "disenchant": 200,
+                "upgrades": [
+                    174,
+                    175,
+                    176,
+                    177,
+                    178,
+                    179,
+                    180
+                ],
+                "health": 3109,
+                "hero_id": 25
+            },
+            {
+                "level": 2923,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 205,
+                "upgrades": [
+                    181,
+                    182,
+                    183,
+                    184,
+                    185,
+                    186,
+                    187
+                ],
+                "health": 3099,
+                "hero_id": 26
+            },
+            {
+                "level": 2831,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 201,
+                "disenchant": 54,
+                "upgrades": [
+                    188,
+                    189,
+                    190,
+                    191,
+                    192,
+                    193,
+                    194
+                ],
+                "health": 3097,
+                "hero_id": 27
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 244,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 28
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 190,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 29
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 200,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 30
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 126,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 31
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 107,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 32
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 91,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 33
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 45,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 34
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 156,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 35
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 7,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 36
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 29,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 37
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 41,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 38
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 87,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 39
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 114,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 40
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 119,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 41
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 224,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 42
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 23,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 43
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 224,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 44
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 188,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 45
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 373,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 46
+            },
+            {
+                "level": 2999,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 242,
+                "disenchant": 200,
+                "upgrades": [
+                    350,
+                    351,
+                    352,
+                    353,
+                    354,
+                    355,
+                    356
+                ],
+                "health": 3103,
+                "hero_id": 47
+            },
+            {
+                "level": 2638,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 437,
+                "upgrades": [
+                    357,
+                    358,
+                    359,
+                    360,
+                    361,
+                    363
+                ],
+                "health": 3138,
+                "hero_id": 48
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 313,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 49
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 213,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 50
+            },
+            {
+                "level": 3138,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 88,
+                "upgrades": [
+                    378,
+                    379,
+                    380,
+                    381,
+                    382,
+                    383,
+                    384
+                ],
+                "health": 3152,
+                "hero_id": 51
+            },
+            {
+                "level": 2951,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 241,
+                "disenchant": 44,
+                "upgrades": [
+                    385,
+                    386,
+                    387,
+                    388,
+                    389,
+                    390,
+                    391
+                ],
+                "health": 3101,
+                "hero_id": 52
+            },
+            {
+                "level": 3114,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 240,
+                "disenchant": 228,
+                "upgrades": [
+                    392,
+                    393,
+                    394,
+                    395,
+                    396,
+                    397,
+                    398
+                ],
+                "health": 3138,
+                "hero_id": 53
+            },
+            {
+                "level": 2734,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 201,
+                "disenchant": 74,
+                "upgrades": [
+                    399,
+                    400,
+                    401,
+                    402,
+                    403,
+                    404,
+                    405
+                ],
+                "health": 3108,
+                "hero_id": 54
+            },
+            {
+                "level": 2583,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 240,
+                "upgrades": [
+                    406,
+                    407,
+                    408,
+                    409,
+                    410
+                ],
+                "health": 3129,
+                "hero_id": 55
+            },
+            {
+                "level": 2529,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 229,
+                "upgrades": [
+                    413,
+                    414,
+                    415,
+                    416
+                ],
+                "health": 3123,
+                "hero_id": 56
+            },
+            {
+                "level": 2474,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 130,
+                "upgrades": [
+                    420,
+                    421,
+                    422,
+                    423
+                ],
+                "health": 6236,
+                "hero_id": 57
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 243,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 58
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 59
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 60
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 61
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 62
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 63
+            },
+            {
+                "level": 3059,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 41,
+                "disenchant": 200,
+                "upgrades": [
+                    469,
+                    470,
+                    471,
+                    472,
+                    473,
+                    474,
+                    475
+                ],
+                "health": 3109,
+                "hero_id": 64
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 201,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 65
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 66
+            },
+            {
+                "level": 2978,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 242,
+                "disenchant": 102,
+                "upgrades": [
+                    492,
+                    493,
+                    494,
+                    495,
+                    496,
+                    497,
+                    498
+                ],
+                "health": 4656,
+                "hero_id": 67
+            },
+            {
+                "level": 2725,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 199,
+                "disenchant": 205,
+                "upgrades": [
+                    499,
+                    500,
+                    501,
+                    502,
+                    503,
+                    504,
+                    505
+                ],
+                "health": 3181,
+                "hero_id": 68
+            },
+            {
+                "level": 2892,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 200,
+                "disenchant": 73,
+                "upgrades": [
+                    506,
+                    507,
+                    508,
+                    509,
+                    510,
+                    511,
+                    512
+                ],
+                "health": 3096,
+                "hero_id": 69
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 71,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 70
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 25,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 71
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 221,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 72
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 19,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 73
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 47,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 74
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 51,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 75
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 28,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 76
+            },
+            {
+                "level": 2861,
+                "in_seat": 1,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 39,
+                "upgrades": [
+                    562,
+                    563,
+                    564,
+                    565,
+                    566,
+                    567,
+                    568
+                ],
+                "health": 3095,
+                "hero_id": 77
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 1,
+                "grind_time": 0,
+                "disenchant": 12,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 78
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 79
+            },
+            {
+                "level": 0,
+                "in_seat": 0,
+                "owned": 0,
+                "grind_time": 0,
+                "disenchant": 0,
+                "upgrades": [],
+                "health": 0,
+                "hero_id": 80
+            }
+        ],
+        "seconds_played": 23259762,
+        "promotions": [
+            {
+                "purchase_requirements": [
+                    {
+                        "event_id": 52,
+                        "type": "purchase_type",
+                        "value": "event_chests"
+                    }
+                ],
+                "num_allowed": "1",
+                "name": "Golden Kyle Gear",
+                "end_date": "2017-03-13 12:00:00",
+                "offer_requirements": [],
+                "permanent_order": "1",
+                "seconds_left": 56469,
+                "properties": {
+                    "shop": {
+                        "event_purchase": 52,
+                        "loot_id": 1364,
+                        "type": "bonus_loot",
+                        "text": "Buy a Promo Jeweled Chest Bundle today and get a FREE Golden Epic Card for Kyle the Party Bro!"
+                    },
+                    "notification": {
+                        "text": "Kyle's$(nl)Epic Gear",
+                        "graphic": 7905,
+                        "notification_background": 4014,
+                        "type": "gold"
+                    }
+                },
+                "effects": [
+                    {
+                        "loot_id": 1364,
+                        "type": "loot"
+                    }
+                ],
+                "promotion_id": "65",
+                "start_date": "2017-03-10 10:30:00"
+            }
+        ],
+        "chests": {
+            "51": 0,
+            "60": 0,
+            "61": 0,
+            "62": 0,
+            "64": 3,
+            "65": 0,
+            "66": 0,
+            "67": 0,
+            "68": 0,
+            "48": 0,
+            "49": 0,
+            "46": 0,
+            "44": 0,
+            "45": 0,
+            "42": 0,
+            "43": 0,
+            "40": 0,
+            "41": 0,
+            "3": 0,
+            "5": 0,
+            "4": 0,
+            "7": 0,
+            "6": 0,
+            "9": 0,
+            "8": 0,
+            "39": 0,
+            "75": 0,
+            "74": 0,
+            "73": 0,
+            "72": 1,
+            "71": 0,
+            "70": 0,
+            "59": 0,
+            "58": 0,
+            "11": 0,
+            "10": 0,
+            "13": 0,
+            "12": 0,
+            "15": 0,
+            "14": 0,
+            "16": 0,
+            "19": 0,
+            "18": 1,
+            "57": 0,
+            "56": 0,
+            "37": 0,
+            "50": 0,
+            "53": 0,
+            "52": 0,
+            "55": 0,
+            "54": 0
+        },
+        "legendary_cost": 3,
+        "seconds_to_next_daily": 60861,
+        "instance_id": 1919467424,
+        "highest_area": 452,
+        "quests": [],
+        "free_talent_respecs": 1,
+        "loot": [
+            {
+                "count": 399,
+                "loot_id": 1
+            },
+            {
+                "count": 178,
+                "loot_id": 2
+            },
+            {
+                "count": 67,
+                "loot_id": 3
+            },
+            {
+                "count": 6,
+                "loot_id": 4
+            },
+            {
+                "count": 1,
+                "loot_id": 8
+            },
+            {
+                "count": 1,
+                "loot_id": 12
+            },
+            {
+                "count": 1,
+                "loot_id": 16
+            },
+            {
+                "count": 1,
+                "loot_id": 20
+            },
+            {
+                "count": 1,
+                "loot_id": 24
+            },
+            {
+                "count": 1,
+                "loot_id": 27
+            },
+            {
+                "count": 1,
+                "loot_id": 32
+            },
+            {
+                "count": 1,
+                "loot_id": 35
+            },
+            {
+                "count": 1,
+                "loot_id": 39
+            },
+            {
+                "count": 1,
+                "loot_id": 44
+            },
+            {
+                "count": 1,
+                "loot_id": 48
+            },
+            {
+                "count": 1,
+                "loot_id": 52
+            },
+            {
+                "count": 1,
+                "loot_id": 55
+            },
+            {
+                "count": 1,
+                "loot_id": 60
+            },
+            {
+                "count": 1,
+                "loot_id": 63
+            },
+            {
+                "count": 1,
+                "loot_id": 68
+            },
+            {
+                "count": 1,
+                "loot_id": 75
+            },
+            {
+                "count": 1,
+                "loot_id": 84
+            },
+            {
+                "count": 1,
+                "loot_id": 87
+            },
+            {
+                "count": 1,
+                "loot_id": 92
+            },
+            {
+                "count": 1,
+                "loot_id": 96
+            },
+            {
+                "count": 1,
+                "loot_id": 99
+            },
+            {
+                "count": 1,
+                "loot_id": 104
+            },
+            {
+                "count": 1,
+                "loot_id": 107
+            },
+            {
+                "count": 1,
+                "loot_id": 112
+            },
+            {
+                "count": 1,
+                "loot_id": 119
+            },
+            {
+                "count": 1,
+                "loot_id": 124
+            },
+            {
+                "count": 1,
+                "loot_id": 131
+            },
+            {
+                "count": 1,
+                "loot_id": 135
+            },
+            {
+                "count": 1,
+                "loot_id": 140
+            },
+            {
+                "count": 1,
+                "loot_id": 147
+            },
+            {
+                "count": 1,
+                "loot_id": 152
+            },
+            {
+                "count": 1,
+                "loot_id": 156
+            },
+            {
+                "count": 1,
+                "loot_id": 159
+            },
+            {
+                "count": 1,
+                "loot_id": 163
+            },
+            {
+                "count": 1,
+                "loot_id": 167
+            },
+            {
+                "count": 1,
+                "loot_id": 176
+            },
+            {
+                "count": 1,
+                "loot_id": 192
+            },
+            {
+                "count": 1,
+                "loot_id": 196
+            },
+            {
+                "count": 1,
+                "loot_id": 200
+            },
+            {
+                "count": 1,
+                "loot_id": 204
+            },
+            {
+                "count": 1,
+                "loot_id": 208
+            },
+            {
+                "count": 1,
+                "loot_id": 212
+            },
+            {
+                "count": 1,
+                "loot_id": 219
+            },
+            {
+                "count": 1,
+                "loot_id": 223
+            },
+            {
+                "count": 1,
+                "loot_id": 227
+            },
+            {
+                "count": 1,
+                "loot_id": 232
+            },
+            {
+                "count": 1,
+                "loot_id": 235
+            },
+            {
+                "count": 1,
+                "loot_id": 239
+            },
+            {
+                "count": 1,
+                "loot_id": 243
+            },
+            {
+                "count": 367,
+                "loot_id": 245
+            },
+            {
+                "count": 230,
+                "loot_id": 246
+            },
+            {
+                "count": 51,
+                "loot_id": 247
+            },
+            {
+                "count": 12,
+                "loot_id": 248
+            },
+            {
+                "count": 388,
+                "loot_id": 249
+            },
+            {
+                "count": 199,
+                "loot_id": 250
+            },
+            {
+                "count": 56,
+                "loot_id": 251
+            },
+            {
+                "count": 10,
+                "loot_id": 252
+            },
+            {
+                "count": 413,
+                "loot_id": 253
+            },
+            {
+                "count": 206,
+                "loot_id": 254
+            },
+            {
+                "count": 52,
+                "loot_id": 255
+            },
+            {
+                "count": 3,
+                "loot_id": 256
+            },
+            {
+                "count": 1,
+                "loot_id": 260
+            },
+            {
+                "count": 1,
+                "loot_id": 265
+            },
+            {
+                "count": 1,
+                "loot_id": 276
+            },
+            {
+                "count": 1,
+                "loot_id": 286
+            },
+            {
+                "count": 1,
+                "loot_id": 290
+            },
+            {
+                "count": 1,
+                "loot_id": 293
+            },
+            {
+                "count": 1,
+                "loot_id": 301
+            },
+            {
+                "count": 1,
+                "loot_id": 305
+            },
+            {
+                "count": 1,
+                "loot_id": 311
+            },
+            {
+                "count": 1,
+                "loot_id": 314
+            },
+            {
+                "count": 1,
+                "loot_id": 318
+            },
+            {
+                "count": 1,
+                "loot_id": 323
+            },
+            {
+                "count": 1,
+                "loot_id": 326
+            },
+            {
+                "count": 1,
+                "loot_id": 336
+            },
+            {
+                "count": 1,
+                "loot_id": 341
+            },
+            {
+                "count": 1,
+                "loot_id": 344
+            },
+            {
+                "count": 1,
+                "loot_id": 348
+            },
+            {
+                "count": 1,
+                "loot_id": 354
+            },
+            {
+                "count": 1,
+                "loot_id": 361
+            },
+            {
+                "count": 1,
+                "loot_id": 369
+            },
+            {
+                "count": 1,
+                "loot_id": 373
+            },
+            {
+                "count": 1,
+                "loot_id": 378
+            },
+            {
+                "count": 1,
+                "loot_id": 382
+            },
+            {
+                "count": 1,
+                "loot_id": 390
+            },
+            {
+                "count": 1,
+                "loot_id": 394
+            },
+            {
+                "count": 1,
+                "loot_id": 399
+            },
+            {
+                "count": 1,
+                "loot_id": 402
+            },
+            {
+                "count": 1,
+                "loot_id": 407
+            },
+            {
+                "count": 1,
+                "loot_id": 413
+            },
+            {
+                "count": 1,
+                "loot_id": 416
+            },
+            {
+                "count": 1,
+                "loot_id": 420
+            },
+            {
+                "count": 1,
+                "loot_id": 430
+            },
+            {
+                "count": 1,
+                "loot_id": 433
+            },
+            {
+                "count": 1,
+                "loot_id": 439
+            },
+            {
+                "count": 1,
+                "loot_id": 447
+            },
+            {
+                "count": 1,
+                "loot_id": 451
+            },
+            {
+                "count": 1,
+                "loot_id": 455
+            },
+            {
+                "count": 1,
+                "loot_id": 460
+            },
+            {
+                "count": 1,
+                "loot_id": 464
+            },
+            {
+                "count": 1,
+                "loot_id": 475
+            },
+            {
+                "count": 1,
+                "loot_id": 479
+            },
+            {
+                "count": 1,
+                "loot_id": 483
+            },
+            {
+                "count": 1,
+                "loot_id": 490
+            },
+            {
+                "count": 1,
+                "loot_id": 493
+            },
+            {
+                "count": 1,
+                "loot_id": 497
+            },
+            {
+                "count": 1,
+                "loot_id": 515
+            },
+            {
+                "count": 1,
+                "loot_id": 519
+            },
+            {
+                "count": 1,
+                "loot_id": 523
+            },
+            {
+                "count": 1,
+                "loot_id": 527
+            },
+            {
+                "count": 1,
+                "loot_id": 531
+            },
+            {
+                "count": 1,
+                "loot_id": 535
+            },
+            {
+                "count": 1,
+                "loot_id": 546
+            },
+            {
+                "count": 1,
+                "loot_id": 554
+            },
+            {
+                "count": 1,
+                "loot_id": 558
+            },
+            {
+                "count": 1,
+                "loot_id": 563
+            },
+            {
+                "count": 1,
+                "loot_id": 567
+            },
+            {
+                "count": 1,
+                "loot_id": 574
+            },
+            {
+                "count": 1,
+                "loot_id": 585
+            },
+            {
+                "count": 1,
+                "loot_id": 588
+            },
+            {
+                "count": 1,
+                "loot_id": 595
+            },
+            {
+                "count": 1,
+                "loot_id": 596
+            },
+            {
+                "count": 1,
+                "loot_id": 597
+            },
+            {
+                "count": 1,
+                "loot_id": 604
+            },
+            {
+                "count": 1,
+                "loot_id": 609
+            },
+            {
+                "count": 1,
+                "loot_id": 614
+            },
+            {
+                "count": 1,
+                "loot_id": 617
+            },
+            {
+                "count": 1,
+                "loot_id": 621
+            },
+            {
+                "count": 1,
+                "loot_id": 624
+            },
+            {
+                "count": 1,
+                "loot_id": 629
+            },
+            {
+                "count": 1,
+                "loot_id": 633
+            },
+            {
+                "count": 1,
+                "loot_id": 638
+            },
+            {
+                "count": 1,
+                "loot_id": 643
+            },
+            {
+                "count": 1,
+                "loot_id": 647
+            },
+            {
+                "count": 1,
+                "loot_id": 650
+            },
+            {
+                "count": 1,
+                "loot_id": 654
+            },
+            {
+                "count": 1,
+                "loot_id": 659
+            },
+            {
+                "count": 1,
+                "loot_id": 662
+            },
+            {
+                "count": 1,
+                "loot_id": 666
+            },
+            {
+                "count": 1,
+                "loot_id": 670
+            },
+            {
+                "count": 1,
+                "loot_id": 677
+            },
+            {
+                "count": 1,
+                "loot_id": 683
+            },
+            {
+                "count": 1,
+                "loot_id": 684
+            },
+            {
+                "count": 1,
+                "loot_id": 685
+            },
+            {
+                "count": 1,
+                "loot_id": 691
+            },
+            {
+                "count": 1,
+                "loot_id": 696
+            },
+            {
+                "count": 1,
+                "loot_id": 699
+            },
+            {
+                "count": 1,
+                "loot_id": 704
+            },
+            {
+                "count": 1,
+                "loot_id": 708
+            },
+            {
+                "count": 1,
+                "loot_id": 712
+            },
+            {
+                "count": 1,
+                "loot_id": 716
+            },
+            {
+                "count": 1,
+                "loot_id": 724
+            },
+            {
+                "count": 1,
+                "loot_id": 728
+            },
+            {
+                "count": 1,
+                "loot_id": 732
+            },
+            {
+                "count": 1,
+                "loot_id": 737
+            },
+            {
+                "count": 1,
+                "loot_id": 740
+            },
+            {
+                "count": 1,
+                "loot_id": 744
+            },
+            {
+                "count": 1,
+                "loot_id": 748
+            },
+            {
+                "count": 1,
+                "loot_id": 753
+            },
+            {
+                "count": 1,
+                "loot_id": 757
+            },
+            {
+                "count": 1,
+                "loot_id": 819
+            },
+            {
+                "count": 1,
+                "loot_id": 824
+            },
+            {
+                "count": 1,
+                "loot_id": 827
+            },
+            {
+                "count": 1,
+                "loot_id": 831
+            },
+            {
+                "count": 1,
+                "loot_id": 836
+            },
+            {
+                "count": 1,
+                "loot_id": 838
+            },
+            {
+                "count": 1,
+                "loot_id": 843
+            },
+            {
+                "count": 1,
+                "loot_id": 845
+            },
+            {
+                "count": 1,
+                "loot_id": 850
+            },
+            {
+                "count": 1,
+                "loot_id": 867
+            },
+            {
+                "count": 1,
+                "loot_id": 870
+            },
+            {
+                "count": 1,
+                "loot_id": 875
+            },
+            {
+                "count": 1,
+                "loot_id": 880
+            },
+            {
+                "count": 1,
+                "loot_id": 883
+            },
+            {
+                "count": 1,
+                "loot_id": 886
+            },
+            {
+                "count": 1,
+                "loot_id": 889
+            },
+            {
+                "count": 1,
+                "loot_id": 892
+            },
+            {
+                "count": 1,
+                "loot_id": 896
+            },
+            {
+                "count": 1,
+                "loot_id": 899
+            },
+            {
+                "count": 1,
+                "loot_id": 904
+            },
+            {
+                "count": 1,
+                "loot_id": 907
+            },
+            {
+                "count": 1,
+                "loot_id": 911
+            },
+            {
+                "count": 1,
+                "loot_id": 915
+            },
+            {
+                "count": 1,
+                "loot_id": 919
+            },
+            {
+                "count": 1,
+                "loot_id": 921
+            },
+            {
+                "count": 1,
+                "loot_id": 927
+            },
+            {
+                "count": 1,
+                "loot_id": 929
+            },
+            {
+                "count": 1,
+                "loot_id": 934
+            },
+            {
+                "count": 1,
+                "loot_id": 937
+            },
+            {
+                "count": 1,
+                "loot_id": 942
+            },
+            {
+                "count": 1,
+                "loot_id": 946
+            },
+            {
+                "count": 1,
+                "loot_id": 954
+            },
+            {
+                "count": 2,
+                "loot_id": 1023
+            },
+            {
+                "count": 4,
+                "loot_id": 1039
+            },
+            {
+                "count": 1,
+                "loot_id": 1150
+            },
+            {
+                "count": 1,
+                "loot_id": 1182
+            },
+            {
+                "count": 1,
+                "loot_id": 1236
+            },
+            {
+                "count": 1,
+                "loot_id": 1240
+            },
+            {
+                "count": 1,
+                "loot_id": 1243
+            },
+            {
+                "count": 1,
+                "loot_id": 1248
+            },
+            {
+                "count": 1,
+                "loot_id": 1252
+            },
+            {
+                "count": 1,
+                "loot_id": 1256
+            },
+            {
+                "count": 1,
+                "loot_id": 1258
+            },
+            {
+                "count": 1,
+                "loot_id": 1264
+            },
+            {
+                "count": 1,
+                "loot_id": 1268
+            },
+            {
+                "count": 1,
+                "loot_id": 1272
+            },
+            {
+                "count": 1,
+                "loot_id": 1276
+            },
+            {
+                "count": 1,
+                "loot_id": 1278
+            },
+            {
+                "count": 1,
+                "loot_id": 1282
+            },
+            {
+                "count": 1,
+                "loot_id": 1283
+            },
+            {
+                "count": 1,
+                "loot_id": 1285
+            },
+            {
+                "count": 1,
+                "loot_id": 1297
+            },
+            {
+                "count": 1,
+                "loot_id": 1307
+            },
+            {
+                "count": 1,
+                "loot_id": 1311
+            },
+            {
+                "count": 1,
+                "loot_id": 1315
+            },
+            {
+                "count": 1,
+                "loot_id": 1319
+            },
+            {
+                "count": 1,
+                "loot_id": 1323
+            },
+            {
+                "count": 1,
+                "loot_id": 1327
+            },
+            {
+                "count": 1,
+                "loot_id": 1336
+            }
+        ],
+        "last_buff_saved": 3159,
+        "options": {
+            "sound": 0,
+            "auto_pause": 0,
+            "chat_enabled": 0,
+            "dismiss_new_mission": 1,
+            "hide_stars": 1,
+            "auto_progress": 1,
+            "skip_chest_drop": 1,
+            "music": 0,
+            "force_scientific": 0,
+            "quality": 2
+        },
+        "last_news_seen": "44"
+    },
+    "last_event_chest_type_id": 75,
+    "apc_stats": {
+        "sets_time": "0.00000",
+        "gets": 7757,
+        "gets_time": "0.00000",
+        "sets": 1
+    }
+}
