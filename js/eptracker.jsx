@@ -223,11 +223,17 @@ var CruTagRow = React.createClass({
       var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
       var owned = null;
       var formation = null;
-      var epBox = this.props.isEpMode && isOwned ? (<div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["medium"]} value={this.props.enchantmentPoints} /><div className="sharedEp">Shared:{this.props.effectiveEp}</div></div>) : null;
+      var epBox = this.props.isEpMode && isOwned ? (
+        <div className="ep"><TextInputUnc type="number" min="0" onChange={this.props.onEpChange} className={["medium"]} value={this.props.enchantmentPoints} />
+          {this.props.effectiveEp && !Number.isNaN(this.props.effectiveEp) ? (<div className="sharedEp">Shared:{this.props.effectiveEp}</div>) : null}
+        </div>)
+        : null;
+      console.log('cruTagRow render', this.props.mode, this.props.isFormationMode, cru.slot, cru.id);
       if(this.props.mode === "mine" && this.props.isFormationMode){
         formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
       } else if (this.props.mode === "mine" && !this.props.isFormationMode){
         if(cru.slot == cru.id && cru.slot < 21){
+          console.log('found an always owned crusader');
           owned = (<td key="owned"><CheckBox checked={true} readonly={true} disabled={true} />{epBox}</td>);
         } else {
           owned = (<td key="owned"><CheckBox checked={this.props.owned} onChange={this.props.onOwnedChange} />{epBox}</td>);
@@ -304,34 +310,7 @@ var CruTagRow = React.createClass({
 
 // get most of the state out of here, so more display stuff can be attached, leave things that don't need to be stored in state
 var CruTagGrid = React.createClass({
-  getInitialState:function(){
-    var defaultValue = {formation:null, filterTags:{}, formationIds:{}};
 
-    // json.stringify this whole thing to make input/html5 storage data
-    var init = cruTagGrid.readOrDefault(defaultValue);
-    if(init != null){
-      console.log('initRaw', init);
-    } else {
-      init = defaultValue;
-    }
-
-
-    if(typeof(init.filterTags) === "undefined"){
-      init.filterTags = {};
-    }
-    if(typeof(init.formationIds) === "undefined"){
-      init.formationIds = {};
-    }
-
-    console.log('initialState', init);
-    window.state = init;
-    return init;
-  },
-  // for the conversion to work, this has to come out of here
-  componentDidUpdate:function(prevProps, prevState){
-    cruTagGrid.store(this.state);
-    window.state = this.state;
-  },
   slotSortClick:function(){
     var update = {slotSort: this.props.slotSort === "up" ? "desc":"up"};
     console.log('slotSortClick', ' was ' + this.props.slotSort, update);
@@ -351,17 +330,17 @@ var CruTagGrid = React.createClass({
     this.props.updateSave({isEpMode: this.props.isEpMode? false : true})
   },
   onIdolChange: function(val){
-    this.setState({Idols:val});
+    this.props.updateSave({idols:val});
   },
   onFormationClick: function(){
-    var stateMods = {formation:this.state.formation != null ? null : "formation"};
-    console.log('formationClick', stateMods);
-    this.setState(stateMods);
+    var saveMods = {isBuildingFormation: this.props.formation != null? null : "formation"};
+    console.log('formationClick', saveMods);
+    this.props.updateSave(saveMods);
   },
   onGearClick: function(){
     var stateMods = {gearMode: this.state.gearMode? false: true};
     console.log('gearClick', stateMods);
-    this.setState(stateMods);
+    this.props.updateSave(stateMods);
   },
   onEpChange:function(crusaderId, epValue){
     console.log('onEpChange',arguments);
@@ -378,7 +357,7 @@ var CruTagGrid = React.createClass({
   },
   onFormationChange: function(crusader){
     console.log('formation change');
-    var oldState = this.state.formationIds;
+    var oldState = this.props.formationIds;
     var newState = oldState.constructor();
     for(var attr in oldState){
       if (oldState.hasOwnProperty(attr)) {
@@ -395,7 +374,7 @@ var CruTagGrid = React.createClass({
       newState[crusader.slot] = crusader.id;
     }
     console.log('formationIds changed to', newState);
-    this.setState({formationIds:newState});
+    this.props.updateSave({formationIds:newState});
   },
   onOwnedChange:function(crusader){
     console.log('onOwnedChange');
@@ -412,10 +391,10 @@ var CruTagGrid = React.createClass({
   onGearChange:function(cruId,slot,gearTypeIndex){
     console.log('onGearChange', cruId,slot, gearTypeIndex);
     var stateMods = {};
-    if(!this.state.crusaderGear){
+    if(!this.props.crusaderGear){
       stateMods.crusaderGear = {};
     } else {
-      var merged = copyObject(this.state.crusaderGear);
+      var merged = copyObject(this.props.crusaderGear);
       stateMods.crusaderGear = merged;
     }
     var cruGear;
@@ -428,24 +407,25 @@ var CruTagGrid = React.createClass({
     stateMods.crusaderGear[cruId] = cruGear;
     stateMods.crusaderGear[cruId]["slot" + slot] = +gearTypeIndex;
     console.log('gearChangeMods', stateMods);
-    this.setState(stateMods);
+    this.props.updateSave(stateMods);
   },
   onFilterTag:function(tagId){
     var self = this;
-    console.log('onFilterTag', tagId, self.state.filterTags);
+    console.log('onFilterTag', tagId, self.props.filterTags);
     var tagFilter = {};
-    Object.keys(this.state.filterTags).map(function(tagId){
-      tagFilter[tagId] = self.state.filterTags[tagId] ? true : false;
+    Object.keys(this.props.filterTags).map(function(tagId){
+      tagFilter[tagId] = self.props.filterTags[tagId] ? true : false;
     });
     tagFilter[tagId] = tagFilter[tagId] ? false : true;
     console.log('filterTags', tagFilter);
-    this.setState({filterTags:tagFilter});
+    this.props.updateSave({filterTags:tagFilter});
   },
   render:function(){
   	console.info('rendering tag grid, react');
     var self = this;
     var rows=[];
     var totalCrusaders = this.props.model.crusaders.length;
+    var isBuildingFormation = this.props.isBuildingFormation === "formation";
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     var sortedCrusaders = this.props.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
@@ -456,26 +436,31 @@ var CruTagGrid = React.createClass({
         var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
         // var ownershipFilter = (owned || !self.state.filterOwned) || (crusader.slot == crusader.id && crusader.slot < 21);
         var ownershipFilter =
-          (self.state.filterOwned==1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
-          || (self.state.filterOwned == 0)
-          || (self.state.filterOwned== -1 && !owned);
+          (self.props.filterOwned==1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
+          || (self.props.filterOwned == 0)
+          || (self.props.filterOwned == -1 && !owned);
+        if(!ownershipFilter)
+          console.log('ownershipFilter', self.props.filterOwned, owned, crusader.slot,crusader.id);
         var tagFilter =
-          Object.keys(self.state.filterTags).map(function(tagId) {
-            return !self.state.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
+          Object.keys(self.props.filterTags).map(function(tagId) {
+            return !self.props.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
           })
           .reduce(function(a,b){ return a && b},true);
 
-        var formationFilter = self.state.formation !== "formation"
+        var formationFilter = !isBuildingFormation
           || //nothing in slot selected
-            (!(self.state.formationIds[crusader.slot] != null)
+            (!(self.props.formationIds[crusader.slot] != null)
             ||  // this one is not selected
-            self.state.formationIds[crusader.slot] === crusader.id);
-        return ownershipFilter && tagFilter && formationFilter;
+            self.props.formationIds[crusader.slot] === crusader.id);
+        var result = ownershipFilter && tagFilter && formationFilter;
+        // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
+        return result;
 
       })
       .map(function(crusader){
+        console.log('mapping a crusader!');
         var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        var gear = self.state.crusaderGear ? self.state.crusaderGear[crusader.id]: [];
+        var gear = self.props.crusaderGear ? self.props.crusaderGear[crusader.id]: [];
         var dps = getCrusaderDps(crusader);
         var otherSlotCrusaders = sortedCrusaders.filter(c => c.slot == crusader.slot && c.id != crusader.id).map(c => c.id);
         var otherEp = otherSlotCrusaders.map(cId => +self.props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
@@ -484,18 +469,19 @@ var CruTagGrid = React.createClass({
         // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
         var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
         var effectiveEp = Number(Math.round(rawSharedEp)) + +self.props.enchantmentPoints[crusader.id];
+        console.log(sharingIsCaring, rawSharedEp, effectiveEp);
 
         rows.push(<CruTagRow key={crusader.displayName}
-          formationIds={self.state.formationIds}
+          formationIds={self.props.formationIds}
           isEpMode={self.props.isEpMode}
-          gearMode={self.state.gearMode}
+          gearMode={self.props.gearMode}
           gearTypes={self.props.model.gearTypes}
           gear={gear}
           onGearChange={self.onGearChange}
           enchantmentPoints={self.props.enchantmentPoints[crusader.id]}
           effectiveEp={effectiveEp}
           onEpChange={self.onEpChange.bind(null,crusader.id)}
-          isFormationMode={self.state.formation === "formation"}
+          isFormationMode={isBuildingFormation}
           wikibase={self.props.model.wikibase}
           crusader={crusader}
           dps={dps}
@@ -513,7 +499,7 @@ var CruTagGrid = React.createClass({
             return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
         }).reduce(function(a,b){ return a + b;});
         var classes = "img_tag";
-        if(self.state.filterTags[tag.id]){
+        if(self.props.filterTags[tag.id]){
           classes += " active";
         }
         tagCounts.push(<span key={tag.id} className={classes} title={tag.id} onClick={self.onFilterTag.bind(self,tag.id)}>{count}</span>);
@@ -524,24 +510,25 @@ var CruTagGrid = React.createClass({
     if(this.props.mode === "mine"){
       formationRow=(
         <tr>
-          <th title="American or otherwise">Idols <TextInputUnc onChange={this.onIdolChange} value={this.state.Idols} /></th>
+          <th title="American or otherwise">Idols <TextInputUnc onChange={this.onIdolChange} value={this.props.idols} /></th>
           <th><CheckBox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
-          <th colSpan="2"><CheckBox checked={this.state.formation === "formation"} onChange={this.onFormationClick} /> Build Formation</th>
-          <th><CheckBox checked={this.state.gearMode} onChange={this.onGearClick} />Track gear</th>
+          <th colSpan="2"><CheckBox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
+          <th><CheckBox checked={this.props.gearMode} onChange={this.onGearClick} />Track gear</th>
           <th></th>
         </tr>
       );
     }
-    var tagsTh = this.props.mode !== "mine" || !this.state.gearMode ? (<th className="tags">Tags</th>) : null;
-    var tagsTh2 = this.props.mode !== "mine" || !this.state.gearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
-    var countsTh = this.props.mode !== "mine" || !this.state.gearMode? (<th>Counts</th>) : null;
+    var tagsTh = this.props.mode !== "mine" || !this.props.gearMode ? (<th className="tags">Tags</th>) : null;
+    var tagsTh2 = this.props.mode !== "mine" || !this.props.gearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
+    var countsTh = this.props.mode !== "mine" || !this.props.gearMode? (<th>Counts</th>) : null;
     var sharingTh = this.props.mode ==="mine" && this.props.isEpMode ?
     (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaringLevel} onChange={val => this.props.updateSave({sharingIsCaringLevel: +val})} /></th>): null;
+    console.log('showing cruTagGrid with rowCount', rows.length);
     return (<table id="tab">
     <thead>
       <tr>
-        { this.props.mode === "mine" && this.state.formation !== "formation" ? <th>Owned <Filter on={this.state.filterOwned} filterClick={this.filterOwnedClick} /></th>
-          : this.props.mode ==="mine" && this.state.formation ==="formation" ? <th></th> : null}
+        { this.props.mode === "mine" && !isBuildingFormation ? <th>Owned <Filter on={this.props.filterOwned} filterClick={this.filterOwnedClick} /></th>
+          : this.props.mode ==="mine" && isBuildingFormation ? <th></th> : null}
         <th>Slot<i className={slotSortClasses} onClick={this.slotSortClick}></i></th>
         <th colSpan="2">Crusader</th>
         {tagsTh}
@@ -652,9 +639,20 @@ var provideSavedDefaults = saved => {
       saved.enchantmentPoints = {};
     if(!(saved.ownedCrusaderIds != null))
       saved.ownedCrusaderIds = [];
+    if(!(saved.filterTags != null)){
+      saved.filterTags = {};
+    }
+    if(!(saved.formationIds != null))
+      saved.formationIds = {};
+    if(!(saved.filterOwned != null))
+      saved.filterOwned = 0;
 };
+
 var scrubSavedData = saved =>
 {
+  // consider scrubbing old fields into new name/format, then setting the old field to undefined
+  // legacy data coming in may look like this:
+  //{slotSort:"up",mode:"",epMode:false,sharingIsCaringLevel:0,enchantmentPoints:{},filterOwned:0,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
     // ownedCrusaderIds:[],
     // only scrub if the property exists, and there are at least 2 crusaders saved.
     if(saved.ownedCrusaderIds && saved.ownedCrusaderIds[0] && saved.ownedCrusaderIds[1])
@@ -684,12 +682,20 @@ var scrubSavedData = saved =>
       x.sort();
       console.log('saved.ownedIds',x, x.length);
     }
+    if(saved.formation != null){
+      saved.isBuildingFormation = saved.formation
+      // this should wipe it off the property list when stringified, which would be lovely.
+      saved.formation = undefined;
+    }
+    if(saved.Idols != null){
+      saved.idols = saved.Idols;
+      saved.Idols = undefined;
+    }
 };
 
 var CruApp = React.createClass({
   getInitialState(){
-    if (Clipboard)
-    {
+    if (Clipboard){
       window.clipboard = new Clipboard('.btn');
     }
     // auto import is safe now, the storage mechanism will not allow saves with a custom url
@@ -704,8 +710,7 @@ var CruApp = React.createClass({
         return {};
       }
 
-
-    var read= cruTagGrid.readOrDefault(undefined);
+    var read = cruTagGrid.readOrDefault(undefined);
     var state = {lastRead:read};
     state.saved = read ? read : {};
     // provide defaults
@@ -718,7 +723,14 @@ var CruApp = React.createClass({
       var networkDataJson = readIt("gameDataJson",undefined);
       state.networkDataJson=networkDataJson;
     }
+    window.saved = state.saved;
     return state;
+  },
+  componentDidUpdate:function(prevProps, prevState){
+    if(prevState.saved != this.state.saved){
+      cruTagGrid.store(this.state.saved);
+      window.saved = this.state.saved;
+    }
   },
   // network-data importer
   loadNetworkData(){
@@ -817,15 +829,18 @@ var CruApp = React.createClass({
         // special load from the .linq script, not direct game data, or page state
         var data = JSON.parse("{" + this.state.textState + "}");
         // shouldn't this be updating save state? ownedCrusaderIds was being stored in CruTagGrid, why does this say self state, instead of this.state.saveData or something?
-        this.setState({ownedCrusaderIds:data.ownedCrusaderIds});
+        this.changeSaveState({ownedCrusaderIds:data.ownedCrusaderIds});
       } else {
-        storeIt(cruTagGridKey, JSON.parse(this.state.textState));
+        var data = JSON.parse(this.state.textState);
+        cruTagGrid.store(data);
+        this.changeSaveState({saved:data});
       }
     }
+    // wipe out saved data
     else{
-      storeIt(cruTagGridKey, undefined);
+      cruTagGrid.store(undefined);
+      this.setState({saved:{}});
     }
-      window.location.reload(false);
   },
   importAppState(data,reload){
     if(!data && getIsLocalFileSystem())
@@ -834,7 +849,7 @@ var CruApp = React.createClass({
       return;
     var parsed = JSON.parse(data);
     // this potentially can add lots of unused properties into the state that will be stored into html5 local storage and never deleted.
-    cruTagGrid.store(cruTagGridKey, parsed);
+    cruTagGrid.store(parsed);
     if(reload)
       window.location.reload(false);
     return parsed;
@@ -846,10 +861,10 @@ var CruApp = React.createClass({
     var url = baseUrl + exportToUrl("appGameState", stringified);
     this.setState({url:url,urlBase:baseUrl,showImportExport:false});
   },
-  onChangeSaveState(newData){
-    console.log('onChangeSaveState', newData, this.state.saved.slotSort);
+  changeSaveState(newData){
+    console.log('changeSaveState', newData, this.state.saved.slotSort);
     var newData = copyObject(this.state.saved,newData);
-    console.log('onChangeSaveState',newData);
+    console.log('changeSaveState',newData);
     this.setState({saved: newData});
   },
   render(){
@@ -913,9 +928,15 @@ var CruApp = React.createClass({
                         slotSort={this.state.saved.slotSort}
                         mode={this.state.saved.mode}
                         isEpMode={this.state.saved.isEpMode}
+                        sharingIsCaringLevel={this.state.saved.sharingIsCaringLevel}
                         enchantmentPoints={this.state.saved.enchantmentPoints}
                         ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
-                        updateSave={this.onChangeSaveState} />
+                        isBuildingFormation={this.state.saved.isBuildingFormation}
+                        formationIds={this.state.saved.formationIds}
+                        filterTags={this.state.saved.filterTags}
+                        filterOwned={this.state.saved.filterOwned}
+                        idols={this.state.saved.idols}
+                        updateSave={this.changeSaveState} />
             <div>{JSON.stringify(this.state.error)}</div>
             <div className="onGreen">
             {importArea}
