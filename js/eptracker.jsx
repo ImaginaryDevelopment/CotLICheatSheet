@@ -465,10 +465,7 @@ var CruTagGrid = React.createClass({
     console.log('filterTags', tagFilter);
     this.props.updateSave({filterTags:tagFilter});
   },
-  filterSortCrusaders(ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders){
 
-
-  },
   render:function(){
   	console.info('rendering tag grid, react');
     var self = this;
@@ -477,39 +474,12 @@ var CruTagGrid = React.createClass({
     var isMineMode = this.props.mode === "mine";
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
-    var rows=[];
-    var sortedCrusaders = this.props.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
-      return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
-    })
-      .filter(function(crusader){
-        var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1 || (crusader.slot == crusader.id && crusader.slot < 21);
-        // var ownershipFilter = (owned || !self.state.filterOwned) || (crusader.slot == crusader.id && crusader.slot < 21);
-        var ownershipFilter =
-          (self.props.filterOwned == 0)
-          || (self.props.filterOwned == 1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
-          || (self.props.filterOwned == -1 && !owned);
-        if(!ownershipFilter)
-          console.log('ownershipFilter', self.props.filterOwned, owned, crusader.slot,crusader.id);
-        var tagFilter =
-          Object.keys(self.props.filterTags).map(function(tagId) {
-            return !self.props.filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
-          })
-          .reduce(function(a,b){ return a && b},true);
+    // var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
+    var sortedCrusaders = filterSortCrusaders(this.props.ownedCrusaderIds, this.props.filterOwned, this.props.filterTags, isBuildingFormation, this.props.formationIds, this.props.slotSort == "desc", this.props.model.crusaders);
 
-        var formationFilter = !isBuildingFormation
-          || //nothing in slot selected
-            (!(self.props.formationIds[crusader.slot] != null)
-            ||  // this one is not selected
-            self.props.formationIds[crusader.slot] === crusader.id);
-        var result = ownershipFilter && tagFilter && formationFilter;
-        // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
-        return result;
-
-      });
-
+    var slotSortClasses = this.props.slotSort === "up" ? "fa fa-fw fa-sort-up" : "fa fa-fw fa-sort-desc";
 
     var tagCounts = [];
-    var slotSortClasses = this.props.slotSort === "up" ? "fa fa-fw fa-sort-up" : "fa fa-fw fa-sort-desc";
     this.props.model.missionTags.map(function(tag){
         var count = self.props.model.crusaders.map(function (crusader){
             return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
@@ -539,7 +509,6 @@ var CruTagGrid = React.createClass({
     var countsTh = !isMineMode || !this.props.gearMode? (<th>Counts</th>) : null;
     var sharingTh = isMineMode && this.props.isEpMode ?
     (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaringLevel} type="number" onChange={val => this.props.updateSave({sharingIsCaringLevel: +val})} /></th>): null;
-    console.log('showing cruTagGrid with rowCount', rows.length);
     return (<table id="tab">
     <thead>
       <tr>
@@ -629,7 +598,6 @@ var LegendaryReduction = props =>
 (props.networkDataJson && props.networkDataJson.details && props.networkDataJson.details.stats && props.networkDataJson.details.stats.legendary_reduction_date) ?
   (<div>Legendary Cost Reduction at {new Date(+props.networkDataJson.details.stats.legendary_reduction_date * 1000).toLocaleString()}</div>)
   : null
-
 
 var Exporter = props =>
 (

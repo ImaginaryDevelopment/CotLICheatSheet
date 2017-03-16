@@ -105,7 +105,41 @@ var getIsUrlLoaded = () =>
 var getIsLocalFileSystem = () => window.location.protocol && window.location.protocol == "file:" ;
 var tryInitializeClipboard = () =>
   Clipboard && new Clipboard('.btn');
+var crusaderFilter()
 
+var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
+  console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );
+
+    var sortedCrusaders = !isDesc ? crusaders : crusaders.slice(0).sort(function(a,b){
+      return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
+    })
+      .filter(function(crusader){
+        var owned = ownedCrusaderIds.indexOf(crusader.id) != -1 || (crusader.slot == crusader.id && crusader.slot < 21);
+        var ownershipFilter =
+          (filterOwned == 0)
+          || (filterOwned == 1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
+          || (filterOwned == -1 && !owned);
+        if(!ownershipFilter)
+          console.log('ownershipFilter', filterOwned, owned, crusader.slot,crusader.id);
+        var tagFilter =
+          Object.keys(filterTags).map(function(tagId) {
+            return !filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
+          })
+          .reduce(function(a,b){ return a && b},true);
+
+        var formationFilter = !isBuildingFormation
+          || //nothing in slot selected
+            (!(formationIds[crusader.slot] != null)
+            ||  // this one is not selected
+            formationIds[crusader.slot] === crusader.id);
+        var result = ownershipFilter && tagFilter && formationFilter;
+        // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
+        return result;
+
+      });
+  console.log('filtered count:' + sortedCrusaders.length);
+  return sortedCrusaders;
+};
 var scrubSavedData = saved =>
 {
   // consider scrubbing old fields into new name/format, then setting the old field to undefined
