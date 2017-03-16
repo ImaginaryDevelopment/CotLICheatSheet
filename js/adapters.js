@@ -51,17 +51,39 @@ var parseLoot = (crusaders,lootData) =>{
           return lootMapped;
 };
 
+var tryPullLootData = data => {
+
+      try{
+        var crusaderGear = {};
+        loot.map(l =>{
+
+          if(!crusaderGear.hasOwnProperty(l.heroSlotId))
+            crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
+          if(l.slot != null){
+            var rarity = l.rarity;
+            if(l.isGolden || l.rarity === 5){
+              rarity = rarity + (l.isGolden? "g":"_");
+              if(rarity === 5 && !(l.countOrLegendaryLevel != null))
+                console.log('failing to map properly', l);
+              rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
+            }
+
+            crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
+          }
+          if(l.heroSlotId==="15")
+          console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
+        });
+        data.crusaderGear = crusaderGear;
+        console.log('loot import phase 1 complete', data.crusaderGear);
+      } catch(ex){
+        console.error('could not import loot game data', ex);
+      }
+};
 var parseNetworkDataHeroesSection = (heroMap, heroes) => {
   console.log('parseNetworkDataHeroesSection', heroes.length);
     var mapped = Array.isArray(heroes) ?
       heroes.map(h => {
-        var crusader;
-        try{
-          crusader = heroMap[h.hero_id];
-        } catch(ex)
-        {
-          console.error('failed to parse',h,ex);
-        }
+        var crusader = heroMap[h.hero_id];
         return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
         }
       ) : [];
