@@ -62,6 +62,9 @@ const addClasses = (defaultClasses=[], otherClasses=[]) =>{
     return unwrappedClasses.filter(isDefined).map(trim).join(' ').trim();
 };
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 function getIsLocalStorageAvailable() {
   if (typeof(localStorage) !== 'undefined' && (typeof(localStorage.setItem) === 'function') && typeof(localStorage.getItem) === 'function'){

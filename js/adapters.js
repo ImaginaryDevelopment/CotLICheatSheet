@@ -106,6 +106,55 @@ var getIsLocalFileSystem = () => window.location.protocol && window.location.pro
 var tryInitializeClipboard = () =>
   Clipboard && new Clipboard('.btn');
 
+var scrubSavedData = saved =>
+{
+  // consider scrubbing old fields into new name/format, then setting the old field to undefined
+  // legacy data coming in may look like this:
+  //{slotSort:"up",mode:"",epMode:false,sharingIsCaringLevel:0,enchantmentPoints:{},filterOwned:0,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
+    // ownedCrusaderIds:[],
+    // only scrub if the property exists, and there are at least 2 crusaders saved.
+    if(saved.ownedCrusaderIds && saved.ownedCrusaderIds[0] && saved.ownedCrusaderIds[1])
+    {
+      var toRemove=[];
+      saved.ownedCrusaderIds.sort();
+      var x = saved.ownedCrusaderIds;
+      x.sort();
+
+      for(var i = 0; i < x.length; i++){
+        var value = x[i];
+
+        if(typeof(value) === "number" || value.length < 2 || value.length > 3 || x.indexOf(value,i + 1) >= 0){
+          console.log('removing ownedId', value, 'index', i,'dupAt',  x.indexOf(value, i + 1));
+          toRemove.push(value);
+        }
+      }
+      toRemove.map(v => x.splice(x.indexOf(v),1));
+
+      for(var i = 1; i <= 20; i++)
+      {
+        var proposedValue = padLeft(i,2);
+        if(x.indexOf(proposedValue) < 0){
+          x.push(proposedValue);
+        }
+      }
+      x.sort();
+      console.log('saved.ownedIds',x, x.length);
+    }
+    if(saved.formation != null){
+      saved.isBuildingFormation = saved.formation
+      // this should wipe it off the property list when stringified, which would be lovely.
+      saved.formation = undefined;
+    }
+    if(saved.Idols != null){
+      saved.idols = saved.Idols;
+      saved.Idols = undefined;
+    }
+    if(saved.epMode != null){
+      saved.isEpMode = saved.epMode === true;
+      saved.epMode = undefined;
+    }
+};
+
 // componentizing
 var cruTagGrid = (() => {
   var cruTagGridKey = "cruTagGrid";
