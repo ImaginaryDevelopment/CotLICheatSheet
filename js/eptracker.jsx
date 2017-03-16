@@ -305,7 +305,7 @@ var CruTagRow = React.createClass({
 // get most of the state out of here, so more display stuff can be attached, leave things that don't need to be stored in state
 var CruTagGrid = React.createClass({
   getInitialState:function(){
-    var defaultValue = {ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
+    var defaultValue = {formation:null, filterTags:{}, formationIds:{}};
 
     // json.stringify this whole thing to make input/html5 storage data
     var init = cruTagGrid.readOrDefault(defaultValue);
@@ -314,35 +314,7 @@ var CruTagGrid = React.createClass({
     } else {
       init = defaultValue;
     }
-    var toRemove=[];
-    if(init.ownedCrusaderIds)
-    {
-      init.ownedCrusaderIds.sort();
-      var x = init.ownedCrusaderIds;
-      x.sort();
 
-      for(var i = 0; i < x.length; i++){
-        var value = x[i];
-
-        if(typeof(value) === "number" || value.length < 2 || value.length > 3 || x.indexOf(value,i + 1) >= 0){
-          console.log('removing ownedId', value, 'index', i,'dupAt',  x.indexOf(value, i + 1));
-          toRemove.push(value);
-        }
-      }
-      toRemove.map(v => x.splice(x.indexOf(v),1));
-
-      for(var i = 1; i <= 20; i++)
-      {
-        var proposedValue = padLeft(i,2);
-        if(x.indexOf(proposedValue) < 0){
-          x.push(proposedValue);
-        }
-      }
-      x.sort();
-      console.log('init ownedIds',x, x.length);
-    } else {
-      init.ownedCrusaderIds = [];
-    }
 
     if(typeof(init.filterTags) === "undefined"){
       init.filterTags = {};
@@ -427,7 +399,7 @@ var CruTagGrid = React.createClass({
   },
   onOwnedChange:function(crusader){
     console.log('onOwnedChange');
-    var owned = this.state.ownedCrusaderIds.slice(0);
+    var owned = this.props.ownedCrusaderIds.slice(0);
     var i = owned.indexOf(crusader.id);
     console.log('i,owned',i,owned);
     if(i == -1){
@@ -435,7 +407,7 @@ var CruTagGrid = React.createClass({
     } else {
       owned.splice(i,1);
     }
-    this.setState({ownedCrusaderIds:owned});
+    this.props.updateSave({ownedCrusaderIds:owned});
   },
   onGearChange:function(cruId,slot,gearTypeIndex){
     console.log('onGearChange', cruId,slot, gearTypeIndex);
@@ -475,13 +447,13 @@ var CruTagGrid = React.createClass({
     var rows=[];
     var totalCrusaders = this.props.model.crusaders.length;
     // this may not be reliable, if any dirty data gets in the state from versioning changes
-    var totalOwned = this.state.ownedCrusaderIds ? this.state.ownedCrusaderIds.length : '';
+    var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     var sortedCrusaders = this.props.slotSort === "up" ? this.props.model.crusaders : this.props.model.crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
     });
     sortedCrusaders
       .filter(function(crusader){
-        var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
+        var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
         // var ownershipFilter = (owned || !self.state.filterOwned) || (crusader.slot == crusader.id && crusader.slot < 21);
         var ownershipFilter =
           (self.state.filterOwned==1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
@@ -502,7 +474,7 @@ var CruTagGrid = React.createClass({
 
       })
       .map(function(crusader){
-        var owned = self.state.ownedCrusaderIds.indexOf(crusader.id) != -1;
+        var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
         var gear = self.state.crusaderGear ? self.state.crusaderGear[crusader.id]: [];
         var dps = getCrusaderDps(crusader);
         var otherSlotCrusaders = sortedCrusaders.filter(c => c.slot == crusader.slot && c.id != crusader.id).map(c => c.id);
@@ -669,7 +641,7 @@ var Exporter = props =>
     </Tabs>
     </div>
 );
-var provideSavedDefaults = saved =>{
+var provideSavedDefaults = saved => {
     if(!(saved.slotSort != null))
       saved.slotSort = "up";
     if(typeof(saved.mode) !== 'string' || !(saved.mode != null))
@@ -678,6 +650,40 @@ var provideSavedDefaults = saved =>{
       saved.isEpMode = false;
     if(!(saved.enchantmentPoints != null))
       saved.enchantmentPoints = {};
+    if(!(saved.ownedCrusaderIds != null))
+      saved.ownedCrusaderIds = [];
+};
+var scrubSavedData = saved =>
+{
+    // ownedCrusaderIds:[],
+    // only scrub if the property exists, and there are at least 2 crusaders saved.
+    if(saved.ownedCrusaderIds && saved.ownedCrusaderIds[0] && saved.ownedCrusaderIds[1])
+    {
+      var toRemove=[];
+      saved.ownedCrusaderIds.sort();
+      var x = saved.ownedCrusaderIds;
+      x.sort();
+
+      for(var i = 0; i < x.length; i++){
+        var value = x[i];
+
+        if(typeof(value) === "number" || value.length < 2 || value.length > 3 || x.indexOf(value,i + 1) >= 0){
+          console.log('removing ownedId', value, 'index', i,'dupAt',  x.indexOf(value, i + 1));
+          toRemove.push(value);
+        }
+      }
+      toRemove.map(v => x.splice(x.indexOf(v),1));
+
+      for(var i = 1; i <= 20; i++)
+      {
+        var proposedValue = padLeft(i,2);
+        if(x.indexOf(proposedValue) < 0){
+          x.push(proposedValue);
+        }
+      }
+      x.sort();
+      console.log('saved.ownedIds',x, x.length);
+    }
 };
 
 var CruApp = React.createClass({
@@ -704,6 +710,7 @@ var CruApp = React.createClass({
     state.saved = read ? read : {};
     // provide defaults
     provideSavedDefaults(state.saved);
+    scrubSavedData(state.saved);
 
 
     // this is convienent for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
@@ -799,9 +806,7 @@ var CruApp = React.createClass({
       }
     }
     cruTagGrid.store(data);
-    if(!getIsLocalFileSystem())
-      window.location.reload(false);
-
+    this.setState({saved:data});
   },
   onImportSiteStateClick(){
     console.log('onImportSiteStateClick',arguments);
@@ -811,6 +816,7 @@ var CruApp = React.createClass({
       if(this.state.textState.indexOf('ownedCrusaderIds') == 0 || this.state.textState.indexOf('ownedCrusaderIds') == 1){
         // special load from the .linq script, not direct game data, or page state
         var data = JSON.parse("{" + this.state.textState + "}");
+        // shouldn't this be updating save state? ownedCrusaderIds was being stored in CruTagGrid, why does this say self state, instead of this.state.saveData or something?
         this.setState({ownedCrusaderIds:data.ownedCrusaderIds});
       } else {
         storeIt(cruTagGridKey, JSON.parse(this.state.textState));
@@ -907,7 +913,8 @@ var CruApp = React.createClass({
                         slotSort={this.state.saved.slotSort}
                         mode={this.state.saved.mode}
                         isEpMode={this.state.saved.isEpMode}
-                        enchantmentPoints={this.state.enchantmentPoints}
+                        enchantmentPoints={this.state.saved.enchantmentPoints}
+                        ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
                         updateSave={this.onChangeSaveState} />
             <div>{JSON.stringify(this.state.error)}</div>
             <div className="onGreen">
