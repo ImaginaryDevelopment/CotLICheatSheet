@@ -267,7 +267,8 @@ var CruTagRow = React.createClass({
           slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
         }
       var gearTd = null;
-      if (this.props.mode ==="mine" && this.props.gearMode){
+      console.log('gear?', this.props.mode, this.props.isGearMode);
+      if (this.props.mode ==="mine" && this.props.isGearMode){
         var gearPossibilities = this.props.gearTypes;
 
         var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
@@ -293,11 +294,11 @@ var CruTagRow = React.createClass({
       }
       var tagsTd;
       // enable tags if mine mode is off, or gear mode is off
-      if(this.props.mode !== "mine" || !this.props.gearMode ){
+      if(this.props.mode !== "mine" || !this.props.isGearMode ){
         tagsTd = (<TagsTd dps={this.props.dps} missionTags={this.props.missionTags} crusader={cru} baseUrl={baseUrl} />) ;
       }
       var tagColumn = tagsTd ? tagsTd : gearTd;
-      var tagCountColumn = this.props.mode !== "mine" || !this.props.gearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
+      var tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
       var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
       return (<tr className={trClasses}>
           {formation}
@@ -330,7 +331,7 @@ var CruGridBody = props =>{
         return (<CruTagRow key={crusader.displayName}
           formationIds={props.formationIds}
           isEpMode={props.isEpMode}
-          gearMode={props.isGearMode}
+          isGearMode={props.isGearMode}
           gearTypes={props.referenceData.gearTypes}
           gear={gear}
           onGearChange={props.onGearChange}
@@ -383,7 +384,7 @@ var CruTagGrid = React.createClass({
     this.props.updateSave(saveMods);
   },
   onGearClick: function(){
-    var stateMods = {gearMode: this.state.gearMode? false: true};
+    var stateMods = {isGearMode: this.props.isGearMode? false: true};
     console.log('gearClick', stateMods);
     this.props.updateSave(stateMods);
   },
@@ -499,14 +500,14 @@ var CruTagGrid = React.createClass({
           <th title={(this.props.idols && !isNaN(this.props.idols)? numberWithCommas(this.props.idols) + ' ' : '') +  "American or otherwise"}>Idols <TextInputUnc readonly={getIsUrlLoaded()} onChange={this.onIdolChange} value={this.props.idols} /></th>
           <th><CheckBox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
           <th colSpan="2"><CheckBox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
-          <th><CheckBox checked={this.props.gearMode} onChange={this.onGearClick} />Track gear</th>
+          <th><CheckBox checked={this.props.isGearMode} onChange={this.onGearClick} />Track gear</th>
           <th></th>
         </tr>
       );
     }
-    var tagsTh = !isMineMode || !this.props.gearMode ? (<th className="tags">Tags</th>) : null;
-    var tagsTh2 = !isMineMode || !this.props.gearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
-    var countsTh = !isMineMode || !this.props.gearMode? (<th>Counts</th>) : null;
+    var tagsTh = !isMineMode || !this.props.isGearMode ? (<th className="tags">Tags</th>) : null;
+    var tagsTh2 = !isMineMode || !this.props.isGearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
+    var countsTh = !isMineMode || !this.props.isGearMode? (<th>Counts</th>) : null;
     var sharingTh = isMineMode && this.props.isEpMode ?
     (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaringLevel} type="number" onChange={val => this.props.updateSave({sharingIsCaringLevel: +val})} /></th>): null;
     return (<table id="tab">
@@ -536,7 +537,7 @@ var CruTagGrid = React.createClass({
           sharingIsCaringLevel={this.props.sharingIsCaringLevel}
           formationIds={this.props.formationIds}
           isEpMode={this.props.isEpMode}
-          isGearMode={this.props.gearMode}
+          isGearMode={this.props.isGearMode}
           referenceData={this.props.model}
           onGearChange={this.onGearChange}
           isBuildingFormation={isBuildingFormation}
@@ -882,6 +883,7 @@ var CruApp = React.createClass({
                     slotSort={this.state.saved.slotSort}
                     mode={this.state.saved.mode}
                     isEpMode={this.state.saved.isEpMode}
+                    isGearMode={this.state.saved.isGearMode}
                     sharingIsCaringLevel={this.state.saved.sharingIsCaringLevel}
                     enchantmentPoints={this.state.saved.enchantmentPoints}
                     ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
