@@ -864,6 +864,7 @@ var CruApp = React.createClass({
                     mode={this.state.saved.mode}
                     isEpMode={this.state.saved.isEpMode}
                     isGearMode={this.state.saved.isGearMode}
+                    crusaderGear={this.state.saved.crusaderGear}
                     sharingIsCaringLevel={this.state.saved.sharingIsCaringLevel}
                     enchantmentPoints={this.state.saved.enchantmentPoints}
                     ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
