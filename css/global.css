@@ -5,6 +5,7 @@ header	{ text-align: center; color: #777; }
 footer	{ padding: 25px 10px 15px; text-align: center; font-size: 12px; color: #777; }
 a		{ color: #eee; }
 a:hover	{ color: #fff; }
+.black{color:black}
 .active {color: black;}
 .activeNegative {color: red;}
 
@@ -90,6 +91,9 @@ div.ep{
 input.medium{
     max-width: 60px;
 }
+select.dps, option.dps{
+    font-weight: bold;
+}
 tr .sharedEp{
  color:grey;
 }
@@ -99,6 +103,12 @@ tr.dps .sharedEp{
 }
 .fullwidth{
     width: 100%;
+}
+.vcenter{
+    vertical-align: center
+}
+.textcenter{
+    text-align: center
 }
 
 

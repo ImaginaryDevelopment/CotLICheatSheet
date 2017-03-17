@@ -3,6 +3,9 @@ const isDefined = function(o){
     return typeof(o) !== 'undefined' && o !== null;
 };
 
+var getNumberOrDefault = (x, defaultValue) =>
+  Number.isNaN(x) || !(x != null) ? defaultValue : +x;
+
 const copyObject = (source,toMerge) => {
     var target = toMerge ? toMerge : {};
     Object.keys(source)

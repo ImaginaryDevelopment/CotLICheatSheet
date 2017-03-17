@@ -2,167 +2,6 @@
 // reference heroId data at http://pastebin.com/Bf5UgsBC
 // reference lootId data at http://pastebin.com/vJNceSJZ
 
-var TextAreaInput2 = props =>
-(<textarea
-name={props.name}
-        className={addClasses(['form-control'],props.className)}
-        type={props.type}
-        value={props.value}
-        defaultValue={props.defaultValue}
-        placeholder={props.placeHolder}
-        onChange={ e =>
-            {
-            if(props.onControlledChange){
-                props.onControlledChange(e);
-            }
-            return debounceChange(props.onChange,e)
-          }
-        }
-        onBlur={props.onBlur}
-        {...props.spread} />
-);
-
-var TextInput2 = props =>
-(<input
-        name={props.name}
-        className={addClasses(['form-control'],props.className)}
-        type={props.type}
-        value={props.value}
-        defaultValue={props.defaultValue}
-        placeholder={props.placeHolder}
-        readOnly={props.readonly}
-        onChange={ e =>
-            {
-            if(props.onControlledChange){
-                props.onControlledChange(e);
-            }
-            return debounceChange(props.onChange,e)
-          }
-        }
-        onBlur={props.onBlur}
-        {...props.spread} />);
-
-// looks uncontrolled, but is not under the hood. better user experience
-var TextInputUnc = React.createClass({
-  getInitialState(){
-    return {value:this.props.value};
-  },
-  componentWillReceiveProps(nextProps){
-    if(this.props.value !== nextProps.value && this.props.id !== nextProps.id){
-      this.setState({value:nextProps.value});
-    }
-  },
-  render(){
-    var props = this.props;
-    var state = this.state;
-    return (<TextInput2
-          name={props.name}
-          defaultValue={props.defaultValue}
-          value={state.value? state.value : ''}
-          type={props.type}
-          min={props.min}
-          readonly={props.readonly}
-          placeHolder={props.placeHolder}
-          className={props.className}
-          onControlledChange={e => this.setState({value: e.target.value})}
-          onChange={e => props.onChange(e)}
-          onBlur={e => e.target.value === '' ? {} : e.target.value = (+e.target.value)}
-          spread={props.spread}
-      />
-      );
-  }
-});
-var TextAreaInputUnc = React.createClass({
-  getInitialState(){
-    return {value:this.props.value};
-  },
-  componentWillReceiveProps(nextProps){
-    if(this.props.value !== nextProps.value && this.props.id !== nextProps.id){
-      this.setState({value:nextProps.value});
-    }
-  },
-  render(){
-    var props = this.props;
-    var state = this.state;
-    return (<TextAreaInput2
-          name={props.name}
-          className={props.className}
-          defaultValue={props.defaultValue}
-          value={state.value? state.value : ''}
-          placeHolder={props.placeHolder}
-          type={props.type}
-          min={props.min}
-          onControlledChange={e => this.setState({value: e.target.value})}
-          onChange={e => props.onChange(e)}
-          onBlur={e => e.target.value === '' ? {} : e.target.value = (+e.target.value)}
-          spread={props.spread}
-      />
-      );
-  }
-
-
-});
-
-// from https://toddmotto.com/creating-a-tabs-component-with-react/
-var Tabs = React.createClass({
-  displayName: 'Tabs',
-  getDefaultProps(){
-    return {selected:0};
-  },
-  getInitialState(){
-    return {selected:this.props.selected};
-  },
-  handleClick(index,event){
-    event.preventDefault();
-    this.setState({
-      selected: index
-    });
-  },
-  _renderTitles(){
-    function labels(child,index){
-      var activeClass = this.state.selected === index ? 'activeTab':'';
-      return(
-        <li key={index}>
-          <a href="#"
-            onClick={this.handleClick.bind(this,index)}
-            className={activeClass}
-          >
-            {child.props.label}
-          </a>
-        </li>
-      );
-    }
-    return (<ul className="tabs__labels">
-        {this.props.children.map(labels.bind(this))}
-        </ul>
-      );
-
-  },
-  _renderContent(){
-    return (
-      <div className="tabs__content">
-        {this.props.children[this.state.selected]}
-      </div>
-    );
-  },
-  render(){
-    return (
-    <div className="tabs">
-      {this._renderTitles()}
-      {this._renderContent()}
-    </div>);
-  }
-});
-var Pane = React.createClass({
-  displayName:'Pane',
-  propTypes: {
-    label: React.PropTypes.string.isRequired,
-    children: React.PropTypes.element.isRequired
-  },
-  render(){
-    return(<div>{this.props.children}</div>);
-  }
-});
 
 var getCrusaderDps = function(crusader){
   if (!crusader.upgrades){
@@ -180,7 +19,6 @@ var Filter = React.createClass({
       "fa fa-fw fa-filter activeNegative";
     return (<i className={filterClasses} onClick={this.props.filterClick}></i>);
   }
-
 });
 var CheckBox = React.createClass({
   render:function(){
@@ -267,7 +105,7 @@ var CruTagRow = React.createClass({
           slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
         }
       var gearTd = null;
-      console.log('gear?', this.props.mode, this.props.isGearMode);
+      // console.log('gear?', this.props.mode, this.props.isGearMode);
       if (this.props.mode ==="mine" && this.props.isGearMode){
         var gearPossibilities = this.props.gearTypes;
 
@@ -320,13 +158,14 @@ var CruGridBody = props =>{
         var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
         var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: [];
         var dps = getCrusaderDps(crusader);
-        var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot && c.id != crusader.id).map(c => c.id);
+        var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
         var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
-        // account for sharing is caring here, once you have it
-        var sharingIsCaring = 6 + +(props.sharingIsCaringLevel || 0);
-        // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
-        var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
-        var effectiveEp = Number(Math.round(rawSharedEp)) + +props.enchantmentPoints[crusader.id];
+        var effectiveEP = calcEffectiveEP(props.sharingIsCaringLevel, +props.enchantmentPoints[crusader.id], otherEp);
+        // // account for sharing is caring here, once you have it
+        // var sharingIsCaring = 6 + +(props.sharingIsCaringLevel || 0);
+        // // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
+        // var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
+        // var effectiveEp = Number(Math.round(rawSharedEp)) + +props.enchantmentPoints[crusader.id];
 
         return (<CruTagRow key={crusader.displayName}
           formationIds={props.formationIds}
@@ -336,7 +175,7 @@ var CruGridBody = props =>{
           gear={gear}
           onGearChange={props.onGearChange}
           enchantmentPoints={props.enchantmentPoints[crusader.id]}
-          effectiveEp={effectiveEp}
+          effectiveEp={effectiveEP}
           onEpChange={ val => props.onEpChange(crusader.id, val)}
           isFormationMode={props.isBuildingFormation}
           wikibase={props.referenceData.wikibase}
@@ -752,6 +591,13 @@ var CruApp = React.createClass({
     cruTagGrid.store(data);
     this.setState({saved:data});
   },
+  changeSaveState(newData){
+    var merged = this.mergeSaveState(newData);
+    console.log('changeSaveState',merged);
+    this.setState({saved: merged});
+    cruTagGrid.store(merged);
+    window.saved = merged;
+  },
   onImportSiteStateClick(){
     console.log('onImportSiteStateClick',arguments);
     // this does an overwrite, not a merge, perhaps allow a merge button?
@@ -760,12 +606,11 @@ var CruApp = React.createClass({
       if(this.state.textState.indexOf('ownedCrusaderIds') == 0 || this.state.textState.indexOf('ownedCrusaderIds') == 1){
         // special load from the .linq script, not direct game data, or page state
         var data = JSON.parse("{" + this.state.textState + "}");
-        // shouldn't this be updating save state? ownedCrusaderIds was being stored in CruTagGrid, why does this say self state, instead of this.state.saveData or something?
         this.changeSaveState({ownedCrusaderIds:data.ownedCrusaderIds});
       } else {
         var data = JSON.parse(this.state.textState);
         cruTagGrid.store(data);
-        this.changeSaveState({saved:data});
+        this.setState({saved:data});
       }
     }
     // wipe out saved data
@@ -795,11 +640,6 @@ var CruApp = React.createClass({
   },
   mergeSaveState(newData){
     return copyObject(this.state.saved,newData);
-  },
-  changeSaveState(newData){
-    var merged = this.mergeSaveState(newData);
-    console.log('changeSaveState',merged);
-    this.setState({saved: merged});
   },
   render(){
     var w = window,
@@ -856,26 +696,58 @@ var CruApp = React.createClass({
                   importText={importText}
                   />) :
       ( <button onClick={toggleHide}>Show Import/Export </button>);
+    var talentSelectedCrusader = this.state.saved.talentCalcHeroId ? props.jsonData.crusaders.find(cru => cru.heroId == this.state.saved.talentCalcHeroId) : null;
     return (<div>
-    <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
-
-        <CruTagGrid model={props.jsonData}
-                    slotSort={this.state.saved.slotSort}
-                    mode={this.state.saved.mode}
-                    isEpMode={this.state.saved.isEpMode}
-                    isGearMode={this.state.saved.isGearMode}
-                    crusaderGear={this.state.saved.crusaderGear}
-                    sharingIsCaringLevel={this.state.saved.sharingIsCaringLevel}
-                    enchantmentPoints={this.state.saved.enchantmentPoints}
-                    ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
-                    isBuildingFormation={this.state.saved.isBuildingFormation}
-                    formationIds={this.state.saved.formationIds}
-                    filterTags={this.state.saved.filterTags}
-                    filterOwned={this.state.saved.filterOwned}
-                    idols={this.state.saved.idols}
-                    updateSave={this.changeSaveState}>
-        </CruTagGrid>
         <div>{JSON.stringify(this.state.error)}</div>
+      <Tabs>
+        <Pane label="Crusaders">
+          <div>
+            <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
+
+            <CruTagGrid model={props.jsonData}
+                        slotSort={this.state.saved.slotSort}
+                        mode={this.state.saved.mode}
+                        isEpMode={this.state.saved.isEpMode}
+                        isGearMode={this.state.saved.isGearMode}
+                        crusaderGear={this.state.saved.crusaderGear}
+                        sharingIsCaringLevel={this.state.saved.sharingIsCaringLevel}
+                        enchantmentPoints={this.state.saved.enchantmentPoints}
+                        ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
+                        isBuildingFormation={this.state.saved.isBuildingFormation}
+                        formationIds={this.state.saved.formationIds}
+                        filterTags={this.state.saved.filterTags}
+                        filterOwned={this.state.saved.filterOwned}
+                        idols={this.state.saved.idols}
+                        updateSave={this.changeSaveState} />
+          </div>
+        </Pane>
+        <Pane label="Talents">
+          <TalentCalc
+            sharingIsCaringLevel={+this.state.saved.sharingIsCaringLevel}
+            crusaders={props.jsonData.crusaders}
+            mainDpsEP={talentSelectedCrusader ? getNumberOrDefault(this.state.saved.enchantmentPoints[talentSelectedCrusader.id]): 0}
+            dpsSlotEP={ talentSelectedCrusader ? +props.jsonData.crusaders.filter(cru => cru.slot == talentSelectedCrusader.slot).map(cru => this.state.saved.enchantmentPoints[cru.id] || 0).reduce((a,b) => +a + +b): 0}
+            critChance={getNumberOrDefault(this.state.saved.critChance, 0)} onCritChanceChange={val => (this.changeSaveState({critChance: inspect(+val || 0, 'changeSaveState crit')}))}
+            cooldownCommon={getNumberOrDefault(this.state.saved.cooldownCommon,0)} onCooldownCommonChange={val => this.changeSaveState({cooldownCommon: +val || 0})}
+            cooldownUncommon={getNumberOrDefault(this.state.saved.cooldownUncommon,0)} onCooldownUncommonChange={val => this.changeSaveState({cooldownUncommon: +val || 0})}
+            cooldownRare={getNumberOrDefault(this.state.saved.cooldownRare,0)} onCooldownRareChange={val => this.changeSaveState({cooldownRare: +val || 0})}
+            cooldownEpic={getNumberOrDefault(this.state.saved.cooldownEpic,0)} onCooldownEpicChange={val => this.changeSaveState({cooldownEpic: +val || 0})}
+            selectedHeroId={typeof(this.state.saved.talentCalcHeroId) ==="string"? this.state.saved.talentCalcHeroId : undefined} onHeroChange={val => this.changeSaveState({talentCalcHeroId:val})}
+            timeORama={getNumberOrDefault(this.state.saved.timeORama)} ontimeORamaChange={val => this.changeSaveState({timeORama:val})}
+            massiveCriticals={getNumberOrDefault(this.state.saved.massiveCriticals)} onMassiveCriticalsChange={val => this.changeSaveState({massiveCriticals:val})}
+            speedRunner={getNumberOrDefault(this.state.saved.speedRunner)} onSpeedRunnerChange={val => this.changeSaveState({speedRunner:val})}
+            enduranceTraining={getNumberOrDefault(this.state.saved.enduranceTraining)} onEnduranceTrainingChange={val => this.changeSaveState({enduranceTraining:val})}
+            goldOSplosion={getNumberOrDefault(this.state.saved.goldOSplosion)} onGoldOSplosionChange={val => this.changeSaveState({goldOSplosion:val})}
+            sniper={getNumberOrDefault(this.state.saved.sniper)} onSniperChange={val => this.changeSaveState({sniper:val})}
+            everyLastCent={getNumberOrDefault(this.state.saved.everyLastCent)} onEveryLastCentChange={val => this.changeSaveState({everyLastCent:val})}
+            spendItAll={getNumberOrDefault(this.state.saved.spendItAll)} onSpendItAllChange={val => this.changeSaveState({spendItAll:val})}
+            upgradeThemAll={getNumberOrDefault(this.state.saved.upgradeThemAll)} onUpgradeThemAllChange={val => this.changeSaveState({upgradeThemAll:val})}
+            scavenger={getNumberOrDefault(this.state.saved.scavenger)} onScavengerChange={val => this.changeSaveState({scavenger:val})}
+            speedLooter={getNumberOrDefault(this.state.saved.speedLooter)} onSpeedLooterChange={val => this.changeSaveState({speedLooter:val})}
+            efficientCrusading={getNumberOrDefault(this.state.saved.efficientCrusading)} onEfficientCrusadingChange={val => this.changeSaveState({efficientCrusading:val})}
+            />
+        </Pane>
+        </Tabs>
         <div className="onGreen">
         {importArea}
           {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}

@@ -133,8 +133,8 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
     (filterOwned == 0)
     || (filterOwned == 1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
     || (filterOwned == -1 && !owned);
-  if(!ownershipFilter)
-    console.log('ownershipFilter', filterOwned, owned, crusader.slot,crusader.id);
+  // if(!ownershipFilter)
+  //   console.log('ownershipFilter', filterOwned, owned, crusader.slot,crusader.id);
   var tagFilter =
     Object.keys(filterTags).map(function(tagId) {
       return !filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
@@ -147,22 +147,22 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
       ||  // this one is not selected
       formationIds[crusader.slot] === crusader.id);
   var result = ownershipFilter && tagFilter && formationFilter;
-  console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
+  // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
   return result;
 };
 
 var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
-  console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );
+  // console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );
 
     var sortedCrusaders = (!isDesc ? crusaders : crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
     }))
       .filter(function(crusader){
         var result = crusaderFilter(ownedCrusaderIds, crusader,filterOwned, filterTags,isBuildingFormation,formationIds);
-        console.log('filter', crusader,filterOwned, filterTags);
+        // console.log('filter', crusader,filterOwned, filterTags);
         return result;
       });
-  console.log('filtered count:' + sortedCrusaders.length);
+  // console.log('filtered count:' + sortedCrusaders.length);
   return sortedCrusaders;
 };
 var scrubSavedData = saved =>
@@ -228,3 +228,14 @@ var cruTagGrid = (() => {
   exports.readOrDefault = defaultValue => !getIsUrlLoaded() ? readIt(cruTagGridKey, defaultValue) : defaultValue;
   return exports;
 })();
+
+var calcEffectiveEP = (sharingIsCaringLevel, cruEP, slotEP) =>
+{
+  var otherEP = +slotEP - +cruEP;
+  var sic = 6 + +(sharingIsCaringLevel || 0);
+  // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
+  var rawSharedEP = +(0.05 * sic * otherEP);
+  var effectiveEP = Number(Math.round(+rawSharedEP)) + +cruEP;
+  // console.log('calcEffectiveEP', sharingIsCaringLevel, cruEP, slotEP, otherEP, sic, rawSharedEP, effectiveEP);
+  return +effectiveEP;
+};
