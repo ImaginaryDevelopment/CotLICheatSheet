@@ -32,7 +32,7 @@ the number on the left side of a crusader is what slot they are in, and on the r
 
 https://imaginarydevelopment.github.io/CotLICheatSheet/
 
-
+https://paypal.me/ImaginaryDevelopment/
 
 formerly(forked from):
 http://sidben.github.io/CotLICheatSheet/

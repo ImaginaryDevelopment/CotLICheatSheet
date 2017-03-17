@@ -596,14 +596,13 @@ var HeroGameData = React.createClass({
   }
 });
 var LegendaryReduction = props =>
-(props.networkDataJson && props.networkDataJson.details && props.networkDataJson.details.stats && props.networkDataJson.details.stats.legendary_reduction_date) ?
-  (<div>Legendary Cost Reduction at {new Date(+props.networkDataJson.details.stats.legendary_reduction_date * 1000).toLocaleString()}</div>)
+props.legendaryReductionDate ?
+  (<div className="onGreen">Legendary Cost Reduction at {props.legendaryReductionDate.toLocaleString()}</div>)
   : null
 
 var Exporter = props =>
 (
   <div>
-    <LegendaryReduction networkDataJson={props.networkDataJson} />
   <button onClick={props.onHideClick}>Hide Exporter</button>
   <Tabs>
     <Pane label="Import/Export">
@@ -702,13 +701,14 @@ var CruApp = React.createClass({
       this.setState({error:ex});
       return;
     }
-      if(getIsLocalFileSystem()){
-        storeIt("gameDataJson",json);
-      }
-      var heroMap = {};
-      this.props.jsonData.crusaders.map(c =>{
-        heroMap[c.heroId] = c;
-      });
+    if(getIsLocalFileSystem()){
+      storeIt("gameDataJson",json);
+    }
+    var heroMap = {};
+    this.props.jsonData.crusaders.map(c =>{
+      heroMap[c.heroId] = c;
+    });
+    var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000): null;
 
       // account for pasting just the heroes section of json, or the whole data packet
       var heroesSection = (json.heroes) || (json.details && json.details.heroes);
@@ -716,7 +716,7 @@ var CruApp = React.createClass({
       var mappedLoot = parseLoot(this.props.jsonData.crusaders,(json.loot) || (json.details && json.details.loot));
 
       window.heroMap = this.props.heroMap;
-      this.setState({networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes});
+      this.setState({networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})});
   },
   onClearGameDataParseClick(){
     console.log('onClearGameDataParseClick');
@@ -747,31 +747,7 @@ var CruApp = React.createClass({
     // merged should look like this :
     // crusaderGear:{"01":{"slot0":4,"slot1":4,"slot2":4},
     if(loot && Array.isArray(loot)){
-      try{
-        var crusaderGear = {};
-        loot.map(l =>{
-
-          if(!crusaderGear.hasOwnProperty(l.heroSlotId))
-            crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
-          if(l.slot != null){
-            var rarity = l.rarity;
-            if(l.isGolden || l.rarity === 5){
-              rarity = rarity + (l.isGolden? "g":"_");
-              if(rarity === 5 && !(l.countOrLegendaryLevel != null))
-                console.log('failing to map properly', l);
-              rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
-            }
-
-            crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
-          }
-          if(l.heroSlotId==="15")
-          console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
-        });
-        data.crusaderGear = crusaderGear;
-        console.log('loot import phase 1 complete', data.crusaderGear);
-      } catch(ex){
-        console.error('could not import loot game data', ex);
-      }
+      tryPullLootData(data);
     }
     cruTagGrid.store(data);
     this.setState({saved:data});
@@ -817,11 +793,13 @@ var CruApp = React.createClass({
     var url = baseUrl + exportToUrl("appGameState", stringified);
     this.setState({url:url,urlBase:baseUrl,showImportExport:false});
   },
+  mergeSaveState(newData){
+    return copyObject(this.state.saved,newData);
+  },
   changeSaveState(newData){
-    console.log('changeSaveState', newData, this.state.saved.slotSort);
-    var newData = copyObject(this.state.saved,newData);
-    console.log('changeSaveState',newData);
-    this.setState({saved: newData});
+    var merged = this.mergeSaveState(newData);
+    console.log('changeSaveState',merged);
+    this.setState({saved: merged});
   },
   render(){
     var w = window,
@@ -879,6 +857,8 @@ var CruApp = React.createClass({
                   />) :
       ( <button onClick={toggleHide}>Show Import/Export </button>);
     return (<div>
+    <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
+
         <CruTagGrid model={props.jsonData}
                     slotSort={this.state.saved.slotSort}
                     mode={this.state.saved.mode}
