@@ -544,7 +544,7 @@ var CruApp = React.createClass({
       storeIt("gameDataJson",json);
     }
     var heroMap = {};
-    this.props.jsonData.crusaders.map(c =>{
+    this.props.referenceData.crusaders.map(c =>{
       heroMap[c.heroId] = c;
     });
     var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000): null;
@@ -552,7 +552,7 @@ var CruApp = React.createClass({
       // account for pasting just the heroes section of json, or the whole data packet
       var heroesSection = (json.heroes) || (json.details && json.details.heroes);
       var mappedHeroes = parseNetworkDataHeroesSection(heroMap, heroesSection);
-      var mappedLoot = parseLoot(this.props.jsonData.crusaders,(json.loot) || (json.details && json.details.loot));
+      var mappedLoot = parseLoot(this.props.referenceData.crusaders,(json.loot) || (json.details && json.details.loot));
 
       window.heroMap = this.props.heroMap;
       this.setState({networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})});
@@ -569,11 +569,11 @@ var CruApp = React.createClass({
     var data = copyObject(cruTagGridData);
     try
     {
-      var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
+      var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
       data.ownedCrusaderIds = ownedCrusaderIds;
       var ep = {}
       heroes.filter(h => h.Owned).map(h => {
-        var crusader = this.props.jsonData.crusaders.filter(c => c.heroId == h.HeroId)[0];
+        var crusader = this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0];
         ep[crusader.id] = h.Ep;
       });
       data.enchantmentPoints = ep;
@@ -666,7 +666,7 @@ var CruApp = React.createClass({
       this.setState({showImportExport:(this.state.showImportExport ? false : true)});
     var heroMap = {};
 
-    this.props.jsonData.crusaders.map(c =>{
+    this.props.referenceData.crusaders.map(c =>{
       heroMap[c.heroId] = c;
     });
     window.networkDataJson = this.state.networkDataJson;
@@ -680,7 +680,7 @@ var CruApp = React.createClass({
                   networkDataRaw={this.state.networkDataRaw}
                   networkDataJson={this.state.networkDataJson}
                   heroMap={heroMap}
-                  crusaders={props.jsonData.crusaders}
+                  crusaders={props.referenceData.crusaders}
                   onImportGameDataClick={this.onImportGameDataClick}
                   onClearGameDataParseClick={this.onClearGameDataParseClick}
                   mappedLoot={this.state.mappedLoot}
@@ -696,7 +696,7 @@ var CruApp = React.createClass({
                   importText={importText}
                   />) :
       ( <button onClick={toggleHide}>Show Import/Export </button>);
-    var talentSelectedCrusader = this.state.saved.talentCalcHeroId ? props.jsonData.crusaders.find(cru => cru.heroId == this.state.saved.talentCalcHeroId) : null;
+
     return (<div>
         <div>{JSON.stringify(this.state.error)}</div>
       <Tabs>
@@ -704,7 +704,7 @@ var CruApp = React.createClass({
           <div>
             <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
 
-            <CruTagGrid model={props.jsonData}
+            <CruTagGrid model={props.referenceData}
                         slotSort={this.state.saved.slotSort}
                         mode={this.state.saved.mode}
                         isEpMode={this.state.saved.isEpMode}
@@ -723,28 +723,9 @@ var CruApp = React.createClass({
         </Pane>
         <Pane label="Talents">
           <TalentCalc
-            sharingIsCaringLevel={+this.state.saved.sharingIsCaringLevel}
-            crusaders={props.jsonData.crusaders}
-            mainDpsEP={talentSelectedCrusader ? getNumberOrDefault(this.state.saved.enchantmentPoints[talentSelectedCrusader.id]): 0}
-            dpsSlotEP={ talentSelectedCrusader ? +props.jsonData.crusaders.filter(cru => cru.slot == talentSelectedCrusader.slot).map(cru => this.state.saved.enchantmentPoints[cru.id] || 0).reduce((a,b) => +a + +b): 0}
-            critChance={getNumberOrDefault(this.state.saved.critChance, 0)} onCritChanceChange={val => (this.changeSaveState({critChance: inspect(+val || 0, 'changeSaveState crit')}))}
-            cooldownCommon={getNumberOrDefault(this.state.saved.cooldownCommon,0)} onCooldownCommonChange={val => this.changeSaveState({cooldownCommon: +val || 0})}
-            cooldownUncommon={getNumberOrDefault(this.state.saved.cooldownUncommon,0)} onCooldownUncommonChange={val => this.changeSaveState({cooldownUncommon: +val || 0})}
-            cooldownRare={getNumberOrDefault(this.state.saved.cooldownRare,0)} onCooldownRareChange={val => this.changeSaveState({cooldownRare: +val || 0})}
-            cooldownEpic={getNumberOrDefault(this.state.saved.cooldownEpic,0)} onCooldownEpicChange={val => this.changeSaveState({cooldownEpic: +val || 0})}
-            selectedHeroId={typeof(this.state.saved.talentCalcHeroId) ==="string"? this.state.saved.talentCalcHeroId : undefined} onHeroChange={val => this.changeSaveState({talentCalcHeroId:val})}
-            timeORama={getNumberOrDefault(this.state.saved.timeORama)} ontimeORamaChange={val => this.changeSaveState({timeORama:val})}
-            massiveCriticals={getNumberOrDefault(this.state.saved.massiveCriticals)} onMassiveCriticalsChange={val => this.changeSaveState({massiveCriticals:val})}
-            speedRunner={getNumberOrDefault(this.state.saved.speedRunner)} onSpeedRunnerChange={val => this.changeSaveState({speedRunner:val})}
-            enduranceTraining={getNumberOrDefault(this.state.saved.enduranceTraining)} onEnduranceTrainingChange={val => this.changeSaveState({enduranceTraining:val})}
-            goldOSplosion={getNumberOrDefault(this.state.saved.goldOSplosion)} onGoldOSplosionChange={val => this.changeSaveState({goldOSplosion:val})}
-            sniper={getNumberOrDefault(this.state.saved.sniper)} onSniperChange={val => this.changeSaveState({sniper:val})}
-            everyLastCent={getNumberOrDefault(this.state.saved.everyLastCent)} onEveryLastCentChange={val => this.changeSaveState({everyLastCent:val})}
-            spendItAll={getNumberOrDefault(this.state.saved.spendItAll)} onSpendItAllChange={val => this.changeSaveState({spendItAll:val})}
-            upgradeThemAll={getNumberOrDefault(this.state.saved.upgradeThemAll)} onUpgradeThemAllChange={val => this.changeSaveState({upgradeThemAll:val})}
-            scavenger={getNumberOrDefault(this.state.saved.scavenger)} onScavengerChange={val => this.changeSaveState({scavenger:val})}
-            speedLooter={getNumberOrDefault(this.state.saved.speedLooter)} onSpeedLooterChange={val => this.changeSaveState({speedLooter:val})}
-            efficientCrusading={getNumberOrDefault(this.state.saved.efficientCrusading)} onEfficientCrusadingChange={val => this.changeSaveState({efficientCrusading:val})}
+            changeSaveState={this.changeSaveState}
+            saved={this.state.saved}
+            referenceData={this.props.referenceData}
             />
         </Pane>
         </Tabs>
@@ -761,6 +742,6 @@ var CruApp = React.createClass({
 //   document.getElementById('crusaders_holder')
 // );
 ReactDOM.render(
-      <CruApp jsonData={jsonData} />,
+      <CruApp referenceData={jsonData} />,
         document.getElementById('crusaders_holder')
 );

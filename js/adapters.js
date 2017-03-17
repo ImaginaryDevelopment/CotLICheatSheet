@@ -150,6 +150,8 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
   // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
   return result;
 };
+var getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
+var getSlotRarities = gear => inspect((gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity),'getSlotRarities results');
 
 var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
   // console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );

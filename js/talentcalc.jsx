@@ -1,5 +1,4 @@
 (app => {
-
 // app.reactClasses = app.reactClasses || {};
 app.HeroSelect = props =>
 {
@@ -40,14 +39,37 @@ app.HeroSelect.PropTypes = {
 app.getCooldown = (c,u,r,e) =>
 (c * 0.5 + u + r * 1.5 + e * 2) / 100;
 
+app.TalentInput = props =>{
+    var dpsBuff = props.getDps(props.value);
+    var nextDps = props.getDps(props.value + 1);
+    // (F19+1)-(E19+1)/(E19+1)
+    var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
+    //=IFERROR(IF(and(B$13 >= 1,B20<=$J$23), G19/B20*100000, 0),0)
+    var score = impr*props.costForNextLevel*100000;
+    console.log('TalentInput', props.value, dpsBuff, nextDps, impr, score);
+    return (<tr data-row={props.dataRow? props.dataRow: undefined}>
+        <th>Current level</th>
+        <td><TextInputUnc value={props.value} onChange={props.onChange} /></td>
+        {props.getTd1 ? props.getTd1(): <td />}
+        {props.getTd2 ? props.getTd2(): <td />}
+        <td className="textcenter">{dpsBuff}</td><td>{nextDps}</td>
+        <td className="textcenter">{impr.toFixed(2) * 100}%</td>
+        <td className="textcenter">{score}</td>
+    </tr>)
+};
+
 app.Inputs = props =>
 {
     var cooldown = (app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100);
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
     var effectiveEP = calcEffectiveEP(props.sharingIsCaringLevel, props.mainDpsEP, props.dpsSlotEP);
-    console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
+    // console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
+    console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
+    var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals]: undefined;
     return (<table>
         <thead>
+            </thead>
+            <tbody>
             <tr><th>Crit Chance %</th><td><TextInputUnc onChange={val => props.onCritChanceChange(val)} value={props.critChance} /></td><td>%</td><td title="D"></td><th colSpan="5">Horn and Cornucopia Trinkets</th></tr>
             <tr><th>Ability Cooldown %</th><td>{cooldown}</td><td title="C"></td><td></td><th className="rarity1 black">Common:</th><th className="rarity2 black">Uncommon:</th><th className="rarity3 black">Rare:</th><th className="rarity4 black">Epic:</th><th>Total:</th></tr>
             <tr><th>Enchantment Points on main dps</th><td>{effectiveEP}</td><th colSpan="2"></th>
@@ -78,13 +100,51 @@ app.Inputs = props =>
                 <td title="speedLooter"><TextInputUnc value={props.speedLooter} onChange={props.onSpeedLooterChange}/></td>
                 <td title="efficientCrusading"><TextInputUnc value={props.efficientCrusading} onChange={props.onEfficientCrusadingChange}/></td>
             </tr>
-            <tr>
+            <tr data-row="11">
+                <th>Number of epics/legendaries on DPS</th><td>{props.mainDpsEpics}</td>
+                <th colSpan="2" /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th>Extra Training</th><th>Triple Tier Trouble</th><th></th><th>Total:</th>
+            </tr>
+            <tr data-row="12">
+                <th>Number of epics/legendaries on alts</th><td>{props.dpsSlotEpics - props.mainDpsEpics}</td>
+                <th colSpan="2" />
+                <td title="doingItAgain"><TextInputUnc value={props.doingItAgain} onChange={props.onDoingItAgainChange}/></td>
+                <td title="deepIdolScavenger"><TextInputUnc value={props.deepIdolScavenger} onChange={props.onDeepIdolScavengerChange}/></td>
+                <td title="extraTraining"><TextInputUnc value={props.extraTraining} onChange={props.onExtraTrainingChange}/></td>
+                <td title="tripleTierTrouble"><TextInputUnc value={props.tripleTierTrouble} onChange={props.onTripleTierTroubleChange}/></td>
+                <td />
+                <td></td>
                 </tr>
-            <tr>
-                <td title="z"><TextInputUnc value={props.z} onChange={props.onz}/></td>
+            <tr data-row="13" />
+            <tr data-row="14" />
+            <tr data-row="15" />
+            <tr data-row="16" />
+            <tr data-row="17">
+                <th colSpan="5">Talents</th>
+                <th colSpan="2">Idols Spent on DPS Talents:</th>
+                <td></td>
+                <td />
+                <th>Total Idols:</th>
                 </tr>
-        </thead>
-        <tbody>
+            <tr data-row="18">
+                <th>Passive Criticals</th>
+                <td />
+                <td colSpan="2" />
+                <th>current dps buff</th>
+                <th>next level dps buff</th>
+                <th>percent improvement</th>
+                <th>Score(larger is better)</th>
+                <td></td>
+                <td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>
+            </tr>
+            <tr data-row="19">
+                <td>CurrentLevel</td>
+                <td><TextInputUnc value={props.passiveCriticals} onChange={props.onPassiveCriticalsChange} /></td><td colSpan="2" /><td>{props.critChance*props.passiveCriticals / 100}</td><td>{props.critChance*(props.passiveCriticals + 1) / 100}</td>
+                <td></td>
+
+            </tr>
+            {/*repeat with alternative generator*/}
+            <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} costForNextLevel={passiveCriticalsNextCost} onChange={props.onPassiveCriticalsChange} />
+
         </tbody>
         </table>
         );
@@ -113,7 +173,60 @@ app.Inputs.propTypes = {
 };
 
 
-app.TalentCalc = props =>
-(<Inputs {...props} />);
+app.TalentCalc = React.createClass({
+    render(){
+        var props = this.props;
+        var crusaders = props.referenceData.crusaders;
+
+        var talentSelectedCrusader = props.saved.talentCalcHeroId ? {cru : crusaders.find(cru => cru.heroId == props.saved.talentCalcHeroId), mainDpsEpics:0, dpsSlotEpics:0,mainDpsEP:0} : null;
+        if(talentSelectedCrusader && !(talentSelectedCrusader.cru != null))
+            talentSelectedCrusader = null;
+        if(talentSelectedCrusader){
+            var cru = talentSelectedCrusader.cru;
+            var savedGear = props.saved.crusaderGear || [];
+            var cruRarities = getSlotRarities(savedGear[cru.id]).reduce((a,b) => a + (b > 3? 1 : 0),0);
+
+            talentSelectedCrusader.mainDpsEpics = cruRarities;
+            var slotMates = crusaders.filter(x => x.slot == cru.slot);
+            talentSelectedCrusader.dpsSlotEpics = slotMates.map(x => savedGear[x.id]).map(getSlotRarities).reduce((a,gearArray) => a.concat(gearArray),[]).reduce((a,b) => a + (b > 3 ? 1 : 0),0);
+            talentSelectedCrusader.mainDpsEP = getNumberOrDefault(props.saved.enchantmentPoints[cru.id], 0);
+            talentSelectedCrusader.dpsSlotEP = +crusaders.filter(x => x.slot == cru.slot).map(x => props.saved.enchantmentPoints[x.id] || 0).reduce((a,b) => +a + +b,0)
+        }
+        console.log('talentSelectedCrusader',talentSelectedCrusader);
+        return (<Inputs {...props}
+            sharingIsCaringLevel={+props.saved.sharingIsCaringLevel}
+            crusaders={crusaders}
+            mainDpsEpics={talentSelectedCrusader.mainDpsEpics}
+            dpsSlotEpics={talentSelectedCrusader.dpsSlotEpics}
+            mainDpsEP={talentSelectedCrusader.mainDpsEP}
+            dpsSlotEP={ talentSelectedCrusader.dpsSlotEP}
+            talents={props.referenceData.talents}
+            critChance={getNumberOrDefault(props.saved.critChance, 0)} onCritChanceChange={val => (props.changeSaveState({critChance: inspect(+val || 0, 'changeSaveState crit')}))}
+            idols={props.saved.idols} onIdolsChange={val => props.changeSaveState({idols:val})}
+            cooldownCommon={getNumberOrDefault(props.saved.cooldownCommon,0)} onCooldownCommonChange={val => props.changeSaveState({cooldownCommon: +val || 0})}
+            cooldownUncommon={getNumberOrDefault(props.saved.cooldownUncommon,0)} onCooldownUncommonChange={val => props.changeSaveState({cooldownUncommon: +val || 0})}
+            cooldownRare={getNumberOrDefault(props.saved.cooldownRare,0)} onCooldownRareChange={val => props.changeSaveState({cooldownRare: +val || 0})}
+            cooldownEpic={getNumberOrDefault(props.saved.cooldownEpic,0)} onCooldownEpicChange={val => props.changeSaveState({cooldownEpic: +val || 0})}
+            selectedHeroId={typeof(props.saved.talentCalcHeroId) ==="string"? props.saved.talentCalcHeroId : undefined} onHeroChange={val => props.changeSaveState({talentCalcHeroId:val})}
+            timeORama={getNumberOrDefault(props.saved.timeORama)} ontimeORamaChange={val => props.changeSaveState({timeORama:val})}
+            massiveCriticals={getNumberOrDefault(props.saved.massiveCriticals)} onMassiveCriticalsChange={val => props.changeSaveState({massiveCriticals:val})}
+            speedRunner={getNumberOrDefault(props.saved.speedRunner)} onSpeedRunnerChange={val => props.changeSaveState({speedRunner:val})}
+            enduranceTraining={getNumberOrDefault(props.saved.enduranceTraining)} onEnduranceTrainingChange={val => props.changeSaveState({enduranceTraining:val})}
+            goldOSplosion={getNumberOrDefault(props.saved.goldOSplosion)} onGoldOSplosionChange={val => props.changeSaveState({goldOSplosion:val})}
+            sniper={getNumberOrDefault(props.saved.sniper)} onSniperChange={val => props.changeSaveState({sniper:val})}
+            everyLastCent={getNumberOrDefault(props.saved.everyLastCent)} onEveryLastCentChange={val => props.changeSaveState({everyLastCent:val})}
+            spendItAll={getNumberOrDefault(props.saved.spendItAll)} onSpendItAllChange={val => props.changeSaveState({spendItAll:val})}
+            upgradeThemAll={getNumberOrDefault(props.saved.upgradeThemAll)} onUpgradeThemAllChange={val => props.changeSaveState({upgradeThemAll:val})}
+            scavenger={getNumberOrDefault(props.saved.scavenger)} onScavengerChange={val => props.changeSaveState({scavenger:val})}
+            speedLooter={getNumberOrDefault(props.saved.speedLooter)} onSpeedLooterChange={val => props.changeSaveState({speedLooter:val})}
+            efficientCrusading={getNumberOrDefault(props.saved.efficientCrusading)} onEfficientCrusadingChange={val => props.changeSaveState({efficientCrusading:val})}
+            doingItAgain={getNumberOrDefault(props.saved.doingItAgain)} onDoingItAgainChange={val => props.changeSaveState({doingItAgain:val})}
+            deepIdolScavenger={getNumberOrDefault(props.saved.deepIdolScavenger)} onDeepIdolScavengerChange={val => props.changeSaveState({deepIdolScavenger:val})}
+            extraTraining={getNumberOrDefault(props.saved.extraTraining)} onExtraTrainingChange={val => props.changeSaveState({extraTraining:val})}
+            tripleTierTrouble={getNumberOrDefault(props.saved.tripleTierTrouble)} onTripleTierTroubleChange={val => props.changeSaveState({tripleTierTrouble:val})}
+            passiveCriticals={getNumberOrDefault(props.saved.passiveCriticals)} onPassiveCriticalsChange={val => props.changeSaveState({passiveCriticals:val})}
+         />);
+    }
+});
 app.TalentCalc.displayName = 'TalentCalc';
 })(window)
