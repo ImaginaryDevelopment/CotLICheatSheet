@@ -45,16 +45,17 @@ app.TalentInput = props =>{
     // (F19+1)-(E19+1)/(E19+1)
     var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
     //=IFERROR(IF(and(B$13 >= 1,B20<=$J$23), G19/B20*100000, 0),0)
-    var score = impr*props.costForNextLevel*100000;
+    var score = impr / props.costForNextLevel * 100000;
     console.log('TalentInput', props.value, dpsBuff, nextDps, impr, score);
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
         <th>Current level</th>
         <td><TextInputUnc value={props.value} onChange={props.onChange} /></td>
         {props.getTd1 ? props.getTd1(): <td />}
         {props.getTd2 ? props.getTd2(): <td />}
-        <td className="textcenter">{dpsBuff}</td><td>{nextDps}</td>
-        <td className="textcenter">{impr.toFixed(2) * 100}%</td>
-        <td className="textcenter">{score}</td>
+        <td className="textcenter">{dpsBuff}</td>
+        <td className="textcenter">{nextDps}</td>
+        <td className="textcenter">{(impr * 100).toFixed(2)}%</td>
+        <td className="textcenter">{score ? score.toFixed(2) + '%' : null}</td>
     </tr>)
 };
 
@@ -65,7 +66,7 @@ app.Inputs = props =>
     var effectiveEP = calcEffectiveEP(props.sharingIsCaringLevel, props.mainDpsEP, props.dpsSlotEP);
     // console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
     console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
-    var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals]: undefined;
+    var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals + 1]: undefined;
     return (<table>
         <thead>
             </thead>
@@ -136,14 +137,10 @@ app.Inputs = props =>
                 <td></td>
                 <td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>
             </tr>
-            <tr data-row="19">
-                <td>CurrentLevel</td>
-                <td><TextInputUnc value={props.passiveCriticals} onChange={props.onPassiveCriticalsChange} /></td><td colSpan="2" /><td>{props.critChance*props.passiveCriticals / 100}</td><td>{props.critChance*(props.passiveCriticals + 1) / 100}</td>
-                <td></td>
-
-            </tr>
-            {/*repeat with alternative generator*/}
             <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} costForNextLevel={passiveCriticalsNextCost} onChange={props.onPassiveCriticalsChange} />
+                <tr>
+                    <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
+                </tr>
 
         </tbody>
         </table>
