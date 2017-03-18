@@ -1,15 +1,20 @@
 {
   "manifest_version": 2,
-  "following":"https://www.sitepoint.com/create-chrome-extension-10-minutes-flat/"
-  "name": "GTmetrix Analyzer Plugin",
-  "description": "This extension will analyze a page using GTmetrix",
+  "name": "Crusaders Automaton",
+  "description": "This extension will get your crusaders data for you",
   "version": "1.0",
 
-  "browser_action": {
-   "default_icon": "icon.png",
+  "page_action": {
+   "default_icon": "original_COTLI_Icon.png",
    "default_popup": "popup.html"
   },
   "permissions": [
-   "activeTab"
-   ]
+   "webRequest",
+   "debugger",
+   "*://*.kongregate.com/*",
+   "*://*.djartsgames.ca/~idle/post.php"
+   ],
+   "background":{
+    "scripts":["popup.js"]
+   }
 }
