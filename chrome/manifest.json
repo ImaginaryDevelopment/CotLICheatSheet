@@ -15,6 +15,6 @@
    "*://imaginarydevelopment.github.io/"
    ],
    "background":{
-    "scripts":["popup.js"]
+    "scripts":["background.js"]
    }
 }

@@ -37,7 +37,10 @@ var onDataFetched = data =>
             console.log('removing properties error',ex);
         }
         console.log(JSON.stringify(data,null,2));
-        window.data = data;
+        // make a copy for the background to hold?
+        if(window.fullData === true)
+            window.data = JSON.parse(JSON.stringify(data));
+        else window.data = data;
         var tabId;
         chrome.tabs.create({'url':"https://imaginarydevelopment.github.io/CotLICheatSheet/"}, tab =>{
             tabId = tab.id;
@@ -48,6 +51,8 @@ var onDataFetched = data =>
         data.details.heroes = undefined;
         injectData(tabId, 'lootRaw', data.details.loot);
         data.details.loot = undefined;
+        injectData(tabId, 'talentsRaw', data.details.loot);
+        data.details.talents = undefined;
         // trimming to see if we can get data to go at all, and hopefully trimming unimportant props
         data.details.objective_status = undefined;
         injectData(tabId, 'remainderRaw', data);
