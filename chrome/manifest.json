@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Crusaders Automaton",
-  "description": "This extension will get your crusaders data for you",
-  "version": "1.0",
+  "description": "This extension will get your crusaders data for you to import it at https://imaginarydevelopment.github.io/CotLICheatSheet/",
+  "version": "0.0.1",
 
   "page_action": {
    "default_icon": "original_COTLI_Icon.png",
