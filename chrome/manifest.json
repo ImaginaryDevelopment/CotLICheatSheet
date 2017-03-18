@@ -10,7 +10,6 @@
   },
   "permissions": [
    "webRequest",
-   "debugger",
    "*://*.kongregate.com/*",
    "*://*.djartsgames.ca/~idle/post.php"
    ],
