@@ -396,17 +396,17 @@ var HeroGameData = React.createClass({
   render(){
     console.log('rendering hero game data');
     //legacy data/usage would not have these in state (but also legacy data shouldn't be stored anywhere in prod)
-    if(!this.props.mappedHeroes)
-      return null;
-    if(! this.props.mappedLoot)
-      return null;
+    // if(!this.props.mappedHeroes)
+    //   return null;
+    // if(! this.props.mappedLoot)
+    //   return null;
 
-    var heroLIs =  this.props.mappedHeroes.map(h =>
-      (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
-    );
-    var lootLIs = this.props.mappedLoot.map(l =>
+    var heroLIs = this.props.mappedHeroes? this.props.mappedHeroes.map(h =>
+      (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>) 
+    ): [];
+    var lootLIs = this.props.mappedLoot? this.props.mappedLoot.map(l =>
       (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
-    );
+    ):[];
 
     // consider maping the parsed raw section collapsible at least at the highest level
 
@@ -461,7 +461,7 @@ var Exporter = props =>
         <TextAreaInputUnc onChange={props.onNetworkDataTextInputChange} value={props.networkDataRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
         <button onClick={props.onLoadNetworkDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
-        {props.networkDataJson? (<HeroGameData heroMap={props.heroMap} crusaders={props.crusaders} data={props.networkDataJson} crusaderReferenceData={props.crusaderReferenceData} mappedHeroes={props.mappedHeroes} mappedLoot={props.mappedLoot} onImportGameDataClick={props.onImportGameDataClick} />) : null}
+        {inspect(props.networkDataJson,'exporter networkDataJson')? (<HeroGameData heroMap={props.heroMap} crusaders={props.crusaders} data={props.networkDataJson} crusaderReferenceData={props.crusaderReferenceData} mappedHeroes={props.mappedHeroes} mappedLoot={props.mappedLoot} onImportGameDataClick={props.onImportGameDataClick} />) : null}
     </div>
       </Pane>
     </Tabs>
@@ -526,10 +526,12 @@ var CruApp = React.createClass({
       window.saved = this.state.saved;
     }
   },
-  loadNetworkData(data){
-    var json;
+  loadNetworkData(parsedOrUnparsedData){
+    console.log('loadNetworkData',parsedOrUnparsedData);
+    var json = typeof(parsedOrUnparsedData) != "string" ? parsedOrUnparsedData : null;
+    if(!(json != null))
     try{
-      json = JSON.parse(data);
+      json = JSON.parse(parsedOrUnparsedData);
       console.log('parse success');
     } catch (ex){
       console.error(ex);
@@ -547,24 +549,29 @@ var CruApp = React.createClass({
 
     // account for pasting just the heroes section of json, or the whole data packet
     var heroesSection = (json.heroes) || (json.details && json.details.heroes);
-    var mappedHeroes = parseNetworkDataHeroesSection(heroMap, heroesSection);
-    var mappedLoot = parseLoot(this.props.referenceData.crusaders,(json.loot) || (json.details && json.details.loot));
+    var mappedHeroes = heroesSection ? parseNetworkDataHeroesSection(heroMap, heroesSection) : undefined;
+    var mappedLoot = json.loot || json.details.loot ? parseLoot(this.props.referenceData.crusaders,(json.loot) || (json.details && json.details.loot)) : undefined;
 
     window.heroMap = this.props.heroMap;
-    this.setState({networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})});
+    var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
+    console.log('loadNetworkData setting state', stateMods);
+    this.setState(stateMods);
   },
   // network-data importer
   findNetworkData(){
     if(this.state.networkDataRaw)
-    // this should be wrapped in a try
-      this.loadNetworkData(JSON.parse(this.state.networkDataRaw));
+      this.loadNetworkData(this.state.networkDataRaw);
     else if (window.heroesRaw || window.lootRaw){
       var data = {};
       data.details = {};
-      if(window.heroesRaw)
+      if(window.heroesRaw){
+        console.log('starting heroesRaw parse');
         data.details.heroes = JSON.parse(window.heroesRaw);
-      if(window.lootRaw)
+      }
+      if(window.lootRaw){
+        console.log('starting heroesRaw parse');
         data.details.loot = JSON.parse(window.lootRaw);
+      }
       this.loadNetworkData(data);
     }
     else
