@@ -23,6 +23,7 @@ var parseLoot = (crusaders,lootData) =>{
 
           return 0;
         };
+        var unMapped = [];
         var lootMapped =
           lootData
             .map(l =>
@@ -30,6 +31,9 @@ var parseLoot = (crusaders,lootData) =>{
               var crusader = refC.find(cru => cru.loot.find(cl => cl.lootId == l.loot_id));
               var lootItem = crusader && crusader.loot.find(cl => cl.lootId == l.loot_id);
               // console.log('lootDataMap',l, crusader,lootItem);
+              if(!(crusader != null)){
+                unMapped.push(l);
+              }
 
               return {loot:l, crusader:crusader,lootItem:lootItem};
             })
@@ -47,36 +51,58 @@ var parseLoot = (crusaders,lootData) =>{
               return result;
             }
             ).sort(lootComparer);
+
+            var items = unMapped.map(l =>
+            {
+              switch (l.loot_id){
+                case 249:
+                  return {cooldown:l.count, rarity:1};
+                case 250:
+                  return {cooldown:l.count,rarity:2};
+                case 251:
+                  return {cooldown:l.count,rarity:3};
+                case 252:
+                  return {cooldown:l.count,rarity:4};
+                
+              }
+              }).filter(l => l != null);
+
           // console.log('lootMapped',lootMapped);
-          return lootMapped;
+          return {gear:lootMapped,items:items};
 };
 
 var tryPullLootData = (data,loot) => {
       console.log('tryPullLootData',data);
-      try{
-        var crusaderGear = {};
-        loot.map(l =>{
+      if(loot.gear)
+      {
+        try{
+          var crusaderGear = {};
+          loot.gear.map(l =>{
 
-          if(!crusaderGear.hasOwnProperty(l.heroSlotId))
-            crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
-          if(l.slot != null){
-            var rarity = l.rarity;
-            if(l.isGolden || l.rarity === 5){
-              rarity = rarity + (l.isGolden? "g":"_");
-              if(rarity === 5 && !(l.countOrLegendaryLevel != null))
-                console.log('failing to map properly', l);
-              rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
+            if(!crusaderGear.hasOwnProperty(l.heroSlotId))
+              crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
+            if(l.slot != null){
+              var rarity = l.rarity;
+              if(l.isGolden || l.rarity === 5){
+                rarity = rarity + (l.isGolden? "g":"_");
+                if(rarity === 5 && !(l.countOrLegendaryLevel != null))
+                  console.log('failing to map properly', l);
+                rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
+              }
+
+              crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
             }
-
-            crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
-          }
-          if(l.heroSlotId==="15")
-          console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
-        });
-        data.crusaderGear = crusaderGear;
-        console.log('loot import phase 1 complete', data.crusaderGear);
-      } catch(ex){
-        console.error('could not import loot game data', ex);
+            if(l.heroSlotId==="15")
+            console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
+          });
+          data.crusaderGear = crusaderGear;
+          console.log('loot import phase 1 complete', data.crusaderGear);
+        } catch(ex){
+          console.error('could not import loot game data', ex);
+        }
+      }
+      if(loot.items){
+        
       }
 };
 var parseNetworkDataHeroesSection = (heroMap, heroes) => {
