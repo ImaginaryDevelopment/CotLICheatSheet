@@ -606,7 +606,7 @@ var CruApp = React.createClass({
     // merged should look like this :
     // crusaderGear:{"01":{"slot0":4,"slot1":4,"slot2":4},
     if(loot && Array.isArray(loot)){
-      tryPullLootData(data);
+      tryPullLootData(data,loot);
     }
     cruTagGrid.store(data);
     this.setState({saved:data});

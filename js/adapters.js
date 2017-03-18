@@ -51,8 +51,8 @@ var parseLoot = (crusaders,lootData) =>{
           return lootMapped;
 };
 
-var tryPullLootData = data => {
-
+var tryPullLootData = (data,loot) => {
+      console.log('tryPullLootData',data);
       try{
         var crusaderGear = {};
         loot.map(l =>{
