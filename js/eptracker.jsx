@@ -719,6 +719,8 @@ var CruApp = React.createClass({
 
     return (<div>
         <div>{JSON.stringify(this.state.error)}</div>
+
+        <div className="onGreen">Install the extension to auto-load your data from <a href="https://chrome.google.com/webstore/detail/crusaders-automaton/dhlljphpeodbcliiafbedkbkiifdgdjk">Crusader Automaton</a></div>
       <Tabs>
         <Pane label="Crusaders">
           <div>
