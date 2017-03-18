@@ -2,6 +2,13 @@ console.log('initializing');
 var holder;
 // was following https://www.sitepoint.com/create-chrome-extension-10-minutes-flat/
 // to make this
+
+// publishing
+// https://developer.chrome.com/webstore/publish
+// analytics tutorial
+// https://developer.chrome.com/extensions/tut_analytics
+// installation stuffs
+// https://developer.chrome.com/webstore/inline_installation?hl=en-US
 var injectData = (tabId,name,x) =>{
     var escapedData = JSON.stringify(
             //{test:"hello"}
