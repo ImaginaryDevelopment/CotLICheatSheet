@@ -10,8 +10,10 @@
   },
   "permissions": [
    "webRequest",
+   "activeTab",
    "*://*.kongregate.com/*",
-   "*://*.djartsgames.ca/~idle/post.php"
+   "*://*.djartsgames.ca/~idle/post.php",
+   "*://imaginarydevelopment.github.io/"
    ],
    "background":{
     "scripts":["popup.js"]
