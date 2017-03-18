@@ -529,7 +529,7 @@ var CruApp = React.createClass({
   loadNetworkData(data){
     var json;
     try{
-      json = JSON.parse(this.state.networkDataRaw);
+      json = JSON.parse(data);
       console.log('parse success');
     } catch (ex){
       console.error(ex);
@@ -556,7 +556,8 @@ var CruApp = React.createClass({
   // network-data importer
   findNetworkData(){
     if(this.state.networkDataRaw)
-      this.loadNetworkData(this.state.networkDataRaw);
+    // this should be wrapped in a try
+      this.loadNetworkData(JSON.parse(this.state.networkDataRaw));
     else if (window.heroesRaw || window.lootRaw){
       var data = {};
       data.details = {};
