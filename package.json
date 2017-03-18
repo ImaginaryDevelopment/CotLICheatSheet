@@ -1,0 +1,17 @@
+{
+  "name": "cotlicheatsheet",
+  "version": "1.0.0",
+  "description": "Crusaders of the Lost Idols",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "coffee-script": "github:jashkenas/coffeescript"
+  },
+  "scripts": {
+    "wastest": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC"
+}
