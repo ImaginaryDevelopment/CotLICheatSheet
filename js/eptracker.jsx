@@ -526,8 +526,7 @@ var CruApp = React.createClass({
       window.saved = this.state.saved;
     }
   },
-  // network-data importer
-  loadNetworkData(){
+  loadNetworkData(data){
     if(!this.state.networkDataRaw){
       return;
     }
@@ -549,13 +548,29 @@ var CruApp = React.createClass({
     });
     var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000): null;
 
-      // account for pasting just the heroes section of json, or the whole data packet
-      var heroesSection = (json.heroes) || (json.details && json.details.heroes);
-      var mappedHeroes = parseNetworkDataHeroesSection(heroMap, heroesSection);
-      var mappedLoot = parseLoot(this.props.referenceData.crusaders,(json.loot) || (json.details && json.details.loot));
+    // account for pasting just the heroes section of json, or the whole data packet
+    var heroesSection = (json.heroes) || (json.details && json.details.heroes);
+    var mappedHeroes = parseNetworkDataHeroesSection(heroMap, heroesSection);
+    var mappedLoot = parseLoot(this.props.referenceData.crusaders,(json.loot) || (json.details && json.details.loot));
 
-      window.heroMap = this.props.heroMap;
-      this.setState({networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})});
+    window.heroMap = this.props.heroMap;
+    this.setState({networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})});
+  },
+  // network-data importer
+  findNetworkData(){
+    if(this.state.networkDataRaw)
+      this.loadNetworkData(this.state.networkDataRaw);
+    else if (window.heroesRaw || window.lootRaw){
+      var data = {};
+      data.details = {};
+      if(window.heroesRaw)
+        data.details.heroes = JSON.parse(window.heroesRaw);
+      if(window.lootRaw)
+        data.details.loot = JSON.parse(window.lootRaw);
+      loadNetworkData(data);
+    }
+    else
+      return;
   },
   onClearGameDataParseClick(){
     console.log('onClearGameDataParseClick');
@@ -676,7 +691,7 @@ var CruApp = React.createClass({
                   onImportTextChange={val => this.setState({textState:val})}
                   // networkgame section?
                   onNetworkDataTextInputChange={val => { console.log("setting networkDataRaw"); this.setState({networkDataRaw:val});}}
-                  onLoadNetworkDataClick={this.loadNetworkData}
+                  onLoadNetworkDataClick={this.findNetworkData}
                   networkDataRaw={this.state.networkDataRaw}
                   networkDataJson={this.state.networkDataJson}
                   heroMap={heroMap}
