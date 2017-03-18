@@ -111,8 +111,8 @@ app.Tabs = React.createClass({
   },
   handleClick(index,event){
     event.preventDefault();
-    if(props.onTabChange)
-      props.onTabChange(index, this.props.children && this.props.children.length > index && index >=0 ? this.props.children[index] : undefined);
+    if(this.props.onTabChange)
+      this.props.onTabChange(index, this.props.children && this.props.children.length > index && index >=0 ? this.props.children[index] : undefined);
     this.setState({
       selected: index
     });

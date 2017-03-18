@@ -193,10 +193,10 @@ app.TalentCalc = React.createClass({
         return (<Inputs {...props}
             sharingIsCaringLevel={+props.saved.sharingIsCaringLevel}
             crusaders={crusaders}
-            mainDpsEpics={talentSelectedCrusader.mainDpsEpics}
-            dpsSlotEpics={talentSelectedCrusader.dpsSlotEpics}
-            mainDpsEP={talentSelectedCrusader.mainDpsEP}
-            dpsSlotEP={ talentSelectedCrusader.dpsSlotEP}
+            mainDpsEpics={talentSelectedCrusader && talentSelectedCrusader.mainDpsEpics}
+            dpsSlotEpics={talentSelectedCrusader && talentSelectedCrusader.dpsSlotEpics}
+            mainDpsEP={talentSelectedCrusader && talentSelectedCrusader.mainDpsEP}
+            dpsSlotEP={talentSelectedCrusader && talentSelectedCrusader.dpsSlotEP}
             talents={props.referenceData.talents}
             critChance={getNumberOrDefault(props.saved.critChance, 0)} onCritChanceChange={val => (props.changeSaveState({critChance: inspect(+val || 0, 'changeSaveState crit')}))}
             idols={props.saved.idols} onIdolsChange={val => props.changeSaveState({idols:val})}
