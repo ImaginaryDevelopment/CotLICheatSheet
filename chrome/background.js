@@ -25,6 +25,7 @@ var injectData = (tabId,name,x) =>{
 };
 var onDataFetched = data =>
 {
+        holder = undefined;
 
         // console.log('XMLHttpRequest load', arguments);
         try{
