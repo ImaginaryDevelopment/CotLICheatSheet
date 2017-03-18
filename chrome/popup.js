@@ -2,7 +2,7 @@ console.log('initializing');
 var holder;
 // was following https://www.sitepoint.com/create-chrome-extension-10-minutes-flat/
 // to make this
-var injectData = (tabId,x) =>{
+var injectData = (tabId,name,x) =>{
     var escapedData = JSON.stringify(
             //{test:"hello"}
             x
@@ -10,7 +10,7 @@ var injectData = (tabId,x) =>{
                 .replace(/'/g,"\\'")
                 .replace(/"/g,'\\"');
     console.log('injecting string', escapedData);
-    var toExecute = 'var script = document.createElement("script"); script.textContent = "var extensionData=\'' + 
+    var toExecute = 'var script = document.createElement("script"); script.textContent = "var ' + name + '=\'' + 
             //JSON.stringify(data,null,2)
                 escapedData
                 + '\';"; document.head.appendChild(script);';
@@ -35,28 +35,15 @@ var onDataFetched = data =>
         chrome.tabs.create({'url':"https://imaginarydevelopment.github.io/CotLICheatSheet/"}, tab =>{
             tabId = tab.id;
             console.log('tab created', tab);
-
         });
         var subset = data.details.heroes;
-        
-        var escapedData = JSON.stringify(
-            //{test:"hello"}
-            subset
-            )
-                .replace(/'/g,"\\'")
-                .replace(/"/g,'\\"');
-        console.log('escaped',escapedData);
-        // var toExecute = 'var el = document.write("<script type=\'text/javascript\'>console.log(\'hello injection\');</script>");';
-        var toExecute = 'var script = document.createElement("script"); script.textContent = "var extensionData=\'' + 
-            //JSON.stringify(data,null,2)
-                escapedData
-                + '\';"; document.head.appendChild(script);';
-        console.log('about to execute', toExecute);
-        chrome.tabs.executeScript(tabId,{
-            //code:'window.extensionData = JSON.parse("' + JSON.stringify(data).replace("\"","\"\"") + "\");"
-            //code:'document.body.style.backgroundColor="red"'
-            code:toExecute
-        });
+        injectData(tabId, 'heroesRaw', data.details.heroes);
+        data.details.heroes = undefined;
+        injectData(tabId, 'lootRaw', data.details.loot);
+        data.details.loot = undefined;
+        // trimming to see if we can get data to go at all, and hopefully trimming unimportant props
+        data.details.objective_status = undefined;
+        injectData(tabId, 'remainderRaw', data);
 };
 var sendRequest = () =>
 {
