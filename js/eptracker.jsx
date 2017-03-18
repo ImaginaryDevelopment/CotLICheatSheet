@@ -527,9 +527,6 @@ var CruApp = React.createClass({
     }
   },
   loadNetworkData(data){
-    if(!this.state.networkDataRaw){
-      return;
-    }
     var json;
     try{
       json = JSON.parse(this.state.networkDataRaw);
