@@ -315,7 +315,7 @@ var CruTagGrid = React.createClass({
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     // var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
-    var sortedCrusaders = filterSortCrusaders(this.props.ownedCrusaderIds, this.props.filterOwned, this.props.filterTags, isBuildingFormation, this.props.formationIds, this.props.slotSort == "desc", this.props.model.crusaders);
+    var sortedCrusaders = filterSortCrusaders(this.props.ownedCrusaderIds || [], this.props.filterOwned, this.props.filterTags || [], isBuildingFormation, this.props.formationIds || [], this.props.slotSort == "desc", this.props.model.crusaders);
 
     var slotSortClasses = this.props.slotSort === "up" ? "fa fa-fw fa-sort-up" : "fa fa-fw fa-sort-desc";
 
@@ -325,7 +325,7 @@ var CruTagGrid = React.createClass({
             return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
         }).reduce(function(a,b){ return a + b;});
         var classes = "img_tag";
-        if(self.props.filterTags[tag.id]){
+        if(self.props.filterTags && self.props.filterTags[tag.id]){
           classes += " active";
         }
         tagCounts.push(<span key={tag.id} className={classes} title={tag.id} onClick={self.onFilterTag.bind(self,tag.id)}>{count}</span>);
@@ -610,6 +610,7 @@ var CruApp = React.createClass({
     }
     cruTagGrid.store(data);
     this.setState({saved:data});
+
   },
   changeSaveState(newData){
     var merged = this.mergeSaveState(newData);
@@ -630,6 +631,7 @@ var CruApp = React.createClass({
       } else {
         var data = JSON.parse(this.state.textState);
         cruTagGrid.store(data);
+        scrubSavedData(data);
         this.setState({saved:data});
       }
     }
@@ -637,6 +639,8 @@ var CruApp = React.createClass({
     else{
       cruTagGrid.store(undefined);
       this.setState({saved:{}});
+      // this should be able to be removed once we find out why it is putting things in a bad state
+      window.location.reload(false);
     }
   },
   importAppState(data,reload){
