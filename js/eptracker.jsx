@@ -567,7 +567,7 @@ var CruApp = React.createClass({
         data.details.heroes = JSON.parse(window.heroesRaw);
       if(window.lootRaw)
         data.details.loot = JSON.parse(window.lootRaw);
-      loadNetworkData(data);
+      this.loadNetworkData(data);
     }
     else
       return;
