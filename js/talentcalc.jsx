@@ -81,7 +81,8 @@ app.Inputs = props =>
     var effectiveEP = calcEffectiveEP(props.sharingIsCaringLevel, props.mainDpsEP, props.dpsSlotEP);
     // console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
     console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
-    var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals + 1]: undefined;
+    var getNextCost = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name] ? props.talents[name].costs[props[name] + 1] : undefined;
+    // var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals + 1]: undefined;
     var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
     var getOverDps = x => ((1 + getEnchantBuff(x)*props.mainDpsEP) - (1 + 0.25*props.mainDpsEP)) / (1 + 0.25 * props.mainDpsEP);
     var currentEnchantBuff = getEnchantBuff(props.overenchanted);
@@ -155,16 +156,19 @@ app.Inputs = props =>
                 <td></td>
                 <td><TextInputUnc value={props.passiveCriticals} onChange={props.onpassiveCriticalsChange} /></td>
             </tr>
-            <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} costForNextLevel={passiveCriticalsNextCost} onChange={props.onPassiveCriticalsChange} />
+            <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} costForNextLevel={getNextCost("passiveCriticals")} onChange={props.onPassiveCriticalsChange} />
                 <tr>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
             <tr />
             <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspect Idols:</td>}  />
-            <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4} costForNextLevel={851} onChange={props.onSurplusCooldownChange} />
+            <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4} costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
             <tr />
             <TalentHeaderRow index="27" title="Overenchanted" />
-            <TalentInput value={props.overenchanted} getDps={getOverDps} costForNextLevel={1084} onChange={props.onOverenchantedChange} />
+            <TalentInput value={props.overenchanted} getDps={getOverDps} costForNextLevel={getNextCost("overenchanted")} onChange={props.onOverenchantedChange} />
+            <tr />
+            <TalentHeaderRow index="30" title="Set Bonus" />
+            <TalentInput value={props.setBonus} getDps={x => x * 0.2} costForNextLevel={getNextCost("setBonus")} onChange={props.onSetBonusChange} />
         </tbody>
         </table>
         );
