@@ -76,7 +76,7 @@ app.TalentInput = props =>{
 
 app.Inputs = props =>
 {
-    var cooldown = (app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100);
+    var cooldown = app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
     var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
     console.log('Inputs effectiveEP', effectiveEP, props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
@@ -100,6 +100,8 @@ app.Inputs = props =>
     var getRideTheStormDps = x => (getCurrentStormRider(x) - props.stormRiderPercentage) / (props.stormRiderPercentage+1);
     var getRideTheStormMagnifiedDps = x => ((getCurrentStormRider(x)*1.5 + 1) - (1 + props.stormRiderPercentage * 1.5)) / (props.stormRiderPercentage * 1.5 + 1);
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
+    var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
+    var getStormsBuildingDps = x => 480*(1-(Math.min(inspect(cooldown / 100,'getStormBuilding cooldown value'),0.5)))/getTimePerStormRider(x) - 1;
 
     
     // console.log('Inputs rideTheStormMagnified', props.stormRiderPercentage, getRideTheStormDps(props.rideTheStorm), props.rideTheStorm);
@@ -230,6 +232,13 @@ app.Inputs = props =>
                             />
             <tr><th>Cost for next level</th><td>{getNextCost("rideTheStorm")}</td></tr>
             <tr />
+            <TalentHeaderRow index="58" title="Storms Building" />
+            <TalentInput    value={props.stormsBuilding}
+                            getDps={getStormsBuildingDps}
+                            costForNextLevel={getNextCost("stormsBuilding")}
+                            onChange={props.onStormsBuildingChange} />
+            <tr><th>Cost for next level</th><td>{getNextCost("stormsBuilding")}</td></tr>
+            <tr />
         </tbody>
         </table>
         );
@@ -318,6 +327,7 @@ app.TalentCalc = React.createClass({
             swapDay={getNumberOrDefault(props.saved.swapDay,0)} onSwapDayChange={val => props.changeSaveState({swapDay:val})}
             rideTheStorm={getNumberOrDefault(props.saved.rideTheStorm,0)} onRideTheStormChange={val => props.changeSaveState({rideTheStorm:val})}
             stormRiderPercentage={getNumberOrDefault(props.saved.stormRiderPercentage,0)} onStormRiderPercentageChange={val => props.changeSaveState({stormRiderPercentage:val})}
+            stormsBuilding={getNumberOrDefault(props.saved.stormsBuilding,0)} onStormsBuildingChange={val => props.changeSaveState({stormsBuilding:val})}
          />);
     }
 });
