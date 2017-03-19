@@ -93,7 +93,16 @@ app.Inputs = props =>
     var getFastLearnersDps = x => 300 / (getFastLearnerMinutes(x) - 1);
     var getWellEquippedDps = x => 0.2*x*props.mainDpsEpics;
     var getSwapDayDps = x => 0.2*x*(props.dpsSlotEpics - props.mainDpsEpics);
-    console.log('Inputs sharingisCaringdps', idkMyBffJill, getSharingDps(props.sharingIsCaring), effectiveEP, currentEnchantBuff);
+    var getWellEquippedDps = x => 0.2*x*props.mainDpsEpics;
+        //{switch (x) {case 0: return 0.1; case 1: return 0.11; case 2: return 0.125; case 3: return 0.15; case 4: return 0.2; case "4g" : return 0.25; case 5: return 0.4; case "5g": return 0.5;}}
+    // this need your storm rider percentage
+    var getCurrentStormRider = x => props.stormRiderPercentage * (x*0.1 +1);
+    var getRideTheStormDps = x => (getCurrentStormRider(x) - props.stormRiderPercentage) / (props.stormRiderPercentage+1);
+    var getRideTheStormMagnifiedDps = x => ((getCurrentStormRider(x)*1.5 + 1) - (1 + props.stormRiderPercentage * 1.5)) / (props.stormRiderPercentage * 1.5 + 1);
+    // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
+
+    
+    // console.log('Inputs rideTheStormMagnified', props.stormRiderPercentage, getRideTheStormDps(props.rideTheStorm), props.rideTheStorm);
     return (<table>
         <thead>
             </thead>
@@ -144,7 +153,7 @@ app.Inputs = props =>
                 </tr>
             <tr data-row="13" />
             <tr data-row="14" />
-            <tr data-row="15" />
+            <tr data-row="15"><th>Storm Rider Percentage</th><td><TextInputUnc type="number" min="0" value={props.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td></tr>
             <tr data-row="16" />
             <tr data-row="17">
                 <th colSpan="5">Talents</th>
@@ -204,12 +213,22 @@ app.Inputs = props =>
                             onChange={props.onWellEquippedChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("wellEquipped")}</td></tr>
             <tr />
-            <TalentHeaderRow index="44" title="Swap Day" />
+            <TalentHeaderRow index="48" title="Swap Day" />
             <TalentInput    value={props.swapDay}
                             getDps={getSwapDayDps}
                             costForNextLevel={getNextCost("swapDay")}
                             onChange={props.onSwapDayChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("swapDay")}</td></tr>
+            <tr />
+            <TalentHeaderRow index="53" title="Ride The Storm" />
+            <TalentInput    value={props.rideTheStorm}
+                            getDps={getRideTheStormMagnifiedDps}
+                            costForNextLevel={getNextCost("rideTheStorm")}
+                            onChange={props.onRideTheStormChange} 
+                            td1={(<td>{getCurrentStormRider(props.rideTheStorm) * 1.5}</td>)}
+                            td2={(<td>{getCurrentStormRider(props.rideTheStorm + 1) * 1.5}</td>)}
+                            />
+            <tr><th>Cost for next level</th><td>{getNextCost("rideTheStorm")}</td></tr>
             <tr />
         </tbody>
         </table>
@@ -297,6 +316,8 @@ app.TalentCalc = React.createClass({
             fastLearners={getNumberOrDefault(props.saved.fastLearners,0)} onFastLearnersChange={val => props.changeSaveState({fastLearners:val})}
             wellEquipped={getNumberOrDefault(props.saved.wellEquipped,0)} onWellEquippedChange={val => props.changeSaveState({wellEquipped:val})}
             swapDay={getNumberOrDefault(props.saved.swapDay,0)} onSwapDayChange={val => props.changeSaveState({swapDay:val})}
+            rideTheStorm={getNumberOrDefault(props.saved.rideTheStorm,0)} onRideTheStormChange={val => props.changeSaveState({rideTheStorm:val})}
+            stormRiderPercentage={getNumberOrDefault(props.saved.stormRiderPercentage,0)} onStormRiderPercentageChange={val => props.changeSaveState({stormRiderPercentage:val})}
          />);
     }
 });
