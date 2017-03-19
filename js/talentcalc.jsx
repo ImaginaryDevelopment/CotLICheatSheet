@@ -92,6 +92,7 @@ app.Inputs = props =>
     var getFastLearnerMinutes = x => (1-0.05*x) * 300;
     var getFastLearnersDps = x => 300 / (getFastLearnerMinutes(x) - 1);
     var getWellEquippedDps = x => 0.2*x*props.mainDpsEpics;
+    var getSwapDayDps = x => 0.2*x*(props.dpsSlotEpics - props.mainDpsEpics);
     console.log('Inputs sharingisCaringdps', idkMyBffJill, getSharingDps(props.sharingIsCaring), effectiveEP, currentEnchantBuff);
     return (<table>
         <thead>
@@ -202,6 +203,13 @@ app.Inputs = props =>
                             costForNextLevel={getNextCost("wellEquipped")}
                             onChange={props.onWellEquippedChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("wellEquipped")}</td></tr>
+            <tr />
+            <TalentHeaderRow index="44" title="Swap Day" />
+            <TalentInput    value={props.swapDay}
+                            getDps={getSwapDayDps}
+                            costForNextLevel={getNextCost("swapDay")}
+                            onChange={props.onSwapDayChange} />
+            <tr><th>Cost for next level</th><td>{getNextCost("swapDay")}</td></tr>
             <tr />
         </tbody>
         </table>
