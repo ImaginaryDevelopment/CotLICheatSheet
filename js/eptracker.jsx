@@ -400,13 +400,18 @@ var HeroGameData = React.createClass({
     //   return null;
     // if(! this.props.mappedLoot)
     //   return null;
+    var gear = this.props.mappedLoot && this.props.mappedLoot.gear || [];
 
     var heroLIs = this.props.mappedHeroes? this.props.mappedHeroes.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>) 
     ): [];
-    var lootLIs = this.props.mappedLoot? this.props.mappedLoot.map(l =>
-      (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
-    ):[];
+    var gearLIs = gear.map(l =>
+      (<li data-key={l.gearId} key={l.gearId}>{JSON.stringify(l)}</li>)
+    );
+    var loot = this.props.mappedLoot && this.props.mappedLoot.items || [];
+    var lootLIs = loot.map(l =>{
+      return (<li data-key={l.id} key={l.id}>{JSON.stringify(l)}</li>);
+    });
 
     // consider maping the parsed raw section collapsible at least at the highest level
 
@@ -420,10 +425,17 @@ var HeroGameData = React.createClass({
               </ul>
             </div>
           </Pane>
-          <Pane label="Loot">
-            <div><div>{lootLIs.length + " loot items"}</div>
+          <Pane label="Gear">
+            <div><div>{gearLIs.length + " gear items"}</div>
             <ul>
-              {lootLIs}
+              {gearLIs}
+              </ul>
+            </div>
+          </Pane>
+          <Pane label="Other Loot">
+            <div>
+              <ul>
+                {lootLIs}
               </ul>
             </div>
           </Pane>

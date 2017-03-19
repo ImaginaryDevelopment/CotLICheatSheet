@@ -56,13 +56,13 @@ var parseLoot = (crusaders,lootData) =>{
             {
               switch (l.loot_id){
                 case 249:
-                  return {cooldown:l.count, rarity:1};
+                  return {id:l.loot_id,type:"cooldown", count:l.count, rarity:1};
                 case 250:
-                  return {cooldown:l.count,rarity:2};
+                  return {id:l.loot_id,type:"cooldown", count:l.count,rarity:2};
                 case 251:
-                  return {cooldown:l.count,rarity:3};
+                  return {id:l.loot_id,type:"cooldown", count:l.count,rarity:3};
                 case 252:
-                  return {cooldown:l.count,rarity:4};
+                  return {id:l.loot_id,type:"cooldown", count:l.count,rarity:4};
                 
               }
               }).filter(l => l != null);
@@ -180,7 +180,7 @@ var getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : it
 var getSlotRarities = gear => inspect((gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity),'getSlotRarities results');
 
 var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
-  // console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );
+  console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );
 
     var sortedCrusaders = (!isDesc ? crusaders : crusaders.slice(0).sort(function(a,b){
       return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
