@@ -10,7 +10,14 @@ window.jsonData =
     "legendary"
   ],
   "talents":{
+    "spendItAll":{
+      "talentId":1
+    },
+    "speedLooter":{
+      "talentId":2
+    },
     "passiveCriticals":{
+      "talentId":3,
       "costs":[
         0,
         10,
@@ -64,7 +71,22 @@ window.jsonData =
         971,
         1068
         ]
-      }
+    },
+    "surplusCooldown":{
+      "talentId":4
+    },
+    "overenchanted":{
+      "talentId":5
+    },
+    "setBonus":{
+      "talentId":6
+    },
+    "enduranceTraining":{
+      "talentId":7
+    },
+    "timeORama":{
+      "talentId":8
+    }
   },
   "missionTags": [
     {

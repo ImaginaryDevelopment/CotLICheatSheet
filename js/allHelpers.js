@@ -101,7 +101,7 @@ var readIt = function(key,defaultValue){
   if(getIsLocalStorageAvailable()){
     var item = localStorage.getItem(key);
     if(typeof(item) !== 'undefined' && item != null){
-      console.info("read item from localStorage", key,item);
+      // console.info("read item from localStorage", key,item);
       try{
         return JSON.parse(item);
       }

@@ -413,11 +413,15 @@ var HeroGameData = React.createClass({
     var lootLIs = loot.map(l =>{
       return (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>);
     });
+    var talents = this.props.mappedTalents || [];
+    var talentLIs = talents.map(t =>
+      (<li data-key={t.talentId} key={t.talentId}>{JSON.stringify(t)}</li>)
+    );
 
     // consider maping the parsed raw section collapsible at least at the highest level
 
     return (<div>
-        <button onClick={() => this.props.onImportGameDataClick(this.props.mappedHeroes,this.props.mappedLoot)}>import</button>
+        <button onClick={() => this.props.onImportGameDataClick(this.props.mappedHeroes,this.props.mappedLoot, this.props.mappedTalents)}>import</button>
         <Tabs>
           <Pane label="Heroes and EP">
             <div><div>{ heroLIs.length + " items"}</div>
@@ -430,6 +434,13 @@ var HeroGameData = React.createClass({
             <div><div>{gearLIs.length + " gear items"}</div>
             <ul>
               {gearLIs}
+              </ul>
+            </div>
+          </Pane>
+          <Pane label="Talents">
+            <div>
+              <ul>
+                {talentLIs}
               </ul>
             </div>
           </Pane>
@@ -474,7 +485,16 @@ var Exporter = props =>
         <TextAreaInputUnc onChange={props.onNetworkDataTextInputChange} value={props.networkDataRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
         <button onClick={props.onLoadNetworkDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
-        {inspect(props.networkDataJson,'exporter networkDataJson')? (<HeroGameData heroMap={props.heroMap} crusaders={props.crusaders} data={props.networkDataJson} crusaderReferenceData={props.crusaderReferenceData} mappedHeroes={props.mappedHeroes} mappedLoot={props.mappedLoot} onImportGameDataClick={props.onImportGameDataClick} />) : null}
+        {inspect(props.networkDataJson,'exporter networkDataJson')? (
+          <HeroGameData heroMap={props.heroMap} 
+                        crusaders={props.crusaders} 
+                        data={props.networkDataJson} 
+                        crusaderReferenceData={props.crusaderReferenceData} 
+                        mappedHeroes={props.mappedHeroes} 
+                        mappedLoot={props.mappedLoot} 
+                        mappedTalents={props.mappedTalents} 
+                        onImportGameDataClick={props.onImportGameDataClick} />) 
+            : null}
     </div>
       </Pane>
     </Tabs>
@@ -540,7 +560,7 @@ var CruApp = React.createClass({
     }
   },
   loadNetworkData(parsedOrUnparsedData){
-    console.log('loadNetworkData',parsedOrUnparsedData);
+    // console.log('loadNetworkData',parsedOrUnparsedData);
     var json = typeof(parsedOrUnparsedData) != "string" ? parsedOrUnparsedData : null;
     if(!(json != null))
     try{
@@ -559,14 +579,15 @@ var CruApp = React.createClass({
       heroMap[c.heroId] = c;
     });
     var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000): null;
+    var getOrGetFromDetails = name => json[name] || (json.details && json.details[name]);
 
     // account for pasting just the heroes section of json, or the whole data packet
-    var heroesSection = (json.heroes) || (json.details && json.details.heroes);
-    var mappedHeroes = heroesSection ? parseNetworkDataHeroesSection(heroMap, heroesSection) : undefined;
-    var mappedLoot = json.loot || json.details.loot ? parseLoot(this.props.referenceData.crusaders,(json.loot) || (json.details && json.details.loot)) : undefined;
+    var mappedHeroes = parseNetworkDataHeroesSection(heroMap, getOrGetFromDetails("heroes"));
+    var mappedLoot = parseLoot(this.props.referenceData.crusaders,getOrGetFromDetails("loot"));
+    var mappedTalents = parseTalents(this.props.referenceData.talents,getOrGetFromDetails("talents"));
 
     window.heroMap = this.props.heroMap;
-    var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
+    var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
     console.log('loadNetworkData setting state', stateMods);
     this.setState(stateMods);
   },
@@ -595,7 +616,7 @@ var CruApp = React.createClass({
     this.setState({networkDataJson:null});
   },
   // network data merge method
-  onImportGameDataClick(heroes,loot){
+  onImportGameDataClick(heroes,loot,talents){
     // heroes looks like this:
     // return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
     var cruTagGridData = cruTagGrid.readOrDefault(undefined);
@@ -610,6 +631,7 @@ var CruApp = React.createClass({
         ep[crusader.id] = h.Ep;
       });
       data.enchantmentPoints = ep;
+      console.log('imported hero game data');
     }
     catch (ex){
       console.error('could not import hero game data', ex);
@@ -619,7 +641,13 @@ var CruApp = React.createClass({
     // merged should look like this :
     // crusaderGear:{"01":{"slot0":4,"slot1":4,"slot2":4},
     if(loot && loot.gear){
-      tryPullLootData(data,loot)
+      mergeImportLoot(data,loot)
+      console.log('imported loot game data');
+    }
+    console.log('importing talents?', talents);
+    if(talents){
+      console.log('onImportGameDataClick talents', talents);
+      mergeImportTalents(data,talents);
     }
     cruTagGrid.store(data);
     this.setState({saved:data});
@@ -722,6 +750,7 @@ var CruApp = React.createClass({
                   onClearGameDataParseClick={this.onClearGameDataParseClick}
                   mappedLoot={this.state.mappedLoot}
                   mappedHeroes={this.state.mappedHeroes}
+                  mappedTalents={this.state.mappedTalents}
                   // network game section end?
                   onImportSiteStateClick={this.onImportSiteStateClick}
                   onGenerateUrlClick={this.onGenerateUrlClick}

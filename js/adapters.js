@@ -1,78 +1,99 @@
 // any adapter code or functionality that doesn't need jsx
 // on the fence about domain layer code
+var getTalentsAsArray = talents =>
+{
+  return Object.keys(talents).map( k => copyObject(talents[k], {name:k}));
+};
+// talent reference data 
+var parseTalents = (talents,data) =>{
+  if(!(data != null))
+    return;
+  console.log('attempting to parse talents');
+  var talentArray = getTalentsAsArray(talents);
+  var parsedTalents = Object.keys(data).map(k =>{
+
+    var talent = talentArray.find(t => t.talentId && t.talentId == k);
+    var result = {name:talent && talent.name, level: +data[k], talentId:+k};
+    return result;
+  });
+  console.log('talents parsed into', parsedTalents, talentArray, talents);
+  return parsedTalents;
+};
 var parseLoot = (crusaders,lootData) =>{
-        console.log('attempting to parse loot');
-        var refC = crusaders;
-        var lootComparer = (a,b) =>{
-          if(a.heroBenchSlot > b.heroBenchSlot)
-            return 1;
-          if(a.heroBenchSlot < b.heroBenchSlot)
-            return -1;
-          if(a.slotId > b.slotId)
-            return 1;
-          if(a.slotId < b.slotId)
-            return -1;
-          if(a.slot != null && !(b.slot != null))
-            return 1;
-          if(!(a.slot != null) && b.slot != null)
-            return -1;
-          if(a.slot > b.slot)
-            return 1;
-          if(a.slot < b.slot)
-            return -1;
+    if(!(lootData != null))
+      return;
+    console.log('attempting to parse loot');
+    var refC = crusaders;
+    var lootComparer = (a,b) =>{
+      if(a.heroBenchSlot > b.heroBenchSlot)
+        return 1;
+      if(a.heroBenchSlot < b.heroBenchSlot)
+        return -1;
+      if(a.slotId > b.slotId)
+        return 1;
+      if(a.slotId < b.slotId)
+        return -1;
+      if(a.slot != null && !(b.slot != null))
+        return 1;
+      if(!(a.slot != null) && b.slot != null)
+        return -1;
+      if(a.slot > b.slot)
+        return 1;
+      if(a.slot < b.slot)
+        return -1;
 
-          return 0;
-        };
-        var unMapped = [];
-        var lootMapped =
-          lootData
-            .map(l =>
-            {
-              var crusader = refC.find(cru => cru.loot.find(cl => cl.lootId == l.loot_id));
-              var lootItem = crusader && crusader.loot.find(cl => cl.lootId == l.loot_id);
-              // console.log('lootDataMap',l, crusader,lootItem);
-              if(!(crusader != null)){
-                unMapped.push(l);
-              }
+      return 0;
+    };
+    var unMapped = [];
+    var lootMapped =
+      lootData
+        .map(l =>
+        {
+          var crusader = refC.find(cru => cru.loot.find(cl => cl.lootId == l.loot_id));
+          var lootItem = crusader && crusader.loot.find(cl => cl.lootId == l.loot_id);
+          // console.log('lootDataMap',l, crusader,lootItem);
+          if(!(crusader != null)){
+            unMapped.push(l);
+          }
 
-              return {loot:l, crusader:crusader,lootItem:lootItem};
-            })
-            .filter(l => l.crusader != null)
-            .map(x =>
-            {
-              var result = {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity};
-              // console.log('lootmapping working on x', x);
-              if(x.loot.count)
-                result.countOrLegendaryLevel=x.loot.count;
-              if(x.lootItem.golden)
-                result.isGolden = true;
-              if(x.crusader.id ==="15")
-              console.log('lootmapping',result,x);
-              return result;
-            }
-            ).sort(lootComparer);
+          return {loot:l, crusader:crusader,lootItem:lootItem};
+        })
+        .filter(l => l.crusader != null)
+        .map(x =>
+        {
+          var result = {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity};
+          // console.log('lootmapping working on x', x);
+          if(x.loot.count)
+            result.countOrLegendaryLevel=x.loot.count;
+          if(x.lootItem.golden)
+            result.isGolden = true;
+          if(x.crusader.id ==="15")
+          console.log('lootmapping',result,x);
+          return result;
+        }
+        ).sort(lootComparer);
 
-            var items = unMapped.map(l =>
-            {
-              switch (l.loot_id){
-                case 249:
-                  return {lootId:l.loot_id,type:"cooldown", count:l.count, rarity:1};
-                case 250:
-                  return {lootId:l.loot_id,type:"cooldown", count:l.count,rarity:2};
-                case 251:
-                  return {lootId:l.loot_id,type:"cooldown", count:l.count,rarity:3};
-                case 252:
-                  return {lootId:l.loot_id,type:"cooldown", count:l.count,rarity:4};
-                
-              }
-              }).filter(l => l != null);
+        var items = unMapped.map(l =>
+        {
+          switch (l.loot_id){
+            case 249:
+              return {lootId:l.loot_id,type:"cooldownCommon", count:l.count, rarity:1};
+            case 250:
+              return {lootId:l.loot_id,type:"cooldownUncommon", count:l.count,rarity:2};
+            case 251:
+              return {lootId:l.loot_id,type:"cooldownRare", count:l.count,rarity:3};
+            case 252:
+              return {lootId:l.loot_id,type:"cooldownEpic", count:l.count,rarity:4};
+            
+          }
+          }).filter(l => l != null);
 
-          // console.log('lootMapped',lootMapped);
-          return {gear:lootMapped,items:items};
+      // console.log('lootMapped',lootMapped);
+      return {gear:lootMapped,items:items};
 };
 
-var tryPullLootData = (data,loot) => {
-      console.log('tryPullLootData',data);
+var mergeImportLoot = (data,loot) => {
+      console.log('mergeImportLoot',data);
       if(loot.gear)
       {
         try{
@@ -102,10 +123,27 @@ var tryPullLootData = (data,loot) => {
         }
       }
       if(loot.items){
-        
+        loot.items.map(l =>
+        {
+          data[l.type] = l.count;
+        });
       }
 };
+var mergeImportTalents = (data,talents) =>{
+  console.log('mergeImportTalents',talents);
+  if(!(talents!= null))
+    return;
+  talents.filter(t =>
+    t.name != null
+  ).map(t =>
+    data[inspect(t,'importing talent level').name] = t.level
+  )
+
+};
+
 var parseNetworkDataHeroesSection = (heroMap, heroes) => {
+  if(!(heroes != null))
+    return;
   console.log('parseNetworkDataHeroesSection', heroes.length);
     var mapped = Array.isArray(heroes) ?
       heroes.map(h => {
