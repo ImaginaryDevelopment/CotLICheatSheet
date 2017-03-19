@@ -39,15 +39,15 @@ app.HeroSelect.PropTypes = {
 app.getCooldown = (c,u,r,e) => (c * 0.5 + u + r * 1.5 + e * 2) / 100;
 
 app.TalentHeaderRow = props =>{
-    return (            <tr data-row={props.index}>
-                <th>{props.title}</th>
+    return (            <tr data-row={props.index} className="dpsHeaderRow">
+                <th><h3>{props.title}</h3></th>
                 {props.td1? props.td1 : <td />}
                 {props.td2? props.td2: <td />}
                 {props.td3? props.td3: <td />}
-                <th>current dps buff</th>
-                <th>next level dps buff</th>
-                <th>percent improvement</th>
-                <th>Score(larger is better)</th>
+                <td>current dps buff</td>
+                <td>next level dps buff</td>
+                <td>percent improvement</td>
+                <td>Score(larger is better)</td>
                 {props.td4? props.td4 : <td />}
                 {props.td5? props.td5: <td />}
             </tr>);
@@ -64,13 +64,13 @@ app.TalentInput = props =>{
     console.log('TalentInput', props.value, dpsBuff, nextDps, impr, score);
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
         <th>Current level</th>
-        <td><TextInputUnc value={props.value} onChange={props.onChange} /></td>
-        {props.getTd1 ? props.getTd1(): <td />}
-        {props.getTd2 ? props.getTd2(): <td />}
+        <td><TextInputUnc type="number" min="0" max={props.max? props.max : undefined} value={props.value} onChange={props.onChange} /></td>
+        {props.td1 ? props.td1: <td />}
+        {props.td2 ? props.td2: <td />}
         <td className="textcenter">{dpsBuff}</td>
-        <td className="textcenter">{nextDps}</td>
-        <td className="textcenter">{(impr * 100).toFixed(2)}%</td>
-        <td className="textcenter">{score ? score.toFixed(2) + '%' : null}</td>
+        <td className="textcenter">{score ? nextDps: null}</td>
+        <td className="textcenter">{score ? (impr * 100).toFixed(2) + '%' : null}</td>
+        <td className="textcenter">{score ? score.toFixed(2) + '%' : 0}</td>
     </tr>)
 };
 
@@ -89,6 +89,8 @@ app.Inputs = props =>
     var currentEnchantBuff = getEnchantBuff(props.overenchanted);
     var idkMyBffJill = props.mainDpsEP + Math.round((props.dpsSlotEP - props.mainDpsEP)*6*0.05,0);
     var getSharingDps = x => (calcEffectiveEP(x, props.mainDpsEP, props.dpsSlotEP)*currentEnchantBuff  - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff * (idkMyBffJill)+1);
+    var getFastLearnerMinutes = x => (1-0.05*x) * 300;
+    var getFastLearnersDps = x => 300 / (getFastLearnerMinutes(x) - 1);
     console.log('Inputs sharingisCaringdps', idkMyBffJill, getSharingDps(props.sharingIsCaring), effectiveEP, currentEnchantBuff);
     return (<table>
         <thead>
@@ -165,7 +167,7 @@ app.Inputs = props =>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
             <tr />
-            <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspect Idols:</td>}  />
+            <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspent Idols:</td>}  />
             <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4} costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("surplusCooldown")}</td></tr>
             <TalentHeaderRow index="27" title="Overenchanted" />
@@ -176,10 +178,21 @@ app.Inputs = props =>
             <TalentInput value={props.setBonus} getDps={x => x * 0.2} costForNextLevel={getNextCost("setBonus")} onChange={props.onSetBonusChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("setBonus")}</td></tr>
             <tr />
-            <TalentHeaderRow index="35" title="Sharing is Caring" />
-            <TalentInput value={props.sharingIsCaring} getDps={getSharingDps} costForNextLevel={getNextCost("sharingIsCaring")} onChange={props.onSharingIsCaringChange} />
+            <TalentHeaderRow index="35" title="Sharing is Caring" td2={(<td title="C36-Current enchant lvl">Current EffectiveEP</td>)} td3={(<td title="E36-next level enchant">Next lvl EffectiveEP</td>)} />
+            <TalentInput    value={props.sharingIsCaring} 
+                            getDps={getSharingDps} 
+                            costForNextLevel={getNextCost("sharingIsCaring")} 
+                            onChange={props.onSharingIsCaringChange} 
+                            td1={<td>{effectiveEP}</td>}
+                            td2={<td>{calcEffectiveEP(props.sharingIsCaring + 1, props.mainDpsEP, props.dpsSlotEP)}</td>}
+                            />
             <tr><th>Cost for next level</th><td>{getNextCost("sharingIsCaring")}</td></tr>
             <tr />
+            <TalentHeaderRow index="40" title="Fast Learners" td2={(<td title="C40-Time per XP">Time per XP</td>)} td3={(<td title="D36-Time per XP at next level">Time per XP at next level</td>)} />
+            <TalentInput    value={props.fastLearners}
+                            getDps={getFastLearnersDps}
+                            costForNextLevel={getNextCost("fastLearners")}
+                            onChange={props.onFastLearnersChange} />
         </tbody>
         </table>
         );
@@ -263,6 +276,7 @@ app.TalentCalc = React.createClass({
             overenchanted={getNumberOrDefault(props.saved.overenchanted,0)} onOverenchantedChange={val => props.changeSaveState({overenchanted:val})}
             setBonus={getNumberOrDefault(props.saved.setBonus,0)} onSetBonusChange={val => props.changeSaveState({setBonus:val})}
             sharingIsCaring={getNumberOrDefault(props.saved.sharingIsCaring,0)} onSharingIsCaringChange={val => props.changeSaveState({sharingIsCaring:val})}
+            fastLearners={getNumberOrDefault(props.saved.fastLearners,0)} onFastLearnersChange={val => props.changeSaveState({fastLearners:val})}
          />);
     }
 });

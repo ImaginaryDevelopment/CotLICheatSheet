@@ -138,3 +138,7 @@ tr.dps .sharedEp{
 .tabs__content {
   padding: 25px;
 }
+.dpsHeaderRow > th,
+.dpsHeaderRow > td:nth-child(-n+8){
+    border-top: 1px solid black;
+}
