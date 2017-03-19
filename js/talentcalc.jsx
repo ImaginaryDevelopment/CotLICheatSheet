@@ -88,7 +88,7 @@ app.Inputs = props =>
     var getOverDps = x => ((1 + getEnchantBuff(x)*props.mainDpsEP) - (1 + 0.25*props.mainDpsEP)) / (1 + 0.25 * props.mainDpsEP);
     var currentEnchantBuff = getEnchantBuff(props.overenchanted);
     var idkMyBffJill = props.mainDpsEP + Math.round((props.dpsSlotEP - props.mainDpsEP)*6*0.05,0);
-    var getSharingDps = x => (effectiveEP*currentEnchantBuff  - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff*(idkMyBffJill)+1);
+    var getSharingDps = x => (calcEffectiveEP(x, props.mainDpsEP, props.dpsSlotEP)*currentEnchantBuff  - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff * (idkMyBffJill)+1);
     console.log('Inputs sharingisCaringdps', idkMyBffJill, getSharingDps(props.sharingIsCaring), effectiveEP, currentEnchantBuff);
     return (<table>
         <thead>
