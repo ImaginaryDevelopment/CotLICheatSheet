@@ -36,8 +36,23 @@ app.HeroSelect.PropTypes = {
     selectedHeroId: React.PropTypes.string,
     onHeroChange: React.PropTypes.func.isRequired
 };
-app.getCooldown = (c,u,r,e) =>
-(c * 0.5 + u + r * 1.5 + e * 2) / 100;
+app.getCooldown = (c,u,r,e) => (c * 0.5 + u + r * 1.5 + e * 2) / 100;
+
+app.TalentHeaderRow = props =>{
+    return (            <tr data-row={props.index}>
+                <th>{props.title}</th>
+                {props.td1? props.td1 : <td />}
+                {props.td2? props.td2: <td />}
+                {props.td3? props.td3: <td />}
+                <th>current dps buff</th>
+                <th>next level dps buff</th>
+                <th>percent improvement</th>
+                <th>Score(larger is better)</th>
+                {props.td4? props.td4 : <td />}
+                {props.td5? props.td5: <td />}
+            </tr>);
+
+};
 
 app.TalentInput = props =>{
     var dpsBuff = props.getDps(props.value);
@@ -67,6 +82,9 @@ app.Inputs = props =>
     // console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
     console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
     var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals + 1]: undefined;
+    var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
+    var getOverDps = x => ((1 + getEnchantBuff(x)*props.mainDpsEP) - (1 + 0.25*props.mainDpsEP)) / (1 + 0.25 * props.mainDpsEP);
+    var currentEnchantBuff = getEnchantBuff(props.overenchanted);
     return (<table>
         <thead>
             </thead>
@@ -135,13 +153,18 @@ app.Inputs = props =>
                 <th>percent improvement</th>
                 <th>Score(larger is better)</th>
                 <td></td>
-                <td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>
+                <td><TextInputUnc value={props.passiveCriticals} onChange={props.onpassiveCriticalsChange} /></td>
             </tr>
             <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} costForNextLevel={passiveCriticalsNextCost} onChange={props.onPassiveCriticalsChange} />
                 <tr>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
-
+            <tr />
+            <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspect Idols:</td>}  />
+            <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4} costForNextLevel={851} onChange={props.onSurplusCooldownChange} />
+            <tr />
+            <TalentHeaderRow index="27" title="Overenchanted" />
+            <TalentInput value={props.overenchanted} getDps={getOverDps} costForNextLevel={1084} onChange={props.onOverenchantedChange} />
         </tbody>
         </table>
         );
@@ -206,22 +229,25 @@ app.TalentCalc = React.createClass({
             cooldownEpic={getNumberOrDefault(props.saved.cooldownEpic,0)} onCooldownEpicChange={val => props.changeSaveState({cooldownEpic: +val || 0})}
             selectedHeroId={typeof(props.saved.talentCalcHeroId) ==="string"? props.saved.talentCalcHeroId : undefined} onHeroChange={val => props.changeSaveState({talentCalcHeroId:val})}
             timeORama={getNumberOrDefault(props.saved.timeORama)} ontimeORamaChange={val => props.changeSaveState({timeORama:val})}
-            massiveCriticals={getNumberOrDefault(props.saved.massiveCriticals)} onMassiveCriticalsChange={val => props.changeSaveState({massiveCriticals:val})}
-            speedRunner={getNumberOrDefault(props.saved.speedRunner)} onSpeedRunnerChange={val => props.changeSaveState({speedRunner:val})}
-            enduranceTraining={getNumberOrDefault(props.saved.enduranceTraining)} onEnduranceTrainingChange={val => props.changeSaveState({enduranceTraining:val})}
-            goldOSplosion={getNumberOrDefault(props.saved.goldOSplosion)} onGoldOSplosionChange={val => props.changeSaveState({goldOSplosion:val})}
-            sniper={getNumberOrDefault(props.saved.sniper)} onSniperChange={val => props.changeSaveState({sniper:val})}
-            everyLastCent={getNumberOrDefault(props.saved.everyLastCent)} onEveryLastCentChange={val => props.changeSaveState({everyLastCent:val})}
-            spendItAll={getNumberOrDefault(props.saved.spendItAll)} onSpendItAllChange={val => props.changeSaveState({spendItAll:val})}
-            upgradeThemAll={getNumberOrDefault(props.saved.upgradeThemAll)} onUpgradeThemAllChange={val => props.changeSaveState({upgradeThemAll:val})}
-            scavenger={getNumberOrDefault(props.saved.scavenger)} onScavengerChange={val => props.changeSaveState({scavenger:val})}
-            speedLooter={getNumberOrDefault(props.saved.speedLooter)} onSpeedLooterChange={val => props.changeSaveState({speedLooter:val})}
-            efficientCrusading={getNumberOrDefault(props.saved.efficientCrusading)} onEfficientCrusadingChange={val => props.changeSaveState({efficientCrusading:val})}
-            doingItAgain={getNumberOrDefault(props.saved.doingItAgain)} onDoingItAgainChange={val => props.changeSaveState({doingItAgain:val})}
-            deepIdolScavenger={getNumberOrDefault(props.saved.deepIdolScavenger)} onDeepIdolScavengerChange={val => props.changeSaveState({deepIdolScavenger:val})}
-            extraTraining={getNumberOrDefault(props.saved.extraTraining)} onExtraTrainingChange={val => props.changeSaveState({extraTraining:val})}
-            tripleTierTrouble={getNumberOrDefault(props.saved.tripleTierTrouble)} onTripleTierTroubleChange={val => props.changeSaveState({tripleTierTrouble:val})}
-            passiveCriticals={getNumberOrDefault(props.saved.passiveCriticals)} onPassiveCriticalsChange={val => props.changeSaveState({passiveCriticals:val})}
+            massiveCriticals={getNumberOrDefault(props.saved.massiveCriticals,0)} onMassiveCriticalsChange={val => props.changeSaveState({massiveCriticals:val})}
+            speedRunner={getNumberOrDefault(props.saved.speedRunner,0)} onSpeedRunnerChange={val => props.changeSaveState({speedRunner:val})}
+            enduranceTraining={getNumberOrDefault(props.saved.enduranceTraining,0)} onEnduranceTrainingChange={val => props.changeSaveState({enduranceTraining:val})}
+            goldOSplosion={getNumberOrDefault(props.saved.goldOSplosion,0)} onGoldOSplosionChange={val => props.changeSaveState({goldOSplosion:val})}
+            sniper={getNumberOrDefault(props.saved.sniper,0)} onSniperChange={val => props.changeSaveState({sniper:val})}
+            everyLastCent={getNumberOrDefault(props.saved.everyLastCent,0)} onEveryLastCentChange={val => props.changeSaveState({everyLastCent:val})}
+            spendItAll={getNumberOrDefault(props.saved.spendItAll,0)} onSpendItAllChange={val => props.changeSaveState({spendItAll:val})}
+            upgradeThemAll={getNumberOrDefault(props.saved.upgradeThemAll,0)} onUpgradeThemAllChange={val => props.changeSaveState({upgradeThemAll:val})}
+            scavenger={getNumberOrDefault(props.saved.scavenger,0)} onScavengerChange={val => props.changeSaveState({scavenger:val})}
+            speedLooter={getNumberOrDefault(props.saved.speedLooter,0)} onSpeedLooterChange={val => props.changeSaveState({speedLooter:val})}
+            efficientCrusading={getNumberOrDefault(props.saved.efficientCrusading,0)} onEfficientCrusadingChange={val => props.changeSaveState({efficientCrusading:val})}
+            doingItAgain={getNumberOrDefault(props.saved.doingItAgain,0)} onDoingItAgainChange={val => props.changeSaveState({doingItAgain:val})}
+            deepIdolScavenger={getNumberOrDefault(props.saved.deepIdolScavenger,0)} onDeepIdolScavengerChange={val => props.changeSaveState({deepIdolScavenger:val})}
+            extraTraining={getNumberOrDefault(props.saved.extraTraining,0)} onExtraTrainingChange={val => props.changeSaveState({extraTraining:val})}
+            tripleTierTrouble={getNumberOrDefault(props.saved.tripleTierTrouble,0)} onTripleTierTroubleChange={val => props.changeSaveState({tripleTierTrouble:val})}
+            passiveCriticals={getNumberOrDefault(props.saved.passiveCriticals,0)} onPassiveCriticalsChange={val => props.changeSaveState({passiveCriticals:val})}
+            surplusCooldown={getNumberOrDefault(props.saved.surplusCooldown,0)} onSurplusCooldownChange={val => props.changeSaveState({surplusCooldown:val})}
+            overenchanted={getNumberOrDefault(props.saved.overenchanted,0)} onOverenchantedChange={val => props.changeSaveState({overenchanted:val})}
+            setBonus={getNumberOrDefault(props.saved.setBonus,0)} onSetBonusChange={val => props.changeSaveState({setBonus:val})}
          />);
     }
 });

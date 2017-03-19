@@ -86,7 +86,43 @@ window.jsonData =
     },
     "timeORama":{
       "talentId":8
-    }
+    },
+    "scavenger":{
+      "talentId":9
+    },
+    "sharingIsCaring":{
+      "talentId":10
+    },
+    "massiveCriticals":{
+      "talentId":11
+    },
+    "goldOSplosion":{
+      "talentId":12
+    },
+    "rideTheStorm":{
+      "talentId":13
+    },
+    "stormsBuilding":{
+      "talentId":14
+    },
+    "fastLearners":{
+      "talentId":15
+    },
+    "wellEquipped":{
+      "talentId":16
+    },
+    "swapDay":{
+      "talentId":17
+    },
+    "upgradeThemAll":{"talentId":18},
+    "efficientCrusading":{"talentId":19},
+    "deepIdolScavenger":{"talentId":20},
+    "doingItAgain":{"talentId":21},
+    "tripleTierTrouble":{"talentId":22},
+    "extraTraining":{"talentId":23},
+    "sniper":{"talentId":24},
+    "speedRunner":{"talentId":25},
+    "everyLastCent":{"talentId":26}
   },
   "missionTags": [
     {
