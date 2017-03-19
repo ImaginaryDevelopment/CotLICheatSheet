@@ -56,13 +56,13 @@ var parseLoot = (crusaders,lootData) =>{
             {
               switch (l.loot_id){
                 case 249:
-                  return {id:l.loot_id,type:"cooldown", count:l.count, rarity:1};
+                  return {lootId:l.loot_id,type:"cooldown", count:l.count, rarity:1};
                 case 250:
-                  return {id:l.loot_id,type:"cooldown", count:l.count,rarity:2};
+                  return {lootId:l.loot_id,type:"cooldown", count:l.count,rarity:2};
                 case 251:
-                  return {id:l.loot_id,type:"cooldown", count:l.count,rarity:3};
+                  return {lootId:l.loot_id,type:"cooldown", count:l.count,rarity:3};
                 case 252:
-                  return {id:l.loot_id,type:"cooldown", count:l.count,rarity:4};
+                  return {lootId:l.loot_id,type:"cooldown", count:l.count,rarity:4};
                 
               }
               }).filter(l => l != null);

@@ -405,12 +405,13 @@ var HeroGameData = React.createClass({
     var heroLIs = this.props.mappedHeroes? this.props.mappedHeroes.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>) 
     ): [];
+    console.log('HeroGameData', gear);
     var gearLIs = gear.map(l =>
-      (<li data-key={l.gearId} key={l.gearId}>{JSON.stringify(l)}</li>)
+      (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
     );
     var loot = this.props.mappedLoot && this.props.mappedLoot.items || [];
     var lootLIs = loot.map(l =>{
-      return (<li data-key={l.id} key={l.id}>{JSON.stringify(l)}</li>);
+      return (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>);
     });
 
     // consider maping the parsed raw section collapsible at least at the highest level
