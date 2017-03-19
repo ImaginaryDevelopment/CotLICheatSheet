@@ -91,6 +91,7 @@ app.Inputs = props =>
     var getSharingDps = x => (calcEffectiveEP(x, props.mainDpsEP, props.dpsSlotEP)*currentEnchantBuff  - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff * (idkMyBffJill)+1);
     var getFastLearnerMinutes = x => (1-0.05*x) * 300;
     var getFastLearnersDps = x => 300 / (getFastLearnerMinutes(x) - 1);
+    var getWellEquippedDps = x => 0.2*x*props.mainDpsEpics;
     console.log('Inputs sharingisCaringdps', idkMyBffJill, getSharingDps(props.sharingIsCaring), effectiveEP, currentEnchantBuff);
     return (<table>
         <thead>
@@ -193,6 +194,15 @@ app.Inputs = props =>
                             getDps={getFastLearnersDps}
                             costForNextLevel={getNextCost("fastLearners")}
                             onChange={props.onFastLearnersChange} />
+            <tr><th>Cost for next level</th><td>{getNextCost("fastLearners")}</td></tr>
+            <tr />
+            <TalentHeaderRow index="44" title="Well Equipped" />
+            <TalentInput    value={props.wellEquipped}
+                            getDps={getWellEquippedDps}
+                            costForNextLevel={getNextCost("wellEquipped")}
+                            onChange={props.onWellEquippedChange} />
+            <tr><th>Cost for next level</th><td>{getNextCost("wellEquipped")}</td></tr>
+            <tr />
         </tbody>
         </table>
         );
@@ -277,6 +287,8 @@ app.TalentCalc = React.createClass({
             setBonus={getNumberOrDefault(props.saved.setBonus,0)} onSetBonusChange={val => props.changeSaveState({setBonus:val})}
             sharingIsCaring={getNumberOrDefault(props.saved.sharingIsCaring,0)} onSharingIsCaringChange={val => props.changeSaveState({sharingIsCaring:val})}
             fastLearners={getNumberOrDefault(props.saved.fastLearners,0)} onFastLearnersChange={val => props.changeSaveState({fastLearners:val})}
+            wellEquipped={getNumberOrDefault(props.saved.wellEquipped,0)} onWellEquippedChange={val => props.changeSaveState({wellEquipped:val})}
+            swapDay={getNumberOrDefault(props.saved.swapDay,0)} onSwapDayChange={val => props.changeSaveState({swapDay:val})}
          />);
     }
 });
