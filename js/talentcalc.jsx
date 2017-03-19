@@ -86,6 +86,7 @@ app.Inputs = props =>
     var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
     var getOverDps = x => ((1 + getEnchantBuff(x)*props.mainDpsEP) - (1 + 0.25*props.mainDpsEP)) / (1 + 0.25 * props.mainDpsEP);
     var currentEnchantBuff = getEnchantBuff(props.overenchanted);
+    var getSharingDps = x => effectiveEP*currentEnchantBuff  - currentEnchantBuff + Math.round(props.dpsSlotEP - props.mainDpsEP);
     return (<table>
         <thead>
             </thead>
@@ -163,12 +164,19 @@ app.Inputs = props =>
             <tr />
             <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspect Idols:</td>}  />
             <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4} costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
-            <tr />
+            <tr><th>Cost for next level</th><td>{getNextCost("surplusCooldown")}</td></tr>
             <TalentHeaderRow index="27" title="Overenchanted" />
             <TalentInput value={props.overenchanted} getDps={getOverDps} costForNextLevel={getNextCost("overenchanted")} onChange={props.onOverenchantedChange} />
+            <tr><th>Cost for next level</th><td>{getNextCost("overenchanted")}</td></tr>
             <tr />
-            <TalentHeaderRow index="30" title="Set Bonus" />
+            <TalentHeaderRow index="31" title="Set Bonus" />
             <TalentInput value={props.setBonus} getDps={x => x * 0.2} costForNextLevel={getNextCost("setBonus")} onChange={props.onSetBonusChange} />
+            <tr><th>Cost for next level</th><td>{getNextCost("setBonus")}</td></tr>
+            <tr />
+            <TalentHeaderRow index="35" title="Sharing is Caring" />
+            <TalentInput value={props.sharingIsCaring} getDps={x => x} costForNextLevel={getNextCost("sharingIsCaring")} onChange={props.onSharingIsCaringChange} />
+            <tr><th>Cost for next level</th><td>{getNextCost("sharingIsCaring")}</td></tr>
+            <tr />
         </tbody>
         </table>
         );
@@ -252,6 +260,7 @@ app.TalentCalc = React.createClass({
             surplusCooldown={getNumberOrDefault(props.saved.surplusCooldown,0)} onSurplusCooldownChange={val => props.changeSaveState({surplusCooldown:val})}
             overenchanted={getNumberOrDefault(props.saved.overenchanted,0)} onOverenchantedChange={val => props.changeSaveState({overenchanted:val})}
             setBonus={getNumberOrDefault(props.saved.setBonus,0)} onSetBonusChange={val => props.changeSaveState({setBonus:val})}
+            sharingIsCaring={getNumberOrDefault(props.saved.sharingIsCaring,0)} onSharingIsCaringChange={val => props.changeSaveState({sharingIsCaring:val})}
          />);
     }
 });
