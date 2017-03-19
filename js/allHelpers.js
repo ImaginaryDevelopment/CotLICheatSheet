@@ -124,8 +124,8 @@ var add = function(a,b){
   return a + b;
 };
 
-var inspect = (data,title) =>
+var inspect = (data,title, extraData) =>
 {
-  console.log(title || 'inspect', data);
+  console.log(title || 'inspect', data,extraData);
   return data;
 };

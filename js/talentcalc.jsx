@@ -102,6 +102,10 @@ app.Inputs = props =>
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
     var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
     var getStormsBuildingDps = x => 480*(1-(Math.min(inspect(cooldown / 100,'getStormBuilding cooldown value'),0.5)))/getTimePerStormRider(x) - 1;
+    var getCumulativeCost = name => 
+        props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length <= props[name] ? 
+            (inspect(props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0),'getcumulativecosts',{name:props[name], t:props.talents[name]})) 
+            : undefined;
 
     
     // console.log('Inputs rideTheStormMagnified', props.stormRiderPercentage, getRideTheStormDps(props.rideTheStorm), props.rideTheStorm);
@@ -179,18 +183,19 @@ app.Inputs = props =>
                 <tr>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("passiveCriticals")}</td></tr>
             <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspent Idols:</td>}  />
             <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4} costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("surplusCooldown")}</td></tr>
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("surplusCooldown")}</td></tr>
             <TalentHeaderRow index="27" title="Overenchanted" />
             <TalentInput value={props.overenchanted} getDps={getOverDps} costForNextLevel={getNextCost("overenchanted")} onChange={props.onOverenchantedChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("overenchanted")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("overenchanted")}</td></tr>
             <TalentHeaderRow index="31" title="Set Bonus" />
             <TalentInput value={props.setBonus} getDps={x => x * 0.2} costForNextLevel={getNextCost("setBonus")} onChange={props.onSetBonusChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("setBonus")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("setBonus")}</td></tr>
             <TalentHeaderRow index="35" title="Sharing is Caring" td2={(<td title="C36-Current enchant lvl">Current EffectiveEP</td>)} td3={(<td title="E36-next level enchant">Next lvl EffectiveEP</td>)} />
             <TalentInput    value={props.sharingIsCaring} 
                             getDps={getSharingDps} 
