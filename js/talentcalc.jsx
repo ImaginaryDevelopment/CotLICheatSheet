@@ -78,7 +78,8 @@ app.Inputs = props =>
 {
     var cooldown = (app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100);
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
-    var effectiveEP = calcEffectiveEP(props.sharingIsCaringLevel, props.mainDpsEP, props.dpsSlotEP);
+    var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
+    console.log('Inputs effectiveEP', effectiveEP, props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
     // console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
     console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
     var getNextCost = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name] ? props.talents[name].costs[props[name] + 1] : undefined;
@@ -86,7 +87,9 @@ app.Inputs = props =>
     var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
     var getOverDps = x => ((1 + getEnchantBuff(x)*props.mainDpsEP) - (1 + 0.25*props.mainDpsEP)) / (1 + 0.25 * props.mainDpsEP);
     var currentEnchantBuff = getEnchantBuff(props.overenchanted);
-    var getSharingDps = x => effectiveEP*currentEnchantBuff  - currentEnchantBuff + Math.round(props.dpsSlotEP - props.mainDpsEP);
+    var idkMyBffJill = props.mainDpsEP + Math.round((props.dpsSlotEP - props.mainDpsEP)*6*0.05,0);
+    var getSharingDps = x => (effectiveEP*currentEnchantBuff  - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff*(idkMyBffJill)+1);
+    console.log('Inputs sharingisCaringdps', idkMyBffJill, getSharingDps(props.sharingIsCaring), effectiveEP, currentEnchantBuff);
     return (<table>
         <thead>
             </thead>
@@ -174,7 +177,7 @@ app.Inputs = props =>
             <tr><th>Cost for next level</th><td>{getNextCost("setBonus")}</td></tr>
             <tr />
             <TalentHeaderRow index="35" title="Sharing is Caring" />
-            <TalentInput value={props.sharingIsCaring} getDps={x => x} costForNextLevel={getNextCost("sharingIsCaring")} onChange={props.onSharingIsCaringChange} />
+            <TalentInput value={props.sharingIsCaring} getDps={getSharingDps} costForNextLevel={getNextCost("sharingIsCaring")} onChange={props.onSharingIsCaringChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("sharingIsCaring")}</td></tr>
             <tr />
         </tbody>
@@ -226,7 +229,6 @@ app.TalentCalc = React.createClass({
         }
         console.log('talentSelectedCrusader',talentSelectedCrusader);
         return (<Inputs {...props}
-            sharingIsCaringLevel={+props.saved.sharingIsCaringLevel}
             crusaders={crusaders}
             mainDpsEpics={talentSelectedCrusader && talentSelectedCrusader.mainDpsEpics}
             dpsSlotEpics={talentSelectedCrusader && talentSelectedCrusader.dpsSlotEpics}
