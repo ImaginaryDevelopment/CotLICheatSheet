@@ -10,10 +10,7 @@ var holder;
 // installation stuffs
 // https://developer.chrome.com/webstore/inline_installation?hl=en-US
 var injectData = (tabId,name,x) =>{
-    var escapedData = JSON.stringify(
-            //{test:"hello"}
-            x
-            )
+    var escapedData = JSON.stringify(x)
                 .replace(/'/g,"\\'")
                 .replace(/"/g,'\\"');
     console.log('injecting string', escapedData);
@@ -23,6 +20,7 @@ var injectData = (tabId,name,x) =>{
                 + '\';"; document.head.appendChild(script);';
     chrome.tabs.executeScript(tabId, {code:toExecute});
 };
+
 var onDataFetched = data =>
 {
         holder = undefined;
@@ -48,11 +46,15 @@ var onDataFetched = data =>
             console.log('tab created', tab);
         });
         var subset = data.details.heroes;
-        injectData(tabId, 'heroesRaw', data.details.heroes);
-        data.details.heroes = undefined;
+        try{
+            injectData(tabId, 'heroesRaw', data.details.heroes);
+            data.details.heroes = undefined;
+        } catch(ex){
+            console.error('failed injection for heroes',ex);
+        }
         injectData(tabId, 'lootRaw', data.details.loot);
         data.details.loot = undefined;
-        injectData(tabId, 'talentsRaw', data.details.loot);
+        injectData(tabId, 'talentsRaw', data.details.talents);
         data.details.talents = undefined;
         // trimming to see if we can get data to go at all, and hopefully trimming unimportant props
         data.details.objective_status = undefined;
