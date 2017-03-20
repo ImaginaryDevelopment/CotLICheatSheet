@@ -653,7 +653,9 @@ var CruApp = React.createClass({
       console.log('onImportGameDataClick talents', talents);
       mergeImportTalents(data,talents);
     }
+    data.mainSelectedTab = 0;
     cruTagGrid.store(data);
+
     this.setState({saved:data});
 
   },
@@ -795,7 +797,7 @@ var CruApp = React.createClass({
             referenceData={this.props.referenceData}
             />
         </Pane>
-        <Pane label="Import/Export">
+        <Pane label="Extension and raw Import/Export">
           <div>
             {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}
             {importArea}

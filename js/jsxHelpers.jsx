@@ -112,6 +112,11 @@ app.Tabs = React.createClass({
   getInitialState(){
     return {selected:this.props.selected};
   },
+  componentWillReceiveProps(nextProps){
+    if(nextProps.selected != this.props.selected){
+      this.setState({selected:nextProps.selected});
+    }
+  },
   handleClick(index,event){
     event.preventDefault();
     if(this.props.onTabChange)
