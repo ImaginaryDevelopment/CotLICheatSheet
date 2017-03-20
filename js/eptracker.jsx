@@ -585,6 +585,7 @@ var CruApp = React.createClass({
     var mappedHeroes = parseNetworkDataHeroesSection(heroMap, getOrGetFromDetails("heroes"));
     var mappedLoot = parseLoot(this.props.referenceData.crusaders,getOrGetFromDetails("loot"));
     var mappedTalents = parseTalents(this.props.referenceData.talents,getOrGetFromDetails("talents"));
+    window.mappedTalents=mappedTalents;
 
     window.heroMap = this.props.heroMap;
     var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
@@ -605,6 +606,10 @@ var CruApp = React.createClass({
       if(window.lootRaw){
         console.log('starting heroesRaw parse');
         data.details.loot = JSON.parse(window.lootRaw);
+      }
+      if(window.talentsRaw){
+        console.log('starting talentsRaw parse');
+        data.details.talents = JSON.parse(window.talentsRaw);
       }
       this.loadNetworkData(data);
     }
