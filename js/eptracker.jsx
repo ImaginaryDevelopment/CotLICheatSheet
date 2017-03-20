@@ -466,7 +466,6 @@ props.legendaryReductionDate ?
 var Exporter = props =>
 (
   <div>
-  <button onClick={props.onHideClick}>Hide Exporter</button>
   <Tabs>
     <Pane label="Import/Export">
       <div>
@@ -706,7 +705,7 @@ var CruApp = React.createClass({
     var stringified = JSON.stringify(data);
     var baseUrl = window.location.origin + window.location.pathname;
     var url = baseUrl + exportToUrl("appGameState", stringified);
-    this.setState({url:url,urlBase:baseUrl,showImportExport:false});
+    this.setState({url:url,urlBase:baseUrl});
   },
   mergeSaveState(newData){
     return copyObject(this.state.saved,newData);
@@ -732,16 +731,13 @@ var CruApp = React.createClass({
     if(Clipboard && Clipboard.isSupported()){
       clipper = (<button className="btn" data-clipboard-target="#clipperText">Copy to Clipboard</button>);
     }
-    var toggleHide = () =>
-      this.setState({showImportExport:(this.state.showImportExport ? false : true)});
     var heroMap = {};
 
     this.props.referenceData.crusaders.map(c =>{
       heroMap[c.heroId] = c;
     });
     window.networkDataJson = this.state.networkDataJson;
-    var importArea = getIsUrlLoaded() ? null : this.state.showImportExport ?
-      (<Exporter  onHideClick={toggleHide}
+    var importArea = getIsUrlLoaded() ? null : (<Exporter
                   maxWidth={maxWidth}
                   onImportTextChange={val => this.setState({textState:val})}
                   // networkgame section?
@@ -765,18 +761,16 @@ var CruApp = React.createClass({
                   stateStyle={stateStyle}
                   json={json}
                   importText={importText}
-                  />) :
-      ( <button onClick={toggleHide}>Show Import/Export </button>);
+                  />);
 
     return (<div>
         <div>{JSON.stringify(this.state.error)}</div>
 
         <div className="onGreen">Install the extension to auto-load your data from <a href="https://chrome.google.com/webstore/detail/crusaders-automaton/dhlljphpeodbcliiafbedkbkiifdgdjk">Crusader Automaton</a></div>
-      <Tabs>
+      <Tabs selected={this.state.saved.mainSelectedTab} onTabChange={val => this.changeSaveState({mainSelectedTab:val})}>
         <Pane label="Crusaders">
           <div>
             <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
-
             <CruTagGrid model={props.referenceData}
                         slotSort={this.state.saved.slotSort}
                         mode={this.state.saved.mode}
@@ -801,10 +795,14 @@ var CruApp = React.createClass({
             referenceData={this.props.referenceData}
             />
         </Pane>
+        <Pane label="Import/Export">
+          <div>
+            {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}
+            {importArea}
+          </div>
+        </Pane>
         </Tabs>
         <div className="onGreen">
-        {importArea}
-          {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}
         </div>
       </div>);
   }
