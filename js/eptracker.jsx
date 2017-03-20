@@ -403,7 +403,7 @@ var HeroGameData = React.createClass({
     var gear = this.props.mappedLoot && this.props.mappedLoot.gear || [];
 
     var heroLIs = this.props.mappedHeroes? this.props.mappedHeroes.map(h =>
-      (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>) 
+      (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
     ): [];
     console.log('HeroGameData', gear);
     var gearLIs = gear.map(l =>
@@ -485,14 +485,14 @@ var Exporter = props =>
         <button onClick={props.onLoadNetworkDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
         {inspect(props.networkDataJson,'exporter networkDataJson')? (
-          <HeroGameData heroMap={props.heroMap} 
-                        crusaders={props.crusaders} 
-                        data={props.networkDataJson} 
-                        crusaderReferenceData={props.crusaderReferenceData} 
-                        mappedHeroes={props.mappedHeroes} 
-                        mappedLoot={props.mappedLoot} 
-                        mappedTalents={props.mappedTalents} 
-                        onImportGameDataClick={props.onImportGameDataClick} />) 
+          <HeroGameData heroMap={props.heroMap}
+                        crusaders={props.crusaders}
+                        data={props.networkDataJson}
+                        crusaderReferenceData={props.crusaderReferenceData}
+                        mappedHeroes={props.mappedHeroes}
+                        mappedLoot={props.mappedLoot}
+                        mappedTalents={props.mappedTalents}
+                        onImportGameDataClick={props.onImportGameDataClick} />)
             : null}
     </div>
       </Pane>

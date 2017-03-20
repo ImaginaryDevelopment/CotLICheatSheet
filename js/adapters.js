@@ -4,7 +4,7 @@ var getTalentsAsArray = talents =>
 {
   return Object.keys(talents).map( k => copyObject(talents[k], {name:k}));
 };
-// talent reference data 
+// talent reference data
 var parseTalents = (talents,data) =>{
   if(!(data != null))
     return;
@@ -67,8 +67,8 @@ var parseLoot = (crusaders,lootData) =>{
             result.countOrLegendaryLevel=x.loot.count;
           if(x.lootItem.golden)
             result.isGolden = true;
-          if(x.crusader.id ==="15")
-          console.log('lootmapping',result,x);
+          if(x.crusader.id ==="18")
+            console.log('lootmapping',result,x);
           return result;
         }
         ).sort(lootComparer);
@@ -84,7 +84,7 @@ var parseLoot = (crusaders,lootData) =>{
               return {lootId:l.loot_id,type:"cooldownRare", count:l.count,rarity:3};
             case 252:
               return {lootId:l.loot_id,type:"cooldownEpic", count:l.count,rarity:4};
-            
+
           }
           }).filter(l => l != null);
 
@@ -113,7 +113,7 @@ var mergeImportLoot = (data,loot) => {
 
               crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
             }
-            if(l.heroSlotId==="15")
+            if(l.heroSlotId==="18")
             console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
           });
           data.crusaderGear = crusaderGear;
@@ -214,7 +214,37 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
   // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
   return result;
 };
+
+var getStormRiderValue = (allCruGear,id) =>{
+  var cruGear = allCruGear[id];
+  if(!cruGear)
+    return 0;
+  if(id.toString().indexOf("18") !== 0)
+    return 0;
+  var gear;
+  switch (id){
+    case "18": gear = cruGear.slot2 || 0;
+    case "18a": gear = cruGear.slot2 || 0;
+    case "18b": gear = cruGear.slot0 || 0;
+    case "18c": gear = cruGear.slot0 || 0;
+ }
+  console.log('getStormRiderValue', id, cruGear, gear);
+ return gear;
+};
+
+var decomposeSlotRarity = itemRarityCompound => {
+  // rarityvalue, golden _ or g, legendary level opt
+  if(typeof(itemRarityCompound) == "number"){
+    return {rarity:itemRarityCompound, isGolden:false};
+  }
+  var info = { rarity: +itemRarityCompound[0], isGolden : itemRarityCompound.indexOf("g") == 1};
+  if(info.rarity == 5)
+    info.level = +itemRarityCompound.length > 2 ? itemRarityCompound.substring(2) : 1;
+  return info;
+};
+
 var getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
+// var getSlotRarity2 = itemRarityCompound =>
 var getSlotRarities = gear => inspect((gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity),'getSlotRarities results');
 
 var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {

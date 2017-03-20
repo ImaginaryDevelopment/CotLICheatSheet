@@ -57,6 +57,7 @@ const flattenArrays = (a,b) => {
         }
         return [a,b];
     };
+
 // otherClasses: allows/adapts to inputs of type string or array
 const addClasses = (defaultClasses=[], otherClasses=[]) =>{
     var unwrappedClasses = defaultClasses.reduce(flattenArrays,[]);

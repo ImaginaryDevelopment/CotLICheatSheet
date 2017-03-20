@@ -278,6 +278,16 @@ window.jsonData =
     },
     "rideTheStorm":{
       "talentId":13,
+      "rarityMultMap":[
+        {"rarity":0, "mult":0.1},
+        {"rarity":1, "mult":0.11},
+        {"rarity":2, "mult":0.125},
+        {"rarity":3, "mult":0.15},
+        {"rarity":4, "mult":0.2},
+        {"rarity":"4g", "mult":0.25},
+        {"rarity":5, "mult":0.3},
+        {"rarity":"5g","mult":0.6}
+      ],
       "costs":[
         0,
         100,

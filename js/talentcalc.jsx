@@ -20,7 +20,7 @@ app.HeroSelect = props =>
         <option key={cru.id} className={cru.tags.includes("dps")? "dps" : ""} value={cru.id}>{cru.displayName}</option>
     );
     var selectedCrusader = crusaders.find(cru => cru.id === props.selectedHeroId);
-    console.log('HeroSelect',props.selectedHeroId, selectedCrusader);
+    // console.log('HeroSelect',props.selectedHeroId, selectedCrusader);
     return(
     <select value={props.selectedHeroId || "0"} className={selectedCrusader && selectedCrusader.tags && selectedCrusader.tags.includes("dps") ? "dps" : "" } onChange={e => props.onHeroChange(e.target.value)}>
         <option value="0">None</option>
@@ -61,7 +61,7 @@ app.TalentInput = props =>{
     var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
     //=IFERROR(IF(and(B$13 >= 1,B20<=$J$23), G19/B20*100000, 0),0)
     var score = impr / props.costForNextLevel * 100000;
-    console.log('TalentInput', props.value, dpsBuff, nextDps, impr, score);
+    // console.log('TalentInput', props.value, dpsBuff, nextDps, impr, score);
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
         <th>Current level</th>
         <td><TextInputUnc type="number" min="0" max={props.max? props.max : undefined} value={props.value} onChange={props.onChange} /></td>
@@ -79,9 +79,9 @@ app.Inputs = props =>
     var cooldown = app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
     var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
-    console.log('Inputs effectiveEP', effectiveEP, props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
+    // console.log('Inputs effectiveEP', effectiveEP, props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
     // console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
-    console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
+    // console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
     var getNextCost = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name] ? props.talents[name].costs[props[name] + 1] : undefined;
     // var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals + 1]: undefined;
     var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
@@ -278,12 +278,32 @@ app.TalentCalc = React.createClass({
         var crusaders = props.referenceData.crusaders;
 
         var talentSelectedCrusader = props.saved.talentCalcHeroId ? {cru : crusaders.find(cru => cru.id == props.saved.talentCalcHeroId), mainDpsEpics:0, dpsSlotEpics:0,mainDpsEP:0} : null;
-        console.log('talentSelectedCrusader', props.saved.talentCalcHeroId, talentSelectedCrusader);
+        // console.log('talentSelectedCrusader', props.saved.talentCalcHeroId, talentSelectedCrusader);
         if(talentSelectedCrusader && !(talentSelectedCrusader.cru != null))
             talentSelectedCrusader = null;
         if(talentSelectedCrusader){
             var cru = talentSelectedCrusader.cru;
             var savedGear = props.saved.crusaderGear || [];
+            var stormRiderMaxRarity = crusaders
+                .map( x => ({name:x.displayName,cruId: x.id, value:decomposeSlotRarity(getStormRiderValue(savedGear, x.id))}))
+                .filter(x => x.value != null)
+                // this does not account for golden vs nongolden
+                .reduce((prev,current) =>
+                {
+                    // if(!(prev != null))
+                    //     return inspect(current,'stormRiderMaxRarityResult aborting comparison');
+                    var result =
+                        prev.value.rarity > current.value.rarity ? prev
+                        : prev.value.rarity < current.value.rarity ? current
+                        : prev.value.level > current.value.level ? prev
+                        : prev.value.level < current.value.level ? current
+                        : prev.value.isGolden ? prev : current;
+                    // console.log('stormRiderMaxRarityResult', result,prev,current);
+                    return result;
+                }
+                );
+            // console.log('TalentCalc stormRiderMaxRarity', stormRiderMaxRarity);
+            // var highest = crusaders.max
             var cruRarities = getSlotRarities(savedGear[cru.id]).reduce((a,b) => a + (b > 3? 1 : 0),0);
 
             talentSelectedCrusader.mainDpsEpics = cruRarities;
@@ -292,7 +312,7 @@ app.TalentCalc = React.createClass({
             talentSelectedCrusader.mainDpsEP = getNumberOrDefault(props.saved.enchantmentPoints[cru.id], 0);
             talentSelectedCrusader.dpsSlotEP = +crusaders.filter(x => x.slot == cru.slot).map(x => props.saved.enchantmentPoints[x.id] || 0).reduce((a,b) => +a + +b,0)
         }
-        console.log('talentSelectedCrusader',talentSelectedCrusader);
+        // console.log('talentSelectedCrusader',talentSelectedCrusader);
         return (<Inputs {...props}
             crusaders={crusaders}
             mainDpsEpics={talentSelectedCrusader && talentSelectedCrusader.mainDpsEpics}
