@@ -177,7 +177,7 @@ app.Inputs = props =>
                 <th>percent improvement</th>
                 <th>Score(larger is better)</th>
                 <td></td>
-                <td><TextInputUnc value={props.passiveCriticals} onChange={props.onpassiveCriticalsChange} /></td>
+                <td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>
             </tr>
             <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} costForNextLevel={getNextCost("passiveCriticals")} onChange={props.onPassiveCriticalsChange} />
                 <tr>
