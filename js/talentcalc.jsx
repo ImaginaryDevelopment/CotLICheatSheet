@@ -102,12 +102,12 @@ app.Inputs = props =>
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
     var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
     var getStormsBuildingDps = x => 480*(1-(Math.min(inspect(cooldown / 100,'getStormBuilding cooldown value'),0.5)))/getTimePerStormRider(x) - 1;
-    var getCumulativeCost = name => 
-        props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length <= props[name] ? 
-            (inspect(props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0),'getcumulativecosts',{name:props[name], t:props.talents[name]})) 
+    var getCumulativeCost = name =>
+        props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length <= props[name] ?
+            (inspect(props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0),'getcumulativecosts',{name:props[name], t:props.talents[name]}))
             : undefined;
 
-    
+
     // console.log('Inputs rideTheStormMagnified', props.stormRiderPercentage, getRideTheStormDps(props.rideTheStorm), props.rideTheStorm);
     return (<table>
         <thead>
@@ -197,10 +197,10 @@ app.Inputs = props =>
             <tr><th>Cost for next level</th><td>{getNextCost("setBonus")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("setBonus")}</td></tr>
             <TalentHeaderRow index="35" title="Sharing is Caring" td2={(<td title="C36-Current enchant lvl">Current EffectiveEP</td>)} td3={(<td title="E36-next level enchant">Next lvl EffectiveEP</td>)} />
-            <TalentInput    value={props.sharingIsCaring} 
-                            getDps={getSharingDps} 
-                            costForNextLevel={getNextCost("sharingIsCaring")} 
-                            onChange={props.onSharingIsCaringChange} 
+            <TalentInput    value={props.sharingIsCaring}
+                            getDps={getSharingDps}
+                            costForNextLevel={getNextCost("sharingIsCaring")}
+                            onChange={props.onSharingIsCaringChange}
                             td1={<td>{effectiveEP}</td>}
                             td2={<td>{calcEffectiveEP(props.sharingIsCaring + 1, props.mainDpsEP, props.dpsSlotEP)}</td>}
                             />
@@ -231,7 +231,7 @@ app.Inputs = props =>
             <TalentInput    value={props.rideTheStorm}
                             getDps={getRideTheStormMagnifiedDps}
                             costForNextLevel={getNextCost("rideTheStorm")}
-                            onChange={props.onRideTheStormChange} 
+                            onChange={props.onRideTheStormChange}
                             td1={(<td>{getCurrentStormRider(props.rideTheStorm) * 1.5}</td>)}
                             td2={(<td>{getCurrentStormRider(props.rideTheStorm + 1) * 1.5}</td>)}
                             />
@@ -277,7 +277,8 @@ app.TalentCalc = React.createClass({
         var props = this.props;
         var crusaders = props.referenceData.crusaders;
 
-        var talentSelectedCrusader = props.saved.talentCalcHeroId ? {cru : crusaders.find(cru => cru.heroId == props.saved.talentCalcHeroId), mainDpsEpics:0, dpsSlotEpics:0,mainDpsEP:0} : null;
+        var talentSelectedCrusader = props.saved.talentCalcHeroId ? {cru : crusaders.find(cru => cru.id == props.saved.talentCalcHeroId), mainDpsEpics:0, dpsSlotEpics:0,mainDpsEP:0} : null;
+        console.log('talentSelectedCrusader', props.saved.talentCalcHeroId, talentSelectedCrusader);
         if(talentSelectedCrusader && !(talentSelectedCrusader.cru != null))
             talentSelectedCrusader = null;
         if(talentSelectedCrusader){
