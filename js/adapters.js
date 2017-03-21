@@ -247,17 +247,37 @@ var getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : it
 // var getSlotRarity2 = itemRarityCompound =>
 var getSlotRarities = gear => (gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity);
 
-var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
-  console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );
+// expecting undefined for no sorting, "up" for ascending, "desc" for descending
+// could use 1-2 to prioritize the sorters
+var sortCrusaders = (crusaders, slot, ep,epMap) =>{
+  var copy = crusaders.slice(0);
+  console.log('sortCrusaders', slot, ep, epMap, crusaders.slice(0,3));
+  if (!ep && slot !== "desc") return copy;
+  console.log('sortCrusaders sorting');
+  copy.sort((a,b) =>{
+    if (!ep)  // means slotSort was -1/up/ascending
+      return a.slot < b.slot ? 1 : a.slot > b.slot ? -1 : 0;
+    var aEp = epMap[a.id] || 0;
+    var bEp = epMap[b.id] || 0;
+    // if(!slot && a.slot == "12" || b.slot == "12")
+    //   console.log('ep sort', a.slot, a.displayName, aEp,b.slot, b.displayName, bEp);
+    if(!slot || a.slot == b.slot)
+      return (aEp < bEp ? 1 : aEp > bEp ? -1 : 0) * (ep ==="desc" ? 1 : -1);
+  //  console.log('slots', a.slot, b.slot);
+    return  a.slot < b.slot ? 1 : a.slot > b.slot;
+  });
+  return copy;
+};
 
-    var sortedCrusaders = (!isDesc ? crusaders : crusaders.slice(0).sort(function(a,b){
-      return a.slot > b.slot ? -1 : a.slot < b.slot ? 1 : 0;
-    }))
-      .filter(function(crusader){
+var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap) => {
+  console.log('filterSortCrusaders inputs',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap);
+
+  var filtered = crusaders.filter(function(crusader){
         var result = crusaderFilter(ownedCrusaderIds, crusader,filterOwned, filterTags,isBuildingFormation,formationIds);
         // console.log('filter', crusader,filterOwned, filterTags);
         return result;
       });
+  var sortedCrusaders = sortCrusaders(filtered, slotSort, epSort, epMap);
   // console.log('filtered count:' + sortedCrusaders.length);
   return sortedCrusaders;
 };
@@ -293,7 +313,7 @@ var scrubSavedData = saved =>
         }
       }
       x.sort();
-      console.log('saved.ownedIds',x, x.length);
+      // console.log('saved.ownedIds',x, x.length);
     }
     if(saved.formation != null){
       saved.isBuildingFormation = saved.formation

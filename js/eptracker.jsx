@@ -88,7 +88,7 @@ var CruTagRow = React.createClass({
 
       var cruGear = this.props.gear ? this.props.gear : {};
       if(cru.id==="15")
-      console.log('cruGear for boxes', cruGear);
+      // console.log('cruGear for boxes', cruGear);
       var slotGear;
       // extract the 3 slots with qualities
       var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
@@ -99,7 +99,7 @@ var CruTagRow = React.createClass({
             var golden = !(itemRarityCompound != null) || typeof(itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
             var classes = "rarity rarity" + rarity + golden;
             if(cru.id =="15")
-            console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
+            // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
             return (<div className={classes} />);
           };
           slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
@@ -193,41 +193,62 @@ var CruGridBody = props =>{
     {rows}
     </tbody>);
 };
-// get most of the state out of here, so more display stuff can be attached, leave things that don't need to be stored in state
-var CruTagGrid = React.createClass({
 
-  slotSortClick:function(){
-    var update = {slotSort: this.props.slotSort === "up" ? "desc":"up"};
-    console.log('slotSortClick', ' was ' + this.props.slotSort, update);
-    this.props.updateSave(update);
-  },
-  filterOwnedClick:function(){
+var sortStates = [
+  {value:"up", classes: "fa fa-fw fa-sort-up", next:"desc"},
+  {value:"desc", classes: "fa fa-fw fa-sort-desc", next:undefined},
+  {value:undefined, classes: "fa fa-fw fa-sort", next:"up"}
+]
+var getSortClasses = value => sortStates.find(val => val.value === value).classes;
+var getNextSortValue = value => sortStates.find(val => val.value === value).next;
+var getSortUpdate = (name, value) => {
+  var update = {};
+  update[name] = getNextSortValue(value);
+  console.log('on' + name[0].toUpperCase() + name.slice(1) + 'Click', 'was ' + value, update);
+  return update;
+
+};
+
+// get most of the state out of here, so more display stuff can be attached, leave things that don't need to be stored in state
+class CruTagGrid extends React.Component {
+  constructor(){
+    super();
+    this.onSlotSortClick = this.onSlotSortClick.bind(this);
+    this.onEpSortClick = this.onEpSortClick.bind(this);
+  }
+  onSlotSortClick(){
+      this.props.updateSave(getSortUpdate('slotSort', this.props.slotSort));
+  }
+  onEpSortClick(){
+      this.props.updateSave(getSortUpdate('epSort', this.props.epSort));
+  }
+  filterOwnedClick(){
     //(i + 2) % 3 - 1)
     var filterOwned = (this.props.filterOwned + 2) % 3 - 1;
     console.log(this.props.filterOwned,' will become ', filterOwned);
     this.props.updateSave({filterOwned: filterOwned});
-  },
-  onModeChangeClicked: function(){
+  }
+  onModeChangeClicked(){
     console.log('onModeChangeClicked');
     this.props.updateSave({mode:this.props.mode === "" ? "mine": ""});
-  },
-  onEpClick: function(){
+  }
+  onEpClick(){
     this.props.updateSave({isEpMode: this.props.isEpMode? false : true})
-  },
-  onIdolChange: function(val){
+  }
+  onIdolChange(val){
     this.props.updateSave({idols:val});
-  },
-  onFormationClick: function(){
+  }
+  onFormationClick(){
     var saveMods = {isBuildingFormation: this.props.isBuildingFormation != null ? null : "formation"};
     console.log('formationClick', saveMods);
     this.props.updateSave(saveMods);
-  },
-  onGearClick: function(){
+  }
+  onGearClick(){
     var stateMods = {isGearMode: this.props.isGearMode? false: true};
     console.log('gearClick', stateMods);
     this.props.updateSave(stateMods);
-  },
-  onEpChange:function(crusaderId, epValue){
+  }
+  onEpChange(crusaderId, epValue){
     console.log('onEpChange',arguments);
     var oldEp = this.props.enchantmentPoints;
     var newEp = {};
@@ -239,8 +260,8 @@ var CruTagGrid = React.createClass({
     newEp[crusaderId] = epValue;
     var stateMods = {enchantmentPoints:newEp};
     this.props.updateSave(stateMods);
-  },
-  onFormationChange: function(crusader){
+  }
+  onFormationChange(crusader){
     console.log('formation change');
     var oldState = this.props.formationIds;
     var newState = oldState.constructor();
@@ -260,8 +281,8 @@ var CruTagGrid = React.createClass({
     }
     console.log('formationIds changed to', newState);
     this.props.updateSave({formationIds:newState});
-  },
-  onOwnedChange:function(crusader){
+  }
+  onOwnedChange(crusader){
     console.log('onOwnedChange');
     var owned = this.props.ownedCrusaderIds.slice(0);
     var i = owned.indexOf(crusader.id);
@@ -272,8 +293,8 @@ var CruTagGrid = React.createClass({
       owned.splice(i,1);
     }
     this.props.updateSave({ownedCrusaderIds:owned});
-  },
-  onGearChange:function(cruId,slot,gearTypeIndex){
+  }
+  onGearChange(cruId,slot,gearTypeIndex){
     console.log('onGearChange', cruId,slot, gearTypeIndex);
     var stateMods = {};
     if(!this.props.crusaderGear){
@@ -293,8 +314,8 @@ var CruTagGrid = React.createClass({
     stateMods.crusaderGear[cruId]["slot" + slot] = +gearTypeIndex;
     console.log('gearChangeMods', stateMods);
     this.props.updateSave(stateMods);
-  },
-  onFilterTag:function(tagId){
+  }
+  onFilterTag(tagId){
     var self = this;
     console.log('onFilterTag', tagId, self.props.filterTags);
     var tagFilter = {};
@@ -304,9 +325,9 @@ var CruTagGrid = React.createClass({
     tagFilter[tagId] = tagFilter[tagId] ? false : true;
     console.log('filterTags', tagFilter);
     this.props.updateSave({filterTags:tagFilter});
-  },
+  }
 
-  render:function(){
+  render(){
   	console.info('rendering tag grid, react');
     var self = this;
     var totalCrusaders = this.props.model.crusaders.length;
@@ -315,9 +336,8 @@ var CruTagGrid = React.createClass({
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     // var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
-    var sortedCrusaders = filterSortCrusaders(this.props.ownedCrusaderIds || [], this.props.filterOwned, this.props.filterTags || [], isBuildingFormation, this.props.formationIds || [], this.props.slotSort == "desc", this.props.model.crusaders);
-
-    var slotSortClasses = this.props.slotSort === "up" ? "fa fa-fw fa-sort-up" : "fa fa-fw fa-sort-desc";
+    var sortedCrusaders = filterSortCrusaders(this.props.ownedCrusaderIds || [], this.props.filterOwned, this.props.filterTags || [], isBuildingFormation, this.props.formationIds || [], this.props.slotSort, this.props.model.crusaders
+      , this.props.epSort, this.props.enchantmentPoints);
 
     var tagCounts = [];
     this.props.model.missionTags.map(function(tag){
@@ -336,7 +356,7 @@ var CruTagGrid = React.createClass({
     if(isMineMode){
       formationRow=(
         <tr>
-          <th title={(this.props.idols && !isNaN(this.props.idols)? numberWithCommas(this.props.idols) + ' ' : '') +  "American or otherwise"}>Idols <TextInputUnc readonly={getIsUrlLoaded()} onChange={this.onIdolChange} value={this.props.idols} /></th>
+          <th title={(this.props.idols && !isNaN(this.props.idols)? numberWithCommas(this.props.idols) + ' ' : '') +  "American or otherwise"}>Idols <TextInputUnc className={["idols"]} readonly={getIsUrlLoaded()} onChange={this.onIdolChange} value={this.props.idols} /></th>
           <th><CheckBox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
           <th colSpan="2"><CheckBox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
           <th><CheckBox checked={this.props.isGearMode} onChange={this.onGearClick} />Track gear</th>
@@ -354,7 +374,7 @@ var CruTagGrid = React.createClass({
       <tr>
         { isMineMode && !isBuildingFormation ? <th>Owned <Filter on={this.props.filterOwned} filterClick={this.filterOwnedClick} /></th>
           : isMineMode && isBuildingFormation ? <th></th> : null}
-        <th>Slot<i className={slotSortClasses} onClick={this.slotSortClick}></i></th>
+        <th></th>
         <th colSpan="2">Crusader</th>
         {tagsTh}
         <th></th>
@@ -366,7 +386,8 @@ var CruTagGrid = React.createClass({
         {countsTh}
       </tr>
       { formationRow }
-      <tr><th /><th />{sharingTh}</tr>
+      <tr><th>EP<i className={getSortClasses(this.props.epSort)} onClick={this.onEpSortClick}></i></th><th >Slot<i className={getSortClasses(this.props.slotSort)} onClick={this.onSlotSortClick}></i></th>{sharingTh}</tr>
+
       </thead>
       <CruGridBody
           sortedCrusaders={sortedCrusaders}
@@ -389,7 +410,7 @@ var CruTagGrid = React.createClass({
       {/*{this.props.children}*/}
     </table>)
   }
-});
+}
 
 // data pull
 var HeroGameData = React.createClass({
@@ -500,8 +521,6 @@ var Exporter = props =>
     </div>
 );
 var provideSavedDefaults = saved => {
-    if(!(saved.slotSort != null))
-      saved.slotSort = "up";
     if(typeof(saved.mode) !== 'string' || !(saved.mode != null))
       saved.mode="";
     if(typeof(saved.isEpMode) !== 'boolean' || !(saved.isEpMode != null))
@@ -775,6 +794,7 @@ var CruApp = React.createClass({
             <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
             <CruTagGrid model={props.referenceData}
                         slotSort={this.state.saved.slotSort}
+                        epSort={this.state.saved.epSort}
                         mode={this.state.saved.mode}
                         isEpMode={this.state.saved.isEpMode}
                         isGearMode={this.state.saved.isGearMode}
