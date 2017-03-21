@@ -74,6 +74,15 @@ app.TalentInput = props =>{
     </tr>)
 };
 
+app.RaritySelect = props =>{
+
+    var gearPossibilities = props.gearTypes;
+
+    var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+
+    return (<select value={props.rarity} onChange={e => props.onChange ? props.onChange(e.target.value): null}>{options}</select>);
+}
+
 app.Inputs = props =>
 {
     var cooldown = app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
@@ -95,17 +104,23 @@ app.Inputs = props =>
     var getSwapDayDps = x => 0.2*x*(props.dpsSlotEpics - props.mainDpsEpics);
     var getWellEquippedDps = x => 0.2*x*props.mainDpsEpics;
         //{switch (x) {case 0: return 0.1; case 1: return 0.11; case 2: return 0.125; case 3: return 0.15; case 4: return 0.2; case "4g" : return 0.25; case 5: return 0.4; case "5g": return 0.5;}}
-    // this need your storm rider percentage
-    var getCurrentStormRider = x => props.stormRiderPercentage * (x*0.1 +1);
+    // this needs your storm rider percentage
+    var getCurrentStormRider = x => props.stormRiderPercentage * (x*0.1 + 1);
     var getRideTheStormDps = x => (getCurrentStormRider(x) - props.stormRiderPercentage) / (props.stormRiderPercentage+1);
     var getRideTheStormMagnifiedDps = x => ((getCurrentStormRider(x)*1.5 + 1) - (1 + props.stormRiderPercentage * 1.5)) / (props.stormRiderPercentage * 1.5 + 1);
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
     var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
-    var getStormsBuildingDps = x => 480*(1-(Math.min(inspect(cooldown / 100,'getStormBuilding cooldown value'),0.5)))/getTimePerStormRider(x) - 1;
+    var getStormsBuildingDps = x => 480*(1-(Math.min(cooldown / 100,0.5)))/getTimePerStormRider(x) - 1;
     var getCumulativeCost = name =>
         props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length <= props[name] ?
             (inspect(props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0),'getcumulativecosts',{name:props[name], t:props.talents[name]}))
             : undefined;
+    var getStormRiderPercentageFromRarity = rarity =>
+    {
+        var map = props.referenceData.talents.rideTheStorm.rarityMultMap[rarity];
+        return map? map.mult : undefined;
+    };
+
 
 
     // console.log('Inputs rideTheStormMagnified', props.stormRiderPercentage, getRideTheStormDps(props.rideTheStorm), props.rideTheStorm);
@@ -159,7 +174,12 @@ app.Inputs = props =>
                 </tr>
             <tr data-row="13" />
             <tr data-row="14" />
-            <tr data-row="15"><th>Storm Rider Percentage</th><td><TextInputUnc type="number" min="0" value={props.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td></tr>
+            <tr data-row="15">
+                <th>Storm Rider Percentage</th>
+                <td><TextInputUnc type="number" min="0" id="stormRiderPercentage" debug={true} value={props.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
+                <td><RaritySelect gearTypes={props.referenceData.gearTypes}
+                                    onChange={val => props.onStormRiderPercentageChange(inspect(getStormRiderPercentageFromRarity(val),'getStormRiderPercentageFromRarity', val))} /></td>
+            </tr>
             <tr data-row="16" />
             <tr data-row="17">
                 <th colSpan="5">Talents</th>

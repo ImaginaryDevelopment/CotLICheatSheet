@@ -228,7 +228,7 @@ var getStormRiderValue = (allCruGear,id) =>{
     case "18b": gear = cruGear.slot0 || 0;
     case "18c": gear = cruGear.slot0 || 0;
  }
-  console.log('getStormRiderValue', id, cruGear, gear);
+  // console.log('getStormRiderValue', id, cruGear, gear);
  return gear;
 };
 
@@ -245,7 +245,7 @@ var decomposeSlotRarity = itemRarityCompound => {
 
 var getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
 // var getSlotRarity2 = itemRarityCompound =>
-var getSlotRarities = gear => inspect((gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity),'getSlotRarities results');
+var getSlotRarities = gear => (gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity);
 
 var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
   console.log(ownedCrusaderIds,'filterOwned',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, isDesc,crusaders );

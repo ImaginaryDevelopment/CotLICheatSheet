@@ -23,6 +23,7 @@ name={props.name}
 
 app.TextInput2 = props =>
 (<input
+        id={props.id}
         name={props.name}
         className={addClasses(['form-control'],props.className)}
         type={props.type}
@@ -49,7 +50,10 @@ app.TextInputUnc = React.createClass({
     return {value:this.props.value};
   },
   componentWillReceiveProps(nextProps){
-    if(this.props.value !== nextProps.value && this.props.id !== nextProps.id){
+    if(this.props.debug)
+      console.log('TextInputUnc componentWillReceiveProps', this.props, nextProps);
+    // this used to check more stuff before it would try to change state
+    if(this.props.value !== nextProps.value && this.state.value !== nextProps.value){
       this.setState({value:nextProps.value});
     }
   },
@@ -58,6 +62,7 @@ app.TextInputUnc = React.createClass({
     var state = this.state;
     return (<TextInput2
           name={props.name}
+          id={props.id}
           defaultValue={props.defaultValue}
           value={state.value? state.value : ''}
           type={props.type}
