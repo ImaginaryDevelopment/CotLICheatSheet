@@ -265,7 +265,7 @@ var sortCrusaders = (crusaders, slot, ep,epMap) =>{
       return (aEp < bEp ? 1 : aEp > bEp ? -1 : 0) * (ep ==="desc" ? 1 : -1);
   //  console.log('slots', a.slot, b.slot);
     console.log(a.displayName, a.slot, aEp, b.displayName, b.slot, bEp);
-    return  a.slot < b.slot ? 1 : a.slot > b.slot ? -1 : 0;
+    return  (a.slot < b.slot ? 1 : a.slot > b.slot ? -1 : 0) *(slot === "desc"? 1 : -1);
   });
   return copy;
 };
