@@ -344,7 +344,7 @@ var CruTagGrid = React.createClass({
         </tr>
       );
     }
-    var tagsTh = !isMineMode || !this.props.isGearMode ? (<th className="tags">Tags</th>) : null;
+    var tagsTh = !isMineMode || !this.props.isGearMode ? (<th className="tags">Tags<button onClick={() => this.props.updateSave({filterTags:undefined})}>Clear tag filters</button></th>) : null;
     var tagsTh2 = !isMineMode || !this.props.isGearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
     var countsTh = !isMineMode || !this.props.isGearMode? (<th>Counts</th>) : null;
     var sharingTh = isMineMode && this.props.isEpMode ?
