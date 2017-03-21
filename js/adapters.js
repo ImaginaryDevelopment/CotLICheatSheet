@@ -261,10 +261,11 @@ var sortCrusaders = (crusaders, slot, ep,epMap) =>{
     var bEp = epMap[b.id] || 0;
     // if(!slot && a.slot == "12" || b.slot == "12")
     //   console.log('ep sort', a.slot, a.displayName, aEp,b.slot, b.displayName, bEp);
-    if(!slot || a.slot == b.slot)
+    if(!slot || a.slot == b.slot || aEp !== bEp)
       return (aEp < bEp ? 1 : aEp > bEp ? -1 : 0) * (ep ==="desc" ? 1 : -1);
   //  console.log('slots', a.slot, b.slot);
-    return  a.slot < b.slot ? 1 : a.slot > b.slot;
+    console.log(a.displayName, a.slot, aEp, b.displayName, b.slot, bEp);
+    return  a.slot < b.slot ? 1 : a.slot > b.slot ? -1 : 0;
   });
   return copy;
 };
