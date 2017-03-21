@@ -142,3 +142,6 @@ tr.dps .sharedEp{
 .dpsHeaderRow > td:nth-child(-n+8){
     border-top: 1px solid black;
 }
+input.idols{
+    max-width: 70px;
+}
