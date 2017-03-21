@@ -76,7 +76,12 @@ app.TalentInput = props =>{
 
 app.RaritySelect = props =>{
 
-    var gearPossibilities = props.gearTypes;
+    var gearPossibilities = props.gearTypes.slice();
+    if(props.includeGoldens){
+
+        gearPossibilities.splice(5,0,"golden epic");
+        gearPossibilities.splice(7,0,"golden legendary");
+    }
 
     var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
 
@@ -177,7 +182,7 @@ app.Inputs = props =>
             <tr data-row="15">
                 <th>Storm Rider Percentage</th>
                 <td><TextInputUnc type="number" min="0" id="stormRiderPercentage" debug={true} value={props.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
-                <td><RaritySelect gearTypes={props.referenceData.gearTypes}
+                <td><RaritySelect gearTypes={props.referenceData.gearTypes} includeGoldens={true}
                                     onChange={val => props.onStormRiderPercentageChange(inspect(getStormRiderPercentageFromRarity(val),'getStormRiderPercentageFromRarity', val))} /></td>
             </tr>
             <tr data-row="16" />
