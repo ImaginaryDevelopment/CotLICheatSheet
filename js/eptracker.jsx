@@ -789,7 +789,10 @@ var CruApp = React.createClass({
                   // network game section end?
                   onImportSiteStateClick={this.onImportSiteStateClick}
                   onGenerateUrlClick={this.onGenerateUrlClick}
-                  onImportAppStateFromUrlClick={() => this.importAppState(importFromUrl("appGameState"),true)}
+                  onImportAppStateFromUrlClick={() => {
+                    gaEvent('import','gameState');
+                    this.importAppState(importFromUrl("appGameState"),true);
+                    }}
                   onUpdateClick={() => !getIsUrlLoaded() ?  this.setState({lastRead:cruTagGrid.readOrDefault(undefined)}): null}
                   clipper={clipper}
                   stateStyle={stateStyle}
@@ -802,8 +805,7 @@ var CruApp = React.createClass({
 
         <div className="onGreen">Install the extension to auto-load your data from <a href="https://chrome.google.com/webstore/detail/crusaders-automaton/dhlljphpeodbcliiafbedkbkiifdgdjk">Crusader Automaton</a></div>
       <Tabs selected={this.state.saved.mainSelectedTab} onTabChange={val => {
-          if(ga)
-            ga('send','event','navigation','click',val == 0? 'crusaders': val==1 ? 'talents': val==2 ? 'importexport' : 'unknown');
+          gaEvent('navigation','click',val == 0? 'crusaders': val==1 ? 'talents': val==2 ? 'importexport' : 'unknown');
           this.changeSaveState({mainSelectedTab:val});
           }}>
         <Pane label="Crusaders">
