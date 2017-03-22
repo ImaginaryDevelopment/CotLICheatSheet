@@ -87,18 +87,19 @@ var CruTagRow = React.createClass({
       : self.props.wikibase + cru.displayName.replace(" ","_");
 
       var cruGear = this.props.gear ? this.props.gear : {};
-      if(cru.id==="15")
+      // if(cru.id==="15")
       // console.log('cruGear for boxes', cruGear);
       var slotGear;
       // extract the 3 slots with qualities
       var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
+
         if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
           var makeBox = slot => {
             var itemRarityCompound = cruGearQ[slot];
             var rarity = !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : itemRarityCompound[0];
             var golden = !(itemRarityCompound != null) || typeof(itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
             var classes = "rarity rarity" + rarity + golden;
-            if(cru.id =="15")
+            // if(cru.id =="15")
             // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
             return (<div className={classes} />);
           };
