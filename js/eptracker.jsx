@@ -160,7 +160,7 @@ var CruGridBody = props =>{
         var dps = getCrusaderDps(crusader);
         var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
         var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
-        var effectiveEP = calcEffectiveEP(props.sharingIsCaringLevel, +props.enchantmentPoints[crusader.id], otherEp);
+        var effectiveEP = calcEffectiveEP(props.sharingIsCaring, +props.enchantmentPoints[crusader.id], otherEp);
         // // account for sharing is caring here, once you have it
         // var sharingIsCaring = 6 + +(props.sharingIsCaringLevel || 0);
         // // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
@@ -381,7 +381,7 @@ class CruTagGrid extends React.Component {
     var tagsTh2 = !isMineMode || !this.props.isGearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
     var countsTh = !isMineMode || !this.props.isGearMode? (<th>Counts</th>) : null;
     var sharingTh = isMineMode && this.props.isEpMode ?
-    (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaringLevel} type="number" onChange={val => this.props.updateSave({sharingIsCaringLevel: +val})} /></th>): null;
+    (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaring} type="number" onChange={val => this.props.updateSave({sharingIsCaring: +val})} /></th>): null;
     return (<table id="tab">
     <thead>
       <tr>
@@ -407,7 +407,7 @@ class CruTagGrid extends React.Component {
           ownedCrusaderIds={this.props.ownedCrusaderIds}
           crusaderGear={this.props.crusaderGear}
           enchantmentPoints={this.props.enchantmentPoints}
-          sharingIsCaringLevel={this.props.sharingIsCaringLevel}
+          sharingIsCaring={this.props.sharingIsCaring}
           formationIds={this.props.formationIds}
           isEpMode={this.props.isEpMode}
           isGearMode={this.props.isGearMode}
@@ -816,7 +816,7 @@ var CruApp = React.createClass({
                         isEpMode={this.state.saved.isEpMode}
                         isGearMode={this.state.saved.isGearMode}
                         crusaderGear={this.state.saved.crusaderGear}
-                        sharingIsCaringLevel={this.state.saved.sharingIsCaringLevel}
+                        sharingIsCaring={this.state.saved.sharingIsCaring}
                         enchantmentPoints={this.state.saved.enchantmentPoints}
                         ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
                         isBuildingFormation={this.state.saved.isBuildingFormation}
