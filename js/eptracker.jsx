@@ -215,7 +215,18 @@ class CruTagGrid extends React.Component {
     super();
     this.onSlotSortClick = this.onSlotSortClick.bind(this);
     this.onEpSortClick = this.onEpSortClick.bind(this);
+    this.filterOwnedClick = this.filterOwnedClick.bind(this);
     this.onModeChangeClicked = this.onModeChangeClicked.bind(this);
+    this.onEpClick = this.onEpClick.bind(this);
+    this.onIdolChange = this.onIdolChange.bind(this);
+    this.onFormationClick = this.onFormationClick.bind(this);
+    this.onGearClick = this.onGearClick.bind(this);
+    this.onEpChange = this.onEpChange.bind(this);
+    this.onFormationChange = this.onFormationChange.bind(this);
+    this.onOwnedChange = this.onOwnedChange.bind(this);
+    this.onGearChange=this.onGearChange.bind(this);
+    this.onFilterTag=this.onFilterTag.bind(this);
+
   }
   onSlotSortClick(){
       this.props.updateSave(getSortUpdate('slotSort', this.props.slotSort));
