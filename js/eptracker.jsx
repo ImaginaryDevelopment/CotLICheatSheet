@@ -93,18 +93,19 @@ var CruTagRow = React.createClass({
       // extract the 3 slots with qualities
       var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
 
-        if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
-          var makeBox = slot => {
-            var itemRarityCompound = cruGearQ[slot];
-            var rarity = !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : itemRarityCompound[0];
-            var golden = !(itemRarityCompound != null) || typeof(itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
-            var classes = "rarity rarity" + rarity + golden;
-            // if(cru.id =="15")
-            // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
-            return (<div className={classes} />);
-          };
-          slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
-        }
+      if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
+        var makeBox = slot => {
+          var itemRarityCompound = cruGearQ[slot];
+          var rarity = !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : itemRarityCompound[0];
+          var golden = !(itemRarityCompound != null) || typeof(itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
+          var classes = "rarity rarity" + rarity + golden;
+          // if(cru.id =="15")
+          // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
+          return (<div className={classes} />);
+        };
+        slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
+      }
+
       var gearTd = null;
       // console.log('gear?', this.props.mode, this.props.isGearMode);
       if (this.props.mode ==="mine" && this.props.isGearMode){
@@ -153,11 +154,14 @@ var CruTagRow = React.createClass({
 
 var CruGridBody = props =>{
   var self = {props:props};
+  window.crusaderGear = props.crusaderGear;
+
   var rows = props.sortedCrusaders
         .map(function(crusader){
         // console.log('mapping a crusader!');
         var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
         var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: [];
+        console.log('sortedCrusaders', props.crusaderGear, gear);
         var dps = getCrusaderDps(crusader);
         var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
         var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
@@ -216,10 +220,10 @@ class CruTagGrid extends React.Component {
     super();
     this.onSlotSortClick = this.onSlotSortClick.bind(this);
     this.onEpSortClick = this.onEpSortClick.bind(this);
+    this.onNameSortClick = this.onNameSortClick.bind(this);
     this.filterOwnedClick = this.filterOwnedClick.bind(this);
     this.onModeChangeClicked = this.onModeChangeClicked.bind(this);
     this.onEpClick = this.onEpClick.bind(this);
-    this.onIdolChange = this.onIdolChange.bind(this);
     this.onFormationClick = this.onFormationClick.bind(this);
     this.onGearClick = this.onGearClick.bind(this);
     this.onEpChange = this.onEpChange.bind(this);
@@ -235,6 +239,9 @@ class CruTagGrid extends React.Component {
   onEpSortClick(){
       this.props.updateSave(getSortUpdate('epSort', this.props.epSort));
   }
+  onNameSortClick(){
+      this.props.updateSave(getSortUpdate('nameSort', this.props.nameSort));
+  }
   filterOwnedClick(){
     //(i + 2) % 3 - 1)
     var filterOwned = (this.props.filterOwned + 2) % 3 - 1;
@@ -247,9 +254,6 @@ class CruTagGrid extends React.Component {
   }
   onEpClick(){
     this.props.updateSave({isEpMode: this.props.isEpMode? false : true})
-  }
-  onIdolChange(val){
-    this.props.updateSave({idols:val});
   }
   onFormationClick(){
     var saveMods = {isBuildingFormation: this.props.isBuildingFormation != null ? null : "formation"};
@@ -351,7 +355,7 @@ class CruTagGrid extends React.Component {
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     // var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
     var sortedCrusaders = filterSortCrusaders(this.props.ownedCrusaderIds || [], this.props.filterOwned, this.props.filterTags || [], isBuildingFormation, this.props.formationIds || [], this.props.slotSort, this.props.model.crusaders
-      , this.props.epSort, this.props.enchantmentPoints);
+      , this.props.epSort, this.props.enchantmentPoints, this.props.nameSort);
 
     var tagCounts = [];
     this.props.model.missionTags.map(function(tag){
@@ -370,7 +374,7 @@ class CruTagGrid extends React.Component {
     if(isMineMode){
       formationRow=(
         <tr>
-          <th title={(this.props.idols && !isNaN(this.props.idols)? numberWithCommas(this.props.idols) + ' ' : '') +  "American or otherwise"}>Idols <TextInputUnc className={["idols"]} readonly={getIsUrlLoaded()} onChange={this.onIdolChange} value={this.props.idols} /></th>
+          <th>SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaring} type="number" onChange={val => this.props.updateSave({sharingIsCaring: +val})} /></th>
           <th><CheckBox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
           <th colSpan="2"><CheckBox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
           <th><CheckBox checked={this.props.isGearMode} onChange={this.onGearClick} />Track gear</th>
@@ -382,7 +386,7 @@ class CruTagGrid extends React.Component {
     var tagsTh2 = !isMineMode || !this.props.isGearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
     var countsTh = !isMineMode || !this.props.isGearMode? (<th>Counts</th>) : null;
     var sharingTh = isMineMode && this.props.isEpMode ?
-    (<th colSpan="2">SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaring} type="number" onChange={val => this.props.updateSave({sharingIsCaring: +val})} /></th>): null;
+    (<th colSpan="2"></th>): null;
     return (<table id="tab">
     <thead>
       <tr>
@@ -400,7 +404,13 @@ class CruTagGrid extends React.Component {
         {countsTh}
       </tr>
       { formationRow }
-      <tr><th>EP<i className={getSortClasses(this.props.epSort)} onClick={this.onEpSortClick}></i></th><th >Slot<i className={getSortClasses(this.props.slotSort)} onClick={this.onSlotSortClick}></i></th>{sharingTh}</tr>
+      <tr>
+        { isMineMode? (<th>EP<i className={getSortClasses(this.props.epSort)} onClick={this.onEpSortClick}></i></th>) : null}
+        <th >Slot<i className={getSortClasses(this.props.slotSort)} onClick={this.onSlotSortClick}></i></th>
+        <th colSpan="2">Name<i className={getSortClasses(this.props.nameSort)} onClick={this.onNameSortClick}></i></th>
+        <th />
+        <th />
+      </tr>
 
       </thead>
       <CruGridBody
@@ -815,6 +825,7 @@ var CruApp = React.createClass({
             <CruTagGrid model={props.referenceData}
                         slotSort={this.state.saved.slotSort}
                         epSort={this.state.saved.epSort}
+                        nameSort={this.state.saved.nameSort}
                         mode={this.state.saved.mode}
                         isEpMode={this.state.saved.isEpMode}
                         isGearMode={this.state.saved.isGearMode}
@@ -826,7 +837,6 @@ var CruApp = React.createClass({
                         formationIds={this.state.saved.formationIds}
                         filterTags={this.state.saved.filterTags}
                         filterOwned={this.state.saved.filterOwned}
-                        idols={this.state.saved.idols}
                         updateSave={this.changeSaveState} />
           </div>
         </Pane>

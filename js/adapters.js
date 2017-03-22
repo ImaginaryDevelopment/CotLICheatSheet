@@ -247,38 +247,40 @@ var getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : it
 // var getSlotRarity2 = itemRarityCompound =>
 var getSlotRarities = gear => (gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity);
 
-// expecting undefined for no sorting, "up" for ascending, "desc" for descending
-// could use 1-2 to prioritize the sorters
-var sortCrusaders = (crusaders, slot, ep,epMap) =>{
+var comparer =
+  (a,b) =>
+    (a < b ? -1 : b < a ? 1 : 0);
+
+var getSortMult = sortType => (sortType ==="up"? 1 : sortType ==="desc"? -1 : 0);
+
+var slotComparer = sortType =>
+  (a,b) => getSortMult(sortType) * comparer(a.slot,b.slot);
+
+var epComparer = (sortType,map) =>
+  (a,b) => getSortMult(sortType) * comparer(map[a.id], map[b.id]);
+
+var nameComparer = sortType =>
+  (a,b) => getSortMult(sortType) * comparer(a.displayName, b.displayName);
+
+
+// each function in the passed array must return 1, 0, or -1 given 2 crusaders
+var sortCrusaders2 = (crusaders, fComparisons) =>{
+  if(!fComparisons || !Array.isArray(fComparisons)) return crusaders;
   var copy = crusaders.slice(0);
-  console.log('sortCrusaders', slot, ep, epMap, crusaders.slice(0,3));
-  if (!ep && slot !== "desc") return copy;
-  console.log('sortCrusaders sorting');
-  copy.sort((a,b) =>{
-    if (!ep)  // means slotSort was -1/up/ascending
-      return a.slot < b.slot ? 1 : a.slot > b.slot ? -1 : 0;
-    var aEp = epMap[a.id] || 0;
-    var bEp = epMap[b.id] || 0;
-    // if(!slot && a.slot == "12" || b.slot == "12")
-    //   console.log('ep sort', a.slot, a.displayName, aEp,b.slot, b.displayName, bEp);
-    if(!slot || a.slot == b.slot || aEp !== bEp)
-      return (aEp < bEp ? 1 : aEp > bEp ? -1 : 0) * (ep ==="desc" ? 1 : -1);
-  //  console.log('slots', a.slot, b.slot);
-    console.log(a.displayName, a.slot, aEp, b.displayName, b.slot, bEp);
-    return  (a.slot < b.slot ? 1 : a.slot > b.slot ? -1 : 0) *(slot === "desc"? 1 : -1);
-  });
-  return copy;
+  return copy.sort((a,b) =>
+    fComparisons.reduce((prev,fn) =>
+      prev == 0 ? fn(a,b) : prev
+     ,0));
 };
 
-var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap) => {
-  // console.log('filterSortCrusaders inputs',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap);
+var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap, nameSort) => {
 
   var filtered = crusaders.filter(function(crusader){
         var result = crusaderFilter(ownedCrusaderIds, crusader,filterOwned, filterTags,isBuildingFormation,formationIds);
         // console.log('filter', crusader,filterOwned, filterTags);
         return result;
       });
-  var sortedCrusaders = sortCrusaders(filtered, slotSort, epSort, epMap);
+  var sortedCrusaders = sortCrusaders2(filtered, [slotComparer(slotSort), epComparer(epSort, epMap), nameComparer(nameSort)]);
   // console.log('filtered count:' + sortedCrusaders.length);
   return sortedCrusaders;
 };
