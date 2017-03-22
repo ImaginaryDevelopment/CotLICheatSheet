@@ -33,6 +33,10 @@ var parseLoot = (crusaders,lootData) =>{
         return 1;
       if(a.slotId < b.slotId)
         return -1;
+      if(a.heroName > b.heroName)
+        return 1;
+      if(a.heroName < b.heroName)
+        return -1;
       if(a.slot != null && !(b.slot != null))
         return 1;
       if(!(a.slot != null) && b.slot != null)
@@ -49,7 +53,7 @@ var parseLoot = (crusaders,lootData) =>{
       lootData
         .map(l =>
         {
-          var crusader = refC.find(cru => cru.loot.find(cl => cl.lootId == l.loot_id));
+          var crusader = refC.find(cru => cru.loot && cru.loot.find(cl => cl.lootId == l.loot_id));
           var lootItem = crusader && crusader.loot.find(cl => cl.lootId == l.loot_id);
           // console.log('lootDataMap',l, crusader,lootItem);
           if(!(crusader != null)){
