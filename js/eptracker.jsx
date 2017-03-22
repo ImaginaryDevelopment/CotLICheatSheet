@@ -319,8 +319,9 @@ class CruTagGrid extends React.Component {
     var self = this;
     console.log('onFilterTag', tagId, self.props.filterTags);
     var tagFilter = {};
-    Object.keys(this.props.filterTags).map(function(tagId){
-      tagFilter[tagId] = self.props.filterTags[tagId] ? true : false;
+    var filterTags = self.props.filterTags || {};
+    Object.keys(filterTags).map(function(tagId){
+      tagFilter[tagId] = filterTags[tagId] ? true : false;
     });
     tagFilter[tagId] = tagFilter[tagId] ? false : true;
     console.log('filterTags', tagFilter);
