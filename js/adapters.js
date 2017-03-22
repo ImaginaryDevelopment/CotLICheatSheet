@@ -271,7 +271,7 @@ var sortCrusaders = (crusaders, slot, ep,epMap) =>{
 };
 
 var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap) => {
-  console.log('filterSortCrusaders inputs',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap);
+  // console.log('filterSortCrusaders inputs',filterOwned,'filterTags', filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap);
 
   var filtered = crusaders.filter(function(crusader){
         var result = crusaderFilter(ownedCrusaderIds, crusader,filterOwned, filterTags,isBuildingFormation,formationIds);

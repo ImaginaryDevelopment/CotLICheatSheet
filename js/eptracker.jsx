@@ -801,7 +801,11 @@ var CruApp = React.createClass({
         <div>{JSON.stringify(this.state.error)}</div>
 
         <div className="onGreen">Install the extension to auto-load your data from <a href="https://chrome.google.com/webstore/detail/crusaders-automaton/dhlljphpeodbcliiafbedkbkiifdgdjk">Crusader Automaton</a></div>
-      <Tabs selected={this.state.saved.mainSelectedTab} onTabChange={val => this.changeSaveState({mainSelectedTab:val})}>
+      <Tabs selected={this.state.saved.mainSelectedTab} onTabChange={val => {
+          if(ga)
+            ga('send','event','navigation','click',val == 0? 'crusaders': val==1 ? 'talents': val==2 ? 'importexport' : 'unknown');
+          this.changeSaveState({mainSelectedTab:val});
+          }}>
         <Pane label="Crusaders">
           <div>
             <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
