@@ -5864,30 +5864,6 @@
     "current_time": 1490205911,
     "last_event_chest_type_id": 24,
     "linked_accounts": [
-        {
-            "internal_user_id": "1135325",
-            "name": "Maslow",
-            "network": "Steam",
-            "is_main": true
-        },
-        {
-            "internal_user_id": "1342381",
-            "name": "beemine4",
-            "network": "Kongregate",
-            "is_main": false
-        },
-        {
-            "internal_user_id": "1343133",
-            "name": "Unknown",
-            "network": "Mobile_android_device",
-            "is_main": false
-        },
-        {
-            "internal_user_id": "1522872",
-            "name": "Unknown",
-            "network": "Mobile_android_device",
-            "is_main": false
-        }
     ],
     "current_sales": [],
     "actions": [
