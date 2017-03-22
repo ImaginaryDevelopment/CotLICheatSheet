@@ -215,6 +215,7 @@ class CruTagGrid extends React.Component {
     super();
     this.onSlotSortClick = this.onSlotSortClick.bind(this);
     this.onEpSortClick = this.onEpSortClick.bind(this);
+    this.onModeChangeClicked = this.onModeChangeClicked.bind(this);
   }
   onSlotSortClick(){
       this.props.updateSave(getSortUpdate('slotSort', this.props.slotSort));
