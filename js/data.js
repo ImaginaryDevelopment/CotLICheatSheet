@@ -1473,6 +1473,22 @@ window.jsonData =
       ]
     },
     {
+      "id": "02c",
+      "displayName": "Arachnobuddy",
+      "slot": 2,
+      "image": "",
+      "event": "April: Superhero Spring",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
+      "tags": [
+        "event",
+        "human",
+        "male",
+        "superhero",
+        "support"
+      ],
+      "heroId": 79
+    },
+    {
       "id": "03",
       "displayName": "Emo Werewolf",
       "image": "mini_Emo.jpg",
@@ -5657,6 +5673,23 @@ window.jsonData =
           "lootId": 1206
         }
       ]
+    },
+    {
+      "id": "11d",
+      "tier": 2,
+      "displayName": "Foresight",
+      "image": "",
+      "slot": 11,
+      "event": "April: Superhero Spring",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
+      "tags": [
+        "event",
+        "robot",
+        "supernatural",
+        "healer",
+        "support"
+      ],
+      "heroId": 80,
     },
     {
       "id": "12",
