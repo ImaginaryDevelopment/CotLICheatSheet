@@ -118,7 +118,7 @@ var readIt = function(key,defaultValue){
   }
 };
 var gaEvent = (category,action,labelOpt,numberValueOpt) =>
-  ga ? ga('send','event','navigation','click',val == 0? 'crusaders': val==1 ? 'talents': val==2 ? 'importexport' : 'unknown') : null;
+  ga ? ga('send','event',category, action, labelOpt, numberValueOpt) : null;
 
 function padLeft(nr, n, str){
     return Array(n-String(nr).length+1).join(str||'0')+nr;
