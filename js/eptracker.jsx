@@ -123,7 +123,7 @@ var CruTagRow = React.createClass({
           //   console.log('making select for item with info', slot,itemInfo,rarity);
           // }
 
-          return (<select key={"gear" + slot} title={JSON.stringify(gearInfo)} value={rarity} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
+          return (<div><select key={"gear" + slot} title={JSON.stringify(gearInfo)} value={rarity} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
         }
                     // <select key="gear0" onChange={e => this.props.onGearChange(cru.id, 0, e.target.value)} name="slot0">{options}</select>
                     // <select key="gear1" onChange={e => this.props.onGearChange(cru.id, 1, e.target.value)} name="slot1">{options}</select>
