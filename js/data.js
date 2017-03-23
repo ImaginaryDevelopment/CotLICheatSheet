@@ -1486,6 +1486,7 @@ window.jsonData =
         "superhero",
         "support"
       ],
+      "tier": 2,
       "heroId": 79
     },
     {
