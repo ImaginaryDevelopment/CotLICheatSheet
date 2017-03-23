@@ -87,8 +87,7 @@ var CruTagRow = React.createClass({
       : self.props.wikibase + cru.displayName.replace(" ","_");
 
       var cruGear = this.props.gear ? this.props.gear : {};
-      // if(cru.id==="15")
-      // console.log('cruGear for boxes', cruGear);
+      if(cru.id==="15") console.log('cruGear for boxes', cruGear);
       var slotGear;
       // extract the 3 slots with qualities
       var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
@@ -116,12 +115,15 @@ var CruTagRow = React.createClass({
         var makeSelect = slot => {
           // var slot = (typeof(slot) === "string" && slot.length > 1 ? slot[0] && +slot === slot ? +slot
           var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
+          var gearInfo = itemInfo !== 0 && this.props.gearReference && this.props.gearReference[slot];
+          if(cru.id==="15") console.log('makeSelect', gearInfo, itemInfo, this.props.gearRef);
+
           var rarity = !itemInfo ? 0 : (typeof(itemInfo) === "string" && itemInfo.length > 1 ? +itemInfo[0] : +itemInfo);
           // if(typeof(ItemInfo) !== "number"){
           //   console.log('making select for item with info', slot,itemInfo,rarity);
           // }
 
-          return (<select key={"gear" + slot} value={rarity} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
+          return (<select key={"gear" + slot} title={JSON.stringify(gearInfo)} value={rarity} onChange={e => this.props.onGearChange(cru.id, slot, e.target.value)} name={"slot" + slot}>{options}</select>);
         }
                     // <select key="gear0" onChange={e => this.props.onGearChange(cru.id, 0, e.target.value)} name="slot0">{options}</select>
                     // <select key="gear1" onChange={e => this.props.onGearChange(cru.id, 1, e.target.value)} name="slot1">{options}</select>
@@ -160,23 +162,23 @@ var CruGridBody = props =>{
         .map(function(crusader){
         // console.log('mapping a crusader!');
         var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: [];
-        console.log('sortedCrusaders', props.crusaderGear, gear);
+        var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: {};
+        // console.log('crusader', crusader, gear);
         var dps = getCrusaderDps(crusader);
         var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
+        // this is wrong when crusaders are filtered
         var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
         var effectiveEP = calcEffectiveEP(props.sharingIsCaring, +props.enchantmentPoints[crusader.id], otherEp);
-        // // account for sharing is caring here, once you have it
-        // var sharingIsCaring = 6 + +(props.sharingIsCaringLevel || 0);
-        // // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
-        // var rawSharedEp = (0.05 * sharingIsCaring * otherEp);
-        // var effectiveEp = Number(Math.round(rawSharedEp)) + +props.enchantmentPoints[crusader.id];
+        var findLoot = slot => crusader.loot.find(l => l.rarity == gear["slot" + slot] && l.slot == slot);
+        var gearRef = crusader.loot && gear && [findLoot("0"), findLoot("1"), findLoot("2")];
+        // console.log('gear', gearRef);
 
         return (<CruTagRow key={crusader.displayName}
           formationIds={props.formationIds}
           isEpMode={props.isEpMode}
           isGearMode={props.isGearMode}
           gearTypes={props.referenceData.gearTypes}
+          gearReference={gearRef}
           gear={gear}
           onGearChange={props.onGearChange}
           enchantmentPoints={props.enchantmentPoints[crusader.id]}
