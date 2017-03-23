@@ -114,6 +114,7 @@ var mergeImportLoot = (data,loot) => {
                   console.log('failing to map properly', l);
                 rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
               }
+              crusaderGear[l.heroSlotId]["s" + l.slot] = l.lootId;
 
               crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
             }
