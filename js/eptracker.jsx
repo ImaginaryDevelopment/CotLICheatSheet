@@ -368,6 +368,8 @@ class CruTagGrid extends React.Component {
     if(selectV == 1){
       stateMods.crusaderGear[cruId]["slot" + slot] = +gearTypeIndex;
     } else {
+      if(stateMods.crusaderGear[cruId]["slot" + slot])
+        stateMods.crusaderGear[cruId]["slot" + slot] = undefined;
       stateMods.crusaderGear[cruId]["s" + slot] = +gearTypeIndex;
     }
     console.log('gearChangeMods', stateMods);
