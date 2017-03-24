@@ -1,6 +1,10 @@
 ((app) =>
 {
-
+app.createInputClipperButton = targetId =>
+  Clipboard && Clipboard.isSupported() && (<button className="btn" data-clipboard-target={"#" + targetId}>Copy to Clipboard</button>);
+app.createClipperButton = text =>
+  Clipboard && Clipboard.isSupported() && (<button className="btn" data-clipboard-text={text}>Copy to Clipboard</button>);
+    
 app.TextAreaInput2 = props =>
 (<textarea
 name={props.name}

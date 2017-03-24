@@ -268,7 +268,7 @@ class CruTagGrid extends React.Component {
     this.onOwnedChange = this.onOwnedChange.bind(this);
     this.onGearChange=this.onGearChange.bind(this);
     this.onFilterTag=this.onFilterTag.bind(this);
-
+    window.importMe = () => this.props.updateSave({mainSelectedTab:2});
   }
   onSlotSortClick(){
       this.props.updateSave(getSortUpdate('slotSort', this.props.slotSort));
@@ -523,6 +523,7 @@ var HeroGameData = React.createClass({
             <ul>
               {gearLIs}
               </ul>
+              {createClipperButton(JSON.stringify(gear))}
             </div>
           </Pane>
           <Pane label="Talents">
@@ -555,23 +556,13 @@ var Exporter = props =>
 (
   <div>
   <Tabs>
-    <Pane label="Import/Export">
-      <div>
-      <button onClick={ () => props.onImportAppStateFromUrlClick()}>Import AppStateFrom Url</button>
-      <button onClick={ props.onGenerateUrlClick}>Generate AppState Url</button>
-      <TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","isEpMode":true,"enchantmentPoints":'/>
-      <button onClick={props.onImportSiteStateClick} >{props.importText}</button>
-      {getIsUrlLoaded() ? null : <button onClick={props.onUpdateClick}>Update Export Text</button> }
-      {/*<button onClick={props.toggleAppStateVisibility}>Toggle AppState Visibility</button>*/}
-      <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
-      {props.clipper}
-      </div>
-    </Pane>
     <Pane label="Network-Data Importer">
       <div>
+        <p>This is for importing game data from the Crusader Automata (chrome extension) or directly from game network traffic.</p>
         <TextAreaInputUnc onChange={props.onNetworkDataTextInputChange} value={props.networkDataRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
         <button onClick={props.onLoadNetworkDataClick}>Parse game data</button>
         <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
+
         {inspect(props.networkDataJson,'exporter networkDataJson')? (
           <HeroGameData heroMap={props.heroMap}
                         crusaders={props.crusaders}
@@ -584,6 +575,19 @@ var Exporter = props =>
             : null}
     </div>
       </Pane>
+      <Pane label="Import/Export">
+      <div>
+        <p>This is for importing and exporting the CotLICheatSheet data to/from other players. Also you can use it to make a backup of your CotLICheatSheet data.</p>
+      <button onClick={ () => props.onImportAppStateFromUrlClick()}>Import AppStateFrom Url</button>
+      <button onClick={ props.onGenerateUrlClick}>Generate AppState Url</button>
+      <TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","isEpMode":true,"enchantmentPoints":'/>
+      <button onClick={props.onImportSiteStateClick} >{props.importText}</button>
+      {getIsUrlLoaded() ? null : <button onClick={props.onUpdateClick}>Update Export Text</button> }
+      {/*<button onClick={props.toggleAppStateVisibility}>Toggle AppState Visibility</button>*/}
+      <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
+      {props.clipper}
+      </div>
+    </Pane>
     </Tabs>
     </div>
 );
@@ -814,11 +818,12 @@ var CruApp = React.createClass({
       background:"black"
     };
     var importText = this.state.textState ? 'Import Data from Textbox' : 'Clear All Saved Data';
-    var clipper = null;
+    var clipper = createInputClipperButton("clipperText");
+    // console.log('clipper', clipper);
     var json = JSON.stringify(this.state.lastRead);
-    if(Clipboard && Clipboard.isSupported()){
-      clipper = (<button className="btn" data-clipboard-target="#clipperText">Copy to Clipboard</button>);
-    }
+    // if(Clipboard && Clipboard.isSupported()){
+    //   clipper = (<button className="btn" data-clipboard-target="#clipperText">Copy to Clipboard</button>);
+    // }
     var heroMap = {};
 
     this.props.referenceData.crusaders.map(c =>{
