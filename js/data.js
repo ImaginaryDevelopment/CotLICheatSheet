@@ -9,16 +9,16 @@ window.jsonData =
     "epic",
     "legendary"
   ],
-  "talents":{
-    "spendItAll":{
-      "talentId":1
+  "talents": {
+    "spendItAll": {
+      "talentId": 1
     },
-    "speedLooter":{
-      "talentId":2
+    "speedLooter": {
+      "talentId": 2
     },
-    "passiveCriticals":{
-      "talentId":3,
-      "costs":[
+    "passiveCriticals": {
+      "talentId": 3,
+      "costs": [
         0,
         10,
         11,
@@ -70,11 +70,11 @@ window.jsonData =
         882,
         971,
         1068
-        ]
+      ]
     },
-    "surplusCooldown":{
-      "talentId":4,
-      "costs":[
+    "surplusCooldown": {
+      "talentId": 4,
+      "costs": [
         0,
         25,
         28,
@@ -127,11 +127,10 @@ window.jsonData =
         2426,
         2668
       ]
-
     },
-    "overenchanted":{
-      "talentId":5,
-      "costs":[
+    "overenchanted": {
+      "talentId": 5,
+      "costs": [
         0,
         100,
         111,
@@ -185,9 +184,9 @@ window.jsonData =
         10672
       ]
     },
-    "setBonus":{
-      "talentId":6,
-      "costs":[
+    "setBonus": {
+      "talentId": 6,
+      "costs": [
         0,
         100,
         111,
@@ -241,18 +240,18 @@ window.jsonData =
         10672
       ]
     },
-    "enduranceTraining":{
-      "talentId":7
+    "enduranceTraining": {
+      "talentId": 7
     },
-    "timeORama":{
-      "talentId":8
+    "timeORama": {
+      "talentId": 8
     },
-    "scavenger":{
-      "talentId":9
+    "scavenger": {
+      "talentId": 9
     },
-    "sharingIsCaring":{
-      "talentId":10,
-      "costs":[
+    "sharingIsCaring": {
+      "talentId": 10,
+      "costs": [
         0,
         500,
         625,
@@ -270,25 +269,49 @@ window.jsonData =
         9095
       ]
     },
-    "massiveCriticals":{
-      "talentId":11
+    "massiveCriticals": {
+      "talentId": 11
     },
-    "goldOSplosion":{
-      "talentId":12
+    "goldOSplosion": {
+      "talentId": 12
     },
-    "rideTheStorm":{
-      "talentId":13,
-      "rarityMultMap":[
-        {"rarity":0, "mult":0.1},
-        {"rarity":1, "mult":0.11},
-        {"rarity":2, "mult":0.125},
-        {"rarity":3, "mult":0.15},
-        {"rarity":4, "mult":0.2},
-        {"rarity":"4g", "mult":0.25},
-        {"rarity":5, "mult":0.3},
-        {"rarity":"5g","mult":0.6}
+    "rideTheStorm": {
+      "talentId": 13,
+      "rarityMultMap": [
+        {
+          "rarity": 0,
+          "mult": 0.1
+        },
+        {
+          "rarity": 1,
+          "mult": 0.11
+        },
+        {
+          "rarity": 2,
+          "mult": 0.125
+        },
+        {
+          "rarity": 3,
+          "mult": 0.15
+        },
+        {
+          "rarity": 4,
+          "mult": 0.2
+        },
+        {
+          "rarity": "4g",
+          "mult": 0.25
+        },
+        {
+          "rarity": 5,
+          "mult": 0.3
+        },
+        {
+          "rarity": "5g",
+          "mult": 0.6
+        }
       ],
-      "costs":[
+      "costs": [
         0,
         100,
         115,
@@ -317,9 +340,9 @@ window.jsonData =
         2863
       ]
     },
-    "stormsBuilding":{
-      "talentId":14,
-      "costs":[
+    "stormsBuilding": {
+      "talentId": 14,
+      "costs": [
         0,
         100,
         133,
@@ -338,9 +361,9 @@ window.jsonData =
         5420
       ]
     },
-    "fastLearners":{
-      "talentId":15,
-      "costs":[
+    "fastLearners": {
+      "talentId": 15,
+      "costs": [
         0,
         250,
         300,
@@ -362,9 +385,9 @@ window.jsonData =
         5547
       ]
     },
-    "wellEquipped":{
-      "talentId":16,
-      "costs":[
+    "wellEquipped": {
+      "talentId": 16,
+      "costs": [
         0,
         500,
         538,
@@ -418,9 +441,9 @@ window.jsonData =
         17298
       ]
     },
-    "swapDay":{
-      "talentId":17,
-      "costs":[
+    "swapDay": {
+      "talentId": 17,
+      "costs": [
         0,
         500,
         538,
@@ -474,15 +497,33 @@ window.jsonData =
         17298
       ]
     },
-    "upgradeThemAll":{"talentId":18},
-    "efficientCrusading":{"talentId":19},
-    "deepIdolScavenger":{"talentId":20},
-    "doingItAgain":{"talentId":21},
-    "tripleTierTrouble":{"talentId":22},
-    "extraTraining":{"talentId":23},
-    "sniper":{"talentId":24},
-    "speedRunner":{"talentId":25},
-    "everyLastCent":{"talentId":26}
+    "upgradeThemAll": {
+      "talentId": 18
+    },
+    "efficientCrusading": {
+      "talentId": 19
+    },
+    "deepIdolScavenger": {
+      "talentId": 20
+    },
+    "doingItAgain": {
+      "talentId": 21
+    },
+    "tripleTierTrouble": {
+      "talentId": 22
+    },
+    "extraTraining": {
+      "talentId": 23
+    },
+    "sniper": {
+      "talentId": 24
+    },
+    "speedRunner": {
+      "talentId": 25
+    },
+    "everyLastCent": {
+      "talentId": 26
+    }
   },
   "missionTags": [
     {
@@ -1487,7 +1528,99 @@ window.jsonData =
         "support"
       ],
       "tier": 2,
-      "heroId": 79
+      "heroId": 79,
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Half-Broken Spider Web",
+          "lootId": 1338
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Well-Formed Spider Web",
+          "lootId": 1339
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Steel Re-enforced Spider Web",
+          "lootId": 1340
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Titanium Spider Web of Perfect Walking-Through Height",
+          "lootId": 1341
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Self-Expanding Web of Unbreakable Sticky Strands",
+          "lootId": 1372
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Patched-Up Arachno-Suit",
+          "lootId": 1342
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Second-Hand Arachno-Suit",
+          "lootId": 1343
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Gleaming Arachno-Suit",
+          "lootId": 1344
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Well-Tailored Arachno-Suit of Many Cosplays",
+          "lootId": 1345
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Queen-of-Blades Inspired Supersuit of Swankiness",
+          "lootId": 1373
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Smelly Mask",
+          "lootId": 1346
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Comfortable Mask",
+          "lootId": 1347
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Sleek, Well-Fitting Mask",
+          "lootId": 1348
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Smooth Cotton Mask of Identity Hiding",
+          "lootId": 1349
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Nanofiber Mask of Entirely Pointless Eyeslots",
+          "lootId": 1374
+        }
+      ]
     },
     {
       "id": "03",
@@ -2125,7 +2258,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 4,
-          "name": "Groklok Bracer GE",
+          "name": "Amazing Azure Armguard of Awesome Arteries",
           "lootId": 1366,
           "golden": true
         },
@@ -5486,7 +5619,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 5,
-          "name": "Extravegently Detailed Dragon Tooth of Princes",
+          "name": "Extravagently Detailed Dragon Tooth of Princes",
           "lootId": 1139
         },
         {
@@ -5691,6 +5824,98 @@ window.jsonData =
         "support"
       ],
       "heroId": 80,
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "8-Bit Processor",
+          "lootId": 1350
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "16-Bit Processor",
+          "lootId": 1351
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "32-Bit Processor",
+          "lootId": 1352
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "64-Bit Processor of Quantum Computing",
+          "lootId": 1353
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "128-Bit Needlessly Fast Processor of Universal Series Buses",
+          "lootId": 1375
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Dull, Rusty Cape",
+          "lootId": 1354
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Tin-Foil Cape",
+          "lootId": 1355
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Shiny Bronze Cape",
+          "lootId": 1356
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Polished Copper Cape of Robotic Energy",
+          "lootId": 1357
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Cream-Colored Cape of Golden Favorites",
+          "lootId": 1376
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Hazy Robotic Eye",
+          "lootId": 1358
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Dull Robotic Eye",
+          "lootId": 1359
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Clear Robotic Eye",
+          "lootId": 1360
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "High-Res Robotic Eye of Penetrating Glares",
+          "lootId": 1361
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Glazed Over Robotic Eye of Arrogance",
+          "lootId": 1377
+        }
+      ]
     },
     {
       "id": "12",
@@ -6392,9 +6617,23 @@ window.jsonData =
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "Super Stable Jet Pack of Bird-Like Grace",
+          "lootId": 1378,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
           "name": "Super Accurate Jet Pack of Precise Flying",
           "lootId": 1125
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Super Accurate Jet Pack of Precise Flying",
+          "lootId": 1379,
+          "golden": true
         },
         {
           "slot": 2,
@@ -9075,7 +9314,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 4,
-          "name": "Bat Billionaire Tie GE",
+          "name": "Self-Motivated Bat-Tie of Gripping Darkness",
           "lootId": 1368,
           "golden": true
         },
