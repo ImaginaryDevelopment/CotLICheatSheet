@@ -116,7 +116,7 @@ var mergeImportLoot = (data,loot) => {
               }
               crusaderGear[l.heroSlotId]["s" + l.slot] = l.lootId;
 
-              crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
+              // crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
             }
             if(l.heroSlotId==="18")
             console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
@@ -143,7 +143,6 @@ var mergeImportTalents = (data,talents) =>{
   ).map(t =>
     data[inspect(t,'importing talent level').name] = t.level
   )
-
 };
 
 var parseNetworkDataHeroesSection = (heroMap, heroes) => {
