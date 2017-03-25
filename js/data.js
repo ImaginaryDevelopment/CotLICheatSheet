@@ -1517,7 +1517,7 @@ window.jsonData =
       "id": "02c",
       "displayName": "Arachnobuddy",
       "slot": 2,
-      "image": "",
+      "image": "Arachnobuddy_48.png",
       "event": "April: Superhero Spring",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
       "tags": [
@@ -5812,7 +5812,7 @@ window.jsonData =
       "id": "11d",
       "tier": 2,
       "displayName": "Foresight",
-      "image": "",
+      "image": "Foresight_48.png",
       "slot": 11,
       "event": "April: Superhero Spring",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Superhero_Spring",
