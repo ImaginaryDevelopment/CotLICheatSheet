@@ -9,8 +9,14 @@ var holder;
 // https://developer.chrome.com/extensions/tut_analytics
 // installation stuffs
 // https://developer.chrome.com/webstore/inline_installation?hl=en-US
-var injectData = (tabId,name,x) =>{
-    var escapedData = JSON.stringify(x)
+var injectData = (tabId, name, x) =>{
+    var toExecute = 'var script = document.createElement("script"); script.textContent = "var ' + name + '=' + JSON.stringify(x).replace(/"/g, '\\"') + ';"; document.head.appendChild(script);';
+    console.log('injecting toExecute', toExecute);
+    chrome.tabs.executeScript(tabId, {code:toExecute});
+};
+// only keeping this until we are sure the site accepts the new data format and variable names.
+var injectRaw = (tabId, name, x) =>{
+   var escapedData = JSON.stringify(x)
                 .replace(/'/g,"\\'")
                 .replace(/"/g,'\\"');
     console.log('injecting string', escapedData);
@@ -18,7 +24,6 @@ var injectData = (tabId,name,x) =>{
             //JSON.stringify(data,null,2)
                 escapedData
                 + '\';"; document.head.appendChild(script);';
-    chrome.tabs.executeScript(tabId, {code:toExecute});
 };
 
 var onDataFetched = data =>
@@ -47,18 +52,22 @@ var onDataFetched = data =>
         });
         var subset = data.details.heroes;
         try{
-            injectData(tabId, 'heroesRaw', data.details.heroes);
+            injectData(tabId, "heroesRaw", data.details.heroes);
+            injectData(tabId, 'automatonHeroes', data.details.heroes);
             data.details.heroes = undefined;
         } catch(ex){
             console.error('failed injection for heroes',ex);
         }
-        injectData(tabId, 'lootRaw', data.details.loot);
+        injectData(tabId, "lootRaw", data.details.heroes);
+        injectData(tabId, 'automatonLoot', data.details.loot);
         data.details.loot = undefined;
+        // this is temporary
         injectData(tabId, 'talentsRaw', data.details.talents);
+        injectData(tabId, 'automatonTalents', data.details.talents);
         data.details.talents = undefined;
         // trimming to see if we can get data to go at all, and hopefully trimming unimportant props
         data.details.objective_status = undefined;
-        injectData(tabId, 'remainderRaw', data);
+        injectData(tabId, 'automatonRemainder', data);
 };
 var sendRequest = () =>
 {
