@@ -170,8 +170,8 @@ Target "SetupNode" (fun _ ->
 Target "Babel" (fun _ ->
     // run jsx compilation
     let babels = [
-        "js/eptracker.jsx"
-        "js/talentcalc.jsx"
+        "src/eptracker.jsx"
+        "src/talentcalc.jsx"
     ]
     let babel relPath =
         let targetPath =
