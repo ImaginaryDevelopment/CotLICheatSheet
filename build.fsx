@@ -165,7 +165,6 @@ Target "SetupNode" (fun _ ->
     printfn "finished result Code is %A" resultCode
     trace (sprintf "finished result Code is %A" resultCode)
     ()
-
 )
 
 Target "Babel" (fun _ ->
@@ -191,15 +190,6 @@ Target "Babel" (fun _ ->
     babels
     |> Seq.iter babel
 )
-Target "Flow" (fun _->
-    // let flowErs = [
-    //     "js/BabelTest.js"
-    // ]
-    let resultcode = Node.npmInstall "--save-dev babel-cli babel-preset-flow"
-    printfn "babel-preset-flow finished with code %i" resultcode
-    let resultcode = Node.npmInstall "-g flow-bin"
-    printfn "Flow finished result %i" resultcode
-)
 Target "Coffee" (fun _ ->
     printfn "Starting Coffee"
     let coffees = [
@@ -213,6 +203,8 @@ Target "Coffee" (fun _ ->
     |> Seq.iter compileCoffee
 )
 
+// this runs npm install to download packages listed in package.json
+For "Babel" ["SetupNode"]
 Target "Default" (fun _ ->
     trace "Hello World from FAKE"
 )
