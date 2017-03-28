@@ -688,16 +688,32 @@ var CruApp = React.createClass({
       var data = {};
       data.details = {};
       if(window.heroesRaw){
-        console.log('starting heroesRaw parse');
-        data.details.heroes = JSON.parse(window.heroesRaw);
+        if(typeof(window.heroesRaw) == "string"){
+          console.log('starting heroesRaw parse');
+          data.details.heroes = JSON.parse(window.heroesRaw);
+        }
+        else{
+          console.log('starting heroesRaw import');
+          data.details.heroes = window.heroesRaw;
+        }
       }
       if(window.lootRaw){
-        console.log('starting heroesRaw parse');
+        if(typeof(window.lootRaw) == "string"){
+        console.log('starting lootRaw parse');
         data.details.loot = JSON.parse(window.lootRaw);
+        } else {
+          console.log('starting lootRaw import');
+          data.details.loot = window.lootRaw;
+        }
       }
       if(window.talentsRaw){
+        if(typeof(window.talentsRaw) == "string"){
         console.log('starting talentsRaw parse');
         data.details.talents = JSON.parse(window.talentsRaw);
+        } else {
+          console.log('starting talentsRaw import');
+          data.details.talents = window.talentsRaw;
+        }
       }
       this.loadNetworkData(data);
     }
