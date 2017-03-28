@@ -105,7 +105,7 @@ var mergeImportLoot = (data,loot) => {
           loot.gear.map(l =>{
 
             if(!crusaderGear.hasOwnProperty(l.heroSlotId))
-              crusaderGear[l.heroSlotId] = {slot0:0, slot1:0,slot2:0};
+              crusaderGear[l.heroSlotId] = {s0:0, s1:0,s2:0};
             if(l.slot != null){
               var rarity = l.rarity;
               if(l.isGolden || l.rarity === 5){
