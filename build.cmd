@@ -1,13 +1,17 @@
 @echo off
 cls
-
-paket.bootstrapper.exe prerelease
+REM @echo "Starting build.cmd"
+REM @echo %0
+REM @echo %cd%
+.paket\paket.bootstrapper.exe prerelease
 if errorlevel 1 (
+  @echo "failed to find paketboot"
   exit /b %errorlevel%
 )
 
-paket.exe restore
+.paket\paket.exe restore
 if errorlevel 1 (
+  @echo "failed to find paket"
   exit /b %errorlevel%
 )
 

@@ -1,10 +1,12 @@
 // include Fake lib
+// printfn "Trying %s" System.Environment.CurrentDirectory
 #r @"packages/FAKE/tools/FakeLib.dll"
 open System
 open System.Diagnostics
 open System.IO
 open Fake
 
+let buildDir = "./bin/"
 let flip f y x = f x y
 let warn msg = trace (sprintf "WARNING: %s" msg)
 
@@ -90,7 +92,64 @@ module Proc =
             findCmd cmd
             |> Option.map (fun x -> (x,InstalledThenFound))
 
+Target "SetupNode" (fun _ ->
+    printfn "Staring SetupNode"
+    // goal: install and setup everything required for any node dependencies this project has
+    // including nodejs, gulp, node-sass
+
+    // install Choco
+    let chocoPath =
+        let fInstall () =
+            let resultCode =
+                ExecProcessElevated
+                    "@powershell"
+                    """-NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin" """
+                    (TimeSpan.FromMinutes 3.)
+            resultCode
+            |> sprintf "choco install script returned %i"
+            |> trace
+            if resultCode <> 0 then
+                failwithf "Task failed"
+            // choco is installled, we think
+            // probably won't work if it was just installed, the %path% variable given to/used by a process is immutable
+
+        match Proc.findOrInstall "choco" fInstall with
+        //| Some (x,Proc.FindOrInstallResult.Found) -> x
+        | Some (x,_) -> x
+        | None -> failwithf "choco was installed, in order for choco to be found or used, this has process has to be restarted"
+
+    // choco install nodeJs
+    let nodePath =
+        let fInstall () =
+            let results = Proc.runElevated "choco" "install nodejs -y" (TimeSpan.FromSeconds 3.)
+            trace (sprintf "%A" results)
+        match Proc.findOrInstall "node" fInstall with
+        | Some (x,_) -> x
+        | None -> failwithf "nodejs was installed, in order for node to be found or used, this process has to be restarted"
+    // node should have installed npm
+    // npm
+    let npmPath = Proc.findCmd "npm"
+    // install all packages that packages.json says this project needs
+    let resultCode =
+        let filename, useShell =
+            match npmPath with
+            | Some x -> x, false
+            // can't capture output with true
+            | None -> "npm", true
+        trace (sprintf "npm filename is %s" filename)
+        ExecProcess (fun psi ->
+            psi.FileName <- filename
+            psi.Arguments <- "install"
+            psi.UseShellExecute <- useShell
+            ) (TimeSpan.FromMinutes 1.)
+    printfn "finished result Code is %A" resultCode
+    trace (sprintf "finished result Code is %A" resultCode)
+    ()
+
+)
+
 Target "Coffee" (fun _ ->
+    printfn "Starting Coffee"
     let coffees = [
         "test/test.coffee"
     ]
@@ -101,3 +160,9 @@ Target "Coffee" (fun _ ->
     coffees
     |> Seq.iter compileCoffee
 )
+
+Target "Default" (fun _ ->
+    trace "Hello World from FAKE"
+)
+
+RunTargetOrDefault "Default"

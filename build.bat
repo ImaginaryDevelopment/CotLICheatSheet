@@ -1,11 +1,11 @@
 @echo off
 cls
+REM @echo "Starting build.bat"
 
-#rem if paket is installed globally to the machine we don't need to specify a path
-paket.exe restore
+.paket\paket.exe restore
 if errorlevel 1 (
   exit /b %errorlevel%
 )
-
+@echo %cd%
 "packages\FAKE\tools\Fake.exe" build.fsx
 pause
