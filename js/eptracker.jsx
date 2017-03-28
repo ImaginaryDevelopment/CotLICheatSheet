@@ -688,16 +688,21 @@ var CruApp = React.createClass({
       var data = {};
       data.details = {};
       if(window.heroesRaw){
-        if(typeof(window.heroesRaw) == "string"){
-          console.log('starting heroesRaw parse');
-          data.details.heroes = JSON.parse(window.heroesRaw);
-        }
-        else{
-          console.log('starting heroesRaw import');
-          data.details.heroes = window.heroesRaw;
+        try{
+          if(typeof(window.heroesRaw) == "string"){
+            console.log('starting heroesRaw parse');
+            data.details.heroes = JSON.parse(window.heroesRaw);
+          }
+          else{
+            console.log('starting heroesRaw import');
+            data.details.heroes = window.heroesRaw;
+          }
+        } catch (ex){
+          console.error(ex);
         }
       }
       if(window.lootRaw){
+        try{
         if(typeof(window.lootRaw) == "string"){
         console.log('starting lootRaw parse');
         data.details.loot = JSON.parse(window.lootRaw);
@@ -705,14 +710,21 @@ var CruApp = React.createClass({
           console.log('starting lootRaw import');
           data.details.loot = window.lootRaw;
         }
+        } catch (ex){
+          console.error(ex);
+        }
       }
       if(window.talentsRaw){
+        try{
         if(typeof(window.talentsRaw) == "string"){
         console.log('starting talentsRaw parse');
         data.details.talents = JSON.parse(window.talentsRaw);
         } else {
           console.log('starting talentsRaw import');
           data.details.talents = window.talentsRaw;
+        }
+        } catch (ex){
+          console.error(ex);
         }
       }
       this.loadNetworkData(data);
