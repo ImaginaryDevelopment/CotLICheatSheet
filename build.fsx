@@ -112,9 +112,10 @@ module Node =
         resultCode
 
 // Targets
+//this also installs things that are listed in package.json
 Target "SetupNode" (fun _ ->
     // goal: install and setup everything required for any node dependencies this project has
-    // including nodejs, gulp, node-sass
+    // including nodejs
 
     // install Choco
     let chocoPath =
