@@ -92,8 +92,27 @@ module Proc =
             findCmd cmd
             |> Option.map (fun x -> (x,InstalledThenFound))
 
+module Node =
+    let npmPath = lazy(Proc.findCmd "npm")
+
+    // assumes the output is unimportant, just the result code
+    let npmInstall args =
+        let resultCode =
+            let filename, useShell =
+                match npmPath.Value with
+                | Some x -> x, false
+                // can't capture output with true
+                | None -> "npm", true
+            trace (sprintf "npm filename is %s" filename)
+            ExecProcess (fun psi ->
+                psi.FileName <- filename
+                psi.Arguments <- sprintf "install %s" args
+                psi.UseShellExecute <- useShell
+            ) (TimeSpan.FromMinutes 1.)
+        resultCode
+
+// Targets
 Target "SetupNode" (fun _ ->
-    printfn "Staring SetupNode"
     // goal: install and setup everything required for any node dependencies this project has
     // including nodejs, gulp, node-sass
 
@@ -148,6 +167,38 @@ Target "SetupNode" (fun _ ->
 
 )
 
+Target "Babel" (fun _ ->
+    // run jsx compilation
+    let babels = [
+        "js/eptracker.jsx"
+        "js/talentcalc.jsx"
+    ]
+    let babel relPath =
+        let targetPath =
+            let fullPath = Path.GetFullPath relPath
+            Path.Combine(fullPath |> Path.GetDirectoryName, fullPath |> Path.GetFileNameWithoutExtension |> flip (+) ".react.js")
+        let result,_ = Proc.runWithOutput "node" (sprintf "node_modules/babel-cli/bin/babel %s -o %s -s --presets react" relPath targetPath) (TimeSpan.FromSeconds 2.)
+        if result.ExitCode <> 0 then
+            result.Messages
+            |> Seq.iter (printfn "babel-msg:%s")
+            result.Errors
+            |> Seq.iter(printfn "babel-err:%s")
+            failwithf "Task failed: %i" result.ExitCode
+        else
+            result.Messages
+            |> Seq.iter (printfn "babel-msg:%s")
+    babels
+    |> Seq.iter babel
+)
+Target "Flow" (fun _->
+    // let flowErs = [
+    //     "js/BabelTest.js"
+    // ]
+    let resultcode = Node.npmInstall "--save-dev babel-cli babel-preset-flow"
+    printfn "babel-preset-flow finished with code %i" resultcode
+    let resultcode = Node.npmInstall "-g flow-bin"
+    printfn "Flow finished result %i" resultcode
+)
 Target "Coffee" (fun _ ->
     printfn "Starting Coffee"
     let coffees = [

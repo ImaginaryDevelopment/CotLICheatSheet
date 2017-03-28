@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "Crusaders of the Lost Idols",
   "main": "index.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "coffee-script": "github:jashkenas/coffeescript"
+    "babel-cli": "^6.24.0",
+    "babel-preset-flow": "^6.23.0",
+    "coffee-script": "github:jashkenas/coffeescript",
+    "flow-bin": "^0.41.0"
   },
   "scripts": {
     "wastest": "echo \"Error: no test specified\" && exit 1",
-    "test": "mocha"
+    "test": "mocha",
+    "flow": "flow"
   },
   "author": "",
   "license": "ISC"
