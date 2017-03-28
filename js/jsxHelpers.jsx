@@ -37,6 +37,7 @@ app.TextInput2 = props =>
         readOnly={props.readonly}
         min={props.min}
         max={props.max}
+        step={props.step}
         onChange={ e =>
             {
             if(props.onControlledChange){
@@ -72,6 +73,7 @@ app.TextInputUnc = React.createClass({
           type={props.type}
           min={props.min}
           max={props.max}
+          step={props.step}
           readonly={props.readonly}
           placeHolder={props.placeHolder}
           className={props.className}

@@ -66,7 +66,6 @@ var parseLoot = (crusaders,lootData) =>{
         .map(x =>
         {
           var result = {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity};
-          // console.log('lootmapping working on x', x);
           if(x.loot.count)
             result.countOrLegendaryLevel=x.loot.count;
           if(x.lootItem.golden)
@@ -92,7 +91,6 @@ var parseLoot = (crusaders,lootData) =>{
           }
           }).filter(l => l != null);
 
-      // console.log('lootMapped',lootMapped);
       return {gear:lootMapped,items:items};
 };
 
@@ -115,8 +113,6 @@ var mergeImportLoot = (data,loot) => {
                 rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
               }
               crusaderGear[l.heroSlotId]["s" + l.slot] = l.lootId;
-
-              // crusaderGear[l.heroSlotId]["slot" + l.slot] = rarity;
             }
             if(l.heroSlotId==="18")
             console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
@@ -185,9 +181,7 @@ var importFromUrl = key =>
 {
     return getParameterByName(key);
 };
-// var ImportExporter = React.createClass({
 
-// });
 // assumes anything with a query on it, is a url loaded/loading app state
 var getIsUrlLoaded = () =>
   window.location.search !== null && window.location.search !== "";
@@ -344,7 +338,6 @@ var scrubSavedData = saved =>
 // componentizing
 var cruTagGrid = (() => {
   var cruTagGridKey = "cruTagGrid";
-  // return {key:cruTagGridKey};
   var exports = {};
   // disable writes to storage if they arrived here from someone else's data link
   exports.store = data => !getIsUrlLoaded() ? storeIt(cruTagGridKey, data) : null;

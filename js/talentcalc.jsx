@@ -64,11 +64,11 @@ app.TalentInput = props =>{
     // console.log('TalentInput', props.value, dpsBuff, nextDps, impr, score);
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
         <th>Current level</th>
-        <td><TextInputUnc type="number" min="0" max={props.max? props.max : undefined} value={props.value} onChange={props.onChange} /></td>
+        <td><TextInputUnc type="number" min="0" step={props.step} max={props.max? props.max : undefined} value={props.value} onChange={props.onChange} /></td>
         {props.td1 ? props.td1: <td />}
         {props.td2 ? props.td2: <td />}
-        <td className="textcenter">{dpsBuff}</td>
-        <td className="textcenter">{score ? nextDps: null}</td>
+        <td className="textcenter">{dpsBuff.toFixed(2)}</td>
+        <td className="textcenter">{score ? nextDps.toFixed(2): null}</td>
         <td className="textcenter">{score ? (impr * 100).toFixed(2) + '%' : null}</td>
         <td className="textcenter">{score ? score.toFixed(2) + '%' : 0}</td>
     </tr>)
@@ -133,35 +133,35 @@ app.Inputs = props =>
         <thead>
             </thead>
             <tbody>
-            <tr><th>Crit Chance %</th><td><TextInputUnc onChange={val => props.onCritChanceChange(val)} value={props.critChance} /></td><td>%</td><td title="D"></td><th colSpan="5">Horn and Cornucopia Trinkets</th></tr>
+            <tr><th>Crit Chance %</th><td><TextInputUnc type="number" min="0" max="300" onChange={val => props.onCritChanceChange(val)} value={props.critChance} /></td><td>%</td><td title="D"></td><th colSpan="5">Horn and Cornucopia Trinkets</th></tr>
             <tr><th>Ability Cooldown %</th><td>{cooldown}</td><td title="C"></td><td></td><th className="rarity1 black">Common:</th><th className="rarity2 black">Uncommon:</th><th className="rarity3 black">Rare:</th><th className="rarity4 black">Epic:</th><th>Total:</th></tr>
             <tr><th>Enchantment Points on main dps</th><td>{effectiveEP}</td><th colSpan="2"></th>
-                <td title="E4"><TextInputUnc type="number" value={props.cooldownCommon} onChange={props.onCooldownCommonChange} /></td>
-                <td title="F4"><TextInputUnc type="number" value={props.cooldownUncommon} onChange={props.onCooldownUncommonChange} /></td>
-                <td><TextInputUnc type="number" value={props.cooldownRare} onChange={props.onCooldownRareChange} /></td>
-                <td><TextInputUnc type="number" value={props.cooldownEpic} onChange={props.onCooldownEpicChange} /></td>
+                <td title="E4"><TextInputUnc type="number" value={props.cooldownCommon} min="0" onChange={props.onCooldownCommonChange} /></td>
+                <td title="F4"><TextInputUnc type="number" value={props.cooldownUncommon} min="0" onChange={props.onCooldownUncommonChange} /></td>
+                <td><TextInputUnc type="number" value={props.cooldownRare} min="0" onChange={props.onCooldownRareChange} /></td>
+                <td><TextInputUnc type="number" value={props.cooldownEpic} min="0" onChange={props.onCooldownEpicChange} /></td>
                 <td>{cooldown.toFixed(2)}</td>
             </tr>
             <tr><th>Main Dps</th><td colSpan="2"><HeroSelect crusaders={props.crusaders} selectedHeroId={props.selectedHeroId} onHeroChange={props.onHeroChange} /></td><th>Slot</th></tr>
             <tr><th>Main Crusader Enchantments</th><td>{props.mainDpsEP}</td><td /><td className="textcenter vcenter">{dpsHero? dpsHero.slot: ""}</td><th colSpan="6">Put your levels for other talents here to calculate how much you've spent.</th></tr>
             <tr><th>Alt Crusader Enchantments</th><td>{props.dpsSlotEP - props.mainDpsEP}</td><td /><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
             <tr data-row="8"><th colSpan="2" /><th /><th />
-                <td title="timeORama"><TextInputUnc value={props.timeORama} onChange={props.ontimeORamaChange}/></td>
-                <td title="massiveCriticals"><TextInputUnc value={props.massiveCriticals} onChange={props.onMassiveCriticalsChange}/></td>
-                <td title="speedRunner"><TextInputUnc value={props.speedRunner} onChange={props.onSpeedRunnerChange}/></td>
-                <td title="enduranceTraining"><TextInputUnc value={props.enduranceTraining} onChange={props.onEnduranceTrainingChange}/></td>
-                <td title="goldOSplosion"><TextInputUnc value={props.goldOSplosion} onChange={props.onGoldOSplosionChange}/></td>
-                <td title="sniper"><TextInputUnc value={props.sniper} onChange={props.onSniperChange}/></td>
+                <td title="timeORama"><TextInputUnc value={props.timeORama} type="number" min="0" max="20" onChange={props.ontimeORamaChange}/></td>
+                <td title="massiveCriticals"><TextInputUnc value={props.massiveCriticals} type="number" min="0" max="25" onChange={props.onMassiveCriticalsChange}/></td>
+                <td title="speedRunner"><TextInputUnc value={props.speedRunner} type="number" min="0" max="20" onChange={props.onSpeedRunnerChange}/></td>
+                <td title="enduranceTraining"><TextInputUnc value={props.enduranceTraining} type="number" min="0" max="20" onChange={props.onEnduranceTrainingChange}/></td>
+                <td title="goldOSplosion"><TextInputUnc value={props.goldOSplosion} type="number" min="0" max="25" onChange={props.onGoldOSplosionChange}/></td>
+                <td title="sniper"><TextInputUnc value={props.sniper} type="number" min="0" max="40" onChange={props.onSniperChange}/></td>
             </tr>
             <tr data-row="9"><th colSpan="4" /><th>Every Last Cent</th><th>Spend it all</th><th>Upgrade them all</th><th>Scavenger</th><th>Speed Looter</th><th>Efficient Crusading</th></tr>
             <tr data-row="10">
                 <th colSpan="4" />
-                <td title="everyLastCent"><TextInputUnc value={props.everyLastCent} onChange={props.onEveryLastCentChange}/></td>
-                <td title="spendItAll"><TextInputUnc value={props.spendItAll} onChange={props.onSpendItAllChange}/></td>
-                <td title="upgradeThemAll"><TextInputUnc value={props.upgradeThemAll} onChange={props.onUpgradeThemAllChange}/></td>
-                <td title="scavenger"><TextInputUnc value={props.scavenger} onChange={props.onScavengerChange}/></td>
-                <td title="speedLooter"><TextInputUnc value={props.speedLooter} onChange={props.onSpeedLooterChange}/></td>
-                <td title="efficientCrusading"><TextInputUnc value={props.efficientCrusading} onChange={props.onEfficientCrusadingChange}/></td>
+                <td title="everyLastCent"><TextInputUnc value={props.everyLastCent} type="number" min="0" max="20" onChange={props.onEveryLastCentChange}/></td>
+                <td title="spendItAll"><TextInputUnc type="number" min="0" max="1" value={props.spendItAll} onChange={props.onSpendItAllChange}/></td>
+                <td title="upgradeThemAll"><TextInputUnc type="number" min="0" max="1" value={props.upgradeThemAll} onChange={props.onUpgradeThemAllChange}/></td>
+                <td title="scavenger"><TextInputUnc value={props.scavenger} type="number" min="0" max="50" onChange={props.onScavengerChange}/></td>
+                <td title="speedLooter"><TextInputUnc value={props.speedLooter} type="number" min="0" max="1" onChange={props.onSpeedLooterChange}/></td>
+                <td title="efficientCrusading"><TextInputUnc value={props.efficientCrusading} type="number" min="0" max="25" onChange={props.onEfficientCrusadingChange}/></td>
             </tr>
             <tr data-row="11">
                 <th>Number of epics/legendaries on DPS</th><td>{props.mainDpsEpics}</td>
@@ -170,10 +170,10 @@ app.Inputs = props =>
             <tr data-row="12">
                 <th>Number of epics/legendaries on alts</th><td>{props.dpsSlotEpics - props.mainDpsEpics}</td>
                 <th colSpan="2" />
-                <td title="doingItAgain"><TextInputUnc value={props.doingItAgain} onChange={props.onDoingItAgainChange}/></td>
-                <td title="deepIdolScavenger"><TextInputUnc value={props.deepIdolScavenger} onChange={props.onDeepIdolScavengerChange}/></td>
-                <td title="extraTraining"><TextInputUnc value={props.extraTraining} onChange={props.onExtraTrainingChange}/></td>
-                <td title="tripleTierTrouble"><TextInputUnc value={props.tripleTierTrouble} onChange={props.onTripleTierTroubleChange}/></td>
+                <td title="doingItAgain"><TextInputUnc value={props.doingItAgain} type="number" min="0" max="1" onChange={props.onDoingItAgainChange}/></td>
+                <td title="deepIdolScavenger"><TextInputUnc value={props.deepIdolScavenger} type="number" min="0" max="25" onChange={props.onDeepIdolScavengerChange}/></td>
+                <td title="extraTraining"><TextInputUnc value={props.extraTraining} type="number" min="0" max="40" onChange={props.onExtraTrainingChange}/></td>
+                <td title="tripleTierTrouble"><TextInputUnc value={props.tripleTierTrouble} type="number" min="0" max="1" onChange={props.onTripleTierTroubleChange}/></td>
                 <td />
                 <td></td>
                 </tr>
@@ -181,7 +181,7 @@ app.Inputs = props =>
             <tr data-row="14" />
             <tr data-row="15">
                 <th>Storm Rider Percentage</th>
-                <td><TextInputUnc type="number" min="0" id="stormRiderPercentage" debug={true} value={props.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
+                <td><TextInputUnc type="number" min="0" step="0.05" max="10" id="stormRiderPercentage" debug={true} value={props.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
                 <td><RaritySelect gearTypes={props.referenceData.gearTypes} includeGoldens={true}
                                     onChange={val => props.onStormRiderPercentageChange(inspect(getStormRiderPercentageFromRarity(val),'getStormRiderPercentageFromRarity', val))} /></td>
             </tr>
@@ -204,25 +204,26 @@ app.Inputs = props =>
                 <td></td>
                 <td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>
             </tr>
-            <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} costForNextLevel={getNextCost("passiveCriticals")} onChange={props.onPassiveCriticalsChange} />
+            <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} max="50" costForNextLevel={getNextCost("passiveCriticals")} onChange={props.onPassiveCriticalsChange} />
                 <tr>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("passiveCriticals")}</td></tr>
             <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspent Idols:</td>}  />
-            <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4} costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
+            <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4}  max="50" costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("surplusCooldown")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("surplusCooldown")}</td></tr>
             <TalentHeaderRow index="27" title="Overenchanted" />
-            <TalentInput value={props.overenchanted} getDps={getOverDps} costForNextLevel={getNextCost("overenchanted")} onChange={props.onOverenchantedChange} />
+            <TalentInput value={props.overenchanted} getDps={getOverDps}  max="50" costForNextLevel={getNextCost("overenchanted")} onChange={props.onOverenchantedChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("overenchanted")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("overenchanted")}</td></tr>
             <TalentHeaderRow index="31" title="Set Bonus" />
-            <TalentInput value={props.setBonus} getDps={x => x * 0.2} costForNextLevel={getNextCost("setBonus")} onChange={props.onSetBonusChange} />
+            <TalentInput value={props.setBonus} getDps={x => x * 0.2}  max="50" costForNextLevel={getNextCost("setBonus")} onChange={props.onSetBonusChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("setBonus")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("setBonus")}</td></tr>
             <TalentHeaderRow index="35" title="Sharing is Caring" td2={(<td title="C36-Current enchant lvl">Current EffectiveEP</td>)} td3={(<td title="E36-next level enchant">Next lvl EffectiveEP</td>)} />
             <TalentInput    value={props.sharingIsCaring}
+                            max="14"
                             getDps={getSharingDps}
                             costForNextLevel={getNextCost("sharingIsCaring")}
                             onChange={props.onSharingIsCaringChange}
@@ -234,6 +235,7 @@ app.Inputs = props =>
             <TalentHeaderRow index="40" title="Fast Learners" td2={(<td title="C40-Time per XP">Time per XP</td>)} td3={(<td title="D36-Time per XP at next level">Time per XP at next level</td>)} />
             <TalentInput    value={props.fastLearners}
                             getDps={getFastLearnersDps}
+                            max="18"
                             costForNextLevel={getNextCost("fastLearners")}
                             onChange={props.onFastLearnersChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("fastLearners")}</td></tr>
@@ -241,6 +243,7 @@ app.Inputs = props =>
             <TalentHeaderRow index="44" title="Well Equipped" />
             <TalentInput    value={props.wellEquipped}
                             getDps={getWellEquippedDps}
+                            max="50"
                             costForNextLevel={getNextCost("wellEquipped")}
                             onChange={props.onWellEquippedChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("wellEquipped")}</td></tr>
@@ -248,6 +251,7 @@ app.Inputs = props =>
             <TalentHeaderRow index="48" title="Swap Day" />
             <TalentInput    value={props.swapDay}
                             getDps={getSwapDayDps}
+                            max="50"
                             costForNextLevel={getNextCost("swapDay")}
                             onChange={props.onSwapDayChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("swapDay")}</td></tr>
@@ -255,6 +259,7 @@ app.Inputs = props =>
             <TalentHeaderRow index="53" title="Ride The Storm" />
             <TalentInput    value={props.rideTheStorm}
                             getDps={getRideTheStormMagnifiedDps}
+                            max="25"
                             costForNextLevel={getNextCost("rideTheStorm")}
                             onChange={props.onRideTheStormChange}
                             td1={(<td>{getCurrentStormRider(props.rideTheStorm) * 1.5}</td>)}
@@ -265,6 +270,7 @@ app.Inputs = props =>
             <TalentHeaderRow index="58" title="Storms Building" />
             <TalentInput    value={props.stormsBuilding}
                             getDps={getStormsBuildingDps}
+                            max="15"
                             costForNextLevel={getNextCost("stormsBuilding")}
                             onChange={props.onStormsBuildingChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("stormsBuilding")}</td></tr>
@@ -328,7 +334,6 @@ app.TalentCalc = React.createClass({
                 }
                 );
             // console.log('TalentCalc stormRiderMaxRarity', stormRiderMaxRarity);
-            // var highest = crusaders.max
             var cruRarities = getSlotRarities(savedGear[cru.id]).reduce((a,b) => a + (b > 3? 1 : 0),0);
 
             talentSelectedCrusader.mainDpsEpics = cruRarities;

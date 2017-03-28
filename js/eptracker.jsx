@@ -12,8 +12,7 @@ var getCrusaderDps = function(crusader){
 };
 var Filter = React.createClass({
   render:function(){
-    // var filterClasses = this.props.on ? "fa fa-fw fa-filter active hoverShowClickable" : "fa fa-fw fa-filter hoverShowClickable";
-        var filterClasses =
+    var filterClasses =
       this.props.on == 1 ? "fa fa-fw fa-filter active"
       : this.props.on == 0 || !(this.props.on != null) ? "fa fa-fw fa-filter" :
       "fa fa-fw fa-filter activeNegative";
@@ -821,9 +820,6 @@ var CruApp = React.createClass({
     var clipper = createInputClipperButton("clipperText");
     // console.log('clipper', clipper);
     var json = JSON.stringify(this.state.lastRead);
-    // if(Clipboard && Clipboard.isSupported()){
-    //   clipper = (<button className="btn" data-clipboard-target="#clipperText">Copy to Clipboard</button>);
-    // }
     var heroMap = {};
 
     this.props.referenceData.crusaders.map(c =>{
@@ -908,10 +904,6 @@ var CruApp = React.createClass({
   }
 });
 
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('crusaders_holder')
-// );
 ReactDOM.render(
       <CruApp referenceData={jsonData} />,
         document.getElementById('crusaders_holder')
