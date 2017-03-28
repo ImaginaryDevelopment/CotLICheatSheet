@@ -132,3 +132,5 @@ var inspect = (data,title, extraData) =>
   console.log(title || 'inspect', data,extraData);
   return data;
 };
+// adapted from http://stackoverflow.com/a/14438954/57883
+Array.prototype.distinct = Array.prototype.disinct || function(v, i, s) {return this.filter((v,i,a) => a.indexOf(v) === i);};
