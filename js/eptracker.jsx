@@ -94,8 +94,8 @@ var CruTagRow = React.createClass({
       if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
         var makeBox = slot => {
           var itemRarityCompound = cruGearQ[slot];
-          var rarity = !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : itemRarityCompound[0];
-          var golden = !(itemRarityCompound != null) || typeof(itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
+          var rarity = LootV1.getSlotRarity(itemRarityCompound);
+          var golden = LootV1.getSlotRarity(itemRarityCompound);
           var classes = "rarity rarity" + rarity + golden;
           // if(cru.id =="15")
           // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
@@ -119,7 +119,7 @@ var CruTagRow = React.createClass({
             window.gearReference = this.props.gearReference && this.props.gearReference[3];
             console.log('slotGear',slotGear);
           }
-        
+
         var makeSelect = slot => {
           // var slot = (typeof(slot) === "string" && slot.length > 1 ? slot[0] && +slot === slot ? +slot
           var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
@@ -153,10 +153,10 @@ var CruTagRow = React.createClass({
           var selectV = (slotGear != null) ? 2 : 1;
 
           return (<div>
-            <select key={"gear" + slot} 
+            <select key={"gear" + slot}
                     title={JSON.stringify(gearInfoV2) + '\r\n' + JSON.stringify(itemInfoV2)}
                     data-valueV={selectValueV}
-                    data-v={selectV} 
+                    data-v={selectV}
                     value={ itemInfoV2 || rarity}
                     onChange={e => this.props.onGearChange(cru.id, slot, e.target.value, selectV)}
                     name={"slot" + slot}>{options}</select>{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);

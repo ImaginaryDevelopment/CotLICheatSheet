@@ -315,25 +315,6 @@ app.TalentCalc = React.createClass({
         if(talentSelectedCrusader){
             var cru = talentSelectedCrusader.cru;
             var savedGear = props.saved.crusaderGear || [];
-            var stormRiderMaxRarity = crusaders
-                .map( x => ({name:x.displayName,cruId: x.id, value:decomposeSlotRarity(getStormRiderValue(savedGear, x.id))}))
-                .filter(x => x.value != null)
-                // this does not account for golden vs nongolden
-                .reduce((prev,current) =>
-                {
-                    // if(!(prev != null))
-                    //     return inspect(current,'stormRiderMaxRarityResult aborting comparison');
-                    var result =
-                        prev.value.rarity > current.value.rarity ? prev
-                        : prev.value.rarity < current.value.rarity ? current
-                        : prev.value.level > current.value.level ? prev
-                        : prev.value.level < current.value.level ? current
-                        : prev.value.isGolden ? prev : current;
-                    // console.log('stormRiderMaxRarityResult', result,prev,current);
-                    return result;
-                }
-                );
-            // console.log('TalentCalc stormRiderMaxRarity', stormRiderMaxRarity);
             var cruRarities = getSlotRarities(savedGear[cru.id]).reduce((a,b) => a + (b > 3? 1 : 0),0);
 
             talentSelectedCrusader.mainDpsEpics = cruRarities;

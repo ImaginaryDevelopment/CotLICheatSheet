@@ -213,38 +213,6 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
   return result;
 };
 
-var getStormRiderValue = (allCruGear,id) =>{
-  var cruGear = allCruGear[id];
-  if(!cruGear)
-    return 0;
-  if(id.toString().indexOf("18") !== 0)
-    return 0;
-  var gear;
-  switch (id){
-    case "18": gear = cruGear.slot2 || 0;
-    case "18a": gear = cruGear.slot2 || 0;
-    case "18b": gear = cruGear.slot0 || 0;
-    case "18c": gear = cruGear.slot0 || 0;
- }
-  // console.log('getStormRiderValue', id, cruGear, gear);
- return gear;
-};
-
-var decomposeSlotRarity = itemRarityCompound => {
-  // rarityvalue, golden _ or g, legendary level opt
-  if(typeof(itemRarityCompound) == "number"){
-    return {rarity:itemRarityCompound, isGolden:false};
-  }
-  var info = { rarity: +itemRarityCompound[0], isGolden : itemRarityCompound.indexOf("g") == 1};
-  if(info.rarity == 5)
-    info.level = +itemRarityCompound.length > 2 ? itemRarityCompound.substring(2) : 1;
-  return info;
-};
-
-var getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
-// var getSlotRarity2 = itemRarityCompound =>
-var getSlotRarities = gear => (gear ? [gear.slot0, gear.slot1, gear.slot2]:[0,0,0]).map(getSlotRarity);
-
 var comparer =
   (a,b) =>
     (a < b ? -1 : b < a ? 1 : 0);
@@ -332,6 +300,24 @@ var scrubSavedData = saved =>
     if(saved.gearMode != null){
       saved.isGearMode = saved.gearMode === true;
       saved.gearMode = undefined;
+    }
+    if(saved.crusaderGear != null){
+      Object.keys(saved.crusaderGear).map( cruId =>{
+        var crusaderGear = saved.crusaderGear[cruId];
+        Object.keys(crusaderGear).map( slotKey =>{
+          var slotGear = crusaderGear[slotKey];
+          var slotNumber = slotKey[slotKey.length];
+          console.log('scrubbing gear', crusaderGear,slotGear,slotNumber);
+          if(slotKey.startsWith("slot")){
+            // if(!(crusaderGear["s" + slotNumber] != null))
+            //   crusaderGear["s" + slotNumber] = slotGear;
+            // crusaderGear[slotKey] = undefined;
+          }
+
+        });
+      });
+
+
     }
 };
 
