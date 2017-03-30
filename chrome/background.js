@@ -9,6 +9,11 @@ var holder;
 // https://developer.chrome.com/extensions/tut_analytics
 // installation stuffs
 // https://developer.chrome.com/webstore/inline_installation?hl=en-US
+var inject = (tabId, title, codeString) =>{
+    var toExecute = 'var script = document.createElement("script"); script.textContent = "' + codeString.replace(/"/g, '\\"') + "\"; document.head.appendChild(script); console.log('finished injection of " + title.replace(/"/g, '\\"') + "');";
+    console.log('injecting toExecute: ' + title, toExecute);
+    chrome.tabs.executeScript(tabId, {code:toExecute});
+};
 var injectData = (tabId, name, x) =>{
     var toExecute = 'var script = document.createElement("script"); script.textContent = "var ' + name + '=' + JSON.stringify(x).replace(/"/g, '\\"') + ';"; document.head.appendChild(script);';
     console.log('injecting toExecute', toExecute);
@@ -50,24 +55,28 @@ var onDataFetched = data =>
             tabId = tab.id;
             console.log('tab created', tab);
         });
-        var subset = data.details.heroes;
-        try{
-            injectData(tabId, "heroesRaw", data.details.heroes);
-            injectData(tabId, 'automatonHeroes', data.details.heroes);
-            data.details.heroes = undefined;
-        } catch(ex){
-            console.error('failed injection for heroes',ex);
-        }
-        injectData(tabId, "lootRaw", data.details.heroes);
-        injectData(tabId, 'automatonLoot', data.details.loot);
-        data.details.loot = undefined;
-        // this is temporary
-        injectData(tabId, 'talentsRaw', data.details.talents);
-        injectData(tabId, 'automatonTalents', data.details.talents);
-        data.details.talents = undefined;
+        var tryInjectors = name => {
+            try{
+                var target = data.details[name];
+                injectRaw(tabId, name+"Raw", target);
+                injectData(tabId, name+"Raw", target);
+                data.details[name] = undefined;
+            } catch(ex){
+                console.error('failed injection for ' + name,ex);
+            }
+        };
+        tryInjectors('heroes');
+        tryInjectors('loot');
+        tryInjectors('talents');
+
         // trimming to see if we can get data to go at all, and hopefully trimming unimportant props
         data.details.objective_status = undefined;
-        injectData(tabId, 'automatonRemainder', data);
+        try{
+            injectData(tabId, 'automatonRemainder', data);
+        } catch (ex){
+            console.error('failed injection for remainder', data);
+        }
+        inject(tabId, 'importMeCaller', "window.importMe();");
 };
 var sendRequest = () =>
 {
