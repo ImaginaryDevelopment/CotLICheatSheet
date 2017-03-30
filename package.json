@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "Crusaders of the Lost Idols",
   "main": "index.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-react": "^6.16.0",
     "coffee-script": "github:jashkenas/coffeescript"
   },
   "scripts": {
