@@ -315,11 +315,22 @@ app.TalentCalc = React.createClass({
         if(talentSelectedCrusader){
             var cru = talentSelectedCrusader.cru;
             var savedGear = props.saved.crusaderGear || [];
-            var cruRarities = getSlotRarities(savedGear[cru.id]).reduce((a,b) => a + (b > 3? 1 : 0),0);
-
-            talentSelectedCrusader.mainDpsEpics = cruRarities;
+            console.log('TalentCalc savedGear', savedGear[cru.id] || savedGear, talentSelectedCrusader.cru.loot.find(l => l.lootId == savedGear[cru.id].s0), cru.id);
+            var cruRarities = getSlotRarities(savedGear[cru.id], talentSelectedCrusader.cru.loot);
+            console.log('cruRarities', cruRarities);
+            var cruEpicCount = cruRarities.reduce((a,b) => a + (b > 3? 1 : 0),0);
+            talentSelectedCrusader.mainDpsEpics = cruEpicCount;
             var slotMates = crusaders.filter(x => x.slot == cru.slot);
-            talentSelectedCrusader.dpsSlotEpics = slotMates.map(x => savedGear[x.id]).map(getSlotRarities).reduce((a,gearArray) => a.concat(gearArray),[]).reduce((a,b) => a + (b > 3 ? 1 : 0),0);
+            talentSelectedCrusader.dpsSlotEpics =
+                slotMates
+                .map(x =>
+                {
+                    var g = savedGear[x.id];
+                    var rarities = getSlotRarities(g,x.loot);
+                    console.log('slotMates', x.id, g, rarities);
+                    return rarities;
+                })
+                .reduce((a,gearArray) => a.concat(gearArray),[]).reduce((a,b) => a + (b > 3 ? 1 : 0),0);
             talentSelectedCrusader.mainDpsEP = getNumberOrDefault(props.saved.enchantmentPoints[cru.id], 0);
             talentSelectedCrusader.dpsSlotEP = +crusaders.filter(x => x.slot == cru.slot).map(x => props.saved.enchantmentPoints[x.id] || 0).reduce((a,b) => +a + +b,0)
         }

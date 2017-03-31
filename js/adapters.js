@@ -307,7 +307,7 @@ var scrubSavedData = saved =>
         Object.keys(crusaderGear).map( slotKey =>{
           var slotGear = crusaderGear[slotKey];
           var slotNumber = slotKey[slotKey.length];
-          console.log('scrubbing gear', crusaderGear,slotGear,slotNumber);
+          // console.log('scrubbing gear', crusaderGear,slotGear,slotNumber);
           if(slotKey.startsWith("slot")){
             // if(!(crusaderGear["s" + slotNumber] != null))
             //   crusaderGear["s" + slotNumber] = slotGear;
