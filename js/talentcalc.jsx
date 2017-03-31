@@ -44,10 +44,10 @@ app.TalentHeaderRow = props =>{
                 {props.td1? props.td1 : <td />}
                 {props.td2? props.td2: <td />}
                 {props.td3? props.td3: <td />}
-                <td>current dps buff</td>
-                <td>next level dps buff</td>
-                <td>percent improvement</td>
-                <td>Score(larger is better)</td>
+                <th>current dps buff</th>
+                <th>next level dps buff</th>
+                <th>percent improvement</th>
+                <th>Score(larger is better)</th>
                 {props.td4? props.td4 : <td />}
                 {props.td5? props.td5: <td />}
             </tr>);
@@ -194,7 +194,7 @@ app.Inputs = props =>
                 <th>Total Idols:</th>
                 </tr>
             <tr data-row="18">
-                <th>Passive Criticals</th>
+                <th><h3>Passive Criticals</h3></th>
                 <td />
                 <td colSpan="2" />
                 <th>current dps buff</th>
