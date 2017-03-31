@@ -18,8 +18,25 @@ var decomposeSlotRarity = itemRarityCompound => {
     info.level = +itemRarityCompound.length > 2 ? itemRarityCompound.substring(2) : 1;
   return info;
 };
+// return either the rarity compound like we used to store, or the lootId
+var getGearInfo = g => g ? [g.s0 || g.slot0, g.s1 || g.slot1, g.s2 || g.slot2] : [0, 0, 0];
 
+var getIsGolden = (itemRarityCompoundOrLootId,refGear) =>{
+  // detect loot V2
+  if (typeof (itemRarityCompoundOrLootId) === "number" && itemRarityCompoundOrLootId > 5) {
+    var lootId = itemRarityCompoundOrLootId;
+    if (refGear) {
+      var item = refGear.find(g => g.lootId == lootId);
+      return item.golden ? true : false;
+    } else {
+      console.warn("no ref gear passed");
+      return null;
+    }
+  }
+
+}
 var getSlotRarity = (itemRarityCompoundOrLootId, refGear) => {
+  if(itemRarityCompoundOrLootId === 8)
   console.log('getSlotRarity', itemRarityCompoundOrLootId, refGear );
   if (typeof (itemRarityCompoundOrLootId) === "number" && itemRarityCompoundOrLootId > 5) {
     var lootId = itemRarityCompoundOrLootId;
@@ -38,7 +55,8 @@ var getSlotRarity = (itemRarityCompoundOrLootId, refGear) => {
   }
 }
 var getSlotRarities = (gear, refGear) =>
-  (gear ? [gear.s0 || gear.slot0, gear.s1 || gear.slot1, gear.s2 || gear.slot2] : [0, 0, 0]).map(s => getSlotRarity(s, refGear));
+  (getGearInfo(gear)).map(s => getSlotRarity(s, refGear));
+
 
 
 

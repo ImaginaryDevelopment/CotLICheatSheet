@@ -81,21 +81,25 @@ var CruTagRow = React.createClass({
         }
       }
       var link = cru.link && cru.link.indexOf('/') < 0 ? (self.props.wikibase + cru.link)
-      : cru.link?
-        cru.link
-      : self.props.wikibase + cru.displayName.replace(" ","_");
+        : cru.link ?
+          cru.link
+        : self.props.wikibase + cru.displayName.replace(" ","_");
 
       var cruGear = this.props.gear ? this.props.gear : {};
-      if(cru.id==="15") console.log('cruGear for boxes', cruGear);
+      if(cru.id==1) console.log('cruGear for boxes', cruGear,cru);
       var slotGear;
       // extract the 3 slots with qualities
-      var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
+      var cruGearQ =  getGearInfo (cruGear);
+      if(cru.id==1) console.log('cruGearQ for boxes', cruGearQ);
 
       if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
         var makeBox = slot => {
-          var itemRarityCompound = cruGearQ[slot];
-          var rarity = LootV1.getSlotRarity(itemRarityCompound);
-          var golden = LootV1.getSlotRarity(itemRarityCompound);
+          var itemRarityCompound =  cruGearQ[slot];
+          var rarity = getSlotRarity(itemRarityCompound,cru.loot);
+          if(itemRarityCompound === 8)
+            console.log('making a box', itemRarityCompound, rarity);
+          // this doesn't account for LootV2 at all
+          var golden = getIsGolden(itemRarityCompound, cru.loot) ? "g" : "";
           var classes = "rarity rarity" + rarity + golden;
           // if(cru.id =="15")
           // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
@@ -109,11 +113,6 @@ var CruTagRow = React.createClass({
       if (this.props.mode ==="mine" && this.props.isGearMode){
         var gearPossibilities = this.props.gearTypes;
 
-        // var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
-        //   if(cru.id ==="18") {
-        //     console.log('gear', cruGear, this.props.gearReference);
-        //     window.gearReference = this.props.gearReference;
-        //   }
           if(cru.id ==="18") {
         //     console.log('gear', cruGear, this.props.gearReference);
             window.gearReference = this.props.gearReference && this.props.gearReference[3];
