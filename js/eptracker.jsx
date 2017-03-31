@@ -99,7 +99,7 @@ var CruTagRow = React.createClass({
           if(itemRarityCompound === 8)
             console.log('making a box', itemRarityCompound, rarity);
           // this doesn't account for LootV2 at all
-          var golden = getIsGolden(itemRarityCompound, cru.loot) ? "g" : "";
+          var golden = getIsGolden(itemRarityCompound, cru.loot) ? " golden" : "";
           var classes = "rarity rarity" + rarity + golden;
           // if(cru.id =="15")
           // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
