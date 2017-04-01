@@ -2,10 +2,19 @@
 <html>
   <head>
     <title>Crusaders of the Lost Idols Assistant</title>
-    <script src="background.js"></script>
+    <script src="clipboard.min.js"></script>
   </head>
   <body>
-    <h1>Crusaders of the Lost Idols Data Capture Assistant</h1>
-    <button id="checkPage">Check this page now!</button>
+    <h2>Crusaders of the Lost Idols Data Capture Assistant</h2>
+    <ul>
+      <li><a href="https://imaginarydevelopment.github.io/CotLICheatSheet/">CotLICheatSheet</a></li>
+      <li><a href="http://fantamondi.it/cotli/import">Fantamondi.it import page</a></li>
+      <li><a href="https://github.com/ImaginaryDevelopment/CotLICheatSheet/issues">Report issues</a></li>
+    </ul>
+    <p id="status"></p>
+    <button class="btn" id="copy">Copy data to clipboard</button>
+    <button class="btn" id="copyraw">Copy raw data to clipboard</button>
+    <button id="clear">Clear data from memory</button>
+    <script src="popup.js"></script>
   </body>
 </html>
