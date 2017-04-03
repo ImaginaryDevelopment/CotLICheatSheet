@@ -98,11 +98,8 @@ var CruTagRow = React.createClass({
           var rarity = getSlotRarity(itemRarityCompound,cru.loot);
           if(itemRarityCompound === 8)
             console.log('making a box', itemRarityCompound, rarity);
-          // this doesn't account for LootV2 at all
           var golden = getIsGolden(itemRarityCompound, cru.loot) ? " golden" : "";
           var classes = "rarity rarity" + rarity + golden;
-          // if(cru.id =="15")
-          // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
           return (<div className={classes} />);
         };
         slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
