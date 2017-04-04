@@ -6,9 +6,13 @@
   "permissions": [
    "webRequest",
    "activeTab",
+   "storage",
    "*://*.djartsgames.ca/~idle/post.php",
    "*://imaginarydevelopment.github.io/"
    ],
+   "icons":{
+    "16":"original_COTLI_Icon.png"
+   },
    "background":{
      "page":"background.html"
    },
