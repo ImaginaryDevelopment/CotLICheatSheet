@@ -11,9 +11,6 @@
   "background":{
     "scripts": ["background.js"]
   },
-  "options_ui":{
-    "page": "popup.html"
-  },
   "permissions": [
     "declarativeContent",
    "webRequest",
@@ -23,13 +20,12 @@
    "*://imaginarydevelopment.github.io/",
    "*://fantamondi.it/cotli/import",
     "*://cdn.jsdelivr.net/"
-   ]
+   ],
    "icons":{
     "16":"original_COTLI_Icon.png"
-   },
    },
    "options_ui":{
      "page":"options.html",
      "chrome_style": true
-W   }
+   }
 }
