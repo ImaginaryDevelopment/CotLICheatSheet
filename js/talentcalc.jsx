@@ -17,7 +17,7 @@ app.HeroSelect = props =>
     });
     var options = crusaders
         .map(cru =>
-        <option key={cru.id} className={cru.tags.includes("dps")? "dps" : ""} value={cru.id}>{cru.displayName}</option>
+        <option key={cru.id} className={cru.tags.includes("dps")? "dps" : ""} value={cru.id}>{cru.displayName} ({cru.slot})</option>
     );
     var selectedCrusader = crusaders.find(cru => cru.id === props.selectedHeroId);
     // console.log('HeroSelect',props.selectedHeroId, selectedCrusader);
@@ -78,7 +78,6 @@ app.RaritySelect = props =>{
 
     var gearPossibilities = props.gearTypes.slice();
     if(props.includeGoldens){
-
         gearPossibilities.splice(5,0,"golden epic");
         gearPossibilities.splice(7,0,"golden legendary");
     }
