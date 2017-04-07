@@ -637,11 +637,6 @@ window.jsonData =
       "image": "clicker.png"
     },
     {
-      "id": "superhero",
-      "displayName": "Super Hero",
-      "image": "MTag_Alien.png"
-    },
-    {
       "id": "alien",
       "displayName": "Alien",
       "image": "MTag_Alien.png"
@@ -1524,7 +1519,6 @@ window.jsonData =
         "event",
         "human",
         "male",
-        "superhero",
         "support"
       ],
       "tier": 2,
@@ -3867,6 +3861,22 @@ window.jsonData =
       ]
     },
     {
+      "id": "07c",
+      "displayName": "Baenarall, Angel of Hope",
+      "image": "BaenarallAngelOfHope_48.png",
+      "slot": 7,
+      "event": "March: Nate's Candy Conundrum",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
+      "tags": [
+        "female",
+        "angel",
+        "support",
+        "supernatural",
+        "event"
+      ],
+      "heroId": 81
+    },
+    {
       "id": "08",
       "displayName": "Natalie Dragon",
       "image": "mini_Natalie.jpg",
@@ -5303,6 +5313,22 @@ window.jsonData =
           "lootId": 1172
         }
       ]
+    },
+    {
+      "id": "10c",
+      "displayName": "Sisaron the Dragon Sorceress",
+      "image": "SisaronTheDragonSorceress_48.png",
+      "slot": 10,
+      "event": "March: Nate's Candy Conundrum",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
+      "tags": [
+          "female",
+          "magic",
+          "dragon",
+          "support",
+          "event"
+      ],
+      "heroId": 82
     },
     {
       "id": "11",
@@ -9282,8 +9308,7 @@ window.jsonData =
         "male",
         "human",
         "support",
-        "event",
-        "superhero"
+        "event"
       ],
       "heroId": 39,
       "loot": [
