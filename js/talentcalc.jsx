@@ -55,22 +55,26 @@ app.TalentHeaderRow = props =>{
 };
 
 app.TalentInput = props =>{
+    window.props = props;
     var dpsBuff = props.getDps(props.value);
     var nextDps = props.getDps(props.value + 1);
+    var showingMessage = typeof(dpsBuff) == "string";
     // (F19+1)-(E19+1)/(E19+1)
     var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
     //=IFERROR(IF(and(B$13 >= 1,B20<=$J$23), G19/B20*100000, 0),0)
     var score = impr / props.costForNextLevel * 100000;
-    // console.log('TalentInput', props.value, dpsBuff, nextDps, impr, score);
+    console.log('TalentInput', props.value, nextDps,score);
+    var dpsText = showingMessage? dpsBuff : dpsBuff.toFixed(2);
+    var scoreText = showingMessage ? dpsBuff : score.toFixed(2) + '%';
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
         <th>Current level</th>
         <td><TextInputUnc type="number" min="0" step={props.step} max={props.max? props.max : undefined} value={props.value} onChange={props.onChange} /></td>
         {props.td1 ? props.td1: <td />}
         {props.td2 ? props.td2: <td />}
-        <td className="textcenter">{dpsBuff.toFixed(2)}</td>
-        <td className="textcenter">{score ? nextDps.toFixed(2): null}</td>
-        <td className="textcenter">{score ? (impr * 100).toFixed(2) + '%' : null}</td>
-        <td className="textcenter">{score ? score.toFixed(2) + '%' : 0}</td>
+        <td className="textcenter">{dpsText}</td>
+        <td data-talent={props.dataRow} className="textcenter">{!showingMessage && typeof(nextDps) =="number" ? nextDps.toFixed(2) : null}</td>
+        <td className="textcenter">{!showingMessage && typeof(nextDps) == "number" ? (impr * 100).toFixed(2) + '%' : null}</td>
+        <td className="textcenter">{scoreText}</td>
     </tr>)
 };
 
@@ -115,13 +119,11 @@ app.Inputs = props =>
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
     var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
     var getStormsBuildingDps = x => 480*(1-(Math.min(cooldown / 100,0.5)))/getTimePerStormRider(x) - 1;
-    window.props = props;
     var getCumulativeCost = name =>{
         //add 1 because the arrays start with 0 for level 0
         var canCalc = props[name] != null && props.talents[name].costs != null && props[name] <= props.talents[name].costs.length + 1;
         if(canCalc){
-            console.log('calculating '+ name, props.talents[name].costs);
-            return (inspect(props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0),'getCumulativeCosts',{name:name,lvl:props[name],t:props.talents[name]}));
+            return (props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0));
         } else {
             return inspect(undefined,name, {Name:props[name]});
         }
@@ -210,17 +212,17 @@ app.Inputs = props =>
                 <td></td>
                 <td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>
             </tr>
-            <TalentInput value={props.passiveCriticals} getDps={x => props.critChance * x / 100} max="50" costForNextLevel={getNextCost("passiveCriticals")} onChange={props.onPassiveCriticalsChange} />
+            <TalentInput dataRow="passiveCriticals" value={props.passiveCriticals} getDps={x => props.critChance < 1 ? "no crit chance entered":props.critChance * x / 100} max="50" costForNextLevel={getNextCost("passiveCriticals")} onChange={props.onPassiveCriticalsChange} />
                 <tr>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
-            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("passiveCriticals") || inspect(props, 'getCumulativeCost passiveCriticals')}</td></tr>
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("passiveCriticals")}</td></tr>
             <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspent Idols:</td>}  />
-            <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4}  max="50" costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
+            <TalentInput value={props.surplusCooldown} dataRow="surplusCooldown" getDps={x => (cooldown - 0.5 )*x/4}  max="50" costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("surplusCooldown")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("surplusCooldown")}</td></tr>
             <TalentHeaderRow index="27" title="Overenchanted" />
-            <TalentInput value={props.overenchanted} getDps={getOverDps}  max="50" costForNextLevel={getNextCost("overenchanted")} onChange={props.onOverenchantedChange} />
+            <TalentInput value={props.overenchanted} dataRow="overenchanted" getDps={getOverDps}  max="50" costForNextLevel={getNextCost("overenchanted")} onChange={props.onOverenchantedChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("overenchanted")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("overenchanted")}</td></tr>
             <TalentHeaderRow index="31" title="Set Bonus" />
