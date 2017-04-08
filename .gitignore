@@ -3,3 +3,4 @@ packages
 chrome.crx
 *.zip
 *.log
+.paket/
