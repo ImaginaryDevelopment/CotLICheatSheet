@@ -115,10 +115,17 @@ app.Inputs = props =>
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
     var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
     var getStormsBuildingDps = x => 480*(1-(Math.min(cooldown / 100,0.5)))/getTimePerStormRider(x) - 1;
-    var getCumulativeCost = name =>
-        props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length <= props[name] ?
-            (inspect(props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0),'getcumulativecosts',{name:props[name], t:props.talents[name]}))
-            : undefined;
+    window.props = props;
+    var getCumulativeCost = name =>{
+        //add 1 because the arrays start with 0 for level 0
+        var canCalc = props[name] != null && props.talents[name].costs != null && props[name] <= props.talents[name].costs.length + 1;
+        if(canCalc){
+            console.log('calculating '+ name, props.talents[name].costs);
+            return (inspect(props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0),'getCumulativeCosts',{name:name,lvl:props[name],t:props.talents[name]}));
+        } else {
+            return inspect(undefined,name, {Name:props[name]});
+        }
+    };
     var getStormRiderPercentageFromRarity = rarity =>
     {
         var map = props.referenceData.talents.rideTheStorm.rarityMultMap[rarity];
@@ -207,7 +214,7 @@ app.Inputs = props =>
                 <tr>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
-            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("passiveCriticals")}</td></tr>
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("passiveCriticals") || inspect(props, 'getCumulativeCost passiveCriticals')}</td></tr>
             <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspent Idols:</td>}  />
             <TalentInput value={props.surplusCooldown} getDps={x => (cooldown - 0.5 )*x/4}  max="50" costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("surplusCooldown")}</td></tr>
@@ -230,7 +237,7 @@ app.Inputs = props =>
                             td2={<td>{calcEffectiveEP(props.sharingIsCaring + 1, props.mainDpsEP, props.dpsSlotEP)}</td>}
                             />
             <tr><th>Cost for next level</th><td>{getNextCost("sharingIsCaring")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("sharingIsCaring")}</td></tr>
             <TalentHeaderRow index="40" title="Fast Learners" td2={(<td title="C40-Time per XP">Time per XP</td>)} td3={(<td title="D36-Time per XP at next level">Time per XP at next level</td>)} />
             <TalentInput    value={props.fastLearners}
                             getDps={getFastLearnersDps}
@@ -238,7 +245,7 @@ app.Inputs = props =>
                             costForNextLevel={getNextCost("fastLearners")}
                             onChange={props.onFastLearnersChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("fastLearners")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("fastLearners")}</td></tr>
             <TalentHeaderRow index="44" title="Well Equipped" />
             <TalentInput    value={props.wellEquipped}
                             getDps={getWellEquippedDps}
@@ -246,7 +253,7 @@ app.Inputs = props =>
                             costForNextLevel={getNextCost("wellEquipped")}
                             onChange={props.onWellEquippedChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("wellEquipped")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("wellEquipped")}</td></tr>
             <TalentHeaderRow index="48" title="Swap Day" />
             <TalentInput    value={props.swapDay}
                             getDps={getSwapDayDps}
@@ -254,7 +261,7 @@ app.Inputs = props =>
                             costForNextLevel={getNextCost("swapDay")}
                             onChange={props.onSwapDayChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("swapDay")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("swapDay")}</td></tr>
             <TalentHeaderRow index="53" title="Ride The Storm" />
             <TalentInput    value={props.rideTheStorm}
                             getDps={getRideTheStormMagnifiedDps}
@@ -265,7 +272,7 @@ app.Inputs = props =>
                             td2={(<td>{getCurrentStormRider(props.rideTheStorm + 1) * 1.5}</td>)}
                             />
             <tr><th>Cost for next level</th><td>{getNextCost("rideTheStorm")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("rideTheStorm")}</td></tr>
             <TalentHeaderRow index="58" title="Storms Building" />
             <TalentInput    value={props.stormsBuilding}
                             getDps={getStormsBuildingDps}
@@ -273,7 +280,7 @@ app.Inputs = props =>
                             costForNextLevel={getNextCost("stormsBuilding")}
                             onChange={props.onStormsBuildingChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("stormsBuilding")}</td></tr>
-            <tr />
+            <tr><td>Cumulative Cost</td><td>{getCumulativeCost("stormsBuilding")}</td></tr>
         </tbody>
         </table>
         );
