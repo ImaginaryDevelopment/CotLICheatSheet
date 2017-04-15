@@ -1,4 +1,3 @@
-
 function getCrusader(id) {return jsonData.crusaders.find(function(c){ return c.id == id; }); } 
 
 function crusaderSetup(crusader) {
@@ -126,6 +125,23 @@ function itemAbility(crusader,gearSlot) {
       return 3;
     case "Golden Legendary":
       return 4;      
+    default:
+      return 1;
+  }
+}
+
+function itemGreyShots(crusader,gearSlot) {
+  switch(appGameState.crusaderGear[crusader.id]["slot"+gearSlot.toString()]){
+    case 1:
+      return 2;
+    case 2:
+      return 3;
+    case 3:
+      return 4;
+    case 4:
+      return 5;
+    case 5:
+      return 9;
     default:
       return 1;
   }
@@ -1022,14 +1038,126 @@ nate.calculate = function() {
 
 ////Kizlblyp the Alien Traitor
 var kiz = getCrusader('20a');
+kiz.calculate = function() {
+  crusaderSetup(kiz);
+  if (kiz.isDPS) {
+    kiz.globalDPS *= 1 + 0.2 * itemAbility(kiz,0) * currentWorld.countTags('male');
+  }
+  kiz.globalDPS *= 1 + 0.1 * (currentWorld.filled - currentWorld.countTags('human'));
+};
 
+////Robo-Rudolph
+var rudolph = getCrusader('20b');
+rudolph.calculate = function() {
+  crusaderSetup(rudolph);
+  var adjacent = currentWorld.whatsAdjacent(rudolph.spot);
+  var robotAdj = false;
+  if (rudolph.isDPS) {
+    for (var i = 0; i < adjacent.length; i++) {
+      if (Formation[adjacent[i]].tags.includes('robot')) {
+        robotAdj = true;
+      }
+    }
+    if (robotAdj) {
+      rudolph.globalDPS *= 1 + 2 * itemAbility(rudolph,0);
+    }
+    rudolph.globalDPS *= 1 + 1 * currentWorld.countTags('robot') * itemAbility(rudolph,1);
+  }
+};
 
+//////Slot 21
+////The Exterminator
+var exterminator = getCrusader('21');
+exterminator.calculate = function() {
+  crusaderSetup(exterminator);
+  var adjacent = currentWorld.whatsAdjacent(rudolph.spot);
+  var robotsAdj = 0;
+  for (var i = 0; i < adjacent.length; i++) {
+    if (Formation[adjacent[i]].tags.includes('robot')) {
+      robotsAdj = 1;
+    }
+  }
+  if (exterminator.isDPS) {
+    exterminator.globalDPS *= 1 + 1 * robotsAdj * itemAbility(exterminator,0);
+    exterminator.globalDPS *= 1 + 0.5 * currentWorld.countTags('robot') * itemAbility(exterminator,0);
+  }
+  exterminator.globalGold *= 1 + 0.1 * (currentWorld.countTags('robot') - robotsAdj);
+};
 
+////Gloria, the Good Witch
+var gloria = getCrusader('21a');
+gloria.calculate = function() {
+  crusaderSetup(gloria);
+  if (currentWorld.columnNum(dpsChar.spot) != currentWorld.columnNum(gloria.spot) + 1) {
+    gloria.globalDPS *= 1.5;
+  }
+};
 
+//////Slot 22
+////The Shadow Queen
+var shadow = getCrusader('22');
+shadow.calculate = function() {
+  crusaderSetup(shadow);
+  var jasonMult = 1;
+  var adjacent = currentWorld.whatsAdjacent(shadow.spot);
+  var numAdjacent = 0;
+  if (adjacent.includes(dpsChar.spot)) {
+    for (var i = 0; i < adjacent.length; i++) {
+      if (formation[adjacent[i]]) {
+        numAdjacent += 1;
+      } 
+    }
+    if (jason.inFormation && adjacent.includes(jason.spot)) {
+      jasonMult = 2;
+    }
+    shadow.globalDPS *= 1 + 3 * jasonMult * itemAbility(shadow,1) / numAdjacent;
+  }
+};
 
+////Ilsa, the Insane Wizard
+var ilsa = getCrusader('22a');
+ilsa.calculate = function() {
+  crusaderSetup(ilsa);
+  var adjacent = currentWorld.whatsAdjacent(ilsa.spot);
+  var numAdjacent = 0;
+  var deflecting = 0;
+  var magicMult = 0;
+  if (ilsa.isDPS) {
+    ilsa.globalDPS *= 1 + (0.5 + currentWorld.countTags('magical'))*itemAbility(ilsa,0);
+    if (merci.inFormation) {
+      deflecting = Math.min(2.5 * monstersOnscreen * itemAbility(merci,0),100);
+    }
+    ilsa.globalDPS *= 2 + 2 * deflecting/100;
+  }
+  if (adjacent.includes(dpsChar.spot)) {
+    for (var i = 0; i < adjacent.length; i++) {
+      if (formation[adjacent[i]]) {numAdjacent += 1;}
+    }
+    if (numAdjacent == 1) {magicMult = 4;}
+    ilsa.globalDPS *= 0.5 + 1 * magicMult;
+  }
+};
 
+//////Slot 23
+////GreySkull, the Pirate
+var greyskull = getCrusader('23');
+greyskull.calculate = function() {
+  crusaderSetup(greyskull);
+  greyskull.globalGold *= 1 + 0.05 * itemAbility(greyskull,0) * numAttacking;
+  if (countShots) {
+    greyskull.globalDPS *= 1 + 2 *itemGreyShots(greyskull,2)/10;
+  }
+};
 
-
+////Eiralon, the Blood Mage
+var eiralon = getCrusader('23a');
+eiralon.calculate = function() {
+  crusaderSetup(eiralon);
+  eiralon.globalDPS *= 1 + 0.5 * itemAbility(eiralon,0);
+  if (currentWorld.columnNum(eiralon.spot) == currentWorld.columnNum(dpsChar.spot)) {
+    eiralon.globalDPS *= 1 + 1 * itemAbility(eiralon,0);
+  }
+};
 
 
 
