@@ -915,6 +915,9 @@ var CruApp = React.createClass({
             referenceData={this.props.referenceData}
             />
         </Pane>
+        <Pane label="FormationCalc">
+          <FormationCalc />
+        </Pane>
         <Pane label="Extension and raw Import/Export">
           <div>
             {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}

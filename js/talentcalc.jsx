@@ -3,6 +3,7 @@
 app.HeroSelect = props =>
 {
     var crusaders = props.crusaders.slice(0);
+    if(!props.dontSort)
     crusaders.sort((a,b)=> {
         if(a.tags.includes("dps") && !b.tags.includes("dps"))
             return -1;

@@ -1,6 +1,9 @@
-function getCrusader(id) {return jsonData.crusaders.find(function(c){ return c.id == id; }); } 
+(app =>
+{
+  var dpsChar;
+  app.getCrusader = id => {return app.jsonData.crusaders.find(function(c){ return c.id == id; }); };
 
-function crusaderSetup(crusader) {
+  app.crusaderSetup = crusader => {
   if (!crusader.setup) {
     if (!crusader.globalDPS) {crusader.globalDPS = 1;}
     if (!crusader.globalGold) {crusader.globalGold = 1;}
@@ -23,7 +26,7 @@ function crusaderSetup(crusader) {
     }
     crusader.setup = true;
   }
-}
+};
 
 function itemDPS(rarity) {
   switch(rarity){
@@ -1273,6 +1276,7 @@ function World(name,spots) {
 
 
 var worldsWake = new World("World's Wake",10);
+app.worldsWake = worldsWake;
 worldsWake.setAdjacent(0,[1,4]);
 worldsWake.setAdjacent(1,[0,2,4,5]);
 worldsWake.setAdjacent(2,[1,3,5,6]);
@@ -1305,32 +1309,30 @@ var critChance = 1;
 var globalDPS = 1;
 var globalGold = 1;
 
-setDPS = function(name) {
-  for (var i in jsonData.crusaders) {
-    crusader = jsonData.crusaders[i];
-    if (crusader.displayName.search(name) != -1) {
+app.setDPS = function(name) {
+  var crusader = jsonData.crusaders.find(c => c.displayName == name)
+  if (crusader != null) {
       crusader.isDPS = true;
       dpsChar = crusader;
     }
-  }
-};
+  };
 
 //Set Up Formation
 var currentWorld = worldsWake;
-formation[0]=emo;
-formation[7]=sasha;
+// formation[0]=emo;
+// formation[7]=sasha;
 //formation[2]=kaine;
 //formation[3]=panda;
-setDPS("Emo");
+// setDPS("Emo");
 //Set base values for the formation crusaders and calculate
-for (var i in formation) {
-  formation[i].inFormation = true;
-  formation[i].spot = i;
-  currentWorld.filled += 1;
-}
-for (var i in formation) {
-  formation[i].calculate();
-}
+// for (var i in formation) {
+//   formation[i].inFormation = true;
+//   formation[i].spot = i;
+//   currentWorld.filled += 1;
+// }
+// for (var i in formation) {
+//   formation[i].calculate();
+// }
 
 //Optional Arguments we might need
 var countShots = true;
@@ -1340,3 +1342,4 @@ var numAttacking = 0;
 var littlefootXP = 0;
 var killedThisStage =0;
 var currentStage = 0;
+})(window)
