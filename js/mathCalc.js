@@ -1325,10 +1325,11 @@ var currentWorld = worldsWake;
 //formation[3]=panda;
 // setDPS("Emo");
 //Set base values for the formation crusaders and calculate
-// for (var i in formation) {
-//   formation[i].inFormation = true;
-//   formation[i].spot = i;
-//   currentWorld.filled += 1;
+//for (var i in formation) {
+//  formation[i].calculate();
+//  globalDPS *= formation[i].globalDPS;
+//  globalGold *= formation[i].globalGold;
+//  critChance += formation[i].critChance;
 // }
 // for (var i in formation) {
 //   formation[i].calculate();
