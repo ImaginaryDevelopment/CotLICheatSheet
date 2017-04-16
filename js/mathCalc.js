@@ -1304,7 +1304,7 @@ for (i = 0; i < 10; i++) {
   }
 }
 
-var formation = [];
+app.formation = [];
 var critChance = 1;
 var globalDPS = 1;
 var globalGold = 1;
