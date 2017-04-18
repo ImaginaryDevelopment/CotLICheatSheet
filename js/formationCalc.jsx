@@ -36,17 +36,23 @@
                 this.setState(stateMods);
             };
             var makeHeroSelect = slotNumber => {
-                var cru = app.formation[slotNumber];
-                var cruGearQ = cru && app.crusaderGear[cru.id];
+                var selectedCru = app.formation[slotNumber];
+                var cruGearQ = selectedCru && app.crusaderGear[selectedCru.id];
+                var availableCrusaders = jsonData.crusaders.filter(cru =>
+                    // crusaders in slots that aren't in formation
+                    formation.filter(f => f != null).find(f=> f.slot == cru.slot) == null
+                    || selectedCru == cru
+
+                );
                 return (<div>{slotNumber}
                     <HeroSelect dontSort={true}
-                                crusaders={jsonData.crusaders}
+                                crusaders={availableCrusaders}
                                 onHeroChange={ changeFormation(slotNumber)}
-                                selectedHeroId={app.formation[slotNumber] && app.formation[slotNumber].id}
+                                selectedHeroId={selectedCru && selectedCru.id}
                                 />
                                 {
-                                    cru != null ?
-                                        <GearBox cru={cru} cruGearQ={cruGearQ} />
+                                    selectedCru!= null ?
+                                        <GearBox cru={selectedCru} cruGearQ={cruGearQ} />
                                         : null
                                 }
                 </div>);

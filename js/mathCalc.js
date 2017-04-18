@@ -3,11 +3,10 @@
   app.getCrusader = id => { return app.jsonData.crusaders.find(function (c) { return c.id == id; }); };
 
   // returns the lootId, not the rarity or legendary level
-  var getGear = (cruId, gearSlot) =>
+  var getLootId = (cruId, gearSlot) =>
     app.crusaderGear &&
     app.crusaderGear[cruId] &&
     inspect(app.crusaderGear[cruId]["s" + gearSlot.toString()],"getGear found gear");
-  app.getGear = getGear;
 
   app.crusaderSetup = crusader => {
       crusader.globalDPS = 1;
@@ -19,7 +18,7 @@
             crusader.critChance += itemCrit(crusader, i);
             break;
           case "alldps":
-            var lootId = getGear(crusader.id,i);
+            var lootId = getLootId(crusader.id,i);
             var rarity = lootId && getRarity(crusader.loot, lootId);
             var dps = rarity && itemDPS(rarity) || 1;
             // console.log('alldps', dps,rarity,lootId, crusader.id,i);
@@ -31,7 +30,7 @@
             break;
           case "selfdps":
             if (crusader.isDPS) {
-              var lootId = getGear(crusader.id, i);
+              var lootId = getLootId(crusader.id, i);
               var rarity = lootId && getRarity(crusader.loot,lootId);
               crusader.globalDPS *= itemSelfDPS(crusader, i) || 1;
             }

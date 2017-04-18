@@ -8,14 +8,15 @@ app.createClipperButton = text =>
 app.GearBox = props => {
 
   var makeBox = slot => {
+    // for crusaders that aren't owned for instance
+    if(!(props.cruGearQ != null) || !(props.cru.loot != null))
+      return null;
     var lootId =  props.cruGearQ["s" + slot];
     var rarity = Loot.getSlotRarity(lootId, props.cru.loot);
     var golden = Loot.getIsGolden(lootId, props.cru.loot) ? " golden" : "";
     var classes = "rarity rarity" + rarity + golden;
-    console.log('makingBox', slot,props.cruGearQ,lootId,rarity);
     return (<div className={classes} />);
   };
-  console.log('making gearBox', props.cruGearQ, props.cru.loot);
   var result = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
   return result;
 };
