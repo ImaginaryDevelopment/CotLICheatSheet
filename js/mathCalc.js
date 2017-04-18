@@ -45,8 +45,13 @@
     }
   }
 
+  var getGear = (cruId, gearSlot) =>
+    app.crusaderGear &&
+    app.crusaderGear[cruId] &&
+    app.crusaderGear[cruId]["s" + gearSlot.toString()];
+
   function itemSelfDPS(crusader, gearSlot) {
-    switch (appGameState.crusaderGear[crusader.id]["slot" + gearSlot.toString()]) {
+    switch (getGear(crusader.id, gearSlot)) {
       case 1:
         return 1.25;
       case 2:
@@ -65,10 +70,6 @@
         return 1;
     }
   }
-  var getGear = (cruId, gearSlot) =>
-    app.crusaderGear &&
-    app.crusaderGear[cruId] &&
-    app.crusaderGear[cruId]["s" + gearSlot.toString()];
 
   function itemGold(crusader, gearSlot) {
     switch (getGear(crusader.id, gearSlot)) {
