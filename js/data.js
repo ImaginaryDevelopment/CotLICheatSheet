@@ -1882,7 +1882,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 3,
-          "name": "Aluring Perfume",
+          "name": "Alluring Perfume",
           "lootId": 433
         },
         {
@@ -3874,7 +3874,99 @@ window.jsonData =
         "supernatural",
         "event"
       ],
-      "heroId": 81
+      "heroId": 81,
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Falling-Apart Mace",
+          "lootId": 1380
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Wooden Mace",
+          "lootId": 1381
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Shining Mace",
+          "lootId": 1382
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Sparkling Mace of Sharpened Spikes",
+          "lootId": 1383
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Blessed Mace of Enemy-Crushing Rightousness",
+          "lootId": 1384
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Splintered Shield",
+          "lootId": 1385
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Rusty Shield",
+          "lootId": 1386
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Sturdy Shield",
+          "lootId": 1387
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Sigil-Inlaid Shield of Great Protection",
+          "lootId": 1388
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Gold-Leafed Great-Shield of Holy Multiplicity",
+          "lootId": 1389
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Crumbling Breastplate",
+          "lootId": 1390
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Heavy Breastplate",
+          "lootId": 1391
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Reinforced Breastplate",
+          "lootId": 1392
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Studded Breastplate of Great Protection",
+          "lootId": 1393
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Blue-Winged Breastplate of Fashionable Defensiveness",
+          "lootId": 1394
+        }
+      ]
     },
     {
       "id": "08",
@@ -5322,13 +5414,105 @@ window.jsonData =
       "event": "March: Nate's Candy Conundrum",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
       "tags": [
-          "female",
-          "magic",
-          "dragon",
-          "support",
-          "event"
+        "female",
+        "magic",
+        "dragon",
+        "support",
+        "event"
       ],
-      "heroId": 82
+      "heroId": 82,
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Grungy Necklace",
+          "lootId": 1395
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Plain Necklace",
+          "lootId": 1396
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Fancy Necklace",
+          "lootId": 1397
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Agate-Studded Necklace of Beauty",
+          "lootId": 1398
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "24 Carat Necklace of Still-Incredibly-Little Weight",
+          "lootId": 1399
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Almost-Spent Magic Source",
+          "lootId": 1400
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Running-Low Magic Source",
+          "lootId": 1401
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Potent Magic Source",
+          "lootId": 1402
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Overflowing Magic Source of Power",
+          "lootId": 1403
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Supercharged Magic Source of Scale-Raising Energy",
+          "lootId": 1404
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Leftover Jewellery",
+          "lootId": 1405
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Mis-matched Jewellery",
+          "lootId": 1406
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Polished Jewellery",
+          "lootId": 1407
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Fine Jewellery of Critical Construction",
+          "lootId": 1408
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Highly-Gemmed Jewellery of Many Jingling Pieces",
+          "lootId": 1409
+        }
+      ]
     },
     {
       "id": "11",
@@ -7021,7 +7205,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 4,
-          "name": "Enchanted Belly Buckle of Laughter ",
+          "name": "Enchanted Belly Buckle of Laughter",
           "lootId": 341
         },
         {
@@ -8017,9 +8201,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Angelic Wings of Imperious Hovering",
+          "lootId": 1410,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Bladed Angel Wings of Mortal Decapitation",
           "lootId": 1113
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Bladed Angel Wings of Mortal Decapitation",
+          "lootId": 1411,
+          "golden": true
         },
         {
           "slot": 1,
@@ -8412,7 +8610,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 4,
-          "name": "Siri Sceptre GE",
+          "name": "Flabbergasted All-Seeing Sceptre of Spectres",
           "lootId": 1370,
           "golden": true
         },
@@ -9247,9 +9445,23 @@ window.jsonData =
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "Cosmic Mage's Cape of Universal Control",
+          "lootId": 1418,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
           "name": "Long-Hooded Wizard's Robe of Sparkly Magic",
           "lootId": 1044
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Long-Hooded Wizard's Robe of Sparkly Magic",
+          "lootId": 1419,
+          "golden": true
         },
         {
           "slot": 2,

@@ -45,6 +45,7 @@
     }
   }
 
+  // returns the lootId, not the rarity or legendary level
   var getGear = (cruId, gearSlot) =>
     app.crusaderGear &&
     app.crusaderGear[cruId] &&
