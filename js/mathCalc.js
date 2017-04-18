@@ -1319,8 +1319,8 @@
     var crusader = name != null ? jsonData.crusaders.find(c => c.displayName == name) : getCrusader(id);
     if (crusader != null) {
       crusader.isDPS = true;
-      dpsChar = crusader;
     }
+    dpsChar = crusader;
   };
 
   //Set Up Formation
@@ -1336,7 +1336,14 @@
     var globalGold = 0;
     formation.filter(f => f != null).map(f => {
       crusaderSetup(f);
-      f.calculate();
+      if(f.calculate)
+        try
+        {
+          f.calculate();
+        } catch(ex){
+          console.error('failed to calculate for ', f);
+        }
+
       console.log('formation calculate', globalDPS, f);
       globalDPS *= f.globalDPS || 1;
       globalGold *= f.globalGold || 1;

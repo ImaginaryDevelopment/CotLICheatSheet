@@ -8,6 +8,14 @@
             var data = app.calculateMultipliers();
             return {formation:app.formation, dps:data.globalDps, dpsCruId:null, gold:null};
         }
+        calculateMyMultipliers(stateMods){
+                var data = app.calculateMultipliers();
+                var stateMods = stateMods || {};
+                stateMods.dps=data.globalDps;
+                stateMods.gold=data.globalGold;
+                console.log('stateMods', stateMods);
+                return stateMods;
+        }
         render(){
             var changeFormation = slotNumber => cruId => {
                 var crusader = getCrusader(cruId);
@@ -15,9 +23,8 @@
                 app.formation.map((c,i) => {
                     if (c == crusader && i != slotNumber) app.formation[i]=app.formation[slotNumber]});
                 app.formation[slotNumber]=crusader;
-                var data = app.calculateMultipliers();
-                var stateMods = {slotNumber:cruId,dps:data.globalDps, gold:data.globalGold};
-                console.log('stateMods', stateMods);
+                var stateMods = this.calculateMyMultipliers();
+                stateMods[slotNumber] = cruId;
                 this.setState(stateMods);
             };
             var makeHeroSelect = slotNumber => (
@@ -33,8 +40,10 @@
                 <HeroSelect crusaders={jsonData.crusaders.filter(cru => formation.filter(f => f != null).findIndex( f => f.id == cru.id) >= 0)} onHeroChange={cruId => {
                     app.formationDps = getCrusader(cruId);
                     app.setDPS(null, cruId);
-                    this.setState({dpsCruId:cruId});
                     app.calculateMultipliers();
+                    var stateMods = this.calculateMyMultipliers();
+                    stateMods.dpsCruId=cruId;
+                    this.setState(stateMods);
                     }
                 } selectedHeroId={this.state.dpsCruId} />
             );
