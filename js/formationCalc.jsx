@@ -21,8 +21,15 @@
                 var crusader = getCrusader(cruId);
                 // if the crusader is already in a different slot, remove him from there, swap with the one that is there.
                 app.formation.map((c,i) => {
-                    if (c == crusader && i != slotNumber) app.formation[i]=app.formation[slotNumber]});
+                    if (c == crusader && i != slotNumber)
+                    {
+                        app.formation[i]=app.formation[slotNumber];
+                        if(app.formation[i])
+                            app.formation[i].spot = i;
+                    }
+                });
                 app.formation[slotNumber]=crusader;
+                crusader.spot = slotNumber;
                 var stateMods = this.calculateMyMultipliers();
                 stateMods[slotNumber] = cruId;
                 this.setState(stateMods);
