@@ -19,6 +19,8 @@ var parseTalents = (talents,data) =>{
   console.log('talents parsed into', parsedTalents, talentArray, talents);
   return parsedTalents;
 };
+var getLootFromLootId = (lootData, lootId) =>
+  lootData.find(l => l.lootId == lootId);
 var parseLoot = (crusaders,lootData) =>{
     if(!(lootData != null))
       return;

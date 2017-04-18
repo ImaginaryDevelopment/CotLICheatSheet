@@ -7503,6 +7503,11 @@ window.jsonData =
         "dps",
         "royal"
       ],
+      "gear":[
+        "alldps",
+        "selfdps",
+        "selfdps"
+      ],
       "upgrades": {
         "selfdps": [
           100,

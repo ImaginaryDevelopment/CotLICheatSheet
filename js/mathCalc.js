@@ -18,7 +18,11 @@
             crusader.globalGold *= itemGold(crusader, i);
             break;
           case "selfdps":
-            if (crusader.isDPS) { crusader.globalDPS *= itemSelfDPS(crusader, i) || 1; }
+            if (crusader.isDPS) {
+              var lootId = getGear(crusader.id, i);
+              var rarity = lootId && getRarity(lootId);
+              crusader.globalDPS *= itemSelfDPS(crusader, i) || 1;
+            }
             break;
         }
       }
@@ -45,14 +49,18 @@
     }
   }
 
+var getRarity = (loot,lootId) => {
+  var item = getLootFromLootId(loot,lootId);
+  return item && item.rarity;
+};
   // returns the lootId, not the rarity or legendary level
   var getGear = (cruId, gearSlot) =>
     app.crusaderGear &&
     app.crusaderGear[cruId] &&
-    app.crusaderGear[cruId]["s" + gearSlot.toString()];
+    inspect(app.crusaderGear[cruId]["s" + gearSlot.toString()],"getGear found gear");
 
-  function itemSelfDPS(crusader, gearSlot) {
-    switch (getGear(crusader.id, gearSlot)) {
+  function itemSelfDPS(rarity) {
+    switch (rarity) {
       case 1:
         return 1.25;
       case 2:
