@@ -1,5 +1,5 @@
 (app => {
-  var dpsChar;
+  app.dpsChar = null;
   app.getCrusader = id => { return app.jsonData.crusaders.find(function (c) { return c.id == id; }); };
 
   app.crusaderSetup = crusader => {
@@ -158,7 +158,7 @@ var bushwhacker = getCrusader("01");
 bushwhacker.calculate = function() {
   crusaderSetup(bushwhacker);
   bushwhacker.critChance += 1 * legendaryFactor(bushwhacker,1);
-  if (dpsChar.tags.includes('robot')) {
+  if (app.dpsChar.tags.includes('robot')) {
     bushwhacker.globalDPS *= 1 + 1 * legendaryFactor(bushwhacker,2);
   }
 };
@@ -182,7 +182,7 @@ graham.calculate = function() {
     graham.globalDPS *= 1 + (0.5 * itemAbility(graham,2))*(1 + legendaryFactor(graham,1));
   }
   graham.globalDPS *= 1 + 1 * legendaryFactor(graham,0);
-  if (dpsChar.tags.includes('human')) {
+  if (app.dpsChar.tags.includes('human')) {
     graham.globalDPS *= 1 + 1 * legendaryFactor(graham,2);
   }
 };
@@ -195,10 +195,10 @@ warwick.calculate = function() {
   if (clicking) {
     warwick.globalDPS *= 1 + 2 * (1+1*legendaryFactor(warwick,0));
   }
-  if (dpsChar.tags.includes('magical')) {
+  if (app.dpsChar.tags.includes('magical')) {
     warwick.globalDPS *= 1 + 1 * legendaryFactor(warwick,1);
   }
-  if (dpsChar.tags.includes('leprechaun')) {
+  if (app.dpsChar.tags.includes('leprechaun')) {
     warwick.globalDPS *= 1 + 1 * legendaryFactor(warwick,2);
   }
 };
@@ -218,7 +218,7 @@ jim.calculate = function() {
     }
   }
 //Column Buff
-  if (currentWorld.columnNum(jim.spot) == currentWorld.columnNum(dpsChar.spot)) {
+  if (app.dpsChar && currentWorld.columnNum(jim.spot) == currentWorld.columnNum(app.dpsChar.spot)) {
     jim.globalDPS *= 1 + 0.5 * (1 + legendaryFactor(jim,0));
   } else if (karen.isDPS) {
     jim.globalDPS *= 1 + 0.5 * (1 + legendaryFactor(jim,0)) * 0.5 * (itemAbility(karen,0));
@@ -231,12 +231,12 @@ jim.calculate = function() {
 
 ////Pam
 var pam = getCrusader("02a");
-pam.calculate = function() { 
+pam.calculate = function() {
   crusaderSetup(pam);
   var numInColumn = 0;
   var dpsInColumn = false;
   var numAdjacent =0;
-//Focused Teamwork  
+//Focused Teamwork
   for (var j in formation) {
     if (currentWorld.columnNum(pam.spot) == currentWorld.columnNum(formation[j].spot)){
       numInColumn += 1;
@@ -252,7 +252,7 @@ pam.calculate = function() {
     pam.globalDPS *= 1 + 1 * itemAbility(pam,1) * (1 + legendaryFactor(pam,0)) * 0.5 * itemAbility(karen,0);
     karen.effects += 1;
   }
-//Co-Pilot  
+//Co-Pilot
   if (pam.isDPS) {
     var adjacent = currentWorld.whatsAdjacent(pam.spot);
     for (var i = 0; i<adjacent.length; i++ ) {
@@ -263,7 +263,7 @@ pam.calculate = function() {
       pam.globalDPS *= 2;
     }
   }
-  pam.globalDPS *= 1 + 0.25 * countTags('dps') * legendaryFactor(pam,1);
+  pam.globalDPS *= 1 + 0.25 * currentWorld.countTags('dps') * legendaryFactor(pam,1);
   if (numAdjacent <= 3) {
     pam.globalDPS *= 1 + 1 * legendaryFactor(pam,2);
   }
@@ -281,14 +281,14 @@ veronica.calculate = function() {
       dpsAffected = true;
     }
   }
-  if (currentWorld.columnNum(veronica.spot) == currentWorld.columnNum(dpsChar.spot)) {
+  if (currentWorld.columnNum(veronica.spot) == currentWorld.columnNum(app.dpsChar.spot)) {
     dpsAffected = true;
   }
   if (dpsAffected) {
     veronica.globalDPS *= 1 + 0.25 * (1+currentWorld.countTags("robot"))*itemAbility(veronica,0)*(1 + legendaryFactor(veronica,0));
   }
   if (!dpsAffected && karen.isDPS) {
-    veronica.globalDPS *= 1 + 0.25 * (1+currentWorld.countTags("robot"))*itemAbility(veronica,0)*(1 + legendaryFactor(veronica,0)) * 0.5 * itemAbility(karen,0);    
+    veronica.globalDPS *= 1 + 0.25 * (1+currentWorld.countTags("robot"))*itemAbility(veronica,0)*(1 + legendaryFactor(veronica,0)) * 0.5 * itemAbility(karen,0);
     karen.effects *= 1;
   }
   if (countShots) {
@@ -312,7 +312,7 @@ arachno.calculate = function() {
 };
 
 //////Slot 3
-////Emo Werewolf 
+////Emo Werewolf
 var emo = getCrusader("03");
 emo.test = "test";
 emo.calculate = function() {
@@ -335,7 +335,7 @@ emo.calculate = function() {
     }
     emo.globalDPS *= 1 + 0.25 * numAdjacent * legendaryFactor(emo,1);
   }
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     emo.globalDPS *= 1 + 1 * legendaryFactor(emo,2);
   }
 };
@@ -344,7 +344,7 @@ emo.calculate = function() {
 var sally = getCrusader("03a");
 sally.calculate = function() {
   crusaderSetup(sally);
-  if (dpsChar.tags.includes("female")) {
+  if (app.dpsChar.tags.includes("female")) {
     sally.globalDPS *= 1.2;
   }
   if (sally.isDPS) {
@@ -387,7 +387,7 @@ var sasha = getCrusader("04");
 sasha.calculate = function() {
   crusaderSetup(sasha);
   var numBehind = 0;
-  if (currentWorld.columnNum(sasha.spot)==currentWorld.columnNum(dpsChar.spot)+1) {
+  if (currentWorld.columnNum(sasha.spot)==currentWorld.columnNum(app.dpsChar.spot)+1) {
     sasha.globalDPS *=1 + 0.3*itemAbility(sasha,1)*(1+legendaryFactor(sasha,2));
   } else if (karen.isDPS) {
     sasha.globalDPS *=1 + 0.3*itemAbility(sasha,1)*(1+legendaryFactor(sasha,2)) * 0.5 * itemAbility(karen,0);
@@ -412,16 +412,16 @@ groklok.calculate = function() {
     numAffected +=1;
   }
   if (drizzle.inFormation && currentWorld.columnNum(drizzle.spot) > currentWorld.columnNum(groklok.spot)) {
-    drizzleMult = 2; 
+    drizzleMult = 2;
   }
-//Eligible Receivers  
-  if (currentWorld.columnNum[groklok.spot]==currentWorld.columnNum[dpsChar.spot]-1) {
+//Eligible Receivers
+  if (currentWorld.columnNum[groklok.spot]==currentWorld.columnNum[app.dpsChar.spot]-1) {
     groklok.globalDPS *= 1.5 * drizzleMult * itemAbility(groklok,0) * (1 + legendaryFactor(groklok,2)) / numAffected;
   } else if (karen.isDPS) {
     groklok.globalDPS *= 1.5 * drizzleMult * itemAbility(groklok,0) * 0.5 * itemAbility(karen,0) * (1 + legendaryFactor(groklok,2)) / numAffected;
     karen.effects += 1;
   }
-//Gunslinger  
+//Gunslinger
   if (groklok.isDPS && currentWorld.filled < currentWorld.spots) {
     groklok.globalDPS *= 1 + 1.5 * (1+legendaryFactor());
   }
@@ -442,7 +442,7 @@ mindy.calculate = function() {
 var hermit = getCrusader("05");
 hermit.calculate = function() {
   crusaderSetup(hermit);
-//Craziness  
+//Craziness
   if (hermit.isDPS) {
     var noOneAhead = true;
     var adjacent = currentWorld.whatsAdjacent(hermit.spot);
@@ -457,7 +457,7 @@ hermit.calculate = function() {
     hermit.globalDPS *= 1 + (currentWorld.spots - currentWorld.filled) * legendaryFactor(hermit,0);
     hermit.globalDPS *= 1 + 0.25 * currentWorld.countTags('supernatural') * legendaryFactor(hermit,2);
   }
-  if (dpsChar.tags.includes('human')) {
+  if (app.dpsChar.tags.includes('human')) {
     hermit.globalDPS *= 1 + legendaryFactor(hermit,1);
   }
 };
@@ -491,7 +491,7 @@ kyle.calculate = function() {
   }
   if (kyle.isDPS) {
     if (femaleAdjacent) {kyle.globalDPS *= 2;}
-    if (leprechaunAdjacent) {kyle.globalDPS *= 2;}    
+    if (leprechaunAdjacent) {kyle.globalDPS *= 2;}
     if (animalAdjacent) {kyle.globalDPS *= 2;}
     kyle.globalDPS *= 1 + 0.5 * Math.max(numAdjacent,3) * itemAbility(kyle,1) * (1 + legendaryFactor(kyle,2));
     if (numAdjacent >= 4) {
@@ -506,9 +506,9 @@ kyle.calculate = function() {
     karen.effects += 1;
   }
   if (dpsSmashed) {
-    dpsChar.smashed = true;
+    app.dpsChar.smashed = true;
   } else {
-    dpsChar.smashed = false;
+    app.dpsChar.smashed = false;
   }
 };
 
@@ -527,10 +527,10 @@ draco.calculate = function() {
     draco.globalDPS *= 1 + royals - 0.5 * nonRoyalHumans;
     draco.globalDPS *= 1 + animals - 0.5 * robots;
   }
-  if (dpsChar.tags.includes('royal')) {
+  if (app.dpsChar.tags.includes('royal')) {
     draco.globalDPS *= 1 + legendaryFactor(draco,0);
   }
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     draco.globalDPS *= 1 + legendaryFactor(draco,1);
   }
   draco.globalDPS *= 1 + 0.2 * currentWorld.countTags('human') * legendaryFactor(draco,2);
@@ -588,7 +588,7 @@ mister.calculate = function() {
     karen.effects += 1;
     mister.globalGold *= 1 + (0.15 + 0.05 * numAnimals) * itemAbility(mister,1) * (1 + legendaryFactor(mister,2)) * 0.5 * itemAbility(karen,0);
   }
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     mister.globalDPS *= 1 + legendaryFactor(mister,0);
   }
 };
@@ -626,7 +626,7 @@ bernard.calculate = function() {
   }
   if (numAdjacent <= 3) {
     tipsPercent += numAdjacent * 0.1;
-  } else { 
+  } else {
     tipsPercent += 0.6 - numAdjacent * 0.1;
   }
   bernard.globalGold *= 1 + tipsPercent * tipsGoldPercent;
@@ -639,12 +639,12 @@ bernard.calculate = function() {
 var princess = getCrusader("07");
 princess.calculate = function() {
   crusaderSetup(princess);
-//Ignite, Char, Conflagrate (Check if these multiply or add)  
+//Ignite, Char, Conflagrate (Check if these multiply or add)
   princess.globalDPS *= Math.pow((1 + 0.1 * itemAbility(princess,2)),3);
   if (reginald.inFormation) {
     princess.globalDPS *= 1 + legendaryFactor(princess,0);
   }
-  if (!dpsChar.tags.includes('event')) {
+  if (!app.dpsChar.tags.includes('event')) {
     princess.globalDPS *= 1 + legendaryFactor(princess,1);
   }
   princess.globalDPS *= 1 + 0.25 * currentWorld.countTags('royal') * legendaryFactor(princess,2);
@@ -694,7 +694,7 @@ turkey.calculate = function() {
   if (momma.inFormation) {
     globalDPS *= 1 + legendaryFactor(turkey,2);
   }
-  dpsChar.zapped = dpsZapped;
+  app.dpsChar.zapped = dpsZapped;
 };
 
 ////Ranger Rayna
@@ -718,11 +718,11 @@ rayna.calculate = function() {
 var natalie = getCrusader("08");
 natalie.calculate = function() {
   crusaderSetup(natalie);
-//Double Dragon  
+//Double Dragon
   if (nate.inFormation && natalie.isDPS){
     natalie.globalDPS *= 1+2*itemAbility(nate,2);
   }
-  if (dpsChar.tags.includes('female')) {
+  if (app.dpsChar.tags.includes('female')) {
     natalie.globalDPS *= 1 + legendaryFactor(natalie,0);
   }
   natalie.globalGold *= 1 + 0.25 * currentWorld.countTags('human') * legendaryFactor(natalie,1);
@@ -746,7 +746,7 @@ var billy = getCrusader("08b");
 billy.calculate = function() {
   crusaderSetup(billy);
   if (kiz.isDPS) {billy.globalDPS *= 3;}
-  if (dpsChar.tags.includes("human")) {
+  if (app.dpsChar.tags.includes("human")) {
     billy.globalDPS *= 1 + 0.5 * (1 + legendaryFactor(billy,0));
   }
   billy.globalDPS *= 1 + 0.1 * currentWorld.countTags('human') * legendaryFactor(billy,1);
@@ -787,7 +787,7 @@ pete.calculate = function() {
   var numJoked = 0;
   var distances = currentWorld.findDistances(pete.spot);
   var maxDistance = Math.max.apply(null, distances);
-  if (distances[dpsChar.spot] == maxDistance) {
+  if (distances[app.dpsChar.spot] == maxDistance) {
     pete.globalDPS *= 1 + 0.5 * itemAbility(pete,0) * (1 + legendaryFactor(pete,0));
   }
   if (karen.inFormation && distances[karen.spot] != maxDistance) {
@@ -839,7 +839,7 @@ paul.calculate = function() {
   crusaderSetup(paul);
   var petraBonus = 0;
   if (petra.inFormation) {
-    petraBonus = 1; 
+    petraBonus = 1;
     paul.globalDPS *= 1 + legendaryFactor(paul,1);
   }
   paul.globalGold = 1 + 0.33 * itemAbility(paul,0) * (1 + 0.5 * petraBonus);
@@ -853,7 +853,7 @@ var lion = getCrusader("10");
 lion.calculate = function() {
   crusaderSetup(lion);
   var numRoared = 0;
-  if (currentWorld.columnNum(lion.spot)==currentWorld.columnNum(dpsChar.spot)-1) {
+  if (currentWorld.columnNum(lion.spot)==currentWorld.columnNum(app.dpsChar.spot)-1) {
     lion.globalDPS *= 1 + 0.5 * itemAbility(lion,1) * (1 + legendaryFactor(lion,0));
   }
   for (var i in formation) {
@@ -868,7 +868,7 @@ lion.calculate = function() {
     }
   }
   lion.globalDPS *= Math.pow(1 + 0.33 * legendaryFactor(lion,1), numRoared);
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     lion.globalDPS *= 1 + legendaryFactor(lion,2);
   }
 };
@@ -878,7 +878,7 @@ var drizzle = getCrusader('10a');
 drizzle.calculate = function() {
   crusaderSetup(drizzle);
   var adjacent = currentWorld.whatsAdjacent(drizzle.spot);
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     drizzle.globalDPS *= 1 + 0.2 * itemAbility(drizzle,1);
   }
   if (karen.inFormation && karen.isDPS && !adjacent.includes(karen.spot)) {
@@ -909,7 +909,7 @@ bubba.calculate = function() {
       numAdjacent += 1;
     }
   }
-  if (currentWorld.columnNum(bubba.spot) - 1 == currentWorld.columnNum(dpsChar.spot)) {
+  if (currentWorld.columnNum(bubba.spot) - 1 == currentWorld.columnNum(app.dpsChar.spot)) {
     bubba.globalDPS *= 1 + 0.25 * numAdjacent * itemAbility(bubba,1) * (1 + legendaryFactor(bubba,0));
   } else if (karen.inFormation && karen.isDPS) {
     bubba.globalDPS *= 1 + 0.25 * numAdjacent * itemAbility(bubba,1) * (1 + legendaryFactor(bubba,0)) * 0.5 * itemAbility(karen,0);
@@ -940,7 +940,7 @@ sisaron.calculate = function() {
     }
   }
   if (numAdjacent == 4) {magicModifier = 4}
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     sisaron.globalDPS *= 1 + magicModifier * itemAbility(sisaron,1) * (1 + legendaryFactor(sisaron,0)) / numAdjacent;
   } else if (karen.isDPS) {
     sisaron.globalDPS *= 1 + magicModifier * itemAbility(sisaron,1) * (1 + legendaryFactor(sisaron,0)) * 0.5 * itemAbility(karen,0) / numAdjacent;
@@ -955,21 +955,21 @@ sisaron.calculate = function() {
 var khouri = getCrusader("11");
 khouri.calculate = function() {
   crusaderSetup(khouri);
-//Koffee Potion  
+//Koffee Potion
   var adjacent = currentWorld.whatsAdjacent(khouri.spot);
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     khouri.globalDPS *= 1 + 0.3 * itemAbility(khouri,0);
   } else if (karen.isDPS) {
     khouri.globalDPS *= 1 + 0.3 * itemAbility(khouri,0) * 0.5 * itemAbility(karen,0);
     karen.effects += 1;
   }
-  if (dpsChar.tags.includes('magic')) {
+  if (app.dpsChar.tags.includes('magic')) {
     khouri.globalDPS *= 1 + legendaryFactor(khouri,0);
   }
-  if (dpsChar.tags.includes('human')) {
+  if (app.dpsChar.tags.includes('human')) {
     khouri.globalDPS *= 1 + legendaryFactor(khouri,1);
   }
-  if (currentWorld.columnNum(khouri.spot) == currentWorld.columnNum(dpsChar.spot) - 1) {
+  if (currentWorld.columnNum(khouri.spot) == currentWorld.columnNum(app.dpsChar.spot) - 1) {
     khouri.globalDPS *= 1 + legendaryFactor(khouri,2);
   }
   if (karen.isDPS && currentWorld.columnNum(khouri.spot) != currentWorld.columnNum(karen.spot) - 1) {
@@ -986,7 +986,7 @@ momma.calculate = function() {
   if (turkey.inFormation) {
     momma.globalDPS *= 1 + legendaryFactor(momma,1);
   }
-  if (dpsChar.tags.includes('robot')) {
+  if (app.dpsChar.tags.includes('robot')) {
     momma.globalDPS *= 1 + legendaryFactor(momma,2);
   }
   if (karen.inFormation && !turkey.inFormation) {
@@ -1005,7 +1005,7 @@ brogon.calculate = function() {
   var adjacent = currentWorld.whatsAdjacent(brogon.spot);
   var numAdjacent = 0;
   var numRoyal = currentWorld.countTags('royal');
-  if (currentWorld.columnNum(brogon.spot) == currentWorld.columnNum(dpsChar.spot)) {
+  if (currentWorld.columnNum(brogon.spot) == currentWorld.columnNum(app.dpsChar.spot)) {
     brogon.globalDPS *= 1 + 0.2 * itemAbility(brogon,1) * numRoyal * (1 + legendaryFactor(brogon,0));
   } else if (karen.isDPS) {
     brogon.globalDPS *= 1 + 0.2 * itemAbility(brogon,1) * numRoyal * (1 + legendaryFactor(brogon,0)) * 0.5 * itemAbility(karen,0);
@@ -1028,8 +1028,8 @@ var halfblood = getCrusader('11b');
 halfblood.calculate = function() {
   crusaderSetup(halfblood);
   var adjacent = currentWorld.whatsAdjacent(halfblood.spot);
-  if (!dpsChar.tags.includes('human')) {
-    if (adjacent.includes(dpsChar.spot)) {
+  if (!app.dpsChar.tags.includes('human')) {
+    if (adjacent.includes(app.dpsChar.spot)) {
       halfblood.globalDPS *= 1 + 0.5 * itemAbility(halfblood,1);
     } else if (karen.isDPS) {
       halfblood.globalDPS *= 1 + 0.5 * itemAbility(halfblood,1) * 0.5 * itemAbility(karen,0);
@@ -1039,7 +1039,7 @@ halfblood.calculate = function() {
   if (karen.isDPS) {karen.effects += 1;}
   halfblood.globalDPS *= 1 + 0.25 * currentWorld.countTags('male') * legendaryFactor(halfblood,0);
   halfblood.globalDPS *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(halfblood,1);
-  if (dpsChar.tags.includes('male')) {
+  if (app.dpsChar.tags.includes('male')) {
     halfblood.globalDPS *= 1 + legendaryFactor(halfblood,2);
   }
 };
@@ -1053,7 +1053,7 @@ foresight.calculate = function() {
   var nonHumansAdj = 0;
   var malesAdj = 0;
   var femalesAdj = 0;
-  if (dpsChar.tags.includes('supernatural')) {
+  if (app.dpsChar.tags.includes('supernatural')) {
     foresight.globalDPS *= 1.5;
   }
   for (var i = 0; i < adjacent.length; i++) {
@@ -1094,14 +1094,14 @@ foresight.calculate = function() {
 var gryphon = getCrusader("12");
 gryphon.calculate = function() {
   crusaderSetup(gryphon);
-  if (currentWorld.columnNum(dpsChar.spot) == currentWorld.columnNum(gryphon.spot) + 1) {
+  if (currentWorld.columnNum(app.dpsChar.spot) == currentWorld.columnNum(gryphon.spot) + 1) {
     gryphon.globalDPS *= 1 + legendaryFactor(gryphon,0);
   }
   gryphon.globalDPS *= 1 + 0.1 * monstersOnscreen * legendaryFactor(gryphon,1);
-  if (dpsChar.tags.includes('supernatural')) {
+  if (app.dpsChar.tags.includes('supernatural')) {
     gryphon.globalDPS *= 1 + legendaryFactor(gryphon,2);
   }
-  if (karen.isDPS && currentWorld.columnNum(dpsChar.spot) != currentWorld.columnNum(gryphon.spot) + 1) {
+  if (karen.isDPS && currentWorld.columnNum(app.dpsChar.spot) != currentWorld.columnNum(gryphon.spot) + 1) {
     gryphon.globalDPS *= 1 + legendaryFactor(gryphon,0);
     karen.effects += 1;
   }
@@ -1125,7 +1125,7 @@ rocky.calculate = function() {
       rocky.globalDPS *= 1 + legendaryFactor(rocky,1);
     }
   }
-  if (dpsChar.tags.includes('male')) {
+  if (app.dpsChar.tags.includes('male')) {
     rocky.globalDPS *= 1 + legendaryFactor(rocky,2);
   }
 };
@@ -1134,7 +1134,7 @@ rocky.calculate = function() {
 var montana = getCrusader('12b');
 montana.calculate = function() {
   crusaderSetup(montana);
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     montana.globalDPS *= 1.5;
   }
   if (princess.inFormation) {
@@ -1144,7 +1144,7 @@ montana.calculate = function() {
     montana.globalDPS *= 1 + 2 * itemAbility(montana,0) * (1 + legendaryFactor(montana,2)) / 5;
   }
   montana.globalDPS *= 1 + 0.25 * currentWorld.countTags('female') * legendaryFactor(montana,0);
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     montana.globalDPS *= 1 + legendaryFactor(montana,1);
   }
 };
@@ -1160,7 +1160,7 @@ helper.calculate = function() {
   if (numAttacking > 0) {
     helper.globalDPS *= 1 + legendaryFactor(helper,0);
   }
-  if (dpsChar.tags.includes('leprechaun')) {
+  if (app.dpsChar.tags.includes('leprechaun')) {
     helper.globalDPS *= 1 + legendaryFactor(helper,1);
   }
   if (currentWorld.countTags('leprechaun') >= 2) {
@@ -1189,7 +1189,7 @@ sarah.calculate = function() {
     sarah.globalDPS *= 1 + 0.01 * numEpicEquip * legendaryFactor(sarah,1);
     sarah.globalDPS *= 1 + 0.01 * numEpicTrinkets * legendaryFactor(sarah,2);
   }
-  if (dpsChar.tags.includes('female')) {
+  if (app.dpsChar.tags.includes('female')) {
     sarah.globalDPS *= 1 + legendaryFactor(sarah,0);
   }
 };
@@ -1205,7 +1205,7 @@ soldierette.calculate = function() {
         soldierette.globalDPS *= 1 + legendaryFactor(soldierette,0);
       }
     }
-    soldierette.globalDPS *= 1 + 0.2 * numAttacking; 
+    soldierette.globalDPS *= 1 + 0.2 * numAttacking;
     soldierette.globalDPS *= 1 + currentWorld.countTags('healer') * legendaryFactor(soldierette,2);
   }
   soldierette.globalDPS *= 1 + 0.1 * numAttacking * legendaryFactor(soldierette,1);
@@ -1217,7 +1217,7 @@ snickette.calculate = function() {
   crusaderSetup(snickette);
   var adjacent = currentWorld.whatsAdjacent(snickette.spot);
   var numAdjacent = 0;
-  if (dpsChar.tags.includes('human')) {
+  if (app.dpsChar.tags.includes('human')) {
     snickette.globalDPS *= 1 + (0.5 + 0.1 * currentWorld.countTags('human')) * itemAbility(snickette,0);
   }
   if (currentWorld.countTags('leprechaun') >= 2) {
@@ -1229,14 +1229,14 @@ snickette.calculate = function() {
     }
   }
   if (numAdjacent <= 4) {
-    if (adjacent.includes(dpsChar.spot)) {
+    if (adjacent.includes(app.dpsChar.spot)) {
       snickette.globalDPS *= 1 + 0.5 * itemAbility(snickette,1);
     } else if (karen.isDPS) {
       snickette.globalDPS *= 1 + 0.5 * itemAbility(snickette,1) * 0.5 * itemAbility(karen,0);
       karen.effects += 1;
     }
   }
-  if (currentWorld.columnNum(dpsChar.spot) == currentWorld.columnNum(snickette.spot)) {
+  if (currentWorld.columnNum(app.dpsChar.spot) == currentWorld.columnNum(snickette.spot)) {
     snickette.globalDPS *= 1 + legendaryFactor(snickette,0);
   }
   snickette.globalGold *= 1 + 0.1 * currentWorld.countTags('human') * legendaryFactor(snickette,1);
@@ -1266,7 +1266,7 @@ santa.calculate = function() {
     santa.globalDPS *= 1 + 0.25 * itemAbility(santa,0) * (1 + legendaryFactor(santa,0)) * 0.5 * itemAbility(karen,0);
     karen.effects += 1;
   }
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     santa.globalDPS *= 1 + legendaryFactor(santa,1);
   }
   santa.globalGold *= 1 + 0.1 * currentWorld.countTags('robot') * legendaryFactor(santa,2);
@@ -1360,7 +1360,7 @@ val.calculate = function() {
   if (currentWorld.countTags('animal') > currentWorld.countTags('human')) {
     val.globalDPS *= 1 + 0.5 * itemAbility(val,2) * (1 + legendaryFactor(val,0));
   }
-  if (dpsChar.tags.includes('royal')) {
+  if (app.dpsChar.tags.includes('royal')) {
     val.globalDPS *= 1 + legendaryFactor(val,1);
   }
   val.globalDPS *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(val,2);
@@ -1375,7 +1375,7 @@ var phoenix = getCrusader("16");
 phoenix.calculate = function() {
   crusaderSetup(phoenix);
   phoenix.globalDPS *= 1 + 0.25 * currentWorld.countTags('supernatural') * legendaryFactor(phoenix,0);
-  if (dpsChar.tags.includes('supernatural')) {
+  if (app.dpsChar.tags.includes('supernatural')) {
     phoenix.globalDPS *= 1 + legendaryFactor(phoenix,2);
   }
 };
@@ -1388,7 +1388,7 @@ alan.calculate = function() {
   alan.globalDPS *= 1 + 0.5 * currentWorld.countTags('angel') *legendaryFactor(alan,2);
   if (karen.isDPS && !adjacent.includes(karen.spot)) {
     karen.effects += 2;
-  }  
+  }
 };
 
 ////Fright-o-Tron
@@ -1400,7 +1400,7 @@ fright.calculate = function() {
   if (turkey.inFormation) {
     fright.globalDPS *= 1 + 0.25 * legendaryFactor(fright,1);
   }
-  if (dpsChar.tags.includes('robot')) {
+  if (app.dpsChar.tags.includes('robot')) {
     fright.globalDPS *= 1 + legendaryFactor(fright,2);
   }
 };
@@ -1410,7 +1410,7 @@ fright.calculate = function() {
 var reginald = getCrusader("17");
 reginald.calculate = function() {
   crusaderSetup(reginald);
-  if (dpsChar.tags.includes('royal')) {
+  if (app.dpsChar.tags.includes('royal')) {
     reginald.globalDPS *= 1 + 2 * itemAbility(reginald,2) * (1 + legendaryFactor(reginald,1));
   }
   reginald.globalDPS *= 1 + 0.25 * currentWorld.countTags('royal') * legendaryFactor(reginald,0);
@@ -1420,7 +1420,7 @@ reginald.calculate = function() {
 var siri = getCrusader('17a');
 siri.calculate = function() {
   crusaderSetup(siri);
-  if (dpsChar.tags.includes('female')) {
+  if (app.dpsChar.tags.includes('female')) {
     siri.globalDPS *= 1 + 1 * itemAbility(siri,2);
     siri.globalDPS *= 1 + legendaryFactor(siri,0);
   }
@@ -1437,7 +1437,7 @@ var boggins = getCrusader('17b');
 boggins.calculate = function() {
   crusaderSetup(boggins);
   var diversityCount = 0;
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     boggins.globalDPS *= 1 + (2 + 0.125 * currentWorld.countTags('human')) * itemAbility(boggins,0) * (1 + legendaryFactor(boggins,1));
   }
   for (var i in formation) {
@@ -1472,7 +1472,7 @@ squiggles.calculate = function() {
       squiggles.globalDPS *= 1 + legendaryFactor(squiggles,2);
     }
   }
-  
+
 };
 
 //////Slot 18
@@ -1480,7 +1480,7 @@ squiggles.calculate = function() {
 var thalia = getCrusader("18");
 thalia.calculate = function() {
   crusaderSetup(thalia);
-  if (dpsChar.tags.includes('royal')) {
+  if (app.dpsChar.tags.includes('royal')) {
     thalia.globalDPS *= 1 + legendaryFactor(thalia,1);
   }
 };
@@ -1503,7 +1503,7 @@ frosty.calculate = function() {
     frosty.globalDPS *= 1 + numAdjacent;
     frosty.globalDPS *= 1 + 0.25 *numAdjacent * legendaryFactor(frosty,2);
   }
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     frosty.globalDPS *= 0.75;
   } else if (karen.isDPS) {
     frosty.globalDPS *= 1 - 0.25 * 0.5 * itemAbility(karen,0);
@@ -1525,14 +1525,14 @@ var cindy = getCrusader('18c');
 cindy.calculate = function() {
   crusaderSetup(cindy);
   var distances = currentWorld.findDistances(cindy.spot);
-  var distance = distances[dpsChar.spot];
+  var distance = distances[app.dpsChar.spot];
   if (distance > 0) {
     cindy.globalDPS *= 1 + 0.5 * distance * (1+10*currentStage/50) * itemAbility(cindy,1);
   } else if (karen.isDPS) {
     karen.effects += 1;
   }
   cindy.globalDPS *= 1 + Math.min(killedThisStage/100,2) * (1 + legendaryFactor(cindy,0));
-  if (dpsChar.tags.includes('orc')) {
+  if (app.dpsChar.tags.includes('orc')) {
     cindy.globalDPS *= 1 + legendaryFactor(cindy,1);
   }
   cindy.globalGold *= 1 + 0.25 * currentWorld.countTags('orc') * legendaryFactor(cindy,2);
@@ -1544,7 +1544,7 @@ var merci = getCrusader("19");
 merci.calculate = function() {
   crusaderSetup(merci);
   merci.globalDPS *= 1 + Math.min(0.025 * monstersOnscreen * itemAbility(merci,0) * (1 + legendaryFactor(merci,1)), 1 + legendaryFactor(merci,2)) * monstersOnscreen;
-  if (dpsChar.tags.includes('magic')) {
+  if (app.dpsChar.tags.includes('magic')) {
     merci.globalDPS *= 1 + legendaryFactor(merci,0);
   }
 };
@@ -1575,7 +1575,7 @@ petra.calculate = function() {
 var nate = getCrusader("20");
 nate.calculate = function() {
   crusaderSetup(nate);
-//Double Dragon  
+//Double Dragon
   if (natalie.inFormation && nate.isDPS){
     nate.globalDPS *= 1+2*itemAbility(nate,2);
   }
@@ -1622,7 +1622,7 @@ rudolph.calculate = function() {
     rudolph.globalDPS *= 1 + 0.5 * currentWorld.countTags('robot') * legendaryFactor(rudolph,1);
     rudolph.globalDPS *= 1 + 0.25 * currentWorld.countTags('animal') * legendaryFactor(rudolph,2);
   }
-  if (dpsChar.tags.includes('robot')) {
+  if (app.dpsChar.tags.includes('robot')) {
     rudolph.globalDPS *= 1 + legendaryFactor(rudolph,0);
   }
 };
@@ -1658,16 +1658,16 @@ gloria.calculate = function() {
   if (karen.isDPS) {
     gloria.globalDPS *= 1 + 0.5 * 0.5 * itemAbility(karen,0);
     karen.effects += 1;
-    if (currentWorld.columnNum(dpsChar.spot) != currentWorld.columnNum(gloria.spot) + 1) {
+    if (currentWorld.columnNum(app.dpsChar.spot) != currentWorld.columnNum(gloria.spot) + 1) {
       karen.effects += 1;
     }
-  } else if (currentWorld.columnNum(dpsChar.spot) != currentWorld.columnNum(gloria.spot) + 1) {
+  } else if (currentWorld.columnNum(app.dpsChar.spot) != currentWorld.columnNum(gloria.spot) + 1) {
     gloria.globalDPS *= 1.5;
-  } 
-  if (adjacent.includes(dpsChar.spot)) {
+  }
+  if (adjacent.includes(app.dpsChar.spot)) {
     gloria.globalDPS *= 1 + legendaryFactor(gloria,1);
   }
-  if (dpsChar.tags.includes('animal')) {
+  if (app.dpsChar.tags.includes('animal')) {
     gloria.globalDPS *= 1 + legendaryFactor(globalDPS,2);
   }
 };
@@ -1680,11 +1680,11 @@ shadow.calculate = function() {
   var jasonMult = 1;
   var adjacent = currentWorld.whatsAdjacent(shadow.spot);
   var numAdjacent = 0;
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     for (var i = 0; i < adjacent.length; i++) {
       if (formation[adjacent[i]]) {
         numAdjacent += 1;
-      } 
+      }
     }
     if (karen.inFormation && !adjacent.includes(karen.spot)) {
       numAdjacent += 1;
@@ -1695,7 +1695,7 @@ shadow.calculate = function() {
     }
     shadow.globalDPS *= 1 + 3 * jasonMult * itemAbility(shadow,0) * (1 + legendaryFactor(shadow,0)) / numAdjacent;
   }
-  if (dpsChar.tags.includes('supernatural')) {
+  if (app.dpsChar.tags.includes('supernatural')) {
     shadow.globalDPS *= 1 + legendaryFactor(shadow,1);
   }
   shadow.globalDPS *= 1 + 0.5 * currentWorld.countTags('magic') * legendaryFactor(shadow,2);
@@ -1710,10 +1710,10 @@ ilsa.calculate = function() {
   var deflecting = 0;
   var magicMult = 0;
   var correction = 1;
-  if (dpsChar.zapped) {
+  if (app.dpsChar.zapped) {
     correction *= 1 + 0.2 * itemAbility(turkey,1);
   }
-  if (dpsChar.smashed) {
+  if (app.dpsChar.smashed) {
     correction *= 1.25;
   }
   if (ilsa.isDPS) {
@@ -1728,7 +1728,7 @@ ilsa.calculate = function() {
     if (formation[adjacent[i]]) {numAdjacent += 1;}
   }
   if (numAdjacent == 1) {magicMult = 4 * (1 + legendaryFactor(ilsa,0));}
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     ilsa.globalDPS *= 0.5 + 1 * magicMult / correction;
   } else if (karen.isDPS) {
   }
@@ -1748,7 +1748,7 @@ greyskull.calculate = function() {
   }
   greyskull.globalDPS *= 1 + 0.5 * currentWorld.countTags('tank') * legendaryFactor(greyskull,0);
   greyskull.globalDPS *= 1 + 0.2 * currentWorld.countTags('tank') * legendaryFactor(greyskull,1);
-  if (dpsChar.tags.includes('human')) {
+  if (app.dpsChar.tags.includes('human')) {
     greyskull.globalDPS *= 1 + legendaryFactor(greyskull,2);
   }
 };
@@ -1759,7 +1759,7 @@ eiralon.calculate = function() {
   crusaderSetup(eiralon);
   var adjacent = currentWorld.whatsAdjacent(eiralon.spot);
   eiralon.globalDPS *= 1 + 0.5 * itemAbility(eiralon,0);
-  if (currentWorld.columnNum(eiralon.spot) == currentWorld.columnNum(dpsChar.spot)) {
+  if (currentWorld.columnNum(eiralon.spot) == currentWorld.columnNum(app.dpsChar.spot)) {
     eiralon.globalDPS *= 1 + 1 * itemAbility(eiralon,0);
   } else if (karen.isDPS) {
     eiralon.globalDPS *= 1 + 1 * itemAbility(eiralon,0) * 0.5 * itemAbility(karen,0);
@@ -1767,9 +1767,9 @@ eiralon.calculate = function() {
   }
   eiralon.globalDPS *= 1 + currentWorld.countTags('healer') *legendaryFactor(eiralon,0);
   eiralon.globalDPS *= 1 + 0.5 * currentWorld.countTags('magic') * legendaryFactor(eiralon,1);
-  if (adjacent.includes(dpsChar.spot)) {
+  if (adjacent.includes(app.dpsChar.spot)) {
     eiralon.globalDPS *= 1 + legendaryFactor(eiralon,2);
-  } 
+  }
 };
 
 
@@ -1927,7 +1927,7 @@ eiralon.calculate = function() {
     if (crusader != null) {
       crusader.isDPS = true;
     }
-    dpsChar = crusader;
+    app.dpsChar = crusader;
   };
 
   //Set Up Formation
