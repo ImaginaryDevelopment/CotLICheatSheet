@@ -21,7 +21,7 @@
                 var crusader = getCrusader(cruId);
                 // if the crusader is already in a different slot, remove him from there, swap with the one that is there.
                 app.formation.map((c,i) => {
-                    if (c == crusader && i != slotNumber)
+                    if (c == crusader && i != slotNumber && (cruId != null && cruId != "0"))
                     {
                         app.formation[i]=app.formation[slotNumber];
                         if(app.formation[i])
@@ -29,7 +29,8 @@
                     }
                 });
                 app.formation[slotNumber]=crusader;
-                crusader.spot = slotNumber;
+                if(crusader != null)
+                    crusader.spot = slotNumber;
                 var stateMods = this.calculateMyMultipliers();
                 stateMods[slotNumber] = cruId;
                 this.setState(stateMods);
@@ -46,6 +47,7 @@
             var dpsSelector = (
                 <HeroSelect crusaders={jsonData.crusaders.filter(cru => formation.filter(f => f != null).findIndex( f => f.id == cru.id) >= 0)} onHeroChange={cruId => {
                     app.formationDps = getCrusader(cruId);
+                    formation.filter(f => f != null).map(cru => cru.isDPS = false);
                     app.setDPS(null, cruId);
                     app.calculateMultipliers();
                     var stateMods = this.calculateMyMultipliers();
