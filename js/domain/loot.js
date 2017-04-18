@@ -48,7 +48,14 @@ var Loot = (function(){
   my.getGearInfo = g => g ? [g.s0 || g.slot0, g.s1 || g.slot1, g.s2 || g.slot2] : [0, 0, 0];
   my.getSlotRarities = (id,refGear) =>
     (my.getGearInfo(id)).map(s => my.getSlotRarity(s,refGear));
+  // this doesn't try to be v1 compatible
+  my.getLootFromLootId = (id,refGear) =>{
+    if(LootV1.getIsV1(id))
+      return null;
+    return refGear.find(g => g.lootId == id);
+  };
   return my;
+
 }());
 
 var decomposeSlotRarity = itemRarityCompound => {
