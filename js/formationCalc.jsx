@@ -23,11 +23,15 @@
                 app.formation.map((c,i) => {
                     if (c == crusader && i != slotNumber && (cruId != null && cruId != "0"))
                     {
-                        app.formation[i]=app.formation[slotNumber];
+                        if(app.formation[i])
+                            app.formation[i].spot = null;
+                        app.formation[i]= app.formation[slotNumber];
                         if(app.formation[i])
                             app.formation[i].spot = i;
                     }
                 });
+                if(app.formation[slotNumber] && app.formation[slotNumber].spot == slotNumber)
+                    app.formation[slotNumber].spot = undefined;
                 app.formation[slotNumber]=crusader;
                 if(crusader != null)
                     crusader.spot = slotNumber;
