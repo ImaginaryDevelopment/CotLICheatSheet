@@ -9,8 +9,8 @@ app.GearBox = props => {
 
   var makeBox = slot => {
     var lootId =  props.cruGearQ["s" + slot];
-    var rarity = getSlotRarity(lootId, props.cru.loot);
-    var golden = getIsGolden(lootId, props.cru.loot) ? " golden" : "";
+    var rarity = Loot.getSlotRarity(lootId, props.cru.loot);
+    var golden = Loot.getIsGolden(lootId, props.cru.loot) ? " golden" : "";
     var classes = "rarity rarity" + rarity + golden;
     console.log('makingBox', slot,props.cruGearQ,lootId,rarity);
     return (<div className={classes} />);

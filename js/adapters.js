@@ -104,8 +104,10 @@ var mergeImportLoot = (data,loot) => {
           var crusaderGear = {};
           loot.gear.map(l =>{
 
-            if(!crusaderGear.hasOwnProperty(l.heroSlotId))
+            if(!crusaderGear.hasOwnProperty(l.heroSlotId)){
               crusaderGear[l.heroSlotId] = {s0:0, s1:0,s2:0};
+            }
+            // this looks to only handle lootV2 ?
             if(l.slot != null){
               var rarity = l.rarity;
               if(l.isGolden || l.rarity === 5){

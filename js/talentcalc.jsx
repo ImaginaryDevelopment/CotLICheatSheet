@@ -152,7 +152,7 @@ app.Inputs = props =>
                 <td>{cooldown.toFixed(2)}</td>
             </tr>
             <tr><th>Main Dps</th><td colSpan="2"><HeroSelect crusaders={props.crusaders} selectedHeroId={props.selectedHeroId} onHeroChange={props.onHeroChange} /></td><th>Slot</th></tr>
-            <tr><th>Main Crusader Enchantments</th><td>{props.mainDpsEP}</td><td /><td className="textcenter vcenter">{dpsHero? dpsHero.slot: ""}</td><th colSpan="6">Put your levels for other talents here to calculate how much you've spent.</th></tr>
+            <tr><th>Main Crusader Enchantments</th><td>{props.mainDpsEP}</td><td /><td className="textcenter vcenter">{dpsHero? dpsHero.slot: ""}</td><th colSpan="6">Put your levels for other talents here to calculate how much you have spent.</th></tr>
             <tr><th>Alt Crusader Enchantments</th><td>{props.dpsSlotEP - props.mainDpsEP}</td><td /><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
             <tr data-row="8"><th colSpan="2" /><th /><th />
                 <td title="timeORama"><TextInputUnc value={props.timeORama} type="number" min="0" max="20" onChange={props.ontimeORamaChange}/></td>
@@ -325,7 +325,7 @@ app.TalentCalc = React.createClass({
             var cru = talentSelectedCrusader.cru;
             var savedGear = props.saved.crusaderGear || [];
             console.log('TalentCalc savedGear', savedGear[cru.id] || savedGear, talentSelectedCrusader.cru.loot.find(l => l.lootId == savedGear[cru.id].s0), cru.id);
-            var cruRarities = getSlotRarities(savedGear[cru.id], talentSelectedCrusader.cru.loot);
+            var cruRarities = Loot.getSlotRarities(savedGear[cru.id], talentSelectedCrusader.cru.loot);
             console.log('cruRarities', cruRarities);
             var cruEpicCount = cruRarities.reduce((a,b) => a + (b > 3? 1 : 0),0);
             talentSelectedCrusader.mainDpsEpics = cruEpicCount;
@@ -335,7 +335,7 @@ app.TalentCalc = React.createClass({
                 .map(x =>
                 {
                     var g = savedGear[x.id];
-                    var rarities = getSlotRarities(g,x.loot);
+                    var rarities = Loot.getSlotRarities(g,x.loot);
                     console.log('slotMates', x.id, g, rarities);
                     return rarities;
                 })
