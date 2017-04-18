@@ -21,9 +21,17 @@ app.HeroSelect = props =>
         <option key={cru.id} className={cru.tags.includes("dps")? "dps" : ""} value={cru.id}>{cru.displayName} ({cru.slot})</option>
     );
     var selectedCrusader = crusaders.find(cru => cru.id === props.selectedHeroId);
+    var title;
+    if(selectedCrusader != null){
+        title = "";
+        if(selectedCrusader.globalDPS != null && selectedCrusader.globalDPS != 1)
+            title +="dpsMultiplier:" + selectedCrusader.globalDPS + "\r\n";
+        if(selectedCrusader.globalGold != null && selectedCrusader.globalGold != 1)
+            title += "goldMultiplier:" + selectedCrusader.globalGold +"\r\n";
+    }
     // console.log('HeroSelect',props.selectedHeroId, selectedCrusader);
     return(
-    <select value={props.selectedHeroId || "0"} className={selectedCrusader && selectedCrusader.tags && selectedCrusader.tags.includes("dps") ? "dps" : "" } onChange={e => props.onHeroChange(e.target.value)}>
+    <select title={title} value={props.selectedHeroId || "0"} className={selectedCrusader && selectedCrusader.tags && selectedCrusader.tags.includes("dps") ? "dps" : "" } onChange={e => props.onHeroChange(e.target.value)}>
         <option value="0">None</option>
         {options}
         </select>);

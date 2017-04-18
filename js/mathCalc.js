@@ -8,6 +8,11 @@
     app.crusaderGear[cruId] &&
     inspect(app.crusaderGear[cruId]["s" + gearSlot.toString()],"getLootId found gear");
 
+var getRarity = (loot,lootId) => {
+  var item = Loot.getLootFromLootId(lootId,loot);
+  return item && item.rarity;
+};
+
   app.crusaderSetup = crusader => {
       crusader.globalDPS = 1;
       crusader.globalGold = 1;
@@ -37,8 +42,7 @@
           case "selfdps":
             if (crusader.isDPS) {
               var lootId = getLootId(crusader.id, i);
-              var rarity = lootId && getRarity(crusader.loot,lootId);
-              crusader.globalDPS *= itemSelfDPS(crusader, i) || 1;
+              crusader.globalDPS *= itemSelfDPS(crusader.loot, lootId) || 1;
             }
             break;
         }
@@ -67,15 +71,12 @@
     }
   }
 
-var getRarity = (loot,lootId) => {
-  var item = Loot.getLootFromLootId(lootId,loot);
-  return item && item.rarity;
-};
-
-  function itemSelfDPS(loot, lootId) {
+  function itemSelfDPS(cruader, gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromLootId(lootId, crusader.loot);
-    switch (rarity) {
+    if(!(item != null))
+      return 1;
+    switch (item.rarity) {
       case 1:
         return 1.25;
       case 2:
@@ -83,13 +84,13 @@ var getRarity = (loot,lootId) => {
       case 3:
         return 2;
       case 4:
+        if(item.golden === true)
+          return 7;
         return 5;
-      case "Golden Epic":
-        return 7;
       case 5:
+        if(item.golden === true)
+          return 13;
         return 9;
-      case "Golden Legendary":
-        return 13;
       default:
         return 1;
     }
