@@ -150,6 +150,16 @@
         return 1;
     }
   }
+  
+  function legendaryFactor(crusader,gearSlot) {
+  gearString = appGameState.crusaderGear[crusader.id]["slot"+gearSlot.toString()];
+  var legendaryLevel = 1;
+  if (legendaryLevel >= 1) {
+    return Math.pow(2,legendaryLevel-1);
+  } else {
+    return 0;
+  }
+}
 
   ///////// Formation Calculations
 //////Slot 1
