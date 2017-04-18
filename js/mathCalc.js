@@ -71,7 +71,7 @@ var getRarity = (loot,lootId) => {
     }
   }
 
-  function itemSelfDPS(cruader, gearSlot) {
+  function itemSelfDPS(crusader, gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromLootId(lootId, crusader.loot);
     if(!(item != null))
