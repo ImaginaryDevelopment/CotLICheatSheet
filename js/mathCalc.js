@@ -7,6 +7,7 @@
     app.crusaderGear &&
     app.crusaderGear[cruId] &&
     inspect(app.crusaderGear[cruId]["s" + gearSlot.toString()],"getGear found gear");
+  app.getGear = getGear;
 
   app.crusaderSetup = crusader => {
       crusader.globalDPS = 1;

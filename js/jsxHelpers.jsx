@@ -4,7 +4,21 @@ app.createInputClipperButton = targetId =>
   Clipboard && Clipboard.isSupported() && (<button className="btn" data-clipboard-target={"#" + targetId}>Copy to Clipboard</button>);
 app.createClipperButton = text =>
   Clipboard && Clipboard.isSupported() && (<button className="btn" data-clipboard-text={text}>Copy to Clipboard</button>);
-    
+
+app.GearBox = props => {
+
+  var makeBox = slot => {
+    var lootId =  props.cruGearQ["s" + slot];
+    var rarity = getSlotRarity(lootId, props.cru.loot);
+    var golden = getIsGolden(lootId, props.cru.loot) ? " golden" : "";
+    var classes = "rarity rarity" + rarity + golden;
+    console.log('makingBox', slot,props.cruGearQ,lootId,rarity);
+    return (<div className={classes} />);
+  };
+  console.log('making gearBox', props.cruGearQ, props.cru.loot);
+  var result = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
+  return result;
+};
 app.TextAreaInput2 = props =>
 (<textarea
 name={props.name}
