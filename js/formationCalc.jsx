@@ -10,7 +10,11 @@
         }
         render(){
             var changeFormation = slotNumber => cruId => {
-                app.formation[slotNumber]=getCrusader(cruId);
+                var crusader = getCrusader(cruId);
+                // if the crusader is already in a different slot, remove him from there, swap with the one that is there.
+                app.formation.map((c,i) => {
+                    if (c == crusader && i != slotNumber) app.formation[i]=app.formation[slotNumber]});
+                app.formation[slotNumber]=crusader;
                 var data = app.calculate();
                 var stateMods = {slotNumber:cruId,dps:data.globalDps};
                 console.log('stateMods', stateMods);
