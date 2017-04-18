@@ -186,7 +186,6 @@ var CruTagRow = React.createClass({
 
 var CruGridBody = props =>{
   var self = {props:props};
-  window.crusaderGear = props.crusaderGear;
 
   var rows = props.sortedCrusaders
         .map(function(crusader){
@@ -384,6 +383,8 @@ class CruTagGrid extends React.Component {
   }
 
   render(){
+
+    window.crusaderGear = this.props.crusaderGear;
   	console.info('rendering tag grid, react');
     var self = this;
     var totalCrusaders = this.props.model.crusaders.length;
@@ -850,6 +851,7 @@ var CruApp = React.createClass({
       heroMap[c.heroId] = c;
     });
     window.networkDataJson = this.state.networkDataJson;
+    window.crusaderGear = this.state.saved.crusaderGear;
     var importArea = getIsUrlLoaded() ? null : (<Exporter
                   maxWidth={maxWidth}
                   onImportTextChange={val => this.setState({textState:val})}
