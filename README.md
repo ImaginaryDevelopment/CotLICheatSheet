@@ -34,5 +34,7 @@ https://imaginarydevelopment.github.io/CotLICheatSheet/
 
 https://paypal.me/ImaginaryDevelopment/
 
+can I use ECMAx ? https://kangax.github.io/compat-table/es6/
+
 formerly(forked from):
 http://sidben.github.io/CotLICheatSheet/
