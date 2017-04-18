@@ -12,8 +12,12 @@
       crusader.globalDPS = 1;
       crusader.globalGold = 1;
       crusader.critChance = 0;
+      // for momma only
       if(crusader.hasOwnProperty("turkeyApplied"))
-        crusader.turkeyApplied = false;
+        crusader.turkeyApplied = undefined;
+      // for any dps that is zapped
+      if(crusader.hasOwnProperty("zapped"))
+        crusader.zapped = undefined;
       for (var i in crusader.gear) {
         switch (crusader.gear[i]) {
           case "clickCrit":

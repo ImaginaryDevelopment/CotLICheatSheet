@@ -73,9 +73,10 @@
                     }
                 } selectedHeroId={this.state.dpsCruId} />
             );
+            var dpsCru = this.state.dpsCruId && jsonData.crusaders.find(cru => this.state.dpsCruId == cru.id);
             return (<div>
                 <div>{dpsSelector}</div>
-                <p>Dps Multiplier: {this.state.dps}</p>
+                <p>Dps Multiplier: {this.state.dps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {this.state.gold}</p>
                 <table>
                     <thead></thead>
