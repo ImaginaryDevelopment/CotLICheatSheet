@@ -69,9 +69,9 @@ function itemSelfDPS(crusader,gearSlot) {
       return 1;
   }
 }
-var getGear = (cruId,gearSlot) => 
-  app.crusaderGear && 
-  app.crusaderGear[cruId] && 
+var getGear = (cruId,gearSlot) =>
+  app.crusaderGear &&
+  app.crusaderGear[cruId] &&
   app.crusaderGear[cruId]["s"+ gearSlot.toString()];
 
 function itemGold(crusader,gearSlot) {
@@ -110,7 +110,7 @@ function itemCrit(crusader,gearSlot) {
     case 5:
       return 8;
     case "Golden Legendary":
-      return 12;      
+      return 12;
     default:
       return 0;
   }
@@ -131,7 +131,7 @@ function itemAbility(crusader,gearSlot) {
     case 5:
       return 3;
     case "Golden Legendary":
-      return 4;      
+      return 4;
     default:
       return 1;
   }
@@ -207,11 +207,11 @@ jim.calculate = function() {
 
 ////Pam
 var pam = getCrusader("02a");
-pam.calculate = function() { 
+pam.calculate = function() {
   crusaderSetup(pam);
   pam.numInColumn = 0;
   pam.dpsInColumn = false;
-//Focused Teamwork  
+//Focused Teamwork
   for (var j in formation) {
     if (currentWorld.columnNum(pam.spot) == currentWorld.columnNum(formation[j].spot)){
       pam.numInColumn += 1;
@@ -223,14 +223,14 @@ pam.calculate = function() {
   if (pam.numInColumn == 2 && pam.dpsInColumn) {
     pam.globalDPS *= 1 + 1 * itemAbility(pam,1);
   }
-//Co-Pilot  
+//Co-Pilot
   if (pam.isDPS) {
     var adjacent = currentWorld.whatsAdjacent(pam.spot)
     for (var i = 0; i<adjacent.length; i++ ) {
       if (formation[adjacent[i]].inFormation)
         pam.globalDPS *= 2;
         break;
-    }    
+    }
   }
 };
 
@@ -255,7 +255,7 @@ veronica.calculate = function() {
 };
 
 //////Slot 3
-////Emo Werewolf 
+////Emo Werewolf
 var emo = getCrusader("03");
 emo.test = "test";
 emo.calculate = function() {
@@ -314,16 +314,16 @@ sasha.calculate = function() {
 var groklok = getCrusader("04a");
 groklok.calculate = function() {
   crusaderSetup(groklok);
-//Eligible Receivers  
+//Eligible Receivers
   if (currentWorld.columnNum[groklok.spot]==currentWorld.columnNum[dpsChar.spot]-1) {
     var numAffected = currentWorld.columnTest(currentWorld.columnNum[dpsChar.spot]);
     var drizzleMult = 1;
     if (drizzle.inFormation && currentWorld.columnNum(drizzle.spot) > currentWorld.columnNum(groklok.spot)) {
-      drizzleMult = 2; 
+      drizzleMult = 2;
     }
     groklok.globalDPS *= 1.5 * drizzleMult * itemAbility(groklok,0) / numAffected;
   }
-//Gunslinger  
+//Gunslinger
   if (groklok.isDPS && currentWorld.filled < currentWorld.spots) {
     groklok.globalDPS *= 2.5;
   }
@@ -340,7 +340,7 @@ mindy.calculate = function() {
 var hermit = getCrusader("05");
 hermit.calculate = function() {
   crusaderSetup(hermit);
-//Craziness  
+//Craziness
   if (hermit.isDPS) {
     var noOneAhead = true;
     var adjacent = currentWorld.whatsAdjacent(hermit.spot);
@@ -380,9 +380,9 @@ kyle.calculate = function() {
   }
   if (kyle.isDPS) {
     if (femaleAdjacent) {kyle.globalDPS *= 2;}
-    if (leprechaunAdjacent) {kyle.globalDPS *= 2;}    
+    if (leprechaunAdjacent) {kyle.globalDPS *= 2;}
     if (animalAdjacent) {kyle.globalDPS *= 2;}
-    kyle.globalDPS *= 1 + 0.5 * Math.max(numAdjacent,3) * itemAbility(kyle,1); 
+    kyle.globalDPS *= 1 + 0.5 * Math.max(numAdjacent,3) * itemAbility(kyle,1);
   }
 };
 
@@ -469,7 +469,7 @@ bernard.calculate = function() {
   }
   if (numAdjacent <= 3) {
     tipsPercent += numAdjacent * 0.1;
-  } else { 
+  } else {
     tipsPercent += 0.6 - numAdjacent * 0.1;
   }
   bernard.globalGold *= 1 + tipsPercent * tipsGoldPercent;
@@ -480,7 +480,7 @@ bernard.calculate = function() {
 var princess = getCrusader("07");
 princess.calculate = function() {
   crusaderSetup(princess);
-//Ignite, Char, Conflagrate (Check if these multiply or add)  
+//Ignite, Char, Conflagrate (Check if these multiply or add)
   princess.globalDPS *= Math.pow((1 + 0.1 * itemAbility(princess,2)),3);
 };
 
@@ -522,7 +522,7 @@ rayna.calculate = function() {
 var natalie = getCrusader("08");
 natalie.calculate = function() {
   crusaderSetup(natalie);
-//Double Dragon  
+//Double Dragon
   if (nate.inFormation && natalie.isDPS){
     natalie.globalDPS *= 1+2*itemAbility(nate,2);
   }
@@ -558,7 +558,7 @@ karl.calculate = function() {
 var jason = getCrusader("09");
 jason.calculate = function() {
   crusaderSetup(jason);
-//Ambush not included due to it's limited usefulness  
+//Ambush not included due to it's limited usefulness
 };
 
 ////Pete the Carney
@@ -670,7 +670,7 @@ sisaron.calculate = function() {
 var khouri = getCrusader("11");
 khouri.calculate = function() {
   crusaderSetup(khouri);
-//Koffee Potion  
+//Koffee Potion
   var adjacent = currentWorld.whatsAdjacent(khouri.spot);
   if (adjacent.includes(dpsChar.spot)) {
     khouri.globalDPS *= 1 + 0.3 * itemAbility(khouri,0);
@@ -788,7 +788,7 @@ soldierette.calculate = function() {
     if (currentWorld.columnNum(soldierette.spot) == currentWorld.maxColumn) {
       soldierette.globalDPS *= 5;
     }
-    soldierette.globalDPS *= 1 + 0.2 * numAttacking; 
+    soldierette.globalDPS *= 1 + 0.2 * numAttacking;
   }
 };
 
@@ -959,7 +959,7 @@ squiggles.calculate = function() {
       squiggles.globalDPS *= 3;
     }
   }
-  
+
 };
 
 //////Slot 18
@@ -1037,7 +1037,7 @@ petra.calculate = function() {
 var nate = getCrusader("20");
 nate.calculate = function() {
   crusaderSetup(nate);
-//Double Dragon  
+//Double Dragon
   if (natalie.inFormation && nate.isDPS){
     nate.globalDPS *= 1+2*itemAbility(nate,2);
   }
@@ -1112,7 +1112,7 @@ shadow.calculate = function() {
     for (var i = 0; i < adjacent.length; i++) {
       if (formation[adjacent[i]]) {
         numAdjacent += 1;
-      } 
+      }
     }
     if (jason.inFormation && adjacent.includes(jason.spot)) {
       jasonMult = 2;
@@ -1205,7 +1205,7 @@ function World(name,spots) {
     return adjacentTest;
   };
   this.whatsAdjacent = function(spot) {
-    return adjacent[spot];
+    return adjacent[spot] || {};
   };
   this.columnNum = function(spot) {
     return columnNum[spot];
@@ -1263,7 +1263,7 @@ function World(name,spots) {
         distance[adjacent[j]] = Math.min(distance[current] + 1 , distance[adjacent[j]]);
       }
       for (j = 0; j <= _this.spots; j++) {
-        if (!visited[j] && distance[j] < min) { 
+        if (!visited[j] && distance[j] < min) {
           min = distance[j];
           minLoc = j;
         }
@@ -1313,8 +1313,9 @@ var critChance = 1;
 var globalDPS = 1;
 var globalGold = 1;
 
-app.setDPS = function(name) {
-  var crusader = jsonData.crusaders.find(c => c.displayName == name)
+app.setDPS = function(name,id) {
+
+  var crusader = name!=null ? jsonData.crusaders.find(c => c.displayName == name) : getCrusader(id);
   if (crusader != null) {
       crusader.isDPS = true;
       dpsChar = crusader;
@@ -1332,7 +1333,7 @@ var currentWorld = worldsWake;
 app.calculate = () =>{
   var globalDPS = 1;
   var globalGold = 0;
-  formation.map(f =>{
+  formation.filter(f => f != null).map(f =>{
     f.calculate();
     console.log('formation calculate', globalDPS, f);
     globalDPS *= f.globalDPS || 1;
