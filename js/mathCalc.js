@@ -14,13 +14,13 @@
           crusader.critChance += itemCrit(crusader,i);
           break;
         case "alldps":
-          crusader.globalDPS *= itemDPS(crusader,i);
+          crusader.globalDPS *= itemDPS(crusader,i) || 1;
           break;
         case "gold":
           crusader.globalGold *= itemGold(crusader,i);
           break;
         case "selfdps":
-          if (crusader.isDPS) {crusader.globalDPS *= itemSelfDPS(crusader,i);}
+          if (crusader.isDPS) {crusader.globalDPS *= itemSelfDPS(crusader,i) || 1;}
           break;
       }
     }
@@ -1766,10 +1766,24 @@ var currentWorld = worldsWake;
 //formation[3]=panda;
 // setDPS("Emo");
 //Set base values for the formation crusaders and calculate
-// for (var i in formation) {
-//   formation[i].inFormation = true;
-//   formation[i].spot = i;
-//   currentWorld.filled += 1;
+app.calculate = () =>{
+  var globalDPS = 1;
+  var globalGold = 0;
+  formation.map(f =>{
+    f.calculate();
+    console.log('formation calculate', globalDPS, f);
+    globalDPS *= f.globalDPS || 1;
+    globalGold *= f.globalGold || 1;
+  });
+  return {globalDps:globalDPS, globalGold:globalGold}
+};
+app.globalDPS = globalDPS;
+
+//for (var i in formation) {
+//  formation[i].calculate();
+//  globalDPS *= formation[i].globalDPS;
+//  globalGold *= formation[i].globalGold;
+//  critChance += formation[i].critChance;
 // }
 // for (var i in formation) {
 //   formation[i].calculate();
@@ -1787,5 +1801,5 @@ var killedThisStage =0;
 var currentStage = 0;
 var numEpicEquip = 0;
 var numEpicTrinkets = 0;
-  
+
 })(window)

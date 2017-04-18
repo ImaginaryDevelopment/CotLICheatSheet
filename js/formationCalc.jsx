@@ -1,15 +1,40 @@
 (app =>{
     app.WorldsWake = class WorldsWake extends React.Component{
+        constructor(){
+            super()
+            this.state = this.getInitialState();
+        } 
+        getInitialState(){
+            var data = app.calculate();
+            return {formation:app.formation, dps:data.globalDps};
+        }
         render(){
+            var changeFormation = slotNumber => cruId => {
+                app.formation[slotNumber]=getCrusader(cruId);
+                var data = app.calculate();
+                var stateMods = {slotNumber:cruId,dps:data.globalDps};
+                console.log('stateMods', stateMods);
+                this.setState(stateMods);
+            };
+            var makeHeroSelect = slotNumber => (
+                <div>
+                    <HeroSelect dontSort={true} 
+                                crusaders={jsonData.crusaders} 
+                                onHeroChange={ changeFormation(slotNumber)} 
+                                selectedHeroId={app.formation[slotNumber] && app.formation[slotNumber].id} 
+                                />{slotNumber}
+                </div>
+            );
             return (<div>
+                <p>Dps:{this.state.dps}</p>
                 <table>
                     <thead></thead>
                     <tbody>
                         <tr title="row0">
-                            <td title="slot0"><HeroSelect dontSort={true} crusaders={jsonData.crusaders} onHeroChange={ e=> app.formation[0]=getCrusader(e)} />0</td>
+                            <td title="slot0">{makeHeroSelect(0)}</td>
                         </tr>
                         <tr title="row1">
-                            <td/><td title="slot4"><HeroSelect dontSort={true} crusaders={jsonData.crusaders} onHeroChange={ e=> app.formation[4]=getCrusader(e)} />4</td>
+                        <td/><td title="slot4">{makeHeroSelect(4)}</td>
                         </tr>
                         <tr title="row2">
                             <td  title="slot1"> <HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[1]=getCrusader(e)} />1</td> 
@@ -21,7 +46,7 @@
 
                         </tr>
                         <tr title="row4">
-                            <td title="slot2"> <HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[2]=getCrusader(e)} />2</td> 
+                            <td title="slot2"><HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[2]=getCrusader(e)} />2</td> 
                             <td />
                             <td title="slot8"><HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[8]=getCrusader(e)} />8</td> 
                         </tr>
