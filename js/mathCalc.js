@@ -21,11 +21,12 @@
             var lootId = getGear(crusader.id,i);
             var rarity = lootId && getRarity(crusader.loot, lootId);
             var dps = rarity && itemDPS(rarity) || 1;
-            console.log('alldps', dps,rarity,lootId, crusader.id,i);
+            // console.log('alldps', dps,rarity,lootId, crusader.id,i);
             crusader.globalDPS *= dps;
             break;
           case "gold":
-            crusader.globalGold *= itemGold(crusader, i);
+            crusader.globalGold *= itemGold(crusader, i) || 1;
+            console.log("gold", crusader.globalGold,globalGold);
             break;
           case "selfdps":
             if (crusader.isDPS) {
@@ -1974,7 +1975,7 @@ eiralon.calculate = function() {
   //Set base values for the formation crusaders and calculate
   app.calculateMultipliers = () => {
     var globalDPS = 1;
-    var globalGold = 0;
+    var globalGold = 1;
     formation.filter(f => f != null).map(f => {
       crusaderSetup(f);
       if(f.calculate)
@@ -1989,7 +1990,9 @@ eiralon.calculate = function() {
       globalDPS *= f.globalDPS || 1;
       globalGold *= f.globalGold || 1;
     });
-    return { globalDps: globalDPS, globalGold: globalGold }
+    var result = { globalDps: globalDPS, globalGold: globalGold };
+    console.log('calculateMultipliers', result);
+    return result;
   };
   app.globalDPS = globalDPS;
 
