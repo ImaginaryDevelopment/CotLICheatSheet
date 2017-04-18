@@ -6,7 +6,7 @@
         }
         getInitialState(){
             var data = app.calculate();
-            return {formation:app.formation, dps:data.globalDps, dpsCruId:null};
+            return {formation:app.formation, dps:data.globalDps, dpsCruId:null, gold:null};
         }
         render(){
             var changeFormation = slotNumber => cruId => {
@@ -16,7 +16,7 @@
                     if (c == crusader && i != slotNumber) app.formation[i]=app.formation[slotNumber]});
                 app.formation[slotNumber]=crusader;
                 var data = app.calculate();
-                var stateMods = {slotNumber:cruId,dps:data.globalDps};
+                var stateMods = {slotNumber:cruId,dps:data.globalDps, gold:data.globalGold};
                 console.log('stateMods', stateMods);
                 this.setState(stateMods);
             };
@@ -40,7 +40,8 @@
             );
             return (<div>
                 <div>{dpsSelector}</div>
-                <p>Dps:{this.state.dps}</p>
+                <p>Dps Multiplier: {this.state.dps}</p>
+                <p>Gold Multiplier: {this.state.gold}</p>
                 <table>
                     <thead></thead>
                     <tbody>

@@ -279,7 +279,7 @@ emo.calculate = function() {
 var sally = getCrusader("03a");
 sally.calculate = function() {
   crusaderSetup(sally);
-  if (dpsChar.tags.includes("female")) {
+  if (dpsChar && dpsChar.tags.includes("female")) {
     sally.globalDPS *= 1.2;
   }
   if (sally.isDPS) {
@@ -315,7 +315,7 @@ var groklok = getCrusader("04a");
 groklok.calculate = function() {
   crusaderSetup(groklok);
 //Eligible Receivers
-  if (currentWorld.columnNum[groklok.spot]==currentWorld.columnNum[dpsChar.spot]-1) {
+  if (dpsChar && currentWorld.columnNum[groklok.spot]==currentWorld.columnNum[dpsChar.spot]-1) {
     var numAffected = currentWorld.columnTest(currentWorld.columnNum[dpsChar.spot]);
     var drizzleMult = 1;
     if (drizzle.inFormation && currentWorld.columnNum(drizzle.spot) > currentWorld.columnNum(groklok.spot)) {
