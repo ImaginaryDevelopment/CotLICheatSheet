@@ -37,24 +37,24 @@
                         <td/><td title="slot4">{makeHeroSelect(4)}</td>
                         </tr>
                         <tr title="row2">
-                            <td  title="slot1"> <HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[1]=getCrusader(e)} />1</td> 
-                            <td /><td title="slot7"><HeroSelect dontSort={true} crusaders={jsonData.crusaders} onHeroChange={ e=> app.formation[7]=getCrusader(e)} />7</td> 
+                            <td  title="slot1"> {makeHeroSelect(1)}</td> 
+                            <td /><td title="slot7">{makeHeroSelect(7)}</td> 
                         </tr>
                         <tr title="row3">
-                            <td /><td title="slots5"><HeroSelect dontSort={true} crusaders={jsonData.crusaders} onHeroChange={ e=> app.formation[5]=getCrusader(e)} />5</td>
-                            <td /><td title="slot9"><HeroSelect dontSort={true} crusaders={jsonData.crusaders} onHeroChange={ e=> app.formation[9]=getCrusader(e)} />9</td>
+                            <td /><td title="slots5">{makeHeroSelect(5)}</td>
+                            <td /><td title="slot9">{makeHeroSelect(9)}</td>
 
                         </tr>
                         <tr title="row4">
-                            <td title="slot2"><HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[2]=getCrusader(e)} />2</td> 
+                            <td title="slot2">{makeHeroSelect(2)}</td> 
                             <td />
-                            <td title="slot8"><HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[8]=getCrusader(e)} />8</td> 
+                            <td title="slot8">{makeHeroSelect(8)}</td>
                         </tr>
                         <tr title="row5">
-                            <td /><td title="slot6"><HeroSelect dontSort={true} crusaders={jsonData.crusaders}onHeroChange={ e=> app.formation[6]=getCrusader(e)} />6</td>
+                            <td /><td title="slot6">{makeHeroSelect(6)}</td>
                         </tr>
                         <tr title="row6">
-                            <td title="slot3"><HeroSelect dontSort={true} crusaders={jsonData.crusaders} onHeroChange={ e=> app.formation[3]=getCrusader(e)} />3</td> 
+                            <td title="slot3">{makeHeroSelect(3)}</td> 
                         </tr>
                 </tbody>
                 </table>
