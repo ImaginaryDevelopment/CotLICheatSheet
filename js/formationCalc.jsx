@@ -5,7 +5,7 @@
             this.state = this.getInitialState();
         }
         getInitialState(){
-            var data = app.calculate();
+            var data = app.calculateMultipliers();
             return {formation:app.formation, dps:data.globalDps, dpsCruId:null, gold:null};
         }
         render(){
@@ -15,7 +15,7 @@
                 app.formation.map((c,i) => {
                     if (c == crusader && i != slotNumber) app.formation[i]=app.formation[slotNumber]});
                 app.formation[slotNumber]=crusader;
-                var data = app.calculate();
+                var data = app.calculateMultipliers();
                 var stateMods = {slotNumber:cruId,dps:data.globalDps, gold:data.globalGold};
                 console.log('stateMods', stateMods);
                 this.setState(stateMods);
@@ -34,7 +34,7 @@
                     app.formationDps = getCrusader(cruId);
                     app.setDPS(null, cruId);
                     this.setState({dpsCruId:cruId});
-                    app.calculate();
+                    app.calculateMultipliers();
                     }
                 } selectedHeroId={this.state.dpsCruId} />
             );
