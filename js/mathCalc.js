@@ -64,14 +64,18 @@ function itemSelfDPS(crusader,gearSlot) {
     case 5:
       return 9;
     case "Golden Legendary":
-      return 13;    
+      return 13;
     default:
       return 1;
   }
 }
+var getGear = (cruId,gearSlot) => 
+  app.crusaderGear && 
+  app.crusaderGear[cruId] && 
+  app.crusaderGear[cruId]["s"+ gearSlot.toString()];
 
 function itemGold(crusader,gearSlot) {
-  switch(appGameState.crusaderGear[crusader.id]["slot"+gearSlot.toString()]){
+  switch(getGear(crusader.id,gearSlot)){
     case 1:
       return 1.1;
     case 2:
@@ -85,14 +89,14 @@ function itemGold(crusader,gearSlot) {
     case 5:
       return 3;
     case "Golden Legendary":
-      return 4;      
+      return 4;
     default:
       return 1;
   }
 }
 
 function itemCrit(crusader,gearSlot) {
-  switch(appGameState.crusaderGear[crusader.id]["slot"+gearSlot.toString()]){
+  switch(getGear(crusader.id,gearSlot)){
     case 1:
       return 1;
     case 2:
@@ -113,7 +117,7 @@ function itemCrit(crusader,gearSlot) {
 }
 
 function itemAbility(crusader,gearSlot) {
-  switch(appGameState.crusaderGear[crusader.id]["slot"+gearSlot.toString()]){
+  switch(getGear(crusader.id,gearSlot)){
     case 1:
       return 1.1;
     case 2:
@@ -134,7 +138,7 @@ function itemAbility(crusader,gearSlot) {
 }
 
 function itemGreyShots(crusader,gearSlot) {
-  switch(appGameState.crusaderGear[crusader.id]["slot"+gearSlot.toString()]){
+  switch(getGear(crusader.id,gearSlot)){
     case 1:
       return 2;
     case 2:
