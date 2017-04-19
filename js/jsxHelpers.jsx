@@ -24,6 +24,8 @@ app.GearBox = props => {
   var result = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
   return result;
 };
+app.GearBox.displayName = "GearBox";
+
 app.TextAreaInput2 = props =>
 (<textarea
 name={props.name}
@@ -43,6 +45,7 @@ name={props.name}
         onBlur={props.onBlur}
         {...props.spread} />
 );
+app.TextAreaInput2.displayName = "TextAreaInput2";
 
 app.TextInput2 = props =>
 (<input
@@ -67,6 +70,8 @@ app.TextInput2 = props =>
         }
         onBlur={props.onBlur}
         {...props.spread} />);
+
+app.TextInput2.displayName = "TextInput2";
 
 // looks uncontrolled, but is not under the hood. better user experience
 app.TextInputUnc = React.createClass({
@@ -104,6 +109,8 @@ app.TextInputUnc = React.createClass({
       );
   }
 });
+app.TextInputUnc.displayName = "TextInputUnc";
+
 app.TextAreaInputUnc = React.createClass({
   getInitialState(){
     return {value:this.props.value};
@@ -132,6 +139,7 @@ app.TextAreaInputUnc = React.createClass({
       );
   }
 });
+app.TextAreaInputUnc.displayName = "TextAreaInputUnc";
 
 // from https://toddmotto.com/creating-a-tabs-component-with-react/
 app.Tabs = React.createClass({

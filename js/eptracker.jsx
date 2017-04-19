@@ -157,6 +157,25 @@ var CruTagRowSlotGear = props =>{
       }
       return null;
 };
+CruTagRowSlotGear.displayName = "CruTagRowSlotGear";
+
+var CruTagRowGear = props =>{
+  var gearTd = null;
+  if(props.mode !=="mine" || !props.isGearMode)
+    return null;
+  // gearReference currently looks like [undefined,undefined,undefined,cruGearArray] or cruGearArray
+
+  var makeSelect = slot => (<GearSelect cruGear={props.cruGear} slot={slot} gearReference={props.gearReference} cruId={props.cruId} gearPossibilities={props.gearTypes} onGearChange={props.onGearChange} />);
+  if(props.cruId == 15)
+    console.log('CruTagRowGear', props.gearReference);
+  return (<td key="gear" data-key="gear">
+              {makeSelect(0)}
+              {makeSelect(1)}
+              {makeSelect(2)}
+              </td>);
+
+};
+CruTagRowGear.displayName = "CruTagRowGear";
 
 var CruTagRow = React.createClass({
     render: function () {
@@ -177,25 +196,12 @@ var CruTagRow = React.createClass({
 
       var cruGear = this.props.gear ? this.props.gear : {};
       if(cru.id==1) console.log('cruGear for boxes', cruGear,cru);
+
       var $slotGear = (<CruTagRowSlotGear cru={cru} cruGear={cruGear} />);
+      var $gearTd = (<CruTagRowGear mode={this.props.mode} isGearMode={this.props.isGearMode} cruGear={cruGear} gearReference={this.props.gearReference} cruId={cru.id} gearTypes={this.props.gearTypes} onGearChange={this.props.onGearChange} />);
 
-      var gearTd = null;
-      // console.log('gear?', this.props.mode, this.props.isGearMode);
-      if (this.props.mode ==="mine" && this.props.isGearMode){
-        var gearPossibilities = this.props.gearTypes;
-        // gearReference currently looks like [undefined,undefined,undefined,cruGearArray] or cruGearArray
-
-        var makeSelect = slot => (<GearSelect cruGear={cruGear} slot={slot} gearReference={this.props.gearReference} cruId={cru.id} gearPossibilities={gearPossibilities} onGearChange={this.props.onGearChange} />);
-        gearTd = (<td key="gear" data-key="gear">
-                    {makeSelect(0)}
-                    {makeSelect(1)}
-                    {makeSelect(2)}
-                    </td>);
-
-      }
-      // var $gearTd = (<GearTd />);
-      var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={this.props.mode} isGearMode={this.props.isGearMode} dps={this.props.dps} missionTags={this.props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={gearTd} />);
-      var tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
+      var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={this.props.mode} isGearMode={this.props.isGearMode} dps={this.props.dps} missionTags={this.props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={$gearTd} />);
+      var $tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
       var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
       return (<tr className={trClasses}>
           {$formation}
@@ -204,7 +210,7 @@ var CruTagRow = React.createClass({
           <td key="image" data-key="image">{$image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
           {$tagsOrGearColumn}
-          {tagCountColumn}
+          {$tagCountColumn}
       </tr>);
     }
 });
