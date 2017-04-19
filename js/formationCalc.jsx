@@ -19,6 +19,7 @@
                 return stateMods;
         }
         render(){
+            // cruId may be "0" in the none case
             var changeFormation = slotNumber => cruId => {
                 var crusader = getCrusader(cruId);
                 var slotCru = getCrusader(app.formationIds[slotNumber]);
@@ -49,7 +50,7 @@
                 var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
                 var availableCrusaders = jsonData.crusaders.filter(cru =>
                     // crusaders in slots that aren't in formation
-                    this.state.formation.filter(f => f != null).find(f=> f.slot == cru.slot) == null
+                    this.state.formation.filter(f => f != null && f != "0").find(f=> f.slot == cru.slot) == null
                     || selectedCru == cru
 
                 );
@@ -69,7 +70,7 @@
             var dpsSelector = (
                 <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.state.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)} onHeroChange={cruId => {
                     app.formationDps = getCrusader(cruId);
-                    this.state.formation.filter(f => f != null).map(cruId => getCrusader(cruId).isDPS = false);
+                    this.state.formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
                     app.setDPS(null, cruId);
                     app.calculateMultipliers();
                     var stateMods = this.calculateMyMultipliers();
