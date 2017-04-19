@@ -50,8 +50,8 @@
                 var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
                 var availableCrusaders = jsonData.crusaders.filter(cru =>
                     // crusaders in slots that aren't in formation
-                    this.state.formation.filter(f => f != null && f != "0").find(f=> f.slot == cru.slot) == null
-                    || selectedCru == cru
+                    this.state.formation.filter(f => f != null && f != "0").find(f=> getCrusader(f).slot == cru.slot) == null
+                    || (selectedCru && selectedCru.id == cru.id)
 
                 );
                 return (<div>{slotNumber}
