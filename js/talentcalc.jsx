@@ -332,7 +332,6 @@ app.TalentCalc = React.createClass({
         if(talentSelectedCrusader){
             var cru = talentSelectedCrusader.cru;
             var savedGear = props.saved.crusaderGear || [];
-            console.log('TalentCalc savedGear', savedGear[cru.id] || savedGear, talentSelectedCrusader.cru.loot.find(l => l.lootId == savedGear[cru.id].s0), cru.id);
             var cruRarities = Loot.getSlotRarities(savedGear[cru.id], talentSelectedCrusader.cru.loot);
             console.log('cruRarities', cruRarities);
             var cruEpicCount = cruRarities.reduce((a,b) => a + (b > 3? 1 : 0),0);
