@@ -103,7 +103,7 @@ var GearSelect = props => {
   var gearInfoV1 = itemInfo !== 0 && props.gearReference && props.gearReference[slot];
   var gearInfo = gearInfoV2 || gearInfoV1;
 
-  if(props.cru.id ==="15") {
+  if(props.cruId ==="15") {
     console.log('makeSelect', gearInfoV1, itemInfo);
     console.log('makeSelect2', itemInfoV2, gearInfoV2);
     window.makeSelectGearReference = props.gearReference;
@@ -112,7 +112,7 @@ var GearSelect = props => {
   var slotGear = props.gearReference && props.gearReference[3]
     .filter(g => g.slot==slot)
     .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
-  if(props.cru.id ==="18") {
+  if(props.cruId ==="18") {
     console.log('makeSelectSlotGear',slotGear);
   }
   var getOptionsV1 = () => props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
@@ -133,8 +133,29 @@ var GearSelect = props => {
             data-valueV={selectValueV}
             data-v={selectV}
             value={ itemInfoV2 || rarity}
-            onChange={e => props.onGearChange(props.cru.id, slot, e.target.value, selectV)}
+            onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)}
             name={"slot" + slot}>{$options}</select>{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+};
+
+var CruTagRowSlotGear = props =>{
+      var $slotGear;
+      // extract the 3 slots with qualities
+      var cruGearQ =  Loot.getGearInfo(props.cruGear);
+      if(props.cru.id==1) console.log('cruGearQ for boxes', cruGearQ);
+
+      if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
+        var makeBox = slot => {
+          var itemRarityCompound =  cruGearQ[slot];
+          var rarity = Loot.getSlotRarity(itemRarityCompound,props.cru.loot);
+          if(itemRarityCompound === 8)
+            console.log('making a box', itemRarityCompound, rarity);
+          var golden = Loot.getIsGolden(itemRarityCompound, props.cru.loot) ? " golden" : "";
+          var classes = "rarity rarity" + rarity + golden;
+          return (<div className={classes} />);
+        };
+        return (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
+      }
+      return null;
 };
 
 var CruTagRow = React.createClass({
@@ -156,23 +177,7 @@ var CruTagRow = React.createClass({
 
       var cruGear = this.props.gear ? this.props.gear : {};
       if(cru.id==1) console.log('cruGear for boxes', cruGear,cru);
-      var slotGear;
-      // extract the 3 slots with qualities
-      var cruGearQ =  Loot.getGearInfo(cruGear);
-      if(cru.id==1) console.log('cruGearQ for boxes', cruGearQ);
-
-      if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
-        var makeBox = slot => {
-          var itemRarityCompound =  cruGearQ[slot];
-          var rarity = Loot.getSlotRarity(itemRarityCompound,cru.loot);
-          if(itemRarityCompound === 8)
-            console.log('making a box', itemRarityCompound, rarity);
-          var golden = Loot.getIsGolden(itemRarityCompound, cru.loot) ? " golden" : "";
-          var classes = "rarity rarity" + rarity + golden;
-          return (<div className={classes} />);
-        };
-        slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
-      }
+      var $slotGear = (<CruTagRowSlotGear cru={cru} cruGear={cruGear} />);
 
       var gearTd = null;
       // console.log('gear?', this.props.mode, this.props.isGearMode);
@@ -180,13 +185,7 @@ var CruTagRow = React.createClass({
         var gearPossibilities = this.props.gearTypes;
         // gearReference currently looks like [undefined,undefined,undefined,cruGearArray] or cruGearArray
 
-          if(cru.id ==="15") {
-        //     console.log('gear', cruGear, this.props.gearReference);
-            window.cruGear = this.props.gearReference && this.props.gearReference[3];
-            console.log('slotGear',slotGear,cruGear,cruGearQ);
-          }
-
-        var makeSelect = slot => (<GearSelect cruGear={cruGear} slot={slot} gearReference={this.props.gearReference} cru={cru} gearPossibilities={gearPossibilities} onGearChange={this.props.onGearChange} />);
+        var makeSelect = slot => (<GearSelect cruGear={cruGear} slot={slot} gearReference={this.props.gearReference} cruId={cru.id} gearPossibilities={gearPossibilities} onGearChange={this.props.onGearChange} />);
         gearTd = (<td key="gear" data-key="gear">
                     {makeSelect(0)}
                     {makeSelect(1)}
@@ -201,7 +200,7 @@ var CruTagRow = React.createClass({
       return (<tr className={trClasses}>
           {$formation}
           {$owned}
-          <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={JSON.stringify({Place:cru.id,HeroId:cru.heroId,tier2: cru.tier ===2})}>{cru.slot}{slotGear}</td>
+          <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={JSON.stringify({Place:cru.id,HeroId:cru.heroId,tier2: cru.tier ===2})}>{cru.slot}{$slotGear}</td>
           <td key="image" data-key="image">{$image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
           {$tagsOrGearColumn}
