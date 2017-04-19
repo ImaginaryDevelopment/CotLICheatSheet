@@ -69,6 +69,8 @@
             };
             var dpsSelector = (
                 <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.state.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)} onHeroChange={cruId => {
+                    if(cruId == "0")
+                        cruId = null;
                     app.formationDps = getCrusader(cruId);
                     this.state.formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
                     app.setDPS(null, cruId);

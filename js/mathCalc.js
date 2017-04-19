@@ -1,6 +1,6 @@
 (app => {
   app.dpsChar = null;
-  app.getCrusader = id => { return app.jsonData.crusaders.find(function (c) { return c.id == id; }); };
+  app.getCrusader = id => app.jsonData.crusaders.find(c =>  c.id == id);
 
   // returns the lootId, not the rarity or legendary level
   var getLootId = (cruId, gearSlot) =>
