@@ -53,33 +53,57 @@ var TagsTd = React.createClass({
       return (<td key="tags" className="tags" data-key="tags">{tags}</td>);
   }
 });
+var CruTagRowFormationEpBox = props =>
+      props.isEpMode && props.isOwned ? (
+        <div className="ep"><TextInputUnc type="number" min="0" readonly={getIsUrlLoaded()} onChange={props.onEpChange} className={["medium"]} value={props.enchantmentPoints} />
+          {props.effectiveEp && !Number.isNaN(props.effectiveEp) ? (<div className="sharedEp">Shared:{props.effectiveEp}</div>) : null}
+        </div>)
+        : null;
+
+var CruTagRowFormation = props =>(
+  props.mode ==="mine" && props.isFormationMode ?
+        (
+          <td key="formation">
+            <CheckBox checked={props.formationIds[props.cru.slot] == props.cru.id ? true : false} onChange={props.onFormationChange} />
+            {props.epBox}
+          </td>)
+        : null);
+
+var CruTagRowOwned = props =>{
+  if(props.mode !== "mine" || props.isFormationMode)
+    return null;
+  var isAlwaysOwnedSlot = props.cru.slot == props.cru.id && props.cru.slot < 21
+  var renderBox = isAlwaysOwnedSlot || (!getIsUrlLoaded() || props.owned);
+  if(isAlwaysOwnedSlot || (getIsUrlLoaded() && props.owned)) {
+    return (<td key="owned"><CheckBox checked={true} readonly={true} disabled={true} />{props.epBox}</td>);
+  }
+  if(!getIsUrlLoaded() || props.owned){
+    return (<td key="owned"><CheckBox checked={props.owned} readonly={getIsUrlLoaded()} disabled={getIsUrlLoaded()} onChange={props.onOwnedChange} />{props.epBox}</td>);
+  }
+  return (<td></td>);
+};
+
+var CruTagRowTagsOrGear = props =>{
+      var tagsTd;
+      // enable tags if mine mode is off, or gear mode is off
+      if(props.mode !== "mine" || !props.isGearMode ){
+        return (<TagsTd dps={props.dps} missionTags={props.missionTags} crusader={props.cru} baseUrl={props.baseUrl} />) ;
+      }
+      return props.gearTd;
+};
+
 var CruTagRow = React.createClass({
     render: function () {
       var self = this;
       var cru = this.props.crusader;
       var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
-      var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
+      var $image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
       var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
-      var owned = null;
-      var formation = null;
-      var epBox = this.props.isEpMode && isOwned ? (
-        <div className="ep"><TextInputUnc type="number" min="0" readonly={getIsUrlLoaded()} onChange={this.props.onEpChange} className={["medium"]} value={this.props.enchantmentPoints} />
-          {this.props.effectiveEp && !Number.isNaN(this.props.effectiveEp) ? (<div className="sharedEp">Shared:{this.props.effectiveEp}</div>) : null}
-        </div>)
-        : null;
-      // console.log('cruTagRow render', this.props.mode, this.props.isFormationMode, cru.slot, cru.id);
-      if(this.props.mode === "mine" && this.props.isFormationMode){
-        formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
-      } else if (this.props.mode === "mine" && !this.props.isFormationMode){
-        if(cru.slot == cru.id && cru.slot < 21) {
-          owned = (<td key="owned"><CheckBox checked={true} readonly={true} disabled={true} />{epBox}</td>);
-        } else {
-          if(!getIsUrlLoaded() || this.props.owned){
-            owned = (<td key="owned"><CheckBox checked={this.props.owned} readonly={getIsUrlLoaded()} disabled={getIsUrlLoaded()} onChange={this.props.onOwnedChange} />{epBox}</td>);
-          }
-          else owned = (<td></td>)
-        }
-      }
+      var $epBox = (<CruTagRowFormationEpBox isEpMode={this.props.isEpMode} isOwned={isOwned} onEpChange={this.props.onEpChange} enchantmentPoints={this.props.enchantmentPoints} effectiveEp={this.props.effectiveEp} />);
+      var $formation = (<CruTagRowFormation mode={this.props.mode} isFormationMode={this.props.isFormationMode} cru={cru} formationIds={this.props.formationIds} onFormationChange={this.props.onFormationChange}
+        epBox={$epBox}
+        />);
+      var $owned = (<CruTagRowOwned mode={this.props.mode} isFormationMode={this.props.isFormationMode} cru={cru} owned={isOwned} epBox={$epBox} onOwnedChange={this.props.onOwnedChange} />);
       var link = cru.link && cru.link.indexOf('/') < 0 ? (self.props.wikibase + cru.link)
         : cru.link ?
           cru.link
@@ -109,15 +133,16 @@ var CruTagRow = React.createClass({
       // console.log('gear?', this.props.mode, this.props.isGearMode);
       if (this.props.mode ==="mine" && this.props.isGearMode){
         var gearPossibilities = this.props.gearTypes;
+        // gearReference currently looks like [undefined,undefined,undefined,cruGearArray] or cruGearArray
 
-          if(cru.id ==="18") {
+          if(cru.id ==="15") {
         //     console.log('gear', cruGear, this.props.gearReference);
-            window.gearReference = this.props.gearReference && this.props.gearReference[3];
-            console.log('slotGear',slotGear);
+            window.cruGear = this.props.gearReference && this.props.gearReference[3];
+            console.log('slotGear',slotGear,cruGear,cruGearQ);
           }
 
         var makeSelect = slot => {
-          // var slot = (typeof(slot) === "string" && slot.length > 1 ? slot[0] && +slot === slot ? +slot
+          // v1/1.5 loot should be transformed on url or localstorage load
           var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
           var itemInfoV2 = cruGear["s"+slot] ? cruGear["s" + slot] : 0;
           var gearInfoV2 = itemInfoV2 && this.props.gearReference && this.props.gearReference[3] && this.props.gearReference[3].find(g => g.lootId == itemInfoV2);
@@ -125,16 +150,17 @@ var CruTagRow = React.createClass({
           var gearInfoV1 = itemInfo !== 0 && this.props.gearReference && this.props.gearReference[slot];
           var gearInfo = gearInfoV2 || gearInfoV1;
 
-          if(cru.id ==="18") {
+          if(cru.id ==="15") {
             console.log('makeSelect', gearInfoV1, itemInfo);
             console.log('makeSelect2', itemInfoV2, gearInfoV2);
+            window.makeSelectGearReference = this.props.gearReference;
+            window.gearInfo = gearInfo;
           }
-          window.gearReference = this.props.gearReference;
           var slotGear = this.props.gearReference && this.props.gearReference[3]
             .filter(g => g.slot==slot)
             .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
           if(cru.id ==="18") {
-            console.log('slotGear',slotGear);
+            console.log('makeSelectSlotGear',slotGear);
           }
           var getOptionsV1 = () => gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
           var options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + gearPossibilities[g.rarity]}</option>))
@@ -164,21 +190,16 @@ var CruTagRow = React.createClass({
                     </td>);
 
       }
-      var tagsTd;
-      // enable tags if mine mode is off, or gear mode is off
-      if(this.props.mode !== "mine" || !this.props.isGearMode ){
-        tagsTd = (<TagsTd dps={this.props.dps} missionTags={this.props.missionTags} crusader={cru} baseUrl={baseUrl} />) ;
-      }
-      var tagColumn = tagsTd ? tagsTd : gearTd;
+      var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={this.props.mode} isGearMode={this.props.isGearMode} dps={this.props.dps} missionTags={this.props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={gearTd} />);
       var tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
       var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
       return (<tr className={trClasses}>
-          {formation}
-          {owned}
+          {$formation}
+          {$owned}
           <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={JSON.stringify({Place:cru.id,HeroId:cru.heroId,tier2: cru.tier ===2})}>{cru.slot}{slotGear}</td>
-          <td key="image" data-key="image">{image}</td>
+          <td key="image" data-key="image">{$image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
-          {tagColumn}
+          {$tagsOrGearColumn}
           {tagCountColumn}
       </tr>);
     }

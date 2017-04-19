@@ -21,6 +21,8 @@
         render(){
             // cruId may be "0" in the none case
             var changeFormation = slotNumber => cruId => {
+                if(cruId == "0")
+                    cruId = null;
                 var crusader = getCrusader(cruId);
                 var slotCru = getCrusader(app.formationIds[slotNumber]);
                 if(slotCru && slotCru.spot == slotNumber)
@@ -34,7 +36,7 @@
                 {
                     stateMods.formation = this.state.formation.slice(0) || [];
                     if(stateMods.formation.length < currentWorld.spots){
-                        for(var i=0;i<currentWorld.spots;i++) {
+                        for(var i=0;i<currentWorld.spots - stateMods.formation.length;i++) {
                             stateMods.formation.push(null);
                         }
                     }
@@ -54,6 +56,7 @@
                     || (selectedCru && selectedCru.id == cru.id)
 
                 );
+                console.log('makingHeroSelect for slotNumber', slotNumber, cruGearQ, this.state.formation, availableCrusaders);
                 return (<div>{slotNumber}
                     <HeroSelect dontSort={true}
                                 crusaders={availableCrusaders}
@@ -117,6 +120,7 @@
                         </tr>
                 </tbody>
                 </table>
+                <div>{JSON.stringify(this.state.formation)}</div>
             </div>);
         }
     };
