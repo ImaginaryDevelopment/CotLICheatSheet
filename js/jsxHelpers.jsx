@@ -26,7 +26,7 @@ app.GearBox = props => {
 };
 app.GearBox.displayName = "GearBox";
 
-app.TextAreaInput2 = props =>
+var TextAreaInput2 = props =>
 (<textarea
 name={props.name}
         className={addClasses(['form-control'],props.className)}
@@ -45,9 +45,10 @@ name={props.name}
         onBlur={props.onBlur}
         {...props.spread} />
 );
-app.TextAreaInput2.displayName = "TextAreaInput2";
+TextAreaInput2.displayName = "TextAreaInput2";
 
-app.TextInput2 = props =>
+//bad naming, TextInput2 looks from the outside like it should be the better option over TextInputUnc, but really, TextInputUnc is what we should always want as far as I can tell
+var TextInput2 = props =>
 (<input
         id={props.id}
         name={props.name}
@@ -71,7 +72,7 @@ app.TextInput2 = props =>
         onBlur={props.onBlur}
         {...props.spread} />);
 
-app.TextInput2.displayName = "TextInput2";
+TextInput2.displayName = "TextInput2";
 
 // looks uncontrolled, but is not under the hood. better user experience
 app.TextInputUnc = React.createClass({
@@ -93,7 +94,7 @@ app.TextInputUnc = React.createClass({
           name={props.name}
           id={props.id}
           defaultValue={props.defaultValue}
-          value={state.value? state.value : ''}
+          value={state.value != null ? state.value : ''}
           type={props.type}
           min={props.min}
           max={props.max}

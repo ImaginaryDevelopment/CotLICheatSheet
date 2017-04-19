@@ -8,8 +8,8 @@
     app.crusaderGear[cruId] &&
     inspect(app.crusaderGear[cruId]["s" + gearSlot.toString()],"getLootId found gear");
 
-var getRarity = (loot,lootId) => {
-  var item = Loot.getLootFromLootId(lootId,loot);
+var getRarity = (loot,id) => {
+  var item = Loot.getLootFromId(id,loot);
   return item && item.rarity;
 };
 
@@ -73,7 +73,7 @@ var getRarity = (loot,lootId) => {
 
   function itemSelfDPS(crusader, gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromLootId(lootId, crusader.loot);
+    var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
     if(!(item != null))
       return 1;
     switch (item.rarity) {
@@ -98,7 +98,7 @@ var getRarity = (loot,lootId) => {
 
   function itemGold(crusader, gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromLootId(lootId, crusader.loot);
+    var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
     if(!(item != null))
       return 1;
     switch (item.rarity) {
@@ -123,7 +123,7 @@ var getRarity = (loot,lootId) => {
 
   function itemCrit(crusader, gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromLootId(lootId,crusader.loot);
+    var item = lootId && Loot.getLootFromId(lootId,crusader.loot);
     if(!(item != null))
       return 1;
     switch (item.rarity) {
@@ -148,7 +148,7 @@ var getRarity = (loot,lootId) => {
 
   function itemAbility(crusader, gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromLootId(lootId,crusader.loot);
+    var item = lootId && Loot.getLootFromId(lootId,crusader.loot);
     if(!(item != null))
       return 1;
     switch (item.rarity) {
@@ -173,7 +173,7 @@ var getRarity = (loot,lootId) => {
 
   function itemGreyShots(crusader, gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromLootId(lootId,crusader.loot);
+    var item = lootId && Loot.getLootFromId(lootId,crusader.loot);
     if(!(item != null))
       return 1;
     switch (item.rarity) {
@@ -194,7 +194,7 @@ var getRarity = (loot,lootId) => {
 
   function legendaryFactor(crusader,gearSlot) {
     var lootId = getLootId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromLootId(lootId, crusader.loot);
+    var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
     if(!(item != null))
       return 0;
     if (item.level >= 1) {

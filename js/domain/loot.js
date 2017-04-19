@@ -1,3 +1,4 @@
+//loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
 var LootV1 = (function () {
   var my = {};
   // 0 is none, 1 is common, 2 is uncommon, 3 is rare, 4 epic, 5 legendary
@@ -10,13 +11,36 @@ var LootV1 = (function () {
     if(typeof(itemIdentifier) == "string"){
       if(itemIdentifier.length == 1 && +itemIdentifier <= 5)
         return true;
-      if(itemIdentifier.length > 1 && (itemIdentifier[1] =="_" || itemIdentifier[1] == "g"))
+      // V2 loot can have an _ now
+      var index1 = itemIdentifier.indexOf("_");
+      var index2 = itemIdentifier.indexOf("g");
+      if(index1 == 1 ||  index2 == 1 || (index1 < 0 && index2 < 0 && +itemIdentifier <= 5))
         return true;
     }
     return false;
   };
   my.getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof (itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
   my.getIsGolden = itemRarityCompound => !(itemRarityCompound != null) || typeof (itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
+  my.getLLevel = (id) =>{
+    if(!id)
+      return undefined;
+    if(typeof(id) != "string")
+      return null;
+    var lIndex = id.indexOf("_");
+    if(lIndex < 1)
+      lIndex = id.indexOf("g");
+    if(lIndex < 1 || id.length <= lIndex + 1)
+      return null;
+    var lLevel = id.slice(lIndex + 1);
+    console.log('found lLevel!', lLevel, +lLevel);
+    return +lLevel;
+
+  }
+  my.changeLLevel = (id,level) =>{
+    var rarity = my.getSlotRarity(id);
+    var isGolden = my.getIsGolden(id);
+    return rarity + (isGolden? "g" : "_") + level;
+  }
   return my;
 }());
 
@@ -50,11 +74,23 @@ var LootV2 = (function () {
     var item = refGear.find(g => g.lootId == lootId);
     return item && item.rarity;
   };
-  my.getLegendaryLevel = compound =>{
+  my.getLLevel = compound =>{
+    if(!compound)
+      return undefined;
+    if(typeof(compound) != "string")
+      return null;
     var compoundIndex = compound.indexOf("_");
     if(compoundIndex >=0 && compound.length > compoundIndex)
       return compound.slice(compoundIndex + 1);
     return null;
+  };
+  my.changeLLevel = (lootIdOrCompound,level) =>{
+    var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
+    if(lootIdOrCompound != null && !(lootId != null) )
+      console.warn('changeLLevel', lootIdOrCompound, level);
+    if(level != null && level > 1)
+      return lootId+"_"+level;
+    return lootId;
   };
   return my;
 }());
@@ -82,11 +118,27 @@ var Loot = (function(){
   my.getGearInfo = g => g ? [g.s0 || g.slot0, g.s1 || g.slot1, g.s2 || g.slot2] : [0, 0, 0];
   my.getSlotRarities = (id,refGear) =>
     (my.getGearInfo(id)).map(s => my.getSlotRarity(s,refGear));
-  // this doesn't try to be v1 compatible
-  my.getLootFromLootId = (id,refGear) =>{
-    if(LootV1.getIsV1(id))
+  my.getLootFromId = (id,refGear) =>{
+    // this could try to go get a lootId, why doesn't it try?
+    if(LootV1.getIsV1(id)){
+      console.warn('getLootFromId found V1Loot, ignoring', id);
+
       return null;
-    return refGear.find(g => g.lootId == id);
+    }
+    var lootId = LootV2.getLootIdFromLootIdOrCompound(id);
+    return refGear.find(g => g.lootId == lootId);
+  };
+  my.getLLevel = id => {
+    if(LootV1.getIsV1(id))
+      return LootV1.getLLevel(id);
+    return LootV2.getLLevel(id);
+  };
+  my.changeLLevel = (id,level) =>{
+    if(LootV1.getIsV1(id))
+      return LootV1.changeLLevel(id,level);
+    var result = LootV2.changeLLevel(id,level);
+    console.log('changeLLevel', id,level, result);
+    return result;
   };
   return my;
 

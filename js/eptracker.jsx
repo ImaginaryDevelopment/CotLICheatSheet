@@ -96,45 +96,46 @@ var GearSelect = props => {
   // v1/1.5 loot should be transformed on url or localstorage load
   var cruGear = props.cruGear;
   var slot = props.slot;
-  var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
-  var itemInfoV2 = cruGear["s"+slot] ? cruGear["s" + slot] : 0;
-  var gearInfoV2 = itemInfoV2 && props.gearReference && props.gearReference[3] && props.gearReference[3].find(g => g.lootId == itemInfoV2);
-  //if(!(gearInfo !=null))
-  var gearInfoV1 = itemInfo !== 0 && props.gearReference && props.gearReference[slot];
-  var gearInfo = gearInfoV2 || gearInfoV1;
+  var gearInfo = Loot.getGearInfo(cruGear);
+  var itemIdentification = gearInfo && gearInfo[slot] || 0;
+  var gearInfo = itemIdentification && props.gearReference && props.gearReference[3] && Loot.getLootFromId(itemIdentification, props.gearReference[3]);
+  var debugCruId = "15";
 
-  if(props.cruId ==="15") {
-    console.log('makeSelect', gearInfoV1, itemInfo);
-    console.log('makeSelect2', itemInfoV2, gearInfoV2);
+  if(props.cruId == debugCruId) {
     window.makeSelectGearReference = props.gearReference;
     window.gearInfo = gearInfo;
   }
   var slotGear = props.gearReference && props.gearReference[3]
     .filter(g => g.slot==slot)
     .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
-  if(props.cruId ==="18") {
-    console.log('makeSelectSlotGear',slotGear);
+  if(props.cruId == debugCruId) {
+    console.log('GearSelect.gearInfo', gearInfo, cruGear);
   }
-  var getOptionsV1 = () => props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+  // this appears to run whenever there isn't gear declared for this crusader
+  var getOptionsV1 = () =>
+    props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+
   var $options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + props.gearPossibilities[g.rarity]}</option>))
   if(slotGear)
     $options.unshift(<option key={0}>None</option>);
 
-  var rarity = !itemInfo ? 0 : (typeof(itemInfo) === "string" && itemInfo.length > 1 ? +itemInfo[0] : +itemInfo);
-  // if(typeof(ItemInfo) !== "number"){
-  //   console.log('making select for item with info', slot,itemInfo,rarity);
-  // }
-  var selectValueV = itemInfoV2 ? 2 : itemInfo ? 1 : 0;
+  var rarity = gearInfo && gearInfo.rarity || itemIdentification;
+  var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
   var selectV = (slotGear != null) ? 2 : 1;
+  var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={Loot.getLLevel(itemIdentification)} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
+  var value = gearInfo && gearInfo.lootId || itemIdentification;
+  if(props.cruId == debugCruId)
+    console.log('GearSelect', gearInfo && gearInfo.lootId, itemIdentification, value);
 
-  return (<div>
+  return (<div data-component="gearSelect">
     <select key={"gear" + slot}
-            title={JSON.stringify(gearInfoV2) + '\r\n' + JSON.stringify(itemInfoV2)}
+            title={JSON.stringify(gearInfo) + '\r\n'}
             data-valueV={selectValueV}
             data-v={selectV}
-            value={ itemInfoV2 || rarity}
+            data-value={value}
+            value={value}
             onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)}
-            name={"slot" + slot}>{$options}</select>{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+            name={"slot" + slot}>{$options}</select>{$ll}{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
 };
 
 var CruTagRowSlotGear = props =>{
@@ -143,7 +144,7 @@ var CruTagRowSlotGear = props =>{
       var cruGearQ =  Loot.getGearInfo(props.cruGear);
       if(props.cru.id==1) console.log('cruGearQ for boxes', cruGearQ);
 
-      if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
+      if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0 || typeof(cruGearQ[0])=="string" || typeof(cruGearQ[1]) == "string" || typeof(cruGearQ[2])=="string"){
         var makeBox = slot => {
           var itemRarityCompound =  cruGearQ[slot];
           var rarity = Loot.getSlotRarity(itemRarityCompound,props.cru.loot);
@@ -165,10 +166,10 @@ var CruTagRowGear = props =>{
     return null;
   // gearReference currently looks like [undefined,undefined,undefined,cruGearArray] or cruGearArray
 
-  var makeSelect = slot => (<GearSelect cruGear={props.cruGear} slot={slot} gearReference={props.gearReference} cruId={props.cruId} gearPossibilities={props.gearTypes} onGearChange={props.onGearChange} />);
+  var makeSelect = slot => (<GearSelect cruGear={props.cruGear} slot={slot} gearReference={props.gearReference} cruId={props.cruId} gearPossibilities={props.gearTypes} onGearChange={props.onGearChange} onLlChange={props.onLlChange} />);
   if(props.cruId == 15)
     console.log('CruTagRowGear', props.gearReference);
-  return (<td key="gear" data-key="gear">
+  return (<td key="gear" data-key="gear" data-component="CruTagRowGear">
               {makeSelect(0)}
               {makeSelect(1)}
               {makeSelect(2)}
@@ -198,7 +199,12 @@ var CruTagRow = React.createClass({
       if(cru.id==1) console.log('cruGear for boxes', cruGear,cru);
 
       var $slotGear = (<CruTagRowSlotGear cru={cru} cruGear={cruGear} />);
-      var $gearTd = (<CruTagRowGear mode={this.props.mode} isGearMode={this.props.isGearMode} cruGear={cruGear} gearReference={this.props.gearReference} cruId={cru.id} gearTypes={this.props.gearTypes} onGearChange={this.props.onGearChange} />);
+      // the select boxes and legendary level inputs
+      var $gearTd = (<CruTagRowGear mode={this.props.mode} isGearMode={this.props.isGearMode} cruGear={cruGear} gearReference={this.props.gearReference}
+                                    cruId={cru.id}
+                                    gearTypes={this.props.gearTypes}
+                                    onGearChange={this.props.onGearChange}
+                                    onLlChange={this.props.onLlChange} />);
 
       var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={this.props.mode} isGearMode={this.props.isGearMode} dps={this.props.dps} missionTags={this.props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={$gearTd} />);
       var $tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
@@ -241,6 +247,7 @@ var CruGridBody = props =>{
           gearReference={gearRef}
           gear={gear}
           onGearChange={props.onGearChange}
+          onLlChange={props.onLlChange}
           enchantmentPoints={props.enchantmentPoints[crusader.id]}
           effectiveEp={effectiveEP}
           onEpChange={ val => props.onEpChange(crusader.id, val)}
@@ -292,6 +299,7 @@ class CruTagGrid extends React.Component {
     this.onFormationChange = this.onFormationChange.bind(this);
     this.onOwnedChange = this.onOwnedChange.bind(this);
     this.onGearChange=this.onGearChange.bind(this);
+    this.onLlChange = this.onLlChange.bind(this);
     this.onFilterTag=this.onFilterTag.bind(this);
     window.importMe = () => this.props.updateSave({mainSelectedTab:2});
   }
@@ -372,6 +380,37 @@ class CruTagGrid extends React.Component {
       owned.splice(i,1);
     }
     this.props.updateSave({ownedCrusaderIds:owned});
+  }
+  onLlChange(cruId,slot,legendaryLevel){
+    console.log('onLlChange',arguments);
+    var stateMods ={};
+    if(!this.props.crusaderGear){
+      stateMods.crusaderGear={};
+    } else {
+      var merged = copyObject(this.props.crusaderGear);
+      stateMods.crusaderGear = merged;
+    }
+    var cruGear;
+    if(!stateMods.crusaderGear[cruId]){
+      cruGear={};
+    } else {
+      cruGear = copyObject(stateMods.crusaderGear[cruId])
+    }
+    stateMods.crusaderGear[cruId] = cruGear;
+    var prevId = cruGear["s" + slot];
+    console.log('onLlChange', prevId, legendaryLevel);
+    // is the slot vs s property distinction for when the crusader's loot isn't in data.js yet? so we know it is a rarity selection not a lootId
+    var newId = Loot.changeLLevel(prevId,legendaryLevel);
+    console.log('onLlChange', newId);
+    if(prevId === newId){
+      console.info('id is unchanged', prevId, newId);
+      return;
+    }
+    if(newId && typeof(newId) == "string" && newId.indexOf("undefined") >=0)
+      throw ("invalid newId returned" + newId);
+    stateMods.crusaderGear[cruId]["s" + slot] = newId;
+    console.log('llChangeMods',stateMods);
+    this.props.updateSave(stateMods);
   }
   onGearChange(cruId,slot,gearTypeIndex, selectV){
     console.log('onGearChange', cruId,slot, gearTypeIndex);
@@ -494,6 +533,7 @@ class CruTagGrid extends React.Component {
           isGearMode={this.props.isGearMode}
           referenceData={this.props.model}
           onGearChange={this.onGearChange}
+          onLlChange={this.onLlChange}
           isBuildingFormation={isBuildingFormation}
           mode={this.props.mode}
           onOwnedChange={this.onOwnedChange}
