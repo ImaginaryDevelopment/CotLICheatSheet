@@ -1589,7 +1589,7 @@ frosty.calculate = function() {
     frosty.globalDPS *= 1 + 2*currentWorld.countTags('supernatural')*itemAbility(frosty,0)* (1 + legendaryFactor(frosty,1));
     for (var i = 0; i < adjacent.length; i++) {
       var adjCruId = app.formationIds[adjacent[i]];
-      if (adjCruId) { 
+      if (adjCruId) {
         numAdjacent += 1;
       }
     }
@@ -2052,6 +2052,8 @@ eiralon.calculate = function() {
             f.calculate();
           } catch(ex){
             console.error('failed to calculate for ', f);
+            if(app.throw === true)
+              throw ex;
           }
 
         console.log('formation calculate', globalDPS, f);
