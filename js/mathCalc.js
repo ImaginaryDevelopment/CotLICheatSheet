@@ -198,7 +198,7 @@ var getRarity = (loot,lootId) => {
     if(!(item != null))
       return 0;
     if (item.level >= 1) {
-     return Math.pow(2,legendaryLevel-1);
+     return Math.pow(2,item.level-1);
    } else {
      return 0;
    }
