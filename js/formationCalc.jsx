@@ -1,12 +1,14 @@
 (app =>{
+    
     app.WorldsWake = class WorldsWake extends React.Component{
-        constructor(){
+        constructor(props){
             super()
-            this.state = this.getInitialState();
+            this.getInitialState = this.getInitialState.bind(this);
+            this.state = this.getInitialState(props);
         }
-        getInitialState(){
+        getInitialState(props){
             var data = app.calculateMultipliers();
-            return {formation:app.formation, dps:data.globalDps, dpsCruId:null, gold:null};
+            return {formation:props.formation, dps:data.globalDps, dpsCruId:null, gold:null};
         }
         calculateMyMultipliers(stateMods){
                 var data = app.calculateMultipliers();
@@ -19,32 +21,35 @@
         render(){
             var changeFormation = slotNumber => cruId => {
                 var crusader = getCrusader(cruId);
-                // if the crusader is already in a different slot, remove him from there, swap with the one that is there.
-                app.formation.map((c,i) => {
-                    if (c == crusader && i != slotNumber && (cruId != null && cruId != "0"))
-                    {
-                        if(app.formation[i])
-                            app.formation[i].spot = null;
-                        app.formation[i]= app.formation[slotNumber];
-                        if(app.formation[i])
-                            app.formation[i].spot = i;
-                    }
-                });
-                if(app.formation[slotNumber] && app.formation[slotNumber].spot == slotNumber)
-                    app.formation[slotNumber].spot = undefined;
-                app.formation[slotNumber]=crusader;
+                var slotCru = getCrusader(app.formationIds[slotNumber]);
+                if(slotCru && slotCru.spot == slotNumber)
+                    slotCru.spot = undefined;
+                app.formationIds[slotNumber]=cruId;
+                this.props.onFormationChange(slotNumber,cruId);
                 if(crusader != null)
                     crusader.spot = slotNumber;
                 var stateMods = this.calculateMyMultipliers();
-                stateMods[slotNumber] = cruId;
+                if(!stateMods.formation)
+                {
+                    stateMods.formation = this.state.formation.slice(0) || []; 
+                    if(stateMods.formation.length < currentWorld.spots){
+                        for(var i=0;i<currentWorld.spots;i++) {
+                            stateMods.formation.push(null);
+                        }
+                    }
+                }
+                stateMods.formation[slotNumber] = cruId;
+                console.log('changedFormation', stateMods);
                 this.setState(stateMods);
             };
             var makeHeroSelect = slotNumber => {
-                var selectedCru = app.formation[slotNumber];
+                var selectedCruId = this.state.formation[slotNumber];
+                var selectedCru = getCrusader(selectedCruId);
+
                 var cruGearQ = selectedCru && app.crusaderGear[selectedCru.id];
                 var availableCrusaders = jsonData.crusaders.filter(cru =>
                     // crusaders in slots that aren't in formation
-                    formation.filter(f => f != null).find(f=> f.slot == cru.slot) == null
+                    this.state.formation.filter(f => f != null).find(f=> f.slot == cru.slot) == null
                     || selectedCru == cru
 
                 );
@@ -62,9 +67,9 @@
                 </div>);
             };
             var dpsSelector = (
-                <HeroSelect crusaders={jsonData.crusaders.filter(cru => formation.filter(f => f != null).findIndex( f => f.id == cru.id) >= 0)} onHeroChange={cruId => {
+                <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.state.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)} onHeroChange={cruId => {
                     app.formationDps = getCrusader(cruId);
-                    formation.filter(f => f != null).map(cru => cru.isDPS = false);
+                    this.state.formation.filter(f => f != null).map(cruId => getCrusader(cruId).isDPS = false);
                     app.setDPS(null, cruId);
                     app.calculateMultipliers();
                     var stateMods = this.calculateMyMultipliers();
@@ -114,8 +119,45 @@
     };
     app.FormationCalc = class FormationCalc extends React.Component{
         constructor(){
+            console.log('creating a formationCalc!');
             super();
-            this.state = {selectedWorld:"World's Wake'"};
+            this.getInitialState = this.getInitialState.bind(this);
+            this.onFormationChange = this.onFormationChange.bind(this);
+            this.storageKey="formationCalc";
+            this.state = this.getInitialState();
+        }
+        getInitialState(){
+            var initial = readIt(this.storageKey, {});
+            if(!(initial.selectedWorld != null))
+                initial.selectedWorld = "World's Wake";
+            if(!(initial.formation != null) || !Array.isArray(initial.formation))
+            {
+                initial.formation = [];
+                for(var i=0;i<currentWorld.spots;i++) {
+                    initial.formation.push(null);
+                }
+            }
+
+            // copy state out to global shared for calc
+            // does this work, or has the calc already closed over the actual array it will use?
+            app.formationIds = initial.formation;
+            if(initial.dpsChar)
+                setDPS(initial.dpsChar);
+            console.log('formationCalc', initial);
+            return initial;
+        }
+        onFormationChange(slot,cruId){
+            var stateMods = {};
+            stateMods.formation = (this.state.formation || []).slice(0);
+            stateMods.formation[slot] = cruId;
+            this.setState(stateMods);
+        }
+        componentDidUpdate(prevProps, prevState){
+            console.log('formationCalc componentDidUpdate');
+            if(prevState!= this.state){
+                storeIt(this.storageKey, this.state);
+                window.formationCalcState = this.state;
+            }
         }
         render(){
             var worlds = [
@@ -123,7 +165,7 @@
             ];
             var formation;
             if(this.state.selectedWorld == "World's Wake");
-            formation = <WorldsWake />;
+                formation = <WorldsWake formation={this.state.formation} onFormationChange={this.onFormationChange} />
             return (<div>
                 <select>
                 {
