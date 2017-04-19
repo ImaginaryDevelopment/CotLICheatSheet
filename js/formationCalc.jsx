@@ -1,5 +1,5 @@
 (app =>{
-    
+
     app.WorldsWake = class WorldsWake extends React.Component{
         constructor(props){
             super()
@@ -31,7 +31,7 @@
                 var stateMods = this.calculateMyMultipliers();
                 if(!stateMods.formation)
                 {
-                    stateMods.formation = this.state.formation.slice(0) || []; 
+                    stateMods.formation = this.state.formation.slice(0) || [];
                     if(stateMods.formation.length < currentWorld.spots){
                         for(var i=0;i<currentWorld.spots;i++) {
                             stateMods.formation.push(null);
@@ -46,7 +46,7 @@
                 var selectedCruId = this.state.formation[slotNumber];
                 var selectedCru = getCrusader(selectedCruId);
 
-                var cruGearQ = selectedCru && app.crusaderGear[selectedCru.id];
+                var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
                 var availableCrusaders = jsonData.crusaders.filter(cru =>
                     // crusaders in slots that aren't in formation
                     this.state.formation.filter(f => f != null).find(f=> f.slot == cru.slot) == null
