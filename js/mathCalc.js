@@ -1921,16 +1921,18 @@ eiralon.calculate = function() {
       var count = 0;
       app.formationIds
         .map((cruId, i) => {
-          if(!(cruId != null))
+          if(!(cruId != null) || cruId == "0")
             return;
           var cru = app.jsonData.crusaders.find(refCru => refCru.id == cruId);
-          cru.tags.map(cruTag => {
-            if (tag == cruTag) {
+          if(cru){
+            cru.tags.map(cruTag => {
+              if (tag == cruTag) {
+                count += 1;
+              }
+            });
+            if (cru[tag]) {
               count += 1;
             }
-          });
-          if (cru[tag]) {
-            count += 1;
           }
         });
       return count;
