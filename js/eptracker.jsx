@@ -92,6 +92,51 @@ var CruTagRowTagsOrGear = props =>{
       return props.gearTd;
 };
 
+var GearSelect = props => {
+  // v1/1.5 loot should be transformed on url or localstorage load
+  var cruGear = props.cruGear;
+  var slot = props.slot;
+  var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
+  var itemInfoV2 = cruGear["s"+slot] ? cruGear["s" + slot] : 0;
+  var gearInfoV2 = itemInfoV2 && props.gearReference && props.gearReference[3] && props.gearReference[3].find(g => g.lootId == itemInfoV2);
+  //if(!(gearInfo !=null))
+  var gearInfoV1 = itemInfo !== 0 && props.gearReference && props.gearReference[slot];
+  var gearInfo = gearInfoV2 || gearInfoV1;
+
+  if(props.cru.id ==="15") {
+    console.log('makeSelect', gearInfoV1, itemInfo);
+    console.log('makeSelect2', itemInfoV2, gearInfoV2);
+    window.makeSelectGearReference = props.gearReference;
+    window.gearInfo = gearInfo;
+  }
+  var slotGear = props.gearReference && props.gearReference[3]
+    .filter(g => g.slot==slot)
+    .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
+  if(props.cru.id ==="18") {
+    console.log('makeSelectSlotGear',slotGear);
+  }
+  var getOptionsV1 = () => props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+  var $options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + props.gearPossibilities[g.rarity]}</option>))
+  if(slotGear)
+    $options.unshift(<option key={0}>None</option>);
+
+  var rarity = !itemInfo ? 0 : (typeof(itemInfo) === "string" && itemInfo.length > 1 ? +itemInfo[0] : +itemInfo);
+  // if(typeof(ItemInfo) !== "number"){
+  //   console.log('making select for item with info', slot,itemInfo,rarity);
+  // }
+  var selectValueV = itemInfoV2 ? 2 : itemInfo ? 1 : 0;
+  var selectV = (slotGear != null) ? 2 : 1;
+
+  return (<div>
+    <select key={"gear" + slot}
+            title={JSON.stringify(gearInfoV2) + '\r\n' + JSON.stringify(itemInfoV2)}
+            data-valueV={selectValueV}
+            data-v={selectV}
+            value={ itemInfoV2 || rarity}
+            onChange={e => props.onGearChange(props.cru.id, slot, e.target.value, selectV)}
+            name={"slot" + slot}>{$options}</select>{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+};
+
 var CruTagRow = React.createClass({
     render: function () {
       var self = this;
@@ -141,48 +186,7 @@ var CruTagRow = React.createClass({
             console.log('slotGear',slotGear,cruGear,cruGearQ);
           }
 
-        var makeSelect = slot => {
-          // v1/1.5 loot should be transformed on url or localstorage load
-          var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
-          var itemInfoV2 = cruGear["s"+slot] ? cruGear["s" + slot] : 0;
-          var gearInfoV2 = itemInfoV2 && this.props.gearReference && this.props.gearReference[3] && this.props.gearReference[3].find(g => g.lootId == itemInfoV2);
-          //if(!(gearInfo !=null))
-          var gearInfoV1 = itemInfo !== 0 && this.props.gearReference && this.props.gearReference[slot];
-          var gearInfo = gearInfoV2 || gearInfoV1;
-
-          if(cru.id ==="15") {
-            console.log('makeSelect', gearInfoV1, itemInfo);
-            console.log('makeSelect2', itemInfoV2, gearInfoV2);
-            window.makeSelectGearReference = this.props.gearReference;
-            window.gearInfo = gearInfo;
-          }
-          var slotGear = this.props.gearReference && this.props.gearReference[3]
-            .filter(g => g.slot==slot)
-            .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
-          if(cru.id ==="18") {
-            console.log('makeSelectSlotGear',slotGear);
-          }
-          var getOptionsV1 = () => gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
-          var options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + gearPossibilities[g.rarity]}</option>))
-          if(slotGear)
-            options.unshift(<option key={0}>None</option>);
-
-          var rarity = !itemInfo ? 0 : (typeof(itemInfo) === "string" && itemInfo.length > 1 ? +itemInfo[0] : +itemInfo);
-          // if(typeof(ItemInfo) !== "number"){
-          //   console.log('making select for item with info', slot,itemInfo,rarity);
-          // }
-          var selectValueV = itemInfoV2 ? 2 : itemInfo ? 1 : 0;
-          var selectV = (slotGear != null) ? 2 : 1;
-
-          return (<div>
-            <select key={"gear" + slot}
-                    title={JSON.stringify(gearInfoV2) + '\r\n' + JSON.stringify(itemInfoV2)}
-                    data-valueV={selectValueV}
-                    data-v={selectV}
-                    value={ itemInfoV2 || rarity}
-                    onChange={e => this.props.onGearChange(cru.id, slot, e.target.value, selectV)}
-                    name={"slot" + slot}>{options}</select>{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
-        }
+        var makeSelect = slot => (<GearSelect cruGear={cruGear} slot={slot} gearReference={this.props.gearReference} cru={cru} gearPossibilities={gearPossibilities} onGearChange={this.props.onGearChange} />);
         gearTd = (<td key="gear" data-key="gear">
                     {makeSelect(0)}
                     {makeSelect(1)}
@@ -190,6 +194,7 @@ var CruTagRow = React.createClass({
                     </td>);
 
       }
+      // var $gearTd = (<GearTd />);
       var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={this.props.mode} isGearMode={this.props.isGearMode} dps={this.props.dps} missionTags={this.props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={gearTd} />);
       var tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
       var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
