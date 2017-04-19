@@ -39,7 +39,9 @@ var LootV1 = (function () {
   my.changeLLevel = (id,level) =>{
     var rarity = my.getSlotRarity(id);
     var isGolden = my.getIsGolden(id);
-    return rarity + (isGolden? "g" : "_") + level;
+    var result = rarity + (isGolden? "g" : "_") + level;
+    console.log('LootV1.changeLLevel', id,level,rarity,isGolden,result);
+    return result;
   }
   return my;
 }());
@@ -134,8 +136,12 @@ var Loot = (function(){
     return LootV2.getLLevel(id);
   };
   my.changeLLevel = (id,level) =>{
-    if(LootV1.getIsV1(id))
-      return LootV1.changeLLevel(id,level);
+    if(LootV1.getIsV1(id)){
+      var result = LootV1.changeLLevel(id,level);
+      console.log("Loot.V1.changeLLevel",id,level,result);
+      return result;
+    }
+    console.log('Loot.changeLLevel going V2', id,level);
     var result = LootV2.changeLLevel(id,level);
     console.log('changeLLevel', id,level, result);
     return result;
