@@ -74,10 +74,15 @@ var TextInput2 = props =>
 TextInput2.displayName = "TextInput2";
 
 // looks uncontrolled, but is not under the hood. better user experience
-app.TextInputUnc = React.createClass({
-  getInitialState(){
-    return {value:this.props.value};
-  },
+class TextInputUnc extends React.Component {
+  constructor(props){
+    super(props)
+    this.getInitialState = this.getInitialState.bind(this);
+    this.state = this.getInitialState(props);
+  }
+  getInitialState(props){
+    return {value:props.value};
+  }
   componentWillReceiveProps(nextProps){
     if(this.props.debug)
       console.log('TextInputUnc componentWillReceiveProps', this.props, nextProps);
@@ -85,7 +90,7 @@ app.TextInputUnc = React.createClass({
     if(this.props.value !== nextProps.value && this.state.value !== nextProps.value){
       this.setState({value:nextProps.value});
     }
-  },
+  }
   render(){
     var props = this.props;
     var state = this.state;
@@ -108,18 +113,24 @@ app.TextInputUnc = React.createClass({
       />
       );
   }
-});
-app.TextInputUnc.displayName = "TextInputUnc";
+};
+TextInputUnc.displayName = "TextInputUnc";
+app.TextInputUnc = TextInputUnc;
 
-app.TextAreaInputUnc = React.createClass({
-  getInitialState(){
-    return {value:this.props.value};
-  },
+class TextAreaInputUnc extends React.Component {
+  constructor(props){
+    super(props);
+    this.getInitialState = this.getInitialState.bind(this);
+    this.state = this.getInitialState(props);
+  }
+  getInitialState(props){
+    return {value:props.value};
+  }
   componentWillReceiveProps(nextProps){
     if(this.props.value !== nextProps.value && this.props.id !== nextProps.id){
       this.setState({value:nextProps.value});
     }
-  },
+  }
   render(){
     var props = this.props;
     var state = this.state;
@@ -138,23 +149,27 @@ app.TextAreaInputUnc = React.createClass({
       />
       );
   }
-});
-app.TextAreaInputUnc.displayName = "TextAreaInputUnc";
+};
+TextAreaInputUnc.displayName = "TextAreaInputUnc";
+app.TextAreaInputUnc = TextAreaInputUnc;
 
 // from https://toddmotto.com/creating-a-tabs-component-with-react/
-app.Tabs = React.createClass({
-  displayName: 'Tabs',
-  getDefaultProps(){
-    return {selected:0};
-  },
-  getInitialState(){
-    return {selected:this.props.selected};
-  },
+class Tabs extends React.Component {
+  constructor(props){
+    super(props);
+    this._renderTitles = this._renderTitles.bind(this);
+    this.getInitialState = this.getInitialState.bind(this);
+    this.state = this.getInitialState(props);
+  }
+  displayName: 'Tabs'
+  getInitialState(props){
+    return {selected:props.selected};
+  }
   componentWillReceiveProps(nextProps){
     if(nextProps.selected != this.props.selected){
       this.setState({selected:nextProps.selected});
     }
-  },
+  }
   handleClick(index,event){
     event.preventDefault();
     if(this.props.onTabChange)
@@ -162,7 +177,7 @@ app.Tabs = React.createClass({
     this.setState({
       selected: index
     });
-  },
+  }
   _renderTitles(){
     function labels(child,index){
       var activeClass = this.state.selected === index ? 'activeTab':'';
@@ -182,14 +197,14 @@ app.Tabs = React.createClass({
         </ul>
       );
 
-  },
+  }
   _renderContent(){
     return (
       <div className="tabs__content">
         {this.props.children[this.state.selected]}
       </div>
     );
-  },
+  }
   render(){
     return (
     <div className="tabs">
@@ -197,15 +212,21 @@ app.Tabs = React.createClass({
       {this._renderContent()}
     </div>);
   }
-});
-app.Pane = React.createClass({
-  displayName:'Pane',
+};
+Tabs.defaultProps = {
+  selected:0
+};
+app.Tabs = Tabs;
+
+class Pane extends React.Component {
+  displayName:'Pane'
   propTypes: {
     label: React.PropTypes.string.isRequired,
     children: React.PropTypes.element.isRequired
-  },
+  }
   render(){
     return(<div>{this.props.children}</div>);
   }
-});
+};
+app.Pane = Pane;
 })(typeof global !== 'undefined' ? global : window);
