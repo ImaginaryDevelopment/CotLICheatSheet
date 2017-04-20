@@ -103,6 +103,7 @@ module Node =
     let npmPath = lazy(Proc.findCmd "npm")
 
     // assumes the output is unimportant, just the result code
+    // aka npm install
     let npmInstall args =
         let resultCode =
             let filename, useShell =
@@ -113,7 +114,10 @@ module Node =
             trace (sprintf "npm filename is %s" filename)
             ExecProcess (fun psi ->
                 psi.FileName <- filename
-                psi.Arguments <- sprintf "install %s" args
+                psi.Arguments <-
+                    match args with
+                    | null | "" -> "install"
+                    | x -> sprintf "install %s" args
                 psi.UseShellExecute <- useShell
             ) (TimeSpan.FromMinutes 1.)
         resultCode
@@ -173,6 +177,10 @@ Target "SetupNode" (fun _ ->
     trace (sprintf "finished result Code is %A" resultCode)
     ()
 )
+Target "NpmRestore" (fun _ ->
+    Node.npmInstall null
+    |> ignore
+)
 
 Target "Babel" (fun _ ->
     // run jsx compilation
@@ -209,10 +217,19 @@ Target "Babel" (fun _ ->
     babels
     |> Seq.iter babel
 )
+Target "Test" (fun _ ->
+    let result, _ = Proc.runWithOutput "npm" "test" (TimeSpan.FromSeconds 4.)
+    result.Messages
+    |> Seq.iter (printfn "test-msg:%s")
+    if result.ExitCode <> 0 then
+        result.Errors
+        |> Seq.iter(printfn "test-err:%s")
+        failwithf "Task failed: %i" result.ExitCode
+)
 Target "Coffee" (fun _ ->
     printfn "Starting Coffee"
     let coffees = [
-        "test/test.coffee"
+        "test/eptracker.jsx.tests.coffee"
     ]
     let compileCoffee relPath =
         let result,_ = Proc.runWithOutput "node" (sprintf "node_modules/coffee-script/bin/coffee -b -m --no-header -c %s" relPath) (TimeSpan.FromSeconds 2.)
@@ -224,6 +241,7 @@ Target "Coffee" (fun _ ->
 
 // this runs npm install to download packages listed in package.json
 For "Babel" ["SetupNode"]
+For "Test" ["Babel";"Coffee"]
 Target "Default" (fun _ ->
     trace "Hello World from FAKE"
 )
