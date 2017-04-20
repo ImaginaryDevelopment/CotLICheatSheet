@@ -13,13 +13,13 @@ app.GearBox = props => {
       return null;
     var type = props.cru.gear && props.cru.gear[slot];
     var lootId =  props.cruGearQ["s" + slot];
-    var rarity = Loot.getSlotRarity(lootId, props.cru.loot);
+    var dps = props.cru["s" + slot];
+    var rarity = Loot.getRarityByItemId(lootId, props.cru.loot);
     var golden = Loot.getIsGolden(lootId, props.cru.loot) ? " golden" : "";
     var classes = "rarity rarity" + rarity + golden;
     if(props.cru.id==15)
       console.log('makeBox', props.cru.gear, props.cru);
-    console.log()
-    return (<div className={classes} title={type || "gear data for crusader not found"} />);
+    return (<div className={classes} title={(dps ? dps + " " : "") + (type || "gear data for crusader not found")} />);
   };
   var result = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
   return result;

@@ -3,15 +3,17 @@
   app.getCrusader = id => app.jsonData.crusaders.find(c =>  c.id == id);
 
   // returns the lootId, not the rarity or legendary level
-  var getLootId = (cruId, gearSlot) =>
-    app.crusaderGear &&
-    app.crusaderGear[cruId] &&
-    inspect(app.crusaderGear[cruId]["s" + gearSlot.toString()],"getLootId found gear");
-
-var getRarity = (loot,id) => {
-  var item = Loot.getLootFromId(id,loot);
-  return item && item.rarity;
-};
+  var getItemId = (cruId, gearSlot,debug = false) =>{
+    if(gearSlot != 0 && gearSlot != 1 && gearSlot != 2)
+      throw "invalid gearSlot passed";
+    var result =
+      app.crusaderGear &&
+      app.crusaderGear[cruId] &&
+      (app.crusaderGear[cruId]["s" + gearSlot.toString()] || app.crusaderGear[cruId]["slot" + gearSlot]);
+    if(debug)
+      console.log('getItemId', cruId, gearSlot, app.crusaderGear && app.crusaderGear[cruId]);
+    return result;
+  }
 
   app.crusaderSetup = crusader => {
       crusader.globalDPS = 1;
@@ -23,16 +25,24 @@ var getRarity = (loot,id) => {
       // for any dps that is zapped
       if(crusader.hasOwnProperty("zapped"))
         crusader.zapped = undefined;
-      for (var i in crusader.gear) {
+      if(!(crusader.gear != null))
+        return;
+      if(crusader.id == 15)
+        console.log('crusaderSetup', crusader.gear);
+
+      crusader.gear.map((gearType,i) =>{
+        if(crusader.id == 15)
+          console.log('crusaderSetup loop', crusader.gear, i, Array.isArray(crusader.gear));
         switch (crusader.gear[i]) {
           case "clickCrit":
             crusader.critChance += itemCrit(crusader, i);
             break;
           case "alldps":
-            var lootId = getLootId(crusader.id,i);
-            var rarity = lootId && getRarity(crusader.loot, lootId);
+            var itemId = getItemId(crusader.id,i);
+            var rarity = itemId && Loot.getRarityByItemId(itemId,crusader.loot);
             var dps = rarity && itemDPS(rarity) || 1;
-            // console.log('alldps', dps,rarity,lootId, crusader.id,i);
+            if(dps != 1)
+              crusader["s" + i] = dps;
             crusader.globalDPS *= dps;
             break;
           case "gold":
@@ -40,13 +50,21 @@ var getRarity = (loot,id) => {
             console.log("gold", crusader.globalGold,globalGold);
             break;
           case "selfdps":
+            // can be v1, or V2, compound or not
+              var itemId = getItemId(crusader.id, i);
+              var selfDpsRarity = itemId && Loot.getRarityByItemId(itemId,crusader.loot);
+              var selfIsGolden = itemId && Loot.getIsGolden(itemId,crusader.loot);
+              var selfDps = selfDpsRarity && itemSelfDPS(selfDpsRarity,selfIsGolden, crusader.id == 15);
+              if(crusader.id == 15)
+                console.log('selfdps', itemId, selfDps);
+              if((selfDps || 1) != 1)
+                crusader["s" + i] = selfDps;
             if (crusader == app.dpsChar) {
-              var lootId = getLootId(crusader.id, i);
-              crusader.globalDPS *= itemSelfDPS(crusader.loot, lootId) || 1;
+              crusader.globalDPS *= selfDps || 1;
             }
             break;
         }
-      }
+      });
   };
 
 //for adds to all crusader dps items
@@ -71,12 +89,10 @@ var getRarity = (loot,id) => {
     }
   }
 
-  function itemSelfDPS(crusader, gearSlot) {
-    var lootId = getLootId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
-    if(!(item != null))
+  function itemSelfDPS(rarity, isGolden, debug = false) {
+    if(!(rarity != null))
       return 1;
-    switch (item.rarity) {
+    switch (rarity) {
       case 1:
         return 1.25;
       case 2:
@@ -84,11 +100,11 @@ var getRarity = (loot,id) => {
       case 3:
         return 2;
       case 4:
-        if(item.golden === true)
+        if(isGolden === true)
           return 7;
         return 5;
       case 5:
-        if(item.golden === true)
+        if(isGolden === true)
           return 13;
         return 9;
       default:
@@ -97,7 +113,7 @@ var getRarity = (loot,id) => {
   }
 
   function itemGold(crusader, gearSlot) {
-    var lootId = getLootId(crusader.id, gearSlot);
+    var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
     if(!(item != null))
       return 1;
@@ -122,7 +138,7 @@ var getRarity = (loot,id) => {
   }
 
   function itemCrit(crusader, gearSlot) {
-    var lootId = getLootId(crusader.id, gearSlot);
+    var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId,crusader.loot);
     if(!(item != null))
       return 1;
@@ -147,7 +163,7 @@ var getRarity = (loot,id) => {
   }
 
   function itemAbility(crusader, gearSlot) {
-    var lootId = getLootId(crusader.id, gearSlot);
+    var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId,crusader.loot);
     if(!(item != null))
       return 1;
@@ -172,7 +188,7 @@ var getRarity = (loot,id) => {
   }
 
   function itemGreyShots(crusader, gearSlot) {
-    var lootId = getLootId(crusader.id, gearSlot);
+    var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId,crusader.loot);
     if(!(item != null))
       return 1;
@@ -193,7 +209,9 @@ var getRarity = (loot,id) => {
   }
 
   function legendaryFactor(crusader,gearSlot) {
-    var lootId = getLootId(crusader.id, gearSlot);
+    if(app.ignoreLegendaryFactor === true)
+      return 0;
+    var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
     if(!(item != null))
       return 0;
@@ -1524,7 +1542,11 @@ siri.calculate = function() {
 ////Mr. Boggins, the Substitute
 var boggins = getCrusader('17b');
 boggins.calculate = function() {
-  crusaderSetup(boggins);
+  try{
+    crusaderSetup(boggins);
+  } catch(ex){
+    console.error('boggins setup');
+  }
   var diversityCount = 0;
   if (app.dpsChar && app.dpsChar.tags.includes('animal')) {
     boggins.globalDPS *= 1 + (2 + 0.125 * currentWorld.countTags('human')) * itemAbility(boggins,0) * (1 + legendaryFactor(boggins,1));
@@ -2052,6 +2074,8 @@ eiralon.calculate = function() {
           try
           {
             f.calculate();
+            if(f.globalDPS > 1)
+              console.log('calculated ' + f.id + ', ' + f.globalDPS + ', ' + f.displayName);
           } catch(ex){
             console.error('failed to calculate for ', f);
             if(app.throw === true)

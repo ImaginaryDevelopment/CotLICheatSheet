@@ -56,7 +56,6 @@
                     || (selectedCru && selectedCru.id == cru.id)
 
                 );
-                console.log('makingHeroSelect for slotNumber', slotNumber, cruGearQ, this.state.formation, availableCrusaders);
                 return (<div>{slotNumber}
                     <HeroSelect dontSort={true}
                                 crusaders={availableCrusaders}

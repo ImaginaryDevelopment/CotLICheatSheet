@@ -2981,6 +2981,11 @@ window.jsonData =
         "male",
         "gold"
       ],
+      "gear":[
+        "alldps",
+        "magnifyCooldown",
+        "aHah"
+      ],
       "heroId": 6,
       "loot": [
         {

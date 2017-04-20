@@ -99,7 +99,7 @@ var GearSelect = props => {
   var gearInfo = Loot.getGearInfo(cruGear);
   var itemIdentification = gearInfo && gearInfo[slot] || 0;
   var gearInfo = itemIdentification && props.gearReference && props.gearReference[3] && Loot.getLootFromId(itemIdentification, props.gearReference[3]);
-  var rarity = Loot.getSlotRarity(itemIdentification, props.gearReference && props.gearReference[3]);
+  var rarity = Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]);
 
   var slotGear = props.gearReference && props.gearReference[3]
     .filter(g => g.slot==slot)
@@ -115,7 +115,7 @@ var GearSelect = props => {
   var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
   var selectV = (slotGear != null) ? 2 : 1;
   var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={Loot.getLLevel(itemIdentification)} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
-  var value = gearInfo && gearInfo.lootId || (itemIdentification && Loot.getSlotRarity(itemIdentification));
+  var value = gearInfo && gearInfo.lootId || (itemIdentification && Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]));
 
   return (<div data-component="gearSelect">
     <select key={"gear" + slot}
@@ -137,7 +137,7 @@ var CruTagRowSlotGear = props =>{
       if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0 || typeof(cruGearQ[0])=="string" || typeof(cruGearQ[1]) == "string" || typeof(cruGearQ[2])=="string"){
         var makeBox = slot => {
           var itemRarityCompound =  cruGearQ[slot];
-          var rarity = Loot.getSlotRarity(itemRarityCompound,props.cru.loot);
+          var rarity = Loot.getRarityByItemId(itemRarityCompound,props.cru.loot);
           var golden = Loot.getIsGolden(itemRarityCompound, props.cru.loot) ? " golden" : "";
           var classes = "rarity rarity" + rarity + golden;
           return (<div className={classes} />);

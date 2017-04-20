@@ -19,7 +19,7 @@ var LootV1 = (function () {
     }
     return false;
   };
-  my.getSlotRarity = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof (itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
+  my.getRarityByItemId = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof (itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
   my.getIsGolden = itemRarityCompound => !(itemRarityCompound != null) || typeof (itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
   my.getLLevel = (id) =>{
     if(!id)
@@ -37,7 +37,7 @@ var LootV1 = (function () {
 
   }
   my.changeLLevel = (id,level) =>{
-    var rarity = my.getSlotRarity(id);
+    var rarity = my.getRarityByItemId(id);
     var isGolden = my.getIsGolden(id);
     var result = rarity + (isGolden? "g" : "_") + level;
     console.log('LootV1.changeLLevel', id,level,rarity,isGolden,result);
@@ -59,7 +59,7 @@ var LootV2 = (function () {
     }
     return lootId;
   };
-  my.getSlotRarity = (refGear,lootIdOrCompound) => {
+  my.getRarityByItemId = (lootIdOrCompound,refGear) => {
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
     var item = refGear.find(g => g.lootId==lootId);
     return item && item.rarity;
@@ -71,7 +71,7 @@ var LootV2 = (function () {
   };
   // how would we define a V2? as a valid lootId or an item obtained from looking up the lootId?
   // my.getIsV2 = ???
-  my.getSlotRarity = (refGear,lootIdOrCompound) =>{
+  my.getRarityByItemId = (lootIdOrCompound,refGear) =>{
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
     var item = refGear.find(g => g.lootId == lootId);
     return item && item.rarity;
@@ -100,13 +100,13 @@ var LootV2 = (function () {
 var Loot = (function(){
   var my = {};
   // id can be V1 compound, lootId, or lootIdCompound (containing legendary level)
-  my.getSlotRarity = (id,refGear) => {
+  my.getRarityByItemId = (id,refGear) => {
     if(!(id != null))
       return null;
     if(LootV1.getIsV1(id)) {
-      return LootV1.getSlotRarity(id);
+      return LootV1.getRarityByItemId(id);
     }
-    return LootV2.getSlotRarity(refGear, id);
+    return LootV2.getRarityByItemId(id,refGear);
   };
   my.getIsGolden = (id,refGear) =>{
     if(!(id != null))
@@ -119,7 +119,7 @@ var Loot = (function(){
   // return either the rarity compound like we used to store, or the lootId
   my.getGearInfo = g => g ? [g.s0 || g.slot0, g.s1 || g.slot1, g.s2 || g.slot2] : [0, 0, 0];
   my.getSlotRarities = (id,refGear) =>
-    (my.getGearInfo(id)).map(s => my.getSlotRarity(s,refGear));
+    (my.getGearInfo(id)).map(s => my.getRarityByItemId(s,refGear));
   my.getLootFromId = (id,refGear) =>{
     // this could try to go get a lootId, why doesn't it try?
     if(LootV1.getIsV1(id)){
@@ -161,7 +161,7 @@ var decomposeSlotRarity = itemRarityCompound => {
   return info;
 };
 var getSlotRarities = (gear, refGear) =>
-  (Loot.getGearInfo(gear)).map(s => Loot.getSlotRarity(s, refGear));
+  (Loot.getGearInfo(gear)).map(s => Loot.getRarityByItemId(s, refGear));
 
 
 
