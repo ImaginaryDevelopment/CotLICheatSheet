@@ -9,6 +9,13 @@ open Fake
 let buildDir = "./bin/"
 let flip f y x = f x y
 let warn msg = trace (sprintf "WARNING: %s" msg)
+let (|EndsWithI|_|) (s:string) (x:string) =
+    match x with
+    | null | "" -> None
+    | x when x.EndsWith(s, StringComparison.InvariantCultureIgnoreCase) ->
+        Some ()
+    | _ -> None
+
 
 type System.String with
     static member Delimit delimiter (items:string seq) =
@@ -172,11 +179,23 @@ Target "Babel" (fun _ ->
     let babels = [
         "src/eptracker.jsx"
         "src/talentcalc.jsx"
+        "src/needsBabel.js"
     ]
+    let getJsDir path =
+        Path.GetDirectoryName path
+        |> fun x -> Path.Combine(x, "js")
     let babel relPath =
         let targetPath =
             let fullPath = Path.GetFullPath relPath
-            Path.Combine(fullPath |> Path.GetDirectoryName, fullPath |> Path.GetFileNameWithoutExtension |> flip (+) ".react.js")
+            match fullPath with
+            |EndsWithI ".jsx" ->
+                ".react.js"
+            | x -> Path.GetExtension x
+            |> sprintf "%s%s" (fullPath |> Path.GetFileNameWithoutExtension)
+            |> fun x ->
+                let destination = Path.Combine(fullPath |> Path.GetDirectoryName |> getJsDir, x)
+                printfn "destination:%s" destination
+                destination
         let result,_ = Proc.runWithOutput "node" (sprintf "node_modules/babel-cli/bin/babel %s -o %s -s --presets react" relPath targetPath) (TimeSpan.FromSeconds 2.)
         if result.ExitCode <> 0 then
             result.Messages

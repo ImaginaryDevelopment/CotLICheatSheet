@@ -1,5 +1,0 @@
-// @flow
-function (n:number){
-
-
-}
