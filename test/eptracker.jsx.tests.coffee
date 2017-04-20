@@ -1,6 +1,8 @@
 #mocha
 assert = require 'assert'
 
+# import { React } from 'react'
+
 # hello world test, make sure that a simple test works
 describe 'Array',
   () ->
@@ -8,6 +10,16 @@ describe 'Array',
       () ->
         it 'should return -1 when the value is not present',
           () -> assert.equal -1, [1,2,3].indexOf 4
+
+global.React = require('react')
+
+global.ReactDOM = require('react-dom')
+
+# React = require 'react'
+# # React = react.React
+# reactDom = require 'react-dom'
+
+global.jsonData = {}
 eptracker = require '../js/eptracker.react.js'
 describe 'getCrusaderDps',
     () ->
