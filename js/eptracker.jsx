@@ -10,31 +10,27 @@ var getCrusaderDps = function(crusader){
   var alldps = crusader.upgrades.alldps ? crusader.upgrades.alldps.reduce(add) : 0;
   return crusader.upgrades.selfdps ? crusader.upgrades.selfdps.reduce(add) + +alldps : null;
 };
-var Filter = React.createClass({
-  render:function(){
+var Filter = props =>
+{
     var filterClasses =
-      this.props.on == 1 ? "fa fa-fw fa-filter active"
-      : this.props.on == 0 || !(this.props.on != null) ? "fa fa-fw fa-filter" :
+      props.on == 1 ? "fa fa-fw fa-filter active"
+      : props.on == 0 || !(props.on != null) ? "fa fa-fw fa-filter" :
       "fa fa-fw fa-filter activeNegative";
-    return (<i className={filterClasses} onClick={this.props.filterClick}></i>);
-  }
-});
-var CheckBox = React.createClass({
-  render:function(){
-    return (<input type="checkbox" onChange={this.props.onChange} disabled={this.props.disabled} checked={this.props.checked} readOnly={this.props.readonly}  />)
-  }
-});
-var TagsTd = React.createClass({
-  render:function(){
-      var self = this;
-      var cru = this.props.crusader;
+    return (<i className={filterClasses} onClick={props.filterClick}></i>);
+};
+
+var CheckBox = props =>
+  (<input type="checkbox" onChange={props.onChange} disabled={props.disabled} checked={props.checked} readOnly={props.readonly} />);
+
+var TagsTd = props => {
+      var cru = props.crusader;
       var tags = [];
-      this.props.missionTags.map(function(tag){
+      props.missionTags.map(function(tag){
           var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
           var title = tag.displayName;
           switch (tag.id){
             case "dps":
-              title += ':' + self.props.dps;
+              title += ':' + props.dps;
             break;
             case "event":
               if(cru.event){
@@ -43,7 +39,7 @@ var TagsTd = React.createClass({
             break;
           }
           tag.id === "dps" ? tag.displayName  : tag.displayName;
-          var imgTag = (<img key={tag.id} src={self.props.baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
+          var imgTag = (<img key={tag.id} src={props.baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
           if(tag.id === "event" && cru.eventLink){
             tags.push(<a key={tag.id} className="tooltip" href={cru.eventLink}>{imgTag}</a>);
           } else {
@@ -51,14 +47,16 @@ var TagsTd = React.createClass({
           }
       });
       return (<td key="tags" className="tags" data-key="tags">{tags}</td>);
-  }
-});
+};
+TagsTd.displayName = 'TagsTd';
+
 var CruTagRowFormationEpBox = props =>
       props.isEpMode && props.isOwned ? (
         <div className="ep"><TextInputUnc type="number" min="0" readonly={getIsUrlLoaded()} onChange={props.onEpChange} className={["medium"]} value={props.enchantmentPoints} />
           {props.effectiveEp && !Number.isNaN(props.effectiveEp) ? (<div className="sharedEp">Shared:{props.effectiveEp}</div>) : null}
         </div>)
         : null;
+CruTagRowFormationEpBox.displayName = 'CruTagRowFormationEpBox';
 
 var CruTagRowFormation = props =>(
   props.mode ==="mine" && props.isFormationMode ?
@@ -68,6 +66,7 @@ var CruTagRowFormation = props =>(
             {props.epBox}
           </td>)
         : null);
+CruTagRowFormation.displayName = 'CruTagRowFormation';
 
 var CruTagRowOwned = props =>{
   if(props.mode !== "mine" || props.isFormationMode)
@@ -163,35 +162,33 @@ var CruTagRowGear = props =>{
 };
 CruTagRowGear.displayName = "CruTagRowGear";
 
-var CruTagRow = React.createClass({
-    render: function () {
-      var self = this;
-      var cru = this.props.crusader;
+var CruTagRow = props => {
+      var cru = props.crusader;
       var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
       var $image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
-      var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
-      var $epBox = (<CruTagRowFormationEpBox isEpMode={this.props.isEpMode} isOwned={isOwned} onEpChange={this.props.onEpChange} enchantmentPoints={this.props.enchantmentPoints} effectiveEp={this.props.effectiveEp} />);
-      var $formation = (<CruTagRowFormation mode={this.props.mode} isFormationMode={this.props.isFormationMode} cru={cru} formationIds={this.props.formationIds} onFormationChange={this.props.onFormationChange}
+      var isOwned = props.owned || cru.slot == cru.id && cru.slot < 21;
+      var $epBox = (<CruTagRowFormationEpBox isEpMode={props.isEpMode} isOwned={isOwned} onEpChange={props.onEpChange} enchantmentPoints={props.enchantmentPoints} effectiveEp={props.effectiveEp} />);
+      var $formation = (<CruTagRowFormation mode={props.mode} isFormationMode={props.isFormationMode} cru={cru} formationIds={props.formationIds} onFormationChange={props.onFormationChange}
         epBox={$epBox}
         />);
-      var $owned = (<CruTagRowOwned mode={this.props.mode} isFormationMode={this.props.isFormationMode} cru={cru} owned={isOwned} epBox={$epBox} onOwnedChange={this.props.onOwnedChange} />);
-      var link = cru.link && cru.link.indexOf('/') < 0 ? (self.props.wikibase + cru.link)
+      var $owned = (<CruTagRowOwned mode={props.mode} isFormationMode={props.isFormationMode} cru={cru} owned={isOwned} epBox={$epBox} onOwnedChange={props.onOwnedChange} />);
+      var link = cru.link && cru.link.indexOf('/') < 0 ? (props.wikibase + cru.link)
         : cru.link ?
           cru.link
-        : self.props.wikibase + cru.displayName.replace(" ","_");
+        : props.wikibase + cru.displayName.replace(" ","_");
 
-      var cruGear = this.props.gear ? this.props.gear : {};
+      var cruGear = props.gear ? props.gear : {};
 
       var $slotGear = (<CruTagRowSlotGear cru={cru} cruGear={cruGear} />);
       // the select boxes and legendary level inputs
-      var $gearTd = (<CruTagRowGear mode={this.props.mode} isGearMode={this.props.isGearMode} cruGear={cruGear} gearReference={this.props.gearReference}
+      var $gearTd = (<CruTagRowGear mode={props.mode} isGearMode={props.isGearMode} cruGear={cruGear} gearReference={props.gearReference}
                                     cruId={cru.id}
-                                    gearTypes={this.props.gearTypes}
-                                    onGearChange={this.props.onGearChange}
-                                    onLlChange={this.props.onLlChange} />);
+                                    gearTypes={props.gearTypes}
+                                    onGearChange={props.onGearChange}
+                                    onLlChange={props.onLlChange} />);
 
-      var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={this.props.mode} isGearMode={this.props.isGearMode} dps={this.props.dps} missionTags={this.props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={$gearTd} />);
-      var $tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
+      var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={props.mode} isGearMode={props.isGearMode} dps={props.dps} missionTags={props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={$gearTd} />);
+      var $tagCountColumn = props.mode !== "mine" || !props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
       var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
       return (<tr className={trClasses}>
           {$formation}
@@ -202,51 +199,48 @@ var CruTagRow = React.createClass({
           {$tagsOrGearColumn}
           {$tagCountColumn}
       </tr>);
-    }
-});
+};
 
 var CruGridBody = props =>{
-  var self = {props:props};
 
   var rows = props.sortedCrusaders
-        .map(function(crusader){
-        // console.log('mapping a crusader!');
-        var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: {};
-        // console.log('crusader', crusader, gear);
-        var dps = getCrusaderDps(crusader);
-        var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
-        // this is wrong when crusaders are filtered
-        var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
-        var effectiveEP = calcEffectiveEP(props.sharingIsCaring, +props.enchantmentPoints[crusader.id], otherEp);
-        if(!crusader.loot || crusader.id == 1){
-          console.warn('no loot found for crusader', crusader, props.crusaderGear);
-        }
-        var gearRef = crusader.loot && [null, null, null,crusader.loot];
-
-        return (<CruTagRow key={crusader.displayName}
-          formationIds={props.formationIds}
-          isEpMode={props.isEpMode}
-          isGearMode={props.isGearMode}
-          gearTypes={props.referenceData.gearTypes}
-          gearReference={gearRef}
-          gear={gear}
-          onGearChange={props.onGearChange}
-          onLlChange={props.onLlChange}
-          enchantmentPoints={props.enchantmentPoints[crusader.id]}
-          effectiveEp={effectiveEP}
-          onEpChange={ val => props.onEpChange(crusader.id, val)}
-          isFormationMode={props.isBuildingFormation}
-          wikibase={props.referenceData.wikibase}
-          crusader={crusader}
-          dps={dps}
-          owned={owned}
-          missionTags={props.referenceData.missionTags}
-          mode={props.mode}
-          onOwnedChange={val => props.onOwnedChange(crusader,val)}
-          onFormationChange={val => props.onFormationChange(crusader,val)} />);
+      .map(function(crusader){
+      // console.log('mapping a crusader!');
+      var owned = props.ownedCrusaderIds.indexOf(crusader.id) != -1;
+      var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: {};
+      // console.log('crusader', crusader, gear);
+      var dps = getCrusaderDps(crusader);
+      var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
+      // this is wrong when crusaders are filtered
+      var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
+      var effectiveEP = calcEffectiveEP(props.sharingIsCaring, +props.enchantmentPoints[crusader.id], otherEp);
+      if(!crusader.loot || crusader.id == 1){
+        console.warn('no loot found for crusader', crusader, props.crusaderGear);
       }
-    );
+      var gearRef = crusader.loot && [null, null, null,crusader.loot];
+
+      return (<CruTagRow key={crusader.displayName}
+        formationIds={props.formationIds}
+        isEpMode={props.isEpMode}
+        isGearMode={props.isGearMode}
+        gearTypes={props.referenceData.gearTypes}
+        gearReference={gearRef}
+        gear={gear}
+        onGearChange={props.onGearChange}
+        onLlChange={props.onLlChange}
+        enchantmentPoints={props.enchantmentPoints[crusader.id]}
+        effectiveEp={effectiveEP}
+        onEpChange={ val => props.onEpChange(crusader.id, val)}
+        isFormationMode={props.isBuildingFormation}
+        wikibase={props.referenceData.wikibase}
+        crusader={crusader}
+        dps={dps}
+        owned={owned}
+        missionTags={props.referenceData.missionTags}
+        mode={props.mode}
+        onOwnedChange={val => props.onOwnedChange(crusader,val)}
+        onFormationChange={val => props.onFormationChange(crusader,val)} />);
+  });
   return (
    <tbody>
     {rows}
@@ -272,20 +266,11 @@ var getSortUpdate = (name, value) => {
 class CruTagGrid extends React.Component {
   constructor(){
     super();
-    this.onSlotSortClick = this.onSlotSortClick.bind(this);
-    this.onEpSortClick = this.onEpSortClick.bind(this);
-    this.onNameSortClick = this.onNameSortClick.bind(this);
-    this.filterOwnedClick = this.filterOwnedClick.bind(this);
-    this.onModeChangeClicked = this.onModeChangeClicked.bind(this);
-    this.onEpClick = this.onEpClick.bind(this);
-    this.onFormationClick = this.onFormationClick.bind(this);
-    this.onGearClick = this.onGearClick.bind(this);
-    this.onEpChange = this.onEpChange.bind(this);
-    this.onFormationChange = this.onFormationChange.bind(this);
-    this.onOwnedChange = this.onOwnedChange.bind(this);
-    this.onGearChange=this.onGearChange.bind(this);
-    this.onLlChange = this.onLlChange.bind(this);
-    this.onFilterTag=this.onFilterTag.bind(this);
+    Object.getOwnPropertyNames(CruTagGrid.prototype).filter(x => x != "constructor").map(x => {
+      if(typeof(this[x]) === "function")
+        this[x] = this[x].bind(this);
+    });
+    console.log('getOwnPropertySymbols', Object.getOwnPropertySymbols(this));
     window.importMe = () => this.props.updateSave({mainSelectedTab:2});
   }
   onSlotSortClick(){
