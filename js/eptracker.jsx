@@ -264,8 +264,8 @@ var getSortUpdate = (name, value) => {
 
 // get most of the state out of here, so more display stuff can be attached, leave things that don't need to be stored in state
 class CruTagGrid extends React.Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     Object.getOwnPropertyNames(CruTagGrid.prototype).filter(x => x != "constructor").map(x => {
       if(typeof(this[x]) === "function")
         this[x] = this[x].bind(this);
@@ -301,7 +301,7 @@ class CruTagGrid extends React.Component {
     this.props.updateSave(saveMods);
   }
   onGearClick(){
-    var stateMods = {isGearMode: this.props.isGearMode? false: true};
+    var stateMods = {isGearMode: this.props.isGearMode ? false: true};
     console.log('gearClick', stateMods);
     this.props.updateSave(stateMods);
   }
@@ -518,28 +518,27 @@ class CruTagGrid extends React.Component {
 }
 
 // data pull
-var HeroGameData = React.createClass({
-  render(){
+var HeroGameData = props => {
     console.log('rendering hero game data');
     //legacy data/usage would not have these in state (but also legacy data shouldn't be stored anywhere in prod)
-    // if(!this.props.mappedHeroes)
+    // if(!props.mappedHeroes)
     //   return null;
-    // if(! this.props.mappedLoot)
+    // if(! props.mappedLoot)
     //   return null;
-    var gear = this.props.mappedLoot && this.props.mappedLoot.gear || [];
+    var gear = props.mappedLoot && props.mappedLoot.gear || [];
 
-    var heroLIs = this.props.mappedHeroes? this.props.mappedHeroes.map(h =>
+    var heroLIs = props.mappedHeroes? props.mappedHeroes.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
     ): [];
     console.log('HeroGameData', gear);
     var gearLIs = gear.map(l =>
       (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
     );
-    var loot = this.props.mappedLoot && this.props.mappedLoot.items || [];
+    var loot = props.mappedLoot && props.mappedLoot.items || [];
     var lootLIs = loot.map(l =>{
       return (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>);
     });
-    var talents = this.props.mappedTalents || [];
+    var talents = props.mappedTalents || [];
     var talentLIs = talents.map(t =>
       (<li data-key={t.talentId} key={t.talentId}>{JSON.stringify(t)}</li>)
     );
@@ -547,7 +546,7 @@ var HeroGameData = React.createClass({
     // consider maping the parsed raw section collapsible at least at the highest level
 
     return (<div>
-        <button onClick={() => this.props.onImportGameDataClick(this.props.mappedHeroes,this.props.mappedLoot, this.props.mappedTalents)}>import</button>
+        <button onClick={() => props.onImportGameDataClick(props.mappedHeroes,props.mappedLoot, props.mappedTalents)}>import</button>
         <Tabs>
           <Pane label="Heroes and EP">
             <div><div>{ heroLIs.length + " items"}</div>
@@ -579,12 +578,13 @@ var HeroGameData = React.createClass({
             </div>
           </Pane>
           <Pane label="Parsed Raw">
-              <pre>{JSON.stringify(this.props.data,null,2)}</pre>
+              <pre>{JSON.stringify(props.data,null,2)}</pre>
           </Pane>
         </Tabs>
     </div>);
-  }
-});
+};
+HeroGameData.displayName = 'HeroGameData';
+
 var LegendaryReduction = props =>
 props.legendaryReductionDate ?
   (<div className="onGreen">Legendary Cost Reduction at {props.legendaryReductionDate.toLocaleString()}</div>)
@@ -647,7 +647,16 @@ var provideSavedDefaults = saved => {
       saved.filterOwned = 0;
 };
 
-var CruApp = React.createClass({
+class CruApp extends React.Component {
+  constructor(props){
+    // duh-duh-duh-duh SUPER PROPS!
+    super(props);
+    Object.getOwnPropertyNames(CruApp.prototype).filter(x => x != "constructor").map(x => {
+      if(typeof(this[x]) === "function")
+        this[x] = this[x].bind(this);
+    });
+    this.state = this.getInitialState();
+  }
   getInitialState(){
     if (Clipboard){
       window.clipboard = new Clipboard('.btn');
@@ -679,13 +688,13 @@ var CruApp = React.createClass({
     // this is convienent for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
     window.saved = state.saved;
     return state;
-  },
-  componentDidUpdate:function(prevProps, prevState){
+  }
+  componentDidUpdate(prevProps, prevState){
     if(prevState.saved != this.state.saved){
       cruTagGrid.store(this.state.saved);
       window.saved = this.state.saved;
     }
-  },
+  }
   loadNetworkData(parsedOrUnparsedData){
     // console.log('loadNetworkData',parsedOrUnparsedData);
     var json = typeof(parsedOrUnparsedData) != "string" ? parsedOrUnparsedData : null;
@@ -718,7 +727,7 @@ var CruApp = React.createClass({
     var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
     console.log('loadNetworkData setting state', stateMods);
     this.setState(stateMods);
-  },
+  }
   // network-data importer
   findNetworkData(){
     if(this.state.networkDataRaw)
@@ -770,11 +779,11 @@ var CruApp = React.createClass({
     }
     else
       return;
-  },
+  }
   onClearGameDataParseClick(){
     console.log('onClearGameDataParseClick');
     this.setState({networkDataJson:null});
-  },
+  }
   // network data merge method
   onImportGameDataClick(heroes,loot,talents){
     // heroes looks like this:
@@ -814,14 +823,14 @@ var CruApp = React.createClass({
 
     this.setState({saved:data});
 
-  },
+  }
   changeSaveState(newData){
     var merged = this.mergeSaveState(newData);
     console.log('changeSaveState',merged);
     this.setState({saved: merged});
     cruTagGrid.store(merged);
     window.saved = merged;
-  },
+  }
   onImportSiteStateClick(){
     console.log('onImportSiteStateClick',arguments);
     // this does an overwrite, not a merge, perhaps allow a merge button?
@@ -845,10 +854,10 @@ var CruApp = React.createClass({
       // this should be able to be removed once we find out why it is putting things in a bad state
       window.location.reload(false);
     }
-  },
+  }
   importAppState(data,reload){
     if(!data && getIsLocalFileSystem())
-    throw "importAppState called without any data";
+      throw "importAppState called without any data";
     if(!data)
       return;
     var parsed = JSON.parse(data);
@@ -857,17 +866,17 @@ var CruApp = React.createClass({
     if(reload)
       window.location.reload(false);
     return parsed;
-  },
+  }
   onGenerateUrlClick(){
     var data = cruTagGrid.readOrDefault();
     var stringified = JSON.stringify(data);
     var baseUrl = window.location.origin + window.location.pathname;
     var url = baseUrl + exportToUrl("appGameState", stringified);
     this.setState({url:url,urlBase:baseUrl});
-  },
+  }
   mergeSaveState(newData){
     return copyObject(this.state.saved,newData);
-  },
+  }
   render(){
     var w = window,
     d = document,
@@ -973,7 +982,7 @@ var CruApp = React.createClass({
         </div>
       </div>);
   }
-});
+}
 
 ReactDOM.render(
       <CruApp referenceData={jsonData} />,
