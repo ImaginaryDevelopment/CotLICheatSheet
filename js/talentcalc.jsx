@@ -396,4 +396,4 @@ app.TalentCalc = React.createClass({
     }
 });
 app.TalentCalc.displayName = 'TalentCalc';
-})(window)
+})(typeof global !== 'undefined' ? global : window);

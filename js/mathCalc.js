@@ -2110,4 +2110,4 @@ eiralon.calculate = function() {
   var littlefootXP = 0;
   var killedThisStage = 0;
   var currentStage = 0;
-})(window)
+})(typeof global !== 'undefined' ? global : window);

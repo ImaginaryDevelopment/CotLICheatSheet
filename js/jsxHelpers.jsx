@@ -1,5 +1,4 @@
-((app) =>
-{
+(app => {
 app.createInputClipperButton = targetId =>
   Clipboard && Clipboard.isSupported() && (<button className="btn" data-clipboard-target={"#" + targetId}>Copy to Clipboard</button>);
 app.createClipperButton = text =>
@@ -209,4 +208,4 @@ app.Pane = React.createClass({
     return(<div>{this.props.children}</div>);
   }
 });
-})(window)
+})(typeof global !== 'undefined' ? global : window);

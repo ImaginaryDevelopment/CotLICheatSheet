@@ -184,4 +184,4 @@
                 )
         }
     }
-})(window)
+})(typeof global !== 'undefined' ? global : window);
