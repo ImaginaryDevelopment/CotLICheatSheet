@@ -105,9 +105,6 @@ app.Inputs = props =>
     var cooldown = app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
     var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
-    // console.log('Inputs effectiveEP', effectiveEP, props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
-    // console.log('Inputs mainDpsEP', props.mainDpsEP, typeof(props.mainDpsEP));
-    // console.log('Inputs passiveCriticals', props.passiveCriticals, props.talents.passiveCriticals.costs.length);
     var getNextCost = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name] ? props.talents[name].costs[props[name] + 1] : undefined;
     // var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals + 1]: undefined;
     var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
@@ -319,10 +316,8 @@ app.Inputs.propTypes = {
     crusaders:React.PropTypes.array.isRequired
 };
 
+var talentCalc = props =>{
 
-app.TalentCalc = React.createClass({
-    render(){
-        var props = this.props;
         var crusaders = props.referenceData.crusaders;
 
         var talentSelectedCrusader = props.saved.talentCalcHeroId ? {cru : crusaders.find(cru => cru.id == props.saved.talentCalcHeroId), mainDpsEpics:0, dpsSlotEpics:0,mainDpsEP:0} : null;
@@ -393,7 +388,7 @@ app.TalentCalc = React.createClass({
             stormRiderPercentage={getNumberOrDefault(props.saved.stormRiderPercentage,0)} onStormRiderPercentageChange={val => props.changeSaveState({stormRiderPercentage:val})}
             stormsBuilding={getNumberOrDefault(props.saved.stormsBuilding,0)} onStormsBuildingChange={val => props.changeSaveState({stormsBuilding:val})}
          />);
-    }
-});
-app.TalentCalc.displayName = 'TalentCalc';
+};
+talentCalc.displayName = 'TalentCalc';
+app.TalentCalc = talentCalc;
 })(typeof global !== 'undefined' ? global : window);
