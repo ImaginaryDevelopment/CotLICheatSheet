@@ -81,7 +81,7 @@
                         // app... settings are for the calc to pickup
                     app.formationDps = getCrusader(cruId);
                     this.state.formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
-                    app.setDPS(null, cruId);
+                    app.setDPS(cruId);
                     app.calculateMultipliers();
                     var stateMods = this.calculateMyMultipliers();
                     stateMods.dpsCruId=cruId;
@@ -167,8 +167,9 @@
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?
             app.formationIds = initial.formation;
-            if(initial.dpsCruId)
-                setDPS(initial.dpsCruId);
+            if(initial.dpsCruId){
+                app.setDPS(initial.dpsCruId);
+            }
             console.log('formationCalc', initial);
             return initial;
         }

@@ -13,6 +13,7 @@ app.GearBox = props => {
     var type = props.cru.gear && props.cru.gear[slot];
     var lootId =  props.cruGearQ["s" + slot];
     var gearMult = props.cru["s" + slot];
+    var lMult = props.cru["l"+ slot];
     var rarity = Loot.getRarityByItemId(lootId, props.cru.loot);
     var golden = Loot.getIsGolden(lootId, props.cru.loot) ? " golden" : "";
     var classes = "rarity rarity" + rarity + golden;
@@ -23,9 +24,11 @@ app.GearBox = props => {
       titling += gearMult +" ";
     }
     titling +=type || "gear data for crusader not found";
+    if(lMult)
+      titling+= "\r\nLegendaryFactor:" + lMult;
     titling +="\r\nrarity:" + rarity;
     if(golden)
-      titling+= "\r\n" + golden;
+      titling+= golden;
     if(lootId)
       titling +="\r\nlootId:" + lootId;
 

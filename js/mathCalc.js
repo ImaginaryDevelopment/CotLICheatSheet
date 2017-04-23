@@ -214,13 +214,15 @@
   function legendaryFactor(crusader,gearSlot) {
     if(app.ignoreLegendaryFactor === true)
       return 0;
-    var lootId = getItemId(crusader.id, gearSlot);
-    var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
-    console.log('legendaryFactor', crusader,gearSlot, lootId, item);
-    if(!(item != null))
+    var itemId = getItemId(crusader.id, gearSlot);
+    var level = Loot.getLLevel(itemId);
+    console.log('legendaryFactor:' + crusader.displayName + " level " + ( level || "unknown") ,gearSlot, itemId);
+    if(!(level != null))
       return 0;
-    if (item.level >= 1) {
-     return Math.pow(2,item.level-1);
+    if (level >= 1) {
+      var lFactor = Math.pow(2,level-1);
+      crusader["l" + gearSlot] = lFactor
+     return lFactor;
    } else {
      return 0;
    }
@@ -1423,7 +1425,9 @@ sal.calculate = function() {
   crusaderSetup(sal);
   var adjacent = currentWorld.whatsAdjacent(sal.spot);
   var numAdjacent = 0;
+  console.log('sal.calculate', app.dpsChar);
   if (sal == app.dpsChar) {
+    console.log("calculating sal's selfDpsMods");
     sal.globalDPS *= 1 + 0.25 * currentWorld.countTags('female') * legendaryFactor(sal,0);
     sal.globalDPS *= 1 + 0.25 * currentWorld.countTags('royal') * legendaryFactor(sal,1);
   }
@@ -2053,8 +2057,8 @@ eiralon.calculate = function() {
   var globalDPS = 1;
   var globalGold = 1;
 
-  app.setDPS = function (name, id) {
-    var crusader = name != null ? jsonData.crusaders.find(c => c.displayName == name) : getCrusader(id);
+  app.setDPS = function (id) {
+    var crusader = getCrusader(id);
     app.dpsChar = crusader;
   };
 
