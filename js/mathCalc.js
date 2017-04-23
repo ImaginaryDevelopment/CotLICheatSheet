@@ -46,7 +46,10 @@
             crusader.globalDPS *= dps;
             break;
           case "gold":
-            crusader.globalGold *= itemGold(crusader, i) || 1;
+            var slotGold = itemGold(crusader, i) || 1;
+            if(slotGold != 1)
+              crusader["s" + i] = slotGold;
+            crusader.globalGold *= slotGold;
             console.log("gold", crusader.globalGold,globalGold);
             break;
           case "selfdps":

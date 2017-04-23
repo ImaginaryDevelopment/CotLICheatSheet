@@ -4632,6 +4632,11 @@ window.jsonData =
       "slot": 9,
       "event": "September: Carnival of Sorrows",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
+      "gear": [
+          "selfdps",
+          "alldps",
+          "gold"
+        ],
       "tags": [
         "male",
         "human",
@@ -4640,12 +4645,7 @@ window.jsonData =
         "event"
       ],
       "upgrades": {
-        "gear": [
-          "selfdps",
-          "gold",
-          "alldps"
-        ],
-        "selfdps": [
+                "selfdps": [
           100,
           100,
           100,
@@ -7144,6 +7144,11 @@ window.jsonData =
         "event"
       ],
       "heroId": 27,
+      "gear":[
+        "ability",
+        "gold",
+        "alldps"
+      ],
       "loot": [
         {
           "slot": 0,
