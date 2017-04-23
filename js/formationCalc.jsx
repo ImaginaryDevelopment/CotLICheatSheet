@@ -3,26 +3,16 @@
     app.WorldsWake = class WorldsWake extends React.Component{
         constructor(props){
             super(props)
-            this.getInitialState = this.getInitialState.bind(this);
-            this.state = this.getInitialState(props);
+            if(Array.isArray(props.formation)){
+                props.formation.map((cruId,i) =>{
+                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
+                    if(!(cruId != null) || i >= worldsWake.spots)
+                        return cruId;
+                    var crusader = getCrusader(cruId);
+                    crusader.spot = i;
+                });
+            }
         }
-        getInitialState(props){
-            var data = app.calculateMultipliers();
-            var state = {formation:props.formation, dps:data.globalDps, dpsCruId:props.dpsCruId, gold:null};
-            console.log('worldsWake initial', state);
-            return state;
-        }
-        calculateMyMultipliers(stateMods){
-                var data = app.calculateMultipliers();
-                var stateMods = stateMods || {};
-                stateMods.dps=data.globalDps;
-                stateMods.gold=data.globalGold;
-                console.log('stateMods', stateMods);
-                return stateMods;
-        }
-        // setState(stateMods){
-        //     super(stateMods);
-        // }
         render(){
             // cruId may be "0" in the none case
             var changeFormation = slotNumber => cruId => {
@@ -36,30 +26,16 @@
                 this.props.onFormationChange(slotNumber,cruId);
                 if(crusader != null)
                     crusader.spot = slotNumber;
-                var stateMods = this.calculateMyMultipliers();
-                if(!stateMods.formation)
-                {
-                    stateMods.formation = this.state.formation.slice(0) || [];
-                    if(stateMods.formation.length < currentWorld.spots){
-                        for(var i=0;i<currentWorld.spots - stateMods.formation.length;i++) {
-                            stateMods.formation.push(null);
-                        }
-                    }
-                }
-                stateMods.formation[slotNumber] = cruId;
-                console.log('changedFormation', stateMods);
-                this.setState(stateMods);
             };
             var makeHeroSelect = slotNumber => {
-                var selectedCruId = this.state.formation[slotNumber];
+                var selectedCruId = this.props.formation[slotNumber];
                 var selectedCru = getCrusader(selectedCruId);
 
                 var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
                 var availableCrusaders = jsonData.crusaders.filter(cru =>
                     // crusaders in slots that aren't in formation
-                    this.state.formation.filter(f => f != null && f != "0").find(f=> getCrusader(f).slot == cru.slot) == null
+                    this.props.formation.filter(f => f != null && f != "0").find(f=> getCrusader(f).slot == cru.slot) == null
                     || (selectedCru && selectedCru.id == cru.id)
-
                 );
                 return (<div>{slotNumber}
                     <HeroSelect dontSort={true}
@@ -75,28 +51,21 @@
                 </div>);
             };
             var dpsSelector = (
-                <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.state.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)} onHeroChange={cruId => {
-                    if(cruId == "0")
-                        cruId = null;
-                        // app... settings are for the calc to pickup
-                    app.formationDps = getCrusader(cruId);
-                    this.state.formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
-                    app.setDPS(cruId);
-                    app.calculateMultipliers();
-                    var stateMods = this.calculateMyMultipliers();
-                    stateMods.dpsCruId=cruId;
-                    console.log('dpsCruId changed, new stateMods:', stateMods);
-                    this.props.onDpsChange(cruId);
-
-                    this.setState(stateMods);
+                <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.props.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)} 
+                    onHeroChange={cruId => {
+                        if(cruId == "0")
+                            cruId = null;
+                            // app... settings are for the calc to pickup
+                        app.formationDps = getCrusader(cruId);
+                        this.props.formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
+                        app.setDPS(cruId);
+                        app.calculateMultipliers();
+                        this.props.onDpsChange(cruId);
                     }
-                } selectedHeroId={this.state.dpsCruId} />
+                } selectedHeroId={this.props.dpsCruId} />
             );
-            var dpsCru = this.state.dpsCruId && jsonData.crusaders.find(cru => this.state.dpsCruId == cru.id);
             return (<div>
-                <div>{dpsSelector}</div>
-                <p>Dps Multiplier: {this.state.dps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
-                <p>Gold Multiplier: {this.state.gold}</p>
+                <div>Main dps: {dpsSelector}</div>
                 <table>
                     <thead></thead>
                     <tbody>
@@ -128,7 +97,7 @@
                         </tr>
                 </tbody>
                 </table>
-                <div>{JSON.stringify(this.state.formation)}</div>
+                <div>{JSON.stringify(this.props.formation)}</div>
             </div>);
         }
     };
@@ -195,9 +164,21 @@
             var worlds = [
                 worldsWake
             ];
+            var data = app.calculateMultipliers();
+            window.multiplierData = data;
+            var cruFormationGoldMult = data && data.globalGold;
+            var dpsCru = this.state.dpsCruId && jsonData.crusaders.find(cru => this.state.dpsCruId == cru.id);
+            var playerGold = this.state.gold;
+            var goldText = (data && typeof(data.globalGold) == "number")? (data.globalGold + "") : "";
+            console.log('initial goldText', goldText);
+            if(playerGold && typeof(+playerGold) == "number" && +playerGold > 0)
+                goldText = goldText + " * " + playerGold + " = " + ((playerGold * cruFormationGoldMult).toFixed(2));
+            console.log('nowGoldText', goldText);
+
             var formation;
             if(this.state.selectedWorld == "World's Wake");
                 formation = <WorldsWake formation={this.state.formation} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />
+            console.log('render', data,dpsCru,playerGold, goldText);
             return (<div>
                 <select>
                 {
@@ -205,6 +186,9 @@
                     });
                 }
                 </select>
+                <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
+                <p>Dps Multiplier: {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
+                <p>Gold Multiplier: {goldText}</p>
                 {formation}
                 </div>
                 )
