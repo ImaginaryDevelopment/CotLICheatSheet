@@ -26,6 +26,8 @@ app.GearBox = props => {
     titling +="\r\nrarity:" + rarity;
     if(golden)
       titling+= "\r\n" + golden;
+    if(lootId)
+      titling +="\r\nlootId:" + lootId;
 
     return (<div className={classes} title={titling} />);
   };

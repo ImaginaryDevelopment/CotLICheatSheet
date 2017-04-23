@@ -1906,6 +1906,11 @@ window.jsonData =
       "slot": 3,
       "event": "September: Sasha's Schoolhouse Scourge",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
+      "gear":[
+        "selfdps",
+        "ability - Center of the Universe",
+        "selfdps"
+      ],
       "tags": [
         "female",
         "animal",
@@ -1918,11 +1923,6 @@ window.jsonData =
           150,
           150,
           150
-        ],
-        "gear": [
-          "ability",
-          "selfdps",
-          "selfdps"
         ]
       },
       "heroId": 53,
@@ -3736,6 +3736,11 @@ window.jsonData =
       "slot": 7,
       "event": "July: Littlefoot's Big Adventure",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
+      "gear":[
+          "clickCrit",
+          "selfdps",
+          "ability"
+      ],
       "tags": [
         "dps",
         "event",
@@ -3752,9 +3757,6 @@ window.jsonData =
           200
         ],
         "gear": [
-          "clickCrit",
-          "selfdps",
-          "ability"
         ]
       },
       "heroId": 49,
@@ -3872,6 +3874,11 @@ window.jsonData =
       "slot": 7,
       "event": "March: Nate's Candy Conundrum",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
+      "gear":[
+        "ability - Ancient Hatred (spawn speed)",
+        "ability Hope's Diversity (dps increase for unique tags)",
+        "alldps"
+      ],
       "tags": [
         "female",
         "angel",
@@ -4253,6 +4260,11 @@ window.jsonData =
       "slot": 8,
       "event": "July: Alien Invasion Day",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
+      "gear":[
+        "ability - Act of Congress (double area objective drops/kills)",
+        "gold",
+        "alldps"
+      ],
       "tags": [
         "male",
         "event",
@@ -5282,6 +5294,11 @@ window.jsonData =
       "slot": 10,
       "event": "August: Dr. Evil's Summer Sabotage",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
+      "gear":[
+        "alldps",
+        "ability - synchronized swimming (dps in column behind)",
+        "activated - savage strikes (+global dps when active)"
+      ],
       "tags": [
         "male",
         "orc",
@@ -9167,6 +9184,11 @@ window.jsonData =
       "image": "Littlefoot_48.png",
       "event": "July: Littlefoot's Big Adventure",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
+      "gear":[
+        "ability - storm rider",
+        "ability - growing up",
+        "alldps"
+      ],
       "tags": [
         "female",
         "animal",
@@ -10544,6 +10566,11 @@ window.jsonData =
       "displayName": "Greyskull the Pirate",
       "image": "GreyskullThePirate_48.png",
       "slot": 23,
+      "gear":[
+        "ability - Plunder(gold per attacker)",
+        "gold",
+        "Handcannon (shooting)"
+      ],
       "tags": [
         "human",
         "male",
