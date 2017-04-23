@@ -2,13 +2,15 @@
 
     app.WorldsWake = class WorldsWake extends React.Component{
         constructor(props){
-            super()
+            super(props)
             this.getInitialState = this.getInitialState.bind(this);
             this.state = this.getInitialState(props);
         }
         getInitialState(props){
             var data = app.calculateMultipliers();
-            return {formation:props.formation, dps:data.globalDps, dpsCruId:null, gold:null};
+            var state = {formation:props.formation, dps:data.globalDps, dpsCruId:props.dpsCruId, gold:null};
+            console.log('worldsWake initial', state);
+            return state;
         }
         calculateMyMultipliers(stateMods){
                 var data = app.calculateMultipliers();
@@ -18,6 +20,9 @@
                 console.log('stateMods', stateMods);
                 return stateMods;
         }
+        // setState(stateMods){
+        //     super(stateMods);
+        // }
         render(){
             // cruId may be "0" in the none case
             var changeFormation = slotNumber => cruId => {
@@ -73,12 +78,16 @@
                 <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.state.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)} onHeroChange={cruId => {
                     if(cruId == "0")
                         cruId = null;
+                        // app... settings are for the calc to pickup
                     app.formationDps = getCrusader(cruId);
                     this.state.formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
                     app.setDPS(null, cruId);
                     app.calculateMultipliers();
                     var stateMods = this.calculateMyMultipliers();
                     stateMods.dpsCruId=cruId;
+                    console.log('dpsCruId changed, new stateMods:', stateMods);
+                    this.props.onDpsChange(cruId);
+
                     this.setState(stateMods);
                     }
                 } selectedHeroId={this.state.dpsCruId} />
@@ -123,13 +132,24 @@
             </div>);
         }
     };
+
+
+
+
+
+
+
+
+
     app.FormationCalc = class FormationCalc extends React.Component{
         constructor(){
             console.log('creating a formationCalc!');
             super();
             this.getInitialState = this.getInitialState.bind(this);
             this.onFormationChange = this.onFormationChange.bind(this);
+            this.onDpsChange = this.onDpsChange.bind(this);
             this.storageKey="formationCalc";
+            this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.state = this.getInitialState();
         }
         getInitialState(){
@@ -147,8 +167,8 @@
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?
             app.formationIds = initial.formation;
-            if(initial.dpsChar)
-                setDPS(initial.dpsChar);
+            if(initial.dpsCruId)
+                setDPS(initial.dpsCruId);
             console.log('formationCalc', initial);
             return initial;
         }
@@ -156,6 +176,11 @@
             var stateMods = {};
             stateMods.formation = (this.state.formation || []).slice(0);
             stateMods.formation[slot] = cruId;
+            this.setState(stateMods);
+        }
+        onDpsChange(cruId){
+            var stateMods = {dpsCruId:!(cruId != null) || cruId == 0? undefined:cruId};
+            console.log('onDpsChange', cruId);
             this.setState(stateMods);
         }
         componentDidUpdate(prevProps, prevState){
@@ -171,7 +196,7 @@
             ];
             var formation;
             if(this.state.selectedWorld == "World's Wake");
-                formation = <WorldsWake formation={this.state.formation} onFormationChange={this.onFormationChange} />
+                formation = <WorldsWake formation={this.state.formation} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />
             return (<div>
                 <select>
                 {

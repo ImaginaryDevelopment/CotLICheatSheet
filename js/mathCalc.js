@@ -216,6 +216,7 @@
       return 0;
     var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
+    console.log('legendaryFactor', crusader,gearSlot, lootId, item);
     if(!(item != null))
       return 0;
     if (item.level >= 1) {
