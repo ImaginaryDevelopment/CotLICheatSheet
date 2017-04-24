@@ -6,6 +6,11 @@ const isDefined = function(o){
 var getNumberOrDefault = (x, defaultValue) =>
   Number.isNaN(x) || !(x != null) ? defaultValue : +x;
 
+/**
+ * 
+ * @param {object} source 
+ * @param {object} toMerge 
+ */
 const copyObject = (source,toMerge) => {
     var target = toMerge ? toMerge : {};
     Object.keys(source)
@@ -16,6 +21,10 @@ const copyObject = (source,toMerge) => {
     return target;
 };
 
+/**
+ * 
+ * @param {string} s 
+ */
 const trim = function(s) {
     return s.trim();
 };
@@ -41,6 +50,7 @@ var debounceChange = function (callback, e, ...args) {
     debounce(() => callback(...args), 500);
 };
 // reworked without let, since the browser support for it is low
+// accept either param being an array, or neither, or any combination
 const flattenArrays = (a,b) => {
         var isAa = Array.isArray(a),isAb = Array.isArray(b);
         if(isAa && !isAb){
@@ -66,6 +76,10 @@ const addClasses = (defaultClasses=[], otherClasses=[]) =>{
     return unwrappedClasses.filter(isDefined).map(trim).join(' ').trim();
 };
 
+/**
+ * 
+ * @param {number} x 
+ */
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -74,22 +88,28 @@ function getIsLocalStorageAvailable() {
   if (typeof(localStorage) !== 'undefined' && (typeof(localStorage.setItem) === 'function') && typeof(localStorage.getItem) === 'function'){
     return true;
   }
-	try {
-		var storage = window[type],
-			x = '__storage_test__';
-		storage.setItem(x, x);
-		storage.removeItem(x);
+  try {
+    var storage = window[type],
+      x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
     console.info('storage is available!');
-		return true;
-	}
-	catch(e) {
+    return true;
+  }
+  catch(e) {
     if(!loggedStorageFailure){
       loggedStorageFailure = true;
       console.info('failed to test storage available');
     }
-		return false;
-	}
+    return false;
+  }
 }
+
+/**
+ * 
+ * @param {string} key 
+ * @param {*} value 
+ */
 var storeIt = function(key,value){
   var canStore = getIsLocalStorageAvailable();
   if(canStore){
@@ -98,6 +118,11 @@ var storeIt = function(key,value){
     localStorage.setItem(key,stringy);
   }
 };
+/**
+ * 
+ * @param {string} key 
+ * @param {*} defaultValue 
+ */
 var readIt = function(key,defaultValue){
   if(getIsLocalStorageAvailable()){
     var item = localStorage.getItem(key);
@@ -117,6 +142,14 @@ var readIt = function(key,defaultValue){
     return defaultValue;
   }
 };
+
+/**
+ * 
+ * @param {string} category 
+ * @param {string} action 
+ * @param {string} labelOpt 
+ * @param {number} numberValueOpt 
+ */
 var gaEvent = (category,action,labelOpt,numberValueOpt) =>
   ga ? ga('send','event',category, action, labelOpt, numberValueOpt) : null;
 
@@ -127,6 +160,12 @@ var add = function(a,b){
   return a + b;
 };
 
+/**
+ * 
+ * @param {*} data 
+ * @param {string} title 
+ * @param {*} extraData 
+ */
 var inspect = (data,title, extraData) =>
 {
   console.log(title || 'inspect', data,extraData);

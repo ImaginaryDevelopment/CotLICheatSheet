@@ -1,9 +1,21 @@
+/**
+ * @typedef {Object} Loot
+ * @property {number} lootId
+ * @property {number} slot
+ * @property {number} rarity
+ * @property {string} name
+*/
+
 //loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
 var LootV1 = (function () {
   var my = {};
   // 0 is none, 1 is common, 2 is uncommon, 3 is rare, 4 epic, 5 legendary
   // examples 1, "1", "4g", "5g2"
-  my.getIsV1 = itemIdentifier => {
+  /**
+   * 
+   * @param {number | string} itemIdentifier 
+   */
+  var getIsV1 = itemIdentifier => {
     if(!itemIdentifier)
       return itemIdentifier == 0;
     if(typeof(itemIdentifier) == "number" && itemIdentifier <= 5)
@@ -19,9 +31,25 @@ var LootV1 = (function () {
     }
     return false;
   };
-  my.getRarityByItemId = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof (itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
-  my.getIsGolden = itemRarityCompound => !(itemRarityCompound != null) || typeof (itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
-  my.getLLevel = (id) =>{
+  my.getIsV1 = getIsV1;
+  /**
+   * 
+   * @param {number | string} itemRarityCompound 
+   * @return {number}
+   */
+  var getRarityByItemId = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof (itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
+  my.getRarityByItemId = getRarityByItemId;
+  /**
+   * 
+   * @param {number | string} itemRarityCompound 
+   */
+  var getIsGolden = itemRarityCompound => !(itemRarityCompound != null) || typeof (itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
+  my.getIsGolden = getIsGolden;
+  /**
+   * @param {number | string} id 
+   * @return {number}
+   */
+  var getLLevel = (id) =>{
     if(!id)
       return undefined;
     if(typeof(id) != "string")
@@ -34,21 +62,31 @@ var LootV1 = (function () {
     var lLevel = id.slice(lIndex + 1);
     console.log('found lLevel!', lLevel, +lLevel);
     return +lLevel;
+  };
 
-  }
-  my.changeLLevel = (id,level) =>{
+  my.getLLevel = getLLevel;
+  /**
+   * @param {number | string} id 
+   * @param {number} level 
+   */
+  var changeLLevel = (id,level) =>{
     var rarity = my.getRarityByItemId(id);
     var isGolden = my.getIsGolden(id);
     var result = rarity + (isGolden? "g" : "_") + level;
     console.log('LootV1.changeLLevel', id,level,rarity,isGolden,result);
     return result;
-  }
+  };
+
+  my.changeLLevel = changeLLevel;
   return my;
 }());
 
 var LootV2 = (function () {
   var my = {};
-  my.getLootIdFromLootIdOrCompound = lootIdOrCompound =>
+  /**
+   * @param {number | string} lootIdOrCompound 
+  */
+  var getLootIdFromLootIdOrCompound  = lootIdOrCompound =>
   {
     var lootId = lootIdOrCompound;
     var isCompoundish = typeof(lootIdOrCompound) == "string";
@@ -59,23 +97,44 @@ var LootV2 = (function () {
     }
     return lootId;
   };
-  my.getRarityByItemId = (lootIdOrCompound,refGear) => {
+  my.getLootIdFromLootIdOrCompound = getLootIdFromLootIdOrCompound;
+  /**
+   * @param {number | string} lootIdOrCompound 
+   * @param {Array<Loot>} refGear 
+   */
+  var getRarityByItemId = (lootIdOrCompound,refGear) => {
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
     var item = refGear.find(g => g.lootId==lootId);
     return item && item.rarity;
   };
-  my.getIsGolden = (refGear,lootIdOrCompound) => {
+
+  my.getRarityByItemId = getRarityByItemId;
+
+  /**
+  * @param {Array<Loot>} refGear 
+  * @param {number | string} lootIdOrCompound 
+  * @return boolean
+  */
+  var getIsGolden = (refGear,lootIdOrCompound) => {
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
     var item = refGear.find(g => g.lootId == lootId);
     return item && item.golden === true;
   };
+  my.getIsGolden = getIsGolden;
+
   // how would we define a V2? as a valid lootId or an item obtained from looking up the lootId?
   // my.getIsV2 = ???
-  my.getRarityByItemId = (lootIdOrCompound,refGear) =>{
+  /**
+   * @param {number | string} lootIdOrCompound 
+   * @param {Array<Loot>} refGear 
+   */
+  var getRarityByItemId = (lootIdOrCompound,refGear) =>{
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
     var item = refGear.find(g => g.lootId == lootId);
     return item && item.rarity;
   };
+  my.getRarityByItemId = getRarityByItemId;
+
   my.getLLevel = compound =>{
     if(!compound)
       return undefined;
