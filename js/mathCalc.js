@@ -967,7 +967,37 @@ rayna.calculate = function() {
   rayna.globalDPS *= 1 + 0.25 * currentWorld.countTags('animal') * legendaryFactor(rayna,2);
 };
 
-
+////Baenarall, Angel of Hope
+var bae = getCrusader('07c');
+bae.calculate = function() {
+  crusaderSetup(bae);
+  var diversityTags = [];
+  var diversityBonus = 0;
+  for (var i in formation){
+    for (var t in formation[i].tags) {
+      if (!diversityTags[formation[i].tags[t]]) {
+        diversityTags[formation[i].tags[t]] = 0;
+      }
+      diversityTags[formation[i].tags[t]] += 1;
+    }
+  }
+  for (var t2 in diversityTags) {
+    if (diversityTags[t2] == 1) {
+      diversityBonus += 20 * itemAbility(bae,1);
+    } else {
+      diversityBonus += -5;
+    }
+  }
+  bae.globalDPS *= 1 + diversityBonus/100;
+  bae.globalDPS *= 1 + (currentWorld.filled - currentWorld.countTags('event')) * 0.05 * (1 + legendaryFactor(bae,2));
+  if (currentWorld.countTags('supernatural' < 3)) {
+    bae.globalDPS *= 1 + legendaryFactor(bae,0);
+  }
+  if (alan.inFormation) {
+    bae.globalDPS *= 1 + legendaryFactor(bae,1);
+  }
+};
+  
 //////Slot 8
 ////Natalie Dragon
 var natalie = getCrusader("08");
