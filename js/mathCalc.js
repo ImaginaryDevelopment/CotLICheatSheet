@@ -334,7 +334,7 @@ app.crusaderSetup = crusaderSetup;
       return 0;
     var itemId = getItemId(crusader.id, gearSlot);
     var level = Loot.getLLevel(itemId);
-    console.log('legendaryFactor:' + crusader.displayName + " level " + ( level || "unknown") ,gearSlot, itemId);
+    // console.log('legendaryFactor:' + crusader.displayName + " level " + ( level || "unknown") ,gearSlot, itemId);
     if(!(level != null))
       return 0;
     if (level >= 1) {
@@ -644,6 +644,7 @@ groklok.calculate = function() {
 ////Mindy the Mime
 var mindy = getCrusader("04b");
 mindy.calculate = function() {
+  mindy.globalDps = "Mindy isn't setup for calculations yet";
 };
 
 //////Slot 5
@@ -971,23 +972,29 @@ rayna.calculate = function() {
 var bae = getCrusader('07c');
 bae.calculate = function() {
   crusaderSetup(bae);
-  var diversityTags = [];
+  var diversityTags = {};
   var diversityBonus = 0;
-  for (var i in formation){
-    for (var t in formation[i].tags) {
-      if (!diversityTags[formation[i].tags[t]]) {
-        diversityTags[formation[i].tags[t]] = 0;
+  formationIds.filter(cruId => cruId != null).map(cruId =>{
+    var cru = getCrusader(cruId);
+    cru.tags.map(tag =>{
+      // not really sure the ramification of using a string as a key into an array
+      if(!diversityTags.hasOwnProperty(tag)){
+        diversityTags[tag] = 0;
       }
-      diversityTags[formation[i].tags[t]] += 1;
-    }
-  }
-  for (var t2 in diversityTags) {
-    if (diversityTags[t2] == 1) {
+      diversityTags[tag] += 1;
+    });
+
+  });
+  window.diversityTags = diversityTags;
+  Object.keys(diversityTags).map(tag =>{
+    console.log('diversityTags tag?',tag);
+    if (diversityTags[tag] == 1) {
       diversityBonus += 20 * itemAbility(bae,1);
     } else {
       diversityBonus += -5;
     }
-  }
+  });
+  console.log('diversityTags',diversityTags,diversityBonus);
   bae.globalDPS *= 1 + diversityBonus/100;
   bae.globalDPS *= 1 + (currentWorld.filled - currentWorld.countTags('event')) * 0.05 * (1 + legendaryFactor(bae,2));
   if (currentWorld.countTags('supernatural' < 3)) {
