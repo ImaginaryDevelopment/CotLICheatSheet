@@ -131,7 +131,6 @@ var CruTagRowSlotGear = props =>{
       var $slotGear;
       // extract the 3 slots with qualities
       var cruGearQ =  Loot.getGearInfo(props.cruGear);
-      if(props.cru.id==1) console.log('cruGearQ for boxes', cruGearQ);
 
       if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0 || typeof(cruGearQ[0])=="string" || typeof(cruGearQ[1]) == "string" || typeof(cruGearQ[2])=="string"){
         var makeBox = slot => {
@@ -205,10 +204,8 @@ var CruGridBody = props =>{
 
   var rows = props.sortedCrusaders
       .map(function(crusader){
-      // console.log('mapping a crusader!');
       var owned = props.ownedCrusaderIds.indexOf(crusader.id) != -1;
       var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: {};
-      // console.log('crusader', crusader, gear);
       var dps = getCrusaderDps(crusader);
       var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
       // this is wrong when crusaders are filtered
@@ -257,7 +254,6 @@ var getNextSortValue = value => sortStates.find(val => val.value === value).next
 var getSortUpdate = (name, value) => {
   var update = {};
   update[name] = getNextSortValue(value);
-  console.log('on' + name[0].toUpperCase() + name.slice(1) + 'Click', 'was ' + value, update);
   return update;
 
 };
@@ -270,7 +266,6 @@ class CruTagGrid extends React.Component {
       if(typeof(this[x]) === "function")
         this[x] = this[x].bind(this);
     });
-    console.log('getOwnPropertySymbols', Object.getOwnPropertySymbols(this));
     window.importMe = () => this.props.updateSave({mainSelectedTab:3});
   }
   onSlotSortClick(){
@@ -285,11 +280,10 @@ class CruTagGrid extends React.Component {
   filterOwnedClick(){
     //(i + 2) % 3 - 1)
     var filterOwned = (this.props.filterOwned + 2) % 3 - 1;
-    console.log(this.props.filterOwned,' will become ', filterOwned);
     this.props.updateSave({filterOwned: filterOwned});
   }
   onModeChangeClicked(){
-    console.log('onModeChangeClicked');
+    console.info('onModeChangeClicked');
     this.props.updateSave({mode:this.props.mode === "" ? "mine": ""});
   }
   onEpClick(){
@@ -297,16 +291,16 @@ class CruTagGrid extends React.Component {
   }
   onFormationClick(){
     var saveMods = {isBuildingFormation: this.props.isBuildingFormation != null ? null : "formation"};
-    console.log('formationClick', saveMods);
+    console.info('formationClick', saveMods);
     this.props.updateSave(saveMods);
   }
   onGearClick(){
     var stateMods = {isGearMode: this.props.isGearMode ? false: true};
-    console.log('gearClick', stateMods);
+    console.info('gearClick', stateMods);
     this.props.updateSave(stateMods);
   }
   onEpChange(crusaderId, epValue){
-    console.log('onEpChange',arguments);
+    console.info('onEpChange',arguments);
     var oldEp = this.props.enchantmentPoints;
     var newEp = {};
     for(var attr in oldEp){
@@ -319,7 +313,7 @@ class CruTagGrid extends React.Component {
     this.props.updateSave(stateMods);
   }
   onFormationChange(crusader){
-    console.log('formation change');
+    console.info('formation change');
     var oldState = this.props.formationIds;
     var newState = oldState.constructor();
     for(var attr in oldState){
@@ -336,14 +330,12 @@ class CruTagGrid extends React.Component {
     } else {
       newState[crusader.slot] = crusader.id;
     }
-    console.log('formationIds changed to', newState);
     this.props.updateSave({formationIds:newState});
   }
   onOwnedChange(crusader){
-    console.log('onOwnedChange');
+    console.info('onOwnedChange');
     var owned = this.props.ownedCrusaderIds.slice(0);
     var i = owned.indexOf(crusader.id);
-    console.log('i,owned',i,owned);
     if(i == -1){
       owned.push(crusader.id);
     } else {
@@ -352,7 +344,7 @@ class CruTagGrid extends React.Component {
     this.props.updateSave({ownedCrusaderIds:owned});
   }
   onLlChange(cruId,slot,legendaryLevel){
-    console.log('onLlChange',arguments);
+    console.info('onLlChange',arguments);
     var stateMods ={};
     if(!this.props.crusaderGear){
       stateMods.crusaderGear={};
@@ -369,22 +361,17 @@ class CruTagGrid extends React.Component {
     stateMods.crusaderGear[cruId] = cruGear;
     //if the prop is slot not s then the loot isn't loaded for that crusader, and we're going to use LootV1 itemCompounds
     var prevId = cruGear["s" + slot] || cruGear["slot" + slot];
-    console.log('onLlChange', prevId, legendaryLevel);
     // is the slot vs s property distinction for when the crusader's loot isn't in data.js yet? so we know it is a rarity selection not a lootId
     var newId = Loot.changeLLevel(prevId,legendaryLevel);
-    console.log('onLlChange', newId);
     if(prevId === newId){
-      console.info('id is unchanged', prevId, newId);
       return;
     }
     if(newId && typeof(newId) == "string" && newId.indexOf("undefined") >=0)
       throw ("invalid newId returned" + newId);
     stateMods.crusaderGear[cruId]["s" + slot] = newId;
-    console.log('llChangeMods',stateMods);
     this.props.updateSave(stateMods);
   }
   onGearChange(cruId,slot,gearTypeIndex, selectV){
-    console.log('onGearChange', cruId,slot, gearTypeIndex);
     var stateMods = {};
     if(!this.props.crusaderGear){
       stateMods.crusaderGear = {};
@@ -407,7 +394,6 @@ class CruTagGrid extends React.Component {
         stateMods.crusaderGear[cruId]["slot" + slot] = undefined;
       stateMods.crusaderGear[cruId]["s" + slot] = +gearTypeIndex;
     }
-    console.log('gearChangeMods', stateMods);
     this.props.updateSave(stateMods);
   }
   onFilterTag(tagId){
@@ -419,14 +405,12 @@ class CruTagGrid extends React.Component {
       tagFilter[tagId] = filterTags[tagId] ? true : false;
     });
     tagFilter[tagId] = tagFilter[tagId] ? false : true;
-    console.log('filterTags', tagFilter);
     this.props.updateSave({filterTags:tagFilter});
   }
 
   render(){
 
     window.crusaderGear = this.props.crusaderGear;
-  	console.info('rendering tag grid, react');
     var self = this;
     var totalCrusaders = this.props.model.crusaders.length;
     var isBuildingFormation = this.props.isBuildingFormation === "formation";
@@ -519,7 +503,6 @@ class CruTagGrid extends React.Component {
 
 // data pull
 var HeroGameData = props => {
-    console.log('rendering hero game data');
     //legacy data/usage would not have these in state (but also legacy data shouldn't be stored anywhere in prod)
     // if(!props.mappedHeroes)
     //   return null;
@@ -530,7 +513,6 @@ var HeroGameData = props => {
     var heroLIs = props.mappedHeroes? props.mappedHeroes.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
     ): [];
-    console.log('HeroGameData', gear);
     var gearLIs = gear.map(l =>
       (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
     );

@@ -113,7 +113,6 @@
 
     app.FormationCalc = class FormationCalc extends React.Component{
         constructor(){
-            console.log('creating a formationCalc!');
             super();
             this.getInitialState = this.getInitialState.bind(this);
             this.onFormationChange = this.onFormationChange.bind(this);
@@ -140,7 +139,6 @@
             if(initial.dpsCruId){
                 app.setDPS(initial.dpsCruId);
             }
-            console.log('formationCalc', initial);
             return initial;
         }
         onFormationChange(slot,cruId){
@@ -151,11 +149,9 @@
         }
         onDpsChange(cruId){
             var stateMods = {dpsCruId:!(cruId != null) || cruId == 0? undefined:cruId};
-            console.log('onDpsChange', cruId);
             this.setState(stateMods);
         }
         componentDidUpdate(prevProps, prevState){
-            console.log('formationCalc componentDidUpdate');
             if(prevState!= this.state){
                 storeIt(this.storageKey, this.state);
                 window.formationCalcState = this.state;
@@ -171,15 +167,12 @@
             var dpsCru = this.state.dpsCruId && jsonData.crusaders.find(cru => this.state.dpsCruId == cru.id);
             var playerGold = this.state.gold;
             var goldText = (data && typeof(data.globalGold) == "number")? (data.globalGold + "") : "";
-            console.log('initial goldText', goldText);
             if(playerGold && typeof(+playerGold) == "number" && +playerGold > 0)
                 goldText = goldText + " * " + playerGold + " = " + ((playerGold * cruFormationGoldMult).toFixed(2));
-            console.log('nowGoldText', goldText);
 
             var formation;
             if(this.state.selectedWorld == "World's Wake");
                 formation = <WorldsWake formation={this.state.formation} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />
-            console.log('render', data,dpsCru,playerGold, goldText);
             return (<div>
                 <select>
                 {

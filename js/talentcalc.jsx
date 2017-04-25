@@ -29,7 +29,6 @@ app.HeroSelect = props =>
         if(selectedCrusader.globalGold != null && selectedCrusader.globalGold != 1)
             title += "goldMultiplier:" + selectedCrusader.globalGold +"\r\n";
     }
-    // console.log('HeroSelect',props.selectedHeroId, selectedCrusader);
     return(
     <select title={title} value={props.selectedHeroId || "0"} className={selectedCrusader && selectedCrusader.tags && selectedCrusader.tags.includes("dps") ? "dps" : "" } onChange={e => props.onHeroChange(e.target.value)}>
         <option value="0">None</option>
@@ -72,7 +71,6 @@ app.TalentInput = props =>{
     var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
     //=IFERROR(IF(and(B$13 >= 1,B20<=$J$23), G19/B20*100000, 0),0)
     var score = impr / props.costForNextLevel * 100000;
-    console.log('TalentInput', props.value, nextDps,score);
     var dpsText = showingMessage? dpsBuff : dpsBuff.toFixed(2);
     var scoreText = showingMessage ? dpsBuff : score.toFixed(2) + '%';
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
@@ -142,7 +140,6 @@ app.Inputs = props =>
 
 
 
-    // console.log('Inputs rideTheStormMagnified', props.stormRiderPercentage, getRideTheStormDps(props.rideTheStorm), props.rideTheStorm);
     return (<table>
         <thead>
             </thead>
@@ -321,14 +318,12 @@ var talentCalc = props =>{
         var crusaders = props.referenceData.crusaders;
 
         var talentSelectedCrusader = props.saved.talentCalcHeroId ? {cru : crusaders.find(cru => cru.id == props.saved.talentCalcHeroId), mainDpsEpics:0, dpsSlotEpics:0,mainDpsEP:0} : null;
-        // console.log('talentSelectedCrusader', props.saved.talentCalcHeroId, talentSelectedCrusader);
         if(talentSelectedCrusader && !(talentSelectedCrusader.cru != null))
             talentSelectedCrusader = null;
         if(talentSelectedCrusader){
             var cru = talentSelectedCrusader.cru;
             var savedGear = props.saved.crusaderGear || [];
             var cruRarities = Loot.getSlotRarities(savedGear[cru.id], talentSelectedCrusader.cru.loot);
-            console.log('cruRarities', cruRarities);
             var cruEpicCount = cruRarities.reduce((a,b) => a + (b > 3? 1 : 0),0);
             talentSelectedCrusader.mainDpsEpics = cruEpicCount;
             var slotMates = crusaders.filter(x => x.slot == cru.slot);
@@ -338,14 +333,12 @@ var talentCalc = props =>{
                 {
                     var g = savedGear[x.id];
                     var rarities = Loot.getSlotRarities(g,x.loot);
-                    console.log('slotMates', x.id, g, rarities);
                     return rarities;
                 })
                 .reduce((a,gearArray) => a.concat(gearArray),[]).reduce((a,b) => a + (b > 3 ? 1 : 0),0);
             talentSelectedCrusader.mainDpsEP = getNumberOrDefault(props.saved.enchantmentPoints[cru.id], 0);
             talentSelectedCrusader.dpsSlotEP = +crusaders.filter(x => x.slot == cru.slot).map(x => props.saved.enchantmentPoints[x.id] || 0).reduce((a,b) => +a + +b,0)
         }
-        // console.log('talentSelectedCrusader',talentSelectedCrusader);
         return (<Inputs {...props}
             crusaders={crusaders}
             mainDpsEpics={talentSelectedCrusader && talentSelectedCrusader.mainDpsEpics}

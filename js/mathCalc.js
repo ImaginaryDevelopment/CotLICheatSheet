@@ -21,9 +21,9 @@
  * @property {string} name
  */
   /**
-   * 
-   * @param {*} name 
-   * @param {*} spots 
+   *
+   * @param {*} name
+   * @param {*} spots
    */
 
   // doesn't let me define the function as returning crusader or undefined =(
@@ -34,12 +34,12 @@
   var getCrusader = id => app.jsonData.crusaders.find(c =>  c.id == id);
   app.getCrusader = getCrusader;
   /**
-   * 
-   * @param {Array<string>} formationIds 
-   * @param {string} id 
+   *
+   * @param {Array<string>} formationIds
+   * @param {string} id
    */
   var getCrusaderSpot = (formationIds, id) => {
-    if(!(id!=null)  || !formationIds || !Array.isArray(formationIds) || !(formationIds.indexOf(id) != null) || formationIds.indexOf(id) < 0) 
+    if(!(id!=null)  || !formationIds || !Array.isArray(formationIds) || !(formationIds.indexOf(id) != null) || formationIds.indexOf(id) < 0)
       return null;
     var spotMaybe = formationIds.indexOf(id);
     if(spotMaybe === 0 || spotMaybe > 0)
@@ -52,34 +52,34 @@
   var getDpsSpot = () => app.dpsChar != null && app.dpsChar.id ? app.getCrusaderSpot(app.formationIds, app.dpsChar.id) : null;
   app.getDpsSpot = getDpsSpot;
   /**
-   * 
-   * @param {World} currentWorld 
-   * @param {number} spot 
+   *
+   * @param {World} currentWorld
+   * @param {number} spot
    */
   var getIsValidSpotNumber = (currentWorld, spot) => (spot || spot === 0) && (!(currentWorld != null) || spot < currentWorld.spots);
   app.getIsValidSpotNumber = getIsValidSpotNumber;
   /**
-   * 
-   * @param {World} currentWorld 
-   * @param {number} spot1 
-   * @param {number} spot2 
+   *
+   * @param {World} currentWorld
+   * @param {number} spot1
+   * @param {number} spot2
    */
   var getAreInSameColumn = (currentWorld, spot1,spot2) => currentWorld && app.getIsValidSpotNumber(currentWorld, spot1) && app.getIsValidSpotNumber(currentWorld, spot2) && currentWorld.columnNum(spot1) == currentWorld.columnNum(spot2);
   app.getAreInSameColumn = getAreInSameColumn;
   /**
-   * 
-   * @param {World} currentWorld 
-   * @param {number} front 
-   * @param {number} maybeBehind 
+   *
+   * @param {World} currentWorld
+   * @param {number} front
+   * @param {number} maybeBehind
    */
   var getIsBehind = (currentWorld,front,maybeBehind) => currentWorld && app.getIsValidSpotNumber(currentWorld, front) && app.getIsValidSpotNumber(currentWorld, maybeBehind) && currentWorld.columnNum(front) == currentWorld.columnNum(maybeBehind) + 1;
   app.getIsBehind = getIsBehind;
   //returns the itemId, not the rarity or legendary level
   /**
-   * 
-   * @param {string} cruId 
-   * @param {number} gearSlot 
-   * @param {boolean} debug 
+   *
+   * @param {string} cruId
+   * @param {number} gearSlot
+   * @param {boolean} debug
    */
   var getItemId = (cruId, gearSlot,debug = false) =>{
     if(gearSlot != 0 && gearSlot != 1 && gearSlot != 2)
@@ -93,8 +93,8 @@
     return result;
   }
   /**
-   * 
-   * @param {Crusader} crusader 
+   *
+   * @param {Crusader} crusader
    */
   var crusaderSetup = crusader => {
       crusader.globalDPS = 1;
@@ -108,12 +108,8 @@
         crusader.zapped = undefined;
       if(!(crusader.gear != null))
         return;
-      if(crusader.id == 15)
-        console.log('crusaderSetup', crusader.gear);
 
       crusader.gear.map((gearType,i) =>{
-        if(crusader.id == 15)
-          console.log('crusaderSetup loop', crusader.gear, i, Array.isArray(crusader.gear));
         switch (crusader.gear[i]) {
           case "clickCrit":
             crusader.critChance += itemCrit(crusader, i);
@@ -131,7 +127,6 @@
             if(slotGold != 1)
               crusader["s" + i] = slotGold;
             crusader.globalGold *= slotGold;
-            console.log("gold", crusader.globalGold,globalGold);
             break;
           case "selfdps":
             // can be v1, or V2, compound or not
@@ -139,8 +134,6 @@
               var selfDpsRarity = itemId && Loot.getRarityByItemId(itemId,crusader.loot);
               var selfIsGolden = itemId && Loot.getIsGolden(itemId,crusader.loot);
               var selfDps = selfDpsRarity && itemSelfDPS(selfDpsRarity,selfIsGolden, crusader.id == 15);
-              if(crusader.id == 15)
-                console.log('selfdps', itemId, selfDps);
               if((selfDps || 1) != 1)
                 crusader["s" + i] = selfDps;
             if (crusader == app.dpsChar) {
@@ -155,8 +148,8 @@ app.crusaderSetup = crusaderSetup;
 
 //for adds to all crusader dps items
 /**
- * 
- * @param {number} rarity 
+ *
+ * @param {number} rarity
  */
   function itemDPS(rarity) {
     switch (rarity) {
@@ -180,10 +173,10 @@ app.crusaderSetup = crusaderSetup;
   }
 
   /**
-   * 
-   * @param {number} rarity 
-   * @param {boolean} isGolden 
-   * @param {boolean} debug 
+   *
+   * @param {number} rarity
+   * @param {boolean} isGolden
+   * @param {boolean} debug
    */
   function itemSelfDPS(rarity, isGolden, debug = false) {
     if(!(rarity != null))
@@ -209,9 +202,9 @@ app.crusaderSetup = crusaderSetup;
   }
 
  /**
- * 
- * @param {Crusader} crusader 
- * @param {number} gearSlot 
+ *
+ * @param {Crusader} crusader
+ * @param {number} gearSlot
  */
   function itemGold(crusader, gearSlot) {
     var itemId = getItemId(crusader.id, gearSlot);
@@ -239,9 +232,9 @@ app.crusaderSetup = crusaderSetup;
   }
 
  /**
- * 
- * @param {Crusader} crusader 
- * @param {number} gearSlot 
+ *
+ * @param {Crusader} crusader
+ * @param {number} gearSlot
  */
   function itemCrit(crusader, gearSlot) {
     var lootId = getItemId(crusader.id, gearSlot);
@@ -269,9 +262,9 @@ app.crusaderSetup = crusaderSetup;
   }
 
  /**
- * 
- * @param {Crusader} crusader 
- * @param {number} gearSlot 
+ *
+ * @param {Crusader} crusader
+ * @param {number} gearSlot
  */
   function itemAbility(crusader, gearSlot) {
     var lootId = getItemId(crusader.id, gearSlot);
@@ -299,9 +292,9 @@ app.crusaderSetup = crusaderSetup;
   }
 
  /**
- * 
- * @param {Crusader} crusader 
- * @param {number} gearSlot 
+ *
+ * @param {Crusader} crusader
+ * @param {number} gearSlot
  */
   function itemGreyShots(crusader, gearSlot) {
     var lootId = getItemId(crusader.id, gearSlot);
@@ -325,16 +318,15 @@ app.crusaderSetup = crusaderSetup;
   }
 
  /**
- * 
- * @param {Crusader} crusader 
- * @param {number} gearSlot 
+ *
+ * @param {Crusader} crusader
+ * @param {number} gearSlot
  */
   function legendaryFactor(crusader,gearSlot) {
     if(app.ignoreLegendaryFactor === true)
       return 0;
     var itemId = getItemId(crusader.id, gearSlot);
     var level = Loot.getLLevel(itemId);
-    // console.log('legendaryFactor:' + crusader.displayName + " level " + ( level || "unknown") ,gearSlot, itemId);
     if(!(level != null))
       return 0;
     if (level >= 1) {
@@ -988,14 +980,12 @@ bae.calculate = function() {
   });
   window.diversityTags = diversityTags;
   Object.keys(diversityTags).map(tag =>{
-    console.log('diversityTags tag?',tag);
     if (diversityTags[tag] == 1) {
       diversityBonus += 20 * itemAbility(bae,1);
     } else {
       diversityBonus += -5;
     }
   });
-  console.log('diversityTags',diversityTags,diversityBonus);
   bae.globalDPS *= 1 + diversityBonus/100;
   bae.globalDPS *= 1 + (currentWorld.filled - currentWorld.countTags('event')) * 0.05 * (1 + legendaryFactor(bae,2));
   if (currentWorld.countTags('supernatural' < 3)) {
@@ -1005,7 +995,7 @@ bae.calculate = function() {
     bae.globalDPS *= 1 + legendaryFactor(bae,1);
   }
 };
-  
+
 //////Slot 8
 ////Natalie Dragon
 var natalie = getCrusader("08");
@@ -1311,7 +1301,7 @@ brogon.calculate = function() {
   var adjacent = currentWorld.whatsAdjacent(brogonSpot);
   var numAdjacent = 0;
   var numRoyal = currentWorld.countTags('royal');
-  
+
   if (app.dpsChar && getAreInSameColumn(currentWorld, brogonSpot, getDpsSpot())){
     brogon.globalDPS *= 1 + 0.2 * itemAbility(brogon,1) * numRoyal * (1 + legendaryFactor(brogon,0));
   } else if (karen == app.dpsChar) {
@@ -1638,9 +1628,7 @@ sal.calculate = function() {
   var salSpot = getCrusaderSpot(app.formationIds, sal.id);
   var adjacent = currentWorld.whatsAdjacent(salSpot);
   var numAdjacent = 0;
-  console.log('sal.calculate', app.dpsChar);
   if (sal == app.dpsChar) {
-    console.log("calculating sal's selfDpsMods");
     sal.globalDPS *= 1 + 0.25 * currentWorld.countTags('female') * legendaryFactor(sal,0);
     sal.globalDPS *= 1 + 0.25 * currentWorld.countTags('royal') * legendaryFactor(sal,1);
   }
@@ -2135,7 +2123,6 @@ eiralon.calculate = function() {
     };
     this.setColumn = function (spot, columnNumIn) {
       columnNum[spot] = columnNumIn;
-      console.log('spot:' + spot + " is in column "+columnNumIn);
       if (columnNumIn > _this.maxColumn) {
         _this.maxColumn = columnNumIn;
       }
@@ -2284,8 +2271,6 @@ eiralon.calculate = function() {
         if(cru.calculate){
 
           cru.calculate();
-          if(cru.globalDPS > 1)
-            console.log('calculated ' + cru.id + ', ' + cru.globalDPS + ', ' + cru.displayName);
         }
   };
   app.calculateMultipliers = () => {
@@ -2296,14 +2281,13 @@ eiralon.calculate = function() {
       // reset all the crusader state data for a new formation calculation
       .map(f =>{
         // set them all up BEFORE you do any calculations
-        console.log('crusaderSetup');
         crusaderSetup(f);
         return f;
       })
       .map(f => {
           if(app.throw === true)
             doCalculation(f);
-          else 
+          else
             try
             {
               doCalculation(f);
@@ -2315,7 +2299,6 @@ eiralon.calculate = function() {
         globalGold *= f.globalGold || 1;
     });
     var result = { globalDps: globalDPS, globalGold: globalGold };
-    console.log('calculateMultipliers', result);
     return result;
   };
   app.globalDPS = globalDPS;

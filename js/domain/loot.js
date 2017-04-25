@@ -12,8 +12,8 @@ var LootV1 = (function () {
   // 0 is none, 1 is common, 2 is uncommon, 3 is rare, 4 epic, 5 legendary
   // examples 1, "1", "4g", "5g2"
   /**
-   * 
-   * @param {number | string} itemIdentifier 
+   *
+   * @param {number | string} itemIdentifier
    */
   var getIsV1 = itemIdentifier => {
     if(!itemIdentifier)
@@ -33,20 +33,20 @@ var LootV1 = (function () {
   };
   my.getIsV1 = getIsV1;
   /**
-   * 
-   * @param {number | string} itemRarityCompound 
+   *
+   * @param {number | string} itemRarityCompound
    * @return {number}
    */
   var getRarityByItemId = itemRarityCompound => !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof (itemRarityCompound) === "number" ? itemRarityCompound : +itemRarityCompound[0];
   my.getRarityByItemId = getRarityByItemId;
   /**
-   * 
-   * @param {number | string} itemRarityCompound 
+   *
+   * @param {number | string} itemRarityCompound
    */
   var getIsGolden = itemRarityCompound => !(itemRarityCompound != null) || typeof (itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
   my.getIsGolden = getIsGolden;
   /**
-   * @param {number | string} id 
+   * @param {number | string} id
    * @return {number}
    */
   var getLLevel = (id) =>{
@@ -60,20 +60,18 @@ var LootV1 = (function () {
     if(lIndex < 1 || id.length <= lIndex + 1)
       return null;
     var lLevel = id.slice(lIndex + 1);
-    console.log('found lLevel!', lLevel, +lLevel);
     return +lLevel;
   };
 
   my.getLLevel = getLLevel;
   /**
-   * @param {number | string} id 
-   * @param {number} level 
+   * @param {number | string} id
+   * @param {number} level
    */
   var changeLLevel = (id,level) =>{
     var rarity = my.getRarityByItemId(id);
     var isGolden = my.getIsGolden(id);
     var result = rarity + (isGolden? "g" : "_") + level;
-    console.log('LootV1.changeLLevel', id,level,rarity,isGolden,result);
     return result;
   };
 
@@ -84,7 +82,7 @@ var LootV1 = (function () {
 var LootV2 = (function () {
   var my = {};
   /**
-   * @param {number | string} lootIdOrCompound 
+   * @param {number | string} lootIdOrCompound
   */
   var getLootIdFromLootIdOrCompound  = lootIdOrCompound =>
   {
@@ -99,8 +97,8 @@ var LootV2 = (function () {
   };
   my.getLootIdFromLootIdOrCompound = getLootIdFromLootIdOrCompound;
   /**
-   * @param {number | string} lootIdOrCompound 
-   * @param {Array<Loot>} refGear 
+   * @param {number | string} lootIdOrCompound
+   * @param {Array<Loot>} refGear
    */
   var getRarityByItemId = (lootIdOrCompound,refGear) => {
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
@@ -111,8 +109,8 @@ var LootV2 = (function () {
   my.getRarityByItemId = getRarityByItemId;
 
   /**
-  * @param {Array<Loot>} refGear 
-  * @param {number | string} lootIdOrCompound 
+  * @param {Array<Loot>} refGear
+  * @param {number | string} lootIdOrCompound
   * @return boolean
   */
   var getIsGolden = (refGear,lootIdOrCompound) => {
@@ -125,8 +123,8 @@ var LootV2 = (function () {
   // how would we define a V2? as a valid lootId or an item obtained from looking up the lootId?
   // my.getIsV2 = ???
   /**
-   * @param {number | string} lootIdOrCompound 
-   * @param {Array<Loot>} refGear 
+   * @param {number | string} lootIdOrCompound
+   * @param {Array<Loot>} refGear
    */
   var getRarityByItemId = (lootIdOrCompound,refGear) =>{
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
@@ -197,12 +195,9 @@ var Loot = (function(){
   my.changeLLevel = (id,level) =>{
     if(LootV1.getIsV1(id)){
       var result = LootV1.changeLLevel(id,level);
-      console.log("Loot.V1.changeLLevel",id,level,result);
       return result;
     }
-    console.log('Loot.changeLLevel going V2', id,level);
     var result = LootV2.changeLLevel(id,level);
-    console.log('changeLLevel', id,level, result);
     return result;
   };
   return my;
