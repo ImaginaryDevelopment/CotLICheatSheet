@@ -644,7 +644,8 @@ groklok.calculate = function() {
 ////Mindy the Mime
 var mindy = getCrusader("04b");
 mindy.calculate = function() {
-  mindy.globalDps = "Mindy isn't setup for calculations yet";
+  console.log('mindy is calculating');
+  mindy.globalDPS = "Mindy isn't setup for calculations yet";
 };
 
 //////Slot 5
