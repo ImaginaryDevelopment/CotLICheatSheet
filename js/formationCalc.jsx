@@ -9,7 +9,8 @@
                     if(!(cruId != null) || i >= worldsWake.spots)
                         return cruId;
                     var crusader = getCrusader(cruId);
-                    crusader.spot = i;
+                    if(crusader != null)
+                        crusader.spot = i;
                 });
             }
         }
@@ -51,7 +52,7 @@
                 </div>);
             };
             var dpsSelector = (
-                <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.props.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)} 
+                <HeroSelect crusaders={jsonData.crusaders.filter(cru => this.props.formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)}
                     onHeroChange={cruId => {
                         if(cruId == "0")
                             cruId = null;
