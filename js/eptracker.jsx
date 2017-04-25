@@ -271,7 +271,7 @@ class CruTagGrid extends React.Component {
         this[x] = this[x].bind(this);
     });
     console.log('getOwnPropertySymbols', Object.getOwnPropertySymbols(this));
-    window.importMe = () => this.props.updateSave({mainSelectedTab:2});
+    window.importMe = () => this.props.updateSave({mainSelectedTab:3});
   }
   onSlotSortClick(){
       this.props.updateSave(getSortUpdate('slotSort', this.props.slotSort));

@@ -208,20 +208,3 @@ var Loot = (function(){
   return my;
 
 }());
-
-var decomposeSlotRarity = itemRarityCompound => {
-  // rarityvalue, golden _ or g, legendary level opt
-  if (typeof (itemRarityCompound) == "number") {
-    return { rarity: itemRarityCompound, isGolden: false };
-  }
-  var info = { rarity: +itemRarityCompound[0], isGolden: itemRarityCompound.indexOf("g") == 1 };
-  if (info.rarity == 5)
-    info.level = +itemRarityCompound.length > 2 ? itemRarityCompound.substring(2) : 1;
-  return info;
-};
-var getSlotRarities = (gear, refGear) =>
-  (Loot.getGearInfo(gear)).map(s => Loot.getRarityByItemId(s, refGear));
-
-
-
-
