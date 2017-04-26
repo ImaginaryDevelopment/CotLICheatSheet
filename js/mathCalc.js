@@ -2260,6 +2260,71 @@ eiralon.calculate = function() {
         break;
     }
   }
+  
+  var descent = new World("Descent into Darkness",9);
+descent.setAdjacent(0,[1,2]);
+descent.setAdjacent(1,[0,2,3,4]);
+descent.setAdjacent(2,[0,1,4,5]);
+descent.setAdjacent(3,[1,4,6]);
+descent.setAdjacent(4,[1,2,3,5,6,7]);
+descent.setAdjacent(5,[2,4,7]);
+descent.setAdjacent(6,[3,4,7,8]);
+descent.setAdjacent(7,[4,5,6,8]);
+descent.setAdjacent(8,[6,7]);
+for (i = 0; i < descent.spots; i++) {
+  switch(true){
+    case (i===0):
+      descent.setColumn(i,1);
+      break;
+    case (i<3):
+      descent.setColumn(i,2);
+      break;
+    case (i<6):
+      descent.setColumn(i,3);
+      break;
+    case (i<8):
+      descent.setColumn(i,4);
+      break;
+    case (i == 9):
+      descent.setColumn(i,5);
+      break;
+  }
+}
+
+var ghostbeard = new World("Ghostbeard's Greed",13);
+ghostbeard.setAdjacent(0,[1,3]);
+ghostbeard.setAdjacent(1,[0,2,3,4]);
+ghostbeard.setAdjacent(2,[1,4]);
+ghostbeard.setAdjacent(3,[0,1,4,5,6]);
+ghostbeard.setAdjacent(4,[1,2,3,6,7]);
+ghostbeard.setAdjacent(5,[3,6,8]);
+ghostbeard.setAdjacent(6,[3,4,5,7,8,9]);
+ghostbeard.setAdjacent(7,[4,6,9]);
+ghostbeard.setAdjacent(8,[5,6,9,10,11]);
+ghostbeard.setAdjacent(9,[6,7,8,11,12]);
+ghostbeard.setAdjacent(10,[8,11]);
+ghostbeard.setAdjacent(11,[8,9,10,12]);
+ghostbeard.setAdjacent(12,[9,11]);
+
+for (i = 0; i < 10; i++) {
+  switch(true){
+    case (i<3):
+      ghostbeard.setColumn(i,1);
+      break;
+    case (i<5):
+      ghostbeard.setColumn(i,2);
+      break;
+    case (i<8):
+      ghostbeard.setColumn(i,3);
+      break;
+    case (i<10):
+      ghostbeard.setColumn(i,4);
+      break;
+    case (i<13):
+      ghostbeard.setColumn(i,5);
+      break;  
+  }
+}
 
   var critChance = 1;
   var globalDPS = 1;
