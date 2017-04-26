@@ -1086,7 +1086,11 @@ pete.calculate = function() {
     if (distances[i] == maxDistance) {numJoked += 1}
   }
   pete.globalDPS *= 1 + 0.25 * numJoked * legendaryFactor(pete,1);
-  pete.globalGold *= 1 + 0.1 * (currentWorld.filled - numJoked) * legendaryFactor(pete,2);
+  if (karen.inFormation) {
+    pete.globalGold *= 1 + 0.1 * (currentWorld.filled - numJoked + 1) * legendaryFactor(pete,2);
+  } else {
+    pete.globalGold *= 1 + 0.1 * (currentWorld.filled - numJoked) * legendaryFactor(pete,2);
+  }
 };
 
 ////Broot
