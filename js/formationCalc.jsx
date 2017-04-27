@@ -270,8 +270,7 @@
 
 
 
-
-    app.FormationCalc = class FormationCalc extends React.Component{
+    class FormationCalc extends React.Component{
         constructor(){
             super();
             this.getInitialState = this.getInitialState.bind(this);
@@ -282,27 +281,60 @@
             this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.state = this.getInitialState();
         }
-        getInitialState(){
-            var initial = readIt(this.storageKey, {});
-            if(!(initial.selectedWorld != null) || typeof(initial.selectedWorld) == "string")
-                initial.selectedWorld = 1;
-            if(!(initial.formations != null))
-                initial.formations = {};
-            if(!(initial.formations[currentWorld.id] != null))
+        initializeFormationsForWorld(initial, spots){
+            var currentWorld = getWorldById(initial.selectedWorldId);
+            if(!(initial.formations[initial.selectedWorldId] != null))
             {
                 initial.formations[currentWorld.id] = [];
                 for(var i=0;i<currentWorld.spots;i++) {
                     initial.formations[currentWorld.id].push(null);
                 }
             }
-            app.currentWorld = getWorldById(initial.selectedWorld);
+            // migrate initial.formation to new initial.formations
+            if(initial.formation != null && initial.formation.find(f => f != null && f !== 0 && f != "0")){
+                initial.formation.map((f,i) =>{
 
+                    if(i < currentWorld.spots)
+                        initial.formations[initial.selectedWorldId][i] = f;
+                });
+                initial.formation = undefined;
+            }
+        }
+        migrateLegacyData(initial){
+            if(!(initial.selectedWorldId != null))
+                return;
+            // migrate old property selectedWorld and delete it
+            if(initial.selectedworld != null){
+                if(typeof(initial.selectedWorld) == "number" || !isNaN(+initial.selectedWorld))
+                    initial.selectedWorldId = +initial.selectedWorld;
+                initial.selectedWorld = undefined;
+            }
+            // migrate old property dpsCruId and delete it
+            if(initial.dpsCruId != null){
+                initial.dpsCruIds[initial.selectedWorldId] = initial.dpsCruId;
+                initial.dpsCruId = undefined;
+            }
+        }
+        getInitialState(){
+            var initial = readIt(this.storageKey, {});
+            this.migrateLegacyData(initial);
+
+            if(!(initial.selectedWorldId != null) || typeof(initial.selectedWorldId) == "string")
+                initial.selectedWorldId = 1;
+            if(!(initial.formations != null))
+                initial.formations = {};
+            if(!(initial.dpsCruIds != null))
+                initial.dpsCruIds = {};
+            app.currentWorld = getWorldById(initial.selectedWorldId);
+            this.initializeFormationsForWorld(initial,app.currentWorld.spots);
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?
-            app.formationIds = initial.formations[currentWorld.id];
-            if(initial.dpsCruId){
-                app.setDPS(initial.dpsCruId);
+            app.formationIds = initial.formations[initial.selectedWorldId];
+            console.log('getInitialState', app.formationIds, initial.formations[initial.selectedWorldId]);
+            if(initial.dpsCruIds[initial.selectedWorldId]){
+                app.setDPS(initial.dpsCruIds[initial.selectedWorldId]);
             }
+            app.formationCalcInitial = initial;
             return initial;
         }
         initializeFormationIds(worldSpots){
@@ -310,7 +342,7 @@
                 return false;
             }
             app.formationIds = [];
-            for(var i=0; i<worldSpots; i++)
+            for(var i=0; i < worldSpots; i++)
                 app.formationIds[i] = null;
             return true;
         }
@@ -326,7 +358,11 @@
             this.setState(stateMods);
         }
         onDpsChange(cruId){
-            var stateMods = {dpsCruId:!(cruId != null) || cruId == 0? undefined:cruId};
+            var dpsCruIds = copyObject(this.state.dpsCruIds) || {};
+            // normalize the cruId data
+            cruId = !(cruId != null) || cruId == 0? undefined : cruId;
+            dpsCruIds[this.state.selectedWorldId] = cruId;
+            var stateMods = {dpsCruIds:dpsCruIds};
             this.setState(stateMods);
         }
         componentDidUpdate(prevProps, prevState){
@@ -344,34 +380,35 @@
             var data = app.calculateMultipliers();
             window.multiplierData = data;
             var cruFormationGoldMult = data && data.globalGold;
-            var dpsCru = this.state.dpsCruId && jsonData.crusaders.find(cru => this.state.dpsCruId == cru.id);
+            var dpsCruId = this.state.dpsCruIds[this.state.selectedWorldId];
+            var dpsCru = dpsCruId && jsonData.crusaders.find(cru => dpsCruId == cru.id);
             var playerGold = this.state.gold;
             var goldText = (data && typeof(data.globalGold) == "number")? (data.globalGold + "") : "";
             if(playerGold && typeof(+playerGold) == "number" && +playerGold > 0)
                 goldText = goldText + " * " + playerGold + " = " + ((playerGold * cruFormationGoldMult).toFixed(2));
 
             var formation = null;
-            switch(this.state.selectedWorld){
+            switch(this.state.selectedWorldId){
                 case worldsWake.id:
-                    formation = (<WorldsWake formation={this.state.formations[worldsWake.id] || app.formationIds} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formation = (<WorldsWake formation={this.state.formations[worldsWake.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case descent.id:
-                    formation = (<Descent formation={this.state.formations[descent.id] || app.formationIds} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formation = (<Descent formation={this.state.formations[descent.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case ghostbeard.id:
-                    formation = (<Ghostbeard formation={this.state.formations[ghostbeard.id] || app.formationIds} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formation = (<Ghostbeard formation={this.state.formations[ghostbeard.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
             }
             return (<div>
                 <select
-                    value={this.state.selectedWorld}
+                    value={this.state.selectedWorldId}
                     onChange={e => {
                         console.log('changing world');
                         var worldId = +e.target.value;
                         if(isNaN(worldId))
                             worldId = 1;
                         app.currentWorld = app.getWorldById(worldId);
-                        var stateMods = {selectedWorld: worldId};
+                        var stateMods = {selectedWorldId: worldId};
                         if(this.initializeFormationIds(app.currentWorld.spots))
                             stateMods.formation = app.formationIds;
                         this.setState(stateMods);
@@ -389,4 +426,5 @@
                 )
         }
     }
+    app.FormationCalc = FormationCalc;
 })(typeof global !== 'undefined' ? global : window);
