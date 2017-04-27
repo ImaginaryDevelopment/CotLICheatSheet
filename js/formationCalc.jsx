@@ -159,7 +159,8 @@
         }
         render(){
             var worlds = [
-                worldsWake
+                worldsWake,
+                descent
             ];
             var data = app.calculateMultipliers();
             window.multiplierData = data;
