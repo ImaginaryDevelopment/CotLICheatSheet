@@ -2323,7 +2323,7 @@
         break;
     }
   }
-  
+
   //Grimm
 // X 2 X X X X
 // 0 X 5 X 8 X
@@ -2331,7 +2331,7 @@
 // 1 X 6 X 9 X
 // X 4 X X X X
 
-var grimm = new World("Grimm's Idle Tales",11);
+var grimm = new World(4,"Grimm's Idle Tales",11);
 grimm.setAdjacent(0,[1,2,3]);
 grimm.setAdjacent(1,[0,3,4]);
 grimm.setAdjacent(2,[0,3,5]);
@@ -2367,7 +2367,7 @@ for (i = 0; i < 10; i++) {
 // X X 3 X 8 X
 // X X X 6 X B
 
-var mischief = new World("Mischief at Mugwarts",12);
+var mischief = new World(5,"Mischief at Mugwarts",12);
 mischief.setAdjacent(0,[1]);
 mischief.setAdjacent(1,[0,2,3]);
 mischief.setAdjacent(2,[1,3,4,5]);
@@ -2394,15 +2394,15 @@ for (i = 0; i < 10; i++) {
     mischief.setColumn(i,5);
   } else if (i < 12) {
     mischief.setColumn(i,6);
-  } 
+  }
 }
 
-// X X 6 X X 
-// X 3 X 8 X 
-// 0 X X X B 
-// X 4 X 9 X 
-// 1 X X X C 
-// X 5 X A X 
+// X X 6 X X
+// X 3 X 8 X
+// 0 X X X B
+// X 4 X 9 X
+// 1 X X X C
+// X 5 X A X
 // 2 X 7 X D
 
 var player = new World("Ready Player 2",14);
@@ -2432,7 +2432,7 @@ for (i = 0; i < 10; i++) {
     player.setColumn(i,4);
   } else if (i < 15) {
     player.setColumn(i,5);
-  } 
+  }
 }
 
   var getWorldById = app.getWorldById = id => {
