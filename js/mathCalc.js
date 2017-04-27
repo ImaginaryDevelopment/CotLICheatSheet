@@ -2291,7 +2291,7 @@ var bushwhacker = getCrusader("01");
   }
 }
 
-var ghostbeard = new World(3, "Ghostbeard's Greed", 13);
+var ghostbeard = app.ghostbeard = new World(3, "Ghostbeard's Greed", 13);
 ghostbeard.setAdjacent(0, [1, 3]);
 ghostbeard.setAdjacent(1, [0, 2, 3, 4]);
 ghostbeard.setAdjacent(2, [1, 4]);
@@ -2306,7 +2306,7 @@ ghostbeard.setAdjacent(10, [8, 11]);
 ghostbeard.setAdjacent(11, [8, 9, 10, 12]);
 ghostbeard.setAdjacent(12, [9, 11]);
 
-for (i = 0; i < 10; i++) {
+for (i = 0; i < ghostbeard.spots; i++) {
   switch (true) {
     case (i < 3):
       ghostbeard.setColumn(i, 1);
