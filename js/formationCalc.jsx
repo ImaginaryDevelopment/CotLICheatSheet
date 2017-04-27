@@ -54,6 +54,8 @@
                 if(crusader != null)
                     crusader.spot = slotNumber;
             };
+
+
     app.Descent = class Descent extends React.Component{
         constructor(props){
             super(props);
@@ -71,13 +73,7 @@
         render(){
             if(!(this.props.onFormationChange != null) || typeof(this.props.onFormationChange) != "function")
                 throw Error("onFormationChange is required");
-            var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, this.props.onFormationChange)
-            // X X O X X 0
-            // X O X O X 1
-            // O X O X O 2
-            // X O X O X 3
-            // X X O X X 4
-
+            var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, slot, this.props.onFormationChange)
 
             // X X 3 X X | 0
             // X 1 X 6 X | 1
@@ -92,34 +88,34 @@
                         <tr title="row0">
                             <td />
                             <td />
-                            <td title="slot3">{makeHeroSelect(this.props.formation,3, this.props.onFormationChange)}</td>
+                            <td title="slot3">{myMakeHeroSelect(3)}</td>
                             <td/>
                             <td/>
                         </tr>
                         <tr title="row1">
-                        <td/><td title="slot1">{makeHeroSelect(this.props.formation,1, this.props.onFormationChange)}</td>
+                        <td/><td title="slot1">{myMakeHeroSelect(1)}</td>
                         <td/>
-                        <td title="slot6">{makeHeroSelect(this.props.formation,6,this.props.onFormationChange)}</td>
+                        <td title="slot6">{myMakeHeroSelect(6)}</td>
                         <td />
                         </tr>
                         <tr title="row2">
-                            <td title="slot0"> {makeHeroSelect(this.props.formation,0, this.props.onFormationChange)}</td>
+                            <td title="slot0"> {myMakeHeroSelect(0)}</td>
                             <td />
-                            <td title="slot4">{makeHeroSelect(this.props.formation,4, this.props.onFormationChange)}</td>
+                            <td title="slot4">{myMakeHeroSelect(4)}</td>
                             <td />
-                            <td title="slot8">{makeHeroSelect(this.props.formation,8, this.props.onFormationChange)}</td>
+                            <td title="slot8">{myMakeHeroSelect(8)}</td>
                         </tr>
                         <tr title="row3">
                             <td />
-                            <td title="slot2">{makeHeroSelect(this.props.formation,2, this.props.onFormationChange)}</td>
+                            <td title="slot2">{myMakeHeroSelect(2)}</td>
                             <td />
-                            <td title="slot7">{makeHeroSelect(this.props.formation,7, this.props.onFormationChange)}</td>
+                            <td title="slot7">{myMakeHeroSelect(7)}</td>
                             <td />
                         </tr>
                         <tr title="row4">
                             <td />
                             <td />
-                            <td title="slot5">{makeHeroSelect(this.props.formation,5, this.props.onFormationChange)}</td>
+                            <td title="slot5">{myMakeHeroSelect(5)}</td>
                             <td />
                             <td />
                         </tr>
@@ -196,6 +192,7 @@
         constructor(){
             super();
             this.getInitialState = this.getInitialState.bind(this);
+            this.initializeFormationIds = this.initializeFormationIds.bind(this);
             this.onFormationChange = this.onFormationChange.bind(this);
             this.onDpsChange = this.onDpsChange.bind(this);
             this.storageKey="formationCalc";
@@ -205,18 +202,20 @@
         getInitialState(){
             var initial = readIt(this.storageKey, {});
             if(!(initial.selectedWorld != null))
-                initial.selectedWorld = "World's Wake";
-            if(!(initial.formation != null) || !Array.isArray(initial.formation))
+                initial.selectedWorld = 1;
+            if(!(initial.formations != null))
+                initial.formations = {};
+            if(!(initial.formations[currentWorld.id] != null))
             {
-                initial.formation = [];
+                initial.formations[currentWorld.id] = [];
                 for(var i=0;i<currentWorld.spots;i++) {
-                    initial.formation.push(null);
+                    initial.formations[currentWorld.id].push(null);
                 }
             }
 
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?
-            app.formationIds = initial.formation;
+            app.formationIds = initial.formations[currentWorld.id];
             if(initial.dpsCruId){
                 app.setDPS(initial.dpsCruId);
             }
@@ -232,9 +231,14 @@
             return true;
         }
         onFormationChange(slot,cruId){
+            this.initializeFormationIds(app.currentWorld.spots);
             var stateMods = {};
-            stateMods.formation = (this.state.formation || []).slice(0);
-            stateMods.formation[slot] = cruId;
+            stateMods.formations = (copyObject(this.state.formations) || {});
+            if(!(stateMods.formations[currentWorld.id] != null))
+                stateMods.formations[currentWorld.id] = app.formationIds.slice(0);
+            else this.state.formations[currentWorld.id].slice(0);
+
+            stateMods.formations[currentWorld.id][slot] = cruId;
             this.setState(stateMods);
         }
         onDpsChange(cruId){
@@ -263,9 +267,9 @@
 
             var formation = null;
             if(this.state.selectedWorld == worldsWake.id)
-                formation = (<WorldsWake formation={this.state.formation} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                formation = (<WorldsWake formation={this.state.formations[worldsWake.id] || app.formationIds} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
             else if(this.state.selectedWorld == descent.id)
-                formation = (<Descent formation={this.state.formation} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                formation = (<Descent formation={this.state.formations[descent.id] || app.formationIds} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
             return (<div>
                 <select 
                     value={this.state.selectedWorld} 
@@ -279,7 +283,7 @@
                         if(this.initializeFormationIds(app.currentWorld.spots))
                             stateMods.formation = app.formationIds;
                         this.setState(stateMods);
-                        console.log(app.currentWorld.name, app.currentWorld.spots, app.formationIds, this.state.formation);
+                        console.log(app.currentWorld.name, app.currentWorld.spots, app.formationIds, this.state.formations[currentWorld.id]);
                     }} >
                     {
                         worlds.map(w => (<option key={w.id} value={w.id}>{w.name}</option>))
