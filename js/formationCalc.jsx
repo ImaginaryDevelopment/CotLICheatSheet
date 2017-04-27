@@ -222,6 +222,15 @@
             }
             return initial;
         }
+        initializeFormationIds(worldSpots){
+            if(Array.isArray(app.formationIds) && app.formationIds.length == worldSpots){
+                return false;
+            }
+            app.formationIds = [];
+            for(var i=0; i<worldSpots; i++)
+                app.formationIds[i] = null;
+            return true;
+        }
         onFormationChange(slot,cruId){
             var stateMods = {};
             stateMods.formation = (this.state.formation || []).slice(0);
@@ -253,20 +262,28 @@
                 goldText = goldText + " * " + playerGold + " = " + ((playerGold * cruFormationGoldMult).toFixed(2));
 
             var formation = null;
-            if(this.state.selectedWorld == "World's Wake")
+            if(this.state.selectedWorld == worldsWake.id)
                 formation = (<WorldsWake formation={this.state.formation} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-            else if(this.state.selectedWorld =="Descent into Darkness")
+            else if(this.state.selectedWorld == descent.id)
                 formation = (<Descent formation={this.state.formation} dpsCruId={this.state.dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
             return (<div>
-                <select onChange={e => {
-                    console.log('changing world');
-                    this.setState({selectedWorld: e.target.value});
+                <select 
+                    value={this.state.selectedWorld} 
+                    onChange={e => {
+                        console.log('changing world');
+                        var worldId = +e.target.value;
+                        if(isNaN(worldId))
+                            worldId = 1;
+                        app.currentWorld = app.getWorldById(worldId);
+                        var stateMods = {selectedWorld: worldId};
+                        if(this.initializeFormationIds(app.currentWorld.spots))
+                            stateMods.formation = app.formationIds;
+                        this.setState(stateMods);
+                        console.log(app.currentWorld.name, app.currentWorld.spots, app.formationIds, this.state.formation);
+                    }} >
+                    {
+                        worlds.map(w => (<option key={w.id} value={w.id}>{w.name}</option>))
                     }
-                    } >
-                {
-                    worlds.map(w => <option key={w.name} value={w.name}>{w.name}</option>)
-                    });
-                }
                 </select>
                 <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
                 <p>Dps Multiplier: {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>

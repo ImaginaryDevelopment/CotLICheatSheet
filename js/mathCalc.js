@@ -2112,8 +2112,15 @@ var bushwhacker = getCrusader("01");
 
   //Formations
 
-  function World(name, spots) {
+  /**
+   * 
+   * @param {number} id 
+   * @param {string} name 
+   * @param {number} spots 
+   */
+  function World(id, name, spots) {
     var _this = this;
+    this.id = id;
     this.name = name;
     this.spots = spots;
     this.filled = 0;
@@ -2225,7 +2232,7 @@ var bushwhacker = getCrusader("01");
   }
 
 
-  var worldsWake = new World("World's Wake", 10);
+  var worldsWake = new World(1, "World's Wake", 10);
   app.worldsWake = worldsWake;
   worldsWake.setAdjacent(0, [1, 4]);
   worldsWake.setAdjacent(1, [0, 2, 4, 5]);
@@ -2254,7 +2261,7 @@ var bushwhacker = getCrusader("01");
     }
   }
   
-  var descent = app.descent = new World("Descent into Darkness", 9);
+  var descent = app.descent = new World(2, "Descent into Darkness", 9);
   descent.setAdjacent(0, [1, 2]);
   descent.setAdjacent(1, [0, 2, 3, 4]);
   descent.setAdjacent(2, [0, 1, 4, 5]);
@@ -2284,7 +2291,7 @@ var bushwhacker = getCrusader("01");
   }
 }
 
-var ghostbeard = new World("Ghostbeard's Greed", 13);
+var ghostbeard = new World(3, "Ghostbeard's Greed", 13);
 ghostbeard.setAdjacent(0, [1, 3]);
 ghostbeard.setAdjacent(1, [0, 2, 3, 4]);
 ghostbeard.setAdjacent(2, [1, 4]);
@@ -2318,6 +2325,16 @@ for (i = 0; i < 10; i++) {
       break;
   }
 }
+
+var getWorldById = app.getWorldById = id =>{
+  switch(id){
+    case 1: return worldsWake;
+    case 2: return descent;
+      case 3: return ghostbeard;
+  }
+
+
+};
 
 var critChance = 1;
 var globalDPS = 1;
