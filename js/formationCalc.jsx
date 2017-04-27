@@ -1,6 +1,6 @@
 (app =>{
     var makeFormationDiag = (formation) =>{
-            var formationDiag = {}; 
+            var formationDiag = {};
             formation.map((cruId,i) =>{
                 formationDiag[i] = {spot: i, id: cruId, mathCalcId: app.formationIds[i], columnNum: currentWorld.columnNum(i)};
             });
@@ -83,10 +83,10 @@
         }
         render(){
             var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, slot, this.props.onFormationChange)
-            var formationDiag = {}; 
+            var formationDiag = {};
             this.props.formation.map((cruId,i) =>{
                 formationDiag[i] = {spot: i, id: cruId, mathCalcId: app.formationIds[i]};
-            }) 
+            })
 
             return (<div>
                 <div>Main dps: {dpsSelector(this.props.formation, this.props.onDpsChange, this.props.dpsCruId)}</div>
@@ -195,7 +195,7 @@
                 </div>);
         }
     };
-  
+
 
     app.Ghostbeard = class Ghostbeard extends React.Component{
         constructor(props){
@@ -284,7 +284,7 @@
         }
         getInitialState(){
             var initial = readIt(this.storageKey, {});
-            if(!(initial.selectedWorld != null))
+            if(!(initial.selectedWorld != null) || typeof(initial.selectedWorld) == "string")
                 initial.selectedWorld = 1;
             if(!(initial.formations != null))
                 initial.formations = {};
@@ -363,8 +363,8 @@
                 break;
             }
             return (<div>
-                <select 
-                    value={this.state.selectedWorld} 
+                <select
+                    value={this.state.selectedWorld}
                     onChange={e => {
                         console.log('changing world');
                         var worldId = +e.target.value;
