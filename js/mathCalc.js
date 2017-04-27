@@ -2254,7 +2254,7 @@ var bushwhacker = getCrusader("01");
     }
   }
   
-  var descent = new World("Descent into Darkness", 9);
+  var descent = app.descent = new World("Descent into Darkness", 9);
   descent.setAdjacent(0, [1, 2]);
   descent.setAdjacent(1, [0, 2, 3, 4]);
   descent.setAdjacent(2, [0, 1, 4, 5]);
