@@ -201,11 +201,11 @@
     }
   }
 
- /**
- *
- * @param {Crusader} crusader
- * @param {number} gearSlot
- */
+  /**
+  *
+  * @param {Crusader} crusader
+  * @param {number} gearSlot
+  */
   function itemGold(crusader, gearSlot) {
     var itemId = getItemId(crusader.id, gearSlot);
     var item = itemId && Loot.getLootFromId(itemId, crusader.loot);
@@ -231,11 +231,11 @@
     }
   }
 
- /**
- *
- * @param {Crusader} crusader
- * @param {number} gearSlot
- */
+  /**
+  *
+  * @param {Crusader} crusader
+  * @param {number} gearSlot
+  */
   function itemCrit(crusader, gearSlot) {
     var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
@@ -261,11 +261,11 @@
     }
   }
 
- /**
- *
- * @param {Crusader} crusader
- * @param {number} gearSlot
- */
+  /**
+  *
+  * @param {Crusader} crusader
+  * @param {number} gearSlot
+  */
   function itemAbility(crusader, gearSlot) {
     var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
@@ -291,11 +291,11 @@
     }
   }
 
- /**
- *
- * @param {Crusader} crusader
- * @param {number} gearSlot
- */
+  /**
+  *
+  * @param {Crusader} crusader
+  * @param {number} gearSlot
+  */
   function itemGreyShots(crusader, gearSlot) {
     var lootId = getItemId(crusader.id, gearSlot);
     var item = lootId && Loot.getLootFromId(lootId, crusader.loot);
@@ -317,11 +317,11 @@
     }
   }
 
- /**
- *
- * @param {Crusader} crusader
- * @param {number} gearSlot
- */
+  /**
+  *
+  * @param {Crusader} crusader
+  * @param {number} gearSlot
+  */
   function legendaryFactor(crusader, gearSlot) {
     if (app.ignoreLegendaryFactor === true)
       return 0;
@@ -338,10 +338,10 @@
     }
   }
 
-///////// Formation Calculations
-//////Slot 1
-////bushwhacker
-var bushwhacker = getCrusader("01");
+  ///////// Formation Calculations
+  //////Slot 1
+  ////bushwhacker
+  var bushwhacker = getCrusader("01");
   bushwhacker.calculate = function () {
     bushwhacker.critChance += 1 * legendaryFactor(bushwhacker, 1);
     if (app.dpsChar && app.dpsChar.tags.includes('robot')) {
@@ -607,7 +607,7 @@ var bushwhacker = getCrusader("01");
   groklok.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, groklok.id);
     var drizzleMult = 1;
-    var numAffected = currentWorld.columnTest(currentWorld.columnNum(spot) + 1);
+    var numAffected = currentWorld.getFilledColumnSpots(currentWorld.columnNum(spot) + 1);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
     if (karenSpot != null && currentWorld.columnNum(karenSpot) != currentWorld.columnNum(spot) + 1) {
       numAffected += 1;
@@ -786,7 +786,7 @@ var bushwhacker = getCrusader("01");
     // don't use >= because javascript
     if ((spot === 0 || spot > 0) && app.formationIds[spot] != kaine.id)
       throw error("indexOf for kaine failed");
-    var numInColumn = currentWorld.columnTest(currentWorld.columnNum(spot));
+    var numInColumn = currentWorld.getFilledColumnSpots(currentWorld.columnNum(spot));
     kaine.globalGold *= Math.pow(1 + 0.2 * itemAbility(kaine, 0), numInColumn) || 1;
     //Karen compatability for A-Ha
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
@@ -810,7 +810,7 @@ var bushwhacker = getCrusader("01");
   mister.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, mister.id);
     var numAnimals = currentWorld.countTags('animal');
-    var numBehind = currentWorld.columnTest(currentWorld.columnNum(spot) - 1);
+    var numBehind = currentWorld.getFilledColumnSpots(currentWorld.columnNum(spot) - 1);
     mister.globalGold *= Math.pow(1 + (0.15 + 0.05 * numAnimals) * itemAbility(mister, 1) * (1 + legendaryFactor(mister, 2)), numBehind);
     mister.globalDPS *= 1 + 0.25 * numBehind * legendaryFactor(mister, 1);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
@@ -1100,7 +1100,7 @@ var bushwhacker = getCrusader("01");
     var adjacent = currentWorld.whatsAdjacent(spot);
     if (currentWorld.columnNum(spot) == maxColumn) {
       if (robbie == app.dpsChar) {
-      broot.globalDPS *= 1 + 0.25 * itemAbility(robbie, 2);
+        broot.globalDPS *= 1 + 0.25 * itemAbility(robbie, 2);
       } else {
         broot.globalDPS *= 1.25;
       }
@@ -1576,7 +1576,7 @@ var bushwhacker = getCrusader("01");
   santa.calculate = function () {
     var santaSpot = getCrusaderSpot(app.formationIds, santa.id);
     var adjacent = currentWorld.whatsAdjacent(santaSpot);
-    var numAhead = currentWorld.columnTest(currentWorld.columnNum(santaSpot) + 1);
+    var numAhead = currentWorld.getFilledColumnSpots(currentWorld.columnNum(santaSpot) + 1);
     santa.globalGold *= Math.pow(1 + 0.25 * itemAbility(santa, 0) * (1 + legendaryFactor(santa, 0)), numAhead);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
     if (getIsBehind(currentWorld, karenSpot, santaSpot) === false) {
@@ -2113,10 +2113,10 @@ var bushwhacker = getCrusader("01");
   //Formations
 
   /**
-   * 
-   * @param {number} id 
-   * @param {string} name 
-   * @param {number} spots 
+   *
+   * @param {number} id
+   * @param {string} name
+   * @param {number} spots
    */
   function World(id, name, spots) {
     var _this = this;
@@ -2175,23 +2175,21 @@ var bushwhacker = getCrusader("01");
         });
       return count;
     };
-    this.columnTest = function (column, tag) {
+    this.getFilledColumnSpots = function (column, tag) {
       count = 0;
-      for (var i in formationIds) {
-        if (_this.columnNum(i) == column) {
-          if (!tag) {
+      app.formationIds.map((cruId, i) => {
+        if (i != column)
+          return;
+        if (!tag) {
+          count += 1;
+        } else {
+          var cru = cruId && app.jsonData.crusaders.find(refCru => refCru.id == cruId);
+          if (!cru)
+            return;
+          if (cru.tags.includes(tag))
             count += 1;
-          } else {
-            var cruId = app.formationIds[i];
-            var cru = cruId && app.jsonData.crusaders.find(refCru => refCru.id == cruId);
-            for (var j in cru.tags) {
-              if (tag == cru.tags[j]) {
-                count += 1;
-              }
-            }
-          }
         }
-      }
+      });
       return count;
     };
     this.findDistances = function (spot1) {
@@ -2260,7 +2258,7 @@ var bushwhacker = getCrusader("01");
         break;
     }
   }
-  
+
   var descent = app.descent = new World(2, "Descent into Darkness", 9);
   descent.setAdjacent(0, [1, 2]);
   descent.setAdjacent(1, [0, 2, 3, 4]);
@@ -2272,138 +2270,249 @@ var bushwhacker = getCrusader("01");
   descent.setAdjacent(7, [4, 5, 6, 8]);
   descent.setAdjacent(8, [6, 7]);
   for (i = 0; i < descent.spots; i++) {
-  switch (true) {
-    case (i === 0):
-      descent.setColumn(i, 1);
-      break;
-    case (i < 3):
-      descent.setColumn(i, 2);
-      break;
-    case (i < 6):
-      descent.setColumn(i, 3);
-      break;
-    case (i < 8):
-      descent.setColumn(i, 4);
-      break;
-    case (i == 9):
-      descent.setColumn(i, 5);
-      break;
+    switch (true) {
+      case (i === 0):
+        descent.setColumn(i, 1);
+        break;
+      case (i < 3):
+        descent.setColumn(i, 2);
+        break;
+      case (i < 6):
+        descent.setColumn(i, 3);
+        break;
+      case (i < 8):
+        descent.setColumn(i, 4);
+        break;
+      case (i == 9):
+        descent.setColumn(i, 5);
+        break;
+    }
+  }
+
+  var ghostbeard = app.ghostbeard = new World(3, "Ghostbeard's Greed", 13);
+  ghostbeard.setAdjacent(0, [1, 3]);
+  ghostbeard.setAdjacent(1, [0, 2, 3, 4]);
+  ghostbeard.setAdjacent(2, [1, 4]);
+  ghostbeard.setAdjacent(3, [0, 1, 4, 5, 6]);
+  ghostbeard.setAdjacent(4, [1, 2, 3, 6, 7]);
+  ghostbeard.setAdjacent(5, [3, 6, 8]);
+  ghostbeard.setAdjacent(6, [3, 4, 5, 7, 8, 9]);
+  ghostbeard.setAdjacent(7, [4, 6, 9]);
+  ghostbeard.setAdjacent(8, [5, 6, 9, 10, 11]);
+  ghostbeard.setAdjacent(9, [6, 7, 8, 11, 12]);
+  ghostbeard.setAdjacent(10, [8, 11]);
+  ghostbeard.setAdjacent(11, [8, 9, 10, 12]);
+  ghostbeard.setAdjacent(12, [9, 11]);
+
+  for (i = 0; i < ghostbeard.spots; i++) {
+    switch (true) {
+      case (i < 3):
+        ghostbeard.setColumn(i, 1);
+        break;
+      case (i < 5):
+        ghostbeard.setColumn(i, 2);
+        break;
+      case (i < 8):
+        ghostbeard.setColumn(i, 3);
+        break;
+      case (i < 10):
+        ghostbeard.setColumn(i, 4);
+        break;
+      case (i < 13):
+        ghostbeard.setColumn(i, 5);
+        break;
+    }
+  }
+
+  //Grimm
+// X 2 X X X X
+// 0 X 5 X 8 X
+// X 3 X 7 X A
+// 1 X 6 X 9 X
+// X 4 X X X X
+
+var grimm = new World(4,"Grimm's Idle Tales",11);
+grimm.setAdjacent(0,[1,2,3]);
+grimm.setAdjacent(1,[0,3,4]);
+grimm.setAdjacent(2,[0,3,5]);
+grimm.setAdjacent(3,[0,1,2,4,5,6]);
+grimm.setAdjacent(4,[1,3,6]);
+grimm.setAdjacent(5,[2,3,6,7]);
+grimm.setAdjacent(6,[3,4,5,7]);
+grimm.setAdjacent(7,[5,6,8,9]);
+grimm.setAdjacent(8,[7,9,10]);
+grimm.setAdjacent(9,[7,8,10]);
+grimm.setAdjacent(10,[8,9]);
+
+for (i = 0; i < 10; i++) {
+  if (i < 2) {
+    grimm.setColumn(i,1);
+  } else if (i < 5) {
+    grimm.setColumn(i,2);
+  } else if (i < 7) {
+    grimm.setColumn(i,3);
+  } else if (i < 8) {
+    grimm.setColumn(i,4);
+  } else if (i < 10) {
+    grimm.setColumn(i,5);
+  } else if (i == 10) {
+    grimm.setColumn(i,6);
   }
 }
 
-var ghostbeard = app.ghostbeard = new World(3, "Ghostbeard's Greed", 13);
-ghostbeard.setAdjacent(0, [1, 3]);
-ghostbeard.setAdjacent(1, [0, 2, 3, 4]);
-ghostbeard.setAdjacent(2, [1, 4]);
-ghostbeard.setAdjacent(3, [0, 1, 4, 5, 6]);
-ghostbeard.setAdjacent(4, [1, 2, 3, 6, 7]);
-ghostbeard.setAdjacent(5, [3, 6, 8]);
-ghostbeard.setAdjacent(6, [3, 4, 5, 7, 8, 9]);
-ghostbeard.setAdjacent(7, [4, 6, 9]);
-ghostbeard.setAdjacent(8, [5, 6, 9, 10, 11]);
-ghostbeard.setAdjacent(9, [6, 7, 8, 11, 12]);
-ghostbeard.setAdjacent(10, [8, 11]);
-ghostbeard.setAdjacent(11, [8, 9, 10, 12]);
-ghostbeard.setAdjacent(12, [9, 11]);
+//Mischief
+// X X X 4 X 9
+// X X 2 X 7 X
+// 0 1 X 5 X A
+// X X 3 X 8 X
+// X X X 6 X B
 
-for (i = 0; i < ghostbeard.spots; i++) {
-  switch (true) {
-    case (i < 3):
-      ghostbeard.setColumn(i, 1);
-      break;
-    case (i < 5):
-      ghostbeard.setColumn(i, 2);
-      break;
-    case (i < 8):
-      ghostbeard.setColumn(i, 3);
-      break;
-    case (i < 10):
-      ghostbeard.setColumn(i, 4);
-      break;
-    case (i < 13):
-      ghostbeard.setColumn(i, 5);
-      break;
+var mischief = new World(5,"Mischief at Mugwarts",12);
+mischief.setAdjacent(0,[1]);
+mischief.setAdjacent(1,[0,2,3]);
+mischief.setAdjacent(2,[1,3,4,5]);
+mischief.setAdjacent(3,[1,2,5]);
+mischief.setAdjacent(4,[2,5,7]);
+mischief.setAdjacent(5,[2,3,4,6,7,8]);
+mischief.setAdjacent(6,[3,5,8]);
+mischief.setAdjacent(7,[4,5,8,9,10]);
+mischief.setAdjacent(8,[5,6,7,10,11]);
+mischief.setAdjacent(9,[7,10]);
+mischief.setAdjacent(10,[7,8,9,11]);
+mischief.setAdjacent(11,[8,10]);
+
+for (i = 0; i < 10; i++) {
+  if (i < 1) {
+    mischief.setColumn(i,1);
+  } else if (i < 2) {
+    mischief.setColumn(i,2);
+  } else if (i < 4) {
+    mischief.setColumn(i,3);
+  } else if (i < 7) {
+    mischief.setColumn(i,4);
+  } else if (i < 9) {
+    mischief.setColumn(i,5);
+  } else if (i < 12) {
+    mischief.setColumn(i,6);
   }
 }
 
-var getWorldById = app.getWorldById = id =>{
-  switch(id){
-    case 1: return worldsWake;
-    case 2: return descent;
+// X X 6 X X
+// X 3 X 8 X
+// 0 X X X B
+// X 4 X 9 X
+// 1 X X X C
+// X 5 X A X
+// 2 X 7 X D
+
+var player = new World("Ready Player 2",14);
+player.setAdjacent(0,[1,3,4]);
+player.setAdjacent(1,[0,2,4,5]);
+player.setAdjacent(2,[1,5]);
+player.setAdjacent(3,[0,4,6]);
+player.setAdjacent(4,[0,1,3,5]);
+player.setAdjacent(5,[1,2,4,7]);
+player.setAdjacent(6,[3,8]);
+player.setAdjacent(7,[5,10]);
+player.setAdjacent(8,[6,9,11]);
+player.setAdjacent(9,[8,10,11,12]);
+player.setAdjacent(10,[7,9,12,13]);
+player.setAdjacent(11,[8,9,12]);
+player.setAdjacent(12,[9,10,11,13]);
+player.setAdjacent(13,[10,12]);
+
+for (i = 0; i < 10; i++) {
+  if (i < 3) {
+    player.setColumn(i,1);
+  } else if (i < 6) {
+    player.setColumn(i,2);
+  } else if (i < 8) {
+    player.setColumn(i,3);
+  } else if (i < 11) {
+    player.setColumn(i,4);
+  } else if (i < 15) {
+    player.setColumn(i,5);
+  }
+}
+
+  var getWorldById = app.getWorldById = id => {
+    switch (id) {
+      case 1: return worldsWake;
+      case 2: return descent;
       case 3: return ghostbeard;
-  }
+    }
 
 
-};
+  };
 
-var critChance = 1;
-var globalDPS = 1;
-var globalGold = 1;
-
-app.setDPS = function (id) {
-  var crusader = getCrusader(id);
-  app.dpsChar = crusader;
-};
-
-//Set Up Formation
-var currentWorld = worldsWake;
-app.currentWorld = currentWorld;
-// formation[0]=emo;
-// formation[7]=sasha;
-//formation[2]=kaine;
-//formation[3]=panda;
-// setDPS("Emo");
-//Set base values for the formation crusaders and calculate
-var doCalculation = (cru) => {
-  if (cru.calculate) {
-    cru.calculate();
-  }
-};
-app.calculateMultipliers = () => {
+  var critChance = 1;
   var globalDPS = 1;
   var globalGold = 1;
-  app.jsonData.crusaders
-    .filter(cru => app.formationIds.includes(cru.id))
-    // reset all the crusader state data for a new formation calculation
-    .map(f => {
-      // set them all up BEFORE you do any calculations
-      crusaderSetup(f);
-      return f;
-    })
-    .map(f => {
-      if (app.throw === true)
-        doCalculation(f);
-      else
-        try {
+
+  app.setDPS = function (id) {
+    var crusader = getCrusader(id);
+    app.dpsChar = crusader;
+  };
+
+  //Set Up Formation
+  var currentWorld = worldsWake;
+  app.currentWorld = currentWorld;
+  // formation[0]=emo;
+  // formation[7]=sasha;
+  //formation[2]=kaine;
+  //formation[3]=panda;
+  // setDPS("Emo");
+  //Set base values for the formation crusaders and calculate
+  var doCalculation = (cru) => {
+    if (cru.calculate) {
+      cru.calculate();
+    }
+  };
+  app.calculateMultipliers = () => {
+    var globalDPS = 1;
+    var globalGold = 1;
+    app.jsonData.crusaders
+      .filter(cru => app.formationIds.includes(cru.id))
+      // reset all the crusader state data for a new formation calculation
+      .map(f => {
+        // set them all up BEFORE you do any calculations
+        crusaderSetup(f);
+        return f;
+      })
+      .map(f => {
+        if (app.throw === true)
           doCalculation(f);
-        } catch (ex) {
-          console.error('failed to calculate for ', f);
-        }
+        else
+          try {
+            doCalculation(f);
+          } catch (ex) {
+            console.error('failed to calculate for ', f);
+          }
 
-      globalDPS *= f.globalDPS || 1;
-      globalGold *= f.globalGold || 1;
-    });
-  var result = { globalDps: globalDPS, globalGold: globalGold };
-  return result;
-};
-app.globalDPS = globalDPS;
+        globalDPS *= f.globalDPS || 1;
+        globalGold *= f.globalGold || 1;
+      });
+    var result = { globalDps: globalDPS, globalGold: globalGold };
+    return result;
+  };
+  app.globalDPS = globalDPS;
 
-//for (var i in formation) {
-//  formation[i].calculate();
-//  globalDPS *= formation[i].globalDPS;
-//  globalGold *= formation[i].globalGold;
-//  critChance += formation[i].critChance;
-// }
-// for (var i in formation) {
-//   formation[i].calculate();
-// }
+  //for (var i in formation) {
+  //  formation[i].calculate();
+  //  globalDPS *= formation[i].globalDPS;
+  //  globalGold *= formation[i].globalGold;
+  //  critChance += formation[i].critChance;
+  // }
+  // for (var i in formation) {
+  //   formation[i].calculate();
+  // }
 
-//Optional Arguments we might need
-var countShots = true;
-var underAttack = false;
-var monstersOnscreen = 0;
-var numAttacking = 0;
-var littlefootXP = 0;
-var killedThisStage = 0;
-var currentStage = 0;
+  //Optional Arguments we might need
+  var countShots = true;
+  var underAttack = false;
+  var monstersOnscreen = 0;
+  var numAttacking = 0;
+  var littlefootXP = 0;
+  var killedThisStage = 0;
+  var currentStage = 0;
 })(typeof global !== 'undefined' ? global : window);
