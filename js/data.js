@@ -2971,6 +2971,22 @@ window.jsonData =
         }
       ]
     },
+
+    {
+      "id": "05d",
+      "tier": 2,
+      "displayName": "Grandmora",
+      "image": "Grandmora_48.png",
+      "slot": 5,
+      "event": "April/May: Gardeners of the Galaxy",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
+      "tags": [
+        "alien",
+        "event",
+        "female",
+        "support"
+      ]
+    },
     {
       "id": "06",
       "displayName": "Detective Kaine",
