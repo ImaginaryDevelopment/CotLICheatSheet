@@ -8438,6 +8438,23 @@ window.jsonData =
       ]
     },
     {
+
+      "id": "16c",
+      "tier": 2,
+      "displayName": "Spaceking",
+      "image": "Spaceking_48.png",
+      "slot": 16,
+      "event": "April/May: Gardeners of the Galaxy",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
+      "tags":[
+        "event",
+        "dps",
+        "royal",
+        "human",
+        "male"
+      ]
+    },
+    {
       "id": "17",
       "displayName": "King Reginald IV",
       "image": "mini_Reginald.jpg",
