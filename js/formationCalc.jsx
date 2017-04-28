@@ -268,6 +268,39 @@
         }
     };
 
+    var makeWorldRenderer = (props,slotLayout) =>{
+            if(!(props.onFormationChange != null) || typeof(props.onFormationChange) != "function")
+                throw Error("onFormationChange is required");
+            var myMakeHeroSelect = slot => makeHeroSelect(props.formation, slot, props.onFormationChange)
+            var myMakeTdSlot = (slot,key) => (<td key={key} title={"slot" + slot}>{myMakeHeroSelect(slot)}</td>);
+            var myMakeTrSlots = (row,slots) =>
+                (<tr key={row} title={"row"+row}>
+                    {
+                        slots.map((slot,i) =>{
+                            if(slot!=null){
+                                return myMakeTdSlot(slot,i);
+                            } else {
+                                return (<td key={i}/>);
+                            }
+                        })
+                    }
+                </tr>);
+            return (<div>
+                        <div>Main dps: {dpsSelector(props.formation, props.onDpsChange, props.dpsCruId)}</div>
+                        <table>
+                            <thead></thead>
+                            <tbody>
+                                { slotLayout.map(
+                                        (slots,row) =>
+                                    (
+                                        myMakeTrSlots(row, slots)
+                                    )
+                                )}
+                        </tbody>
+                        </table>
+                        <FormationDiag formation={props.formation} />
+                    </div>);
+        };
  
     app.Grimm = class Grimm extends React.Component{
         constructor(props){
@@ -322,6 +355,38 @@
                 </table>
                 <FormationDiag formation={this.props.formation} />
                 </div>);
+        }
+    };
+
+    app.Mischief = class Mischief extends React.Component{
+        constructor(props){
+            super(props);
+            if(Array.isArray(props.formation)){
+                props.formation.map((cruId,i) =>{
+                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
+                    if(!(cruId != null) || i >= mischief.spots)
+                        return cruId;
+                    var crusader = getCrusader(cruId);
+                    if(crusader != null)
+                        crusader.spot = i;
+                });
+            }
+        }
+        render(){
+            //Mischief
+            // X X X 4 X 9
+            // X X 2 X 7 X
+            // 0 1 X 5 X A
+            // X X 3 X 8 X
+            // X X X 6 X B
+            var x = null;
+            return makeWorldRenderer(this.props, [
+                [x, x, x, 4, x, 9],
+                [x,x,2,x,7,x],
+                [0,1,x,5,x,10],
+                [x,x,3,x,8,x],
+                [x,x,x,6,x,11]
+            ]);
         }
     };
 
@@ -458,6 +523,9 @@
                 break;
                 case grimm.id:
                     formation = (<Grimm formation={this.state.formations[grimm.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                break;
+                case mischief.id:
+                    formation = (<Mischief formation={this.state.formations[grimm.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 default:
                 console.error("formationCalc does not have worldId " + this.state.selectedWorldId + " component");
