@@ -2331,7 +2331,7 @@
 // 1 X 6 X 9 X
 // X 4 X X X X
 
-var grimm = new World(4,"Grimm's Idle Tales",11);
+var grimm = app.grimm = new World(4,"Grimm's Idle Tales",11);
 grimm.setAdjacent(0,[1,2,3]);
 grimm.setAdjacent(1,[0,3,4]);
 grimm.setAdjacent(2,[0,3,5]);
@@ -2367,7 +2367,7 @@ for (i = 0; i < 10; i++) {
 // X X 3 X 8 X
 // X X X 6 X B
 
-var mischief = new World(5,"Mischief at Mugwarts",12);
+var mischief = app.mischief = new World(5,"Mischief at Mugwarts",12);
 mischief.setAdjacent(0,[1]);
 mischief.setAdjacent(1,[0,2,3]);
 mischief.setAdjacent(2,[1,3,4,5]);
@@ -2440,6 +2440,11 @@ for (i = 0; i < 10; i++) {
       case 1: return worldsWake;
       case 2: return descent;
       case 3: return ghostbeard;
+      case 4: return grimm;
+      case 5: return mischief;
+      default: 
+      console.error("worldId not implemented" + id);
+      break;
     }
 
 

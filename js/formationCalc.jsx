@@ -268,6 +268,62 @@
         }
     };
 
+ 
+    app.Grimm = class Grimm extends React.Component{
+        constructor(props){
+            super(props);
+            if(Array.isArray(props.formation)){
+                props.formation.map((cruId,i) =>{
+                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
+                    if(!(cruId != null) || i >= grimm.spots)
+                        return cruId;
+                    var crusader = getCrusader(cruId);
+                    if(crusader != null)
+                        crusader.spot = i;
+                });
+            }
+        }
+        render(){
+            if(!(this.props.onFormationChange != null) || typeof(this.props.onFormationChange) != "function")
+                throw Error("onFormationChange is required");
+            var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, slot, this.props.onFormationChange)
+            var myMakeTdSlot = (slot,key) => (<td key={key} title={"slot" + slot}>{myMakeHeroSelect(slot)}</td>);
+            var myMakeTrSlots = (row,slots) =>
+                (<tr key={row} title={"row"+row}>
+                    {
+
+                        slots.map((slot,i) =>{
+                            if(slot!=null){
+                                return myMakeTdSlot(slot,i);
+                            } else {
+                                return (<td key={i}/>);
+                            }
+                        })
+                    }
+                </tr>);
+
+            //Grimm
+            // X 2 X X X X
+            // 0 X 5 X 8 X
+            // X 3 X 7 X A
+            // 1 X 6 X 9 X
+            // X 4 X X X X
+            return (<div>
+                <div>Main dps: {dpsSelector(this.props.formation, this.props.onDpsChange, this.props.dpsCruId)}</div>
+                <table>
+                    <thead></thead>
+                    <tbody>
+                        {myMakeTrSlots(0, [null,2,null, null,null,null])}
+                        {myMakeTrSlots(1, [0,null,5,    null,8,null])}
+                        {myMakeTrSlots(2, [null,3,null, 7,null,10])}
+                        {myMakeTrSlots(3, [1,null,6,    null,9,null])}
+                        {myMakeTrSlots(4, [null,4,null, null,null,null])}
+                </tbody>
+                </table>
+                <FormationDiag formation={this.props.formation} />
+                </div>);
+        }
+    };
 
 
     class FormationCalc extends React.Component{
@@ -375,7 +431,9 @@
             var worlds = [
                 worldsWake,
                 descent,
-                ghostbeard
+                ghostbeard,
+                grimm,
+                mischief
             ];
             var data = app.calculateMultipliers();
             window.multiplierData = data;
@@ -397,6 +455,12 @@
                 break;
                 case ghostbeard.id:
                     formation = (<Ghostbeard formation={this.state.formations[ghostbeard.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                break;
+                case grimm.id:
+                    formation = (<Grimm formation={this.state.formations[grimm.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                break;
+                default:
+                console.error("formationCalc does not have worldId " + this.state.selectedWorldId + " component");
                 break;
             }
             return (<div>
