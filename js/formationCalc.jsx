@@ -1,3 +1,4 @@
+/// <reference path="mathCalc.js" />
 (app =>{
     var makeFormationDiag = (formation) =>{
             var formationDiag = {};

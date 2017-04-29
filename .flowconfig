@@ -1,0 +1,7 @@
+[ignore]
+.*\.PNG
+[include]
+
+[libs]
+
+[options]

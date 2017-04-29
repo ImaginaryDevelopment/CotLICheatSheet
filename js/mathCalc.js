@@ -1,3 +1,4 @@
+/// <reference path="data.js" />
 (
   /**
    * @typedef {Object} Loot
@@ -25,16 +26,13 @@
    */
   /** @param {App} app */
   (app) => {
-  app.dpsChar = null;
+    /** module mathCalc */
+    var exports = app.mathCalc = {};
+  exports.dpsChar = null;
   //https://github.com/Microsoft/TypeScript/wiki/JsDoc-support-in-JavaScript
 
 
   var jsonData = app.jsonData;
-  /**
-   * @typedef {Object} World
-   * @property {number} spots
-   * @property {string} name
-   */
 
   // doesn't let me define the function as returning crusader or undefined =(
   /**
@@ -61,6 +59,136 @@
    */
   var getDpsSpot = () => app.dpsChar != null && app.dpsChar.id ? app.getCrusaderSpot(app.formationIds, app.dpsChar.id) : null;
   app.getDpsSpot = getDpsSpot;
+
+  /**
+   * @typedef {Object} World
+   * @property {number} spots
+   * @property {string} name
+   * @property {number} id
+   * @property {number} filled how many slots are filled
+   * @property {number} maxColumn
+   * @property {function} setAdjacent
+    this.setAdjacent = function (spot, adjacentArray) {
+      adjacent[spot] = adjacentArray;
+    };
+   */
+  /**
+   * @constructor
+   * @param {number} id
+   * @param {string} name
+   * @param {number} spots
+   * @return {World}
+   */
+  function World(id, name, spots) {
+    var _this = this;
+    this.id = id;
+    this.name = name;
+    this.spots = spots;
+    this.filled = 0;
+    this.maxColumn = 0;
+    var adjacent = [];
+    var columnNum = [];
+    for (i = 0; i < this.spots; i++) {
+      adjacent[i] = [];
+      columnNum[i] = [];
+    }
+    this.setAdjacent = function (spot, adjacentArray) {
+      adjacent[spot] = adjacentArray;
+    };
+    this.setColumn = function (spot, columnNumIn) {
+      columnNum[spot] = columnNumIn;
+      if (columnNumIn > _this.maxColumn) {
+        _this.maxColumn = columnNumIn;
+      }
+    };
+    this.isAdjacent = function (spot1, spot2) {
+      var adjacentTest = false;
+      for (var i in adjacent[spot1]) {
+        if (i == spot2) {
+          adjacentTest = true;
+        }
+      }
+      return adjacentTest;
+    };
+    this.whatsAdjacent = function (spot) {
+      return adjacent[spot] || [];
+    };
+    this.columnNum = function (spot) {
+      return columnNum[spot];
+    };
+    this.countTags = function (tag) {
+      var count = 0;
+      app.formationIds
+        .map((cruId, i) => {
+          if (!(cruId != null) || cruId == "0")
+            return;
+          var cru = jsonData.crusaders.find(refCru => refCru.id == cruId);
+          if (cru) {
+            cru.tags.map(cruTag => {
+              if (tag == cruTag) {
+                count += 1;
+              }
+            });
+            if (cru[tag]) {
+              count += 1;
+            }
+          }
+        });
+      return count;
+    };
+    this.getFilledColumnSpots = function (column, tag) {
+      count = 0;
+      app.formationIds.map((cruId, i) => {
+        if (i != column)
+          return;
+        if (!tag) {
+          count += 1;
+        } else {
+          var cru = cruId && jsonData.crusaders.find(refCru => refCru.id == cruId);
+          if (!cru)
+            return;
+          if (cru.tags.includes(tag))
+            count += 1;
+        }
+      });
+      return count;
+    };
+    this.findDistances = function (spot1) {
+      var visited = [];
+      var distance = [];
+      var adjacent = [];
+      var current = spot1;
+      var running = true;
+      var min = 0;
+      var minLoc = [];
+      for (var i = 0; i < _this.spots; i++) {
+        visited[i] = false;
+        distance[i] = 100;
+      }
+      distance[spot1] = 0;
+      while (running) {
+        adjacent = _this.whatsAdjacent(current);
+        visited[current] = true;
+        min = 100;
+        if (adjacent.length === 0) { running = false; }
+        for (var j = 0; j < adjacent.length; j++) {
+          distance[adjacent[j]] = Math.min(distance[current] + 1, distance[adjacent[j]]);
+        }
+        for (j = 0; j <= _this.spots; j++) {
+          if (!visited[j] && distance[j] < min) {
+            min = distance[j];
+            minLoc = j;
+          }
+        }
+        if (current == minLoc) { running = false; }
+        current = minLoc;
+      }
+      for (i = 0; i < distance.length; i++) {
+        if (distance[i] == 100) { distance[i] = -1; }
+      }
+      return distance;
+    };
+  }
   /**
    *
    * @param {World} currentWorld
@@ -74,7 +202,11 @@
    * @param {number} spot1
    * @param {number} spot2
    */
-  var getAreInSameColumn = (currentWorld, spot1, spot2) => currentWorld && app.getIsValidSpotNumber(currentWorld, spot1) && app.getIsValidSpotNumber(currentWorld, spot2) && currentWorld.columnNum(spot1) == currentWorld.columnNum(spot2);
+  var getAreInSameColumn = (currentWorld, spot1, spot2) => 
+    currentWorld != null 
+    && app.getIsValidSpotNumber(currentWorld, spot1) 
+    && app.getIsValidSpotNumber(currentWorld, spot2) 
+    && currentWorld.columnNum(spot1) == currentWorld.columnNum(spot2);
   app.getAreInSameColumn = getAreInSameColumn;
   /**
    *
@@ -82,7 +214,7 @@
    * @param {number} front
    * @param {number} maybeBehind
    */
-  var getIsBehind = (currentWorld, front, maybeBehind) => currentWorld && app.getIsValidSpotNumber(currentWorld, front) && app.getIsValidSpotNumber(currentWorld, maybeBehind) && currentWorld.columnNum(front) == currentWorld.columnNum(maybeBehind) + 1;
+  var getIsBehind = (currentWorld /*: World */, front, maybeBehind) => currentWorld != null && app.getIsValidSpotNumber(currentWorld, front) && app.getIsValidSpotNumber(currentWorld, maybeBehind) && currentWorld.columnNum(front) == currentWorld.columnNum(maybeBehind) + 1;
   app.getIsBehind = getIsBehind;
   //returns the itemId, not the rarity or legendary level
   /**
@@ -2122,123 +2254,6 @@
   };
 
   //Formations
-
-  /**
-   *
-   * @param {number} id
-   * @param {string} name
-   * @param {number} spots
-   */
-  function World(id, name, spots) {
-    var _this = this;
-    this.id = id;
-    this.name = name;
-    this.spots = spots;
-    this.filled = 0;
-    this.maxColumn = 0;
-    var adjacent = [];
-    var columnNum = [];
-    for (i = 0; i < this.spots; i++) {
-      adjacent[i] = [];
-      columnNum[i] = [];
-    }
-    this.setAdjacent = function (spot, adjacentArray) {
-      adjacent[spot] = adjacentArray;
-    };
-    this.setColumn = function (spot, columnNumIn) {
-      columnNum[spot] = columnNumIn;
-      if (columnNumIn > _this.maxColumn) {
-        _this.maxColumn = columnNumIn;
-      }
-    };
-    this.isAdjacent = function (spot1, spot2) {
-      var adjacentTest = false;
-      for (var i in adjacent[spot1]) {
-        if (i == spot2) {
-          adjacentTest = true;
-        }
-      }
-      return adjacentTest;
-    };
-    this.whatsAdjacent = function (spot) {
-      return adjacent[spot] || [];
-    };
-    this.columnNum = function (spot) {
-      return columnNum[spot];
-    };
-    this.countTags = function (tag) {
-      var count = 0;
-      app.formationIds
-        .map((cruId, i) => {
-          if (!(cruId != null) || cruId == "0")
-            return;
-          var cru = jsonData.crusaders.find(refCru => refCru.id == cruId);
-          if (cru) {
-            cru.tags.map(cruTag => {
-              if (tag == cruTag) {
-                count += 1;
-              }
-            });
-            if (cru[tag]) {
-              count += 1;
-            }
-          }
-        });
-      return count;
-    };
-    this.getFilledColumnSpots = function (column, tag) {
-      count = 0;
-      app.formationIds.map((cruId, i) => {
-        if (i != column)
-          return;
-        if (!tag) {
-          count += 1;
-        } else {
-          var cru = cruId && jsonData.crusaders.find(refCru => refCru.id == cruId);
-          if (!cru)
-            return;
-          if (cru.tags.includes(tag))
-            count += 1;
-        }
-      });
-      return count;
-    };
-    this.findDistances = function (spot1) {
-      var visited = [];
-      var distance = [];
-      var adjacent = [];
-      var current = spot1;
-      var running = true;
-      var min = 0;
-      var minLoc = [];
-      for (var i = 0; i < _this.spots; i++) {
-        visited[i] = false;
-        distance[i] = 100;
-      }
-      distance[spot1] = 0;
-      while (running) {
-        adjacent = _this.whatsAdjacent(current);
-        visited[current] = true;
-        min = 100;
-        if (adjacent.length === 0) { running = false; }
-        for (var j = 0; j < adjacent.length; j++) {
-          distance[adjacent[j]] = Math.min(distance[current] + 1, distance[adjacent[j]]);
-        }
-        for (j = 0; j <= _this.spots; j++) {
-          if (!visited[j] && distance[j] < min) {
-            min = distance[j];
-            minLoc = j;
-          }
-        }
-        if (current == minLoc) { running = false; }
-        current = minLoc;
-      }
-      for (i = 0; i < distance.length; i++) {
-        if (distance[i] == 100) { distance[i] = -1; }
-      }
-      return distance;
-    };
-  }
 
 
   var worldsWake = new World(1, "World's Wake", 10);
