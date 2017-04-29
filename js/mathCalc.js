@@ -2405,7 +2405,7 @@ for (i = 0; i < 10; i++) {
 // X 5 X A X
 // 2 X 7 X D
 
-var player = new World("Ready Player 2",14);
+var player = app.player = new World(6,"Ready Player 2",14);
 player.setAdjacent(0,[1,3,4]);
 player.setAdjacent(1,[0,2,4,5]);
 player.setAdjacent(2,[1,5]);
@@ -2434,7 +2434,7 @@ for (i = 0; i < 10; i++) {
     player.setColumn(i,5);
   }
 }
-  
+
 
 //Idols through Time
 // 0 X X X X 
@@ -2445,7 +2445,7 @@ for (i = 0; i < 10; i++) {
 // X X X 9 X 
 // 3 X X X X
 
-var itt = new World("Idols Through Time",12);
+var itt = app.itt = new World(7,"Idols Through Time",12);
 itt.setAdjacent(0,[1]);
 itt.setAdjacent(1,[0,2,4]);
 itt.setAdjacent(2,[1,3,4]);
@@ -2458,6 +2458,18 @@ itt.setAdjacent(8,[5,6,7,9,10,11]);
 itt.setAdjacent(9,[6,11]);
 itt.setAdjacent(10,[7,8,11]);
 itt.setAdjacent(11,[8,9,10]);
+(function(){
+  var x = null;
+  itt.layout = [
+    [0,x,x,x,x]
+    ,[x,x,x,7,x]
+    ,[1,x,5,x,10]
+    ,[x,4,x,8,x]
+    ,[2,x,6,x,11]
+    ,[x,x,x,9,x]
+    ,[3,x,x,x,x]
+  ];
+})();
 
 
 for (i = 0; i < 10; i++) {
@@ -2483,7 +2495,7 @@ for (i = 0; i < 10; i++) {
 // X 5 X A X 
 // 3 X X X X
 
-var park = new World("Amusement Park of Doom",13);
+var park = app.park = new World(8,"Amusement Park of Doom",13);
 park.setAdjacent(0,[1,4]);
 park.setAdjacent(1,[0,2,4]);
 park.setAdjacent(2,[1,3,5]);
@@ -2497,6 +2509,18 @@ park.setAdjacent(9,[6,7,8,10,11,12]);
 park.setAdjacent(10,[7,9,12]);
 park.setAdjacent(11,[8,9,12]);
 park.setAdjacent(12,[9,10,11]);
+(function(){
+  var x = null;
+  park.layout = [
+    [0,x,x,x,x]
+    ,[x,4,x,8,x]
+    ,[1,x,6,x,11]
+    ,[x,x,x,9,x]
+    ,[2,x,7,x,12]
+    ,[x,5,x,10,x]
+    ,[3,x,x,x,x]
+  ];
+})();
 
 
 for (i = 0; i < 10; i++) {
@@ -2520,6 +2544,9 @@ for (i = 0; i < 10; i++) {
       case 3: return ghostbeard;
       case 4: return grimm;
       case 5: return mischief;
+      case 6: return player;
+      case 7: return itt;
+      case 8: return park;
       default: 
       console.error("worldId not implemented" + id);
       break;

@@ -390,6 +390,61 @@
         }
     };
 
+    app.Player = class Player extends React.Component{
+        constructor(props){
+            super(props);
+            if(Array.isArray(props.formation)){
+                props.formation.map((cruId,i) =>{
+                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
+                    if(!(cruId != null) || i >= player.spots)
+                        return cruId;
+                    var crusader = getCrusader(cruId);
+                    if(crusader != null)
+                        crusader.spot = i;
+                });
+            }
+        }
+        render(){
+            // X X 6 X X
+            // X 3 X 8 X
+            // 0 X X X B
+            // X 4 X 9 X
+            // 1 X X X C
+            // X 5 X A X
+            // 2 X 7 X D
+            var x = null;
+            return makeWorldRenderer(this.props, [
+            [x,x,   6,x,x],
+            [x,3,   x,8,x],
+            [0,x,   x,x, 11],
+            [x,4,   x,9,x],
+            [1,x,   x,x,12],
+            [x,5,   x,10,x],
+            [2,x,7,x, 13]
+            ]);
+        }
+    };
+
+    class WorldComponent extends React.Component {
+
+        constructor(props){
+            super(props);
+            if(Array.isArray(props.formation)){
+                props.formation.map((cruId,i) =>{
+                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
+                    if(!(cruId != null) || i >= props.spots)
+                        return cruId;
+                    var crusader = getCrusader(cruId);
+                    if(crusader != null)
+                        crusader.spot = i;
+                });
+            }
+        }
+        render(){
+            var x = null;
+            return makeWorldRenderer(this.props, this.props.slotLayout);
+        }
+    }
 
     class FormationCalc extends React.Component{
         constructor(){
@@ -498,7 +553,10 @@
                 descent,
                 ghostbeard,
                 grimm,
-                mischief
+                mischief,
+                player,
+                itt,
+                park
             ];
             var data = app.calculateMultipliers();
             window.multiplierData = data;
@@ -525,10 +583,20 @@
                     formation = (<Grimm formation={this.state.formations[grimm.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case mischief.id:
-                    formation = (<Mischief formation={this.state.formations[grimm.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formation = (<Mischief formation={this.state.formations[mischief.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
+                case player.id:
+                    formation = (<Player formation={this.state.formations[player.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                break;
+                case itt.id:
+                    formation = (<WorldComponent slotLayout={itt.layout} formation={this.state.formations[itt.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                break;
+                case park.id:
+                    formation = (<WorldComponent slotLayout={park.layout} formation={this.state.formations[park.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                break;
+
                 default:
-                console.error("formationCalc does not have worldId " + this.state.selectedWorldId + " component");
+                console.error("not implemented: formationCalc does not have worldId " + this.state.selectedWorldId + " component");
                 break;
             }
             return (<div>
