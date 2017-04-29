@@ -2406,35 +2406,46 @@ for (i = 0; i < 10; i++) {
 // 2 X 7 X D
 
 var player = app.player = new World(6,"Ready Player 2",14);
-player.setAdjacent(0,[1,3,4]);
-player.setAdjacent(1,[0,2,4,5]);
-player.setAdjacent(2,[1,5]);
-player.setAdjacent(3,[0,4,6]);
-player.setAdjacent(4,[0,1,3,5]);
-player.setAdjacent(5,[1,2,4,7]);
-player.setAdjacent(6,[3,8]);
-player.setAdjacent(7,[5,10]);
-player.setAdjacent(8,[6,9,11]);
-player.setAdjacent(9,[8,10,11,12]);
-player.setAdjacent(10,[7,9,12,13]);
-player.setAdjacent(11,[8,9,12]);
-player.setAdjacent(12,[9,10,11,13]);
-player.setAdjacent(13,[10,12]);
-
-for (i = 0; i < 10; i++) {
-  if (i < 3) {
-    player.setColumn(i,1);
-  } else if (i < 6) {
-    player.setColumn(i,2);
-  } else if (i < 8) {
-    player.setColumn(i,3);
-  } else if (i < 11) {
-    player.setColumn(i,4);
-  } else if (i < 15) {
-    player.setColumn(i,5);
+(function(){
+  player.setAdjacent(0,[1,3,4]);
+  player.setAdjacent(1,[0,2,4,5]);
+  player.setAdjacent(2,[1,5]);
+  player.setAdjacent(3,[0,4,6]);
+  player.setAdjacent(4,[0,1,3,5]);
+  player.setAdjacent(5,[1,2,4,7]);
+  player.setAdjacent(6,[3,8]);
+  player.setAdjacent(7,[5,10]);
+  player.setAdjacent(8,[6,9,11]);
+  player.setAdjacent(9,[8,10,11,12]);
+  player.setAdjacent(10,[7,9,12,13]);
+  player.setAdjacent(11,[8,9,12]);
+  player.setAdjacent(12,[9,10,11,13]);
+  player.setAdjacent(13,[10,12]);
+  var x = null;
+  player.layout = 
+  [
+              [x,x,   6,x,x],
+              [x,3,   x,8,x],
+              [0,x,   x,x, 11],
+              [x,4,   x,9,x],
+              [1,x,   x,x,12],
+              [x,5,   x,10,x],
+              [2,x,7,x, 13]
+              ]
+  for (i = 0; i < 10; i++) {
+    if (i < 3) {
+      player.setColumn(i,1);
+    } else if (i < 6) {
+      player.setColumn(i,2);
+    } else if (i < 8) {
+      player.setColumn(i,3);
+    } else if (i < 11) {
+      player.setColumn(i,4);
+    } else if (i < 15) {
+      player.setColumn(i,5);
+    }
   }
-}
-
+})();
 
 //Idols through Time
 // 0 X X X X 

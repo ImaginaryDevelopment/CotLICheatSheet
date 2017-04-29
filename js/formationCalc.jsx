@@ -390,41 +390,6 @@
         }
     };
 
-    app.Player = class Player extends React.Component{
-        constructor(props){
-            super(props);
-            if(Array.isArray(props.formation)){
-                props.formation.map((cruId,i) =>{
-                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
-                    if(!(cruId != null) || i >= player.spots)
-                        return cruId;
-                    var crusader = getCrusader(cruId);
-                    if(crusader != null)
-                        crusader.spot = i;
-                });
-            }
-        }
-        render(){
-            // X X 6 X X
-            // X 3 X 8 X
-            // 0 X X X B
-            // X 4 X 9 X
-            // 1 X X X C
-            // X 5 X A X
-            // 2 X 7 X D
-            var x = null;
-            return makeWorldRenderer(this.props, [
-            [x,x,   6,x,x],
-            [x,3,   x,8,x],
-            [0,x,   x,x, 11],
-            [x,4,   x,9,x],
-            [1,x,   x,x,12],
-            [x,5,   x,10,x],
-            [2,x,7,x, 13]
-            ]);
-        }
-    };
-
     class WorldComponent extends React.Component {
 
         constructor(props){
@@ -444,7 +409,46 @@
             var x = null;
             return makeWorldRenderer(this.props, this.props.slotLayout);
         }
-    }
+    };
+
+    var calculateTagTracker = (missionTags,formation) =>{
+        var tagTracker = {};
+
+        var tags = missionTags.map(mt =>{
+            tagTracker[mt.id]=0;
+            return mt.id;
+        });
+
+        formation
+            .filter(cruId=> cruId != null && cruId != 0)
+            .map(getCrusader)
+            .filter(cru => cru != null && (cru.tags != null) && Array.isArray(cru.tags))
+            .map(cru => {
+                cru.tags.map(tag =>{
+                    if(tagTracker[tag] != null)
+                        tagTracker[tag]= inspect(tagTracker[tag],'tagTracker[tag]') + 1;
+                    else
+                        console.warn('Tag on crusader, but not in mission tag list:' + tag);
+
+                    // just in case there is a tag on a crusader that doesn't appear in the missionTags list
+                });
+            });
+        return tagTracker;
+    };
+
+    var FormationTags = props => {
+        // add counts for each of the crusaders in formation's tags
+        var tagComponents = [];
+        props.missionTags.map(tag => {
+
+            var tagCssClass = props.tagTracker[tag.id] > 0 ? "img_tag":"img_tag_off";
+            var title = tag.displayName;
+            var imgTag = (<img key={tag.id} src={props.baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
+            tagComponents.push(imgTag);
+        });
+        return (<div key="tags" className="tags" data-key="tags">{tagComponents}</div>);
+    };
+    FormationTags.displayName='FormationTags';
 
     class FormationCalc extends React.Component{
         constructor(){
@@ -568,38 +572,52 @@
             if(playerGold && typeof(+playerGold) == "number" && +playerGold > 0)
                 goldText = goldText + " * " + playerGold + " = " + ((playerGold * cruFormationGoldMult).toFixed(2));
 
-            var formation = null;
+            var formationComponent = null;
+            var formationIds = null;
             switch(this.state.selectedWorldId){
                 case worldsWake.id:
-                    formation = (<WorldsWake formation={this.state.formations[worldsWake.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[worldsWake.id] || app.formationIds;
+                    formationComponent = (<WorldsWake formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case descent.id:
-                    formation = (<Descent formation={this.state.formations[descent.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[descent.id] || app.formationIds;
+                    formationComponent = (<Descent formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case ghostbeard.id:
-                    formation = (<Ghostbeard formation={this.state.formations[ghostbeard.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[ghostbeard.id] || app.formationIds;
+                    formationComponent = (<Ghostbeard formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case grimm.id:
-                    formation = (<Grimm formation={this.state.formations[grimm.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[grimm.id] || app.formationIds;
+                    formationComponent = (<Grimm formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case mischief.id:
-                    formation = (<Mischief formation={this.state.formations[mischief.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[mischief.id] || app.formationIds;
+                    formationComponent = (<Mischief formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case player.id:
-                    formation = (<Player formation={this.state.formations[player.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[player.id] || app.formationIds;
+                    formationComponent = (<WorldComponent slotLayout={player.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case itt.id:
-                    formation = (<WorldComponent slotLayout={itt.layout} formation={this.state.formations[itt.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[itt.id] || app.formationIds;
+                    formationComponent = (<WorldComponent slotLayout={itt.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
                 case park.id:
-                    formation = (<WorldComponent slotLayout={park.layout} formation={this.state.formations[park.id] || app.formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    formationIds = this.state.formations[park.id] || app.formationIds;
+                    formationComponent = (<WorldComponent slotLayout={park.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
                 break;
-
                 default:
                 console.error("not implemented: formationCalc does not have worldId " + this.state.selectedWorldId + " component");
                 break;
             }
+            // not in the mood to change that the component is supplying the protocol, so that we can use file:// here to have the tags use file system when we are on the filesystem
+            var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : getIsLocalFileSystem()?  '': '';
+            var tagTracker = calculateTagTracker(jsonData.missionTags, formationIds);
+                // <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} formation={formationIds}/>
+
             return (<div>
+                <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} tagTracker={tagTracker}/>
                 <select
                     value={this.state.selectedWorldId}
                     onChange={e => {
@@ -621,7 +639,7 @@
                 <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
                 <p>Dps Multiplier: {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
-                {formation}
+                {formationComponent}
                 </div>
                 )
         }
