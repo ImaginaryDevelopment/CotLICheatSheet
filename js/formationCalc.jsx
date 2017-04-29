@@ -426,7 +426,7 @@
             .map(cru => {
                 cru.tags.map(tag =>{
                     if(tagTracker[tag] != null)
-                        tagTracker[tag]= inspect(tagTracker[tag],'tagTracker[tag]') + 1;
+                        tagTracker[tag]= tagTracker[tag] + 1;
                     else
                         console.warn('Tag on crusader, but not in mission tag list:' + tag);
 
@@ -630,7 +630,6 @@
                         if(this.initializeFormationIds(app.currentWorld.spots))
                             stateMods.formation = app.formationIds;
                         this.setState(stateMods);
-                        console.log(app.currentWorld.name, app.currentWorld.spots, app.formationIds, this.state.formations[currentWorld.id]);
                     }} >
                     {
                         worlds.map(w => (<option key={w.id} value={w.id}>{w.name}</option>))

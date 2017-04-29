@@ -2595,22 +2595,29 @@ for (i = 0; i < 10; i++) {
     app.jsonData.crusaders
       .filter(cru => app.formationIds.includes(cru.id))
       // reset all the crusader state data for a new formation calculation
-      .map(f => {
+      .map(cru => {
+        console.info('calling cru setup');
         // set them all up BEFORE you do any calculations
-        crusaderSetup(f);
-        return f;
+        crusaderSetup(cru);
+        return cru;
       })
       .map(f => {
-        if (app.throw === true)
+        var globalIsOk = typeof(globalDPS) === "number" && !isNaN(globalDPS);
+        if (app.throw === true){
           doCalculation(f);
+          if(globalIsOk && !(typeof(globalDPS) === "number" && !isNaN(globalDPS)))
+            throw Error("global was busted by " + f);
+        }
         else
           try {
             doCalculation(f);
           } catch (ex) {
             console.error('failed to calculate for ', f);
           }
-
-        globalDPS *= f.globalDPS || 1;
+        if(f.globalDPS != null && !isNaN(f.globalDPS))
+          globalDPS *= f.globalDPS || 1;
+        if(globalIsOk && !(typeof(globalDPS) === "number" && !isNaN(globalDPS)))
+            throw Error("global was busted by " + f);
         globalGold *= f.globalGold || 1;
       });
     var result = { globalDps: globalDPS, globalGold: globalGold };
