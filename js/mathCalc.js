@@ -1,7 +1,4 @@
-((app) => {
-  app.dpsChar = null;
-  //https://github.com/Microsoft/TypeScript/wiki/JsDoc-support-in-JavaScript
-
+(
   /**
    * @typedef {Object} Loot
    * @property {number} lootId
@@ -14,16 +11,29 @@
    * @property {string} id
    * @property {string} displayName
    * @property {Array<Loot>} loot
+   * @property {Array<string>} tags
    */
+  /**
+   * @typedef {Object} JsonData
+   * @property {string} wikibase 
+   * @property {Array<Crusader>} crusaders
+   */
+  /**
+   * @typedef {Object} App
+   * @property {JsonData} jsonData
+   * @property {?string} dpsChar 
+   */
+  /** @param {App} app */
+  (app) => {
+  app.dpsChar = null;
+  //https://github.com/Microsoft/TypeScript/wiki/JsDoc-support-in-JavaScript
+
+
+  var jsonData = app.jsonData;
   /**
    * @typedef {Object} World
    * @property {number} spots
    * @property {string} name
-   */
-  /**
-   *
-   * @param {*} name
-   * @param {*} spots
    */
 
   // doesn't let me define the function as returning crusader or undefined =(
@@ -31,21 +41,21 @@
    * @param {string} id - a Crusader identifier like 04b
    * @return {Crusader}
    */
-  var getCrusader = id => app.jsonData.crusaders.find(c => c.id == id);
-  app.getCrusader = getCrusader;
+  var getCrusader = app.getCrusader =
+  id => jsonData.crusaders.find(c => c.id == id);
+  var getCrusaderSpot = app.getCrusaderSpot = 
   /**
    *
    * @param {Array<string>} formationIds
    * @param {string} id
    */
-  var getCrusaderSpot = (formationIds, id) => {
-    if (!(id != null) || !formationIds || !Array.isArray(formationIds) || !(formationIds.indexOf(id) != null) || formationIds.indexOf(id) < 0)
-      return null;
-    var spotMaybe = formationIds.indexOf(id);
-    if (spotMaybe === 0 || spotMaybe > 0)
-      return spotMaybe;
+    (formationIds, id) => {
+      if (!(id != null) || !formationIds || !Array.isArray(formationIds) || !(formationIds.indexOf(id) != null) || formationIds.indexOf(id) < 0)
+        return null;
+      var spotMaybe = formationIds.indexOf(id);
+      if (spotMaybe === 0 || spotMaybe > 0)
+        return spotMaybe;
   };
-  app.getCrusaderSpot = getCrusaderSpot;
   /**
    * @return {number}
    */
@@ -79,7 +89,8 @@
    *
    * @param {string} cruId
    * @param {number} gearSlot
-   * @param {boolean} debug
+   * @param {?boolean} debug
+   * @return {string}
    */
   var getItemId = (cruId, gearSlot, debug = false) => {
     if (gearSlot != 0 && gearSlot != 1 && gearSlot != 2)
@@ -426,7 +437,7 @@
     var numAdjacent = 0;
     var spot = app.getCrusaderSpot(app.formationIds, pam.id);
     //Focused Teamwork
-    app.jsonData.crusaders
+    jsonData.crusaders
       .filter(cru => app.formationIds.includes(cru.id))
       .map(cru => {
         var cruSpot = app.getCrusaderSpot(app.formationIds, cru.id);
@@ -470,7 +481,7 @@
     //Precise Aim
     var adjacent = currentWorld.whatsAdjacent(spot);
     for (var j = 0; j < adjacent.length; j++) {
-      var adjCru = app.jsonData.crusaders.find(cru => cru.id == app.formationIds[adjacent[j]]);
+      var adjCru = jsonData.crusaders.find(cru => cru.id == app.formationIds[adjacent[j]]);
       if (adjCru && app.dpsChar && adjCru.id == app.dpsChar.id) {
         dpsAffected = true;
       }
@@ -519,7 +530,7 @@
       var numAdjacent = 0;
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
-        var adjCru = adjCruId && app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+        var adjCru = adjCruId && jsonData.crusaders.find(cru => cru.id == adjCruId);
         if (adjCruId != null) {
           numAdjacent += 1;
         }
@@ -550,7 +561,7 @@
       var adjacent = currentWorld.whatsAdjacent(spot);
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
-        var adjCru = adjCruId && app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+        var adjCru = adjCruId && jsonData.crusaders.find(cru => cru.id == adjCruId);
         if (adjCruId != null) {
           numAdjacent += 1;
         }
@@ -682,7 +693,7 @@
       var adjCruId = app.formationIds[adjacent[i]];
       if (adjCruId) {
         numAdjacent += 1;
-        var adjCru = app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+        var adjCru = jsonData.crusaders.find(cru => cru.id == adjCruId);
         if (!(adjCru != null))
           continue;
         var adjCruSpot = getCrusaderSpot(app.formationIds, adjCru.id);
@@ -734,7 +745,7 @@
       var robots = currentWorld.countTags("robot");
       var nonRoyalHumans = 0;
       for (var i in app.formationIds) {
-        var cru = app.jsonData.crusaders.find(refCru => refCru.id == i);
+        var cru = jsonData.crusaders.find(refCru => refCru.id == i);
         if (cru.tags.includes("human") && !cru.tags.includes("royal")) { nonRoyalHumans += 1; }
       }
       draco.globalDPS *= 1 + royals - 0.5 * nonRoyalHumans;
@@ -1361,7 +1372,7 @@
     }
     for (var i = 0; i < adjacent.length; i++) {
       var adjCruId = formationIds[adjacent[i]];
-      var adjCru = adjCruId && app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+      var adjCru = adjCruId && jsonData.crusaders.find(cru => cru.id == adjCruId);
       if (!(adjCru != null))
         continue;
       if (adjCru.tags.includes('human')) {
@@ -1427,7 +1438,7 @@
     if (rocky == app.dpsChar) {
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
-        var adjCru = app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+        var adjCru = jsonData.crusaders.find(cru => cru.id == adjCruId);
         if (adjCru) {
           if (adjCru.tags.includes('female')) {
             numFemales += 1;
@@ -1612,7 +1623,7 @@
     var adjacent = currentWorld.whatsAdjacent(katieSpot);
     for (var i = 0; i < adjacent.length; i++) {
       var adjCruId = app.formationIds[adjacent[i]];
-      var adjCru = adjCruId && app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+      var adjCru = adjCruId && jsonData.crusaders.find(cru => cru.id == adjCruId);
       if (!(adjCru != null)) continue;
       if (adjCru.tags.includes('animal')) { animalsAdj += 1; }
       if (adjCru.tags.includes('human')) { humansAdj += 1; }
@@ -1763,7 +1774,7 @@
     app.formationIds
       .filter(f => f != null)
       .map(cruId => {
-        var cru = app.jsonData.crusaders.find(refCru => refCru.id == cruId);
+        var cru = jsonData.crusaders.find(refCru => refCru.id == cruId);
         if (!cru.tags.includes('human') && !cru.tags.includes('animal')) {
           diversityCount += 1;
         }
@@ -1783,7 +1794,7 @@
       squiggles.globalDPS *= 1 + 0.1 * (currentWorld.filled - currentWorld.countTags('royal'));
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
-        var adjCru = adjCruId && app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+        var adjCru = adjCruId && jsonData.crusaders.find(cru => cru.id == adjCruId);
         if (adjCru && adjCru.tags.includes('human')) { humansAdj += 1; }
       }
       if (humansAdj >= 2) {
@@ -1939,7 +1950,7 @@
     if (rudolph == app.dpsChar) {
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
-        var adjCru = adjCruId && app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+        var adjCru = adjCruId && jsonData.crusaders.find(cru => cru.id == adjCruId);
         if (adjCru && adjCru.tags.includes('robot')) {
           robotAdj = true;
         }
@@ -1965,7 +1976,7 @@
     var robotsAdj = 0;
     for (var i = 0; i < adjacent.length; i++) {
       var adjCruId = app.formationIds[adjacent[i]];
-      var adjCru = adjCruId && app.jsonData.crusaders.find(cru => cru.id == adjCruId);
+      var adjCru = adjCruId && jsonData.crusaders.find(cru => cru.id == adjCruId);
 
       if (adjCru && adjCru.tags.includes('robot')) {
         robotsAdj = 1;
@@ -2161,7 +2172,7 @@
         .map((cruId, i) => {
           if (!(cruId != null) || cruId == "0")
             return;
-          var cru = app.jsonData.crusaders.find(refCru => refCru.id == cruId);
+          var cru = jsonData.crusaders.find(refCru => refCru.id == cruId);
           if (cru) {
             cru.tags.map(cruTag => {
               if (tag == cruTag) {
@@ -2183,7 +2194,7 @@
         if (!tag) {
           count += 1;
         } else {
-          var cru = cruId && app.jsonData.crusaders.find(refCru => refCru.id == cruId);
+          var cru = cruId && jsonData.crusaders.find(refCru => refCru.id == cruId);
           if (!cru)
             return;
           if (cru.tags.includes(tag))
@@ -2592,7 +2603,7 @@ for (i = 0; i < 10; i++) {
   app.calculateMultipliers = () => {
     var globalDPS = 1;
     var globalGold = 1;
-    app.jsonData.crusaders
+    jsonData.crusaders
       .filter(cru => app.formationIds.includes(cru.id))
       // reset all the crusader state data for a new formation calculation
       .map(cru => {
