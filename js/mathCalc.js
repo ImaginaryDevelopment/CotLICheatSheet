@@ -2434,6 +2434,84 @@ for (i = 0; i < 10; i++) {
     player.setColumn(i,5);
   }
 }
+  
+
+//Idols through Time
+// 0 X X X X 
+// X X X 7 X 
+// 1 X 5 X A 
+// X 4 X 8 X 
+// 2 X 6 X B 
+// X X X 9 X 
+// 3 X X X X
+
+var itt = new World("Idols Through Time",12);
+itt.setAdjacent(0,[1]);
+itt.setAdjacent(1,[0,2,4]);
+itt.setAdjacent(2,[1,3,4]);
+itt.setAdjacent(3,[2]);
+itt.setAdjacent(4,[1,2,5,6]);
+itt.setAdjacent(5,[4,6,7,8]);
+itt.setAdjacent(6,[4,5,8,9]);
+itt.setAdjacent(7,[5,8,10]);
+itt.setAdjacent(8,[5,6,7,9,10,11]);
+itt.setAdjacent(9,[6,11]);
+itt.setAdjacent(10,[7,8,11]);
+itt.setAdjacent(11,[8,9,10]);
+
+
+for (i = 0; i < 10; i++) {
+  if (i < 4) {
+    itt.setColumn(i,1);
+  } else if (i < 5) {
+    itt.setColumn(i,2);
+  } else if (i < 7) {
+    itt.setColumn(i,3);
+  } else if (i < 10) {
+    itt.setColumn(i,4);
+  } else if (i < 12) {
+    itt.setColumn(i,5);
+  } 
+}
+
+//Amusement Park
+// 0 X X X X 
+// X 4 X 8 X 
+// 1 X 6 X B 
+// X X X 9 X 
+// 2 X 7 X C 
+// X 5 X A X 
+// 3 X X X X
+
+var park = new World("Amusement Park of Doom",13);
+park.setAdjacent(0,[1,4]);
+park.setAdjacent(1,[0,2,4]);
+park.setAdjacent(2,[1,3,5]);
+park.setAdjacent(3,[2,5]);
+park.setAdjacent(4,[0,1,6]);
+park.setAdjacent(5,[2,3,7]);
+park.setAdjacent(6,[4,7,8,9]);
+park.setAdjacent(7,[5,6,9,10]);
+park.setAdjacent(8,[6,9,11]);
+park.setAdjacent(9,[6,7,8,10,11,12]);
+park.setAdjacent(10,[7,9,12]);
+park.setAdjacent(11,[8,9,12]);
+park.setAdjacent(12,[9,10,11]);
+
+
+for (i = 0; i < 10; i++) {
+  if (i < 4) {
+    park.setColumn(i,1);
+  } else if (i < 6) {
+    park.setColumn(i,2);
+  } else if (i < 8) {
+    park.setColumn(i,3);
+  } else if (i < 11) {
+    park.setColumn(i,4);
+  } else if (i < 13) {
+    park.setColumn(i,5);
+  } 
+}  
 
   var getWorldById = app.getWorldById = id => {
     switch (id) {
