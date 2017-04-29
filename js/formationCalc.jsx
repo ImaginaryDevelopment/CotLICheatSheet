@@ -1,5 +1,6 @@
 /// <reference path="mathCalc.js" />
 (app =>{
+    var getCrusader = app.mathCalc.getCrusader;
     var makeFormationDiag = (formation) =>{
             var formationDiag = {};
             formation.map((cruId,i) =>{
