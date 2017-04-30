@@ -2252,34 +2252,51 @@
   //Formations
 
 
-  var worldsWake = new World(1, "World's Wake", 10);
-  app.worldsWake = worldsWake;
-  worldsWake.setAdjacent(0, [1, 4]);
-  worldsWake.setAdjacent(1, [0, 2, 4, 5]);
-  worldsWake.setAdjacent(2, [1, 3, 5, 6]);
-  worldsWake.setAdjacent(3, [2, 6]);
-  worldsWake.setAdjacent(4, [0, 1, 5, 7]);
-  worldsWake.setAdjacent(5, [1, 2, 4, 6, 7, 8]);
-  worldsWake.setAdjacent(6, [2, 3, 5, 8]);
-  worldsWake.setAdjacent(7, [4, 5, 8, 9]);
-  worldsWake.setAdjacent(8, [5, 6, 7, 9]);
-  worldsWake.setAdjacent(9, [7, 8]);
-  for (i = 0; i < 10; i++) {
-    switch (true) {
-      case (i < 4):
-        worldsWake.setColumn(i, 1);
-        break;
-      case (i > 3 && i < 7):
-        worldsWake.setColumn(i, 2);
-        break;
-      case (i > 6 && i < 9):
-        worldsWake.setColumn(i, 3);
-        break;
-      case (i == 9):
-        worldsWake.setColumn(i, 4);
-        break;
+  // 0, x, x, x
+  // x, 4, x, x
+  // 1, x, 7, x
+  // x, 5, x, 9
+  // 2, x, 8, x
+  // 3, x, x, x
+  var worldsWake = app.worldsWake = new World(1, "World's Wake", 10);
+  (() => {
+    var x = null;
+    worldsWake.layout = [
+      [ 0, x, x, x]
+      ,[ x, 4, x, x]
+      ,[ 1, x, 7, x]
+      ,[ x, 5, x, 9]
+      ,[ 2, x, 8, x]
+      ,[ x, 6, x, x]
+      ,[ 3, x, x, x]
+    ];
+    worldsWake.setAdjacent(0, [1, 4]);
+    worldsWake.setAdjacent(1, [0, 2, 4, 5]);
+    worldsWake.setAdjacent(2, [1, 3, 5, 6]);
+    worldsWake.setAdjacent(3, [2, 6]);
+    worldsWake.setAdjacent(4, [0, 1, 5, 7]);
+    worldsWake.setAdjacent(5, [1, 2, 4, 6, 7, 8]);
+    worldsWake.setAdjacent(6, [2, 3, 5, 8]);
+    worldsWake.setAdjacent(7, [4, 5, 8, 9]);
+    worldsWake.setAdjacent(8, [5, 6, 7, 9]);
+    worldsWake.setAdjacent(9, [7, 8]);
+    for (i = 0; i < 10; i++) {
+      switch (true) {
+        case (i < 4):
+          worldsWake.setColumn(i, 1);
+          break;
+        case (i > 3 && i < 7):
+          worldsWake.setColumn(i, 2);
+          break;
+        case (i > 6 && i < 9):
+          worldsWake.setColumn(i, 3);
+          break;
+        case (i == 9):
+          worldsWake.setColumn(i, 4);
+          break;
+      }
     }
-  }
+  })();
 
   // X X 3 X X | 0
   // X 1 X 6 X | 1
@@ -2292,7 +2309,7 @@
     descent.layout = [
      [x, x, 3, x, x ] // |, 0
     ,[x, 1, x, 6, x ] // |, 1
-    ,[O, x, 4, x, 8 ] // |, 2
+    ,[0, x, 4, x, 8 ] // |, 2
     ,[x, 2, x, 7, x ] // |, 3
     ,[x, x, 5, x, x ] // |, 4
     ];
@@ -2333,12 +2350,13 @@
   // 2 X 7 X C | 4
   var ghostbeard = app.ghostbeard = new World(3, "Ghostbeard's Greed", 13);
   (() =>{
+    var x = null;
     ghostbeard.layout = [
-      [0, X, 5, X, A]  // | 0,
-      ,[X, 3, X, 8, X] // | 1,
-      ,[1, X, 6, X, B] // | 2,
-      ,[X, 4, X, 9, X] // | 3,
-      ,[2, X, 7, X, C] // | 4,
+      [0, x, 5, x, 10]  // | 0,
+      ,[x, 3, x, 8, x] // | 1,
+      ,[1, x, 6, x, 11] // | 2,
+      ,[x, 4, x, 9, x] // | 3,
+      ,[2, x, 7, x, 12] // | 4,
     ];
 
     ghostbeard.setAdjacent(0, [1, 3]);

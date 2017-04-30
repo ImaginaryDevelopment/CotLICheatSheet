@@ -74,68 +74,6 @@
                     crusader.spot = slotNumber;
             };
 
-
-  app.WorldsWake = class WorldsWake extends React.Component{
-        constructor(props){
-            if(!(props.onFormationChange != null) || typeof(props.onFormationChange) != "function")
-                throw Error("onFormationChange is required");
-            super(props)
-            if(Array.isArray(props.formation)){
-                props.formation.map((cruId,i) =>{
-                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
-                    if(!(cruId != null) || i >= worldsWake.spots)
-                        return cruId;
-                    var crusader = getCrusader(cruId);
-                    if(crusader != null)
-                        crusader.spot = i;
-                });
-            }
-        }
-        render(){
-            var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, slot, this.props.onFormationChange)
-            var formationDiag = {};
-            this.props.formation.map((cruId,i) =>{
-                formationDiag[i] = {spot: i, id: cruId, mathCalcId: app.formationIds[i]};
-            })
-
-            return (<div>
-                <div>Main dps: {dpsSelector(this.props.formation, this.props.onDpsChange, this.props.dpsCruId)}</div>
-                <table>
-                    <thead></thead>
-                    <tbody>
-                        <tr title="row0">
-                            <td title="slot0">{myMakeHeroSelect(0)}</td>
-                        </tr>
-                        <tr title="row1">
-                        <td/><td title="slot4">{myMakeHeroSelect(4)}</td>
-                        </tr>
-                        <tr title="row2">
-                            <td  title="slot1"> {myMakeHeroSelect(1)}</td>
-                            <td /><td title="slot7">{myMakeHeroSelect(7)}</td>
-                        </tr>
-                        <tr title="row3">
-                            <td /><td title="slots5">{myMakeHeroSelect(5)}</td>
-                            <td /><td title="slot9">{myMakeHeroSelect(9)}</td>
-
-                        </tr>
-                        <tr title="row4">
-                            <td title="slot2">{myMakeHeroSelect(2)}</td>
-                            <td />
-                            <td title="slot8">{myMakeHeroSelect(8)}</td>
-                        </tr>
-                        <tr title="row5">
-                            <td /><td title="slot6">{myMakeHeroSelect(6)}</td>
-                        </tr>
-                        <tr title="row6">
-                            <td title="slot3">{myMakeHeroSelect(3)}</td>
-                        </tr>
-                </tbody>
-                </table>
-                { getFormationDiags(this.props.formation) }
-            </div>);
-        }
-    };
-
     var makeWorldRenderer = (props,slotLayout) =>{
             if(!(props.onFormationChange != null) || typeof(props.onFormationChange) != "function")
                 throw Error("onFormationChange is required");
@@ -363,10 +301,6 @@
                 formationComponent = (<WorldComponent slotLayout={world.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
             } else{
                 switch(this.state.selectedWorldId){
-                    case worldsWake.id:
-                        formationIds = this.state.formations[worldsWake.id] || app.formationIds;
-                        formationComponent = (<WorldsWake formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                    break;
                     default:
                     console.error("not implemented: formationCalc does not have worldId " + this.state.selectedWorldId + " component");
                     break;
