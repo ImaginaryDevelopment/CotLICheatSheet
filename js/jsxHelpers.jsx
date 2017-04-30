@@ -243,4 +243,37 @@ class Pane extends React.Component {
   }
 };
 app.Pane = Pane;
+
+/**
+ * @typedef Tag
+ * @property {string} id
+ */
+/**
+ * @typedef {Object} Crusader - a crusader object
+ * @property {string} id
+ * @property {Array<string>} tags
+ */
+var TagCountsComponent = app.TagCountsComponent = 
+/**
+ * 
+ * @param {Array<string>} missionTagIds 
+ * @param {Array<Crusader>} crusaders 
+ * @param {Array<string>|undefined} filterTags 
+ * @param {function|undefined} onFilterTagClick 
+ */
+(missionTagIds, crusaders, filterTags, onFilterTagClick) =>
+{
+    var tagCounts = [];
+    missionTagIds.map(tagId => {
+        var count = crusaders.map(function (crusader){
+            return crusader.tags.indexOf(tagId) != -1 ? 1 : 0;
+        }).reduce((a,b) =>  a + b);
+        var classes = "img_tag";
+        if(filterTags && filterTags[tagId]){
+          classes += " active";
+        }
+        tagCounts.push(<span key={tagId} className={classes} title={tagId} onClick={onFilterTagClick ? onFilterTagClick.bind(self,tagId): null}>{count}</span>);
+    });
+    return tagCounts;
+}
 })(typeof global !== 'undefined' ? global : window);

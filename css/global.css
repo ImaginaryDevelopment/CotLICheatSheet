@@ -19,12 +19,19 @@ a:hover	{ color: #fff; }
 #tab tr:hover td:first-child { border-left-color: #44c201; }
 #tab tr:hover td:last-child { border-right-color: #44c201; }
 #tab td.tags > .img_tag_off,
-    #tab td.tags > .img_tag
+    #tab td.tags > .img_tag,
+    div.tags > .img_tag,
+    div.tags > .img_tag_off
     {
          border: 0;
          margin: 2px 2px;
     }
-#tab th.tags > .img_tag { display: block; float: left; width: 31px; height: 31px; border: 0; margin: 2px 2px; }
+div.tags > .img_tag,
+div.tags > .img_tag_off{
+    font-size: 16px;
+    text-align: center;
+}
+#tab th.tags > .img_tag, div.tags > .img_tag { display: block; float: left; width: 31px; height: 31px; border: 0; margin: 2px 2px; }
 #tab td.tags > *{
     display: block; float: left; width: 31px; height: 31px;
 }

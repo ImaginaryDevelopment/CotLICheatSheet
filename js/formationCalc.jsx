@@ -620,6 +620,10 @@
 
             return (<div>
                 <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} tagTracker={tagTracker}/>
+                <div className="tags">
+                    {TagCountsComponent(jsonData.missionTags.map(tag => tag.id), jsonData.crusaders)}
+                </div>
+                <div>
                 <select
                     value={this.state.selectedWorldId}
                     onChange={e => {
@@ -637,6 +641,7 @@
                         worlds.map(w => (<option key={w.id} value={w.id}>{w.name}</option>))
                     }
                 </select>
+                </div>
                 <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
                 <p>Dps Multiplier: {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
