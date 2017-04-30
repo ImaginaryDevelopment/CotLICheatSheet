@@ -45,7 +45,7 @@
                             // app... settings are for the calc to pickup
                         app.formationDps = getCrusader(cruId);
                         formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
-                        app.setDPS(cruId);
+                        app.mathCalc.setDPS(cruId);
                         app.calculateMultipliers();
                         onDpsChange(cruId);
                     }
@@ -464,7 +464,7 @@
             this.state = this.getInitialState();
         }
         initializeFormationsForWorld(initial, spots){
-            var currentWorld = getWorldById(initial.selectedWorldId);
+            var currentWorld = app.mathCalc.getWorldById(initial.selectedWorldId);
             if(!(initial.formations[initial.selectedWorldId] != null))
             {
                 initial.formations[currentWorld.id] = [];
@@ -507,14 +507,14 @@
                 initial.formations = {};
             if(!(initial.dpsCruIds != null))
                 initial.dpsCruIds = {};
-            app.currentWorld = getWorldById(initial.selectedWorldId);
+            app.currentWorld = app.mathCalc.getWorldById(initial.selectedWorldId);
             this.initializeFormationsForWorld(initial,app.currentWorld.spots);
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?
             app.formationIds = initial.formations[initial.selectedWorldId];
             console.log('getInitialState', app.formationIds, initial.formations[initial.selectedWorldId]);
             if(initial.dpsCruIds[initial.selectedWorldId]){
-                app.setDPS(initial.dpsCruIds[initial.selectedWorldId]);
+                app.mathCalc.setDPS(initial.dpsCruIds[initial.selectedWorldId]);
             }
             app.formationCalcInitial = initial;
             return initial;
@@ -627,7 +627,7 @@
                         var worldId = +e.target.value;
                         if(isNaN(worldId))
                             worldId = 1;
-                        app.currentWorld = app.getWorldById(worldId);
+                        app.currentWorld = app.mathCalc.getWorldById(worldId);
                         var stateMods = {selectedWorldId: worldId};
                         if(this.initializeFormationIds(app.currentWorld.spots))
                             stateMods.formation = app.formationIds;

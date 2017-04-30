@@ -2570,7 +2570,7 @@ for (i = 0; i < 10; i++) {
   } 
 }  
 
-  var getWorldById = app.getWorldById = id => {
+  var getWorldById = exports.getWorldById = id => {
     switch (id) {
       case 1: return worldsWake;
       case 2: return descent;
@@ -2592,7 +2592,7 @@ for (i = 0; i < 10; i++) {
   var globalDPS = 1;
   var globalGold = 1;
 
-  app.setDPS = function (id) {
+  exports.setDPS = function (id) {
     var crusader = getCrusader(id);
     dpsChar = crusader;
   };
