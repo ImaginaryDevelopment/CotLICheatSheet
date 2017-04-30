@@ -46,7 +46,7 @@
                         app.formationDps = getCrusader(cruId);
                         formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
                         app.mathCalc.setDPS(cruId);
-                        app.calculateMultipliers();
+                        app.mathCalc.calculateMultipliers();
                         onDpsChange(cruId);
                     }
                 } selectedHeroId={dpsCruId} />
@@ -564,7 +564,7 @@
                 itt,
                 park
             ];
-            var data = app.calculateMultipliers();
+            var data = app.mathCalc.calculateMultipliers();
             window.multiplierData = data;
             var cruFormationGoldMult = data && data.globalGold;
             var dpsCruId = this.state.dpsCruIds[this.state.selectedWorldId];

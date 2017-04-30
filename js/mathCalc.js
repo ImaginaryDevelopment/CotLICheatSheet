@@ -2611,7 +2611,7 @@ for (i = 0; i < 10; i++) {
       cru.calculate();
     }
   };
-  app.calculateMultipliers = () => {
+  exports.calculateMultipliers = () => {
     var globalDPS = 1;
     var globalGold = 1;
     jsonData.crusaders
