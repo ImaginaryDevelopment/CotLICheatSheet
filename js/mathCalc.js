@@ -2281,72 +2281,102 @@
     }
   }
 
+  // X X 3 X X | 0
+  // X 1 X 6 X | 1
+  // O X 4 X 8 | 2
+  // X 2 X 7 X | 3
+  // X X 5 X X | 4
   var descent = app.descent = new World(2, "Descent into Darkness", 9);
-  descent.setAdjacent(0, [1, 2]);
-  descent.setAdjacent(1, [0, 2, 3, 4]);
-  descent.setAdjacent(2, [0, 1, 4, 5]);
-  descent.setAdjacent(3, [1, 4, 6]);
-  descent.setAdjacent(4, [1, 2, 3, 5, 6, 7]);
-  descent.setAdjacent(5, [2, 4, 7]);
-  descent.setAdjacent(6, [3, 4, 7, 8]);
-  descent.setAdjacent(7, [4, 5, 6, 8]);
-  descent.setAdjacent(8, [6, 7]);
-  for (i = 0; i < descent.spots; i++) {
-    switch (true) {
-      case (i === 0):
-        descent.setColumn(i, 1);
-        break;
-      case (i < 3):
-        descent.setColumn(i, 2);
-        break;
-      case (i < 6):
-        descent.setColumn(i, 3);
-        break;
-      case (i < 8):
-        descent.setColumn(i, 4);
-        break;
-      case (i == 9):
-        descent.setColumn(i, 5);
-        break;
+  (()=>{
+    var x = null;
+    descent.layout = [
+     [x, x, 3, x, x ] // |, 0
+    ,[x, 1, x, 6, x ] // |, 1
+    ,[O, x, 4, x, 8 ] // |, 2
+    ,[x, 2, x, 7, x ] // |, 3
+    ,[x, x, 5, x, x ] // |, 4
+    ];
+    descent.setAdjacent(0, [1, 2]);
+    descent.setAdjacent(1, [0, 2, 3, 4]);
+    descent.setAdjacent(2, [0, 1, 4, 5]);
+    descent.setAdjacent(3, [1, 4, 6]);
+    descent.setAdjacent(4, [1, 2, 3, 5, 6, 7]);
+    descent.setAdjacent(5, [2, 4, 7]);
+    descent.setAdjacent(6, [3, 4, 7, 8]);
+    descent.setAdjacent(7, [4, 5, 6, 8]);
+    descent.setAdjacent(8, [6, 7]);
+    for (i = 0; i < descent.spots; i++) {
+      switch (true) {
+        case (i === 0):
+          descent.setColumn(i, 1);
+          break;
+        case (i < 3):
+          descent.setColumn(i, 2);
+          break;
+        case (i < 6):
+          descent.setColumn(i, 3);
+          break;
+        case (i < 8):
+          descent.setColumn(i, 4);
+          break;
+        case (i == 9):
+          descent.setColumn(i, 5);
+          break;
+      }
     }
-  }
+  })();
 
+  // 0 X 5 X A | 0
+  // X 3 X 8 X | 1
+  // 1 X 6 X B | 2
+  // X 4 X 9 X | 3
+  // 2 X 7 X C | 4
   var ghostbeard = app.ghostbeard = new World(3, "Ghostbeard's Greed", 13);
-  ghostbeard.setAdjacent(0, [1, 3]);
-  ghostbeard.setAdjacent(1, [0, 2, 3, 4]);
-  ghostbeard.setAdjacent(2, [1, 4]);
-  ghostbeard.setAdjacent(3, [0, 1, 4, 5, 6]);
-  ghostbeard.setAdjacent(4, [1, 2, 3, 6, 7]);
-  ghostbeard.setAdjacent(5, [3, 6, 8]);
-  ghostbeard.setAdjacent(6, [3, 4, 5, 7, 8, 9]);
-  ghostbeard.setAdjacent(7, [4, 6, 9]);
-  ghostbeard.setAdjacent(8, [5, 6, 9, 10, 11]);
-  ghostbeard.setAdjacent(9, [6, 7, 8, 11, 12]);
-  ghostbeard.setAdjacent(10, [8, 11]);
-  ghostbeard.setAdjacent(11, [8, 9, 10, 12]);
-  ghostbeard.setAdjacent(12, [9, 11]);
+  (() =>{
+    ghostbeard.layout = [
+      [0, X, 5, X, A]  // | 0,
+      ,[X, 3, X, 8, X] // | 1,
+      ,[1, X, 6, X, B] // | 2,
+      ,[X, 4, X, 9, X] // | 3,
+      ,[2, X, 7, X, C] // | 4,
+    ];
 
-  for (i = 0; i < ghostbeard.spots; i++) {
-    switch (true) {
-      case (i < 3):
-        ghostbeard.setColumn(i, 1);
-        break;
-      case (i < 5):
-        ghostbeard.setColumn(i, 2);
-        break;
-      case (i < 8):
-        ghostbeard.setColumn(i, 3);
-        break;
-      case (i < 10):
-        ghostbeard.setColumn(i, 4);
-        break;
-      case (i < 13):
-        ghostbeard.setColumn(i, 5);
-        break;
+    ghostbeard.setAdjacent(0, [1, 3]);
+    ghostbeard.setAdjacent(1, [0, 2, 3, 4]);
+    ghostbeard.setAdjacent(2, [1, 4]);
+    ghostbeard.setAdjacent(3, [0, 1, 4, 5, 6]);
+    ghostbeard.setAdjacent(4, [1, 2, 3, 6, 7]);
+    ghostbeard.setAdjacent(5, [3, 6, 8]);
+    ghostbeard.setAdjacent(6, [3, 4, 5, 7, 8, 9]);
+    ghostbeard.setAdjacent(7, [4, 6, 9]);
+    ghostbeard.setAdjacent(8, [5, 6, 9, 10, 11]);
+    ghostbeard.setAdjacent(9, [6, 7, 8, 11, 12]);
+    ghostbeard.setAdjacent(10, [8, 11]);
+    ghostbeard.setAdjacent(11, [8, 9, 10, 12]);
+    ghostbeard.setAdjacent(12, [9, 11]);
+
+    for (i = 0; i < ghostbeard.spots; i++) {
+      switch (true) {
+        case (i < 3):
+          ghostbeard.setColumn(i, 1);
+          break;
+        case (i < 5):
+          ghostbeard.setColumn(i, 2);
+          break;
+        case (i < 8):
+          ghostbeard.setColumn(i, 3);
+          break;
+        case (i < 10):
+          ghostbeard.setColumn(i, 4);
+          break;
+        case (i < 13):
+          ghostbeard.setColumn(i, 5);
+          break;
+      }
     }
-  }
+  })();
 
-  //Grimm
+//Grimm
 // X 2 X X X X
 // 0 X 5 X 8 X
 // X 3 X 7 X A
@@ -2354,33 +2384,43 @@
 // X 4 X X X X
 
 var grimm = app.grimm = new World(4,"Grimm's Idle Tales",11);
-grimm.setAdjacent(0,[1,2,3]);
-grimm.setAdjacent(1,[0,3,4]);
-grimm.setAdjacent(2,[0,3,5]);
-grimm.setAdjacent(3,[0,1,2,4,5,6]);
-grimm.setAdjacent(4,[1,3,6]);
-grimm.setAdjacent(5,[2,3,6,7]);
-grimm.setAdjacent(6,[3,4,5,7]);
-grimm.setAdjacent(7,[5,6,8,9]);
-grimm.setAdjacent(8,[7,9,10]);
-grimm.setAdjacent(9,[7,8,10]);
-grimm.setAdjacent(10,[8,9]);
+(() =>{
+  var x = null;
+  grimm.layout= [
+    [x, x, x, 4, x, 9],
+    [x,x,2,x,7,x],
+    [0,1,x,5,x,10],
+    [x,x,3,x,8,x],
+    [x,x,x,6,x,11]
+  ];
+  grimm.setAdjacent(0,[1,2,3]);
+  grimm.setAdjacent(1,[0,3,4]);
+  grimm.setAdjacent(2,[0,3,5]);
+  grimm.setAdjacent(3,[0,1,2,4,5,6]);
+  grimm.setAdjacent(4,[1,3,6]);
+  grimm.setAdjacent(5,[2,3,6,7]);
+  grimm.setAdjacent(6,[3,4,5,7]);
+  grimm.setAdjacent(7,[5,6,8,9]);
+  grimm.setAdjacent(8,[7,9,10]);
+  grimm.setAdjacent(9,[7,8,10]);
+  grimm.setAdjacent(10,[8,9]);
 
-for (i = 0; i < 10; i++) {
-  if (i < 2) {
-    grimm.setColumn(i,1);
-  } else if (i < 5) {
-    grimm.setColumn(i,2);
-  } else if (i < 7) {
-    grimm.setColumn(i,3);
-  } else if (i < 8) {
-    grimm.setColumn(i,4);
-  } else if (i < 10) {
-    grimm.setColumn(i,5);
-  } else if (i == 10) {
-    grimm.setColumn(i,6);
+  for (i = 0; i < 10; i++) {
+    if (i < 2) {
+      grimm.setColumn(i,1);
+    } else if (i < 5) {
+      grimm.setColumn(i,2);
+    } else if (i < 7) {
+      grimm.setColumn(i,3);
+    } else if (i < 8) {
+      grimm.setColumn(i,4);
+    } else if (i < 10) {
+      grimm.setColumn(i,5);
+    } else if (i == 10) {
+      grimm.setColumn(i,6);
+    }
   }
-}
+})();
 
 //Mischief
 // X X X 4 X 9
@@ -2390,34 +2430,45 @@ for (i = 0; i < 10; i++) {
 // X X X 6 X B
 
 var mischief = app.mischief = new World(5,"Mischief at Mugwarts",12);
-mischief.setAdjacent(0,[1]);
-mischief.setAdjacent(1,[0,2,3]);
-mischief.setAdjacent(2,[1,3,4,5]);
-mischief.setAdjacent(3,[1,2,5]);
-mischief.setAdjacent(4,[2,5,7]);
-mischief.setAdjacent(5,[2,3,4,6,7,8]);
-mischief.setAdjacent(6,[3,5,8]);
-mischief.setAdjacent(7,[4,5,8,9,10]);
-mischief.setAdjacent(8,[5,6,7,10,11]);
-mischief.setAdjacent(9,[7,10]);
-mischief.setAdjacent(10,[7,8,9,11]);
-mischief.setAdjacent(11,[8,10]);
+(() => {
 
-for (i = 0; i < 10; i++) {
-  if (i < 1) {
-    mischief.setColumn(i,1);
-  } else if (i < 2) {
-    mischief.setColumn(i,2);
-  } else if (i < 4) {
-    mischief.setColumn(i,3);
-  } else if (i < 7) {
-    mischief.setColumn(i,4);
-  } else if (i < 9) {
-    mischief.setColumn(i,5);
-  } else if (i < 12) {
-    mischief.setColumn(i,6);
+  var x = null;
+  mischief.layout = [
+      [x, x, x, 4, x, 9],
+      [x,x,2,x,7,x],
+      [0,1,x,5,x,10],
+      [x,x,3,x,8,x],
+      [x,x,x,6,x,11]
+  ];
+  mischief.setAdjacent(0,[1]);
+  mischief.setAdjacent(1,[0,2,3]);
+  mischief.setAdjacent(2,[1,3,4,5]);
+  mischief.setAdjacent(3,[1,2,5]);
+  mischief.setAdjacent(4,[2,5,7]);
+  mischief.setAdjacent(5,[2,3,4,6,7,8]);
+  mischief.setAdjacent(6,[3,5,8]);
+  mischief.setAdjacent(7,[4,5,8,9,10]);
+  mischief.setAdjacent(8,[5,6,7,10,11]);
+  mischief.setAdjacent(9,[7,10]);
+  mischief.setAdjacent(10,[7,8,9,11]);
+  mischief.setAdjacent(11,[8,10]);
+
+  for (i = 0; i < 10; i++) {
+    if (i < 1) {
+      mischief.setColumn(i,1);
+    } else if (i < 2) {
+      mischief.setColumn(i,2);
+    } else if (i < 4) {
+      mischief.setColumn(i,3);
+    } else if (i < 7) {
+      mischief.setColumn(i,4);
+    } else if (i < 9) {
+      mischief.setColumn(i,5);
+    } else if (i < 12) {
+      mischief.setColumn(i,6);
+    }
   }
-}
+})();
 
 // X X 6 X X
 // X 3 X 8 X

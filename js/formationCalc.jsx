@@ -74,6 +74,7 @@
                     crusader.spot = slotNumber;
             };
 
+
   app.WorldsWake = class WorldsWake extends React.Component{
         constructor(props){
             if(!(props.onFormationChange != null) || typeof(props.onFormationChange) != "function")
@@ -135,148 +136,6 @@
         }
     };
 
-    app.Descent = class Descent extends React.Component{
-        constructor(props){
-            super(props);
-            if(Array.isArray(props.formation)){
-                props.formation.map((cruId,i) =>{
-                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
-                    if(!(cruId != null) || i >= descent.spots)
-                        return cruId;
-                    var crusader = getCrusader(cruId);
-                    if(crusader != null)
-                        crusader.spot = i;
-                });
-            }
-        }
-        render(){
-            if(!(this.props.onFormationChange != null) || typeof(this.props.onFormationChange) != "function")
-                throw Error("onFormationChange is required");
-            var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, slot, this.props.onFormationChange)
-
-            // X X 3 X X | 0
-            // X 1 X 6 X | 1
-            // O X 4 X 8 | 2
-            // X 2 X 7 X | 3
-            // X X 5 X X | 4
-            return (<div>
-                <div>Main dps: {dpsSelector(this.props.formation, this.props.onDpsChange, this.props.dpsCruId)}</div>
-                <table>
-                    <thead></thead>
-                    <tbody>
-                        <tr title="row0">
-                            <td />
-                            <td />
-                            <td title="slot3">{myMakeHeroSelect(3)}</td>
-                            <td/>
-                            <td/>
-                        </tr>
-                        <tr title="row1">
-                        <td/><td title="slot1">{myMakeHeroSelect(1)}</td>
-                        <td/>
-                        <td title="slot6">{myMakeHeroSelect(6)}</td>
-                        <td />
-                        </tr>
-                        <tr title="row2">
-                            <td title="slot0"> {myMakeHeroSelect(0)}</td>
-                            <td />
-                            <td title="slot4">{myMakeHeroSelect(4)}</td>
-                            <td />
-                            <td title="slot8">{myMakeHeroSelect(8)}</td>
-                        </tr>
-                        <tr title="row3">
-                            <td />
-                            <td title="slot2">{myMakeHeroSelect(2)}</td>
-                            <td />
-                            <td title="slot7">{myMakeHeroSelect(7)}</td>
-                            <td />
-                        </tr>
-                        <tr title="row4">
-                            <td />
-                            <td />
-                            <td title="slot5">{myMakeHeroSelect(5)}</td>
-                            <td />
-                            <td />
-                        </tr>
-                </tbody>
-                </table>
-                { getFormationDiags(this.props.formation) }
-                </div>);
-        }
-    };
-
-
-    app.Ghostbeard = class Ghostbeard extends React.Component{
-        constructor(props){
-            super(props);
-            if(Array.isArray(props.formation)){
-                props.formation.map((cruId,i) =>{
-                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
-                    if(!(cruId != null) || i >= ghostbeard.spots)
-                        return cruId;
-                    var crusader = getCrusader(cruId);
-                    if(crusader != null)
-                        crusader.spot = i;
-                });
-            }
-        }
-        render(){
-            if(!(this.props.onFormationChange != null) || typeof(this.props.onFormationChange) != "function")
-                throw Error("onFormationChange is required");
-            var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, slot, this.props.onFormationChange)
-
-            // 0 X 5 X A | 0
-            // X 3 X 8 X | 1
-            // 1 X 6 X B | 2
-            // X 4 X 9 X | 3
-            // 2 X 7 X C | 4
-            return (<div>
-                <div>Main dps: {dpsSelector(this.props.formation, this.props.onDpsChange, this.props.dpsCruId)}</div>
-                <table>
-                    <thead></thead>
-                    <tbody>
-                        <tr title="row0">
-                            <td title="slot0">{myMakeHeroSelect(0)}</td>
-                            <td />
-                            <td title="slot5">{myMakeHeroSelect(5)}</td>
-                            <td/>
-                            <td title="slot10">{myMakeHeroSelect(10)}</td>
-                        </tr>
-                        <tr title="row1">
-                            <td/>
-                            <td title="slot3">{myMakeHeroSelect(3)}</td>
-                            <td/>
-                            <td title="slot4">{myMakeHeroSelect(4)}</td>
-                            <td />
-                        </tr>
-                        <tr title="row2">
-                            <td title="slot1"> {myMakeHeroSelect(1)}</td>
-                            <td />
-                            <td title="slot6">{myMakeHeroSelect(6)}</td>
-                            <td />
-                            <td title="slot11">{myMakeHeroSelect(11)}</td>
-                        </tr>
-                        <tr title="row3">
-                            <td />
-                            <td title="slot4">{myMakeHeroSelect(4)}</td>
-                            <td />
-                            <td title="slot9">{myMakeHeroSelect(9)}</td>
-                            <td />
-                        </tr>
-                        <tr title="row4">
-                            <td title="slot2">{myMakeHeroSelect(2)}</td>
-                            <td />
-                            <td title="slot7">{myMakeHeroSelect(7)}</td>
-                            <td />
-                            <td title="slot12">{myMakeHeroSelect(12)}</td>
-                        </tr>
-                </tbody>
-                </table>
-                { getFormationDiags(this.props.formation) }
-                </div>);
-        }
-    };
-
     var makeWorldRenderer = (props,slotLayout) =>{
             if(!(props.onFormationChange != null) || typeof(props.onFormationChange) != "function")
                 throw Error("onFormationChange is required");
@@ -312,94 +171,7 @@
                         </div>
                     </div>);
         };
- 
-    app.Grimm = class Grimm extends React.Component{
-        constructor(props){
-            super(props);
-            if(Array.isArray(props.formation)){
-                props.formation.map((cruId,i) =>{
-                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
-                    if(!(cruId != null) || i >= grimm.spots)
-                        return cruId;
-                    var crusader = getCrusader(cruId);
-                    if(crusader != null)
-                        crusader.spot = i;
-                });
-            }
-        }
-        render(){
-            if(!(this.props.onFormationChange != null) || typeof(this.props.onFormationChange) != "function")
-                throw Error("onFormationChange is required");
-            var myMakeHeroSelect = slot => makeHeroSelect(this.props.formation, slot, this.props.onFormationChange)
-            var myMakeTdSlot = (slot,key) => (<td key={key} title={"slot" + slot}>{myMakeHeroSelect(slot)}</td>);
-            var myMakeTrSlots = (row,slots) =>
-                (<tr key={row} title={"row"+row}>
-                    {
-
-                        slots.map((slot,i) =>{
-                            if(slot!=null){
-                                return myMakeTdSlot(slot,i);
-                            } else {
-                                return (<td key={i}/>);
-                            }
-                        })
-                    }
-                </tr>);
-
-            //Grimm
-            // X 2 X X X X
-            // 0 X 5 X 8 X
-            // X 3 X 7 X A
-            // 1 X 6 X 9 X
-            // X 4 X X X X
-            return (<div>
-                <div>Main dps: {dpsSelector(this.props.formation, this.props.onDpsChange, this.props.dpsCruId)}</div>
-                    <table>
-                        <thead></thead>
-                        <tbody>
-                            {myMakeTrSlots(0, [null,2,null, null,null,null])}
-                            {myMakeTrSlots(1, [0,null,5,    null,8,null])}
-                            {myMakeTrSlots(2, [null,3,null, 7,null,10])}
-                            {myMakeTrSlots(3, [1,null,6,    null,9,null])}
-                            {myMakeTrSlots(4, [null,4,null, null,null,null])}
-                    </tbody>
-                    </table>
-                    { getFormationDiags(this.props.formation) }
-                </div>);
-        }
-    };
-
-    app.Mischief = class Mischief extends React.Component{
-        constructor(props){
-            super(props);
-            if(Array.isArray(props.formation)){
-                props.formation.map((cruId,i) =>{
-                    // if there is no cruId in this formation spot, or we are past the number of formation spots in this world
-                    if(!(cruId != null) || i >= mischief.spots)
-                        return cruId;
-                    var crusader = getCrusader(cruId);
-                    if(crusader != null)
-                        crusader.spot = i;
-                });
-            }
-        }
-        render(){
-            //Mischief
-            // X X X 4 X 9
-            // X X 2 X 7 X
-            // 0 1 X 5 X A
-            // X X 3 X 8 X
-            // X X X 6 X B
-            var x = null;
-            return makeWorldRenderer(this.props, [
-                [x, x, x, 4, x, 9],
-                [x,x,2,x,7,x],
-                [0,1,x,5,x,10],
-                [x,x,3,x,8,x],
-                [x,x,x,6,x,11]
-            ]);
-        }
-    };
+    makeWorldRenderer.displayName = 'makeWorldRenderer';
 
     class WorldComponent extends React.Component {
 
@@ -585,42 +357,20 @@
 
             var formationComponent = null;
             var formationIds = null;
-            switch(this.state.selectedWorldId){
-                case worldsWake.id:
-                    formationIds = this.state.formations[worldsWake.id] || app.formationIds;
-                    formationComponent = (<WorldsWake formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                case descent.id:
-                    formationIds = this.state.formations[descent.id] || app.formationIds;
-                    formationComponent = (<Descent formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                case ghostbeard.id:
-                    formationIds = this.state.formations[ghostbeard.id] || app.formationIds;
-                    formationComponent = (<Ghostbeard formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                case grimm.id:
-                    formationIds = this.state.formations[grimm.id] || app.formationIds;
-                    formationComponent = (<Grimm formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                case mischief.id:
-                    formationIds = this.state.formations[mischief.id] || app.formationIds;
-                    formationComponent = (<Mischief formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                case player.id:
-                    formationIds = this.state.formations[player.id] || app.formationIds;
-                    formationComponent = (<WorldComponent slotLayout={player.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                case itt.id:
-                    formationIds = this.state.formations[itt.id] || app.formationIds;
-                    formationComponent = (<WorldComponent slotLayout={itt.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                case park.id:
-                    formationIds = this.state.formations[park.id] || app.formationIds;
-                    formationComponent = (<WorldComponent slotLayout={park.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
-                break;
-                default:
-                console.error("not implemented: formationCalc does not have worldId " + this.state.selectedWorldId + " component");
-                break;
+            var world = app.mathCalc.getWorldById(this.state.selectedWorldId);
+            if(world!= null && world.layout != null){
+                formationIds = this.state.formations[world.id] || app.formationIds;
+                formationComponent = (<WorldComponent slotLayout={world.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+            } else{
+                switch(this.state.selectedWorldId){
+                    case worldsWake.id:
+                        formationIds = this.state.formations[worldsWake.id] || app.formationIds;
+                        formationComponent = (<WorldsWake formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                    break;
+                    default:
+                    console.error("not implemented: formationCalc does not have worldId " + this.state.selectedWorldId + " component");
+                    break;
+                }
             }
             // not in the mood to change that the component is supplying the protocol, so that we can use file:// here to have the tags use file system when we are on the filesystem
             var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : getIsLocalFileSystem()?  '': '';
