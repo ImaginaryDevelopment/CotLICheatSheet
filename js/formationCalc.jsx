@@ -1,42 +1,49 @@
 /// <reference path="mathCalc.js" />
 (app =>{
     var getCrusader = app.mathCalc.getCrusader;
-    var makeFormationDiag = (formation) =>{
-            var formationDiag = {};
-            formation.map((cruId,i) =>{
-                formationDiag[i] = {spot: i, id: cruId, mathCalcId: app.formationIds[i], columnNum: currentWorld.columnNum(i)};
-            });
-            return formationDiag;
-    };
-    var FormationDiag = (props) => (
-        <pre>{JSON.stringify(makeFormationDiag(props.formation), null, ' ')}</pre>
+
+    var getFormationDiags = formation => 
+            formation
+                .map((cruId,i) =>
+                    ({spot: i, id: cruId, mathCalcId: app.formationIds[i], columnNum: currentWorld.columnNum(i)}))
+                .filter(data => data.id != null)
+                .map(data =>{
+                    var crusader = getCrusader(data.id);
+                    if(crusader && crusader.globalDps && crusader.globalDps != 1)
+                        data.dpsX = crusader.globalDps;
+                    if(crusader && crusader.globalGold && crusader.globalGold != 1)
+                        data.goldX = crusader.globalGold;
+                    console.log(crusader);
+                    return data;
+                })
+                .map(fd => (<div key={fd.id}><pre>{JSON.stringify(fd, null, ' ')}</pre></div>) || null
     );
 
-            var makeHeroSelect = (formation,slotNumber,onFormationChange) => {
-                if(!(onFormationChange != null) || typeof(onFormationChange) != "function")
-                    throw Error("onFormationChange is required");
-                var selectedCruId = formation[slotNumber];
-                var selectedCru = getCrusader(selectedCruId);
+    var makeHeroSelect = (formation,slotNumber,onFormationChange) => {
+        if(!(onFormationChange != null) || typeof(onFormationChange) != "function")
+            throw Error("onFormationChange is required");
+        var selectedCruId = formation[slotNumber];
+        var selectedCru = getCrusader(selectedCruId);
 
-                var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
-                var availableCrusaders = jsonData.crusaders.filter(cru =>
-                    // crusaders in slots that aren't in formation
-                    formation.filter(f => f != null && f != "0").find(f=> getCrusader(f).slot == cru.slot) == null
-                    || (selectedCru && selectedCru.id == cru.id)
-                );
-                return (<div>{slotNumber}
-                    <HeroSelect dontSort={true}
-                                crusaders={availableCrusaders}
-                                onHeroChange={ changeFormation(slotNumber, onFormationChange)}
-                                selectedHeroId={selectedCru && selectedCru.id}
-                                />
-                                {
-                                    selectedCru!= null ?
-                                        <GearBox cru={selectedCru} cruGearQ={cruGearQ} />
-                                        : null
-                                }
-                </div>);
-            };
+        var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
+        var availableCrusaders = jsonData.crusaders.filter(cru =>
+            // crusaders in slots that aren't in formation
+            formation.filter(f => f != null && f != "0").find(f=> getCrusader(f).slot == cru.slot) == null
+            || (selectedCru && selectedCru.id == cru.id)
+        );
+        return (<div>{slotNumber}
+            <HeroSelect dontSort={true}
+                        crusaders={availableCrusaders}
+                        onHeroChange={ changeFormation(slotNumber, onFormationChange)}
+                        selectedHeroId={selectedCru && selectedCru.id}
+                        />
+                        {
+                            selectedCru!= null ?
+                                <GearBox cru={selectedCru} cruGearQ={cruGearQ} />
+                                : null
+                        }
+        </div>);
+    };
             var dpsSelector = (formation, onDpsChange, dpsCruId) => (
                 <HeroSelect crusaders={jsonData.crusaders.filter(cru => formation.filter(f => f != null).findIndex( fId => fId == cru.id) >= 0)}
                     onHeroChange={cruId => {
@@ -123,7 +130,7 @@
                         </tr>
                 </tbody>
                 </table>
-                <FormationDiag formation={this.props.formation} />
+                { getFormationDiags(this.props.formation) }
             </div>);
         }
     };
@@ -193,7 +200,7 @@
                         </tr>
                 </tbody>
                 </table>
-                <FormationDiag formation={this.props.formation} />
+                { getFormationDiags(this.props.formation) }
                 </div>);
         }
     };
@@ -265,7 +272,7 @@
                         </tr>
                 </tbody>
                 </table>
-                <FormationDiag formation={this.props.formation} />
+                { getFormationDiags(this.props.formation) }
                 </div>);
         }
     };
@@ -300,7 +307,9 @@
                                 )}
                         </tbody>
                         </table>
-                        <FormationDiag formation={props.formation} />
+                        <div className="adaptChildren">
+                            { getFormationDiags(props.formation) }
+                        </div>
                     </div>);
         };
  
@@ -345,17 +354,17 @@
             // X 4 X X X X
             return (<div>
                 <div>Main dps: {dpsSelector(this.props.formation, this.props.onDpsChange, this.props.dpsCruId)}</div>
-                <table>
-                    <thead></thead>
-                    <tbody>
-                        {myMakeTrSlots(0, [null,2,null, null,null,null])}
-                        {myMakeTrSlots(1, [0,null,5,    null,8,null])}
-                        {myMakeTrSlots(2, [null,3,null, 7,null,10])}
-                        {myMakeTrSlots(3, [1,null,6,    null,9,null])}
-                        {myMakeTrSlots(4, [null,4,null, null,null,null])}
-                </tbody>
-                </table>
-                <FormationDiag formation={this.props.formation} />
+                    <table>
+                        <thead></thead>
+                        <tbody>
+                            {myMakeTrSlots(0, [null,2,null, null,null,null])}
+                            {myMakeTrSlots(1, [0,null,5,    null,8,null])}
+                            {myMakeTrSlots(2, [null,3,null, 7,null,10])}
+                            {myMakeTrSlots(3, [1,null,6,    null,9,null])}
+                            {myMakeTrSlots(4, [null,4,null, null,null,null])}
+                    </tbody>
+                    </table>
+                    { getFormationDiags(this.props.formation) }
                 </div>);
         }
     };
@@ -616,7 +625,6 @@
             // not in the mood to change that the component is supplying the protocol, so that we can use file:// here to have the tags use file system when we are on the filesystem
             var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : getIsLocalFileSystem()?  '': '';
             var tagTracker = calculateTagTracker(jsonData.missionTags, formationIds);
-                // <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} formation={formationIds}/>
 
             return (<div>
                 <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} tagTracker={tagTracker}/>

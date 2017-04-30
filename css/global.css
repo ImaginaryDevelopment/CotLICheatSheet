@@ -152,3 +152,6 @@ tr.dps .sharedEp{
 input.idols{
     max-width: 70px;
 }
+div.adaptChildren > *{
+    display: inline-block;
+}
