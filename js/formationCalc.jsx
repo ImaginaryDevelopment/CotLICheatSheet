@@ -133,6 +133,8 @@
     };
 
     var calculateTagTracker = (missionTags,formation) =>{
+        if(!(formation != null))
+            return null;
         var tagTracker = {};
 
         var tags = missionTags.map(mt =>{
@@ -313,7 +315,7 @@
             return (<div>
                 <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} tagTracker={tagTracker}/>
                 <div className="tags">
-                    {TagCountsComponent(jsonData.missionTags.map(tag => tag.id), jsonData.crusaders)}
+                    {TagCountsComponent(jsonData.missionTags.map(tag => tag.id), jsonData.crusaders.filter(cru => formationIds.includes(cru.id)))}
                 </div>
                 <div>
                 <select
