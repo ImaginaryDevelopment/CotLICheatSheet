@@ -2980,6 +2980,7 @@ window.jsonData =
       "slot": 5,
       "event": "April/May: Gardeners of the Galaxy",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
+      "heroId": 84,
       "tags": [
         "alien",
         "event",
@@ -8446,6 +8447,7 @@ window.jsonData =
       "slot": 16,
       "event": "April/May: Gardeners of the Galaxy",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
+      "heroId": 83,
       "tags":[
         "event",
         "dps",
