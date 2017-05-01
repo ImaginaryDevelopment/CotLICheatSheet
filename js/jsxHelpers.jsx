@@ -253,13 +253,13 @@ app.Pane = Pane;
  * @property {string} id
  * @property {Array<string>} tags
  */
-var TagCountsComponent = app.TagCountsComponent = 
+var TagCountsComponent = app.TagCountsComponent =
 /**
- * 
- * @param {Array<string>} missionTagIds 
- * @param {Array<Crusader>} crusaders 
- * @param {Array<string>|undefined} filterTags 
- * @param {function|undefined} onFilterTagClick 
+ *
+ * @param {Array<string>} missionTagIds
+ * @param {Array<Crusader>} crusaders
+ * @param {Array<string>|undefined} filterTags
+ * @param {function|undefined} onFilterTagClick
  */
 (missionTagIds, crusaders, filterTags, onFilterTagClick) =>
 {
@@ -267,7 +267,7 @@ var TagCountsComponent = app.TagCountsComponent =
     missionTagIds.map(tagId => {
         var count = crusaders.map(function (crusader){
             return crusader.tags.indexOf(tagId) != -1 ? 1 : 0;
-        }).reduce((a,b) =>  a + b);
+        }).reduce((a,b) =>  a + b, 0);
         var classes = "img_tag";
         if(filterTags && filterTags[tagId]){
           classes += " active";

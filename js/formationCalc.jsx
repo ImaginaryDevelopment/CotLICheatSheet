@@ -2,13 +2,18 @@
 (app =>{
     var getCrusader = app.mathCalc.getCrusader;
 
-    var getFormationDiags = formation => 
+    var getFormationDiags = formation =>
             formation
                 .map((cruId,i) =>
-                    ({spot: i, id: cruId, mathCalcId: app.formationIds[i], columnNum: currentWorld.columnNum(i)}))
+                    ({spot: i, id: cruId,  columnNum: currentWorld.columnNum(i)}))
                 .filter(data => data.id != null)
                 .map(data =>{
                     var crusader = getCrusader(data.id);
+                    if(app.formationIds[data.spot] != data.id){
+                        console.warn('mathCalcId doesn\'t match state', app.formationIds[data.spot], data.id, data.spot, formation);
+
+                        data.mathCalcId= app.formationIds[data.spot];
+                    }
                     if(crusader && crusader.globalDps && crusader.globalDps != 1)
                         data.dpsX = crusader.globalDps;
                     if(crusader && crusader.globalGold && crusader.globalGold != 1)
