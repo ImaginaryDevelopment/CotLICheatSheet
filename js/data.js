@@ -542,6 +542,16 @@ window.jsonData =
       "image": "dps.png"
     },
     {
+      "id": "gold",
+      "displayName": "Gold Finder",
+      "image": "gold.png"
+    },
+    {
+      "id": "support",
+      "displayName": "Support",
+      "image": "support.png"
+    },
+    {
       "id": "event",
       "displayName": "Event",
       "image": "event.png"
@@ -615,16 +625,6 @@ window.jsonData =
       "id": "healer",
       "displayName": "Healer",
       "image": "healer.png"
-    },
-    {
-      "id": "support",
-      "displayName": "Support",
-      "image": "support.png"
-    },
-    {
-      "id": "gold",
-      "displayName": "Gold Finder",
-      "image": "gold.png"
     },
     {
       "id": "royal",

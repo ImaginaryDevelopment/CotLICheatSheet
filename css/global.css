@@ -31,9 +31,9 @@ div.tags > .img_tag_off{
     font-size: 16px;
     text-align: center;
 }
-#tab th.tags > .img_tag, div.tags > .img_tag { display: block; float: left; width: 31px; height: 31px; border: 0; margin: 2px 2px; }
+#tab th.tags > .img_tag, div.tags > .img_tag { display: inline-block; width: 31px; height: 31px; border: 0; margin: 2px 2px; }
 #tab td.tags > *{
-    display: block; float: left; width: 31px; height: 31px;
+    display: inline-block; width: 31px; height: 31px;
 }
 #tab td.tags > .tooltip{
     margin: 2px 2px;
