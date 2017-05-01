@@ -128,6 +128,12 @@ var LootV2 = (function () {
    */
   var getRarityByItemId = (lootIdOrCompound,refGear) =>{
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
+    if(!(refGear != null)){
+      console.warn('no refGear provided', lootIdOrCompound);
+      if(app.throw === true)
+        throw error('no refGear provided'+ lootIdOrCompound);
+      return 0;
+    }
     var item = refGear.find(g => g.lootId == lootId);
     return item && item.rarity;
   };
