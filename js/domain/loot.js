@@ -133,14 +133,20 @@ var LootV2 = (function () {
   };
   my.getRarityByItemId = getRarityByItemId;
 
-  my.getLLevel = compound =>{
+  my.getLLevel = (compound, refGear) =>{
     if(!compound)
       return undefined;
-    if(typeof(compound) != "string")
+    if(typeof(compound) != "string" && typeof(compound) != "number")
       return null;
-    var compoundIndex = compound.indexOf("_");
-    if(compoundIndex >=0 && compound.length > compoundIndex)
-      return compound.slice(compoundIndex + 1);
+    var x = compound.toString();
+    var compoundIndex = x.indexOf("_");
+    if(compoundIndex >=0 && x.length > compoundIndex)
+      return x1.slice(compoundIndex + 1);
+    // if there is no _ and it is rarity 5, then fallback to 1
+    var rarity = getRarityByItemId(compound, refGear);
+    if(rarity == 5)
+      return 1;
+
     return null;
   };
   my.changeLLevel = (lootIdOrCompound,level) =>{
@@ -187,10 +193,15 @@ var Loot = (function(){
     var lootId = LootV2.getLootIdFromLootIdOrCompound(id);
     return refGear.find(g => g.lootId == lootId);
   };
-  my.getLLevel = id => {
+  my.getLLevel =
+  /**
+   * @param {string | number} id
+   * @param {Array<Loot>} refGear
+   */
+  (id, refGear) => {
     if(LootV1.getIsV1(id))
       return LootV1.getLLevel(id);
-    return LootV2.getLLevel(id);
+    return LootV2.getLLevel(id, refGear);
   };
   my.changeLLevel = (id,level) =>{
     if(LootV1.getIsV1(id)){
