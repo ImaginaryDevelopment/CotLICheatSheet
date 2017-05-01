@@ -17,8 +17,6 @@ app.GearBox = props => {
     var rarity = Loot.getRarityByItemId(lootId, props.cru.loot);
     var golden = Loot.getIsGolden(lootId, props.cru.loot) ? " golden" : "";
     var classes = "rarity rarity" + rarity + golden;
-    if(props.cru.id==15)
-      console.log('makeBox', props.cru.gear, props.cru);
     var titling = "";
     if(gearMult){
       titling += gearMult +" ";

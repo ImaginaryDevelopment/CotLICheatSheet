@@ -2,23 +2,31 @@
 (app =>{
     var getCrusader = app.mathCalc.getCrusader;
 
-    var getFormationDiags = formation =>
+    var getFormationDiags = (worldId,formation) =>
             formation
                 .map((cruId,i) =>
-                    ({spot: i, id: cruId,  columnNum: currentWorld.columnNum(i)}))
+                    ({spot: i, id: cruId,  columnNum: app.mathCalc.getWorldById(worldId).columnNum(i)}))
                 .filter(data => data.id != null)
                 .map(data =>{
                     var crusader = getCrusader(data.id);
+                    if(crusader != null)
+                        data.name=crusader.displayName;
                     if(app.formationIds[data.spot] != data.id){
                         console.warn('mathCalcId doesn\'t match state', app.formationIds[data.spot], data.id, data.spot, formation);
-
                         data.mathCalcId= app.formationIds[data.spot];
                     }
-                    if(crusader && crusader.globalDps && crusader.globalDps != 1)
-                        data.dpsX = crusader.globalDps;
-                    if(crusader && crusader.globalGold && crusader.globalGold != 1)
-                        data.goldX = crusader.globalGold;
-                    console.log(crusader);
+                    if(crusader && crusader.globalDps && crusader.globalDps != 1){
+                        if(!isNaN(+crusader.globalDps) && typeof(crusader.globalDps) == "number")
+                            data.dpsX = crusader.globalDps.toFixed(0);
+                        else
+                            data.dpsX = crusader.globalDps;
+                    }
+                    if(crusader && crusader.globalGold && crusader.globalGold != 1){
+                        if(!isNaN(+crusader.globalGold) && typeof(crusader.globalGold) == "number")
+                            data.goldX = crusader.globalGold.toFixed(0);
+                        else
+                            data.goldX = crusader.globalGold;
+                    }
                     return data;
                 })
                 .map(fd => (<div key={fd.id}><pre>{JSON.stringify(fd, null, ' ')}</pre></div>) || null
@@ -58,7 +66,6 @@
                         app.formationDps = getCrusader(cruId);
                         formation.filter(f => f != null && f != "0").map(fCruId => getCrusader(fCruId).isDPS = false);
                         app.mathCalc.setDPS(cruId);
-                        app.mathCalc.calculateMultipliers();
                         onDpsChange(cruId);
                     }
                 } selectedHeroId={dpsCruId} />
@@ -79,7 +86,7 @@
                     crusader.spot = slotNumber;
             };
 
-    var makeWorldRenderer = (props,slotLayout) =>{
+    var makeWorldRenderer = (props,worldId, slotLayout) =>{
             if(!(props.onFormationChange != null) || typeof(props.onFormationChange) != "function")
                 throw Error("onFormationChange is required");
             var myMakeHeroSelect = slot => makeHeroSelect(props.formation, slot, props.onFormationChange)
@@ -110,7 +117,7 @@
                         </tbody>
                         </table>
                         <div className="adaptChildren">
-                            { getFormationDiags(props.formation) }
+                            { getFormationDiags(worldId, props.formation) }
                         </div>
                     </div>);
         };
@@ -133,7 +140,7 @@
         }
         render(){
             var x = null;
-            return makeWorldRenderer(this.props, this.props.slotLayout);
+            return makeWorldRenderer(this.props, this.props.worldId, this.props.slotLayout);
         }
     };
 
@@ -233,8 +240,9 @@
                 initial.formations = {};
             if(!(initial.dpsCruIds != null))
                 initial.dpsCruIds = {};
-            app.currentWorld = app.mathCalc.getWorldById(initial.selectedWorldId);
-            this.initializeFormationsForWorld(initial,app.currentWorld.spots);
+
+            var world = app.mathCalc.getWorldById(initial.selectedWorldId);
+            this.initializeFormationsForWorld(initial,world.spots);
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?
             app.formationIds = initial.formations[initial.selectedWorldId];
@@ -242,27 +250,30 @@
             if(initial.dpsCruIds[initial.selectedWorldId]){
                 app.mathCalc.setDPS(initial.dpsCruIds[initial.selectedWorldId]);
             }
+            app.mathCalc.setWorldById(initial.selectedWorldId, initial.formations[initial.selectedWorldId]);
             app.formationCalcInitial = initial;
             return initial;
         }
         initializeFormationIds(worldSpots){
-            if(Array.isArray(app.formationIds) && app.formationIds.length == worldSpots){
+            var formationIds = this.state.formations[this.state.selectedWorldId];
+            if(Array.isArray(formationIds) && formationIds.length == worldSpots){
                 return false;
             }
-            app.formationIds = [];
+            formationIds = [];
             for(var i=0; i < worldSpots; i++)
-                app.formationIds[i] = null;
+                formationIds[i] = null;
             return true;
         }
         onFormationChange(slot,cruId){
-            this.initializeFormationIds(app.currentWorld.spots);
+            var world = app.mathCalc.getWorldById(this.state.selectedWorldId);
+            this.initializeFormationIds(world.spots);
             var stateMods = {};
             stateMods.formations = (copyObject(this.state.formations) || {});
-            if(!(stateMods.formations[currentWorld.id] != null))
-                stateMods.formations[currentWorld.id] = app.formationIds.slice(0);
-            else this.state.formations[currentWorld.id].slice(0);
+            if(!(stateMods.formations[world.id] != null))
+                stateMods.formations[world.id] = app.formationIds.slice(0);
+            else this.state.formations[world.id].slice(0);
 
-            stateMods.formations[currentWorld.id][slot] = cruId;
+            stateMods.formations[world.id][slot] = cruId;
             this.setState(stateMods);
         }
         onDpsChange(cruId){
@@ -270,6 +281,7 @@
             // normalize the cruId data
             cruId = !(cruId != null) || cruId == 0? undefined : cruId;
             dpsCruIds[this.state.selectedWorldId] = cruId;
+            app.mathCalc.calculateMultipliers(this.state.formations[this.state.selectedWorldId]);
             var stateMods = {dpsCruIds:dpsCruIds};
             this.setState(stateMods);
         }
@@ -290,22 +302,23 @@
                 itt,
                 park
             ];
-            var data = app.mathCalc.calculateMultipliers();
+            var data = app.mathCalc.calculateMultipliers(this.state.formations[this.state.selectedWorldId]);
             window.multiplierData = data;
             var cruFormationGoldMult = data && data.globalGold;
             var dpsCruId = this.state.dpsCruIds[this.state.selectedWorldId];
             var dpsCru = dpsCruId && jsonData.crusaders.find(cru => dpsCruId == cru.id);
             var playerGold = this.state.gold;
-            var goldText = (data && typeof(data.globalGold) == "number")? (data.globalGold + "") : "";
-            if(playerGold && typeof(+playerGold) == "number" && +playerGold > 0)
-                goldText = goldText + " * " + playerGold + " = " + ((playerGold * cruFormationGoldMult).toFixed(2));
+            var goldText = (data && typeof(cruFormationGoldMult) == "number")? (cruFormationGoldMult.toFixed(2) + "") : "";
+            if(playerGold && !isNaN(+playerGold) && typeof(+playerGold) == "number" && +playerGold > 0){
+                goldText = goldText + " * " + (+playerGold).toFixed(2) + " = " + ((playerGold * cruFormationGoldMult).toFixed(2));
+            }
 
             var formationComponent = null;
             var formationIds = null;
             var world = app.mathCalc.getWorldById(this.state.selectedWorldId);
             if(world!= null && world.layout != null){
                 formationIds = this.state.formations[world.id] || app.formationIds;
-                formationComponent = (<WorldComponent slotLayout={world.layout} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                formationComponent = (<WorldComponent slotLayout={world.layout} worldId={this.state.selectedWorldId} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
             } else{
                 switch(this.state.selectedWorldId){
                     default:
@@ -316,6 +329,16 @@
             // not in the mood to change that the component is supplying the protocol, so that we can use file:// here to have the tags use file system when we are on the filesystem
             var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : getIsLocalFileSystem()?  '': '';
             var tagTracker = calculateTagTracker(jsonData.missionTags, formationIds);
+            var kaine = getCrusader("06");
+            var kaineSetter = x => {
+                var value = !isNaN(+x)? +x : 0;
+                kaine.XP = value;
+                this.setState({kaineXP: value});
+            };
+            var kaineXpComponent =
+                kaine && formationIds.includes(kaine.id)
+                ? ( <div title="Kaine XP"><div>Kaine XP:</div><TextInputUnc onChange={kaineSetter} type="number" value={this.state.kaineXP} /></div>)
+                : null;
 
             return (<div>
                 <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} tagTracker={tagTracker}/>
@@ -323,6 +346,9 @@
                     {TagCountsComponent(jsonData.missionTags.map(tag => tag.id), jsonData.crusaders.filter(cru => formationIds.includes(cru.id)))}
                 </div>
                 <div>
+                {
+                    // world selector
+                }
                 <select
                     value={this.state.selectedWorldId}
                     onChange={e => {
@@ -330,9 +356,10 @@
                         var worldId = +e.target.value;
                         if(isNaN(worldId))
                             worldId = 1;
-                        app.currentWorld = app.mathCalc.getWorldById(worldId);
+                        app.mathCalc.setWorldById(worldId,this.state.formations[worldId]);
+                        var world = app.mathCalc.getWorldById(worldId);
+                        if(this.initializeFormationIds(world.spots))
                         var stateMods = {selectedWorldId: worldId};
-                        if(this.initializeFormationIds(app.currentWorld.spots))
                             stateMods.formation = app.formationIds;
                         this.setState(stateMods);
                     }} >
@@ -342,6 +369,7 @@
                 </select>
                 </div>
                 <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
+                {kaineXpComponent}
                 <p>Dps Multiplier: {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
                 {formationComponent}
