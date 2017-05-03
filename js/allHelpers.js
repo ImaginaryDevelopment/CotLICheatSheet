@@ -7,12 +7,14 @@ var getNumberOrDefault = (x, defaultValue) =>
   Number.isNaN(x) || !(x != null) ? defaultValue : +x;
 
 /**
- * 
- * @param {object} source 
- * @param {object} toMerge 
+ *
+ * @param {object} source
+ * @param {object} toMerge
  */
-const copyObject = (source,toMerge) => {
+const copyObject = (source,toMerge, defaultValue) => {
     var target = toMerge ? toMerge : {};
+    if(!(source != null) && defaultValue != null)
+      return defaultValue;
     Object.keys(source)
       .filter(prop => !(prop in target))
       .map(prop =>
@@ -22,8 +24,8 @@ const copyObject = (source,toMerge) => {
 };
 
 /**
- * 
- * @param {string} s 
+ *
+ * @param {string} s
  */
 const trim = function(s) {
     return s.trim();
@@ -77,8 +79,8 @@ const addClasses = (defaultClasses=[], otherClasses=[]) =>{
 };
 
 /**
- * 
- * @param {number} x 
+ *
+ * @param {number} x
  */
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -106,9 +108,9 @@ function getIsLocalStorageAvailable() {
 }
 
 /**
- * 
- * @param {string} key 
- * @param {*} value 
+ *
+ * @param {string} key
+ * @param {*} value
  */
 var storeIt = function(key,value){
   var canStore = getIsLocalStorageAvailable();
@@ -119,9 +121,9 @@ var storeIt = function(key,value){
   }
 };
 /**
- * 
- * @param {string} key 
- * @param {*} defaultValue 
+ *
+ * @param {string} key
+ * @param {*} defaultValue
  */
 var readIt = function(key,defaultValue){
   if(getIsLocalStorageAvailable()){
@@ -144,11 +146,11 @@ var readIt = function(key,defaultValue){
 };
 
 /**
- * 
- * @param {string} category 
- * @param {string} action 
- * @param {string} labelOpt 
- * @param {number} numberValueOpt 
+ *
+ * @param {string} category
+ * @param {string} action
+ * @param {string} labelOpt
+ * @param {number} numberValueOpt
  */
 var gaEvent = (category,action,labelOpt,numberValueOpt) =>
   ga ? ga('send','event',category, action, labelOpt, numberValueOpt) : null;
@@ -161,15 +163,43 @@ var add = function(a,b){
 };
 
 /**
- * 
- * @param {*} data 
- * @param {string} title 
- * @param {*} extraData 
+ *
+ * @param {*} data
+ * @param {string} title
+ * @param {*} extraData
  */
 var inspect = (data,title, extraData) =>
 {
-  console.log(title || 'inspect', data,extraData);
+  if(extraData)
+    console.log(title || 'inspect', data,extraData);
+  else
+    console.log(title|| 'inspect', data);
   return data;
 };
+var tryCaptureThrow =  (f, data, title, logSuccess) => {
+  try{
+    var result = f();
+    if(logSuccess===true)
+      console.info(title || 'tryCaptureThrowSuccess');
+    return f();
+  } catch(ex){
+    if(title){
+      console.warn(title, data);
+    } else
+    console.warn(data);
+    throw ex;
+  }
+};
+var tryCaptureLog = (f,data,title) => {
+  try{
+    return f();
+  } catch (ex){
+    if(title){
+      console.error(title,data);
+    } else console.error(data);
+  }
+
+}
+
 // adapted from http://stackoverflow.com/a/14438954/57883
 Array.prototype.distinct = Array.prototype.disinct || function(v, i, s) {return this.filter((v,i,a) => a.indexOf(v) === i);};

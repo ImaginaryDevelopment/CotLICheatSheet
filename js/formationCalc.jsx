@@ -118,6 +118,17 @@
                                 )}
                         </tbody>
                         </table>
+                        <div>
+                            <TextInputUnc placeHolder="mySaved1" value={props.nextSaveName} onChange={props.onSaveNameChange} disabled={props.enableSave !== true} />
+                            <button type="button" disabled={props.enableSave === false} onClick={props.onSaveFormationClick} >Save Formation</button>
+                            <select value={props.selectedSave}>
+                                {
+                                    props.saveNames.map(sn =>{
+                                        <option key={sn} value={sn}>{sn}</option>
+                                    })
+                                }
+                                </select>
+                        </div>
                         <div className="adaptChildren">
                             { getFormationDiags(worldId, props.formation) }
                         </div>
@@ -125,6 +136,7 @@
         };
     makeWorldRenderer.displayName = 'makeWorldRenderer';
 
+    // there's no state in here, why not make it a simple function?
     class WorldComponent extends React.Component {
 
         constructor(props){
@@ -305,7 +317,18 @@
                 this.getFormationIds(this.state.formations && this.state.formations[worldId],world.spots);
             stateMods.formations[worldId][slot] = cruId;
             app.formationIds[slot]= this.state.formations[worldId].slice(0);
+            stateMods.enableSave = true;
             this.setState(stateMods);
+        }
+        saveFormation(saveName, formationIds, dpsChar){
+            // save a 'worldSaves object with the different names keyed'
+            var key = "worldSaves" + this.state.selectedWorldId;
+            // copyObject will pass the default value through if the read returns nothing
+            var oldWorldSaves = app.readIt(key, {});
+            oldWorldSaves[saveName] = JSON.stringify({formationIds:formationIds, dpsChar:dpsChar});
+            console.log('saving:', oldWorldSaves[saveName], 'to', key,'.',saveName);
+            app.storeIt(key, oldWorldSaves);
+            this.setState({enableSave:false, saveNames:Object.keys(oldWorldSaves)});
         }
         onDpsChange(cruId){
             var dpsCruIds = copyObject(this.state.dpsCruIds) || {};
@@ -313,7 +336,7 @@
             cruId = !(cruId != null) || cruId == 0? undefined : cruId;
             dpsCruIds[this.state.selectedWorldId] = cruId;
             app.mathCalc.calculateMultipliers(this.state.formations[this.state.selectedWorldId]);
-            var stateMods = {dpsCruIds:dpsCruIds};
+            var stateMods = {dpsCruIds:dpsCruIds, enableSave:true};
             this.setState(stateMods);
         }
         componentDidUpdate(prevProps, prevState){
@@ -351,7 +374,18 @@
             var formationIds = null;
             if(world!= null && world.layout != null){
                 formationIds = this.state.formations[world.id] || app.formationIds;
-                formationComponent = (<WorldComponent slotLayout={world.layout} worldId={this.state.selectedWorldId} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
+                formationComponent = (<WorldComponent
+                            slotLayout={world.layout}
+                            worldId={this.state.selectedWorldId}
+                            formation={formationIds}
+                            dpsCruId={dpsCruId}
+                            onFormationChange={this.onFormationChange}
+                            nextSaveName={inspect(this.state.nextSaveName, "nextSaveName")}
+                            enableSave={this.state.enableSave !== false}
+                            onSaveFormationClick={() => this.saveFormation(this.state.nextSaveName, formationIds, dpsCruId)}
+                            onSaveNameChange={d => this.setState({nextSaveName:d})}
+                            saveNames={this.state.saveNames || []}
+                            onDpsChange={this.onDpsChange} />);
             } else{
                 switch(this.state.selectedWorldId){
                     default:

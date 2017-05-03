@@ -106,6 +106,8 @@ class TextInputUnc extends React.Component {
   render(){
     var props = this.props;
     var state = this.state;
+    if(!(props.placeHolder != null) && props.placeholder !=null)
+      console.warn('TextInputUnc expects prop placeHolder not placeholder');
     return (<TextInput2
           name={props.name}
           id={props.id}
