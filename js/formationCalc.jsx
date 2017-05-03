@@ -165,6 +165,7 @@
     var calculateTagTracker = (missionTags,formation) =>{
         if(!(formation != null))
             return null;
+        console.log('calculateTagTracker',formation);
         var tagTracker = {};
 
         var tags = missionTags.map(mt =>{
@@ -337,11 +338,12 @@
             var key = "worldSaves" + worldId;
             var worldSaves = app.readIt(key);
             console.log('loading',worldSaves);
+            var data = worldSaves[saveName];
             var formations = copyObject(this.state.formations) || {};
-            formations[worldId] = worldSaves[saveName];
+            formations[worldId] = data.formationIds;
 
             console.log('Loading formation for this world from/to', this.state.formations[worldId], formations[worldId]);
-            this.setState({enableSave:false, formations: formations });
+            this.setState({enableSave:false, formations: formations, dpsChar: data.dpsChar});
         }
         onDpsChange(cruId){
             var dpsCruIds = copyObject(this.state.dpsCruIds) || {};
