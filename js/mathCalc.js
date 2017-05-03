@@ -89,7 +89,7 @@
     this.maxColumn = 0;
     var adjacent = [];
     var columnNum = [];
-    for (i = 0; i < this.spots; i++) {
+    for (var i = 0; i < this.spots; i++) {
       adjacent[i] = [];
       columnNum[i] = [];
     }
@@ -2625,20 +2625,20 @@ for (i = 0; i < 10; i++) {
 // 3 X X X X
 
 var park = app.park = new World(8,"Amusement Park of Doom",13);
-park.setAdjacent(0,[1,4]);
-park.setAdjacent(1,[0,2,4]);
-park.setAdjacent(2,[1,3,5]);
-park.setAdjacent(3,[2,5]);
-park.setAdjacent(4,[0,1,6]);
-park.setAdjacent(5,[2,3,7]);
-park.setAdjacent(6,[4,7,8,9]);
-park.setAdjacent(7,[5,6,9,10]);
-park.setAdjacent(8,[6,9,11]);
-park.setAdjacent(9,[6,7,8,10,11,12]);
-park.setAdjacent(10,[7,9,12]);
-park.setAdjacent(11,[8,9,12]);
-park.setAdjacent(12,[9,10,11]);
 (function(){
+  park.setAdjacent(0,[1,4]);
+  park.setAdjacent(1,[0,2,4]);
+  park.setAdjacent(2,[1,3,5]);
+  park.setAdjacent(3,[2,5]);
+  park.setAdjacent(4,[0,1,6]);
+  park.setAdjacent(5,[2,3,7]);
+  park.setAdjacent(6,[4,7,8,9]);
+  park.setAdjacent(7,[5,6,9,10]);
+  park.setAdjacent(8,[6,9,11]);
+  park.setAdjacent(9,[6,7,8,10,11,12]);
+  park.setAdjacent(10,[7,9,12]);
+  park.setAdjacent(11,[8,9,12]);
+  park.setAdjacent(12,[9,10,11]);
   var x = null;
   park.layout = [
     [0,x,x,x,x]
@@ -2649,22 +2649,62 @@ park.setAdjacent(12,[9,10,11]);
     ,[x,5,x,10,x]
     ,[3,x,x,x,x]
   ];
+
+  for (i = 0; i < 10; i++) {
+    if (i < 4) {
+      park.setColumn(i,1);
+    } else if (i < 6) {
+      park.setColumn(i,2);
+    } else if (i < 8) {
+      park.setColumn(i,3);
+    } else if (i < 11) {
+      park.setColumn(i,4);
+    } else if (i < 13) {
+      park.setColumn(i,5);
+    }
+  }
 })();
 
-
-for (i = 0; i < 10; i++) {
-  if (i < 4) {
-    park.setColumn(i,1);
-  } else if (i < 6) {
-    park.setColumn(i,2);
-  } else if (i < 8) {
-    park.setColumn(i,3);
-  } else if (i < 11) {
-    park.setColumn(i,4);
-  } else if (i < 13) {
-    park.setColumn(i,5);
-  }
-}
+// approx line 311649 of gamedata
+//
+var gardeners = app.gardeners = new World(17,"Gardeners of the Galaxy",12);
+(() =>{
+  var x = null;
+  gardeners.layout = [
+    [0,2,4,8,10]
+    ,[1,3,5,9,11]
+    ,[x,x,6,x,x]
+    ,[x,x,7,x,x]
+  ];
+  gardeners.layout.map(row =>
+    row.map((spot,column)=>{
+      if(spot!=null){
+        console.log('calling setColumn (spot,column) = ', spot,column,row);
+        gardeners.setColumn(spot,column);
+      } else
+        console.log('spot is null', spot, column, row);
+    }
+  ));
+  var adjacents = [
+    [0,[1,2,3]],
+    [1,[0,3]],
+    [2,[0,3,4,5]],
+    [3,[0,1,2,5,6]],
+    // top of tree
+    [4,[2,5,8]],
+    [5,[2,3,4,6,8,9]],
+    [6,[3,5,7,9]],
+    // bottom of tree
+    [7,[6]],
+    [8,[4,5,9,10]],
+    [9,[5,6,8,10,11]],
+    [10,[8,9,11]],
+    [11,[9,10]]
+  ];
+  adjacents.map(spotWithAdj =>
+    gardeners.setAdjacent(inspect(spotWithAdj[0],"gardenersadjacent"),spotWithAdj[1])
+  );
+})();
 
   var getWorldById = exports.getWorldById = id => {
     switch (id) {
@@ -2676,6 +2716,7 @@ for (i = 0; i < 10; i++) {
       case 6: return player;
       case 7: return itt;
       case 8: return park;
+      case 17: return gardeners;
       default:
       console.error("worldId not implemented" + id);
       break;
@@ -2751,6 +2792,8 @@ for (i = 0; i < 10; i++) {
   };
   exports.setWorldById = (worldId, formationIds) =>{
     currentWorld = getWorldById(worldId);
+    // // apparently chicken + egg, get
+    // if(formationIds != null)
     exports.calculateMultipliers(formationIds);
 
   }

@@ -13,7 +13,10 @@
                         data.name=crusader.displayName;
                     if(app.formationIds[data.spot] != data.id){
                         console.warn('mathCalcId doesn\'t match state', app.formationIds[data.spot], data.id, data.spot, formation);
-                        data.mathCalcId= app.formationIds[data.spot];
+                        app.data = data;
+                        app.formation = formation;
+                        throw Error("uhhh whut?");
+                        data.mathCalcId = app.formationIds[data.spot];
                     }
                     if(crusader && crusader.globalDps && crusader.globalDps != 1){
                         if(!isNaN(+crusader.globalDps) && typeof(crusader.globalDps) == "number")
@@ -80,7 +83,6 @@
                 var slotCru = getCrusader(app.formationIds[slotNumber]);
                 if(slotCru && slotCru.spot == slotNumber)
                     slotCru.spot = undefined;
-                app.formationIds[slotNumber]=cruId;
                 onFormationChange(slotNumber,cruId);
                 if(crusader != null)
                     crusader.spot = slotNumber;
@@ -189,27 +191,28 @@
         constructor(){
             super();
             this.getInitialState = this.getInitialState.bind(this);
-            this.initializeFormationIds = this.initializeFormationIds.bind(this);
+            this.getFormationIds = this.getFormationIds.bind(this);
             this.onFormationChange = this.onFormationChange.bind(this);
             this.onDpsChange = this.onDpsChange.bind(this);
             this.storageKey="formationCalc";
             this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.state = this.getInitialState();
         }
+        // includes a migration
         initializeFormationsForWorld(initial, spots){
-            var currentWorld = app.mathCalc.getWorldById(initial.selectedWorldId);
+            // don't bother calling getFormationIds, in this case we don't need the current formationIds
             if(!(initial.formations[initial.selectedWorldId] != null))
             {
-                initial.formations[currentWorld.id] = [];
-                for(var i=0;i<currentWorld.spots;i++) {
-                    initial.formations[currentWorld.id].push(null);
+                initial.formations[initial.selectedWorldId] = [];
+                for(var i=0;i<spots;i++) {
+                    initial.formations[initial.selectedWorldId].push(null);
                 }
             }
             // migrate initial.formation to new initial.formations
             if(initial.formation != null && initial.formation.find(f => f != null && f !== 0 && f != "0")){
                 initial.formation.map((f,i) =>{
 
-                    if(i < currentWorld.spots)
+                    if(i < spots)
                         initial.formations[initial.selectedWorldId][i] = f;
                 });
                 initial.formation = undefined;
@@ -245,6 +248,7 @@
             this.initializeFormationsForWorld(initial,world.spots);
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?
+            console.warn('changing app.formationIds', initial.formations[initial.selectedWorldId]);
             app.formationIds = initial.formations[initial.selectedWorldId];
             console.log('getInitialState', app.formationIds, initial.formations[initial.selectedWorldId]);
             if(initial.dpsCruIds[initial.selectedWorldId]){
@@ -254,26 +258,53 @@
             app.formationCalcInitial = initial;
             return initial;
         }
-        initializeFormationIds(worldSpots){
-            var formationIds = this.state.formations[this.state.selectedWorldId];
-            if(Array.isArray(formationIds) && formationIds.length == worldSpots){
-                return false;
+        /**
+         * get the saved formationIds from formations[world.id] or a new one (if there wasn't one or it was the wrong size)
+         *
+         * @param {Array<string>|undefined} savedFormationIds
+         * @param {number} worldSpots
+         * @returns {Array<string>} an array of the proper size to hold this world's formations
+         *
+         * @memberOf FormationCalc
+         */
+        getFormationIds(savedFormationIds, worldSpots){
+            if(!(worldSpots != null)){
+                console.error('no worldspot count passed', worldSpots,savedFormationIds);
+            }
+            var formationIds;
+            if(savedFormationIds != null && Array.isArray(savedFormationIds) && savedFormationIds.length == worldSpots){
+                // return {hadExisting: true, formationIds:savedFormationIds};
+                formationIds = savedFormationIds.slice(0);
+                return formationIds;
             }
             formationIds = [];
             for(var i=0; i < worldSpots; i++)
                 formationIds[i] = null;
-            return true;
+            // return {hadExisting:false, formationIds:formationIds};
+            return formationIds;
         }
         onFormationChange(slot,cruId){
-            var world = app.mathCalc.getWorldById(this.state.selectedWorldId);
-            this.initializeFormationIds(world.spots);
-            var stateMods = {};
-            stateMods.formations = (copyObject(this.state.formations) || {});
-            if(!(stateMods.formations[world.id] != null))
-                stateMods.formations[world.id] = app.formationIds.slice(0);
-            else this.state.formations[world.id].slice(0);
+            var worldId = this.state.selectedWorldId;
+            var stateMods = {
+                // prepare the mod with a copy of the current formations object/array
+                formations:(copyObject(this.state.formations) || {})};
+            if(!(worldId != null) || worldId < 1){
+                console.error("bad selectedWorldId", worldId);
+                return;
+            }
 
-            stateMods.formations[world.id][slot] = cruId;
+
+            var world = app.mathCalc.getWorldById(worldId);
+            if(!(world != null)){
+                console.error("no world returned for id ", worldId);
+                return;
+            }
+            stateMods.formations[worldId] =
+                // we use a copy so we aren't directly editing a reference to the old one, in case the copy was shallow, we don't want to mutate
+                // returns an array of the right size, using previous worldId =()
+                this.getFormationIds(this.state.formations && this.state.formations[worldId],world.spots);
+            stateMods.formations[worldId][slot] = cruId;
+            app.formationIds[slot]= this.state.formations[worldId].slice(0);
             this.setState(stateMods);
         }
         onDpsChange(cruId){
@@ -300,9 +331,12 @@
                 mischief,
                 player,
                 itt,
-                park
+                park,
+                gardeners
             ];
-            var data = app.mathCalc.calculateMultipliers(this.state.formations[this.state.selectedWorldId]);
+            var world = app.mathCalc.getWorldById(this.state.selectedWorldId);
+            var formationIds = this.getFormationIds(this.state.formations[this.state.selectedWorldId], world.spots);
+            var data = app.mathCalc.calculateMultipliers(formationIds);
             window.multiplierData = data;
             var cruFormationGoldMult = data && data.globalGold;
             var dpsCruId = this.state.dpsCruIds[this.state.selectedWorldId];
@@ -315,7 +349,6 @@
 
             var formationComponent = null;
             var formationIds = null;
-            var world = app.mathCalc.getWorldById(this.state.selectedWorldId);
             if(world!= null && world.layout != null){
                 formationIds = this.state.formations[world.id] || app.formationIds;
                 formationComponent = (<WorldComponent slotLayout={world.layout} worldId={this.state.selectedWorldId} formation={formationIds} dpsCruId={dpsCruId} onFormationChange={this.onFormationChange} onDpsChange={this.onDpsChange} />);
@@ -356,9 +389,14 @@
                         var worldId = +e.target.value;
                         if(isNaN(worldId))
                             worldId = 1;
-                        app.mathCalc.setWorldById(worldId,this.state.formations[worldId]);
                         var world = app.mathCalc.getWorldById(worldId);
-                        if(this.initializeFormationIds(world.spots))
+                        if(!world || !(world.spots != null)){
+                            console.error("world not setup correctly", world);
+                            return;
+                        }
+                        var formationIds = this.getFormationIds(this.state.formations[worldId], world.spots);
+                        // ok to pass a direct reference to the arrya, the method called doesn't alter formationIds
+                        app.mathCalc.setWorldById(worldId,formationIds);
                         var stateMods = {selectedWorldId: worldId};
                             stateMods.formation = app.formationIds;
                         this.setState(stateMods);
