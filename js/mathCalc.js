@@ -1881,8 +1881,17 @@
   ////Fright-o-Tron
   var fright = getCrusader('16b');
   fright.calculate = function () {
-    fright.globalDps *= 1 / (1 - 0.15 * itemAbility(fright, 2));
-    fright.globalDps *= 1 + 0.5 * currentWorld.countTags('robot') * legendaryFactor(fright, 0);
+    // Oogy Boogy + itemAbility (explosions)
+    var oogyBoogy = 1 / (1 - 0.15 * itemAbility(fright, 2)) || 1;
+    fright.globalDps *= oogyBoogy || 1;
+    fright.s2 = "dpsMult:" + oogyBoogy + "\r\n";
+    var helmetLegPerRobot = 1 + 0.5 * currentWorld.countTags('robot') * legendaryFactor(fright, 0) || 1;
+    fright.s0 = "dpsMult:" + helmetLegPerRobot + "\r\n";
+    fright.globalDps *= helmetLegPerRobot;
+    //frightingCircuits?
+    fright.globalDps *= 1.15;
+
+
     var turkeySpot = getCrusaderSpot(app.formationIds, turkey.id);
     if (turkeySpot != null) {
       fright.globalDps *= 1 + 0.25 * legendaryFactor(fright, 1);
@@ -1890,6 +1899,7 @@
     if (dpsChar && dpsChar.tags.includes('robot')) {
       fright.globalDps *= 1 + legendaryFactor(fright, 2);
     }
+    console.log('fright globalDps', fright.globalDps);
   };
 
   //////Slot 17
@@ -2759,6 +2769,7 @@ var gardeners = app.gardeners = new World(17,"Gardeners of the Galaxy",12);
     // some of the methods this calls rely on the global state =/
     // have not worked on cleaning all that out yet
     app.formationIds = formationIds;
+    console.log('calculateMultipliers', formationIds);
 
     jsonData.crusaders
       .filter(cru => formationIds.includes(cru.id))
@@ -2768,24 +2779,25 @@ var gardeners = app.gardeners = new World(17,"Gardeners of the Galaxy",12);
         crusaderSetup(cru);
         return cru;
       })
-      .map(f => {
+      .map(cru => {
         var globalIsOk = typeof(globalDps) === "number" && !isNaN(globalDps);
         if (app.throw === true){
-          doCalculation(f,formationIds);
+          doCalculation(cru,formationIds);
           if(globalIsOk && !(typeof(globalDps) === "number" && !isNaN(globalDps)))
-            throw Error("global was busted by " + f);
+            throw Error("global was busted by " + cru);
         }
         else
           try {
-            doCalculation(f,formationIds);
+            doCalculation(cru,formationIds);
           } catch (ex) {
-            console.error('failed to calculate for ', f);
+            console.error('failed to calculate for ', cru);
           }
-        if(f.globalDps != null && !isNaN(f.globalDps))
-          globalDps *= f.globalDps || 1;
+        console.warn('calculateMultipliers',cru.displayName, cru.globalDps);
+        if(cru.globalDps != null && !isNaN(cru.globalDps))
+          globalDps *= cru.globalDps || 1;
         if(globalIsOk && !(typeof(globalDps) === "number" && !isNaN(globalDps)))
-            throw Error("global was busted by " + f);
-        globalGold *= f.globalGold || 1;
+            throw Error("global was busted by " + cru);
+        globalGold *= cru.globalGold || 1;
       });
     var result = { globalDps: globalDps, globalGold: globalGold };
     return result;

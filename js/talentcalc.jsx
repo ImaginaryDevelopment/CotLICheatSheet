@@ -24,8 +24,8 @@ app.HeroSelect = props =>
     var title;
     if(selectedCrusader != null){
         title = "";
-        if(selectedCrusader.globalDPS != null && selectedCrusader.globalDPS != 1)
-            title +="dpsMultiplier:" + selectedCrusader.globalDPS + "\r\n";
+        if(selectedCrusader.globalDps != null && selectedCrusader.globalDps != 1)
+            title +="dpsMultiplier:" + selectedCrusader.globalDps + "\r\n";
         if(selectedCrusader.globalGold != null && selectedCrusader.globalGold != 1)
             title += "goldMultiplier:" + selectedCrusader.globalGold +"\r\n";
     }
