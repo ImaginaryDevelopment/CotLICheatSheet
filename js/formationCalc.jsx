@@ -121,13 +121,17 @@
                         <div>
                             <TextInputUnc placeHolder="mySaved1" value={props.nextSaveName} onChange={props.onSaveNameChange} disabled={props.enableSave !== true} />
                             <button type="button" disabled={props.enableSave === false} onClick={props.onSaveFormationClick} >Save Formation</button>
-                            <select value={props.selectedSave}>
+                            <select value={props.selectedSave}
+                                    onChange={e => props.selectedSaveChange(e.target.value)}>
+                                <option key="_">None</option>
                                 {
-                                    props.saveNames.map(sn =>{
-                                        <option key={sn} value={sn}>{sn}</option>
-                                    })
+                                    (inspect(props.saveNames,"savenames")).map(sn =>
+                                        (<option key={sn} value={sn}>{sn}</option>)
+                                    )
                                 }
-                                </select>
+                            </select>
+                            <button type="button" disabled={!(props.selectedSave != null) || props.selectedSave =="_"} onClick={props.onLoadFormationClick}>Load</button>
+
                         </div>
                         <div className="adaptChildren">
                             { getFormationDiags(worldId, props.formation) }
@@ -304,8 +308,6 @@
                 console.error("bad selectedWorldId", worldId);
                 return;
             }
-
-
             var world = app.mathCalc.getWorldById(worldId);
             if(!(world != null)){
                 console.error("no world returned for id ", worldId);
@@ -325,10 +327,21 @@
             var key = "worldSaves" + this.state.selectedWorldId;
             // copyObject will pass the default value through if the read returns nothing
             var oldWorldSaves = app.readIt(key, {});
-            oldWorldSaves[saveName] = JSON.stringify({formationIds:formationIds, dpsChar:dpsChar});
+            oldWorldSaves[saveName] = {formationIds:formationIds, dpsChar:dpsChar};
             console.log('saving:', oldWorldSaves[saveName], 'to', key,'.',saveName);
             app.storeIt(key, oldWorldSaves);
             this.setState({enableSave:false, saveNames:Object.keys(oldWorldSaves)});
+        }
+        loadFormation(saveName){
+            var worldId = this.state.selectedWorldId;
+            var key = "worldSaves" + worldId;
+            var worldSaves = app.readIt(key);
+            console.log('loading',worldSaves);
+            var formations = copyObject(this.state.formations) || {};
+            formations[worldId] = worldSaves[saveName];
+
+            console.log('Loading formation for this world from/to', this.state.formations[worldId], formations[worldId]);
+            this.setState({enableSave:false, formations: formations });
         }
         onDpsChange(cruId){
             var dpsCruIds = copyObject(this.state.dpsCruIds) || {};
@@ -374,18 +387,25 @@
             var formationIds = null;
             if(world!= null && world.layout != null){
                 formationIds = this.state.formations[world.id] || app.formationIds;
-                formationComponent = (<WorldComponent
+                formationComponent =
+                    (<WorldComponent
                             slotLayout={world.layout}
                             worldId={this.state.selectedWorldId}
                             formation={formationIds}
                             dpsCruId={dpsCruId}
                             onFormationChange={this.onFormationChange}
+                            onDpsChange={this.onDpsChange}
+                            // for saving
                             nextSaveName={inspect(this.state.nextSaveName, "nextSaveName")}
                             enableSave={this.state.enableSave !== false}
                             onSaveFormationClick={() => this.saveFormation(this.state.nextSaveName, formationIds, dpsCruId)}
                             onSaveNameChange={d => this.setState({nextSaveName:d})}
+                            // for loading
+                            selectedSave={this.state.selectedSave}
+                            selectedSaveChange={e => this.setState({selectedSave:e})}
                             saveNames={this.state.saveNames || []}
-                            onDpsChange={this.onDpsChange} />);
+                            onLoadFormationClick={() => this.loadFormation(this.state.selectedSave)}
+                            />);
             } else{
                 switch(this.state.selectedWorldId){
                     default:
