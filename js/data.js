@@ -766,6 +766,11 @@ window.jsonData =
           "name": "Enchanted Ivory Wand of Diamond Finding",
           "lootId": 895
         }
+      ],
+      "gear": [
+        "clickCritDmg",
+        "clickCrit",
+        "ability - Swordplay"
       ]
     },
     {
@@ -888,6 +893,11 @@ window.jsonData =
           "name": "Grade Ten Science Experiment Capacitor of Danger",
           "lootId": 1119
         }
+      ],
+      "gear": [
+        "ability - Wind-Up-Bunny",
+        "clickCritDmg",
+        "clickCrit"
       ]
     },
     {
@@ -1103,6 +1113,11 @@ window.jsonData =
           "name": "Long-Tailed Feline Focus of Purring",
           "lootId": 1293
         }
+      ],
+      "gear": [
+        "clickCrit",
+        "ClickDmg",
+        "clickCritDmg"
       ]
     },
     {
@@ -1249,6 +1264,11 @@ window.jsonData =
           "name": "Gold Inlaid Plaid Gloves of Lumberjacking",
           "lootId": 953
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "selfdps"
       ]
     },
     {
@@ -1371,6 +1391,11 @@ window.jsonData =
           "name": "Itty Bitty Model Stealth Fighter of Inspiration",
           "lootId": 1087
         }
+      ],
+      "gear": [
+        "selfdps",
+        "selfdps",
+        "ability - Focused Teamwork"
       ]
     },
     {
@@ -1506,6 +1531,11 @@ window.jsonData =
           "name": "Scaled Quiver of the Impossible Arrows",
           "lootId": 1167
         }
+      ],
+      "gear": [
+        "ability - Precise Aim",
+        "alldps",
+        "ability - Fire!"
       ]
     },
     {
@@ -1614,6 +1644,11 @@ window.jsonData =
           "name": "Nanofiber Mask of Entirely Pointless Eyeslots",
           "lootId": 1374
         }
+      ],
+      "gear": [
+        "ability - Web Blast (number of targets)",
+        "ability - WebBlast (crit chance)",
+        "alldps"
       ]
     },
     {
@@ -1775,6 +1810,11 @@ window.jsonData =
           "lootId": 964,
           "golden": true
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "selfdps"
       ]
     },
     {
@@ -1897,6 +1937,11 @@ window.jsonData =
           "name": "Infuriating Perfume of Infinite Lovers",
           "lootId": 1105
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "selfdps"
       ]
     },
     {
@@ -2162,6 +2207,11 @@ window.jsonData =
           "lootId": 969,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "selfdps",
+        "ability - Bulwark"
       ]
     },
     {
@@ -2299,6 +2349,11 @@ window.jsonData =
           "name": "Solid Emerald Football of Painful Catches",
           "lootId": 1094
         }
+      ],
+      "gear": [
+        "health",
+        "selfdps",
+        "ability - Eligible Receivers"
       ]
     },
     {
@@ -2409,6 +2464,11 @@ window.jsonData =
           "name": "Mauve Makeup of a Million Mauling Mines",
           "lootId": 1203
         }
+      ],
+      "gear": [
+        "ability - Mimic",
+        "selfdps",
+        "alldps"
       ]
     },
     {
@@ -2570,6 +2630,11 @@ window.jsonData =
           "lootId": 975,
           "golden": true
         }
+      ],
+      "gear": [
+        "selfdps",
+        "selfdps",
+        "alldps"
       ]
     },
     {
@@ -2691,6 +2756,11 @@ window.jsonData =
           "lootId": 1365,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "selfdps",
+        "ability - Mosh Pit"
       ]
     },
     {
@@ -2845,6 +2915,11 @@ window.jsonData =
           "lootId": 1149,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "selfdps",
+        "selfdps"
       ]
     },
     {
@@ -2969,6 +3044,11 @@ window.jsonData =
           "name": "Mighty Morphin' Flashlight of Demonic True-sight",
           "lootId": 1209
         }
+      ],
+      "gear": [
+        "selfdps",
+        "selfdps",
+        "alldps"
       ]
     },
     {
@@ -3077,6 +3157,11 @@ window.jsonData =
           "name": "Stylish Fusion-Powered Chair of Luxurious Motoring",
           "lootId": 1451
         }
+      ],
+      "gear": [
+        "ability - Still Suspicious",
+        "ability - Untrusting",
+        "alldps"
       ]
     },
     {
@@ -3349,6 +3434,11 @@ window.jsonData =
           "lootId": 1289,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "cooldown - Magnify",
+        "ability Follow the Leader"
       ]
     },
     {
@@ -3486,6 +3576,11 @@ window.jsonData =
           "lootId": 1109,
           "golden": true
         }
+      ],
+      "gear": [
+        "cooldown - Magnify",
+        "ability - Little Pockets",
+        "alldps"
       ]
     },
     {
@@ -3595,6 +3690,11 @@ window.jsonData =
           "name": "Golden Cloth of the Perfectly Clean Golden Counter",
           "lootId": 1230
         }
+      ],
+      "gear": [
+        "ability - Tips chance",
+        "alldps",
+        "ability - Tips!"
       ]
     },
     {
@@ -3728,6 +3828,11 @@ window.jsonData =
           "name": "Flame-Imbued Fire Familiar Necklace of Burning",
           "lootId": 985
         }
+      ],
+      "gear": [
+        "ability - Ignite, Char, Conflagrate, and Incinerate",
+        "alldps",
+        "cooldown - Fire Storm"
       ]
     },
     {
@@ -3849,6 +3954,11 @@ window.jsonData =
           "name": "Forged Vibranium Plating of Denting",
           "lootId": 1071
         }
+      ],
+      "gear": [
+        "ability - Short Circuit",
+        "cooldown - Fire Storm",
+        "alldps"
       ]
     },
     {
@@ -4249,6 +4359,11 @@ window.jsonData =
           "lootId": 990,
           "golden": true
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "gold"
       ]
     },
     {
@@ -4372,6 +4487,11 @@ window.jsonData =
           "name": "Magical Hanging Chandelier of Dual Candles",
           "lootId": 1067
         }
+      ],
+      "gear": [
+        "ability - Cry For Help",
+        "alldps",
+        "gold"
       ]
     },
     {
@@ -4608,6 +4728,11 @@ window.jsonData =
           "name": "Surprisingly Light Kicker's Shoes of Kicking",
           "lootId": 1301
         }
+      ],
+      "gear": [
+        "gold",
+        "alldps",
+        "ability - Punt It"
       ]
     },
     {
@@ -5046,6 +5171,11 @@ window.jsonData =
           "name": "Perfectly Flavorful Fuzzy Peach of Succulence",
           "lootId": 1129
         }
+      ],
+      "gear": [
+        "gold",
+        "alldps",
+        "ability - increase buffs from Robbie"
       ]
     },
     {
@@ -5166,6 +5296,11 @@ window.jsonData =
           "name": "Spring-Loaded Pitchfork of Springy-Pitches",
           "lootId": 1218
         }
+      ],
+      "gear": [
+        "ability - Imported Riches",
+        "ability - Mayflower",
+        "alldps"
       ]
     },
     {
@@ -5313,6 +5448,11 @@ window.jsonData =
           "lootId": 1000,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Roar!",
+        "activated - Savage Strikes (global dps while active)"
       ]
     },
     {
@@ -5434,6 +5574,11 @@ window.jsonData =
           "name": "Elven Pauldron of Dangerous Running Plays",
           "lootId": 1098
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Inspiring Presence",
+        "activated - Savage Strikes (global dps while active)"
       ]
     },
     {
@@ -5683,6 +5828,11 @@ window.jsonData =
           "name": "Highly-Gemmed Jewellery of Many Jingling Pieces",
           "lootId": 1409
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Loose Magic",
+        "clickCrit"
       ]
     },
     {
@@ -5817,6 +5967,11 @@ window.jsonData =
           "lootId": 1005,
           "golden": true
         }
+      ],
+      "gear": [
+        "ability - Frog Soup",
+        "ability - Koffee Potion",
+        "alldps"
       ]
     },
     {
@@ -5953,6 +6108,11 @@ window.jsonData =
           "lootId": 1075,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Stasis Beam",
+        "ability - Perk Up"
       ]
     },
     {
@@ -6077,6 +6237,11 @@ window.jsonData =
           "name": "Pristine Scrying Orb of the Lost Dragon Kingdoms",
           "lootId": 1142
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Friends of Brogon",
+        "ability - Cleansing Fire"
       ]
     },
     {
@@ -6296,6 +6461,11 @@ window.jsonData =
           "name": "Glazed Over Robotic Eye of Arrogance",
           "lootId": 1377
         }
+      ],
+      "gear": [
+        "ability - Playing Favorites",
+        "alldps",
+        "clickCrit"
       ]
     },
     {
@@ -6429,6 +6599,11 @@ window.jsonData =
           "lootId": 1010,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Under My Wing",
+        "ability - Under My Wing (health increase)"
       ]
     },
     {
@@ -6550,6 +6725,11 @@ window.jsonData =
           "name": "Lightning Pick of Picket Picking",
           "lootId": 1102
         }
+      ],
+      "gear": [
+        "ability - Groupies",
+        "alldps",
+        "selfdps"
       ]
     },
     {
@@ -6657,6 +6837,11 @@ window.jsonData =
           "name": "Groovey Emperor's Llama of Power",
           "lootId": 1145
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - He's Got a Gun, Too!",
+        "ability - All that Swagger, Just in Time, Turn the Tides"
       ]
     },
     {
@@ -6766,6 +6951,11 @@ window.jsonData =
           "name": "Magical Silk Gift Bag of Regifted Gifts",
           "lootId": 1224
         }
+      ],
+      "gear": [
+        "ability - Shimmer",
+        "ability - Production",
+        "alldps"
       ]
     },
     {
@@ -6915,6 +7105,11 @@ window.jsonData =
           "name": "Slobbering Devouring Sack of Lost Loot",
           "lootId": 1015
         }
+      ],
+      "gear": [
+        "selfdps",
+        "selfdps",
+        "alldps"
       ]
     },
     {
@@ -7046,6 +7241,11 @@ window.jsonData =
           "name": "Blindness Inducing Power Glove of Bright Flashes",
           "lootId": 1126
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "selfdps"
       ]
     },
     {
@@ -7161,6 +7361,11 @@ window.jsonData =
           "name": "Luck-infused Thieves' Gloves of Never Getting Caught",
           "lootId": 1332
         }
+      ],
+      "gear": [
+        "ability - Favorite Prey",
+        "ability - Focused Support",
+        "alldps"
       ]
     },
     {
@@ -7294,6 +7499,11 @@ window.jsonData =
           "lootId": 1020,
           "golden": true
         }
+      ],
+      "gear": [
+        "activated - Gold-o-rama",
+        "gold",
+        "alldps"
       ]
     },
     {
@@ -7557,6 +7767,11 @@ window.jsonData =
           "lootId": 1138,
           "golden": true
         }
+      ],
+      "gear": [
+        "gold",
+        "alldps",
+        "ability - Golden Touch"
       ]
     },
     {
@@ -7666,6 +7881,11 @@ window.jsonData =
           "name": "Unknowable Quiver of Quivering Quails",
           "lootId": 1296
         }
+      ],
+      "gear": [
+        "gold",
+        "alldps",
+        "ability - Lovin', Huggin', Kissin, and Snugglin'"
       ]
     },
     {
@@ -7960,6 +8180,11 @@ window.jsonData =
           "name": "Molten Metal Cauldron of Burning Potions",
           "lootId": 1063
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "selfdps"
       ]
     },
     {
@@ -8082,6 +8307,11 @@ window.jsonData =
           "lootId": 1133,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "selfdps",
+        "ability - buffs from Broot"
       ]
     },
     {
@@ -8205,6 +8435,11 @@ window.jsonData =
           "lootId": 1421,
           "golden": true
         }
+      ],
+      "gear": [
+        "ability - Royal Blessing",
+        "alldps",
+        "ability - Animal Kingdom"
       ]
     },
     {
@@ -8352,6 +8587,11 @@ window.jsonData =
           "lootId": 1031,
           "golden": true
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Heart of the Phoenix",
+        "ability - Storm of Flame"
       ]
     },
     {
@@ -8474,6 +8714,11 @@ window.jsonData =
           "name": "Gold Scale Full Helm of Penetrating Stares",
           "lootId": 1115
         }
+      ],
+      "gear": [
+        "ability - Resurrection",
+        "ability - Resurrection (cooldown)",
+        "alldps"
       ]
     },
     {
@@ -8582,6 +8827,11 @@ window.jsonData =
           "name": "Multi-bladed Tail of Dead-causing Options",
           "lootId": 1212
         }
+      ],
+      "gear": [
+        "ability - explosion damage",
+        "alldps",
+        "ability - Oogy-Boogy (enemy health reduction)"
       ]
     },
     {
@@ -8691,6 +8941,11 @@ window.jsonData =
           "name": "Titanium LCD Visor of Digitally Perfected Vision",
           "lootId": 1436
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Ladies' Space-Man",
+        "ability - Kirkin' It Up"
       ]
     },
     {
@@ -8824,6 +9079,11 @@ window.jsonData =
           "lootId": 1036,
           "golden": true
         }
+      ],
+      "gear": [
+        "cooldown - Royal Command",
+        "alldps",
+        "ability - Royal Grail"
       ]
     },
     {
@@ -8961,6 +9221,11 @@ window.jsonData =
           "name": "Creepy Animated Pillow of Laziness",
           "lootId": 1091
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - Queen's Decree",
+        "cooldown - Royal Command"
       ]
     },
     {
@@ -9083,6 +9348,11 @@ window.jsonData =
           "name": "Customized Ruler of the Hidden Blade",
           "lootId": 1179
         }
+      ],
+      "gear": [
+        "alldps",
+        "ability - The New Students",
+        "cooldown - Royal Command"
       ]
     },
     {
@@ -9190,6 +9460,11 @@ window.jsonData =
           "name": "Star-Imbued Shoe of the Legendary Lawyer Joke",
           "lootId": 1335
         }
+      ],
+      "gear": [
+        "ability - Royal Past",
+        "selfdps",
+        "alldps"
       ]
     },
     {
@@ -9325,6 +9600,11 @@ window.jsonData =
           "lootId": 1041,
           "golden": true
         }
+      ],
+      "gear": [
+        "self - Damage Reduction",
+        "alldps",
+        "activated - Storm Rider"
       ]
     },
     {
