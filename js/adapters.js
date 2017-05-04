@@ -262,19 +262,29 @@ var sortCrusaders2 =
    */
   (crusaders, fComparisons) =>{
     if(!fComparisons || !Array.isArray(fComparisons)) {
-      // console.log('no comparisons sorting returning', crusaders);
       return crusaders;
     }
     var copy = crusaders.slice(0);
-    return copy.sort((a,b) =>
+    // have to slice the copy, because the upcoming sort results in the log showing the post-sorted results
+    // console.log('sliced', copy.slice(0).map(cru => cru.id), copy.slice(0));
+    var allCompareResults = [];
+    var sorted = copy.sort((a,b) =>{
+      var comparisonResults =
       fComparisons.reduce((prev,fn) =>{
         var compR = prev == 0 ? fn(a,b) : prev;
-        // deal with - 0?
+        // deal with -0
         var result = compR > 0 || compR < 0 ? result : 0;
-        // console.log('copy.sort',prev, result, a.id,b.id);
         return result;
-      }
-      ,0));
+      },0);
+      allCompareResults.push(comparisonResults);
+      return comparisonResults;
+    });
+    // this fixes a sort that was supposed to not touch ordering, doing ordering instead
+    if(allCompareResults.every( e => e === 0))
+      // return a copy, I'm pretty sure outside of this there's mutation to the array going on.
+      // which should be handled by the mutator, not here.
+      return crusaders.slice(0);
+    return sorted;
 };
 
 var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort, crusaders, epSort, epMap, nameSort, epFilter) => {
@@ -285,10 +295,7 @@ var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuilding
     // console.log('filter', crusader,filterOwned, filterTags);
     return result;
   });
-  // console.log('before sortCrusaders2', filtered.map(cru => cru.id));
   var sortedCrusaders = sortCrusaders2(filtered, [slotComparer(slotSort), epComparer(epSort, epMap), nameComparer(nameSort)]);
-  // console.log('filtered count:' + sortedCrusaders.length);
-  // console.log('filterSortCrusaders', slotSort, epSort, nameSort, sortedCrusaders.map(cru => cru.id));
   return sortedCrusaders;
 };
 var scrubSavedData = saved =>
