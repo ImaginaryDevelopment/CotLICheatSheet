@@ -4,7 +4,7 @@
 
 
 var getCrusaderDps = function(crusader){
-  if (!crusader.upgrades){
+  if (!crusader || !crusader.upgrades){
     return "no data";
   }
   var alldps = crusader.upgrades.alldps ? crusader.upgrades.alldps.reduce(add) : 0;
@@ -204,7 +204,7 @@ var CruGridBody = props =>{
 
   var rows = props.sortedCrusaders
       .map(function(crusader){
-      var owned = props.ownedCrusaderIds.indexOf(crusader.id) != -1;
+      var owned = props.ownedCrusaderIds && props.ownedCrusaderIds.indexOf && props.ownedCrusaderIds.indexOf(crusader.id) != -1;
       var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: {};
       var dps = getCrusaderDps(crusader);
       var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
