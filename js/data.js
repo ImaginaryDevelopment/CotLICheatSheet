@@ -1906,7 +1906,7 @@ window.jsonData =
       "slot": 3,
       "event": "September: Sasha's Schoolhouse Scourge",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Sasha%27s_Schoolhouse_Scourge",
-      "gear":[
+      "gear": [
         "selfdps",
         "ability - Center of the Universe",
         "selfdps"
@@ -2971,7 +2971,6 @@ window.jsonData =
         }
       ]
     },
-
     {
       "id": "05d",
       "tier": 2,
@@ -2986,6 +2985,98 @@ window.jsonData =
         "event",
         "female",
         "support"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Scratched Glasses",
+          "lootId": 1437
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Brittle Glasses",
+          "lootId": 1438
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Clear Glasses",
+          "lootId": 1439
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Horn-Rimmed Glasses of 20/20 Vision",
+          "lootId": 1440
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Laser-Sighted Reading Glasses of Optical Zoom",
+          "lootId": 1441
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Threadbare Knitting",
+          "lootId": 1442
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Sloppy Knitting",
+          "lootId": 1443
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Colorful Knitting",
+          "lootId": 1444
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Sturdy Knitting of Gloriously Comfy Fabric",
+          "lootId": 1445
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Multithreaded Wool Knitting of Complicated Stitching",
+          "lootId": 1446
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Ancient Chair",
+          "lootId": 1447
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Squeaky Chair",
+          "lootId": 1448
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Comfortable Chair",
+          "lootId": 1449
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Levitating Chair of Solar-Powered Cruising",
+          "lootId": 1450
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Stylish Fusion-Powered Chair of Luxurious Motoring",
+          "lootId": 1451
+        }
       ]
     },
     {
@@ -2998,7 +3089,7 @@ window.jsonData =
         "male",
         "gold"
       ],
-      "gear":[
+      "gear": [
         "alldps",
         "magnifyCooldown",
         "aHah"
@@ -3166,9 +3257,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Somewhat Creepy Mini-Monkey Toy of Self Reference",
+          "lootId": 1454,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Sparkling Squeaking Unicorn Toy of Amusement",
           "lootId": 1052
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Sparkling Squeaking Unicorn Toy of Amusement",
+          "lootId": 1455,
+          "golden": true
         },
         {
           "slot": 1,
@@ -3753,10 +3858,10 @@ window.jsonData =
       "slot": 7,
       "event": "July: Littlefoot's Big Adventure",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
-      "gear":[
-          "clickCrit",
-          "selfdps",
-          "ability"
+      "gear": [
+        "clickCrit",
+        "selfdps",
+        "ability"
       ],
       "tags": [
         "dps",
@@ -3773,8 +3878,7 @@ window.jsonData =
           100,
           200
         ],
-        "gear": [
-        ]
+        "gear": []
       },
       "heroId": 49,
       "loot": [
@@ -3891,7 +3995,7 @@ window.jsonData =
       "slot": 7,
       "event": "March: Nate's Candy Conundrum",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Nate%27s_Candy_Conundrum",
-      "gear":[
+      "gear": [
         "ability - Ancient Hatred (spawn speed)",
         "ability Hope's Diversity (dps increase for unique tags)",
         "alldps"
@@ -4277,7 +4381,7 @@ window.jsonData =
       "slot": 8,
       "event": "July: Alien Invasion Day",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Alien_Invasion_Day",
-      "gear":[
+      "gear": [
         "ability - Act of Congress (double area objective drops/kills)",
         "gold",
         "alldps"
@@ -4517,6 +4621,11 @@ window.jsonData =
         "gold",
         "dps"
       ],
+      "gear": [
+        "selfdps",
+        "gold",
+        "alldps"
+      ],
       "upgrades": {
         "selfdpsassumptions": "someone in column is under attack",
         "selfdps": [
@@ -4525,11 +4634,6 @@ window.jsonData =
           100,
           150,
           400
-        ],
-        "gear": [
-          "selfdps",
-          "gold",
-          "alldps"
         ]
       },
       "heroId": 9,
@@ -4662,10 +4766,10 @@ window.jsonData =
       "event": "September: Carnival of Sorrows",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Carnival_of_Sorrows",
       "gear": [
-          "selfdps",
-          "alldps",
-          "gold"
-        ],
+        "selfdps",
+        "alldps",
+        "gold"
+      ],
       "tags": [
         "male",
         "human",
@@ -4674,7 +4778,7 @@ window.jsonData =
         "event"
       ],
       "upgrades": {
-                "selfdps": [
+        "selfdps": [
           100,
           100,
           100,
@@ -4756,9 +4860,23 @@ window.jsonData =
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "TSA-Disapproved Shoe of Airport Security Nightmares",
+          "lootId": 1486,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
           "name": "Incredibly Dangerous Boot of Don't Ever Kick People With It",
           "lootId": 1057
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Incredibly Dangerous Boot of Don't Ever Kick People With It",
+          "lootId": 1487,
+          "golden": true
         },
         {
           "slot": 2,
@@ -4850,9 +4968,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Perfectly-Preserved Amber Skull of Mysterious Power",
+          "lootId": 1452,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Billion Year Old Amber Bust of the Forefather",
           "lootId": 1127
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Billion Year Old Amber Bust of the Forefather",
+          "lootId": 1453,
+          "golden": true
         },
         {
           "slot": 1,
@@ -5311,7 +5443,7 @@ window.jsonData =
       "slot": 10,
       "event": "August: Dr. Evil's Summer Sabotage",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Dr._Evil%27s_Summer_Sabotage",
-      "gear":[
+      "gear": [
         "alldps",
         "ability - synchronized swimming (dps in column behind)",
         "activated - savage strikes (+global dps when active)"
@@ -5868,7 +6000,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 5,
-          "name": "Extravagently Detailed Dragon Tooth of Princes",
+          "name": "Extravagantly Detailed Dragon Tooth of Princes",
           "lootId": 1139
         },
         {
@@ -7071,7 +7203,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 4,
-          "name": "Multi-Dimentional Cosmic Pocket Watch of Infinite Time",
+          "name": "Multi-Dimensional Cosmic Pocket Watch of Infinite Time",
           "lootId": 892,
           "golden": true
         },
@@ -7178,7 +7310,7 @@ window.jsonData =
         "event"
       ],
       "heroId": 27,
-      "gear":[
+      "gear": [
         "ability",
         "gold",
         "alldps"
@@ -7547,7 +7679,7 @@ window.jsonData =
         "dps",
         "royal"
       ],
-      "gear":[
+      "gear": [
         "alldps",
         "selfdps",
         "selfdps"
@@ -8055,9 +8187,23 @@ window.jsonData =
         },
         {
           "slot": 2,
+          "rarity": 4,
+          "name": "Putt Putt the Albino Sea-Unicorn",
+          "lootId": 1420,
+          "golden": true
+        },
+        {
+          "slot": 2,
           "rarity": 5,
           "name": "Purebread Seaweed Seahorse of the Rapid Currents",
           "lootId": 1233
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Purebread Seaweed Seahorse of the Rapid Currents",
+          "lootId": 1421,
+          "golden": true
         }
       ]
     },
@@ -8251,7 +8397,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 4,
-          "name": "Angelic Wings of Imperious Hovering",
+          "name": "Brightly-Glowing Wings of Majestic Anti-Gravity",
           "lootId": 1410,
           "golden": true
         },
@@ -8439,7 +8585,6 @@ window.jsonData =
       ]
     },
     {
-
       "id": "16c",
       "tier": 2,
       "displayName": "Spaceking",
@@ -8448,12 +8593,104 @@ window.jsonData =
       "event": "April/May: Gardeners of the Galaxy",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Gardeners_of_the_Galaxy",
       "heroId": 83,
-      "tags":[
+      "tags": [
         "event",
         "dps",
         "royal",
         "human",
         "male"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Sputtering Laser Gun",
+          "lootId": 1422
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Inaccurate Laser Gun",
+          "lootId": 1423
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Fully-Auto Laser Gun",
+          "lootId": 1424
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Supercharged Laser Gun of Blasting",
+          "lootId": 1425
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Planet-Destroying Laser Gun of Low Recoil",
+          "lootId": 1426
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Filthy Toothbrush",
+          "lootId": 1427
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Worn-Out Toothbrush",
+          "lootId": 1428
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Brand-New Toothbrush",
+          "lootId": 1429
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Sonic Toothbrush of Superior Lady-Dazzling",
+          "lootId": 1430
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Dark Energy Powered Toothbrush of Hygienic Perfection",
+          "lootId": 1431
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Busted Visor",
+          "lootId": 1432
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Functional Visor",
+          "lootId": 1433
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Targeting Visor",
+          "lootId": 1434
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Computerized Visor of Greatly Reduced Glare",
+          "lootId": 1435
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Titanium LCD Visor of Digitally Perfected Vision",
+          "lootId": 1436
+        }
       ]
     },
     {
@@ -9219,7 +9456,7 @@ window.jsonData =
       "image": "Littlefoot_48.png",
       "event": "July: Littlefoot's Big Adventure",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Littlefoot's_Big_Adventure",
-      "gear":[
+      "gear": [
         "ability - storm rider",
         "ability - growing up",
         "alldps"
@@ -10601,7 +10838,7 @@ window.jsonData =
       "displayName": "Greyskull the Pirate",
       "image": "GreyskullThePirate_48.png",
       "slot": 23,
-      "gear":[
+      "gear": [
         "ability - Plunder(gold per attacker)",
         "gold",
         "Handcannon (shooting)"
