@@ -207,9 +207,12 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
     })
     .reduce(function(a,b){ return a && b},true);
   var epFilter = (() =>{
+    console.log('epFilter', epFilterInput, ep);
     switch (epFilterInput){
-      case ">400":
-        return crusader.ep > 400;
+      case ">200": return ep > 200;
+      case ">400": return (ep > 400);
+      case "<200": return ep < 200;
+      case "<400": return (ep < 400);
       default: return true;
     }
   })();
@@ -220,8 +223,8 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
       (!(formationIds[crusader.slot] != null)
       ||  // this one is not selected
       formationIds[crusader.slot] === crusader.id);
-  var result = ownershipFilter && tagFilter && formationFilter;
-  // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, result);
+  var result = ownershipFilter && tagFilter && formationFilter && epFilter;
+  console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, epFilter,epFilterInput, result);
   return result;
 };
 
@@ -251,9 +254,10 @@ var sortCrusaders2 = (crusaders, fComparisons) =>{
      ,0));
 };
 
-var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap, nameSort, eps, epFilter) => {
+var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap, nameSort, epFilter) => {
   var filtered = crusaders.filter(function(crusader){
-    var ep= eps(crusader.id);
+    var ep= epMap ?
+      epMap[crusader.id] : 0;
     var result = crusaderFilter(ownedCrusaderIds, crusader,filterOwned, filterTags,isBuildingFormation,formationIds, ep, epFilter);
     // console.log('filter', crusader,filterOwned, filterTags);
     return result;

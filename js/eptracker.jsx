@@ -428,7 +428,8 @@ class CruTagGrid extends React.Component {
         this.props.model.crusaders,
         this.props.epSort,
         this.props.enchantmentPoints,
-        this.props.nameSort);
+        this.props.nameSort,
+        this.state.epFilter);
 
     var tagCounts = [];
     this.props.model.missionTags.map(function(tag){
