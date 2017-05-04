@@ -5,6 +5,8 @@
  * @property {number} rarity
  * @property {string} name
 */
+// until this thing is made into more conventional modules
+var app = window;
 
 //loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
 var LootV1 = (function () {
@@ -130,7 +132,7 @@ var LootV2 = (function () {
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
     if(!(refGear != null)){
       console.warn('no refGear provided', lootIdOrCompound);
-      if(app.throw === true)
+      if(app && app.throw === true)
         throw error('no refGear provided'+ lootIdOrCompound);
       return 0;
     }

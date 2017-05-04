@@ -319,7 +319,7 @@
                 // returns an array of the right size, using previous worldId =()
                 this.getFormationIds(this.state.formations && this.state.formations[worldId],world.spots);
             stateMods.formations[worldId][slot] = cruId;
-            app.formationIds[slot]= this.state.formations[worldId].slice(0);
+            app.formationIds[slot] = stateMods.formations[worldId][slot];
             stateMods.enableSave = true;
             this.setState(stateMods);
         }
