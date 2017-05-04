@@ -4,6 +4,14 @@ app.createInputClipperButton = targetId =>
 app.createClipperButton = text =>
   Clipboard && Clipboard.isSupported() && (<button className="btn" data-clipboard-text={text}>Copy to Clipboard</button>);
 
+app.Checkbox = props =>
+  (<input type="checkbox"
+      onChange={props.onChange ? (e => props.onChange(e.target.value)) : null}
+      disabled={props.disabled}
+      checked={props.checked}
+      readOnly={props.readonly} />);
+app.Checkbox.displayName ="Checkbox";
+
 app.GearBox = props => {
 
   var makeBox = (slot) => {
@@ -39,22 +47,22 @@ app.GearBox.displayName = "GearBox";
 
 var TextAreaInput2 = props =>
 (<textarea
-name={props.name}
-        className={addClasses(['form-control'],props.className)}
-        type={props.type}
-        value={props.value}
-        defaultValue={props.defaultValue}
-        placeholder={props.placeHolder}
-        onChange={ e =>
-            {
-            if(props.onControlledChange){
-                props.onControlledChange(e);
-            }
-            return debounceChange(props.onChange,e)
-          }
+    name={props.name}
+    className={addClasses(['form-control'],props.className)}
+    type={props.type}
+    value={props.value}
+    defaultValue={props.defaultValue}
+    placeholder={props.placeHolder}
+    onChange={ e =>
+        {
+        if(props.onControlledChange){
+            props.onControlledChange(e);
         }
-        onBlur={props.onBlur}
-        {...props.spread} />
+        return debounceChange(props.onChange,e)
+      }
+    }
+    onBlur={props.onBlur}
+    {...props.spread} />
 );
 TextAreaInput2.displayName = "TextAreaInput2";
 

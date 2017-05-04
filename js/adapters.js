@@ -192,7 +192,8 @@ var getIsUrlLoaded = () =>
 var getIsLocalFileSystem = () => window.location.protocol && window.location.protocol == "file:" ;
 var tryInitializeClipboard = () =>
   Clipboard && new Clipboard('.btn');
-var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildingFormation,formationIds) =>{
+
+var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildingFormation,formationIds, ep, epFilterInput) =>{
   var owned = ownedCrusaderIds.indexOf(crusader.id) != -1 || (crusader.slot == crusader.id && crusader.slot < 21);
   var ownershipFilter =
     (filterOwned == 0)
@@ -205,6 +206,14 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
       return !filterTags[tagId] || crusader.tags.indexOf(tagId) > -1;
     })
     .reduce(function(a,b){ return a && b},true);
+  var epFilter = (() =>{
+    switch (epFilterInput){
+      case ">400":
+        return crusader.ep > 400;
+      default: return true;
+    }
+  })();
+
 
   var formationFilter = !isBuildingFormation
     || //nothing in slot selected
@@ -242,13 +251,13 @@ var sortCrusaders2 = (crusaders, fComparisons) =>{
      ,0));
 };
 
-var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap, nameSort) => {
-
+var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap, nameSort, eps, epFilter) => {
   var filtered = crusaders.filter(function(crusader){
-        var result = crusaderFilter(ownedCrusaderIds, crusader,filterOwned, filterTags,isBuildingFormation,formationIds);
-        // console.log('filter', crusader,filterOwned, filterTags);
-        return result;
-      });
+    var ep= eps(crusader.id);
+    var result = crusaderFilter(ownedCrusaderIds, crusader,filterOwned, filterTags,isBuildingFormation,formationIds, ep, epFilter);
+    // console.log('filter', crusader,filterOwned, filterTags);
+    return result;
+  });
   var sortedCrusaders = sortCrusaders2(filtered, [slotComparer(slotSort), epComparer(epSort, epMap), nameComparer(nameSort)]);
   // console.log('filtered count:' + sortedCrusaders.length);
   return sortedCrusaders;

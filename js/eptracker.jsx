@@ -19,8 +19,6 @@ var Filter = props =>
     return (<i className={filterClasses} onClick={props.filterClick}></i>);
 };
 
-var CheckBox = props =>
-  (<input type="checkbox" onChange={props.onChange} disabled={props.disabled} checked={props.checked} readOnly={props.readonly} />);
 
 var TagsTd = props => {
       var cru = props.crusader;
@@ -62,7 +60,7 @@ var CruTagRowFormation = props =>(
   props.mode ==="mine" && props.isFormationMode ?
         (
           <td key="formation">
-            <CheckBox checked={props.formationIds[props.cru.slot] == props.cru.id ? true : false} onChange={props.onFormationChange} />
+            <Checkbox checked={props.formationIds[props.cru.slot] == props.cru.id ? true : false} onChange={props.onFormationChange} />
             {props.epBox}
           </td>)
         : null);
@@ -74,10 +72,10 @@ var CruTagRowOwned = props =>{
   var isAlwaysOwnedSlot = props.cru.slot == props.cru.id && props.cru.slot < 21
   var renderBox = isAlwaysOwnedSlot || (!getIsUrlLoaded() || props.owned);
   if(isAlwaysOwnedSlot || (getIsUrlLoaded() && props.owned)) {
-    return (<td key="owned"><CheckBox checked={true} readonly={true} disabled={true} />{props.epBox}</td>);
+    return (<td key="owned"><Checkbox checked={true} readonly={true} disabled={true} />{props.epBox}</td>);
   }
   if(!getIsUrlLoaded() || props.owned){
-    return (<td key="owned"><CheckBox checked={props.owned} readonly={getIsUrlLoaded()} disabled={getIsUrlLoaded()} onChange={props.onOwnedChange} />{props.epBox}</td>);
+    return (<td key="owned"><Checkbox checked={props.owned} readonly={getIsUrlLoaded()} disabled={getIsUrlLoaded()} onChange={props.onOwnedChange} />{props.epBox}</td>);
   }
   return (<td></td>);
 };
@@ -267,6 +265,7 @@ class CruTagGrid extends React.Component {
         this[x] = this[x].bind(this);
     });
     window.importMe = () => this.props.updateSave({mainSelectedTab:3});
+    this.state = {};
   }
   onSlotSortClick(){
       this.props.updateSave(getSortUpdate('slotSort', this.props.slotSort));
@@ -418,8 +417,18 @@ class CruTagGrid extends React.Component {
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     // var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
-    var sortedCrusaders = filterSortCrusaders(this.props.ownedCrusaderIds || [], this.props.filterOwned, this.props.filterTags || [], isBuildingFormation, this.props.formationIds || [], this.props.slotSort, this.props.model.crusaders
-      , this.props.epSort, this.props.enchantmentPoints, this.props.nameSort);
+    var sortedCrusaders =
+      filterSortCrusaders(
+        this.props.ownedCrusaderIds || [],
+        this.props.filterOwned,
+        this.props.filterTags || [],
+        isBuildingFormation,
+        this.props.formationIds || [],
+        this.props.slotSort,
+        this.props.model.crusaders,
+        this.props.epSort,
+        this.props.enchantmentPoints,
+        this.props.nameSort);
 
     var tagCounts = [];
     this.props.model.missionTags.map(function(tag){
@@ -436,12 +445,21 @@ class CruTagGrid extends React.Component {
     var countDisplay = totalCrusaders === sortedCrusaders.length ? totalCrusaders : (sortedCrusaders.length + " of " + totalCrusaders);
     var formationRow;
     if(isMineMode){
+      var epFilterComponent = (
+        <select value={this.state.epFilter} onChange={e => this.setState({epFilter:inspect(e.target.value,"epFilter.val")})}>
+          <option>None</option>
+          <option value="<200">&lt;200</option>
+          <option value=">200">&gt;200</option>
+          <option value="<400">&lt;400</option>
+          <option value=">400">&gt;400</option>
+          </select>
+      );
       formationRow=(
         <tr>
           <th>SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaring} type="number" onChange={val => this.props.updateSave({sharingIsCaring: +val})} /></th>
-          <th><CheckBox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
-          <th colSpan="2"><CheckBox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
-          <th><CheckBox checked={this.props.isGearMode} onChange={this.onGearClick} />Track gear</th>
+          <th><Checkbox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
+          <th colSpan="2"><Checkbox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
+          <th><Checkbox checked={this.props.isGearMode} onChange={this.onGearClick} />Track gear</th>
           <th></th>
         </tr>
       );
@@ -463,13 +481,13 @@ class CruTagGrid extends React.Component {
       </tr>
       <tr>
         {isMineMode ? <th title="owned">{totalOwned}</th> : null}
-        <th>(count:{countDisplay})</th><th colSpan="2"><CheckBox checked={isMineMode} onChange={this.onModeChangeClicked} />Mine</th>
+        <th>(count:{countDisplay})</th><th colSpan="2"><Checkbox checked={isMineMode} onChange={this.onModeChangeClicked} />Mine</th>
         {tagsTh2}
         {countsTh}
       </tr>
       { formationRow }
       <tr>
-        { isMineMode? (<th>EP<i className={getSortClasses(this.props.epSort)} onClick={this.onEpSortClick}></i></th>) : null}
+        { isMineMode? (<th>EP<i className={getSortClasses(this.props.epSort)} onClick={this.onEpSortClick}></i>{epFilterComponent}</th>) : null}
         <th >Slot<i className={getSortClasses(this.props.slotSort)} onClick={this.onSlotSortClick}></i></th>
         <th colSpan="2">Name<i className={getSortClasses(this.props.nameSort)} onClick={this.onNameSortClick}></i></th>
         <th />
@@ -603,8 +621,15 @@ var Exporter = props =>
       <TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","isEpMode":true,"enchantmentPoints":'/>
       <button onClick={props.onImportSiteStateClick} >{props.importText}</button>
       {getIsUrlLoaded() ? null : <button onClick={props.onUpdateClick}>Update Export Text</button> }
-      {/*<button onClick={props.toggleAppStateVisibility}>Toggle AppState Visibility</button>*/}
-      <div title="export text" id="clipperText" style={props.stateStyle}>{props.json}</div>
+      <div>Prettify output?<Checkbox checked={props.exportPretty} onChange={props.onExportPrettyClick} /></div>
+      { inspect(props.exportPretty,"exportPretty") === true ?
+        (<pre title="export text" id="clipperText" style={props.stateStyle}>{JSON.stringify(props.json,null, '\t')}</pre>)
+        : (<div title="export text" id="clipperText" style={props.stateStyle}>{JSON.stringify(props.json)}</div>)
+      }
+
+
+      <div>
+      </div>
       {props.clipper}
       </div>
     </Pane>
@@ -877,7 +902,7 @@ class CruApp extends React.Component {
     var importText = this.state.textState ? 'Import Data from Textbox' : 'Clear All Saved Data';
     var clipper = createInputClipperButton("clipperText");
     // console.log('clipper', clipper);
-    var json = JSON.stringify(this.state.lastRead);
+
     var heroMap = {};
 
     this.props.referenceData.crusaders.map(c =>{
@@ -888,6 +913,8 @@ class CruApp extends React.Component {
     var importArea = getIsUrlLoaded() ? null : (<Exporter
                   maxWidth={maxWidth}
                   onImportTextChange={val => this.setState({textState:val})}
+                  exportPretty={this.state.exportPretty || false}
+                  onExportPrettyClick={e => this.setState({exportPretty:this.state.exportPretty === true ? false : true})}
                   // networkgame section?
                   onNetworkDataTextInputChange={val => { console.log("setting networkDataRaw"); this.setState({networkDataRaw:val});}}
                   onLoadNetworkDataClick={this.findNetworkData}
@@ -906,11 +933,11 @@ class CruApp extends React.Component {
                   onImportAppStateFromUrlClick={() => {
                     gaEvent('import','gameState');
                     this.importAppState(importFromUrl("appGameState"),true);
-                    }}
+                  }}
                   onUpdateClick={() => !getIsUrlLoaded() ?  this.setState({lastRead:cruTagGrid.readOrDefault(undefined)}): null}
                   clipper={clipper}
                   stateStyle={stateStyle}
-                  json={json}
+                  json={this.state.lastRead}
                   importText={importText}
                   />);
 
