@@ -19,6 +19,11 @@ var parseTalents = (talents,data) =>{
   console.log('talents parsed into', parsedTalents, talentArray, talents);
   return parsedTalents;
 };
+/**
+ * @typedef Crusader
+ * @property {string} id
+ * @property {number} heroId
+ */
 
 var parseLoot = (crusaders,lootData) =>{
     if(!(lootData != null))
@@ -207,7 +212,6 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
     })
     .reduce(function(a,b){ return a && b},true);
   var epFilter = (() =>{
-    console.log('epFilter', epFilterInput, ep);
     switch (epFilterInput){
       case ">200": return ep > 200;
       case ">400": return (ep > 400);
@@ -217,16 +221,15 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
     }
   })();
 
-
   var formationFilter = !isBuildingFormation
     || //nothing in slot selected
       (!(formationIds[crusader.slot] != null)
       ||  // this one is not selected
       formationIds[crusader.slot] === crusader.id);
   var result = ownershipFilter && tagFilter && formationFilter && epFilter;
-  console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, epFilter,epFilterInput, result);
+  // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, epFilter,epFilterInput, result);
   return result;
-};
+  };
 
 var comparer =
   (a,b) =>
@@ -243,18 +246,38 @@ var epComparer = (sortType,map) =>
 var nameComparer = sortType =>
   (a,b) => getSortMult(sortType) * comparer(a.displayName, b.displayName);
 
-
+// this doesn't seem to work at all
+/**
+ * @callback comparerCallback
+ * @param {Crusader} crusader1
+ * @param {Crusader} crusader2
+ * @return {number}
+ *
+ */
 // each function in the passed array must return 1, 0, or -1 given 2 crusaders
-var sortCrusaders2 = (crusaders, fComparisons) =>{
-  if(!fComparisons || !Array.isArray(fComparisons)) return crusaders;
-  var copy = crusaders.slice(0);
-  return copy.sort((a,b) =>
-    fComparisons.reduce((prev,fn) =>
-      prev == 0 ? fn(a,b) : prev
-     ,0));
+var sortCrusaders2 =
+  /**
+   * @param {Array<Crusader>} crusaders - the crusaders to sort
+   * @param {Array<function(Crusader,Crusader)>} fComparisons
+   */
+  (crusaders, fComparisons) =>{
+    if(!fComparisons || !Array.isArray(fComparisons)) {
+      // console.log('no comparisons sorting returning', crusaders);
+      return crusaders;
+    }
+    var copy = crusaders.slice(0);
+    return copy.sort((a,b) =>
+      fComparisons.reduce((prev,fn) =>{
+        var compR = prev == 0 ? fn(a,b) : prev;
+        // deal with - 0?
+        var result = compR > 0 || compR < 0 ? result : 0;
+        // console.log('copy.sort',prev, result, a.id,b.id);
+        return result;
+      }
+      ,0));
 };
 
-var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort,crusaders, epSort, epMap, nameSort, epFilter) => {
+var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort, crusaders, epSort, epMap, nameSort, epFilter) => {
   var filtered = crusaders.filter(function(crusader){
     var ep= epMap ?
       epMap[crusader.id] : 0;
@@ -262,8 +285,10 @@ var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuilding
     // console.log('filter', crusader,filterOwned, filterTags);
     return result;
   });
+  // console.log('before sortCrusaders2', filtered.map(cru => cru.id));
   var sortedCrusaders = sortCrusaders2(filtered, [slotComparer(slotSort), epComparer(epSort, epMap), nameComparer(nameSort)]);
   // console.log('filtered count:' + sortedCrusaders.length);
+  // console.log('filterSortCrusaders', slotSort, epSort, nameSort, sortedCrusaders.map(cru => cru.id));
   return sortedCrusaders;
 };
 var scrubSavedData = saved =>
