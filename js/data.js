@@ -9727,6 +9727,11 @@ window.jsonData =
           "name": "Jewel-Stitched Silk Scarf of Melting Memories",
           "lootId": 1083
         }
+      ],
+      "gear": [
+        "activated - Storm Rider",
+        "selfdps",
+        "ability - Snowman's Snowball Fight"
       ]
     },
     {
@@ -9949,6 +9954,11 @@ window.jsonData =
           "name": "Tastefully Decorated Uniform of Cheering",
           "lootId": 1304
         }
+      ],
+      "gear": [
+        "activated - Storm Rider",
+        "ability - Top of the Pyramid",
+        "alldps"
       ]
     },
     {
@@ -10096,6 +10106,11 @@ window.jsonData =
           "lootId": 1046,
           "golden": true
         }
+      ],
+      "gear": [
+        "ability - Alchemy",
+        "alldps",
+        "ability - Deflect Evil"
       ]
     },
     {
@@ -10231,6 +10246,11 @@ window.jsonData =
           "lootId": 1123,
           "golden": true
         }
+      ],
+      "gear": [
+        "ability - Smart Investing",
+        "ability - Sidekicks",
+        "ability - Bat-o-Level"
       ]
     },
     {
@@ -10339,6 +10359,11 @@ window.jsonData =
           "name": "Overcomplicated Golden Coin of Unimaginable Riches",
           "lootId": 1221
         }
+      ],
+      "gear": [
+        "ability - Immigrant Nation",
+        "ability - Share the wealth",
+        "selfdps"
       ]
     },
     {
@@ -10472,6 +10497,11 @@ window.jsonData =
           "lootId": 1051,
           "golden": true
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "ability - Double Dragon (requires Natalie but effects both)"
       ]
     },
     {
@@ -10581,6 +10611,11 @@ window.jsonData =
           "name": "Unstable Fuel Pod of Alien Inginuity",
           "lootId": 1156
         }
+      ],
+      "gear": [
+        "ability - Alien Allure",
+        "selfdps",
+        "alldps"
       ]
     },
     {
@@ -10689,6 +10724,11 @@ window.jsonData =
           "name": "Meticulously Detailed Delicate Bulb of Breaking",
           "lootId": 1227
         }
+      ],
+      "gear": [
+        "ability - Robo Rally",
+        "ability -  Sync Up",
+        "selfdps"
       ]
     },
     {
@@ -10794,6 +10834,11 @@ window.jsonData =
           "name": "Sun-Safe Sunglasses of Looking Directly At The Sun",
           "lootId": 1182
         }
+      ],
+      "gear": [
+        "ability - Spare Parts",
+        "ability - Slaved Systems",
+        "selfdps"
       ]
     },
     {
@@ -10900,6 +10945,11 @@ window.jsonData =
           "name": "Flowering Magician's Staff of Hiking and Spellcasting",
           "lootId": 1191
         }
+      ],
+      "gear": [
+        "ability - Happy Thoughts",
+        "alldps",
+        "ability - Polymorph (number of targets)"
       ]
     },
     {
@@ -11006,6 +11056,11 @@ window.jsonData =
           "name": "Star-Studded Shadow Hippogryph of Destruction",
           "lootId": 1185
         }
+      ],
+      "gear": [
+        "ability - Shadow Cowl",
+        "alldps",
+        "clickCrit"
       ]
     },
     {
@@ -11111,6 +11166,11 @@ window.jsonData =
           "name": "Long Mystical Wizard's Wand of Insanity",
           "lootId": 1194
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "ability - Magic Family"
       ]
     },
     {
@@ -11327,6 +11387,11 @@ window.jsonData =
           "name": "Carefully Locked Grimoire of Beastial Might",
           "lootId": 1197
         }
+      ],
+      "gear": [
+        "ability - Sacrifice and Ritual",
+        "alldps",
+        "gold"
       ]
     },
     {
