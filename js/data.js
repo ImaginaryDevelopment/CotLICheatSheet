@@ -1004,6 +1004,11 @@ window.jsonData =
           "name": "Magic Carp Cap of Magical Crap",
           "lootId": 1215
         }
+      ],
+      "gear": [
+        "selfdps",
+        "alldps",
+        "ability - Bus Stop!"
       ]
     },
     {
