@@ -131,6 +131,7 @@
                                 }
                             </select>
                             <button type="button" disabled={!(props.selectedSave != null) || props.selectedSave =="_"} onClick={props.onLoadFormationClick}>Load</button>
+                            <button type="button" onClick={props.onClearClick}>Clear formation</button>
 
                         </div>
                         <div className="adaptChildren">
@@ -345,6 +346,12 @@
             console.log('Loading formation for this world from/to', this.state.formations[worldId], formations[worldId]);
             this.setState({enableSave:false, formations: formations, dpsChar: data.dpsChar});
         }
+        clearFormation(){
+            var worldId = this.state.selectedWorldId;
+            var formations = copyObject(this.state.formations) || {};
+            formations[worldId] = this.state.formations[worldId].slice(0).map(_ => null);
+            this.setState({enableSave:false, formations: formations, dpsChar: undefined});
+        }
         onDpsChange(cruId){
             var dpsCruIds = copyObject(this.state.dpsCruIds) || {};
             // normalize the cruId data
@@ -397,6 +404,7 @@
                             dpsCruId={dpsCruId}
                             onFormationChange={this.onFormationChange}
                             onDpsChange={this.onDpsChange}
+                            onClearClick={this.clearFormation.bind(this)}
                             // for saving
                             nextSaveName={inspect(this.state.nextSaveName, "nextSaveName")}
                             enableSave={this.state.enableSave !== false}

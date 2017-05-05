@@ -971,6 +971,12 @@
     henry.globalDps *= 1 + 0.2 * (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(henry, 1);
   };
 
+  var grandmora = getCrusader("05d");
+  grandmora.calculate = () =>{
+    grandmora.globalDps = 'Grandmora isn\'t setup for calculations yet';
+
+  };
+
   //////Slot 6 //Detective Kaine
   /**
    * @type {Crusader}
