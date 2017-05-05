@@ -974,7 +974,6 @@
   var grandmora = getCrusader("05d");
   grandmora.calculate = () =>{
     grandmora.globalDps = 'Grandmora isn\'t setup for calculations yet';
-
   };
 
   //////Slot 6 //Detective Kaine
