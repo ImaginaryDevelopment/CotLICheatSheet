@@ -212,12 +212,15 @@
             this.getFormationIds = this.getFormationIds.bind(this);
             this.onFormationChange = this.onFormationChange.bind(this);
             this.onDpsChange = this.onDpsChange.bind(this);
+            this.getSaveNames = this.getSaveNames.bind(this);
+            this.getWorldSaves = this.getWorldSaves.bind(this);
             this.storageKey="formationCalc";
             this.componentDidUpdate = this.componentDidUpdate.bind(this);
             this.state = this.getInitialState();
         }
         // includes a migration
         initializeFormationsForWorld(initial, spots){
+            console.info('initializeFormationsForWorld');
             // don't bother calling getFormationIds, in this case we don't need the current formationIds
             if(!(initial.formations[initial.selectedWorldId] != null))
             {
@@ -229,7 +232,6 @@
             // migrate initial.formation to new initial.formations
             if(initial.formation != null && initial.formation.find(f => f != null && f !== 0 && f != "0")){
                 initial.formation.map((f,i) =>{
-
                     if(i < spots)
                         initial.formations[initial.selectedWorldId][i] = f;
                 });
@@ -324,11 +326,22 @@
             stateMods.enableSave = true;
             this.setState(stateMods);
         }
+        getWorldSaves(){
+            var key = "worldSaves" + this.state.selectedWorldId;
+            // copyObject will pass the default value through if the read returns nothing
+            var oldWorldSaves = app.readIt(key, {});
+            return oldWorldSaves;
+        }
+        getSaveNames(){
+            var oldWorldSaves = this.getWorldSaves();
+            return Object.keys(oldWorldSaves);
+        }
         saveFormation(saveName, formationIds, dpsChar){
             // save a 'worldSaves object with the different names keyed'
             var key = "worldSaves" + this.state.selectedWorldId;
             // copyObject will pass the default value through if the read returns nothing
-            var oldWorldSaves = app.readIt(key, {});
+            var oldWorldSaves = getWorldSaves();
+            
             oldWorldSaves[saveName] = {formationIds:formationIds, dpsChar:dpsChar};
             console.log('saving:', oldWorldSaves[saveName], 'to', key,'.',saveName);
             app.storeIt(key, oldWorldSaves);
@@ -413,7 +426,7 @@
                             // for loading
                             selectedSave={this.state.selectedSave}
                             selectedSaveChange={e => this.setState({selectedSave:e})}
-                            saveNames={this.state.saveNames || []}
+                            saveNames={inspect(this.state.saveNames || [], "saveNames")}
                             onLoadFormationClick={() => this.loadFormation(this.state.selectedSave)}
                             />);
             } else{
@@ -462,7 +475,8 @@
                         // ok to pass a direct reference to the arrya, the method called doesn't alter formationIds
                         app.mathCalc.setWorldById(worldId,formationIds);
                         var stateMods = {selectedWorldId: worldId};
-                            stateMods.formation = app.formationIds;
+                        stateMods.formation = app.formationIds;
+                        stateMods.saveNames= this.getSaveNames();
                         this.setState(stateMods);
                     }} >
                     {
