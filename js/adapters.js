@@ -1,5 +1,24 @@
 // any adapter code or functionality that doesn't need jsx
 // on the fence about domain layer code
+
+/**
+ * @typedef {Object} FormationSave
+ * @property {number} save_id - 1 2 or 3
+ * @property {Array<number>} formation
+ */
+
+/**
+ * @typedef {Object} FormationSaveMap - only shows last 4 campaigns visited it seems
+ * @property {FormationSave} campaignX - campaign[x] -- campaign[y]
+ */
+
+/**
+ * @typedef {Object} PlayerData - aka HeroData or the file sampleHeroData.json
+ * @property {number} reset_currency - idol count without including unspent idols
+ * @property {number} reset_currency_spent -- unspent idols
+ * @property {Object} stats - unmapped stats
+ * @property {FormationSaveMap} formation_saves 
+ */
 var getTalentsAsArray = talents =>
 {
   return Object.keys(talents).map( k => copyObject(talents[k], {name:k}));
@@ -446,5 +465,22 @@ var Formation = (() =>{
       var data = worldSaves[saveName];
       return data;
   };
+  /**
+   * @param {PlayerData} data
+   */
+  exports.mergeImportFormations = (data,formations) =>{
+    //TODO: this is a stub, not implemented
+    var formationSaves = data.formation_saves;
+    Object.keys(formationSaves).map(campaignLongId=>{
+      /**
+       * @type FormationSave
+       */
+      var formation = formationSaves[campaignLongId];
+
+    });
+
+
+  };
+
   return exports;
 })();
