@@ -543,11 +543,16 @@ var HeroGameData = props => {
     var talentLIs = talents.map(t =>
       (<li data-key={t.talentId} key={t.talentId}>{JSON.stringify(t)}</li>)
     );
+    var formations = props.mappedFormations || {};
+    console.log('HeroGameData.mappedformations', formations);
+    var formationLIs = Object.keys(formations).map(campaignLongId =>{
+      return ( <li key={campaignLongId} data-key={campaignLongId}>{campaignLongId}{JSON.stringify(formations[campaignLongId])}</li>);
+    });
 
     // consider maping the parsed raw section collapsible at least at the highest level
 
     return (<div>
-        <button onClick={() => props.onImportGameDataClick(props.mappedHeroes,props.mappedLoot, props.mappedTalents)}>import</button>
+        <button onClick={() => props.onImportGameDataClick(props.mappedHeroes,props.mappedLoot, props.mappedTalents,props.mappedFormations)}>import</button>
         <Tabs>
           <Pane label="Heroes and EP">
             <div><div>{ heroLIs.length + " items"}</div>
@@ -581,6 +586,13 @@ var HeroGameData = props => {
           <Pane label="Parsed Raw">
               <pre>{JSON.stringify(props.data,null,2)}</pre>
           </Pane>
+          <Pane label="Formations">
+            <div>
+              <ul>
+                {formationLIs}
+              </ul>
+            </div>
+          </Pane>
         </Tabs>
     </div>);
 };
@@ -610,6 +622,7 @@ var Exporter = props =>
                         mappedHeroes={props.mappedHeroes}
                         mappedLoot={props.mappedLoot}
                         mappedTalents={props.mappedTalents}
+                        mappedFormations={props.mappedFormations}
                         onImportGameDataClick={props.onImportGameDataClick} />)
             : null}
     </div>
@@ -730,16 +743,24 @@ class CruApp extends React.Component {
     var mappedLoot = parseLoot(this.props.referenceData.crusaders,getOrGetFromDetails("loot"));
     var mappedTalents = parseTalents(this.props.referenceData.talents,getOrGetFromDetails("talents"));
     window.mappedTalents=mappedTalents;
+    var mappedFormations = parseFormationSaves(getOrGetFromDetails("formation_saves"));
+    console.log('loadNetworkData.mappedFormations', mappedFormations);
+    window.mappedFormations = mappedFormations;
 
     window.heroMap = this.props.heroMap;
-    var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
+    var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,
+      mappedFormations:mappedFormations,
+      saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
     console.log('loadNetworkData setting state', stateMods);
     this.setState(stateMods);
   }
   // network-data importer
   findNetworkData(){
-    if(this.state.networkDataRaw)
+    console.group("findNetworkData");
+    if(this.state.networkDataRaw){
+      console.log('findNetworkData: using networkDataRaw');
       this.loadNetworkData(this.state.networkDataRaw);
+    }
     else if (window.heroesRaw || window.lootRaw){
       var data = {};
       data.details = {};
@@ -785,21 +806,24 @@ class CruApp extends React.Component {
       }
       this.loadNetworkData(data);
     }
-    else
-      return;
+    console.groupEnd();
   }
   onClearGameDataParseClick(){
     console.log('onClearGameDataParseClick');
     this.setState({networkDataJson:null});
   }
   // network data merge method
-  onImportGameDataClick(heroes,loot,talents){
+  onImportGameDataClick(heroes,loot,talents,formationSaves){
     // heroes looks like this:
     // return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
     var cruTagGridData = cruTagGrid.readOrDefault(undefined);
     var data = copyObject(cruTagGridData);
     try
     {
+      if(!(data != null))
+        throw error("onImportGameDataClick: data was not present");
+      if(!(this.props != null) || !(this.props.referenceData != null))
+        throw error("onImportGameDataClick: props or referenceData was not present");
       var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
       data.ownedCrusaderIds = ownedCrusaderIds;
       var ep = {}
@@ -825,6 +849,13 @@ class CruApp extends React.Component {
     if(talents){
       console.log('onImportGameDataClick talents', talents);
       mergeImportTalents(data,talents);
+    }
+    if(formationSaves){
+      console.group("onImportGameDataClick: formationSaves import");
+      console.log('importing formationSaves');
+      var mergedFormations = Formation.mergeImportFormations(formationSaves, this.props.referenceData.crusaders);
+      console.log('onImportGameDataClick.mergedFormations', mergedFormations);
+      console.groupEnd();
     }
     data.mainSelectedTab = 0;
     cruTagGrid.store(data);
@@ -928,6 +959,7 @@ class CruApp extends React.Component {
                   mappedLoot={this.state.mappedLoot}
                   mappedHeroes={this.state.mappedHeroes}
                   mappedTalents={this.state.mappedTalents}
+                  mappedFormations={this.state.mappedFormations}
                   // network game section end?
                   onImportSiteStateClick={this.onImportSiteStateClick}
                   onGenerateUrlClick={this.onGenerateUrlClick}

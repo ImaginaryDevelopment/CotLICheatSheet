@@ -345,7 +345,7 @@
         }
         loadFormation(saveName){
             var worldId = this.state.selectedWorldId;
-            var data = Formation.loadFormation(worldId, saveName);
+            var data = Formation.getFormation(worldId, saveName);
             var formations = copyObject(this.state.formations) || {};
             formations[worldId] = data.formationIds;
             console.log('Loading formation for this world from/to', this.state.formations[worldId], formations[worldId]);
