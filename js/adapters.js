@@ -389,3 +389,62 @@ var calcEffectiveEP = (sharingIsCaringLevel, cruEP, slotEP) =>
   // console.log('calcEffectiveEP', sharingIsCaringLevel, cruEP, slotEP, otherEP, sic, rawSharedEP, effectiveEP);
   return +effectiveEP;
 };
+
+/**
+ * @module
+ */
+var Formation = (() =>{
+  var exports = {};
+  // not for export
+  /**
+   * @param {number} worldId
+   */
+  var makeKey = worldId => "worldSaves" + worldId;
+  exports.getWorldSaves = 
+    selectedWorldId =>{
+        var key = makeKey(selectedWorldId);
+        // copyObject will pass the default value through if the read returns nothing
+        var oldWorldSaves = app.readIt(key, {});
+        return oldWorldSaves;
+    };
+  /**
+   * @param {number} selectedWorldId
+   */
+  exports.getSaveNames = 
+    selectedWorldId =>{
+      var oldWorldSaves = exports.getWorldSaves(selectedWorldId);
+      return Object.keys(oldWorldSaves);
+  };
+  /**
+   * @param {number} selectedWorldId
+   * @param {string} saveName
+   * @param {Array<string>} formationIds
+   * @param {string} dpsChar
+   * @param {number?} kaineXP
+   */
+  exports.saveFormation = 
+    (selectedWorldId, saveName, formationIds, dpsChar,kaineXP) => {
+      var key = makeKey(selectedWorldId);
+
+      // copyObject will pass the default value through if the read returns nothing
+      var oldWorldSaves = exports.getWorldSaves();
+      oldWorldSaves[saveName] = {formationIds:formationIds, dpsChar:dpsChar, kaineXP:kaineXP};
+      console.log('saving:', oldWorldSaves[saveName], 'to', key,'.',saveName);
+      app.storeIt(key, oldWorldSaves);
+      return oldWorldSaves;
+  };
+
+  /**
+   * @param {number} selectedWorldId
+   * @param {string} saveName
+  */
+  exports.getFormation = 
+    (worldId, saveName) =>{
+      var key = makeKey(worldId);
+      var worldSaves = app.readIt(key);
+      console.log('loading',worldSaves);
+      var data = worldSaves[saveName];
+      return data;
+  };
+  return exports;
+})();

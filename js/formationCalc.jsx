@@ -15,8 +15,9 @@
                         console.warn('mathCalcId doesn\'t match state', app.formationIds[data.spot], data.id, data.spot, formation);
                         app.data = data;
                         app.formation = formation;
-                        throw Error("uhhh whut?");
-                        data.mathCalcId = app.formationIds[data.spot];
+                        if(app.throw === true)
+                            throw Error("uhhh whut?");
+                        // data.mathCalcId = app.formationIds[data.spot];
                     }
                     if(crusader && crusader.globalDps && crusader.globalDps != 1){
                         if(!isNaN(+crusader.globalDps) && typeof(crusader.globalDps) == "number")
@@ -125,7 +126,7 @@
                                     onChange={e => props.selectedSaveChange(e.target.value)}>
                                 <option key="_">None</option>
                                 {
-                                    (inspect(props.saveNames,"savenames")).map(sn =>
+                                    (inspect(props.saveNames,"saveNames")).map(sn =>
                                         (<option key={sn} value={sn}>{sn}</option>)
                                     )
                                 }
@@ -276,6 +277,8 @@
             }
             app.mathCalc.setWorldById(initial.selectedWorldId, initial.formations[initial.selectedWorldId]);
             app.formationCalcInitial = initial;
+            initial.saveNames = Formation.getSaveNames(initial.selectedWorldId) || [];
+            console.log('getInitialState', initial);
             return initial;
         }
         /**
@@ -327,35 +330,24 @@
             this.setState(stateMods);
         }
         getWorldSaves(){
-            var key = "worldSaves" + this.state.selectedWorldId;
-            // copyObject will pass the default value through if the read returns nothing
-            var oldWorldSaves = app.readIt(key, {});
-            return oldWorldSaves;
+            var worldSaves = Formation.getWorldSaves(this.state.selectedWorldId);
+            return worldSaves;
         }
         getSaveNames(){
-            var oldWorldSaves = this.getWorldSaves();
-            return Object.keys(oldWorldSaves);
+            var saveNames = Formation.getSaveNames(this.state.selectedWorldId);
+            console.log('getSaveNames', this.state.selectedWorldId, saveNames);
+            return saveNames;
         }
         saveFormation(saveName, formationIds, dpsChar){
-            // save a 'worldSaves object with the different names keyed'
-            var key = "worldSaves" + this.state.selectedWorldId;
-            // copyObject will pass the default value through if the read returns nothing
-            var oldWorldSaves = getWorldSaves();
-            
-            oldWorldSaves[saveName] = {formationIds:formationIds, dpsChar:dpsChar};
-            console.log('saving:', oldWorldSaves[saveName], 'to', key,'.',saveName);
-            app.storeIt(key, oldWorldSaves);
-            this.setState({enableSave:false, saveNames:Object.keys(oldWorldSaves)});
+            Formation.saveFormation(this.state.selectedWorldId, saveName, formationIds, dpsChar, kaineXP);
+            var saveNames = this.getSaveNames();
+            this.setState({enableSave:false, saveNames:saveNames});
         }
         loadFormation(saveName){
             var worldId = this.state.selectedWorldId;
-            var key = "worldSaves" + worldId;
-            var worldSaves = app.readIt(key);
-            console.log('loading',worldSaves);
-            var data = worldSaves[saveName];
+            var data = Formation.loadFormation(worldId, saveName);
             var formations = copyObject(this.state.formations) || {};
             formations[worldId] = data.formationIds;
-
             console.log('Loading formation for this world from/to', this.state.formations[worldId], formations[worldId]);
             this.setState({enableSave:false, formations: formations, dpsChar: data.dpsChar});
         }
