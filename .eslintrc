@@ -13,7 +13,9 @@
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules":{
-    "react/jsx-no-undef":0
+    "react/jsx-no-undef":0,
+    "react/no-deprecated":1
+
   }
 
 }

@@ -1,4 +1,6 @@
 /// <reference path="mathCalc.js" />
+// eslint globals (:false for read-only, or in our case it appears to be implicit, config defined for all globals)
+/* global React jsonData readIt inspect global TagCountsComponent copyObject getIsLocalFileSystem*/
 (app =>{
     var getCrusader = app.mathCalc.getCrusader;
 
@@ -159,10 +161,9 @@
             }
         }
         render(){
-            var x = null;
             return makeWorldRenderer(this.props, this.props.worldId, this.props.slotLayout);
         }
-    };
+    }
 
     var calculateTagTracker = (missionTags,formation) =>{
         if(!(formation != null))
@@ -170,9 +171,8 @@
         console.log('calculateTagTracker',formation);
         var tagTracker = {};
 
-        var tags = missionTags.map(mt =>{
+        missionTags.map(mt =>{
             tagTracker[mt.id]=0;
-            return mt.id;
         });
 
         formation
@@ -398,7 +398,6 @@
             }
 
             var formationComponent = null;
-            var formationIds = null;
             if(world!= null && world.layout != null){
                 formationIds = this.state.formations[world.id] || app.formationIds;
                 formationComponent =
