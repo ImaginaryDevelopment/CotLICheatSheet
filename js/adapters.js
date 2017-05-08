@@ -1,5 +1,24 @@
 // any adapter code or functionality that doesn't need jsx
 // on the fence about domain layer code
+
+/**
+ * @typedef {Object} FormationSave
+ * @property {number} save_id - 1 2 or 3
+ * @property {Array<number>} formation
+ */
+
+/**
+ * @typedef {Object} FormationSaveMap - only shows last 4 campaigns visited it seems
+ * @property {FormationSave} campaignX - campaign[x] -- campaign[y]
+ */
+
+/**
+ * @typedef {Object} PlayerData - aka HeroData or the file sampleHeroData.json
+ * @property {number} reset_currency - idol count without including unspent idols
+ * @property {number} reset_currency_spent -- unspent idols
+ * @property {Object} stats - unmapped stats
+ * @property {FormationSaveMap} formation_saves 
+ */
 var getTalentsAsArray = talents =>
 {
   return Object.keys(talents).map( k => copyObject(talents[k], {name:k}));
@@ -76,8 +95,6 @@ var parseLoot = (crusaders,lootData) =>{
             result.countOrLegendaryLevel=x.loot.count;
           if(x.lootItem.golden)
             result.isGolden = true;
-          if(x.crusader.id ==="18")
-            console.log('lootmapping',result,x);
           return result;
         }
         ).sort(lootComparer);
@@ -100,6 +117,16 @@ var parseLoot = (crusaders,lootData) =>{
       return {gear:lootMapped,items:items};
 };
 
+var parseFormationSaves = (data) =>{
+  console.log('parseFormationSaves');
+  if(!(data != null))
+    return;
+  console.log('attempting to parse formationSaves');
+  return data;
+};
+
+
+// data is the object to merge the loot into
 var mergeImportLoot = (data,loot) => {
       console.log('mergeImportLoot',data);
       if(loot.gear)
@@ -389,3 +416,106 @@ var calcEffectiveEP = (sharingIsCaringLevel, cruEP, slotEP) =>
   // console.log('calcEffectiveEP', sharingIsCaringLevel, cruEP, slotEP, otherEP, sic, rawSharedEP, effectiveEP);
   return +effectiveEP;
 };
+
+/**
+ * @module
+ */
+var Formation = (() =>{
+  var exports = {};
+  // not for export
+  /**
+   * @param {number} worldId
+   */
+  var makeKey = worldId => "worldSaves" + worldId;
+  exports.getWorldSaves = 
+    selectedWorldId =>{
+        var key = makeKey(selectedWorldId);
+        // copyObject will pass the default value through if the read returns nothing
+        var oldWorldSaves = app.readIt(key, {});
+        return oldWorldSaves;
+    };
+  /**
+   * @param {number} selectedWorldId
+   */
+  exports.getSaveNames = 
+    selectedWorldId =>{
+      var oldWorldSaves = exports.getWorldSaves(selectedWorldId);
+      return Object.keys(oldWorldSaves);
+  };
+  /**
+   * @param {number} selectedWorldId
+   * @param {string} saveName
+   * @param {Array<string>} formationIds
+   * @param {string} dpsChar
+   * @param {number?} kaineXP
+   */
+  exports.saveFormation = 
+    (selectedWorldId, saveName, formationIds, dpsChar,kaineXP) => {
+      var key = makeKey(selectedWorldId);
+
+      // copyObject will pass the default value through if the read returns nothing
+      var oldWorldSaves = exports.getWorldSaves(selectedWorldId);
+      oldWorldSaves[saveName] = {formationIds:formationIds, dpsChar:dpsChar, kaineXP:kaineXP};
+      console.log('saving:', oldWorldSaves[saveName], 'to', key,'.',saveName);
+      app.storeIt(key, oldWorldSaves);
+      return oldWorldSaves;
+  };
+
+  /**
+   * @param {number} selectedWorldId
+   * @param {string} saveName
+  */
+  exports.getFormation = 
+    (worldId, saveName) =>{
+      var key = makeKey(worldId);
+      var worldSaves = app.readIt(key);
+      console.log('loading',worldSaves);
+      var data = worldSaves[saveName];
+      return data;
+  };
+  /**
+   * @param {function} getFormationsByCampaignId
+   * @param {FormationSaveMap} formationSaves
+   * @param {number} formationSaves.campaignId
+   * @param {Array<Crusader>} crusaders
+   */
+  exports.mergeImportFormations = (formationSaves,crusaders) =>{
+    var result = {};
+    Object.keys(formationSaves).map(campaignLongId => {
+      // after "formation"
+      var campaignId = campaignLongId.slice("formation".length - 1);
+      /**
+       * @type {FormationSave}
+       */
+      var campaignSlotFormations = formationSaves[campaignLongId];
+
+      var oldWorldFormations = Formation.getWorldSaves(campaignId);
+      result[campaignId] = oldWorldFormations || {};
+      campaignSlotFormations.map(slotSave => {
+        var saveSlot = slotSave.save_id;
+        console.log('mergeImportFormations. slotSave.formation', slotSave.formation);
+        // need to adapt this from hero_ids to formationIds ("01a", "11c", ...)
+        var formationIds = slotSave.formation.map(heroId =>
+          // player data uses -1 for no one in slot
+          heroId < 1 ? null :
+          crusaders.find(c => c.heroId == heroId).id
+        );
+        console.log('mergeImportFormations formationIds', formationIds);
+        // dpsChar is undefined
+        result[campaignId][saveSlot] = {formationIds:formationIds, dpsChar:undefined, kaineXP:undefined};
+      });
+    });
+    Object.keys(result).map(campaignId =>{
+      var campaignSaves = result[campaignId];
+      Object.keys(campaignSaves).map(saveName =>{
+        var save = campaignSaves[saveName];
+        // (selectedWorldId, saveName, formationIds, dpsChar,kaineXP) => {
+          console.log('saving formation campaign/worldId:' + campaignId + ', saveName:' + saveName, save);
+        exports.saveFormation(campaignId, saveName, save.formationIds, save.dpsChar, save.kaineXP)
+      })
+    });
+    return result;
+  };
+
+  return exports;
+})();
