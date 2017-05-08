@@ -2571,7 +2571,7 @@
 
   //Grimm X 2 X X X X 0 X 5 X 8 X X 3 X 7 X A 1 X 6 X 9 X X 4 X X X X
 
-  var grimm = app.grimm = new World(4, "Grimm's Idle Tales", 11);
+  var grimm = app.grimm = new World(6, "Grimm's Idle Tales", 6);
   (() => {
     var x = null;
     grimm.layout = [
@@ -2654,7 +2654,7 @@
 
   //Mischief X X X 4 X 9 X X 2 X 7 X 0 1 X 5 X A X X 3 X 8 X X X X 6 X B
 
-  var mischief = app.mischief = new World(5, "Mischief at Mugwarts", 12);
+  var mischief = app.mischief = new World(12, "Mischief at Mugwarts", 12);
   (() => {
 
     var x = null;
@@ -2739,7 +2739,7 @@
 
   // X X 6 X X X 3 X 8 X 0 X X X B X 4 X 9 X 1 X X X C X 5 X A X 2 X 7 X D
 
-  var player = app.player = new World(6, "Ready Player 2", 14);
+  var player = app.player = new World(16, "Ready Player 2", 14);
   (function () {
     player.setAdjacent(0, [1, 3, 4]);
     player.setAdjacent(1, [0, 2, 4, 5]);
@@ -2795,7 +2795,7 @@
   // Idols through Time 0 X X X X X X X 7 X 1 X 5 X A X 4 X 8 X 2 X 6 X B X X X 9
   // X 3 X X X X
 
-  var itt = app.itt = new World(7, "Idols Through Time", 12);
+  var itt = app.itt = new World(23, "Idols Through Time", 12);
   itt.setAdjacent(0, [1]);
   itt.setAdjacent(1, [0, 2, 4]);
   itt.setAdjacent(2, [1, 3, 4]);
@@ -2857,7 +2857,7 @@
   // Amusement Park 0 X X X X X 4 X 8 X 1 X 6 X B X X X 9 X 2 X 7 X C X 5 X A X 3 X
   // X X X
 
-  var park = app.park = new World(8, "Amusement Park of Doom", 13);
+  var park = app.park = new World(25, "Amusement Park of Doom", 13);
   (function () {
     park.setAdjacent(0, [1, 4]);
     park.setAdjacent(1, [0, 2, 4]);
@@ -3001,31 +3001,26 @@
     adjacents.map(spotWithAdj => gardeners.setAdjacent(spotWithAdj[0], spotWithAdj[1]));
   })();
 
+var carnival = new World(4, "Carnival of Sorrows", 9);
+var newMoon = new World(5, "Emo's New Moon",12);
   var getWorldById = exports.getWorldById = id => {
-    switch (id) {
-      case 1:
-        return worldsWake;
-      case 2:
-        return descent;
-      case 3:
-        return ghostbeard;
-      case 4:
-        return grimm;
-      case 5:
-        return mischief;
-      case 6:
-        return player;
-      case 7:
-        return itt;
-      case 8:
-        return park;
-      case 17:
-        return gardeners;
-      default:
+    var worlds =
+      [ worldsWake,
+      descent,
+      ghostbeard,
+      carnival,
+      newMoon,
+      grimm,
+      mischief,
+      player,
+      itt,
+      park,
+      gardeners
+    ];
+    var world = worlds.find(w=> w.id == id);
+    if(!(world !=null))
         console.error("worldId not implemented" + id);
-        break;
-    }
-
+    return world;
   };
 
   var critChance = 1;
