@@ -1,0 +1,30 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "editor.glyphMargin": true,
+    "editor.renderWhitespace": "all",
+    "window.zoomLevel": 1,
+    "editor.cursorStyle": "block",
+    "vim.useCtrlKeys": false,
+    "editor.cursorBlinking": "blink",
+    "files.trimTrailingWhitespace": true,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "files.associations": {
+        "*.jsx": "javascriptreact"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/packages": true
+    },
+    "search.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/tmp": true,
+         // this is to ignore transformed jsx files, use the pre-transformed ones
+        "**/*.react.js": true,
+        "**/*.map": true
+    }
+}

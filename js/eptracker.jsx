@@ -417,6 +417,7 @@ class CruTagGrid extends React.Component {
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     // var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
+      console.log(this.props.slotSort, this.props.epSort, this.props.nameSort,JSON.stringify(this.props.enchantmentPoints));
     var sortedCrusaders =
       filterSortCrusaders(
         this.props.ownedCrusaderIds || [],
@@ -998,3 +999,37 @@ ReactDOM.render(
       <CruApp referenceData={jsonData} />,
         document.getElementById('crusaders_holder')
 );
+
+var exportCrusaderData = (refData,playerFields,refFields) =>{
+  var data = cruTagGrid.readOrDefault();
+  if(!(data!=null))
+    throw Error("cruTagGrid data not found");
+  if(!(refData != null))
+    throw Error("jsonData not found");
+  var crusaders = refData.crusaders;
+  return crusaders.map(cru =>{
+    var r = {};
+    refFields.map(refFieldName =>{
+      r[refFieldName] = cru[refFieldName];
+    });
+    playerFields.map(pFieldName =>{
+      switch(pFieldName){
+        case "enchantmentPoints":
+          r.ep = data.enchantmentPoints[cru.heroId];
+        break;
+        case "crusaderGear":
+          var gear = data.crusaderGear[cru.id];
+          if(!(gear != null))
+            return;
+          r.gear = {};
+          Object.keys(gear).map(slotKey =>
+            r.gear[slotKey] = gear[slotKey]);
+        break;
+        default:
+          throw Error("player data field '" + pFieldName + "' not mapped.");
+      }
+    });
+    return r;
+  });
+};
+window.exportCrusaderData = exportCrusaderData;
