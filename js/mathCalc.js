@@ -2796,64 +2796,65 @@
   // X 3 X X X X
 
   var itt = app.itt = new World(23, "Idols Through Time", 12);
-  itt.setAdjacent(0, [1]);
-  itt.setAdjacent(1, [0, 2, 4]);
-  itt.setAdjacent(2, [1, 3, 4]);
-  itt.setAdjacent(3, [2]);
-  itt.setAdjacent(4, [1, 2, 5, 6]);
-  itt.setAdjacent(5, [4, 6, 7, 8]);
-  itt.setAdjacent(6, [4, 5, 8, 9]);
-  itt.setAdjacent(7, [5, 8, 10]);
-  itt.setAdjacent(8, [
-    5,
-    6,
-    7,
-    9,
-    10,
-    11
-  ]);
-  itt.setAdjacent(9, [6, 11]);
-  itt.setAdjacent(10, [7, 8, 11]);
-  itt.setAdjacent(11, [8, 9, 10]);
   (function () {
-    var x = null;
-    itt.layout = [
-      [
-        0, x, x, x, x
-      ],
-      [
-        x, x, x, 7, x
-      ],
-      [
-        1, x, 5, x, 10
-      ],
-      [
-        x, 4, x, 8, x
-      ],
-      [
-        2, x, 6, x, 11
-      ],
-      [
-        x, x, x, 9, x
-      ],
-      [3, x, x, x, x]
-    ];
-  })();
 
-  for (i = 0; i < 10; i++) {
-    if (i < 4) {
-      itt.setColumn(i, 1);
-    } else if (i < 5) {
-      itt.setColumn(i, 2);
-    } else if (i < 7) {
-      itt.setColumn(i, 3);
-    } else if (i < 10) {
-      itt.setColumn(i, 4);
-    } else if (i < 12) {
-      itt.setColumn(i, 5);
+    itt.setAdjacent(0, [1]);
+    itt.setAdjacent(1, [0, 2, 4]);
+    itt.setAdjacent(2, [1, 3, 4]);
+    itt.setAdjacent(3, [2]);
+    itt.setAdjacent(4, [1, 2, 5, 6]);
+    itt.setAdjacent(5, [4, 6, 7, 8]);
+    itt.setAdjacent(6, [4, 5, 8, 9]);
+    itt.setAdjacent(7, [5, 8, 10]);
+    itt.setAdjacent(8, [
+      5,
+      6,
+      7,
+      9,
+      10,
+      11
+    ]);
+    itt.setAdjacent(9, [6, 11]);
+    itt.setAdjacent(10, [7, 8, 11]);
+    itt.setAdjacent(11, [8, 9, 10]);
+      var x = null;
+      itt.layout = [
+        [
+          0, x, x, x, x
+        ],
+        [
+          x, x, x, 7, x
+        ],
+        [
+          1, x, 5, x, 10
+        ],
+        [
+          x, 4, x, 8, x
+        ],
+        [
+          2, x, 6, x, 11
+        ],
+        [
+          x, x, x, 9, x
+        ],
+        [3, x, x, x, x]
+      ];
+
+    for (i = 0; i < 10; i++) {
+      if (i < 4) {
+        itt.setColumn(i, 1);
+      } else if (i < 5) {
+        itt.setColumn(i, 2);
+      } else if (i < 7) {
+        itt.setColumn(i, 3);
+      } else if (i < 10) {
+        itt.setColumn(i, 4);
+      } else if (i < 12) {
+        itt.setColumn(i, 5);
+      }
     }
-  }
 
+  })();
   // Amusement Park 0 X X X X X 4 X 8 X 1 X 6 X B X X X 9 X 2 X 7 X C X 5 X A X 3 X
   // X X X
 
