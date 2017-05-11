@@ -4,7 +4,7 @@ const isDefined = function(o){
 };
 
 var getNumberOrDefault = (x, defaultValue) =>
-  Number.isNaN(x) || !(x != null) ? defaultValue : +x;
+  Number.isNaN(+x) || !(x != null) ? defaultValue : +x;
 
 /**
  *
