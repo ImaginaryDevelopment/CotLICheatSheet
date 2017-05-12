@@ -11,6 +11,7 @@ var getNumberOrDefault = (x, defaultValue) =>
  * @param {object} source
  * @param {object} toMerge
  */
+// behavior is undefined for arrays.. what should it do?
 const copyObject = (source,toMerge, defaultValue) => {
     var target = toMerge ? toMerge : {};
     if(!(source != null) && defaultValue != null)
