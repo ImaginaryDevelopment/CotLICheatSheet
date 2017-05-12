@@ -20,7 +20,7 @@ global.ReactDOM = require('react-dom')
 # reactDom = require 'react-dom'
 
 global.jsonData = {}
-eptracker = require '../js/eptracker.react.js'
+eptracker = require '../js/eptracker.react'
 describe 'getCrusaderDps',
     () ->
       describe 'given null',
