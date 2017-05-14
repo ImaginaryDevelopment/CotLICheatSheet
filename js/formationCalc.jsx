@@ -440,10 +440,12 @@
                 kaine.XP = value;
                 this.setState({kaineXP: value});
             };
+            // this should also be conditional on having the legendary that needs it
             var kaineXpComponent =
                 kaine && formationIds.includes(kaine.id)
-                ? ( <div title="Kaine XP"><div>Kaine XP:</div><TextInputUnc onChange={kaineSetter} type="number" value={this.state.kaineXP} /></div>)
+                ? ( <div title="Kaine XP"><div>Kaine XP(for one of his legendaries):</div><TextInputUnc onChange={kaineSetter} type="number" value={this.state.kaineXP} /></div>)
                 : null;
+            var  dpsMult= data && data.globalDps? data.globalDps.toFixed ? numberWithCommas(data.globalDps.toFixed(2),) : data.globalDps: null
 
             return (<div>
                 <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} tagTracker={tagTracker}/>
@@ -489,7 +491,7 @@
                         </div>
                     </div>
                 {kaineXpComponent}
-                <p title="multiplier only, not actual dps number, also we do not account for achievements">Dps Multiplier: {dpsCruId != null ? null : <span className="warning">no main dps is selected!</span>} {data && data.globalDps? data.globalDps.toFixed ? data.globalDps.toFixed(1) : data.globalDps: null}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
+                <p title="multiplier only, not actual dps number, also we do not account for achievements">Dps Multiplier: {dpsCruId != null ? null : <span className="warning">no main dps is selected!</span>} {dpsMult}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
                 {formationComponent}
                 </div>
