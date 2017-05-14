@@ -10,31 +10,27 @@ var getCrusaderDps = function(crusader){
   var alldps = crusader.upgrades.alldps ? crusader.upgrades.alldps.reduce(add) : 0;
   return crusader.upgrades.selfdps ? crusader.upgrades.selfdps.reduce(add) + +alldps : null;
 };
-var Filter = React.createClass({
-  render:function(){
+var Filter = props =>
+{
     var filterClasses =
-      this.props.on == 1 ? "fa fa-fw fa-filter active"
-      : this.props.on == 0 || !(this.props.on != null) ? "fa fa-fw fa-filter" :
+      props.on == 1 ? "fa fa-fw fa-filter active"
+      : props.on == 0 || !(props.on != null) ? "fa fa-fw fa-filter" :
       "fa fa-fw fa-filter activeNegative";
-    return (<i className={filterClasses} onClick={this.props.filterClick}></i>);
-  }
-});
-var CheckBox = React.createClass({
-  render:function(){
-    return (<input type="checkbox" onChange={this.props.onChange} disabled={this.props.disabled} checked={this.props.checked} readOnly={this.props.readonly}  />)
-  }
-});
-var TagsTd = React.createClass({
-  render:function(){
-      var self = this;
-      var cru = this.props.crusader;
+    return (<i className={filterClasses} onClick={props.filterClick}></i>);
+};
+
+var CheckBox = props =>
+  (<input type="checkbox" onChange={props.onChange} disabled={props.disabled} checked={props.checked} readOnly={props.readonly} />);
+
+var TagsTd = props => {
+      var cru = props.crusader;
       var tags = [];
-      this.props.missionTags.map(function(tag){
+      props.missionTags.map(function(tag){
           var tagCssClass = cru.tags.indexOf(tag.id) != -1 ? "img_tag":"img_tag_off";
           var title = tag.displayName;
           switch (tag.id){
             case "dps":
-              title += ':' + self.props.dps;
+              title += ':' + props.dps;
             break;
             case "event":
               if(cru.event){
@@ -43,7 +39,7 @@ var TagsTd = React.createClass({
             break;
           }
           tag.id === "dps" ? tag.displayName  : tag.displayName;
-          var imgTag = (<img key={tag.id} src={self.props.baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
+          var imgTag = (<img key={tag.id} src={props.baseUrl + 'media/tags/' + tag.image} className={tagCssClass} title={title} />);
           if(tag.id === "event" && cru.eventLink){
             tags.push(<a key={tag.id} className="tooltip" href={cru.eventLink}>{imgTag}</a>);
           } else {
@@ -51,184 +47,200 @@ var TagsTd = React.createClass({
           }
       });
       return (<td key="tags" className="tags" data-key="tags">{tags}</td>);
-  }
-});
-var CruTagRow = React.createClass({
-    render: function () {
-      var self = this;
-      var cru = this.props.crusader;
-      var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
-      var image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
-      var isOwned = this.props.owned || cru.slot == cru.id && cru.slot < 21;
-      var owned = null;
-      var formation = null;
-      var epBox = this.props.isEpMode && isOwned ? (
-        <div className="ep"><TextInputUnc type="number" min="0" readonly={getIsUrlLoaded()} onChange={this.props.onEpChange} className={["medium"]} value={this.props.enchantmentPoints} />
-          {this.props.effectiveEp && !Number.isNaN(this.props.effectiveEp) ? (<div className="sharedEp">Shared:{this.props.effectiveEp}</div>) : null}
+};
+TagsTd.displayName = 'TagsTd';
+
+var CruTagRowFormationEpBox = props =>
+      props.isEpMode && props.isOwned ? (
+        <div className="ep"><TextInputUnc type="number" min="0" readonly={getIsUrlLoaded()} onChange={props.onEpChange} className={["medium"]} value={props.enchantmentPoints} />
+          {props.effectiveEp && !Number.isNaN(props.effectiveEp) ? (<div className="sharedEp">Shared:{props.effectiveEp}</div>) : null}
         </div>)
         : null;
-      // console.log('cruTagRow render', this.props.mode, this.props.isFormationMode, cru.slot, cru.id);
-      if(this.props.mode === "mine" && this.props.isFormationMode){
-        formation = (<td key="formation"><CheckBox checked={this.props.formationIds[cru.slot] == cru.id ? true: false} onChange={this.props.onFormationChange} />{epBox}</td>);
-      } else if (this.props.mode === "mine" && !this.props.isFormationMode){
-        if(cru.slot == cru.id && cru.slot < 21) {
-          owned = (<td key="owned"><CheckBox checked={true} readonly={true} disabled={true} />{epBox}</td>);
-        } else {
-          if(!getIsUrlLoaded() || this.props.owned){
-            owned = (<td key="owned"><CheckBox checked={this.props.owned} readonly={getIsUrlLoaded()} disabled={getIsUrlLoaded()} onChange={this.props.onOwnedChange} />{epBox}</td>);
-          }
-          else owned = (<td></td>)
-        }
-      }
-      var link = cru.link && cru.link.indexOf('/') < 0 ? (self.props.wikibase + cru.link)
-      : cru.link?
-        cru.link
-      : self.props.wikibase + cru.displayName.replace(" ","_");
+CruTagRowFormationEpBox.displayName = 'CruTagRowFormationEpBox';
 
-      var cruGear = this.props.gear ? this.props.gear : {};
-      if(cru.id==="15") console.log('cruGear for boxes', cruGear);
-      var slotGear;
-      // extract the 3 slots with qualities
-      var cruGearQ = [cruGear["slot" + 0] || 0, cruGear["slot" + 1] || 0, cruGear["slot" + 2] || 0];
+var CruTagRowFormation = props =>(
+  props.mode ==="mine" && props.isFormationMode ?
+        (
+          <td key="formation">
+            <CheckBox checked={props.formationIds[props.cru.slot] == props.cru.id ? true : false} onChange={props.onFormationChange} />
+            {props.epBox}
+          </td>)
+        : null);
+CruTagRowFormation.displayName = 'CruTagRowFormation';
 
-      if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0){
-        var makeBox = slot => {
-          var itemRarityCompound = cruGearQ[slot];
-          var rarity = !(itemRarityCompound != null) ? 0 : itemRarityCompound && typeof(itemRarityCompound) === "number" ? itemRarityCompound : itemRarityCompound[0];
-          var golden = !(itemRarityCompound != null) || typeof(itemRarityCompound) != "string" || itemRarityCompound.length < 2 || itemRarityCompound[1] !== "g" ? "" : " golden";
-          var classes = "rarity rarity" + rarity + golden;
-          // if(cru.id =="15")
-          // console.log('making box', slot, itemRarityCompound, rarity,golden,classes);
-          return (<div className={classes} />);
-        };
-        slotGear = (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
-      }
+var CruTagRowOwned = props =>{
+  if(props.mode !== "mine" || props.isFormationMode)
+    return null;
+  var isAlwaysOwnedSlot = props.cru.slot == props.cru.id && props.cru.slot < 21
+  var renderBox = isAlwaysOwnedSlot || (!getIsUrlLoaded() || props.owned);
+  if(isAlwaysOwnedSlot || (getIsUrlLoaded() && props.owned)) {
+    return (<td key="owned"><CheckBox checked={true} readonly={true} disabled={true} />{props.epBox}</td>);
+  }
+  if(!getIsUrlLoaded() || props.owned){
+    return (<td key="owned"><CheckBox checked={props.owned} readonly={getIsUrlLoaded()} disabled={getIsUrlLoaded()} onChange={props.onOwnedChange} />{props.epBox}</td>);
+  }
+  return (<td></td>);
+};
 
-      var gearTd = null;
-      // console.log('gear?', this.props.mode, this.props.isGearMode);
-      if (this.props.mode ==="mine" && this.props.isGearMode){
-        var gearPossibilities = this.props.gearTypes;
-
-        // var options = gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
-        //   if(cru.id ==="18") {
-        //     console.log('gear', cruGear, this.props.gearReference);
-        //     window.gearReference = this.props.gearReference;
-        //   }
-          if(cru.id ==="18") {
-        //     console.log('gear', cruGear, this.props.gearReference);
-            window.gearReference = this.props.gearReference && this.props.gearReference[3];
-            console.log('slotGear',slotGear);
-          }
-
-        var makeSelect = slot => {
-          // var slot = (typeof(slot) === "string" && slot.length > 1 ? slot[0] && +slot === slot ? +slot
-          var itemInfo = cruGear["slot" + slot]? cruGear["slot" + slot]: 0;
-          var itemInfoV2 = cruGear["s"+slot] ? cruGear["s" + slot] : 0;
-          var gearInfoV2 = itemInfoV2 && this.props.gearReference && this.props.gearReference[3] && this.props.gearReference[3].find(g => g.lootId == itemInfoV2);
-          //if(!(gearInfo !=null))
-          var gearInfoV1 = itemInfo !== 0 && this.props.gearReference && this.props.gearReference[slot];
-          var gearInfo = gearInfoV2 || gearInfoV1;
-
-          if(cru.id ==="18") {
-            console.log('makeSelect', gearInfoV1, itemInfo);
-            console.log('makeSelect2', itemInfoV2, gearInfoV2);
-          }
-          window.gearReference = this.props.gearReference;
-          var slotGear = this.props.gearReference && this.props.gearReference[3]
-            .filter(g => g.slot==slot)
-            .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
-          if(cru.id ==="18") {
-            console.log('slotGear',slotGear);
-          }
-          var getOptionsV1 = () => gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
-          var options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + gearPossibilities[g.rarity]}</option>))
-          if(slotGear)
-            options.unshift(<option key={0}>None</option>);
-
-          var rarity = !itemInfo ? 0 : (typeof(itemInfo) === "string" && itemInfo.length > 1 ? +itemInfo[0] : +itemInfo);
-          // if(typeof(ItemInfo) !== "number"){
-          //   console.log('making select for item with info', slot,itemInfo,rarity);
-          // }
-          var selectValueV = itemInfoV2 ? 2 : itemInfo ? 1 : 0;
-          var selectV = (slotGear != null) ? 2 : 1;
-
-          return (<div>
-            <select key={"gear" + slot}
-                    title={JSON.stringify(gearInfoV2) + '\r\n' + JSON.stringify(itemInfoV2)}
-                    data-valueV={selectValueV}
-                    data-v={selectV}
-                    value={ itemInfoV2 || rarity}
-                    onChange={e => this.props.onGearChange(cru.id, slot, e.target.value, selectV)}
-                    name={"slot" + slot}>{options}</select>{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
-        }
-        gearTd = (<td key="gear" data-key="gear">
-                    {makeSelect(0)}
-                    {makeSelect(1)}
-                    {makeSelect(2)}
-                    </td>);
-
-      }
+var CruTagRowTagsOrGear = props =>{
       var tagsTd;
       // enable tags if mine mode is off, or gear mode is off
-      if(this.props.mode !== "mine" || !this.props.isGearMode ){
-        tagsTd = (<TagsTd dps={this.props.dps} missionTags={this.props.missionTags} crusader={cru} baseUrl={baseUrl} />) ;
+      if(props.mode !== "mine" || !props.isGearMode ){
+        return (<TagsTd dps={props.dps} missionTags={props.missionTags} crusader={props.cru} baseUrl={props.baseUrl} />) ;
       }
-      var tagColumn = tagsTd ? tagsTd : gearTd;
-      var tagCountColumn = this.props.mode !== "mine" || !this.props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
+      return props.gearTd;
+};
+
+var GearSelect = props => {
+  // v1/1.5 loot should be transformed on url or localstorage load
+  var cruGear = props.cruGear;
+  var slot = props.slot;
+  var gearInfo = Loot.getGearInfo(cruGear);
+  var itemIdentification = gearInfo && gearInfo[slot] || 0;
+  var gearInfo = itemIdentification && props.gearReference && props.gearReference[3] && Loot.getLootFromId(itemIdentification, props.gearReference[3]);
+  var rarity = Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]);
+
+  var slotGear = props.gearReference && props.gearReference[3]
+    .filter(g => g.slot==slot)
+    .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
+  // this appears to run whenever there isn't gear declared for this crusader
+  var getOptionsV1 = () =>
+    props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+
+  var $options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + props.gearPossibilities[g.rarity]}</option>))
+  if(slotGear)
+    $options.unshift(<option key={0}>None</option>);
+
+  var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
+  var selectV = (slotGear != null) ? 2 : 1;
+  var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={Loot.getLLevel(itemIdentification)} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
+  var value = gearInfo && gearInfo.lootId || (itemIdentification && Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]));
+
+  return (<div data-component="gearSelect">
+    <select key={"gear" + slot}
+            title={JSON.stringify(gearInfo) + '\r\n'}
+            data-valueV={selectValueV}
+            data-v={selectV}
+            data-value={value}
+            value={value}
+            onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)}
+            name={"slot" + slot}>{$options}</select>{$ll}{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+};
+
+var CruTagRowSlotGear = props =>{
+      var $slotGear;
+      // extract the 3 slots with qualities
+      var cruGearQ =  Loot.getGearInfo(props.cruGear);
+      if(props.cru.id==1) console.log('cruGearQ for boxes', cruGearQ);
+
+      if(cruGearQ[0] > 0 || cruGearQ[1] > 0 || cruGearQ[2] > 0 || typeof(cruGearQ[0])=="string" || typeof(cruGearQ[1]) == "string" || typeof(cruGearQ[2])=="string"){
+        var makeBox = slot => {
+          var itemRarityCompound =  cruGearQ[slot];
+          var rarity = Loot.getRarityByItemId(itemRarityCompound,props.cru.loot);
+          var golden = Loot.getIsGolden(itemRarityCompound, props.cru.loot) ? " golden" : "";
+          var classes = "rarity rarity" + rarity + golden;
+          return (<div className={classes} />);
+        };
+        return (<div className="rarities">{makeBox(0)}{makeBox(1)}{makeBox(2)}</div>);
+      }
+      return null;
+};
+CruTagRowSlotGear.displayName = "CruTagRowSlotGear";
+
+var CruTagRowGear = props =>{
+  var gearTd = null;
+  if(props.mode !=="mine" || !props.isGearMode)
+    return null;
+  // gearReference currently looks like [undefined,undefined,undefined,cruGearArray] or cruGearArray
+  var makeSelect = slot => (<GearSelect cruGear={props.cruGear} slot={slot} gearReference={props.gearReference} cruId={props.cruId} gearPossibilities={props.gearTypes} onGearChange={props.onGearChange} onLlChange={props.onLlChange} />);
+  return (<td key="gear" data-key="gear" data-component="CruTagRowGear">
+              {makeSelect(0)}
+              {makeSelect(1)}
+              {makeSelect(2)}
+              </td>);
+
+};
+CruTagRowGear.displayName = "CruTagRowGear";
+
+var CruTagRow = props => {
+      var cru = props.crusader;
+      var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
+      var $image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
+      var isOwned = props.owned || cru.slot == cru.id && cru.slot < 21;
+      var $epBox = (<CruTagRowFormationEpBox isEpMode={props.isEpMode} isOwned={isOwned} onEpChange={props.onEpChange} enchantmentPoints={props.enchantmentPoints} effectiveEp={props.effectiveEp} />);
+      var $formation = (<CruTagRowFormation mode={props.mode} isFormationMode={props.isFormationMode} cru={cru} formationIds={props.formationIds} onFormationChange={props.onFormationChange}
+        epBox={$epBox}
+        />);
+      var $owned = (<CruTagRowOwned mode={props.mode} isFormationMode={props.isFormationMode} cru={cru} owned={isOwned} epBox={$epBox} onOwnedChange={props.onOwnedChange} />);
+      var link = cru.link && cru.link.indexOf('/') < 0 ? (props.wikibase + cru.link)
+        : cru.link ?
+          cru.link
+        : props.wikibase + cru.displayName.replace(" ","_");
+
+      var cruGear = props.gear ? props.gear : {};
+
+      var $slotGear = (<CruTagRowSlotGear cru={cru} cruGear={cruGear} />);
+      // the select boxes and legendary level inputs
+      var $gearTd = (<CruTagRowGear mode={props.mode} isGearMode={props.isGearMode} cruGear={cruGear} gearReference={props.gearReference}
+                                    cruId={cru.id}
+                                    gearTypes={props.gearTypes}
+                                    onGearChange={props.onGearChange}
+                                    onLlChange={props.onLlChange} />);
+
+      var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={props.mode} isGearMode={props.isGearMode} dps={props.dps} missionTags={props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={$gearTd} />);
+      var $tagCountColumn = props.mode !== "mine" || !props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
       var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
       return (<tr className={trClasses}>
-          {formation}
-          {owned}
-          <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={JSON.stringify({Place:cru.id,HeroId:cru.heroId,tier2: cru.tier ===2})}>{cru.slot}{slotGear}</td>
-          <td key="image" data-key="image">{image}</td>
+          {$formation}
+          {$owned}
+          <td key="slot" data-key="slot id" className={cru.tier > 1? "tier2" : null} title={JSON.stringify({Place:cru.id,HeroId:cru.heroId,tier2: cru.tier ===2})}>{cru.slot}{$slotGear}</td>
+          <td key="image" data-key="image">{$image}</td>
           <td key="display" data-key="display"><a href={link}>{cru.displayName}</a></td>
-          {tagColumn}
-          {tagCountColumn}
+          {$tagsOrGearColumn}
+          {$tagCountColumn}
       </tr>);
-    }
-});
+};
 
 var CruGridBody = props =>{
-  var self = {props:props};
-  window.crusaderGear = props.crusaderGear;
 
   var rows = props.sortedCrusaders
-        .map(function(crusader){
-        // console.log('mapping a crusader!');
-        var owned = self.props.ownedCrusaderIds.indexOf(crusader.id) != -1;
-        var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: {};
-        // console.log('crusader', crusader, gear);
-        var dps = getCrusaderDps(crusader);
-        var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
-        // this is wrong when crusaders are filtered
-        var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
-        var effectiveEP = calcEffectiveEP(props.sharingIsCaring, +props.enchantmentPoints[crusader.id], otherEp);
-        var findLoot = slot => crusader.loot.find(l => l.rarity == gear["slot" + slot] && l.slot == slot);
-        var gearRef = crusader.loot && gear && [findLoot("0"), findLoot("1"), findLoot("2"),crusader.loot];
-        // console.log('gear', gearRef);
-
-        return (<CruTagRow key={crusader.displayName}
-          formationIds={props.formationIds}
-          isEpMode={props.isEpMode}
-          isGearMode={props.isGearMode}
-          gearTypes={props.referenceData.gearTypes}
-          gearReference={gearRef}
-          gear={gear}
-          onGearChange={props.onGearChange}
-          enchantmentPoints={props.enchantmentPoints[crusader.id]}
-          effectiveEp={effectiveEP}
-          onEpChange={ val => props.onEpChange(crusader.id, val)}
-          isFormationMode={props.isBuildingFormation}
-          wikibase={props.referenceData.wikibase}
-          crusader={crusader}
-          dps={dps}
-          owned={owned}
-          missionTags={props.referenceData.missionTags}
-          mode={props.mode}
-          onOwnedChange={val => props.onOwnedChange(crusader,val)}
-          onFormationChange={val => props.onFormationChange(crusader,val)} />);
+      .map(function(crusader){
+      // console.log('mapping a crusader!');
+      var owned = props.ownedCrusaderIds.indexOf(crusader.id) != -1;
+      var gear = props.crusaderGear ? props.crusaderGear[crusader.id]: {};
+      // console.log('crusader', crusader, gear);
+      var dps = getCrusaderDps(crusader);
+      var otherSlotCrusaders = props.sortedCrusaders.filter(c => c.slot == crusader.slot).map(c => c.id);
+      // this is wrong when crusaders are filtered
+      var otherEp = otherSlotCrusaders.map(cId => +props.enchantmentPoints[cId]).reduce((acc,val) => acc + (val || 0),0);
+      var effectiveEP = calcEffectiveEP(props.sharingIsCaring, +props.enchantmentPoints[crusader.id], otherEp);
+      if(!crusader.loot || crusader.id == 1){
+        console.warn('no loot found for crusader', crusader, props.crusaderGear);
       }
-    );
+      var gearRef = crusader.loot && [null, null, null,crusader.loot];
+
+      return (<CruTagRow key={crusader.displayName}
+        formationIds={props.formationIds}
+        isEpMode={props.isEpMode}
+        isGearMode={props.isGearMode}
+        gearTypes={props.referenceData.gearTypes}
+        gearReference={gearRef}
+        gear={gear}
+        onGearChange={props.onGearChange}
+        onLlChange={props.onLlChange}
+        enchantmentPoints={props.enchantmentPoints[crusader.id]}
+        effectiveEp={effectiveEP}
+        onEpChange={ val => props.onEpChange(crusader.id, val)}
+        isFormationMode={props.isBuildingFormation}
+        wikibase={props.referenceData.wikibase}
+        crusader={crusader}
+        dps={dps}
+        owned={owned}
+        missionTags={props.referenceData.missionTags}
+        mode={props.mode}
+        onOwnedChange={val => props.onOwnedChange(crusader,val)}
+        onFormationChange={val => props.onFormationChange(crusader,val)} />);
+  });
   return (
    <tbody>
     {rows}
@@ -252,21 +264,13 @@ var getSortUpdate = (name, value) => {
 
 // get most of the state out of here, so more display stuff can be attached, leave things that don't need to be stored in state
 class CruTagGrid extends React.Component {
-  constructor(){
-    super();
-    this.onSlotSortClick = this.onSlotSortClick.bind(this);
-    this.onEpSortClick = this.onEpSortClick.bind(this);
-    this.onNameSortClick = this.onNameSortClick.bind(this);
-    this.filterOwnedClick = this.filterOwnedClick.bind(this);
-    this.onModeChangeClicked = this.onModeChangeClicked.bind(this);
-    this.onEpClick = this.onEpClick.bind(this);
-    this.onFormationClick = this.onFormationClick.bind(this);
-    this.onGearClick = this.onGearClick.bind(this);
-    this.onEpChange = this.onEpChange.bind(this);
-    this.onFormationChange = this.onFormationChange.bind(this);
-    this.onOwnedChange = this.onOwnedChange.bind(this);
-    this.onGearChange=this.onGearChange.bind(this);
-    this.onFilterTag=this.onFilterTag.bind(this);
+  constructor(props){
+    super(props);
+    Object.getOwnPropertyNames(CruTagGrid.prototype).filter(x => x != "constructor").map(x => {
+      if(typeof(this[x]) === "function")
+        this[x] = this[x].bind(this);
+    });
+    console.log('getOwnPropertySymbols', Object.getOwnPropertySymbols(this));
     window.importMe = () => this.props.updateSave({mainSelectedTab:2});
   }
   onSlotSortClick(){
@@ -297,7 +301,7 @@ class CruTagGrid extends React.Component {
     this.props.updateSave(saveMods);
   }
   onGearClick(){
-    var stateMods = {isGearMode: this.props.isGearMode? false: true};
+    var stateMods = {isGearMode: this.props.isGearMode ? false: true};
     console.log('gearClick', stateMods);
     this.props.updateSave(stateMods);
   }
@@ -347,6 +351,38 @@ class CruTagGrid extends React.Component {
     }
     this.props.updateSave({ownedCrusaderIds:owned});
   }
+  onLlChange(cruId,slot,legendaryLevel){
+    console.log('onLlChange',arguments);
+    var stateMods ={};
+    if(!this.props.crusaderGear){
+      stateMods.crusaderGear={};
+    } else {
+      var merged = copyObject(this.props.crusaderGear);
+      stateMods.crusaderGear = merged;
+    }
+    var cruGear;
+    if(!stateMods.crusaderGear[cruId]){
+      cruGear={};
+    } else {
+      cruGear = copyObject(stateMods.crusaderGear[cruId])
+    }
+    stateMods.crusaderGear[cruId] = cruGear;
+    //if the prop is slot not s then the loot isn't loaded for that crusader, and we're going to use LootV1 itemCompounds
+    var prevId = cruGear["s" + slot] || cruGear["slot" + slot];
+    console.log('onLlChange', prevId, legendaryLevel);
+    // is the slot vs s property distinction for when the crusader's loot isn't in data.js yet? so we know it is a rarity selection not a lootId
+    var newId = Loot.changeLLevel(prevId,legendaryLevel);
+    console.log('onLlChange', newId);
+    if(prevId === newId){
+      console.info('id is unchanged', prevId, newId);
+      return;
+    }
+    if(newId && typeof(newId) == "string" && newId.indexOf("undefined") >=0)
+      throw ("invalid newId returned" + newId);
+    stateMods.crusaderGear[cruId]["s" + slot] = newId;
+    console.log('llChangeMods',stateMods);
+    this.props.updateSave(stateMods);
+  }
   onGearChange(cruId,slot,gearTypeIndex, selectV){
     console.log('onGearChange', cruId,slot, gearTypeIndex);
     var stateMods = {};
@@ -388,6 +424,8 @@ class CruTagGrid extends React.Component {
   }
 
   render(){
+
+    window.crusaderGear = this.props.crusaderGear;
   	console.info('rendering tag grid, react');
     var self = this;
     var totalCrusaders = this.props.model.crusaders.length;
@@ -466,6 +504,7 @@ class CruTagGrid extends React.Component {
           isGearMode={this.props.isGearMode}
           referenceData={this.props.model}
           onGearChange={this.onGearChange}
+          onLlChange={this.onLlChange}
           isBuildingFormation={isBuildingFormation}
           mode={this.props.mode}
           onOwnedChange={this.onOwnedChange}
@@ -479,28 +518,27 @@ class CruTagGrid extends React.Component {
 }
 
 // data pull
-var HeroGameData = React.createClass({
-  render(){
+var HeroGameData = props => {
     console.log('rendering hero game data');
     //legacy data/usage would not have these in state (but also legacy data shouldn't be stored anywhere in prod)
-    // if(!this.props.mappedHeroes)
+    // if(!props.mappedHeroes)
     //   return null;
-    // if(! this.props.mappedLoot)
+    // if(! props.mappedLoot)
     //   return null;
-    var gear = this.props.mappedLoot && this.props.mappedLoot.gear || [];
+    var gear = props.mappedLoot && props.mappedLoot.gear || [];
 
-    var heroLIs = this.props.mappedHeroes? this.props.mappedHeroes.map(h =>
+    var heroLIs = props.mappedHeroes? props.mappedHeroes.map(h =>
       (<li data-key={h.HeroId} key={h.HeroId}>{JSON.stringify(h)}</li>)
     ): [];
     console.log('HeroGameData', gear);
     var gearLIs = gear.map(l =>
       (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>)
     );
-    var loot = this.props.mappedLoot && this.props.mappedLoot.items || [];
+    var loot = props.mappedLoot && props.mappedLoot.items || [];
     var lootLIs = loot.map(l =>{
       return (<li data-key={l.lootId} key={l.lootId}>{JSON.stringify(l)}</li>);
     });
-    var talents = this.props.mappedTalents || [];
+    var talents = props.mappedTalents || [];
     var talentLIs = talents.map(t =>
       (<li data-key={t.talentId} key={t.talentId}>{JSON.stringify(t)}</li>)
     );
@@ -508,7 +546,7 @@ var HeroGameData = React.createClass({
     // consider maping the parsed raw section collapsible at least at the highest level
 
     return (<div>
-        <button onClick={() => this.props.onImportGameDataClick(this.props.mappedHeroes,this.props.mappedLoot, this.props.mappedTalents)}>import</button>
+        <button onClick={() => props.onImportGameDataClick(props.mappedHeroes,props.mappedLoot, props.mappedTalents)}>import</button>
         <Tabs>
           <Pane label="Heroes and EP">
             <div><div>{ heroLIs.length + " items"}</div>
@@ -540,12 +578,13 @@ var HeroGameData = React.createClass({
             </div>
           </Pane>
           <Pane label="Parsed Raw">
-              <pre>{JSON.stringify(this.props.data,null,2)}</pre>
+              <pre>{JSON.stringify(props.data,null,2)}</pre>
           </Pane>
         </Tabs>
     </div>);
-  }
-});
+};
+HeroGameData.displayName = 'HeroGameData';
+
 var LegendaryReduction = props =>
 props.legendaryReductionDate ?
   (<div className="onGreen">Legendary Cost Reduction at {props.legendaryReductionDate.toLocaleString()}</div>)
@@ -608,7 +647,16 @@ var provideSavedDefaults = saved => {
       saved.filterOwned = 0;
 };
 
-var CruApp = React.createClass({
+class CruApp extends React.Component {
+  constructor(props){
+    // duh-duh-duh-duh SUPER PROPS!
+    super(props);
+    Object.getOwnPropertyNames(CruApp.prototype).filter(x => x != "constructor").map(x => {
+      if(typeof(this[x]) === "function")
+        this[x] = this[x].bind(this);
+    });
+    this.state = this.getInitialState();
+  }
   getInitialState(){
     if (Clipboard){
       window.clipboard = new Clipboard('.btn');
@@ -640,13 +688,13 @@ var CruApp = React.createClass({
     // this is convienent for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
     window.saved = state.saved;
     return state;
-  },
-  componentDidUpdate:function(prevProps, prevState){
+  }
+  componentDidUpdate(prevProps, prevState){
     if(prevState.saved != this.state.saved){
       cruTagGrid.store(this.state.saved);
       window.saved = this.state.saved;
     }
-  },
+  }
   loadNetworkData(parsedOrUnparsedData){
     // console.log('loadNetworkData',parsedOrUnparsedData);
     var json = typeof(parsedOrUnparsedData) != "string" ? parsedOrUnparsedData : null;
@@ -679,7 +727,7 @@ var CruApp = React.createClass({
     var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
     console.log('loadNetworkData setting state', stateMods);
     this.setState(stateMods);
-  },
+  }
   // network-data importer
   findNetworkData(){
     if(this.state.networkDataRaw)
@@ -688,26 +736,54 @@ var CruApp = React.createClass({
       var data = {};
       data.details = {};
       if(window.heroesRaw){
-        console.log('starting heroesRaw parse');
-        data.details.heroes = JSON.parse(window.heroesRaw);
+        try{
+          if(typeof(window.heroesRaw) == "string"){
+            console.log('starting heroesRaw parse');
+            data.details.heroes = JSON.parse(window.heroesRaw);
+          }
+          else{
+            console.log('starting heroesRaw import');
+            data.details.heroes = window.heroesRaw;
+          }
+        } catch (ex){
+          console.error(ex);
+        }
       }
       if(window.lootRaw){
-        console.log('starting heroesRaw parse');
+        try{
+        if(typeof(window.lootRaw) == "string"){
+        console.log('starting lootRaw parse');
         data.details.loot = JSON.parse(window.lootRaw);
+        } else {
+          console.log('starting lootRaw import');
+          data.details.loot = window.lootRaw;
+        }
+        } catch (ex){
+          console.error(ex);
+        }
       }
       if(window.talentsRaw){
+        try{
+        if(typeof(window.talentsRaw) == "string"){
         console.log('starting talentsRaw parse');
         data.details.talents = JSON.parse(window.talentsRaw);
+        } else {
+          console.log('starting talentsRaw import');
+          data.details.talents = window.talentsRaw;
+        }
+        } catch (ex){
+          console.error(ex);
+        }
       }
       this.loadNetworkData(data);
     }
     else
       return;
-  },
+  }
   onClearGameDataParseClick(){
     console.log('onClearGameDataParseClick');
     this.setState({networkDataJson:null});
-  },
+  }
   // network data merge method
   onImportGameDataClick(heroes,loot,talents){
     // heroes looks like this:
@@ -747,14 +823,14 @@ var CruApp = React.createClass({
 
     this.setState({saved:data});
 
-  },
+  }
   changeSaveState(newData){
     var merged = this.mergeSaveState(newData);
     console.log('changeSaveState',merged);
     this.setState({saved: merged});
     cruTagGrid.store(merged);
     window.saved = merged;
-  },
+  }
   onImportSiteStateClick(){
     console.log('onImportSiteStateClick',arguments);
     // this does an overwrite, not a merge, perhaps allow a merge button?
@@ -778,10 +854,10 @@ var CruApp = React.createClass({
       // this should be able to be removed once we find out why it is putting things in a bad state
       window.location.reload(false);
     }
-  },
+  }
   importAppState(data,reload){
     if(!data && getIsLocalFileSystem())
-    throw "importAppState called without any data";
+      throw "importAppState called without any data";
     if(!data)
       return;
     var parsed = JSON.parse(data);
@@ -790,17 +866,17 @@ var CruApp = React.createClass({
     if(reload)
       window.location.reload(false);
     return parsed;
-  },
+  }
   onGenerateUrlClick(){
     var data = cruTagGrid.readOrDefault();
     var stringified = JSON.stringify(data);
     var baseUrl = window.location.origin + window.location.pathname;
     var url = baseUrl + exportToUrl("appGameState", stringified);
     this.setState({url:url,urlBase:baseUrl});
-  },
+  }
   mergeSaveState(newData){
     return copyObject(this.state.saved,newData);
-  },
+  }
   render(){
     var w = window,
     d = document,
@@ -826,6 +902,7 @@ var CruApp = React.createClass({
       heroMap[c.heroId] = c;
     });
     window.networkDataJson = this.state.networkDataJson;
+    window.crusaderGear = this.state.saved.crusaderGear;
     var importArea = getIsUrlLoaded() ? null : (<Exporter
                   maxWidth={maxWidth}
                   onImportTextChange={val => this.setState({textState:val})}
@@ -891,6 +968,9 @@ var CruApp = React.createClass({
             referenceData={this.props.referenceData}
             />
         </Pane>
+        <Pane label="FormationCalc">
+          <FormationCalc />
+        </Pane>
         <Pane label="Extension and raw Import/Export">
           <div>
             {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}
@@ -902,7 +982,7 @@ var CruApp = React.createClass({
         </div>
       </div>);
   }
-});
+}
 
 ReactDOM.render(
       <CruApp referenceData={jsonData} />,

@@ -4,3 +4,6 @@ chrome.crx
 *.zip
 .fake/
 .paket/
+js/*.react.js
+*.map
+test/*.jsx.tests.js
