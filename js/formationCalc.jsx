@@ -489,7 +489,7 @@
                         </div>
                     </div>
                 {kaineXpComponent}
-                <p>Dps Multiplier: {dpsCruId != null ? null : <span className="warning">no main dps is selected!</span>} {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
+                <p title="multiplier only, not actual dps number, also we do not account for achievements">Dps Multiplier: {dpsCruId != null ? null : <span className="warning">no main dps is selected!</span>} {data && data.globalDps? data.globalDps.toFixed ? data.globalDps.toFixed(1) : data.globalDps: null}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
                 {formationComponent}
                 </div>
