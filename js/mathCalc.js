@@ -489,7 +489,7 @@
   * @param {number} gearSlot
   */
   function legendaryFactor(crusader, gearSlot, debug = false) {
-    if (app.ignoreLegendaryFactor === true)
+    if (app.disableLegendaries === true)
       return 0;
     var itemId = getItemId(crusader.id, gearSlot);
     var level = Loot.getLLevel(itemId, crusader.loot);
@@ -1655,12 +1655,14 @@
     var gryphonSpot = getCrusaderSpot(app.formationIds, gryphon.id);
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
     // if the dps is in the column in front of gryphon
+    console.log('gryhon calc', {gryphonSpot,dpsCharSpot});
     if (getIsBehind(currentWorld,dpsCharSpot,gryphonSpot)) {
+      console.log('gryphon is behind dps!');
       var l0DpsMult = 1 + legendaryFactor(gryphon, 0);
       gryphon.globalDps *= l0DpsMult;
       gryphon.l0 = l0DpsMult;
     }
-    gryphon.globalDps *= 1 + 0.1 * monstersOnscreen * legendaryFactor(gryphon, 1);
+    gryphon.globalDps *= (1 + 0.1 * monstersOnscreen * legendaryFactor(gryphon, 1));
     if (dpsChar && dpsChar.tags.includes('supernatural')) {
       gryphon.globalDps *= 1 + legendaryFactor(gryphon, 2);
     }

@@ -277,6 +277,9 @@
             }
             app.mathCalc.setWorldById(initial.selectedWorldId, initial.formations[initial.selectedWorldId]);
             app.formationCalcInitial = initial;
+            if(initial.disableLegendaries === true){
+                app.disableLegendaries = true;
+            }
             initial.saveNames = Formation.getSaveNames(initial.selectedWorldId) || [];
             console.log('getInitialState', initial);
             return initial;
@@ -373,6 +376,7 @@
             }
         }
         render(){
+            app.disableLegendaries = this.state.disableLegendaries === true;
             var worlds = [
                 worldsWake,
                 descent,
@@ -475,7 +479,15 @@
                     }
                 </select>
                 </div>
-                <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
+                <div title="Your gold multiplier with no one in formation">
+                    <div className="adaptChildren">
+                        <div className="adaptChildren">
+                            <label>BaseGoldMult:</label>
+                            <TextInputUnc className="small" onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div></div>
+                        <div>
+                            <label className="adaptChildren">Disable Legendaries:</label><Checkbox checked={this.state.disableLegendaries === true} onChange={() => this.setState({disableLegendaries:this.state.disableLegendaries === true? false : true})} />
+                        </div>
+                    </div>
                 {kaineXpComponent}
                 <p>Dps Multiplier: {dpsCruId != null ? null : <span className="warning">no main dps is selected!</span>} {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
