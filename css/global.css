@@ -155,3 +155,10 @@ input.idols{
 div.adaptChildren > *{
     display: inline-block;
 }
+
+/* bootstrap's yellow background for warning */
+tr.warning > td, span.warning, div.warning, pre.warning{
+    background-color: #fcf8e3;
+    /* yellow on white is not so easy to see */
+    color: black;
+}

@@ -6606,8 +6606,8 @@ window.jsonData =
         }
       ],
       "gear": [
+        "ability - Under My Wing(dps for crusaders in the row in front of gryphon)",
         "alldps",
-        "ability - Under My Wing",
         "ability - Under My Wing (health increase)"
       ]
     },

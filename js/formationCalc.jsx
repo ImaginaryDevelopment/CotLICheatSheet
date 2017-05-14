@@ -47,8 +47,8 @@
         var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
         var availableCrusaders = jsonData.crusaders.filter(cru =>
             // crusaders in slots that aren't in formation
-            formation.filter(f => f != null && f != "0").find(f=> getCrusader(f).slot == cru.slot) == null
-            || (selectedCru && selectedCru.id == cru.id)
+            formation.filter(f => f != null && f != "0").find(f => getCrusader(f).slot == cru.slot) == null
+            || (selectedCru && (selectedCru.id == cru.id || /* account for allow all crusaders in the same bench slot to show */ selectedCru.slot == cru.slot))
         );
         return (<div>{slotNumber}
             <HeroSelect dontSort={true}
@@ -477,7 +477,7 @@
                 </div>
                 <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
                 {kaineXpComponent}
-                <p>Dps Multiplier: {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
+                <p>Dps Multiplier: {dpsCruId != null ? null : <span className="warning">no main dps is selected!</span>} {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
                 {formationComponent}
                 </div>
