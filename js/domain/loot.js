@@ -6,7 +6,7 @@
  * @property {string} name
 */
 // until this thing is made into more conventional modules
-var app = window;
+var app = global || window;
 
 //loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
 var LootV1 = (function () {

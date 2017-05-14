@@ -6,3 +6,16 @@ describe('Array', function() {
     });
   });
 });
+// (function(){
+// global.window = global;
+var Loot = require('../js/domain/loot');
+describe('loot module', () =>{
+ it("should exist", () =>{
+     console.log(Loot);
+    //  assert.ifError(global.Loot);
+    assert.notEqual(Loot, undefined);
+
+ })
+});
+
+// })(global);
