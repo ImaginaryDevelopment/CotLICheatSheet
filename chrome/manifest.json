@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Crusaders Automaton",
   "description": "This extension will get your crusaders data for you to import it at https://imaginarydevelopment.github.io/CotLICheatSheet/",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "page_action": {
     "default_title": "Crusader Automaton",
     "default_icon": "original_COTLI_Icon.png",
@@ -10,9 +10,6 @@
   },
   "background":{
     "scripts": ["background.js"]
-  },
-  "options_ui":{
-    "page": "popup.html"
   },
   "permissions": [
     "declarativeContent",
@@ -23,13 +20,12 @@
    "*://imaginarydevelopment.github.io/",
    "*://fantamondi.it/cotli/import",
     "*://cdn.jsdelivr.net/"
-   ]
+   ],
    "icons":{
     "16":"original_COTLI_Icon.png"
-   },
    },
    "options_ui":{
      "page":"options.html",
      "chrome_style": true
-W   }
+   }
 }

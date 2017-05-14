@@ -55,10 +55,34 @@ var onDataFetched = data => {
         window.data = JSON.parse(JSON.stringify(data));
     else window.data = data;
     var tabId;
-    chrome.tabs.create({ 'url': "https://imaginarydevelopment.github.io/CotLICheatSheet/" }, tab => {
-        tabId = tab.id;
-        console.log('tab created', tab);
-    });
+    try{
+        chrome.storage.sync.get({
+            site: ''
+            }, function(prefs) {
+                console.log("storage returned", prefs);
+                if(prefs!=null && prefs.site != null){
+                    switch (prefs.site){
+                        case "cotli":
+                            chrome.tabs.create({ 'url': "https://imaginarydevelopment.github.io/CotLICheatSheet/" }, tab => {
+                                tabId = tab.id;
+                                console.log('tab created', tab);
+                            });
+                        break;
+                        case "taised":
+                            chrome.tabs.create({ 'url': "http://fantamondi.it/cotli/import" }, tab =>{
+
+                        });
+                        break;
+                        default:
+                        break;
+                    }
+
+                }
+        });
+    } catch(ex){
+        // don't auto open anything eh?
+        console.error("Failed to read prefs or open tab");
+    }
     var tryInjectors = name => {
         try {
             var target = data.details[name];
@@ -69,18 +93,20 @@ var onDataFetched = data => {
             console.error('failed injection for ' + name, ex);
         }
     };
-    tryInjectors('heroes');
-    tryInjectors('loot');
-    tryInjectors('talents');
+    if(tabId != null){
+        tryInjectors('heroes');
+        tryInjectors('loot');
+        tryInjectors('talents');
+        data.details.objective_status = undefined;
+        try {
+            injectData(tabId, 'automatonRemainder', data);
+        } catch (ex) {
+            console.error('failed injection for remainder', data);
+        }
+        inject(tabId, 'importMeCaller', "window.importMe();");
+    }
 
     // trimming to see if we can get data to go at all, and hopefully trimming unimportant props
-    data.details.objective_status = undefined;
-    try {
-        injectData(tabId, 'automatonRemainder', data);
-    } catch (ex) {
-        console.error('failed injection for remainder', data);
-    }
-    inject(tabId, 'importMeCaller', "window.importMe();");
 };
 var sendRequest = () => {
     var oReq = new XMLHttpRequest();
