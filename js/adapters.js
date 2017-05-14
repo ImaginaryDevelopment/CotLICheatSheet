@@ -17,7 +17,7 @@
  * @property {number} reset_currency - idol count without including unspent idols
  * @property {number} reset_currency_spent -- unspent idols
  * @property {Object} stats - unmapped stats
- * @property {FormationSaveMap} formation_saves 
+ * @property {FormationSaveMap} formation_saves
  */
 var getTalentsAsArray = talents =>
 {
@@ -140,14 +140,15 @@ var mergeImportLoot = (data,loot) => {
             }
             // this looks to only handle lootV2 ?
             if(l.slot != null){
-              var rarity = l.rarity;
+              var itemId = l.lootId;
               if(l.isGolden || l.rarity === 5){
-                rarity = rarity + (l.isGolden? "g":"_");
-                if(rarity === 5 && !(l.countOrLegendaryLevel != null))
+                console.log("itemId", itemId, l);
+                itemId = itemId + (l.isGolden? "g":"_");
+                if(itemId === 5 && !(l.countOrLegendaryLevel != null))
                   console.log('failing to map properly', l);
-                rarity = rarity + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
+                itemId = itemId + (l.rarity === 5 ? (l.countOrLegendaryLevel || 1) : "");
               }
-              crusaderGear[l.heroSlotId]["s" + l.slot] = l.lootId;
+              crusaderGear[l.heroSlotId]["s" + l.slot] = itemId;
             }
             if(l.heroSlotId==="18")
             console.log('mapped loot?', l, crusaderGear[l.heroSlotId]);
@@ -427,7 +428,7 @@ var Formation = (() =>{
    * @param {number} worldId
    */
   var makeKey = worldId => "worldSaves" + worldId;
-  exports.getWorldSaves = 
+  exports.getWorldSaves =
     selectedWorldId =>{
         var key = makeKey(selectedWorldId);
         // copyObject will pass the default value through if the read returns nothing
@@ -437,7 +438,7 @@ var Formation = (() =>{
   /**
    * @param {number} selectedWorldId
    */
-  exports.getSaveNames = 
+  exports.getSaveNames =
     selectedWorldId =>{
       var oldWorldSaves = exports.getWorldSaves(selectedWorldId);
       return Object.keys(oldWorldSaves);
@@ -449,7 +450,7 @@ var Formation = (() =>{
    * @param {string} dpsChar
    * @param {number?} kaineXP
    */
-  exports.saveFormation = 
+  exports.saveFormation =
     (selectedWorldId, saveName, formationIds, dpsChar,kaineXP) => {
       var key = makeKey(selectedWorldId);
 
@@ -465,7 +466,7 @@ var Formation = (() =>{
    * @param {number} selectedWorldId
    * @param {string} saveName
   */
-  exports.getFormation = 
+  exports.getFormation =
     (worldId, saveName) =>{
       var key = makeKey(worldId);
       var worldSaves = app.readIt(key);
@@ -493,14 +494,14 @@ var Formation = (() =>{
       result[campaignId] = oldWorldFormations || {};
       campaignSlotFormations.map(slotSave => {
         var saveSlot = slotSave.save_id;
-        console.log('mergeImportFormations. slotSave.formation', slotSave.formation);
+        // console.log('mergeImportFormations. slotSave.formation', slotSave.formation);
         // need to adapt this from hero_ids to formationIds ("01a", "11c", ...)
         var formationIds = slotSave.formation.map(heroId =>
           // player data uses -1 for no one in slot
           heroId < 1 ? null :
           crusaders.find(c => c.heroId == heroId).id
         );
-        console.log('mergeImportFormations formationIds', formationIds);
+        // console.log('mergeImportFormations formationIds', formationIds);
         // dpsChar is undefined
         result[campaignId][saveSlot] = {formationIds:formationIds, dpsChar:undefined, kaineXP:undefined};
       });

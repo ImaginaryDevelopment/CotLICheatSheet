@@ -89,40 +89,60 @@ var CruTagRowTagsOrGear = props =>{
       return props.gearTd;
 };
 
-var GearSelect = props => {
+var GearSelect = (props,debug) => {
   // v1/1.5 loot should be transformed on url or localstorage load
-  var cruGear = props.cruGear;
-  var slot = props.slot;
-  var gearInfo = Loot.getGearInfo(cruGear);
-  var itemIdentification = gearInfo && gearInfo[slot] || 0;
-  var gearInfo = itemIdentification && props.gearReference && props.gearReference[3] && Loot.getLootFromId(itemIdentification, props.gearReference[3]);
-  var rarity = Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]);
 
-  var slotGear = props.gearReference && props.gearReference[3]
-    .filter(g => g.slot==slot)
-    .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
-  // this appears to run whenever there isn't gear declared for this crusader
-  var getOptionsV1 = () =>
-    props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+  if(debug === true)
+    console.group("GearSelect");
+  try{
 
-  var $options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + props.gearPossibilities[g.rarity]}</option>))
-  if(slotGear)
-    $options.unshift(<option key={0}>None</option>);
+    var cruGear = props.cruGear;
+    var slot = props.slot;
+    var gearInfo = Loot.getGearInfo(cruGear);
+    var itemIdentification = gearInfo && gearInfo[slot] || 0;
+    var gearRef = props.gearReference && props.gearReference[3];
+    var gearInfo = itemIdentification && gearRef && Loot.getLootFromId(itemIdentification, props.gearReference[3]);
+    var rarity = Loot.getRarityByItemId(itemIdentification, gearRef);
 
-  var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
-  var selectV = (slotGear != null) ? 2 : 1;
-  var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={Loot.getLLevel(itemIdentification)} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
-  var value = gearInfo && gearInfo.lootId || (itemIdentification && Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]));
+    var slotGear = gearRef
+      .filter(g => g.slot==slot)
+      .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
+    // this appears to run whenever there isn't gear declared for this crusader
+    var getOptionsV1 = () =>
+      props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
 
-  return (<div data-component="gearSelect">
-    <select key={"gear" + slot}
-            title={JSON.stringify(gearInfo) + '\r\n'}
-            data-valueV={selectValueV}
-            data-v={selectV}
-            data-value={value}
-            value={value}
-            onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)}
-            name={"slot" + slot}>{$options}</select>{$ll}{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+    var $options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + props.gearPossibilities[g.rarity]}</option>))
+    if(slotGear)
+      $options.unshift(<option key={0}>None</option>);
+
+    var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
+    var selectV = (slotGear != null) ? 2 : 1;
+    var legendaryValue = rarity >= 5 && Loot.getLLevel(itemIdentification, props.gearReference && props.gearReference[3]);
+    if(rarity >= 5){
+      console.log("legendaryValue",legendaryValue, itemIdentification, cruGear, gearInfo);
+    }
+    var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={legendaryValue} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
+    // console.log("slotGear",slotGear,"gearReference", props.gearReference);
+    if(!(props.gearReference != null))
+      throw Error("bad gearReference");
+
+    var value = gearInfo && gearInfo.lootId
+      ||
+      (itemIdentification && Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]));
+
+    return (<div data-component="gearSelect">
+      <select key={"gear" + slot}
+              title={JSON.stringify(gearInfo) + '\r\n'}
+              data-valueV={selectValueV}
+              data-v={selectV}
+              data-value={value}
+              value={value}
+              onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)}
+              name={"slot" + slot}>{$options}</select>{$ll}{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+  } finally{
+    if(debug === true)
+      console.groupEnd();
+  }
 };
 
 var CruTagRowSlotGear = props =>{

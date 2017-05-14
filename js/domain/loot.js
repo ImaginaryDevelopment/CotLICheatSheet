@@ -149,7 +149,7 @@ var LootV2 = (function () {
     var x = compound.toString();
     var compoundIndex = x.indexOf("_");
     if(compoundIndex >=0 && x.length > compoundIndex)
-      return x1.slice(compoundIndex + 1);
+      return x.slice(compoundIndex + 1);
     // if there is no _ and it is rarity 5, then fallback to 1
     var rarity = getRarityByItemId(compound, refGear);
     if(rarity == 5)
