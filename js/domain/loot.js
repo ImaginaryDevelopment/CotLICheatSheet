@@ -6,10 +6,11 @@
  * @property {string} name
 */
 // until this thing is made into more conventional modules
-var app = global || window;
+
+var app = (module && module.exports || module) || global || window;
 
 //loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
-var LootV1 = (function () {
+var LootV1 = app.LootV1 = (function () {
   var my = {};
   // 0 is none, 1 is common, 2 is uncommon, 3 is rare, 4 epic, 5 legendary
   // examples 1, "1", "4g", "5g2"
@@ -80,8 +81,7 @@ var LootV1 = (function () {
   my.changeLLevel = changeLLevel;
   return my;
 }());
-
-var LootV2 = (function () {
+var LootV2 = app.LootV2 = (function () {
   var my = {};
   /**
    * @param {number | string} lootIdOrCompound
@@ -168,7 +168,7 @@ var LootV2 = (function () {
   return my;
 }());
 
-var Loot = (function(){
+var Loot = app.Loot = (function(){
   var my = {};
   // id can be V1 compound, lootId, or lootIdCompound (containing legendary level)
   my.getRarityByItemId = (id,refGear) => {
@@ -220,5 +220,4 @@ var Loot = (function(){
     return result;
   };
   return my;
-
 }());
