@@ -7,7 +7,10 @@
 */
 // until this thing is made into more conventional modules
 
-var app = (module && module.exports || module) || global || window;
+var app = (typeof module !== "undefined" && module && module.exports
+  || typeof module !== "undefined" && module)
+  || typeof global !== "undefined" && global
+  || window;
 
 //loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
 var LootV1 = app.LootV1 = (function () {
