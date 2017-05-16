@@ -118,9 +118,6 @@ var GearSelect = (props,debug) => {
     var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
     var selectV = (slotGear != null) ? 2 : 1;
     var legendaryValue = rarity >= 5 && Loot.getLLevel(itemIdentification, props.gearReference && props.gearReference[3]);
-    if(rarity >= 5){
-      console.log("legendaryValue",legendaryValue, itemIdentification, cruGear, gearInfo);
-    }
     var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={legendaryValue} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
     // console.log("slotGear",slotGear,"gearReference", props.gearReference);
     if(!(props.gearReference != null))
