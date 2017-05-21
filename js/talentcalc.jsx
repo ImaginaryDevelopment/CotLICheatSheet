@@ -135,6 +135,14 @@ app.Inputs = props =>
             stormsBuilding:getTalentMeta(getStormsBuildingDps, props.stormsBuilding, 15, getNextCost("stormsBuilding"))
     };
 
+                            // td1={(<td>{getCurrentStormRider(props.rideTheStorm) * 1.5}</td>)}
+                            // td2={(<td>{getCurrentStormRider(props.rideTheStorm + 1) * 1.5}</td>)}
+    var currentStormRider = getCurrentStormRider(props.rideTheStorm) * 1.5;
+    if(typeof currentStormRider === "number")
+        currentStormRider= currentStormRider.toFixed(2);
+    var nextStormRider = getCurrentStormRider(props.rideTheStorm + 1) * 1.5;
+    if(typeof nextStormRider === "number")
+        nextStormRider= nextStormRider.toFixed(2);
     var rows = [
 
     ];
@@ -277,8 +285,8 @@ app.Inputs = props =>
                             max="25"
                             costForNextLevel={getNextCost("rideTheStorm")}
                             onChange={props.onRideTheStormChange}
-                            td1={(<td>{getCurrentStormRider(props.rideTheStorm) * 1.5}</td>)}
-                            td2={(<td>{getCurrentStormRider(props.rideTheStorm + 1) * 1.5}</td>)}
+                            td1={(<td>{currentStormRider}</td>)}
+                            td2={(<td>{nextStormRider}</td>)}
                             />
             <tr><th>Cost for next level</th><td>{getNextCost("rideTheStorm")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("rideTheStorm")}</td></tr>
