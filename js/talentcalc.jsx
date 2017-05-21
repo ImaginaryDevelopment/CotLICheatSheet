@@ -64,25 +64,6 @@ app.TalentHeaderRow = props =>{
             </tr>);
 
 };
-var getTalentMeta = (fGetDps, value, max, costForNextLevel) =>{
-    var dpsBuff = fGetDps(value);
-    var nextDps = fGetDps(value + 1);
-    var showingMessage = typeof dpsBuff == "string";
-    var showingMax = false;
-    // max is sometimes a string
-    if(value != null && max != null && value == max){
-        showingMax = true;
-    }
-    var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
-    return {
-        dpsBuff,
-        nextDps,
-        showingMessage,
-        showingMax,
-        impr,
-        score: showingMax? "max" : (impr / costForNextLevel) * 100000
-    };
-};
 
 app.TalentInput = props =>{
     var meta = getTalentMeta(props.getDps, props.value, props.max, props.costForNextLevel);
@@ -121,7 +102,10 @@ app.Inputs = props =>
     var cooldown = app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
     var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
-    var getNextCost = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name] ? props.talents[name].costs[props[name] + 1] : undefined;
+    var getCanReadTalent = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name];
+    var getNextCost = name => getCanReadTalent(name) ? props.talents[name].costs[props[name] + 1] : undefined;
+    var getSpent = name => getCanReadTalent(name) ? props.talents[name].costs.map((cost,i)=> i <= props[name] ? cost : 0).reduce((a,b) => a + b,0) : null;
+    var getCumulativeCost = getSpent;
     // var passiveCriticalsNextCost = props.passiveCriticals != null && props.talents.passiveCriticals.costs.length > props.passiveCriticals ? props.talents.passiveCriticals.costs[props.passiveCriticals + 1]: undefined;
     var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
     var getOverDps = x => ((1 + getEnchantBuff(x)*props.mainDpsEP) - (1 + 0.25*props.mainDpsEP)) / (1 + 0.25 * props.mainDpsEP);
@@ -141,23 +125,41 @@ app.Inputs = props =>
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
     var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
     var getStormsBuildingDps = x => 480*(1-(Math.min(cooldown / 100,0.5)))/getTimePerStormRider(x) - 1;
-    var getCumulativeCost = name =>{
-        //add 1 because the arrays start with 0 for level 0
-        var canCalc = props[name] != null && props.talents[name].costs != null && props[name] <= props.talents[name].costs.length + 1;
-        if(canCalc){
-            return (props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0));
-        } else {
-            return inspect(undefined,name, {Name:props[name]});
-        }
-    };
+    // var getCumulativeCost = name =>{
+    //     //add 1 because the arrays start with 0 for level 0
+    //     var canCalc = props[name] != null && props.talents[name].costs != null && props[name] <= props.talents[name].costs.length + 1;
+    //     if(canCalc){
+    //         return (props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0));
+    //     } else {
+    //         return inspect(undefined,name, {Name:props[name]});
+    //     }
+    // };
     var getStormRiderPercentageFromRarity = rarity =>
     {
         var map = props.referenceData.talents.rideTheStorm.rarityMultMap[rarity];
         return map? map.mult : undefined;
     };
+    // var meta = getTalentMeta(props.getDps, props.value, props.max, props.costForNextLevel);
+    var getPassiveCrits = x => props.critChance < 1 ? "no crit chance entered":props.critChance * x / 100;
+    var getSurplusCooldown = x => (cooldown - 0.5 )*x/4
     var scores = {
-
+            passiveCriticals: getTalentMeta(getPassiveCrits, props.passiveCriticals, 50, getNextCost("passiveCriticals") ),
+            surplusCooldown:getTalentMeta(getSurplusCooldown, props.surplusCooldown, 50, getNextCost("surplusCooldown")),
+            overenchanted:getTalentMeta(getOverDps, props.overenchanted, 50, getNextCost("overenchanted")),
+            // assumes you have no empty slots
+            setBonus:getTalentMeta(x => x * 0.2, props.setBonus, 50, getNextCost("setBonus")),
+            sharingIsCaring:getTalentMeta(getSharingDps, props.sharingIsCaring, 14, getNextCost("sharingIsCaring")),
+            fastLearners:getTalentMeta(getFastLearnersDps, props.fastLearners, 18, getNextCost("fastLearners")),
+            wellEquipped:getTalentMeta(getWellEquippedDps, props.wellEquipped, 50, getNextCost("wellEquipped")),
+            swapDay:getTalentMeta(getSwapDayDps, props.swapDay, 50, getNextCost("swapDay")),
+            rideTheStorm: getTalentMeta(getRideTheStormMagnifiedDps, props.rideTheStorm, 25, getNextCost("rideTheStorm")),
+            // <TalentInput    value:{props.stormsBuilding} getDps={getStormsBuildingDps} max="15" costForNextLevel={getNextCost("stormsBuilding")}
+            stormsBuilding:getTalentMeta(getStormsBuildingDps, props.stormsBuilding, 15, getNextCost("stormsBuilding"))
     };
+
+    var rows = [
+
+    ];
 
 
 

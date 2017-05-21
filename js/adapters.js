@@ -520,3 +520,23 @@ var Formation = (() =>{
 
   return exports;
 })();
+
+var getTalentMeta = (fGetDps, value, max, costForNextLevel) =>{
+    var dpsBuff = fGetDps(value);
+    var nextDps = fGetDps(value + 1);
+    var showingMessage = typeof dpsBuff == "string";
+    var showingMax = false;
+    // max is sometimes a string
+    if(value != null && max != null && value == max){
+        showingMax = true;
+    }
+    var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
+    return {
+        dpsBuff,
+        nextDps,
+        showingMessage,
+        showingMax,
+        impr,
+        score: showingMax? "max" : (impr / costForNextLevel) * 100000
+    };
+  };
