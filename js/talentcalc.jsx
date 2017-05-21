@@ -100,7 +100,7 @@ app.Inputs = props =>
     var getSharingDps = x => (calcEffectiveEP(x, props.mainDpsEP, props.dpsSlotEP)*currentEnchantBuff  - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff * (idkMyBffJill)+1);
     var getFastLearnerMinutes = x => (1-0.05*x) * 300;
     var getFastLearnersDps = x => 300 / (getFastLearnerMinutes(x) - 1);
-    var getWellEquippedDps = x => 0.2*x*props.mainDpsEpics;
+    var getWellEquippedDps = Talents.getWellEquippedDps(props.mainDpsEpics);
     var getSwapDayDps = x => 0.2*x*(props.dpsSlotEpics - props.mainDpsEpics);
     var getWellEquippedDps = x => 0.2*x*props.mainDpsEpics;
         //{switch (x) {case 0: return 0.1; case 1: return 0.11; case 2: return 0.125; case 3: return 0.15; case 4: return 0.2; case "4g" : return 0.25; case 5: return 0.4; case "5g": return 0.5;}}
@@ -111,15 +111,6 @@ app.Inputs = props =>
     // window.getRideTheStormMagnifiedDps = getRideTheStormMagnifiedDps;
     var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
     var getStormsBuildingDps = x => 480*(1-(Math.min(cooldown / 100,0.5)))/getTimePerStormRider(x) - 1;
-    // var getCumulativeCost = name =>{
-    //     //add 1 because the arrays start with 0 for level 0
-    //     var canCalc = props[name] != null && props.talents[name].costs != null && props[name] <= props.talents[name].costs.length + 1;
-    //     if(canCalc){
-    //         return (props.talents[name].costs.filter((c,i) => +i + 1 <= +props[name]).reduce((a,b) => a + b, 0));
-    //     } else {
-    //         return inspect(undefined,name, {Name:props[name]});
-    //     }
-    // };
     var getStormRiderPercentageFromRarity = rarity =>
     {
         var map = props.referenceData.talents.rideTheStorm.rarityMultMap[rarity];
@@ -127,8 +118,8 @@ app.Inputs = props =>
     };
     // var meta = getTalentMeta(props.getDps, props.value, props.max, props.costForNextLevel);
     var getTalentMeta = Talents.getTalentMeta;
-    var getPassiveCrits = x => props.critChance < 1 ? "no crit chance entered":props.critChance * x / 100;
-    var getSurplusCooldown = x => (cooldown - 0.5 )*x/4
+    var getPassiveCrits = x => Talents.getPassiveCrits(props.critChance,x);
+    var getSurplusCooldown = x => Talents.getSurplusCooldown(cooldown,x);
     var scores = {
             passiveCriticals: getTalentMeta(getPassiveCrits, props.passiveCriticals, 50, getNextCost("passiveCriticals") ),
             surplusCooldown:getTalentMeta(getSurplusCooldown, props.surplusCooldown, 50, getNextCost("surplusCooldown")),

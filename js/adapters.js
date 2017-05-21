@@ -548,6 +548,7 @@ var Talents = (()=>{
     if(value != null && max != null && value == max){
         showingMax = true;
     }
+    // improvement
     var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
     return {
         dpsBuff,
@@ -559,6 +560,23 @@ var Talents = (()=>{
     };
   };
   var getCooldown = exports.getCooldown = (c,u,r,e) => (c * 0.5 + u + r * 1.5 + e * 2) / 100;
+
+  /**
+   *
+   * @param {number} critChance
+   * @param {number} lvl
+   * @return {number|string}
+   */
+  exports.getPassiveCrits = (critChance,lvl) => critChance < 1 ? "no crit chance entered":critChance * lvl / 100;
+  /**
+   * @param {number} cooldown
+   * @param {number} lvl
+   * @return {number}
+   */
+  exports.getSurplusCooldown = (cooldown,lvl) => (cooldown - 0.5 )* lvl /4;
+  exports.getWellEquippedDps =
+    mainDpsEpics =>
+      lvl => 0.2*lvl*mainDpsEpics;
   return exports;
 
 })();
