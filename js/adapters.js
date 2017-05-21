@@ -257,7 +257,23 @@ var crusaderFilter = (ownedCrusaderIds,crusader,filterOwned,filterTags,isBuildin
   var result = ownershipFilter && tagFilter && formationFilter && epFilter;
   // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, epFilter,epFilterInput, result);
   return result;
-  };
+};
+var heroSelectSorter = (crusaders,dontSort) =>{
+  var c = crusaders.slice(0);
+    if(!dontSort)
+    c.sort((a,b)=> {
+        if(a.tags.includes("dps") && !b.tags.includes("dps"))
+            return -1;
+        if(!a.tags.includes("dps") && b.tags.includes("dps"))
+            return 1;
+        if(a.slot < b.slot)
+            return -1;
+        if(a.slot > b.slot)
+            return 1;
+        return 0;
+    });
+  return c;
+}
 
 var comparer =
   (a,b) =>
@@ -521,7 +537,9 @@ var Formation = (() =>{
   return exports;
 })();
 
-var getTalentMeta = (fGetDps, value, max, costForNextLevel) =>{
+var Talents = (()=>{
+  var exports = {};
+  var getTalentMeta = exports.getTalentMeta = (fGetDps, value, max, costForNextLevel) =>{
     var dpsBuff = fGetDps(value);
     var nextDps = fGetDps(value + 1);
     var showingMessage = typeof dpsBuff == "string";
@@ -540,3 +558,7 @@ var getTalentMeta = (fGetDps, value, max, costForNextLevel) =>{
         score: showingMax? "max" : (impr / costForNextLevel) * 100000
     };
   };
+  var getCooldown = exports.getCooldown = (c,u,r,e) => (c * 0.5 + u + r * 1.5 + e * 2) / 100;
+  return exports;
+
+})();

@@ -2,20 +2,7 @@
 // app.reactClasses = app.reactClasses || {};
 app.HeroSelect = props =>
 {
-    var crusaders = props.crusaders.slice(0);
-    if(!props.dontSort)
-    crusaders.sort((a,b)=> {
-        if(a.tags.includes("dps") && !b.tags.includes("dps"))
-            return -1;
-        if(!a.tags.includes("dps") && b.tags.includes("dps"))
-            return 1;
-        if(a.slot < b.slot)
-            return -1;
-        if(a.slot > b.slot)
-            return 1;
-
-        return 0;
-    });
+    var crusaders = heroSelectSorter(props.crusaders, props.dontSort);
     var options = crusaders
         .map(cru =>
         <option key={cru.id} className={cru.tags.includes("dps")? "dps" : ""} value={cru.id}>{cru.displayName} ({cru.slot})</option>
@@ -47,7 +34,6 @@ app.HeroSelect.PropTypes = {
     selectedHeroId: React.PropTypes.string,
     onHeroChange: React.PropTypes.func.isRequired
 };
-app.getCooldown = (c,u,r,e) => (c * 0.5 + u + r * 1.5 + e * 2) / 100;
 
 app.TalentHeaderRow = props =>{
     return (            <tr data-row={props.index} className="dpsHeaderRow">
@@ -66,7 +52,7 @@ app.TalentHeaderRow = props =>{
 };
 
 app.TalentInput = props =>{
-    var meta = getTalentMeta(props.getDps, props.value, props.max, props.costForNextLevel);
+    var meta = Talents.getTalentMeta(props.getDps, props.value, props.max, props.costForNextLevel);
     var dpsText = meta.showingMessage? meta.dpsBuff : meta.dpsBuff.toFixed(2);
     var scoreText = meta.showingMessage ? meta.dpsBuff : meta.showingMax? meta.score : (meta.score.toFixed(2) + '%');
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
@@ -99,7 +85,7 @@ app.RaritySelect = props =>{
 
 app.Inputs = props =>
 {
-    var cooldown = app.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
+    var cooldown = app.Talents.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
     var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
     var getCanReadTalent = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name];
@@ -140,6 +126,7 @@ app.Inputs = props =>
         return map? map.mult : undefined;
     };
     // var meta = getTalentMeta(props.getDps, props.value, props.max, props.costForNextLevel);
+    var getTalentMeta = Talents.getTalentMeta;
     var getPassiveCrits = x => props.critChance < 1 ? "no crit chance entered":props.critChance * x / 100;
     var getSurplusCooldown = x => (cooldown - 0.5 )*x/4
     var scores = {
