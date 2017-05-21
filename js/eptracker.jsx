@@ -616,10 +616,55 @@ var HeroGameData = props => {
 };
 HeroGameData.displayName = 'HeroGameData';
 
-var LegendaryReduction = props =>
-props.legendaryReductionDate ?
-  (<div className="onGreen">Legendary Cost Reduction at {props.legendaryReductionDate.toLocaleString()}</div>)
-  : null
+var LegendaryReduction = props =>{
+  var ldr = props.legendaryReductionDate;
+  if(!(ldr != null))
+    return null;
+    try{
+      if(!(ldr instanceof Date))
+        ldr = new Date(ldr);
+      else // clone date object
+        ldr = new Date(ldr.getTime());
+
+      var now = new Date();
+
+      while(ldr.getTime() < now.getTime()){
+        ldr.setDate(ldr.getDate()+7);
+      }
+      var day = ldr.getDay();
+      var dayText;
+      switch(day){
+        case 0:
+        dayText = "Sunday";
+        break;
+        case 1:
+        dayText="Monday";
+        break;
+        case 2:
+        dayText="Tuesday";
+        break;
+        case 3:
+        dayText="Wednesday";
+        break;
+        case 4:
+        dayText="Thursday";
+        break;
+        case 5:
+        dayText="Friday";
+        break;
+        case 6:
+        dayText="Saturday";
+        break;
+        default:
+        console.error("unexpected day : "+ day);
+      }
+
+      return (<div className="onGreen">Legendary Cost Reduction on {dayText || day} {ldr.toLocaleString()}</div>);
+    } catch(ex){
+      console.error(ex);
+      return null;
+    }
+}
 
 var Exporter = props =>
 (
@@ -754,6 +799,7 @@ class CruApp extends React.Component {
       heroMap[c.heroId] = c;
     });
     var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000): null;
+    console.log("legendaryReductionImport", legendaryReductionDate || json.details.stats);
     var getOrGetFromDetails = name => json[name] || (json.details && json.details[name]);
 
     // account for pasting just the heroes section of json, or the whole data packet
@@ -863,7 +909,7 @@ class CruApp extends React.Component {
       mergeImportLoot(data,loot)
       console.log('imported loot game data');
     }
-    console.log('importing talents?', talents);
+    // console.log('importing talents?', talents);
     if(talents){
       console.log('onImportGameDataClick talents', talents);
       mergeImportTalents(data,talents);
@@ -991,7 +1037,7 @@ class CruApp extends React.Component {
                   json={this.state.lastRead}
                   importText={importText}
                   />);
-
+                  var ldr = this.state.saved && this.state.saved.legendaryReductionDate;
     return (<div>
         <div>{JSON.stringify(this.state.error)}</div>
 
@@ -1002,7 +1048,7 @@ class CruApp extends React.Component {
           }}>
         <Pane label="Crusaders">
           <div>
-            <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
+            <LegendaryReduction legendaryReductionDate={ldr} />
             <CruTagGrid model={props.referenceData}
                         slotSort={this.state.saved.slotSort}
                         epSort={this.state.saved.epSort}

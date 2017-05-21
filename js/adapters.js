@@ -142,7 +142,7 @@ var mergeImportLoot = (data,loot) => {
             if(l.slot != null){
               var itemId = l.lootId;
               if(l.isGolden || l.rarity === 5){
-                console.log("itemId", itemId, l);
+                // console.log("itemId", itemId, l);
                 itemId = itemId + (l.isGolden? "g":"_");
                 if(itemId === 5 && !(l.countOrLegendaryLevel != null))
                   console.log('failing to map properly', l);
@@ -173,7 +173,7 @@ var mergeImportTalents = (data,talents) =>{
   talents.filter(t =>
     t.name != null
   ).map(t =>
-    data[inspect(t,'importing talent level').name] = t.level
+    data[t.name] = t.level
   )
 };
 
