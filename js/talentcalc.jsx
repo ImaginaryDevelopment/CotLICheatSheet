@@ -64,26 +64,41 @@ app.TalentHeaderRow = props =>{
             </tr>);
 
 };
+var getTalentMeta = (fGetDps, value, max, costForNextLevel) =>{
+    var dpsBuff = fGetDps(value);
+    var nextDps = fGetDps(value + 1);
+    var showingMessage = typeof dpsBuff == "string";
+    var showingMax = false;
+    // max is sometimes a string
+    if(value != null && max != null && value == max){
+        showingMax = true;
+    }
+    var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
+    return {
+        dpsBuff,
+        nextDps,
+        showingMessage,
+        showingMax,
+        impr,
+        score: showingMax? "max" : (impr / costForNextLevel) * 100000
+    };
+};
 
 app.TalentInput = props =>{
-    window.props = props;
-    var dpsBuff = props.getDps(props.value);
-    var nextDps = props.getDps(props.value + 1);
-    var showingMessage = typeof(dpsBuff) == "string";
-    // (F19+1)-(E19+1)/(E19+1)
-    var impr = (nextDps - dpsBuff)/(dpsBuff + 1);
-    //=IFERROR(IF(and(B$13 >= 1,B20<=$J$23), G19/B20*100000, 0),0)
-    var score = impr / props.costForNextLevel * 100000;
-    var dpsText = showingMessage? dpsBuff : dpsBuff.toFixed(2);
-    var scoreText = showingMessage ? dpsBuff : score.toFixed(2) + '%';
+    var meta = getTalentMeta(props.getDps, props.value, props.max, props.costForNextLevel);
+    var dpsText = meta.showingMessage? meta.dpsBuff : meta.dpsBuff.toFixed(2);
+    var scoreText = meta.showingMessage ? meta.dpsBuff : meta.showingMax? meta.score : (meta.score.toFixed(2) + '%');
     return (<tr data-row={props.dataRow? props.dataRow: undefined}>
         <th>Current level</th>
         <td><TextInputUnc type="number" min="0" step={props.step} max={props.max? props.max : undefined} value={props.value} onChange={props.onChange} /></td>
         {props.td1 ? props.td1: <td />}
         {props.td2 ? props.td2: <td />}
         <td className="textcenter">{dpsText}</td>
-        <td data-talent={props.dataRow} className="textcenter">{!showingMessage && typeof(nextDps) =="number" ? nextDps.toFixed(2) : null}</td>
-        <td className="textcenter">{!showingMessage && typeof(nextDps) == "number" ? (impr * 100).toFixed(2) + '%' : null}</td>
+        <td data-talent={props.dataRow}
+            className="textcenter">
+            {!meta.showingMessage && typeof(meta.nextDps) =="number" ? meta.nextDps.toFixed(2) : null}
+        </td>
+        <td className="textcenter">{!meta.showingMessage && typeof(meta.nextDps) == "number" ? (meta.impr * 100).toFixed(2) + '%' : null}</td>
         <td className="textcenter">{scoreText}</td>
     </tr>)
 };
@@ -139,6 +154,9 @@ app.Inputs = props =>
     {
         var map = props.referenceData.talents.rideTheStorm.rarityMultMap[rarity];
         return map? map.mult : undefined;
+    };
+    var scores = {
+
     };
 
 
@@ -205,7 +223,8 @@ app.Inputs = props =>
                 <th colSpan="2">Idols Spent on DPS Talents:</th>
                 <td></td>
                 <td />
-                <th>Total Idols:</th>
+                <th />
+                {/*<th>Total Idols:</th>*/}
                 </tr>
             <tr data-row="18">
                 <th><h3>Passive Criticals</h3></th>
@@ -216,14 +235,16 @@ app.Inputs = props =>
                 <th>percent improvement</th>
                 <th>Score(larger is better)</th>
                 <td></td>
-                <td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>
+                {/*<td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>*/}
+                <td />
             </tr>
             <TalentInput dataRow="passiveCriticals" value={props.passiveCriticals} getDps={x => props.critChance < 1 ? "no crit chance entered":props.critChance * x / 100} max="50" costForNextLevel={getNextCost("passiveCriticals")} onChange={props.onPassiveCriticalsChange} />
                 <tr>
                     <td>Cost for Next Level</td><td>{props.talents.passiveCriticals.costs[props.passiveCriticals + 1]}</td>
                 </tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("passiveCriticals")}</td></tr>
-            <TalentHeaderRow index="22" title="Surplus Cooldown" td5={<td>Unspent Idols:</td>}  />
+            {/* this was on index 22 : td5={<td>Unspent Idols:</td>}*/}
+            <TalentHeaderRow index="22" title="Surplus Cooldown"   />
             <TalentInput value={props.surplusCooldown} dataRow="surplusCooldown" getDps={x => (cooldown - 0.5 )*x/4}  max="50" costForNextLevel={getNextCost("surplusCooldown")} onChange={props.onSurplusCooldownChange} />
             <tr><th>Cost for next level</th><td>{getNextCost("surplusCooldown")}</td></tr>
             <tr><td>Cumulative Cost</td><td>{getCumulativeCost("surplusCooldown")}</td></tr>
