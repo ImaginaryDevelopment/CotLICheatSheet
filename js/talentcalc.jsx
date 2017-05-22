@@ -88,6 +88,8 @@ app.Inputs = props =>
     var cooldown = app.Talents.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
     var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
     var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
+    var {cooldown, dpsHero, effectiveEP} = Talents.getTalentDisplay();
+
     var getCanReadTalent = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name];
     var getNextCost = name => getCanReadTalent(name) ? props.talents[name].costs[props[name] + 1] : undefined;
     var getSpent = name => getCanReadTalent(name) ? props.talents[name].costs.map((cost,i)=> i <= props[name] ? cost : 0).reduce((a,b) => a + b,0) : null;
