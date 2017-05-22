@@ -31,6 +31,8 @@ const trim = function(s) {
     return s.trim();
 };
 
+const createRange = n => Array.apply(null, {length:n}).map(Number.call, Number);
+
 const debounce = (function(){
         var timer = 0;
         return (function(callback, ms){
