@@ -577,6 +577,36 @@ var Talents = (()=>{
   exports.getWellEquippedDps =
     mainDpsEpics =>
       lvl => 0.2*lvl*mainDpsEpics;
+
+  /**
+   * @typedef TrinketContainer
+   * @type {Object}
+   * @property {number} common
+   * @property {number} uncommon
+   * @property {number} rare
+   * @property {number} epic
+   */
+
+  /**
+   * @typedef TalentInfo
+   * @type {Object}
+   * @property {number} value
+   * @property {number} max
+   * @property {function} getCost
+   */
+
+  /**
+   * @typedef TalentInputContainer
+   * @type {Object}
+   * @property {TrinketContainer} tc
+   * @property {Object<string,TalentInfo>} td
+   */
+  exports.getTalentDisplay = () => {
+    var cooldown = app.Talents.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
+    var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
+    var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
+    return {cooldown, dpsHero, effectiveEP};
+  }
   return exports;
 
 })();
