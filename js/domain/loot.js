@@ -6,10 +6,14 @@
  * @property {string} name
 */
 // until this thing is made into more conventional modules
-var app = window;
+
+var app = (typeof module !== "undefined" && module && module.exports
+  || typeof module !== "undefined" && module)
+  || typeof global !== "undefined" && global
+  || window;
 
 //loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
-var LootV1 = (function () {
+var LootV1 = app.LootV1 = (function () {
   var my = {};
   // 0 is none, 1 is common, 2 is uncommon, 3 is rare, 4 epic, 5 legendary
   // examples 1, "1", "4g", "5g2"
@@ -80,35 +84,28 @@ var LootV1 = (function () {
   my.changeLLevel = changeLLevel;
   return my;
 }());
-
-var LootV2 = (function () {
+var LootV2 = app.LootV2 = (function () {
   var my = {};
   /**
    * @param {number | string} lootIdOrCompound
   */
   var getLootIdFromLootIdOrCompound  = lootIdOrCompound =>
   {
-    var lootId = lootIdOrCompound;
-    var isCompoundish = typeof(lootIdOrCompound) == "string";
-    var compoundIndex = isCompoundish && lootIdOrCompound.indexOf("_");
-    if(isCompoundish && compoundIndex >=0)
+    var isCompoundish = typeof(lootIdOrCompound) == "string" && (lootIdOrCompound.indexOf("_") >= 0 || lootIdOrCompound.indexOf("g") >= 0);
+    var lootId;
+    if(isCompoundish)
     {
-      lootId = lootIdOrCompound.slice(0,compoundIndex);
-    }
+      var compoundIndex_ = lootIdOrCompound.indexOf("_");
+      var compoundIndexg = lootIdOrCompound.indexOf("g");
+
+      lootId = +lootIdOrCompound.slice(0,Math.max(compoundIndex_,compoundIndexg));
+    } else lootId = +lootIdOrCompound;
+
+    // if(!(lootId != null) || lootId < 5 || typeof lootId !=="number" || isNaN(lootId) || Number.isNaN(lootId))
+    //   debugger;
     return lootId;
   };
   my.getLootIdFromLootIdOrCompound = getLootIdFromLootIdOrCompound;
-  /**
-   * @param {number | string} lootIdOrCompound
-   * @param {Array<Loot>} refGear
-   */
-  var getRarityByItemId = (lootIdOrCompound,refGear) => {
-    var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
-    var item = refGear.find(g => g.lootId==lootId);
-    return item && item.rarity;
-  };
-
-  my.getRarityByItemId = getRarityByItemId;
 
   /**
   * @param {Array<Loot>} refGear
@@ -122,6 +119,19 @@ var LootV2 = (function () {
   };
   my.getIsGolden = getIsGolden;
 
+  /**
+   * @param {number | string} lootIdOrCompound
+   * @param {Array<Loot>} refGear
+   */
+  var getRarityByItemId = (lootIdOrCompound,refGear) => {
+    console.log("v2 getRarityByItemId");
+    var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
+    var item = refGear.find(g => g.lootId==lootId);
+    // if(!(item != null) || !(item.rarity != null) || isNaN(item.rarity))
+    //   debugger;
+    return item && item.rarity;
+  };
+
   // how would we define a V2? as a valid lootId or an item obtained from looking up the lootId?
   // my.getIsV2 = ???
   /**
@@ -134,9 +144,12 @@ var LootV2 = (function () {
       console.warn('no refGear provided', lootIdOrCompound);
       if(app && app.throw === true)
         throw error('no refGear provided'+ lootIdOrCompound);
+      // debugger;
       return 0;
     }
     var item = refGear.find(g => g.lootId == lootId);
+    // if(!(item != null) || !(item.rarity != null) || isNaN(item.rarity))
+    //   debugger;
     return item && item.rarity;
   };
   my.getRarityByItemId = getRarityByItemId;
@@ -149,7 +162,7 @@ var LootV2 = (function () {
     var x = compound.toString();
     var compoundIndex = x.indexOf("_");
     if(compoundIndex >=0 && x.length > compoundIndex)
-      return x1.slice(compoundIndex + 1);
+      return x.slice(compoundIndex + 1);
     // if there is no _ and it is rarity 5, then fallback to 1
     var rarity = getRarityByItemId(compound, refGear);
     if(rarity == 5)
@@ -168,16 +181,19 @@ var LootV2 = (function () {
   return my;
 }());
 
-var Loot = (function(){
+var Loot = app.Loot = (function(){
   var my = {};
   // id can be V1 compound, lootId, or lootIdCompound (containing legendary level)
   my.getRarityByItemId = (id,refGear) => {
-    if(!(id != null))
+    if(!(id != null)){
       return null;
-    if(LootV1.getIsV1(id)) {
-      return LootV1.getRarityByItemId(id);
     }
-    return LootV2.getRarityByItemId(id,refGear);
+    if(LootV1.getIsV1(id)) {
+      var v1Result = LootV1.getRarityByItemId(id);
+      return v1Result;
+    }
+    var v2Result = LootV2.getRarityByItemId(id,refGear);
+    return v2Result;
   };
   my.getIsGolden = (id,refGear) =>{
     if(!(id != null))
@@ -220,5 +236,4 @@ var Loot = (function(){
     return result;
   };
   return my;
-
 }());

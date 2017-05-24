@@ -47,8 +47,8 @@
         var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
         var availableCrusaders = jsonData.crusaders.filter(cru =>
             // crusaders in slots that aren't in formation
-            formation.filter(f => f != null && f != "0").find(f=> getCrusader(f).slot == cru.slot) == null
-            || (selectedCru && selectedCru.id == cru.id)
+            formation.filter(f => f != null && f != "0").find(f => getCrusader(f).slot == cru.slot) == null
+            || (selectedCru && (selectedCru.id == cru.id || /* account for allow all crusaders in the same bench slot to show */ selectedCru.slot == cru.slot))
         );
         return (<div>{slotNumber}
             <HeroSelect dontSort={true}
@@ -277,6 +277,9 @@
             }
             app.mathCalc.setWorldById(initial.selectedWorldId, initial.formations[initial.selectedWorldId]);
             app.formationCalcInitial = initial;
+            if(initial.disableLegendaries === true){
+                app.disableLegendaries = true;
+            }
             initial.saveNames = Formation.getSaveNames(initial.selectedWorldId) || [];
             console.log('getInitialState', initial);
             return initial;
@@ -373,6 +376,7 @@
             }
         }
         render(){
+            app.disableLegendaries = this.state.disableLegendaries === true;
             var worlds = [
                 worldsWake,
                 descent,
@@ -436,10 +440,12 @@
                 kaine.XP = value;
                 this.setState({kaineXP: value});
             };
+            // this should also be conditional on having the legendary that needs it
             var kaineXpComponent =
                 kaine && formationIds.includes(kaine.id)
-                ? ( <div title="Kaine XP"><div>Kaine XP:</div><TextInputUnc onChange={kaineSetter} type="number" value={this.state.kaineXP} /></div>)
+                ? ( <div title="Kaine XP"><div>Kaine XP(for one of his legendaries):</div><TextInputUnc onChange={kaineSetter} type="number" value={this.state.kaineXP} /></div>)
                 : null;
+            var  dpsMult= data && data.globalDps? data.globalDps.toFixed ? numberWithCommas(data.globalDps.toFixed(2),) : data.globalDps: null
 
             return (<div>
                 <FormationTags missionTags={jsonData.missionTags} baseUrl={baseUrl} tagTracker={tagTracker}/>
@@ -475,9 +481,17 @@
                     }
                 </select>
                 </div>
-                <div title="Your gold multiplier with no one in formation"><div>BaseGoldMult:</div><TextInputUnc onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div>
+                <div title="Your gold multiplier with no one in formation">
+                    <div className="adaptChildren">
+                        <div className="adaptChildren">
+                            <label>BaseGoldMult:</label>
+                            <TextInputUnc className="small" onChange={g => this.setState({gold:g})} type="number" value={playerGold} /></div></div>
+                        <div>
+                            <label className="adaptChildren">Disable Legendaries:</label><Checkbox checked={this.state.disableLegendaries === true} onChange={() => this.setState({disableLegendaries:this.state.disableLegendaries === true? false : true})} />
+                        </div>
+                    </div>
                 {kaineXpComponent}
-                <p>Dps Multiplier: {data && data.globalDps}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
+                <p title="multiplier only, not actual dps number, also we do not account for achievements">Dps Multiplier: {dpsCruId != null ? null : <span className="warning">no main dps is selected!</span>} {dpsMult}{dpsCru && dpsCru.zapped === true ? " zapped" : null}</p>
                 <p>Gold Multiplier: {goldText}</p>
                 {formationComponent}
                 </div>

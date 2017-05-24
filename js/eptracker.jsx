@@ -89,40 +89,57 @@ var CruTagRowTagsOrGear = props =>{
       return props.gearTd;
 };
 
-var GearSelect = props => {
+var GearSelect = (props,debug) => {
   // v1/1.5 loot should be transformed on url or localstorage load
-  var cruGear = props.cruGear;
-  var slot = props.slot;
-  var gearInfo = Loot.getGearInfo(cruGear);
-  var itemIdentification = gearInfo && gearInfo[slot] || 0;
-  var gearInfo = itemIdentification && props.gearReference && props.gearReference[3] && Loot.getLootFromId(itemIdentification, props.gearReference[3]);
-  var rarity = Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]);
 
-  var slotGear = props.gearReference && props.gearReference[3]
-    .filter(g => g.slot==slot)
-    .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
-  // this appears to run whenever there isn't gear declared for this crusader
-  var getOptionsV1 = () =>
-    props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
+  if(debug === true)
+    console.group("GearSelect");
+  try{
 
-  var $options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + props.gearPossibilities[g.rarity]}</option>))
-  if(slotGear)
-    $options.unshift(<option key={0}>None</option>);
+    var cruGear = props.cruGear;
+    var slot = props.slot;
+    var gearInfo = Loot.getGearInfo(cruGear);
+    var itemIdentification = gearInfo && gearInfo[slot] || 0;
+    var gearRef = props.gearReference && props.gearReference[3];
+    var gearInfo = itemIdentification && gearRef && Loot.getLootFromId(itemIdentification, props.gearReference[3]);
+    var rarity = Loot.getRarityByItemId(itemIdentification, gearRef);
 
-  var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
-  var selectV = (slotGear != null) ? 2 : 1;
-  var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={Loot.getLLevel(itemIdentification)} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
-  var value = gearInfo && gearInfo.lootId || (itemIdentification && Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]));
+    var slotGear = gearRef
+      .filter(g => g.slot==slot)
+      .sort((a,b) => a.rarity < b.rarity ? -1 : b.rarity < a.rarity ? 1 : a.golden && !b.golden ? 1 : b.golden && !a.golden ? -1 : 0);
+    // this appears to run whenever there isn't gear declared for this crusader
+    var getOptionsV1 = () =>
+      props.gearPossibilities.map((g,i)=> (<option key={g} value={i}>{g}</option>));
 
-  return (<div data-component="gearSelect">
-    <select key={"gear" + slot}
-            title={JSON.stringify(gearInfo) + '\r\n'}
-            data-valueV={selectValueV}
-            data-v={selectV}
-            data-value={value}
-            value={value}
-            onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)}
-            name={"slot" + slot}>{$options}</select>{$ll}{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+    var $options = !slotGear? getOptionsV1() : slotGear.map(g => (<option key={g.lootId} value={g.lootId} title={g.name}>{(g.golden? 'golden ' : '') + props.gearPossibilities[g.rarity]}</option>))
+    if(slotGear)
+      $options.unshift(<option key={0}>None</option>);
+
+    var selectValueV = !(cruGear["s" + slot] != null)? 2 : !(cruGear["slot"+slot] != null) ? 1 : 0;
+    var selectV = (slotGear != null) ? 2 : 1;
+    var legendaryValue = rarity >= 5 && Loot.getLLevel(itemIdentification, props.gearReference && props.gearReference[3]);
+    var $ll = rarity >=5 ? (<TextInputUnc type="number" className="medium" min="1" max="10" value={legendaryValue} onChange={e => props.onLlChange(props.cruId,slot,e)} />): null;
+    // console.log("slotGear",slotGear,"gearReference", props.gearReference);
+    if(!(props.gearReference != null))
+      throw Error("bad gearReference");
+
+    var value = gearInfo && gearInfo.lootId
+      ||
+      (itemIdentification && Loot.getRarityByItemId(itemIdentification, props.gearReference && props.gearReference[3]));
+
+    return (<div data-component="gearSelect">
+      <select key={"gear" + slot}
+              title={JSON.stringify(gearInfo) + '\r\n'}
+              data-valueV={selectValueV}
+              data-v={selectV}
+              data-value={value}
+              value={value}
+              onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)}
+              name={"slot" + slot}>{$options}</select>{$ll}{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
+  } finally{
+    if(debug === true)
+      console.groupEnd();
+  }
 };
 
 var CruTagRowSlotGear = props =>{
@@ -599,10 +616,55 @@ var HeroGameData = props => {
 };
 HeroGameData.displayName = 'HeroGameData';
 
-var LegendaryReduction = props =>
-props.legendaryReductionDate ?
-  (<div className="onGreen">Legendary Cost Reduction at {props.legendaryReductionDate.toLocaleString()}</div>)
-  : null
+var LegendaryReduction = props =>{
+  var ldr = props.legendaryReductionDate;
+  if(!(ldr != null))
+    return null;
+    try{
+      if(!(ldr instanceof Date))
+        ldr = new Date(ldr);
+      else // clone date object
+        ldr = new Date(ldr.getTime());
+
+      var now = new Date();
+
+      while(ldr.getTime() < now.getTime()){
+        ldr.setDate(ldr.getDate()+7);
+      }
+      var day = ldr.getDay();
+      var dayText;
+      switch(day){
+        case 0:
+        dayText = "Sunday";
+        break;
+        case 1:
+        dayText="Monday";
+        break;
+        case 2:
+        dayText="Tuesday";
+        break;
+        case 3:
+        dayText="Wednesday";
+        break;
+        case 4:
+        dayText="Thursday";
+        break;
+        case 5:
+        dayText="Friday";
+        break;
+        case 6:
+        dayText="Saturday";
+        break;
+        default:
+        console.error("unexpected day : "+ day);
+      }
+
+      return (<div className="onGreen">Legendary Cost Reduction on {dayText || day} {ldr.toLocaleString()}</div>);
+    } catch(ex){
+      console.error(ex);
+      return null;
+    }
+}
 
 var Exporter = props =>
 (
@@ -737,6 +799,7 @@ class CruApp extends React.Component {
       heroMap[c.heroId] = c;
     });
     var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000): null;
+    console.log("legendaryReductionImport", legendaryReductionDate || json.details.stats);
     var getOrGetFromDetails = name => json[name] || (json.details && json.details[name]);
 
     // account for pasting just the heroes section of json, or the whole data packet
@@ -846,7 +909,7 @@ class CruApp extends React.Component {
       mergeImportLoot(data,loot)
       console.log('imported loot game data');
     }
-    console.log('importing talents?', talents);
+    // console.log('importing talents?', talents);
     if(talents){
       console.log('onImportGameDataClick talents', talents);
       mergeImportTalents(data,talents);
@@ -943,6 +1006,12 @@ class CruApp extends React.Component {
     });
     window.networkDataJson = this.state.networkDataJson;
     window.crusaderGear = this.state.saved.crusaderGear;
+    var trackEvent = (title,onChange) => {
+      return function(){
+        gaEvent('event',title);
+        onChange(arguments);
+      };
+    }
     var importArea = getIsUrlLoaded() ? null : (<Exporter
                   maxWidth={maxWidth}
                   onImportTextChange={val => this.setState({textState:val})}
@@ -963,7 +1032,7 @@ class CruApp extends React.Component {
                   mappedFormations={this.state.mappedFormations}
                   // network game section end?
                   onImportSiteStateClick={this.onImportSiteStateClick}
-                  onGenerateUrlClick={this.onGenerateUrlClick}
+                  onGenerateUrlClick={trackEvent('generateUrl',this.onGenerateUrlClick)}
                   onImportAppStateFromUrlClick={() => {
                     gaEvent('import','gameState');
                     this.importAppState(importFromUrl("appGameState"),true);
@@ -974,7 +1043,7 @@ class CruApp extends React.Component {
                   json={this.state.lastRead}
                   importText={importText}
                   />);
-
+                  var ldr = this.state.saved && this.state.saved.legendaryReductionDate;
     return (<div>
         <div>{JSON.stringify(this.state.error)}</div>
 
@@ -985,7 +1054,7 @@ class CruApp extends React.Component {
           }}>
         <Pane label="Crusaders">
           <div>
-            <LegendaryReduction legendaryReductionDate={this.state.saved.legendaryReductionDate} />
+            <LegendaryReduction legendaryReductionDate={ldr} />
             <CruTagGrid model={props.referenceData}
                         slotSort={this.state.saved.slotSort}
                         epSort={this.state.saved.epSort}
@@ -1009,6 +1078,8 @@ class CruApp extends React.Component {
             changeSaveState={this.changeSaveState}
             saved={this.state.saved}
             referenceData={this.props.referenceData}
+            sortTalents={this.state.sortTalents || false}
+            onSortTalentsChange={() => this.setState({sortTalents: this.state.sortTalents === true ? false : true})}
             />
         </Pane>
         <Pane label="FormationCalc">

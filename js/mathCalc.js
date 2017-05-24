@@ -123,6 +123,11 @@
      * @return {number} what column number a slot belongs to
      */
     this.columnNum = function (spot) {
+      var result = columnNum[spot];
+      if(typeof result !== "number"){
+
+        console.warn("columnNum is invalid", {worldId:this.id,spots:this.spots,spot,result,maxCol:this.maxColumn});
+      }
       return columnNum[spot];
     };
     this.countTags = function (tag) {
@@ -484,7 +489,7 @@
   * @param {number} gearSlot
   */
   function legendaryFactor(crusader, gearSlot, debug = false) {
-    if (app.ignoreLegendaryFactor === true)
+    if (app.disableLegendaries === true)
       return 0;
     var itemId = getItemId(crusader.id, gearSlot);
     var level = Loot.getLLevel(itemId, crusader.loot);
@@ -1650,10 +1655,14 @@
     var gryphonSpot = getCrusaderSpot(app.formationIds, gryphon.id);
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
     // if the dps is in the column in front of gryphon
-    if (getIsBehind(currentWorld, gryphonSpot, dpsCharSpot)) {
-      gryphon.globalDps *= 1 + legendaryFactor(gryphon, 0);
+    console.log('gryhon calc', {gryphonSpot,dpsCharSpot});
+    if (getIsBehind(currentWorld,dpsCharSpot,gryphonSpot)) {
+      console.log('gryphon is behind dps!');
+      var l0DpsMult = 1 + legendaryFactor(gryphon, 0);
+      gryphon.globalDps *= l0DpsMult;
+      gryphon.l0 = l0DpsMult;
     }
-    gryphon.globalDps *= 1 + 0.1 * monstersOnscreen * legendaryFactor(gryphon, 1);
+    gryphon.globalDps *= (1 + 0.1 * monstersOnscreen * legendaryFactor(gryphon, 1));
     if (dpsChar && dpsChar.tags.includes('supernatural')) {
       gryphon.globalDps *= 1 + legendaryFactor(gryphon, 2);
     }
@@ -2351,7 +2360,7 @@
     }
     if (dpsChar && adjacent.includes(dpsCharSpot)) {
       ilsa.globalDps *= 0.5 + 1 * magicMult / correction;
-    } else if (karen == dpsChar) {}
+    } // else if (karen == dpsChar) {}
     if (merciSpot != null && ilsa == dpsChar) {
       ilsa.globalDps *= 1 + legendaryFactor(ilsa, 1);
     }
@@ -2433,7 +2442,7 @@
     worldsWake.setAdjacent(7, [4, 5, 8, 9]);
     worldsWake.setAdjacent(8, [5, 6, 7, 9]);
     worldsWake.setAdjacent(9, [7, 8]);
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       switch (true) {
         case(i < 4):
           worldsWake.setColumn(i, 1);
@@ -2840,7 +2849,7 @@
         [3, x, x, x, x]
       ];
 
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i <= 11; i++) {
       if (i < 4) {
         itt.setColumn(i, 1);
       } else if (i < 5) {
