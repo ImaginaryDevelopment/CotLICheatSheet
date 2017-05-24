@@ -2360,7 +2360,7 @@
     }
     if (dpsChar && adjacent.includes(dpsCharSpot)) {
       ilsa.globalDps *= 0.5 + 1 * magicMult / correction;
-    } else if (karen == dpsChar) {}
+    } // else if (karen == dpsChar) {}
     if (merciSpot != null && ilsa == dpsChar) {
       ilsa.globalDps *= 1 + legendaryFactor(ilsa, 1);
     }
@@ -2442,7 +2442,7 @@
     worldsWake.setAdjacent(7, [4, 5, 8, 9]);
     worldsWake.setAdjacent(8, [5, 6, 7, 9]);
     worldsWake.setAdjacent(9, [7, 8]);
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       switch (true) {
         case(i < 4):
           worldsWake.setColumn(i, 1);

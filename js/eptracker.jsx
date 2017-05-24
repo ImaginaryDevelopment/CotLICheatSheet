@@ -1006,6 +1006,12 @@ class CruApp extends React.Component {
     });
     window.networkDataJson = this.state.networkDataJson;
     window.crusaderGear = this.state.saved.crusaderGear;
+    var trackEvent = (title,onChange) => {
+      return function(){
+        gaEvent('event',title);
+        onChange(arguments);
+      };
+    }
     var importArea = getIsUrlLoaded() ? null : (<Exporter
                   maxWidth={maxWidth}
                   onImportTextChange={val => this.setState({textState:val})}
@@ -1026,7 +1032,7 @@ class CruApp extends React.Component {
                   mappedFormations={this.state.mappedFormations}
                   // network game section end?
                   onImportSiteStateClick={this.onImportSiteStateClick}
-                  onGenerateUrlClick={this.onGenerateUrlClick}
+                  onGenerateUrlClick={trackEvent('generateUrl',this.onGenerateUrlClick)}
                   onImportAppStateFromUrlClick={() => {
                     gaEvent('import','gameState');
                     this.importAppState(importFromUrl("appGameState"),true);
@@ -1072,6 +1078,8 @@ class CruApp extends React.Component {
             changeSaveState={this.changeSaveState}
             saved={this.state.saved}
             referenceData={this.props.referenceData}
+            sortTalents={this.state.sortTalents || false}
+            onSortTalentsChange={() => this.setState({sortTalents: this.state.sortTalents === true ? false : true})}
             />
         </Pane>
         <Pane label="FormationCalc">

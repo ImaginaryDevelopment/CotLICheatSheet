@@ -8,7 +8,8 @@ app.Checkbox = props =>
   (<input type="checkbox"
       onChange={props.onChange ? (e => props.onChange(e.target.value)) : null}
       disabled={props.disabled}
-      checked={props.checked}
+      // this should help it not say controlled to uncontrolled component
+      checked={props.checked || false}
       readOnly={props.readonly} />);
 app.Checkbox.displayName ="Checkbox";
 

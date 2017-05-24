@@ -21,7 +21,7 @@
   "author": "",
   "license": "ISC",
   "//": [
-    "// work devDependences package setup",
+    "// work devDependencies package setup",
     "\"babel-cli\": \"^6.18.0\"",
     "\"babel-eslint\": \"^7.2.3\"",
     "\"babel-preset-react\": \"^6.16.0\"",

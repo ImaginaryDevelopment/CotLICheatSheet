@@ -556,6 +556,7 @@ var Talents = (()=>{
         showingMessage,
         showingMax,
         impr,
+        sortScore: showingMax? null : (impr / costForNextLevel),
         score: showingMax? "max" : (impr / costForNextLevel) * 100000
     };
   };
@@ -586,26 +587,117 @@ var Talents = (()=>{
    * @property {number} rare
    * @property {number} epic
    */
+  /**
+   * @typedef DpsInfo
+   * @type {Object}
+   * @property {Crusader} cru
+   * @property {number} ep
+   * @property {number} slotEp
+   * @property {number} epics
+   * @property {number} slotEpics
+   */
 
   /**
    * @typedef TalentInfo
    * @type {Object}
-   * @property {number} value
+   * @property {number} level
    * @property {number} max
    * @property {function} getCost
+   * @property {string} name
    */
 
   /**
    * @typedef TalentInputContainer
    * @type {Object}
+   * @property {number} critChance
+   * @property {number} stormRiderPercentage
    * @property {TrinketContainer} tc
+   * @property {DpsInfo} dpsInfo
    * @property {Object<string,TalentInfo>} td
+   * @property {Object<number,number>} rarityMultMap
    */
-  exports.getTalentDisplay = () => {
-    var cooldown = app.Talents.getCooldown(props.cooldownCommon, props.cooldownUncommon, props.cooldownRare, props.cooldownEpic) * 100;
-    var dpsHero = props.crusaders.find(cru => cru.id === props.selectedHeroId);
-    var effectiveEP = calcEffectiveEP(props.sharingIsCaring, props.mainDpsEP, props.dpsSlotEP);
-    return {cooldown, dpsHero, effectiveEP};
+
+  exports.getTalentDisplay =
+    /**
+     * @param {TalentInputContainer} tic
+     */
+    tic => {
+      var getCanReadTalent = name => tic.td[name].getCost != null;
+      var cooldown = exports.getCooldown(tic.tc.common, tic.tc.uncommon, tic.tc.rare, tic.tc.epic) * 100;
+      var dpsInfo = tic.dpsInfo;
+      var dpsHero = dpsInfo.cru; //props.crusaders.find(cru => cru.id === props.selectedHeroId);
+      var effectiveEP = calcEffectiveEP(tic.td.sharingIsCaring.level, dpsInfo.ep, dpsInfo.slotEp);
+      var getCumulativeCost = name => getCanReadTalent(name) ? createRange(tic.td[name].level).map(i => tic.td[name].getCost(i + 1)).reduce((a,b) => a + b,0) : null;
+      var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
+      var currentEnchantBuff = getEnchantBuff(tic.td.overenchanted.level);
+      var idkMyBffJill = (() =>{
+        var toRound = (tic.dpsInfo.slotEp - tic.dpsInfo.ep)*6*0.05;
+        return tic.dpsInfo.ep + Math.round(toRound,0);
+      })();
+      var getFastLearnerMinutes = x => (1-0.05*x) * 300;
+      var getFastLearnersDps = x => 300 / (getFastLearnerMinutes(x) - 1);
+      // var getWellEquippedDps = x => 0.2*x*tic.dpsInfo.epics;
+      var srp = tic.stormRiderPercentage;
+      var getCurrentStormRider = x => srp * (x*0.1 + 1);
+      var getTimePerStormRider = x => 480*(1-Math.min(cooldown / 100 ,0.5))*(1-0.05*x);
+      var getRideTheStormDps = x => (getCurrentStormRider(x) - srp) / (srp+1);
+
+      var getStormRiderPercentageFromRarity = rarity =>
+        {
+            var map = tic.rarityMultMap[rarity];
+            return map? map.mult : undefined;
+        };
+      var spent = 0;
+      Object.keys(tic.td).map(name =>{
+        /**
+         * @type {number => number}
+         */
+        var data = (() =>{
+          switch(name){
+            case "passiveCriticals": return x => exports.getPassiveCrits(tic.critChance,x); //spent: getCumulativeCost(name)};
+            case "surplusCooldown": return x => exports.getSurplusCooldown(cooldown,x);
+            case "overenchanted": return x => ((1 + getEnchantBuff(x)*tic.dpsInfo.ep) - (1 + 0.25*tic.dpsInfo.ep)) / (1 + 0.25 * tic.dpsInfo.ep);
+            // assumes they have at least common gear in all slots
+            case "setBonus": return x => x * 0.2
+            case "sharingIsCaring": return x => (calcEffectiveEP(x, tic.dpsInfo.ep, tic.dpsInfo.slotEp)*currentEnchantBuff  - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff * (idkMyBffJill)+1);
+            case "fastLearners": return getFastLearnersDps;
+            case "wellEquipped": return exports.getWellEquippedDps(tic.dpsInfo.epics);
+            case "swapDay": return x => 0.2*x*(tic.dpsInfo.slotEpics - tic.dpsInfo.epics);
+            case "rideTheStorm":
+              // store sub-calculations or intermediary formulas
+              tic.td[name].formulas = tic.td[name].formulas || {};
+              tic.td[name].formulas.getRideTheStormDps = getRideTheStormDps;
+              // uses magnified dps not regular
+              return x => ((getCurrentStormRider(x)*1.5 + 1) - (1 + srp * 1.5)) / (srp * 1.5 + 1);
+            case "stormsBuilding": return x => 480*(1-(Math.min(cooldown / 100,0.5)))/getTimePerStormRider(x) - 1;
+            default: return () => undefined;
+          }
+         })();
+        var t = tic.td[name];
+        //  var getNextCost = name => getCanReadTalent(name) ? props.talents[name].costs[props[name] + 1] : undefined;
+
+        t.nextCost = getCanReadTalent(name) && t.level < t.max ? t.getCost(t.level + 1) : null;
+        t.getDps = data;
+        t.spent = getCumulativeCost(name);
+        if(!Number.isNaN(+t.spent) && !isNaN(+t.spent))
+          spent += +t.spent;
+        t.score = exports.getTalentMeta(data,t.level, t.max, t.nextCost);
+      });
+      var defaultOrder = [
+            "passiveCriticals",
+            "surplusCooldown",
+            "overenchanted",
+            "setBonus",
+            "sharingIsCaring",
+            "fastLearners",
+            "wellEquipped",
+            "swapDay",
+            "rideTheStorm",
+            "stormsBuilding"
+      ];
+      var currentStormRider = getCurrentStormRider(tic.td.rideTheStorm.level);
+      var nextStormRider = getCurrentStormRider(tic.td.rideTheStorm.level + 1);
+      return {cooldown, dpsHero, effectiveEP, getStormRiderPercentageFromRarity, spent, currentStormRider, nextStormRider, defaultOrder, talentDict:tic.td};
   }
   return exports;
 
