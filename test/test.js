@@ -11,7 +11,7 @@ describe('Array', function() {
 var LootMod = require('../js/domain/loot');
 describe('LootV1 module', () =>{
     var LootV1 = LootMod.LootV1;
-    console.log(LootV1);
+    // console.log(LootV1);
     // bushwhacker has an id 5 gear item =(
     it("should be return true for a V1 number 0-5", () =>{
         var expected = true;

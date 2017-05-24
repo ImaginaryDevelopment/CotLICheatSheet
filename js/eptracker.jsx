@@ -434,7 +434,6 @@ class CruTagGrid extends React.Component {
     // this may not be reliable, if any dirty data gets in the state from versioning changes
     var totalOwned = this.props.ownedCrusaderIds ? this.props.ownedCrusaderIds.length : '';
     // var filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, isDesc,crusaders) => {
-      console.log(this.props.slotSort, this.props.epSort, this.props.nameSort,JSON.stringify(this.props.enchantmentPoints));
     var sortedCrusaders =
       filterSortCrusaders(
         this.props.ownedCrusaderIds || [],
