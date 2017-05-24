@@ -281,7 +281,7 @@ class CruTagGrid extends React.Component {
       if(typeof(this[x]) === "function")
         this[x] = this[x].bind(this);
     });
-    window.importMe = () => this.props.updateSave({mainSelectedTab:3});
+    window.importMe = () => this.props.updateSave({usesExtension:true,mainSelectedTab:3});
     this.state = {};
   }
   onSlotSortClick(){
@@ -928,6 +928,11 @@ class CruApp extends React.Component {
 
   }
   changeSaveState(newData){
+    if(newData.usesExtension === true){
+      gaEvent("extension", "landing");
+      delete newData.usesExtension;
+    }
+
     var merged = this.mergeSaveState(newData);
     console.log('changeSaveState',merged);
     this.setState({saved: merged});
@@ -1044,12 +1049,13 @@ class CruApp extends React.Component {
                   importText={importText}
                   />);
                   var ldr = this.state.saved && this.state.saved.legendaryReductionDate;
+    var tabName = val => val == 0? 'crusaders': val == 1 ? 'talents': val == 2 ? 'formation' : val == 3 ?'importExport':'unknown';
     return (<div>
         <div>{JSON.stringify(this.state.error)}</div>
 
         <div className="onGreen">Install the extension to auto-load your data from <a href="https://chrome.google.com/webstore/detail/crusaders-automaton/dhlljphpeodbcliiafbedkbkiifdgdjk">Crusader Automaton</a></div>
       <Tabs selected={this.state.saved.mainSelectedTab} onTabChange={val => {
-          gaEvent('navigation','click',val == 0? 'crusaders': val==1 ? 'talents': val==2 ? 'importexport' : 'unknown');
+          gaEvent('navigation','click',tabName(val));
           this.changeSaveState({mainSelectedTab:val});
           }}>
         <Pane label="Crusaders">
