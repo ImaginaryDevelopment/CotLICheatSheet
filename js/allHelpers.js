@@ -1,3 +1,4 @@
+/* global ga */
 var loggedStorageFailure = false;
 const isDefined = function(o){
     return typeof(o) !== 'undefined' && o !== null;
@@ -158,7 +159,7 @@ var readIt = function(key,defaultValue){
  * @param {number} numberValueOpt
  */
 var gaEvent = (category,action,labelOpt,numberValueOpt) =>
-  ga ? ga('send','event',category, action, labelOpt, numberValueOpt) : null;
+  typeof ga != "undefined" && ga ? ga('send','event',category, action, labelOpt, numberValueOpt) : null;
 
 function padLeft(nr, n, str){
     return Array(n-String(nr).length+1).join(str||'0')+nr;
@@ -169,6 +170,39 @@ var add = function(a,b){
 
 /**
  *
+ * @param {number|Date} x
+ */
+var getDayOfWeek = x =>{
+  if(!(x != null))
+    return undefined;
+
+  var day = x;
+  if(typeof x == "object"){
+    if(x instanceof Date){
+        day = x.getDay();
+    } else {
+      console.warn("unexpected date object", x); // eslint-disable-line no-console
+      return undefined;
+    }
+  }
+
+      switch(day){
+        case 0: return "Sunday";
+        case 1: return "Monday";
+        case 2: return "Tuesday";
+        case 3: return "Wednesday";
+        case 4: return "Thursday";
+        case 5: return "Friday";
+        case 6: return "Saturday";
+        default:
+        console.error("unexpected day : " + day); // eslint-disable-line no-console
+      }
+    return undefined;
+  };
+
+
+/**
+ *
  * @param {*} data
  * @param {string} title
  * @param {*} extraData
@@ -176,22 +210,29 @@ var add = function(a,b){
 var inspect = (data,title, extraData) =>
 {
   if(extraData)
-    console.log(title || 'inspect', data,extraData);
+    console.log(title || 'inspect', data,extraData); // eslint-disable-line no-console
   else
-    console.log(title|| 'inspect', data);
+    console.log(title|| 'inspect', data); // eslint-disable-line no-console
   return data;
 };
+/**
+ *
+ * @param {() => any} f
+ * @param {*} data
+ * @param {string} title
+ * @param {boolean} logSuccess
+ */
 var tryCaptureThrow =  (f, data, title, logSuccess) => {
   try{
     var result = f();
     if(logSuccess===true)
-      console.info(title || 'tryCaptureThrowSuccess');
-    return f();
+      console.info(title || 'tryCaptureThrowSuccess'); // eslint-disable-line no-console
+    return result;
   } catch(ex){
     if(title){
-      console.warn(title, data);
+      console.warn(title, data); // eslint-disable-line no-console
     } else
-    console.warn(data);
+    console.warn(data); // eslint-disable-line no-console
     throw ex;
   }
 };
@@ -200,11 +241,11 @@ var tryCaptureLog = (f,data,title) => {
     return f();
   } catch (ex){
     if(title){
-      console.error(title,data);
-    } else console.error(data);
+      console.error(title,data); // eslint-disable-line no-console
+    } else console.error(data); // eslint-disable-line no-console
   }
 
 }
 
 // adapted from http://stackoverflow.com/a/14438954/57883
-Array.prototype.distinct = Array.prototype.disinct || function(v, i, s) {return this.filter((v,i,a) => a.indexOf(v) === i);};
+Array.prototype['distinct'] = Array.prototype['distinct'] || function(v, i, s) {return (s || this).filter((v,i,a) => a.indexOf(v) === i);};

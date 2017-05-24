@@ -655,7 +655,7 @@ var LegendaryReduction = props =>{
         dayText="Saturday";
         break;
         default:
-        console.error("unexpected day : "+ day);
+        console.error("unexpected day : " + day);
       }
 
       return (<div className="onGreen">Legendary Cost Reduction on {dayText || day} {ldr.toLocaleString()}</div>);
