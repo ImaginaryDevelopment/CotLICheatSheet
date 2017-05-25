@@ -812,9 +812,9 @@
     console.log('mindy is calculating');
     mindy.globalDps = "Mindy isn't setup for calculations yet";
   };
-  
+
   ////Dani the Damsel in Distress
-  var dani = getCrusader('4c');
+  var dani = getCrusader('04c');
   dani.calculate = function() {
     crusaderSetup(dani);
     var eyeMult = 1;
@@ -1054,12 +1054,12 @@
       mister.globalDps *= 1 + legendaryFactor(mister, 0);
     }
   };
-  
+
   ////Grandmora
   /**
    * @type {Crusader}
    */
-  var grandmora = getCrusader('5d');
+  var grandmora = getCrusader('05d');
   grandmora.calculate = function() {
     crusaderSetup(grandmora);
     var numBehind = Math.max(currentWorld.columnTest(currentWorld.columnNum(grandmora.spot) - 1),1);
@@ -2068,7 +2068,7 @@
       }
     }
   };
-  
+
   //////Slot 17 //King Reginald IV
   var reginald = getCrusader("17");
   reginald.calculate = function () {
@@ -2244,7 +2244,7 @@
       }
     }
   };
-  
+
   ////Polly the Parrot
   var polly = getCrusader('19c');
   polly.calculate = function() {
