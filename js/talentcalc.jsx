@@ -205,6 +205,9 @@ app.Inputs = props =>
                             (<td>{nextStormRider}</td>));
             case "stormsBuilding":
                 return makeTalentTrArray(tdInfo, i);
+            default :
+                console.warn("talent not found", name);
+
         }
     });
     console.log('dpsHero',dpsHero);
@@ -361,6 +364,7 @@ var talentCalc = props =>{
                 wellEquipped:{level:saved.wellEquipped, max: 50, getCost: null},
                 rideTheStorm:{level:saved.rideTheStorm, max: 25, getCost: null},
                 stormsBuilding:{level:saved.stormsBuilding, max: 15, getCost: null},
+                swapDay:{level:saved.swapDay, max:50, getCost:null}
             },
             dpsInfo:{
                 cru: talentSelectedCrusader, //props.crusaders.find(cru => cru.id === props.selectedHeroId),
