@@ -2,33 +2,41 @@
     "success": true,
     "details": {
         "formation": [
-            52,
-            15,
-            84,
-            11,
-            45,
-            54,
-            22,
-            51,
+            69,
             50,
-            81,
-            6,
-            27,
+            60,
+            59,
+            58,
+            11,
+            84,
+            7,
+            82,
+            22,
+            35,
+            19,
             47,
             62
         ],
-        "current_area": 123,
-        "highest_area": 123,
-        "normal_loot_chests": 2708,
+        "current_area": 1020,
+        "highest_area": 1022,
+        "normal_loot_chests": 2485,
         "rare_loot_chests": 1,
-        "gold": "1.0965327844272E+37",
+        "gold": "2.16417026396179e+207",
         "heroes": [
             {
                 "hero_id": 1,
-                "level": 1,
-                "upgrades": [],
-                "health": 7,
-                "grind_time": 8,
+                "level": 6000,
+                "upgrades": [
+                    8,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    125
+                ],
+                "health": 6006,
+                "grind_time": 0,
                 "disenchant": 478,
                 "owned": 1,
                 "in_seat": 1
@@ -75,29 +83,39 @@
             },
             {
                 "hero_id": 6,
-                "level": 76,
+                "level": 6000,
                 "upgrades": [
-                    33,
+                    101,
                     123,
                     34,
-                    101,
-                    35
+                    33,
+                    36,
+                    35,
+                    130
                 ],
-                "health": 142,
-                "grind_time": 68,
+                "health": 6066,
+                "grind_time": 686,
                 "disenchant": 401,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 7,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
+                "level": 6000,
+                "upgrades": [
+                    28,
+                    29,
+                    30,
+                    31,
+                    121,
+                    32,
+                    131
+                ],
+                "health": 6084,
+                "grind_time": 351,
                 "disenchant": 503,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 8,
@@ -131,10 +149,18 @@
             },
             {
                 "hero_id": 11,
-                "level": 1,
-                "upgrades": [],
-                "health": 177,
-                "grind_time": 66,
+                "level": 6000,
+                "upgrades": [
+                    135,
+                    51,
+                    52,
+                    53,
+                    106,
+                    105,
+                    50
+                ],
+                "health": 6176,
+                "grind_time": 358,
                 "disenchant": 571,
                 "owned": 1,
                 "in_seat": 1
@@ -171,27 +197,31 @@
             },
             {
                 "hero_id": 15,
-                "level": 725,
-                "upgrades": [
-                    69,
-                    70,
-                    71
-                ],
-                "health": 1025,
-                "grind_time": 64,
-                "disenchant": 918,
-                "owned": 1,
-                "in_seat": 1
-            },
-            {
-                "hero_id": 16,
                 "level": 0,
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 663,
+                "disenchant": 923,
                 "owned": 1,
                 "in_seat": 0
+            },
+            {
+                "hero_id": 16,
+                "level": 6000,
+                "upgrades": [
+                    124,
+                    90,
+                    89,
+                    91,
+                    92,
+                    221,
+                    140
+                ],
+                "health": 6336,
+                "grind_time": 0,
+                "disenchant": 669,
+                "owned": 1,
+                "in_seat": 1
             },
             {
                 "hero_id": 17,
@@ -209,16 +239,24 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 514,
+                "disenchant": 515,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 19,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
+                "level": 6000,
+                "upgrades": [
+                    68,
+                    64,
+                    65,
+                    66,
+                    83,
+                    67,
+                    143
+                ],
+                "health": 6456,
+                "grind_time": 357,
                 "disenchant": 588,
                 "owned": 1,
                 "in_seat": 1
@@ -245,23 +283,39 @@
             },
             {
                 "hero_id": 22,
-                "level": 1,
-                "upgrades": [],
-                "health": 127,
-                "grind_time": 67,
+                "level": 6000,
+                "upgrades": [
+                    152,
+                    153,
+                    154,
+                    156,
+                    157,
+                    158,
+                    155
+                ],
+                "health": 6126,
+                "grind_time": 1042,
                 "disenchant": 200,
                 "owned": 1,
                 "in_seat": 1
             },
             {
                 "hero_id": 23,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
+                "level": 6000,
+                "upgrades": [
+                    160,
+                    161,
+                    162,
+                    163,
+                    164,
+                    165,
+                    166
+                ],
+                "health": 6300,
                 "grind_time": 0,
-                "disenchant": 496,
+                "disenchant": 502,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 24,
@@ -279,7 +333,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 399,
+                "disenchant": 400,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -295,12 +349,18 @@
             },
             {
                 "hero_id": 27,
-                "level": 76,
+                "level": 6000,
                 "upgrades": [
-                    191
+                    191,
+                    192,
+                    188,
+                    189,
+                    190,
+                    193,
+                    194
                 ],
-                "health": 342,
-                "grind_time": 64,
+                "health": 6266,
+                "grind_time": 691,
                 "disenchant": 201,
                 "owned": 1,
                 "in_seat": 1
@@ -311,7 +371,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 587,
+                "disenchant": 620,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -321,19 +381,27 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 391,
+                "disenchant": 400,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 30,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
+                "level": 6000,
+                "upgrades": [
+                    210,
+                    211,
+                    212,
+                    213,
+                    214,
+                    215,
+                    216
+                ],
+                "health": 6374,
+                "grind_time": 680,
                 "disenchant": 400,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 31,
@@ -341,7 +409,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 261,
+                "disenchant": 271,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -351,7 +419,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 329,
+                "disenchant": 401,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -361,7 +429,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 293,
+                "disenchant": 366,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -377,13 +445,21 @@
             },
             {
                 "hero_id": 35,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
-                "disenchant": 358,
+                "level": 6000,
+                "upgrades": [
+                    257,
+                    258,
+                    259,
+                    260,
+                    261,
+                    262,
+                    263
+                ],
+                "health": 6066,
+                "grind_time": 351,
+                "disenchant": 400,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 36,
@@ -391,7 +467,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 256,
+                "disenchant": 289,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -401,7 +477,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 344,
+                "disenchant": 391,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -411,7 +487,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 206,
+                "disenchant": 210,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -421,17 +497,25 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 202,
+                "disenchant": 203,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 40,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
+                "level": 6000,
+                "upgrades": [
+                    292,
+                    293,
+                    294,
+                    295,
+                    296,
+                    297,
+                    298
+                ],
+                "health": 6234,
                 "grind_time": 0,
-                "disenchant": 363,
+                "disenchant": 400,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -451,7 +535,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 444,
+                "disenchant": 455,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -461,7 +545,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 256,
+                "disenchant": 280,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -477,13 +561,13 @@
             },
             {
                 "hero_id": 45,
-                "level": 1,
+                "level": 0,
                 "upgrades": [],
-                "health": 205,
-                "grind_time": 66,
+                "health": 0,
+                "grind_time": 0,
                 "disenchant": 213,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 46,
@@ -497,25 +581,38 @@
             },
             {
                 "hero_id": 47,
-                "level": 51,
+                "level": 6000,
                 "upgrades": [
-                    352
+                    352,
+                    351,
+                    350,
+                    355,
+                    353,
+                    354,
+                    356
                 ],
-                "health": 155,
-                "grind_time": 67,
+                "health": 6104,
+                "grind_time": 1043,
                 "disenchant": 200,
                 "owned": 1,
                 "in_seat": 1
             },
             {
                 "hero_id": 48,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
+                "level": 6000,
+                "upgrades": [
+                    357,
+                    358,
+                    359,
+                    360,
+                    361,
+                    363
+                ],
+                "health": 6500,
                 "grind_time": 0,
                 "disenchant": 582,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 49,
@@ -523,83 +620,109 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 495,
+                "disenchant": 507,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 50,
-                "level": 126,
+                "level": 6000,
                 "upgrades": [
-                    371,
-                    372,
+                    375,
                     373,
                     374,
-                    375
+                    371,
+                    372,
+                    376,
+                    377
                 ],
-                "health": 810,
-                "grind_time": 60,
-                "disenchant": 234,
+                "health": 8201,
+                "grind_time": 1033,
+                "disenchant": 243,
                 "owned": 1,
                 "in_seat": 1
             },
             {
                 "hero_id": 51,
-                "level": 1,
-                "upgrades": [],
-                "health": 15,
-                "grind_time": 68,
-                "disenchant": 212,
+                "level": 6000,
+                "upgrades": [
+                    378,
+                    379,
+                    380,
+                    381,
+                    382,
+                    383,
+                    384
+                ],
+                "health": 6014,
+                "grind_time": 106,
+                "disenchant": 215,
                 "owned": 1,
                 "in_seat": 1
             },
             {
                 "hero_id": 52,
-                "level": 101,
+                "level": 6000,
                 "upgrades": [
-                    389
+                    389,
+                    387,
+                    388,
+                    385,
+                    390,
+                    391,
+                    386
                 ],
-                "health": 251,
-                "grind_time": 67,
+                "health": 6150,
+                "grind_time": 687,
                 "disenchant": 59,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 53,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
-                "disenchant": 329,
+                "level": 6000,
+                "upgrades": [
+                    396,
+                    394,
+                    393,
+                    395,
+                    392,
+                    398,
+                    397
+                ],
+                "health": 6024,
+                "grind_time": 692,
+                "disenchant": 348,
                 "owned": 1,
                 "in_seat": 1
             },
             {
                 "hero_id": 54,
-                "level": 126,
-                "upgrades": [
-                    399,
-                    400,
-                    401,
-                    402,
-                    403
-                ],
-                "health": 500,
-                "grind_time": 60,
-                "disenchant": 94,
-                "owned": 1,
-                "in_seat": 1
-            },
-            {
-                "hero_id": 55,
                 "level": 0,
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
+                "disenchant": 94,
+                "owned": 1,
+                "in_seat": 0
+            },
+            {
+                "hero_id": 55,
+                "level": 6000,
+                "upgrades": [
+                    407,
+                    406,
+                    408,
+                    411,
+                    410,
+                    409,
+                    412
+                ],
+                "health": 6546,
+                "grind_time": 665,
                 "disenchant": 403,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 56,
@@ -607,9 +730,9 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 419,
+                "disenchant": 438,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 57,
@@ -617,39 +740,63 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 206,
+                "disenchant": 207,
+                "owned": 1,
+                "in_seat": 0
+            },
+            {
+                "hero_id": 58,
+                "level": 6000,
+                "upgrades": [
+                    427,
+                    428,
+                    429,
+                    430,
+                    431,
+                    432,
+                    433
+                ],
+                "health": 6546,
+                "grind_time": 357,
+                "disenchant": 600,
                 "owned": 1,
                 "in_seat": 1
             },
             {
-                "hero_id": 58,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
-                "disenchant": 580,
-                "owned": 1,
-                "in_seat": 0
-            },
-            {
                 "hero_id": 59,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
-                "disenchant": 393,
+                "level": 6000,
+                "upgrades": [
+                    434,
+                    435,
+                    436,
+                    437,
+                    439,
+                    438,
+                    440
+                ],
+                "health": 6594,
+                "grind_time": 1024,
+                "disenchant": 435,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 60,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
-                "disenchant": 240,
+                "level": 6000,
+                "upgrades": [
+                    441,
+                    442,
+                    443,
+                    444,
+                    445,
+                    447,
+                    446
+                ],
+                "health": 6644,
+                "grind_time": 1023,
+                "disenchant": 291,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 61,
@@ -663,15 +810,19 @@
             },
             {
                 "hero_id": 62,
-                "level": 101,
+                "level": 6000,
                 "upgrades": [
-                    455,
                     456,
-                    457
+                    457,
+                    455,
+                    460,
+                    459,
+                    458,
+                    461
                 ],
-                "health": 137,
-                "grind_time": 68,
-                "disenchant": 8,
+                "health": 6036,
+                "grind_time": 1044,
+                "disenchant": 9,
                 "owned": 1,
                 "in_seat": 1
             },
@@ -681,7 +832,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 32,
+                "disenchant": 79,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -691,7 +842,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 202,
+                "disenchant": 204,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -701,9 +852,9 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 208,
+                "disenchant": 216,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 66,
@@ -721,7 +872,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 282,
+                "disenchant": 312,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -731,19 +882,27 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 290,
+                "disenchant": 307,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 69,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
+                "level": 6000,
+                "upgrades": [
+                    508,
+                    507,
+                    506,
+                    509,
+                    510,
+                    511,
+                    512
+                ],
+                "health": 6204,
+                "grind_time": 936,
                 "disenchant": 172,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 70,
@@ -751,9 +910,9 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 233,
+                "disenchant": 245,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 71,
@@ -771,7 +930,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 596,
+                "disenchant": 609,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -781,7 +940,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 103,
+                "disenchant": 105,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -791,7 +950,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 234,
+                "disenchant": 258,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -801,7 +960,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 220,
+                "disenchant": 243,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -811,17 +970,25 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 224,
+                "disenchant": 245,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 77,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
+                "level": 6000,
+                "upgrades": [
+                    562,
+                    563,
+                    564,
+                    565,
+                    566,
+                    567,
+                    568
+                ],
+                "health": 6234,
                 "grind_time": 0,
-                "disenchant": 301,
+                "disenchant": 351,
                 "owned": 1,
                 "in_seat": 1
             },
@@ -831,7 +998,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 154,
+                "disenchant": 158,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -841,7 +1008,7 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 50,
+                "disenchant": 58,
                 "owned": 1,
                 "in_seat": 0
             },
@@ -851,36 +1018,45 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 330,
+                "disenchant": 382,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 81,
-                "level": 301,
+                "level": 6000,
                 "upgrades": [
-                    590,
-                    591,
                     592,
-                    593,
+                    591,
+                    590,
                     594,
-                    595
+                    593,
+                    595,
+                    596
                 ],
-                "health": 385,
-                "grind_time": 67,
-                "disenchant": 22,
+                "health": 6084,
+                "grind_time": 687,
+                "disenchant": 23,
                 "owned": 1,
-                "in_seat": 1
+                "in_seat": 0
             },
             {
                 "hero_id": 82,
-                "level": 0,
-                "upgrades": [],
-                "health": 0,
-                "grind_time": 0,
-                "disenchant": 358,
+                "level": 6000,
+                "upgrades": [
+                    597,
+                    598,
+                    599,
+                    600,
+                    601,
+                    602,
+                    603
+                ],
+                "health": 6150,
+                "grind_time": 351,
+                "disenchant": 400,
                 "owned": 1,
-                "in_seat": 0
+                "in_seat": 1
             },
             {
                 "hero_id": 83,
@@ -888,17 +1064,25 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 28,
+                "disenchant": 51,
                 "owned": 1,
                 "in_seat": 0
             },
             {
                 "hero_id": 84,
-                "level": 1,
-                "upgrades": [],
-                "health": 51,
-                "grind_time": 68,
-                "disenchant": 12,
+                "level": 6000,
+                "upgrades": [
+                    611,
+                    612,
+                    613,
+                    614,
+                    615,
+                    616,
+                    617
+                ],
+                "health": 6050,
+                "grind_time": 356,
+                "disenchant": 21,
                 "owned": 1,
                 "in_seat": 1
             },
@@ -928,8 +1112,8 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 0,
-                "owned": 0,
+                "disenchant": 21,
+                "owned": 1,
                 "in_seat": 0
             },
             {
@@ -938,27 +1122,27 @@
                 "upgrades": [],
                 "health": 0,
                 "grind_time": 0,
-                "disenchant": 0,
-                "owned": 0,
+                "disenchant": 39,
+                "owned": 1,
                 "in_seat": 0
             }
         ],
         "loot": [
             {
                 "loot_id": 1,
-                "count": 595
+                "count": 630
             },
             {
                 "loot_id": 2,
-                "count": 252
+                "count": 263
             },
             {
                 "loot_id": 3,
-                "count": 82
+                "count": 86
             },
             {
                 "loot_id": 4,
-                "count": 7
+                "count": 9
             },
             {
                 "loot_id": 8,
@@ -1009,10 +1193,6 @@
                 "count": 1
             },
             {
-                "loot_id": 68,
-                "count": 1
-            },
-            {
                 "loot_id": 75,
                 "count": 1
             },
@@ -1037,7 +1217,7 @@
                 "count": 1
             },
             {
-                "loot_id": 107,
+                "loot_id": 108,
                 "count": 1
             },
             {
@@ -1049,11 +1229,7 @@
                 "count": 1
             },
             {
-                "loot_id": 124,
-                "count": 1
-            },
-            {
-                "loot_id": 131,
+                "loot_id": 132,
                 "count": 1
             },
             {
@@ -1138,15 +1314,15 @@
             },
             {
                 "loot_id": 245,
-                "count": 554
+                "count": 584
             },
             {
                 "loot_id": 246,
-                "count": 297
+                "count": 310
             },
             {
                 "loot_id": 247,
-                "count": 70
+                "count": 73
             },
             {
                 "loot_id": 248,
@@ -1154,15 +1330,15 @@
             },
             {
                 "loot_id": 249,
-                "count": 589
+                "count": 618
             },
             {
                 "loot_id": 250,
-                "count": 266
+                "count": 283
             },
             {
                 "loot_id": 251,
-                "count": 69
+                "count": 72
             },
             {
                 "loot_id": 252,
@@ -1170,19 +1346,19 @@
             },
             {
                 "loot_id": 253,
-                "count": 632
+                "count": 680
             },
             {
                 "loot_id": 254,
-                "count": 276
+                "count": 286
             },
             {
                 "loot_id": 255,
-                "count": 64
+                "count": 66
             },
             {
                 "loot_id": 256,
-                "count": 6
+                "count": 7
             },
             {
                 "loot_id": 265,
@@ -1417,15 +1593,11 @@
                 "count": 1
             },
             {
-                "loot_id": 569,
-                "count": 1
-            },
-            {
                 "loot_id": 577,
                 "count": 1
             },
             {
-                "loot_id": 585,
+                "loot_id": 586,
                 "count": 1
             },
             {
@@ -1453,7 +1625,7 @@
                 "count": 1
             },
             {
-                "loot_id": 621,
+                "loot_id": 622,
                 "count": 1
             },
             {
@@ -1554,10 +1726,6 @@
             },
             {
                 "loot_id": 772,
-                "count": 1
-            },
-            {
-                "loot_id": 777,
                 "count": 1
             },
             {
@@ -1717,8 +1885,16 @@
                 "count": 3
             },
             {
-                "loot_id": 1006,
+                "loot_id": 981,
                 "count": 1
+            },
+            {
+                "loot_id": 999,
+                "count": 4
+            },
+            {
+                "loot_id": 1006,
+                "count": 3
             },
             {
                 "loot_id": 1009,
@@ -1757,12 +1933,8 @@
                 "count": 3
             },
             {
-                "loot_id": 1144,
-                "count": 3
-            },
-            {
                 "loot_id": 1150,
-                "count": 3
+                "count": 4
             },
             {
                 "loot_id": 1153,
@@ -1794,7 +1966,7 @@
             },
             {
                 "loot_id": 1190,
-                "count": 3
+                "count": 4
             },
             {
                 "loot_id": 1191,
@@ -1806,6 +1978,10 @@
             },
             {
                 "loot_id": 1193,
+                "count": 3
+            },
+            {
+                "loot_id": 1196,
                 "count": 3
             },
             {
@@ -1977,7 +2153,7 @@
                 "count": 1
             },
             {
-                "loot_id": 1438,
+                "loot_id": 1439,
                 "count": 1
             },
             {
@@ -1985,16 +2161,48 @@
                 "count": 3
             },
             {
-                "loot_id": 1448,
+                "loot_id": 1449,
+                "count": 1
+            },
+            {
+                "loot_id": 1492,
+                "count": 1
+            },
+            {
+                "loot_id": 1497,
+                "count": 1
+            },
+            {
+                "loot_id": 1503,
+                "count": 1
+            },
+            {
+                "loot_id": 1506,
+                "count": 1
+            },
+            {
+                "loot_id": 1511,
+                "count": 1
+            },
+            {
+                "loot_id": 1517,
                 "count": 1
             },
             {
                 "loot_id": 1521,
-                "count": 2
+                "count": 3
+            },
+            {
+                "loot_id": 1523,
+                "count": 3
+            },
+            {
+                "loot_id": 1526,
+                "count": 1
             }
         ],
-        "reset_currency": 6421,
-        "reset_currency_spent": 631779,
+        "reset_currency": 7743,
+        "reset_currency_spent": 672770,
         "achievements": [],
         "abilities": [
             {
@@ -2004,18 +2212,18 @@
             },
             {
                 "ability_id": 2,
-                "cooldown_remaining": 0,
-                "use_count": 1
+                "cooldown_remaining": 230,
+                "use_count": 9
             },
             {
                 "ability_id": 3,
                 "cooldown_remaining": 0,
-                "use_count": 0
+                "use_count": 2
             },
             {
                 "ability_id": 4,
-                "cooldown_remaining": 0,
-                "use_count": 0
+                "cooldown_remaining": 460,
+                "use_count": 2
             },
             {
                 "ability_id": 5,
@@ -2029,13 +2237,13 @@
             },
             {
                 "ability_id": 7,
-                "cooldown_remaining": 3298,
-                "use_count": 1
+                "cooldown_remaining": 3156,
+                "use_count": 9
             },
             {
                 "ability_id": 8,
-                "cooldown_remaining": 0,
-                "use_count": 0
+                "cooldown_remaining": 461,
+                "use_count": 2
             }
         ],
         "buffs": [
@@ -2043,19 +2251,19 @@
                 "buff_id": 1,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 486
+                "inventory_amount": 530
             },
             {
                 "buff_id": 2,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 406
+                "inventory_amount": 441
             },
             {
                 "buff_id": 3,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 220
+                "inventory_amount": 240
             },
             {
                 "buff_id": 4,
@@ -2067,19 +2275,19 @@
                 "buff_id": 5,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 549
+                "inventory_amount": 589
             },
             {
                 "buff_id": 6,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 507
+                "inventory_amount": 540
             },
             {
                 "buff_id": 7,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 285
+                "inventory_amount": 305
             },
             {
                 "buff_id": 8,
@@ -2091,19 +2299,19 @@
                 "buff_id": 9,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 489
+                "inventory_amount": 532
             },
             {
                 "buff_id": 10,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 513
+                "inventory_amount": 567
             },
             {
                 "buff_id": 11,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 207
+                "inventory_amount": 222
             },
             {
                 "buff_id": 12,
@@ -2115,19 +2323,19 @@
                 "buff_id": 13,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 145
+                "inventory_amount": 185
             },
             {
                 "buff_id": 14,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 155
+                "inventory_amount": 189
             },
             {
                 "buff_id": 15,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 99
+                "inventory_amount": 116
             },
             {
                 "buff_id": 16,
@@ -2139,19 +2347,19 @@
                 "buff_id": 17,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 442
+                "inventory_amount": 492
             },
             {
                 "buff_id": 18,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 461
+                "inventory_amount": 489
             },
             {
                 "buff_id": 19,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 258
+                "inventory_amount": 266
             },
             {
                 "buff_id": 20,
@@ -2163,19 +2371,19 @@
                 "buff_id": 21,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 425
+                "inventory_amount": 472
             },
             {
                 "buff_id": 22,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 401
+                "inventory_amount": 441
             },
             {
                 "buff_id": 23,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 221
+                "inventory_amount": 241
             },
             {
                 "buff_id": 24,
@@ -2193,7 +2401,7 @@
                 "buff_id": 26,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 85
+                "inventory_amount": 86
             },
             {
                 "buff_id": 27,
@@ -2205,7 +2413,7 @@
                 "buff_id": 28,
                 "remaining_time": 0,
                 "total_duration": 0,
-                "inventory_amount": 24
+                "inventory_amount": 25
             },
             {
                 "buff_id": 29,
@@ -2575,31 +2783,31 @@
             },
             {
                 "buff_id": 91,
-                "remaining_time": 225163,
-                "total_duration": 259200,
+                "remaining_time": 0,
+                "total_duration": 0,
                 "inventory_amount": 0
             },
             {
                 "buff_id": 92,
-                "remaining_time": 0,
-                "total_duration": 0,
+                "remaining_time": 242987,
+                "total_duration": 259200,
                 "inventory_amount": 0
             }
         ],
         "stats": {
             "rare_chests_bought_premium": 18,
-            "rare_generic_chests_bought_premium": 73,
-            "crusaders_recruited": "12937",
-            "last_daily_quest_time": "1495220842",
+            "rare_generic_chests_bought_premium": 79,
+            "crusaders_recruited": "13340",
+            "last_daily_quest_time": "1495796842",
             "ability_bar_shown": "1",
             "ad_bonus_protip_seen": "1",
             "apple_tokens_spent": "41500",
             "baenarall_diversity_highest_buff": 310,
-            "basic_loot_crafted": "85",
+            "basic_loot_crafted": "88",
             "bench_protip_seen": "1",
-            "boss_defeats": "2682",
-            "boss_defeats_on_highest_level": "2551",
-            "boss_kills": "115004",
+            "boss_defeats": "2782",
+            "boss_defeats_on_highest_level": "2589",
+            "boss_kills": "117689",
             "buff_inventory_shown": "1",
             "candy_canes_spent": "48000",
             "candy_hearts_spent": "43000",
@@ -2621,7 +2829,8 @@
             "chests_opened_type_26": "5",
             "chests_opened_type_27": "10",
             "chests_opened_type_3": "11",
-            "chests_opened_type_37": "2",
+            "chests_opened_type_37": "6",
+            "chests_opened_type_38": "9",
             "chests_opened_type_39": "11",
             "chests_opened_type_4": "10",
             "chests_opened_type_40": "6",
@@ -2667,19 +2876,20 @@
             "chests_opened_type_82": "1",
             "chests_opened_type_85": "1",
             "chests_opened_type_86": "4",
+            "chests_opened_type_87": "4",
             "chests_opened_type_9": "10",
-            "clicks": "372248",
-            "click_damage": "414000",
+            "clicks": "375259",
+            "click_damage": "431000",
             "comic_books_spent": "32200",
-            "common_loot_gained": "2536",
-            "crafting_recipes_learned": "459",
+            "common_loot_gained": "2703",
+            "crafting_recipes_learned": "499",
             "credits_seen": "1",
             "crusaders_on_missions_protip_seen": "1",
             "dark_helper_buff_rudolph": "1",
             "difficult_missions_protip_seen": "1",
-            "disenchanted_gear_count": "4513",
-            "dps": "9.9373994097169E+39",
-            "epic_loot_gained": "153",
+            "disenchanted_gear_count": "5212",
+            "dps": "5.13361945928607e+195",
+            "epic_loot_gained": "162",
             "escort_deaths_this_reset": "0",
             "fastest_carnival_reset_time": "1679",
             "firework_tokens_spent": "41500",
@@ -2689,10 +2899,11 @@
             "forced_win_counter_14": "5",
             "forced_win_counter_16": "2",
             "forced_win_counter_19": "2",
-            "forced_win_counter_2": "8",
+            "forced_win_counter_2": "1",
             "forced_win_counter_21": "9",
             "forced_win_counter_24": "1",
             "forced_win_counter_27": "6",
+            "forced_win_counter_38": "7",
             "forced_win_counter_4": "1",
             "forced_win_counter_40": "8",
             "forced_win_counter_42": "8",
@@ -2732,6 +2943,7 @@
             "forced_win_counter_82": "3",
             "forced_win_counter_85": "3",
             "forced_win_counter_86": "9",
+            "forced_win_counter_87": "8",
             "foresight_most_heal_combinations_made": "4",
             "foresight_most_heal_human_female": "1",
             "foresight_most_heal_human_male": "1",
@@ -2743,18 +2955,18 @@
             "four_leaf_clovers_spent": "49700",
             "frosty_decreased_more_than_increased": "1",
             "global_click_damage_dps_percent": "0",
-            "global_dps_multiplier": "691514690897853",
-            "gold": "1.0965327844272E+37",
-            "gold_gained": "1.0978250994858E+37",
-            "gold_gained_in_last_minute": "2.42232683425678e+94",
-            "gold_gained_on_previous_resets": "1.0301057513661E+209",
+            "global_dps_multiplier": "0",
+            "gold": "2.16417026396179e+207",
+            "gold_gained": "2.16417026848264e+207",
+            "gold_gained_in_last_minute": "5.89136250433875e+201",
+            "gold_gained_on_previous_resets": "7.57170810022410e+209",
             "grandmora_buff_spaceking_with_avenger": "1",
             "gumdrops_spent": "34700",
             "halloween_tickets_spent": "53000",
             "helmets_spent": "53000",
-            "heroes_killed": "113239",
-            "hero_levels_lost_to_resets": "36561732",
-            "hero_upgrades_lost_to_resets": "68734",
+            "heroes_killed": "117724",
+            "hero_levels_lost_to_resets": "37994656",
+            "hero_upgrades_lost_to_resets": "71039",
             "highest_area_completed_ever": "974",
             "highest_area_completed_ever_c-1": "291",
             "highest_area_completed_ever_c1": "974",
@@ -2764,10 +2976,10 @@
             "highest_area_completed_ever_c13": "801",
             "highest_area_completed_ever_c14": "947",
             "highest_area_completed_ever_c15": "904",
-            "highest_area_completed_ever_c16": "787",
+            "highest_area_completed_ever_c16": "809",
             "highest_area_completed_ever_c17": "993",
             "highest_area_completed_ever_c18": "0",
-            "highest_area_completed_ever_c19": "411",
+            "highest_area_completed_ever_c19": "1021",
             "highest_area_completed_ever_c2": "627",
             "highest_area_completed_ever_c20": "311",
             "highest_area_completed_ever_c21": "397",
@@ -2784,180 +2996,209 @@
             "highest_area_completed_ever_c8": "775",
             "highest_area_completed_ever_c9": "781",
             "highest_center_of_the_universe_dps_buff": "335",
-            "highest_dps_ever": "7.3307171858382E+195",
+            "highest_dps_ever": "3.49352747241213e+199",
             "highest_draco_buffs_percent": "1200",
-            "highest_gold_hoarded": "1.0965327844272E+37",
-            "highest_gold_hoarded_ever": "1.0255659621688E+209",
+            "highest_gold_hoarded": "2.16417026396179e+207",
+            "highest_gold_hoarded_ever": "4.74187190563125e+209",
             "highest_hero_unlocked_ever": "24",
             "highest_leerion_gold_bonus": "225",
             "highest_minutes_wind_up_bunny_maxed": 26,
-            "highest_multi_level_talents_maxed": "8",
+            "highest_multi_level_talents_maxed": "9",
             "highest_mult_from_growing_up_ability": "11560",
             "highest_mult_from_syncronized_swimming_and_splish_splash_abilities": "2",
             "highest_percent_dps_from_females": "1.4923049171244E+63",
-            "highest_talent_levels_purchased": "389",
+            "highest_talent_levels_purchased": "401",
             "injured_crusaders_protip_seen": "1",
             "karl_cindy_clutch_play": "1",
             "kyle_highest_buff_count": "6",
             "last_abandon_time": "1494285016",
-            "last_choose_objective_time": "1495249550",
-            "legendary_craft_cost": "1.66",
-            "legendary_loot_crafted": "29",
-            "legendary_reduction_date": "1494976741",
+            "last_choose_objective_time": "1495798473",
+            "legendary_craft_cost": "2.7556",
+            "legendary_loot_crafted": "32",
+            "legendary_reduction_date": "1495581541",
             "local_device_install_time": "3477046136",
-            "loot_gained": "4540",
+            "loot_gained": "4802",
             "marketing_promo_3_seen": "1",
             "marshmallow_tokens_spent": "34000",
             "max_katie_gold_buffers": "8",
             "max_legendary_level": "4",
             "max_monster_extra_gold_percent": "300",
             "mimic_pete_and_mister_monkey": "1",
-            "missions_completed": "6970",
-            "missions_succeeded": "6833",
+            "missions_completed": "7173",
+            "missions_succeeded": "7035",
             "mission_dialog_protip_seen": "1",
             "mission_tags_protip_seen": "1",
             "mobile_rate_us_protip_seen": "1",
-            "monster_kills": "13014834",
+            "monster_kills": "13399403",
             "most_attackers_on_metal_soldierette_with_sidekick": "18",
             "most_halloween_monsters_on_screen_free_play": "0",
             "most_heroes_unlocked": "35",
             "most_percent_of_total_dps_from_short_circuit_absorb": "100",
             "most_simultaneous_broot_robbie_effects_applied": "4",
-            "multi_level_talents_maxed": "8",
-            "normal_chests_opened": "11790",
-            "normal_defeats": "4082",
-            "num_heroes_benched": "2118",
+            "multi_level_talents_maxed": "9",
+            "normal_chests_opened": "12590",
+            "normal_defeats": "4368",
+            "num_heroes_benched": "2232",
             "objective_previously_completed": "0",
             "participation_ribbons_spent": "41500",
             "paul_petra_synergy": "1",
-            "polly_tough_nut_highest_buff": "0",
+            "polly_tough_nut_highest_buff": "250",
             "premium_item_purchases_1": "1",
             "premium_item_purchases_18": "1",
-            "premium_item_purchases_6": "15",
+            "premium_item_purchases_6": "17",
             "premium_item_purchases_7": "4",
             "pumpkin_pies_spent": "42900",
-            "rare_chests_opened": "501",
-            "rare_loot_gained": "521",
+            "rare_chests_opened": "513",
+            "rare_loot_gained": "544",
             "rate_us_protip_seen": "0",
-            "recoveries_boss": "1219",
-            "recoveries_normal": "6879",
-            "remote_detonation_kills": "55",
-            "resets": "534",
+            "recoveries_boss": "1226",
+            "recoveries_normal": "6914",
+            "remote_detonation_kills": "224",
+            "resets": "548",
             "reset_using_effective_demonstration_ability": "1",
             "rocky_sally_fas_maxed": "1",
             "seed_spores_spent": "34700",
             "snickette_squiggles_fully_buffed": "1",
             "spawn_speed_buffs_used_this_reset": "0",
             "storm_rider_gold_bonus_mult": "0",
-            "storm_rider_mult": "110.25",
+            "storm_rider_mult": "5874.75",
             "sunscreens_spent": "34800",
             "swapping_protip_seen": "1",
-            "talent_levels_purchased": "389",
+            "talent_levels_purchased": "401",
             "talent_respecs_done": "3",
             "time_warped_admin": "0",
             "time_warps_used_this_reset": "0",
-            "torch_tokens_spent": "11500",
+            "torch_tokens_spent": "33000",
             "total_heroes_injured": "28",
-            "total_heroes_sent_on_missions": "16734",
-            "total_hero_levels": "1689",
+            "total_heroes_sent_on_missions": "17239",
+            "total_hero_levels": "138000",
             "tutorial_seen": "0",
-            "uncommon_loot_gained": "1307",
+            "uncommon_loot_gained": "1365",
             "walk_away_proptip_seen": "1",
-            "wipes_this_reset": "0"
+            "wipes_this_reset": "16"
         },
-        "seconds_since_last_save": 27072,
+        "seconds_since_last_save": 354,
         "levels_per_chest": 2000,
         "levels_per_reset_currency": 250,
         "is_new_game": 0,
-        "seconds_played": 29165510,
-        "seconds_since_reset": 31347,
+        "seconds_played": 29726320,
+        "seconds_since_reset": 43290,
         "current_campaign_id": 19,
-        "current_objective_id": 208,
-        "red_rubies": 1000,
-        "red_rubies_spent": 27000,
+        "current_objective_id": 209,
+        "red_rubies": 1005,
+        "red_rubies_spent": 27300,
         "quests": [],
-        "seconds_to_next_daily": 11964,
+        "seconds_to_next_daily": 27154,
         "formation_saves": {
-            "campaign1": [
+            "campaign12": [
                 {
                     "save_id": 3,
                     "formation": [
+                        57,
                         52,
-                        53,
+                        69,
+                        15,
+                        35,
+                        14,
+                        -1,
                         50,
                         47,
-                        15,
+                        26,
                         22,
-                        62,
-                        54,
-                        27,
-                        6
+                        54
+                    ]
+                },
+                {
+                    "save_id": 2,
+                    "formation": [
+                        57,
+                        52,
+                        69,
+                        15,
+                        35,
+                        14,
+                        -1,
+                        18,
+                        47,
+                        26,
+                        22,
+                        54
                     ]
                 },
                 {
                     "save_id": 1,
                     "formation": [
-                        19,
-                        22,
-                        11,
-                        50,
-                        52,
-                        84,
-                        62,
-                        47,
-                        77,
-                        23
-                    ]
-                },
-                {
-                    "save_id": 2,
-                    "formation": [
-                        22,
-                        -1,
-                        -1,
-                        53,
-                        18,
-                        54,
-                        -1,
+                        69,
+                        24,
+                        56,
+                        1,
                         15,
+                        31,
                         -1,
-                        62
+                        25,
+                        44,
+                        22,
+                        50,
+                        54
                     ]
                 }
             ],
-            "campaign23": [
+            "campaign16": [
                 {
-                    "save_id": 3,
+                    "save_id": 1,
                     "formation": [
-                        52,
-                        69,
+                        51,
+                        7,
                         53,
-                        23,
-                        59,
-                        27,
+                        15,
+                        58,
+                        45,
+                        56,
+                        10,
+                        54,
+                        19,
                         22,
-                        47,
-                        74,
-                        81,
-                        62,
-                        6
+                        65,
+                        50,
+                        62
                     ]
                 },
                 {
                     "save_id": 2,
                     "formation": [
-                        52,
-                        69,
+                        51,
+                        7,
                         53,
-                        23,
-                        59,
-                        27,
+                        15,
+                        58,
+                        45,
+                        56,
+                        10,
+                        54,
+                        1,
                         22,
+                        6,
+                        50,
+                        62
+                    ]
+                },
+                {
+                    "save_id": 3,
+                    "formation": [
+                        53,
+                        52,
+                        50,
+                        15,
+                        22,
+                        45,
+                        55,
+                        57,
+                        54,
+                        6,
                         47,
-                        18,
+                        27,
                         81,
-                        62,
-                        6
+                        62
                     ]
                 }
             ],
@@ -3017,43 +3258,351 @@
                     ]
                 }
             ],
-            "campaign19": [
+            "campaign14": [
+                {
+                    "save_id": 2,
+                    "formation": [
+                        69,
+                        52,
+                        18,
+                        53,
+                        15,
+                        6,
+                        22,
+                        27,
+                        81,
+                        54,
+                        47
+                    ]
+                },
                 {
                     "save_id": 3,
                     "formation": [
-                        51,
+                        69,
                         52,
-                        7,
-                        45,
-                        50,
+                        58,
+                        74,
                         15,
-                        22,
-                        24,
-                        1,
-                        54,
-                        27,
-                        84,
                         6,
+                        22,
+                        27,
+                        81,
+                        54,
+                        47
+                    ]
+                },
+                {
+                    "save_id": 1,
+                    "formation": [
+                        50,
+                        73,
+                        51,
+                        45,
+                        15,
+                        44,
+                        22,
+                        56,
+                        19,
+                        54,
+                        81
+                    ]
+                }
+            ],
+            "campaign17": [
+                {
+                    "save_id": 3,
+                    "formation": [
+                        52,
+                        53,
+                        50,
+                        21,
+                        15,
+                        69,
+                        54,
+                        22,
+                        27,
+                        47,
+                        81,
                         62
                     ]
                 },
                 {
                     "save_id": 2,
                     "formation": [
-                        51,
+                        60,
+                        50,
+                        58,
                         52,
+                        15,
+                        53,
+                        45,
+                        22,
+                        56,
+                        54,
+                        81,
+                        62
+                    ]
+                },
+                {
+                    "save_id": 1,
+                    "formation": [
+                        60,
+                        65,
+                        58,
+                        52,
+                        15,
                         7,
                         45,
-                        18,
+                        22,
+                        56,
+                        54,
+                        50,
+                        62
+                    ]
+                }
+            ],
+            "campaign15": [
+                {
+                    "save_id": 3,
+                    "formation": [
+                        40,
+                        52,
+                        69,
+                        50,
+                        22,
+                        35,
+                        47,
+                        14,
+                        4,
+                        15,
+                        26,
+                        54
+                    ]
+                },
+                {
+                    "save_id": 1,
+                    "formation": [
+                        24,
+                        50,
+                        69,
+                        4,
+                        52,
+                        15,
+                        44,
+                        51,
+                        65,
+                        35,
+                        14,
+                        54
+                    ]
+                },
+                {
+                    "save_id": 2,
+                    "formation": [
+                        53,
+                        69,
+                        50,
+                        65,
+                        38,
+                        15,
+                        25,
+                        51,
+                        31,
+                        54,
+                        35,
+                        80
+                    ]
+                }
+            ],
+            "campaign1": [
+                {
+                    "save_id": 3,
+                    "formation": [
+                        52,
+                        53,
+                        50,
+                        47,
                         15,
                         22,
-                        24,
-                        1,
+                        62,
                         54,
                         27,
+                        6
+                    ]
+                },
+                {
+                    "save_id": 1,
+                    "formation": [
+                        19,
+                        22,
+                        11,
+                        50,
+                        52,
                         84,
-                        6,
+                        62,
+                        47,
+                        77,
+                        23
+                    ]
+                },
+                {
+                    "save_id": 2,
+                    "formation": [
+                        22,
+                        -1,
+                        -1,
+                        53,
+                        18,
+                        54,
+                        -1,
+                        15,
+                        -1,
                         62
+                    ]
+                }
+            ],
+            "campaign19": [
+                {
+                    "save_id": 3,
+                    "formation": [
+                        52,
+                        53,
+                        57,
+                        55,
+                        69,
+                        27,
+                        50,
+                        22,
+                        54,
+                        81,
+                        23,
+                        6,
+                        47,
+                        62
+                    ]
+                },
+                {
+                    "save_id": 2,
+                    "formation": [
+                        52,
+                        53,
+                        1,
+                        55,
+                        69,
+                        27,
+                        18,
+                        22,
+                        54,
+                        81,
+                        15,
+                        6,
+                        47,
+                        62
+                    ]
+                },
+                {
+                    "save_id": 1,
+                    "formation": [
+                        51,
+                        35,
+                        60,
+                        59,
+                        58,
+                        11,
+                        84,
+                        7,
+                        22,
+                        50,
+                        82,
+                        19,
+                        47,
+                        62
+                    ]
+                }
+            ],
+            "campaign23": [
+                {
+                    "save_id": 3,
+                    "formation": [
+                        52,
+                        69,
+                        53,
+                        23,
+                        59,
+                        27,
+                        22,
+                        47,
+                        74,
+                        81,
+                        62,
+                        6
+                    ]
+                },
+                {
+                    "save_id": 2,
+                    "formation": [
+                        52,
+                        69,
+                        53,
+                        23,
+                        59,
+                        27,
+                        22,
+                        47,
+                        18,
+                        81,
+                        62,
+                        6
+                    ]
+                }
+            ],
+            "campaign13": [
+                {
+                    "save_id": 2,
+                    "formation": [
+                        52,
+                        69,
+                        21,
+                        18,
+                        15,
+                        47,
+                        67,
+                        53,
+                        27,
+                        -1,
+                        54
+                    ]
+                },
+                {
+                    "save_id": 1,
+                    "formation": [
+                        57,
+                        56,
+                        11,
+                        68,
+                        30,
+                        67,
+                        31,
+                        65,
+                        1,
+                        53,
+                        74
+                    ]
+                },
+                {
+                    "save_id": 3,
+                    "formation": [
+                        67,
+                        69,
+                        47,
+                        53,
+                        71,
+                        51,
+                        30,
+                        27,
+                        68,
+                        16,
+                        25
                     ]
                 }
             ],
@@ -3112,333 +3661,15 @@
                         56
                     ]
                 }
-            ],
-            "campaign17": [
-                {
-                    "save_id": 3,
-                    "formation": [
-                        52,
-                        53,
-                        50,
-                        21,
-                        15,
-                        69,
-                        54,
-                        22,
-                        27,
-                        47,
-                        81,
-                        62
-                    ]
-                },
-                {
-                    "save_id": 2,
-                    "formation": [
-                        60,
-                        50,
-                        58,
-                        52,
-                        15,
-                        53,
-                        45,
-                        22,
-                        56,
-                        54,
-                        81,
-                        62
-                    ]
-                },
-                {
-                    "save_id": 1,
-                    "formation": [
-                        60,
-                        65,
-                        58,
-                        52,
-                        15,
-                        7,
-                        45,
-                        22,
-                        56,
-                        54,
-                        50,
-                        62
-                    ]
-                }
-            ],
-            "campaign16": [
-                {
-                    "save_id": 1,
-                    "formation": [
-                        24,
-                        19,
-                        7,
-                        15,
-                        45,
-                        51,
-                        56,
-                        10,
-                        54,
-                        26,
-                        22,
-                        65,
-                        50,
-                        62
-                    ]
-                },
-                {
-                    "save_id": 2,
-                    "formation": [
-                        19,
-                        6,
-                        81,
-                        15,
-                        45,
-                        51,
-                        56,
-                        10,
-                        54,
-                        26,
-                        22,
-                        24,
-                        50,
-                        62
-                    ]
-                },
-                {
-                    "save_id": 3,
-                    "formation": [
-                        57,
-                        52,
-                        69,
-                        15,
-                        50,
-                        22,
-                        55,
-                        19,
-                        54,
-                        6,
-                        47,
-                        27,
-                        81,
-                        62
-                    ]
-                }
-            ],
-            "campaign15": [
-                {
-                    "save_id": 3,
-                    "formation": [
-                        40,
-                        52,
-                        69,
-                        50,
-                        22,
-                        35,
-                        47,
-                        14,
-                        4,
-                        15,
-                        26,
-                        54
-                    ]
-                },
-                {
-                    "save_id": 1,
-                    "formation": [
-                        24,
-                        50,
-                        69,
-                        4,
-                        52,
-                        15,
-                        44,
-                        51,
-                        65,
-                        35,
-                        14,
-                        54
-                    ]
-                },
-                {
-                    "save_id": 2,
-                    "formation": [
-                        53,
-                        69,
-                        50,
-                        65,
-                        38,
-                        15,
-                        25,
-                        51,
-                        31,
-                        54,
-                        35,
-                        80
-                    ]
-                }
-            ],
-            "campaign14": [
-                {
-                    "save_id": 2,
-                    "formation": [
-                        69,
-                        52,
-                        18,
-                        53,
-                        15,
-                        6,
-                        22,
-                        27,
-                        81,
-                        54,
-                        47
-                    ]
-                },
-                {
-                    "save_id": 3,
-                    "formation": [
-                        69,
-                        52,
-                        58,
-                        74,
-                        15,
-                        6,
-                        22,
-                        27,
-                        81,
-                        54,
-                        47
-                    ]
-                },
-                {
-                    "save_id": 1,
-                    "formation": [
-                        50,
-                        73,
-                        51,
-                        45,
-                        15,
-                        44,
-                        22,
-                        56,
-                        19,
-                        54,
-                        81
-                    ]
-                }
-            ],
-            "campaign13": [
-                {
-                    "save_id": 2,
-                    "formation": [
-                        52,
-                        69,
-                        21,
-                        18,
-                        15,
-                        47,
-                        67,
-                        53,
-                        27,
-                        -1,
-                        54
-                    ]
-                },
-                {
-                    "save_id": 1,
-                    "formation": [
-                        57,
-                        56,
-                        11,
-                        68,
-                        30,
-                        67,
-                        31,
-                        65,
-                        1,
-                        53,
-                        74
-                    ]
-                },
-                {
-                    "save_id": 3,
-                    "formation": [
-                        67,
-                        69,
-                        47,
-                        53,
-                        71,
-                        51,
-                        30,
-                        27,
-                        68,
-                        16,
-                        25
-                    ]
-                }
-            ],
-            "campaign12": [
-                {
-                    "save_id": 3,
-                    "formation": [
-                        57,
-                        52,
-                        69,
-                        15,
-                        35,
-                        14,
-                        -1,
-                        50,
-                        47,
-                        26,
-                        22,
-                        54
-                    ]
-                },
-                {
-                    "save_id": 2,
-                    "formation": [
-                        57,
-                        52,
-                        69,
-                        15,
-                        35,
-                        14,
-                        -1,
-                        18,
-                        47,
-                        26,
-                        22,
-                        54
-                    ]
-                },
-                {
-                    "save_id": 1,
-                    "formation": [
-                        69,
-                        24,
-                        56,
-                        1,
-                        15,
-                        31,
-                        -1,
-                        25,
-                        44,
-                        22,
-                        50,
-                        54
-                    ]
-                }
             ]
         },
         "talents": {
             "1": 1,
             "2": 1,
             "3": 50,
-            "4": 48,
-            "5": 36,
-            "6": 35,
+            "4": 50,
+            "5": 37,
+            "6": 37,
             "7": 0,
             "8": 0,
             "9": 0,
@@ -3448,8 +3679,8 @@
             "13": 25,
             "14": 15,
             "15": 18,
-            "16": 26,
-            "17": 28,
+            "16": 31,
+            "17": 30,
             "18": 1,
             "19": 25,
             "20": 25,
@@ -3464,7 +3695,7 @@
             "sound": 0,
             "music": 0,
             "auto_pause": 0,
-            "auto_progress": 1,
+            "auto_progress": 0,
             "quality": 2,
             "chat_enabled": 0,
             "hide_stars": 1,
@@ -3474,7 +3705,7 @@
         },
         "last_changelog_seen": "120",
         "last_news_seen": "52",
-        "instance_id": "1175521144",
+        "instance_id": "2142952034",
         "objective_status": [
             {
                 "id": "1",
@@ -4844,7 +5075,7 @@
             {
                 "id": "208",
                 "progress": 0,
-                "complete": 0,
+                "complete": 1,
                 "can_start": true,
                 "should_show": true
             },
@@ -5845,36 +6076,36 @@
             {
                 "id": "358",
                 "progress": 0,
-                "complete": 0,
-                "can_start": false,
+                "complete": 1,
+                "can_start": true,
                 "should_show": true
             },
             {
                 "id": "359",
                 "progress": 0,
-                "complete": 0,
-                "can_start": false,
+                "complete": 1,
+                "can_start": true,
                 "should_show": true
             },
             {
                 "id": "360",
                 "progress": 0,
-                "complete": 0,
-                "can_start": false,
+                "complete": 1,
+                "can_start": true,
                 "should_show": true
             },
             {
                 "id": "361",
                 "progress": 0,
-                "complete": 0,
-                "can_start": false,
+                "complete": 1,
+                "can_start": true,
                 "should_show": true
             },
             {
                 "id": "362",
                 "progress": 0,
-                "complete": 0,
-                "can_start": false,
+                "complete": 1,
+                "can_start": true,
                 "should_show": true
             },
             {
@@ -5908,22 +6139,22 @@
         ],
         "promotions": [
             {
-                "promotion_id": "78",
-                "name": "Golden Montana Gear",
-                "start_date": "2017-05-19 12:00:00",
-                "end_date": "2017-05-22 12:00:00",
+                "promotion_id": "79",
+                "name": "Golden Danni Gear",
+                "start_date": "2017-05-26 12:00:00",
+                "end_date": "2017-05-29 12:00:00",
                 "offer_requirements": [],
                 "purchase_requirements": [
                     {
                         "type": "purchase_type",
                         "value": "event_chests",
-                        "event_id": 63
+                        "event_id": 64
                     }
                 ],
                 "effects": [
                     {
                         "type": "loot",
-                        "loot_id": "1523"
+                        "loot_id": 1524
                     }
                 ],
                 "permanent_order": "1",
@@ -5932,164 +6163,127 @@
                     "notification": {
                         "notification_background": 4014,
                         "type": "gold",
-                        "text": "Montana's$(nl)Epic Gear",
-                        "graphic": 8160
+                        "text": "Danni's$(nl)Epic Gear",
+                        "graphic": 8156
                     },
                     "shop": {
                         "type": "bonus_loot",
-                        "loot_id": "1523",
-                        "event_purchase": 63,
-                        "text": "Buy a Promo Jeweled Chest Bundle today and get a FREE Golden Card for Montana James!"
+                        "loot_id": 1524,
+                        "event_purchase": 64,
+                        "text": "Buy a Promo Jeweled Chest Bundle today and get a FREE Golden Card for Danni the Daring Damsel!"
                     }
                 },
-                "seconds_left": 198722
-            },
-            {
-                "promotion_id": "80",
-                "name": "Golden Montana Gear",
-                "start_date": "2017-05-18 10:45:00",
-                "end_date": "2017-06-01 12:00:00",
-                "offer_requirements": [],
-                "purchase_requirements": [
-                    {
-                        "type": "purchase_type",
-                        "value": "event_chests",
-                        "event_id": 19
-                    }
-                ],
-                "effects": [
-                    {
-                        "type": "loot",
-                        "loot_id": 1526
-                    }
-                ],
-                "permanent_order": "1",
-                "num_allowed": "1",
-                "properties": {
-                    "notification": {
-                        "notification_background": 4014,
-                        "type": "gold",
-                        "text": "Montana's$(nl)Epic Gear",
-                        "graphic": 8163
-                    },
-                    "shop": {
-                        "type": "bonus_loot",
-                        "loot_id": 1526,
-                        "event_purchase": 19,
-                        "text": "Buy an Event Jeweled Chest Bundle today and get a FREE Golden Card for Montana James!"
-                    }
-                },
-                "seconds_left": 1062722
+                "seconds_left": 242711
             }
         ],
         "mission_data": {
             "active_missions": [
                 {
-                    "mission_id": 17,
-                    "crusaders": [
-                        29,
-                        60,
-                        37,
-                        32
-                    ],
-                    "complete_timer": 0,
-                    "ready_to_complete": true
-                },
-                {
-                    "mission_id": 54,
-                    "crusaders": [
-                        73,
-                        69
-                    ],
-                    "complete_timer": 0,
-                    "ready_to_complete": true
-                },
-                {
                     "mission_id": 104,
                     "crusaders": [
-                        82,
-                        49
+                        72,
+                        78
                     ],
-                    "complete_timer": 0,
-                    "ready_to_complete": true
+                    "complete_timer": 14791,
+                    "ready_to_complete": false
                 },
                 {
-                    "mission_id": 108,
+                    "mission_id": 107,
                     "crusaders": [
-                        33,
-                        53,
-                        75,
-                        58
+                        28,
+                        43,
+                        57
                     ],
-                    "complete_timer": 0,
-                    "ready_to_complete": true
+                    "complete_timer": 23889,
+                    "ready_to_complete": false
+                },
+                {
+                    "mission_id": 109,
+                    "crusaders": [
+                        63,
+                        56,
+                        33,
+                        45
+                    ],
+                    "complete_timer": 36051,
+                    "ready_to_complete": false
+                },
+                {
+                    "mission_id": 140,
+                    "crusaders": [
+                        41,
+                        4,
+                        10
+                    ],
+                    "complete_timer": 11433,
+                    "ready_to_complete": false
                 },
                 {
                     "mission_id": 143,
                     "crusaders": [
                         40,
                         21,
+                        37,
                         31,
-                        12,
-                        59
-                    ],
-                    "complete_timer": 0,
-                    "ready_to_complete": true
-                },
-                {
-                    "mission_id": 148,
-                    "crusaders": [
-                        56,
-                        41,
-                        36,
-                        26,
                         17
                     ],
-                    "complete_timer": 22579,
+                    "complete_timer": 27818,
+                    "ready_to_complete": false
+                },
+                {
+                    "mission_id": 205,
+                    "crusaders": [
+                        18,
+                        14,
+                        26,
+                        2,
+                        1
+                    ],
+                    "complete_timer": 41529,
                     "ready_to_complete": false
                 }
             ],
             "available_missions": [
                 {
+                    "mission_id": 1,
+                    "expires_in": 172799
+                },
+                {
+                    "mission_id": 8,
+                    "expires_in": 172498
+                },
+                {
+                    "mission_id": 23,
+                    "expires_in": 2923
+                },
+                {
+                    "mission_id": 32,
+                    "expires_in": 88144
+                },
+                {
                     "mission_id": 45,
-                    "expires_in": 114237
+                    "expires_in": 117707
                 },
                 {
                     "mission_id": 46,
-                    "expires_in": 69198
+                    "expires_in": 88712
                 },
                 {
                     "mission_id": 110,
-                    "expires_in": 45320
+                    "expires_in": 80978
                 },
                 {
-                    "mission_id": 112,
-                    "expires_in": 130544
+                    "mission_id": 114,
+                    "expires_in": 130481
                 },
                 {
-                    "mission_id": 113,
-                    "expires_in": 122402
-                },
-                {
-                    "mission_id": 117,
-                    "expires_in": 143270
-                },
-                {
-                    "mission_id": 140,
-                    "expires_in": 5417
-                },
-                {
-                    "mission_id": 158,
-                    "expires_in": 142011
-                },
-                {
-                    "mission_id": 164,
-                    "expires_in": 314509
+                    "mission_id": 146,
+                    "expires_in": 104061
                 }
             ],
-            "time_to_next_update": 11800,
+            "time_to_next_update": 11434,
             "new_mission_available": false,
-            "ready_to_complete": true
+            "ready_to_complete": false
         },
         "signed_up_for_newsletter": true,
         "event_details": [
@@ -6097,7 +6291,7 @@
                 "event_id": "19",
                 "event_instance": "1",
                 "active": true,
-                "end_purchases_in": 1062721,
+                "end_purchases_in": 501911,
                 "name": "Trek Through the Hidden Temple",
                 "analytics_name": "Trek Through the Hidden Temple",
                 "description": "There's treasure in this here Temple, if you're brave and adventurous enough to seek it out! Collect Torches and reset the world to start the Trek Through the Hidden Temple objectives and recruit new Crusaders!",
@@ -6181,70 +6375,71 @@
                     "campaign_id": 19,
                     "premium_chest_token_cost": 11250
                 },
-                "ends_in": 889921,
+                "ends_in": 329111,
                 "user_data": {
-                    "event_tokens": 1219,
-                    "last_token_time": 1495280879,
-                    "warp_time": 0
+                    "event_tokens": 5088,
+                    "last_token_time": 1495841689,
+                    "warp_time": 0,
+                    "bought_in_event": true
                 },
                 "total_duration": 1041300
             },
             {
-                "event_id": "63",
+                "event_id": "64",
                 "event_instance": "0",
                 "active": true,
-                "end_purchases_in": 371521,
-                "name": "A Troublesome Temple",
-                "analytics_name": "A Troublesome Temple",
+                "end_purchases_in": 415511,
+                "name": "Squaaaaak!",
+                "analytics_name": "Squaaaaak!",
                 "description": "[Not Shown In Game For Mini Events]",
                 "details": {
                     "is_mini_event": true,
-                    "premium_chest_type_id": 87,
+                    "premium_chest_type_id": 88,
                     "allow_premium_chest_purchase": true,
                     "time_store_available_for_after_event": 0,
                     "notification": "gold",
                     "notification_background": 4014,
                     "notification_type": "gold",
-                    "shop_title_graphic": 8162,
-                    "shop_desc": "Each Troublesome Jeweled Chest contains five cards, of which two are guaranteed to be equipment for Serpent King Draco, the Princess, Khouri the Witch Doctor, Montana James, or Prince Sal the Merman (at least one of which will be rare or better). Also guarantees two random trinkets and one time warp card.",
-                    "promo_header": 8162,
-                    "promo_buff_title": "A Troublesome Temple",
-                    "promo_buff_desc": "The new event can be challenging if it's your first time through. Use these special weekend buffs to power through and unlock those tier 2 objectives!",
-                    "promo_chest_desc": "Check out these limited-time Troublesome Chests that contain equipment for just the five Crusaders above! (Only for previously unlocked Crusaders)",
+                    "shop_title_graphic": 8158,
+                    "shop_desc": "Each Squaaaak Jeweled Chest contains five cards, of which two are guaranteed to be equipment for Danni the Daring Damsel, Natalie Dragon, Jason Master of Shadows, Sarah the Collector, or Polly the Parrot (at least one of which will be rare or better). Also guarantees two random trinkets and one time warp card.",
+                    "promo_header": 8158,
+                    "promo_buff_title": "Squaaaaak!",
+                    "promo_buff_desc": "Have you recruited the new Tier 2 Crusaders? Well, take the weekend to try them out, superpowered!",
+                    "promo_chest_desc": "Check out these limited-time Squaaaak Chests that contain equipment for just the five Crusaders above! (Only for previously unlocked Crusaders)",
                     "hero_ids": [
-                        46,
-                        7,
-                        11,
-                        45,
-                        15
+                        87,
+                        8,
+                        9,
+                        13,
+                        88
                     ],
                     "chest_ids": [
-                        87
+                        88
                     ],
-                    "buff_id": 91,
+                    "buff_id": 92,
                     "effects_by_crusader": {
-                        "7": [
+                        "8": [
                             "global_dps_multiplier_mult,200"
                         ],
-                        "11": [
-                            "buff_formation_ability,200,18"
-                        ],
-                        "15": [
-                            "hero_dps_multiplier_mult,400"
-                        ],
-                        "45": [
+                        "9": [
                             "gold_multiplier_mult,200"
                         ],
-                        "46": [
+                        "13": [
                             "hero_dps_multiplier_mult,400"
+                        ],
+                        "87": [
+                            "buff_formation_ability,200,509"
+                        ],
+                        "88": [
+                            "buff_formation_ability,200,511"
                         ]
                     }
                 },
-                "ends_in": 198721,
+                "ends_in": 242711,
                 "user_data": {
                     "event_tokens": 0,
-                    "last_token_time": 1495220400,
-                    "warp_time": 3600
+                    "last_token_time": 1495825200,
+                    "warp_time": 19800
                 },
                 "total_duration": 259200
             }
@@ -6273,7 +6468,7 @@
             "26": 0,
             "27": 0,
             "37": 0,
-            "38": 2,
+            "38": 0,
             "39": 0,
             "40": 0,
             "41": 0,
@@ -6314,10 +6509,11 @@
             "81": 0,
             "82": 0,
             "85": 0,
-            "86": 0
+            "86": 0,
+            "87": 0
         },
         "shown_newsletter_dialog": true,
-        "last_buff_saved": 3764,
+        "last_buff_saved": 3804,
         "free_talent_respecs": 1,
         "dont_show_kong_mobile_link": [],
         "package_deals": [
@@ -6408,10 +6604,10 @@
         ],
         "flash_sales": [],
         "crafting_materials": {
-            "1": 578,
-            "2": 291,
-            "3": 61,
-            "4": 34,
+            "1": 0,
+            "2": 185,
+            "3": 48,
+            "4": 38,
             "5": 4
         },
         "owned_crafting_recipes": [
@@ -6419,15 +6615,19 @@
             23,
             31,
             35,
+            55,
             56,
+            67,
             71,
             75,
             76,
             88,
+            99,
             120,
             123,
             131,
             135,
+            139,
             147,
             155,
             163,
@@ -6449,6 +6649,12 @@
             263,
             266,
             267,
+            270,
+            271,
+            274,
+            275,
+            278,
+            279,
             283,
             284,
             285,
@@ -6474,6 +6680,7 @@
             316,
             317,
             318,
+            319,
             320,
             321,
             322,
@@ -6523,9 +6730,21 @@
             392,
             393,
             394,
+            396,
+            397,
             398,
+            400,
+            401,
             402,
+            404,
+            405,
             406,
+            410,
+            411,
+            414,
+            415,
+            418,
+            419,
             423,
             424,
             427,
@@ -6661,6 +6880,7 @@
             626,
             627,
             628,
+            630,
             631,
             632,
             633,
@@ -6686,6 +6906,7 @@
             669,
             670,
             671,
+            672,
             685,
             686,
             687,
@@ -6705,6 +6926,7 @@
             708,
             709,
             712,
+            716,
             722,
             723,
             726,
@@ -6730,6 +6952,7 @@
             758,
             759,
             760,
+            761,
             762,
             763,
             764,
@@ -6739,6 +6962,7 @@
             768,
             770,
             771,
+            772,
             774,
             775,
             777,
@@ -6767,6 +6991,7 @@
             828,
             833,
             834,
+            835,
             837,
             838,
             839,
@@ -6816,6 +7041,7 @@
             1236,
             1238,
             1239,
+            1240,
             1242,
             1243,
             1244,
@@ -6855,6 +7081,7 @@
             1322,
             1325,
             1326,
+            1327,
             1340,
             1344,
             1350,
@@ -6874,6 +7101,15 @@
             1397,
             1402,
             1408,
+            1422,
+            1423,
+            1427,
+            1428,
+            1429,
+            1432,
+            1433,
+            1439,
+            1449,
             5,
             6,
             9,
@@ -6995,7 +7231,7 @@
             241,
             242
         ],
-        "legendary_cost": 2,
+        "legendary_cost": 3,
         "legendary_upgrade_costs": {
             "1": 250,
             "2": 100,
@@ -7009,8 +7245,8 @@
         "reset_time_debuff_offset": 0.01
     },
     "objective_completed": false,
-    "current_time": 1495280879,
-    "last_event_chest_type_id": 87,
+    "current_time": 1495841689,
+    "last_event_chest_type_id": 88,
     "current_sales": [],
     "actions": [
         {
@@ -7018,13 +7254,13 @@
             "event_id": "19",
             "event_instance": "1",
             "added": 0,
-            "amount": 1219
+            "amount": 5088
         }
     ],
-    "processing_time": "1.82175",
-    "memory_usage": "19.75 mb",
+    "processing_time": "1.33753",
+    "memory_usage": "11.75 mb",
     "apc_stats": {
-        "gets": 9726,
+        "gets": 8220,
         "gets_time": "0.00000",
         "sets": 1,
         "sets_time": "0.00000"
