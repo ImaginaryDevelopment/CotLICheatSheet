@@ -249,12 +249,12 @@
    * @param {?boolean} debug
    * @return {string}
    */
-  var getItemId = (cruId, gearSlot, debug = false) => {
+  var getItemId = exports.getItemId = (cruId, gearSlot, debug = false) => {
     if (gearSlot != 0 && gearSlot != 1 && gearSlot != 2)
       throw "invalid gearSlot passed";
     var result = app.crusaderGear && app.crusaderGear[cruId] && (app.crusaderGear[cruId]["s" + gearSlot.toString()] || app.crusaderGear[cruId]["slot" + gearSlot]);
     if (debug)
-      console.log('getItemId', cruId, gearSlot, app.crusaderGear && app.crusaderGear[cruId]);
+      console.log('getItemId', cruId, gearSlot, app.crusaderGear && app.crusaderGear[cruId], result);
     return result;
   }
   /**
