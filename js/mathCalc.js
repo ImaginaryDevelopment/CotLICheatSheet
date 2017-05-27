@@ -444,6 +444,7 @@
         return 1.25;
       case 3:
         return 1.5;
+      // epic
       case 4:
         if (item.golden === true)
           return 2.5;
@@ -821,17 +822,26 @@
     var numMales = currentWorld.countTags('male');
     var numFemales = currentWorld.countTags('female');
     var adjacent = currentWorld.whatsAdjacent(dani.spot);
+    //flirty
+    dani.globalDps *= 1.15;
+    // dagger is handled by crusader setup
+
     if (montana.inFormation) {
       eyeMult = 3;
     }
+    // eye candy
     if (dpsChar.tags.includes('male')) {
-      dani.globalDPS *= 1 + 0.5 * eyeMult * itemAbility(dani,1) * (1 + legendaryFactor(dani,2));
+      dani.globalDps *= 1 + 0.5 * eyeMult * itemAbility(dani,1) * (1 + legendaryFactor(dani,2));
     }
+    // penny in your pocket
     dani.globalGold *= 1 + Math.pow(0.1 * itemAbility(dani,0),numMales);
+    // boggins.critChance += 3 * legendaryFactor(boggins, 0);
+    dani.critChance += 3;
     if (numMales > numFemales) {
-      dani.globalDPS *= 1 + legendaryFactor(dani,1);
-      if (adjacent.includes(dpsChar.spot)) {
-        dani.globalDPS *= 1 + legendaryFactor(dani,0);
+      dani.globalDps *= 1 + legendaryFactor(dani,1);
+      var dpsSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
+      if (adjacent.includes(dpsSpot)) {
+        dani.globalDps *= 1 + legendaryFactor(dani,0);
       }
     }
   };
@@ -2251,11 +2261,15 @@
     crusaderSetup(polly);
     polly.globalDPS *= 1 + 0.5 * currentWorld.countTags('tank') * itemAbility(polly,0);
     polly.globalDPS *= 1 + 0.33 * numAttacking * itemAbility(polly,1) * (1 + legendaryFactor(polly,2));
-    if (currentWorld.columnNum(polly.spot) == currentWorld.columnNum(dpsChar.spot)) {
-      polly.globalDPS *= 1 + legendaryFactor(polly,0);
-    }
     if (currentWorld.countTags('animal') > 2) {
       polly.globalDPS *= 1 + legendaryFactor(polly,1);
+    }
+    // Legendary Toy
+    var spot = getCrusaderSpot(app.formationIds, polly.id);
+    var dpsSpot = dpsChar && getCrusaderSpot(app.formationIds, dpsChar.id);
+    var isInColumnWithDps = getAreInSameColumn(currentWorld, spot, dpsSpot);
+    if (isInColumnWithDps) {
+      polly.globalDPS *= 1 + legendaryFactor(polly,0);
     }
   };
 
