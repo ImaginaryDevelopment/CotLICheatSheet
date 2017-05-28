@@ -3106,8 +3106,10 @@
     adjacents.map(spotWithAdj => gardeners.setAdjacent(spotWithAdj[0], spotWithAdj[1]));
   })();
 
-var carnival = new World(4, "Carnival of Sorrows", 9);
-var newMoon = new World(5, "Emo's New Moon",12);
+  var carnival = new World(4, "Carnival of Sorrows", 9);
+  var newMoon = new World(5, "Emo's New Moon",12);
+
+
   var getWorldById = exports.getWorldById = id => {
     var worlds =
       [ worldsWake,
