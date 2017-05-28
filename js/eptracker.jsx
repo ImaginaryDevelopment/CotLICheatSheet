@@ -1106,7 +1106,7 @@ class CruApp extends React.Component {
             saved={this.state.saved}
             referenceData={this.props.referenceData}
             sortTalents={this.state.sortTalents || false}
-            onSortTalentsChange={() => this.setState({sortTalents: this.state.sortTalents === true ? false : true})}
+            onSortTalentsChange={() => {var nextState = {sortTalents: this.state.sortTalents === true ? false : true}; console.log('nextState', nextState); return this.setState(nextState);}}
             />
         </Pane>
         <Pane label="FormationCalc">
