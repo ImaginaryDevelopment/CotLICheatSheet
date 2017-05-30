@@ -137,7 +137,7 @@ app.Inputs = props =>
 
     // need to be able to opt out of sorting
     var sortByScore = props.sortTalents;
-    var sortedDpsTalentNames = sortByScore ?  Object.keys(talentDict).sort((name1,name2) => {
+    var sortedDpsTalentNames = sortByScore ? Object.keys(talentDict).sort((name1,name2) => {
         var x1 = talentDict[name1].score.sortScore;
         var x2 = talentDict[name2].score.sortScore;
         if(x1 == null && x2 == null)
