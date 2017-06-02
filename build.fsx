@@ -277,6 +277,7 @@ module Node =
                 psi.UseShellExecute <- useShell
             ) (TimeSpan.FromMinutes 1.)
         resultCode
+()
 
 module Tasks =
     open Newtonsoft.Json.Linq
@@ -418,9 +419,14 @@ module Tasks =
             fOnError result
             // failwithf "Task failed: %i" result.ExitCode
         ()
+()
 
 Target "Test" (Tasks.test (fun r -> failwithf "Task failed: %i" r.ExitCode))
+
 Target "Coffee" (Tasks.makeCoffee)
+
+Target "Tsc" (fun _ -> Tasks.compileTS true None)
+
 // Targets
 Target "Watch" (fun _ ->
     watchAllTheThings [
