@@ -200,37 +200,6 @@ app.Inputs = props =>
 
 
     var TextInputUnc = app.TextInputUnc;
-//  var nonTicTalents = [
-//             "timeORama",
-//             "massiveCriticals",
-//             "speedRunner",
-//             "enduranceTraining",
-//             "goldOSplosion",
-//             "sniper",
-//             "everyLastCent",
-//             "spendItAll",
-//             "upgradeThemAll",
-//             "scavenger",
-//             "speedLooter",
-//             "efficientCrusading",
-//             "doingItAgain",
-//             "deepIdolScavenger",
-//             "extraTraining",
-//             "tripleTierTrouble",
-//             "stormRiderPercentage",
-//             "extendedSpawns",
-//             "clickTastrophy",
-//             "instantSatisfaction",
-//         ];
-//         var ntt = {};
-//         nonTicTalents.map(name =>{
-//             var pascalCased = name[0].toUpperCase() + name.substr(1);
-//             ntt.name={
-//                 value:props.saved[name],
-//                 onChange:createChangeHandler(name)
-//             };
-//         });
-    // var nonDpsTalents = props.nonDpsTalents;
     var ndt = props.nonDpsTalents;
     var makeNonDpsItem = (name,max) => (<NonDpsTalent name={name} value={ndt[name].value} min={0} max={max} onChange={ndt[name].onChange} />);
     return (<table>
@@ -461,11 +430,7 @@ var talentCalc = props =>{
             onCooldownRareChange={val => props.changeSaveState({cooldownRare: +val || 0})}
             onCooldownEpicChange={val => props.changeSaveState({cooldownEpic: +val || 0})}
             selectedHeroId={typeof(props.saved.talentCalcHeroId) ==="string"? props.saved.talentCalcHeroId : undefined} onHeroChange={val => props.changeSaveState({talentCalcHeroId:val})}
-            timeORama={getNumberOrDefault(props.saved.timeORama)} onTimeORamaChange={val => props.changeSaveState({timeORama:val})}
             nonDpsTalents={ntt}
-            extendedSpawns={getNumberOrDefault(props.saved.extendedSpawns,0)} onExtendedSpawnsChange={createChangeHandler('extendedSpawns')}
-            clickTastrophy={getNumberOrDefault(props.saved.clickTastrophy,0)} onClickTastrophyChange={createChangeHandler('clickTastrophy')}
-            instantSatisfaction={getNumberOrDefault(props.saved.instantSatisfaction,0)} onInstantSatisfactionChange={createChangeHandler('instantSatisfaction')}
          />);
 };
 talentCalc.displayName = 'TalentCalc';
