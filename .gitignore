@@ -4,3 +4,4 @@ chrome.crx
 *.zip
 *.log
 .paket/
+*.map

@@ -268,7 +268,7 @@ app.Inputs = props =>
             <tr data-row={14} />
             <tr data-row={15}>
                 <th>Storm Rider Percentage</th>
-                <td><TextInputUnc type="number" min="0" step="0.05" max="10" id="stormRiderPercentage" debug={true} value={props.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
+                <td><TextInputUnc type="number" min="0" step="0.05" max="10" id="stormRiderPercentage" debug={true} value={tic.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
                 <td><RaritySelect gearTypes={props.referenceData.gearTypes} includeGoldens={true}
                                     onChange={val => props.onStormRiderPercentageChange(getStormRiderPercentageFromRarity(val))} /></td>
             </tr>
@@ -402,7 +402,6 @@ var talentCalc = props =>{
             "deepIdolScavenger",
             "extraTraining",
             "tripleTierTrouble",
-            "stormRiderPercentage",
             "extendedSpawns",
             "clickTastrophy",
             "instantSatisfaction",
@@ -430,6 +429,7 @@ var talentCalc = props =>{
             onCooldownRareChange={val => props.changeSaveState({cooldownRare: +val || 0})}
             onCooldownEpicChange={val => props.changeSaveState({cooldownEpic: +val || 0})}
             selectedHeroId={typeof(props.saved.talentCalcHeroId) ==="string"? props.saved.talentCalcHeroId : undefined} onHeroChange={val => props.changeSaveState({talentCalcHeroId:val})}
+            onStormRiderPercentageChange={createChangeHandler("stormRiderPercentage")}
             nonDpsTalents={ntt}
          />);
 };

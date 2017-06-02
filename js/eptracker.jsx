@@ -539,7 +539,8 @@ class CruTagGrid extends React.Component {
 
 var SavedFormation = props => {
   var {clId, saves} = props;
-  var world = app.mathCalc.getWorldById((/(\d+)$/).exec(clId)[1]);
+  var cId = (/(\d+)$/).exec(clId)[1];
+  var world = app.mathCalc.getWorldById(cId);
   var name= world && world.name || clId;
   console.log(saves);
   var mapCru = cru => (<li key={cru.id}>{cru.displayName}</li>);
@@ -547,11 +548,11 @@ var SavedFormation = props => {
     return x < 1 ? (<li key={i} title={ x === -1 ? "empty" : JSON.stringify(x)}>_____</li>) : mapCru(props.heroMap[x]);
     })}
   </ul>);
-  var displayMap = sf => (<span>{sf.save_id} {f(sf.formation)}</span>);
-  var sorter = (sf1,sf2) => sf1.save_id > sf2.save_id ? 1 : -1;
+  var displayMap = sf => (<span>{sf.id} {f(sf.f)}</span>);
+  var sorter = (sf1,sf2) => sf1.id > sf2.id ? 1 : -1;
   // put sorter in later
   return ( <li key={clId} data-key={clId}>{name}
-              <UnorderedList sorter={sorter} items={saves} keyMaker={sf => sf.save_id} displayMap={displayMap} />
+              <UnorderedList sorter={sorter} items={saves} keyMaker={sf => sf.id} displayMap={displayMap} />
             </li>);
 };
 
@@ -579,7 +580,8 @@ var HeroGameData = props => {
       (<li data-key={t.talentId} key={t.talentId}>{JSON.stringify(t)}</li>)
     );
     var formations = props.mappedFormations || {};
-    var formationLIs = (<ul>{Object.keys(formations).map(campaignLongId => (<SavedFormation key={campaignLongId} heroMap={props.heroMap} clId={campaignLongId} saves={formations[campaignLongId]} />))}</ul>);
+    var formationLIs = formations != null?
+      (<ul>{Object.keys(formations).map(campaignLongId => (<SavedFormation key={campaignLongId} heroMap={props.heroMap} clId={campaignLongId} saves={formations[campaignLongId]} />))}</ul>) : null;
     var rawFormationLIs = Object.keys(formations).map(campaignLongId =>{
       return ( <li key={campaignLongId} data-key={campaignLongId}>{campaignLongId}{JSON.stringify(formations[campaignLongId])}</li>);
     });

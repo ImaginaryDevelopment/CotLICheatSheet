@@ -509,7 +509,7 @@ var Formation = (() =>{
       var oldWorldFormations = Formation.getWorldSaves(campaignId);
       result[campaignId] = oldWorldFormations || {};
       campaignSlotFormations.map(slotSave => {
-        var saveSlot = slotSave.save_id;
+        var saveSlot = slotSave.id;
         // console.log('mergeImportFormations. slotSave.formation', slotSave.formation);
         // need to adapt this from hero_ids to formationIds ("01a", "11c", ...)
         var formationIds = slotSave.f.map(heroId =>

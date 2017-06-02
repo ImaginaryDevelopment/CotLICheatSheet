@@ -255,17 +255,24 @@
             }
         }
         getInitialState(){
-            var initial = readIt(this.storageKey, {});
+            var initial = app.readIt(this.storageKey, {});
             this.migrateLegacyData(initial);
+            var defaultWorldId = 1;
 
             if(!(initial.selectedWorldId != null) || typeof(initial.selectedWorldId) == "string")
-                initial.selectedWorldId = 1;
+                initial.selectedWorldId = defaultWorldId;
             if(!(initial.formations != null))
                 initial.formations = {};
             if(!(initial.dpsCruIds != null))
                 initial.dpsCruIds = {};
 
             var world = app.mathCalc.getWorldById(initial.selectedWorldId);
+            if(!(world != null)){
+                initial.selectedWorldId = defaultWorldId;
+                world = app.mathCalc.getWorldById(initial.selectedWorldId);
+                if(!(world != null))
+                    throw Error("could not load a world");
+            }
             this.initializeFormationsForWorld(initial,world.spots);
             // copy state out to global shared for calc
             // does this work, or has the calc already closed over the actual array it will use?

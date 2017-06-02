@@ -31,12 +31,12 @@ var findJsParent = () =>
         || typeof global !== "undefined" && global
         || typeof window !== "undefined" && window
 );
-(function(exports){
+(function(exports,exposeYourself:boolean){
   exports.findJsParent = exports.findJsParent || findJsParent;
 
   var loggedStorageFailure = false;
   exports.isDefined = function(o){
-      return !(o != null);
+      return o != null;
   };
 
    String['trim'] = function(s:string){
@@ -103,7 +103,7 @@ var findJsParent = () =>
   // input 0 -> [], 1 -> [0]
   exports.createRange = n => Array.apply(null, {length:n}).map(Number.call, Number);
 
-  exports.debounce = (function(){
+  var debounce = (function(){
           var timer = 0;
           return (function(callback, ms){
               if(typeof(callback) !== "function")
@@ -113,6 +113,8 @@ var findJsParent = () =>
               timer = setTimeout(callback,ms); //setTimeout(callback,ms);
           });
   })();
+  if(exposeYourself)
+    exports.debounce = debounce;
 
   exports.debounceChange = function (callback, e, ...args) {
       if(!exports.isDefined(callback)){
@@ -121,7 +123,7 @@ var findJsParent = () =>
       }
       e.persist();
       args.unshift(e.target.value);
-      exports.debounce(() => callback(...args), 500);
+      debounce(() => callback(...args), 500);
   };
 
   exports.flattenArray = <T> (a:T|T[],recurse) => {
@@ -377,4 +379,4 @@ var findJsParent = () =>
 
   // adapted from http://stackoverflow.com/a/14438954/57883
   Array.prototype['distinct'] = Array.prototype['distinct'] || function(v, i, s) {return (s || this).filter((v,i,a) => a.indexOf(v) === i);};
-})(findJsParent());
+})(findJsParent(), false);
