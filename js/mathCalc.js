@@ -555,7 +555,7 @@
   //////Slot 2 //Jim
   var jim = getCrusader("02");
   jim.calculate = function () {
-    //Self Buff
+    //Self Buff - buddy system
     var spot = getCrusaderSpot(app.formationIds, jim.id);
     if (jim == dpsChar) {
       if (getIsValidSpotNumber(currentWorld, spot)) {

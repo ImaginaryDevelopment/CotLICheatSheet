@@ -45,7 +45,7 @@
         var selectedCru = getCrusader(selectedCruId);
 
         var cruGearQ = selectedCru && app.crusaderGear && app.crusaderGear[selectedCru.id];
-        var availableCrusaders = jsonData.crusaders.filter(cru =>
+        var availableCrusaders = app.jsonData.crusaders.filter(cru =>
             // crusaders in slots that aren't in formation
             formation.filter(f => f != null && f != "0").find(f => getCrusader(f).slot == cru.slot) == null
             || (selectedCru && (selectedCru.id == cru.id || /* account for allow all crusaders in the same bench slot to show */ selectedCru.slot == cru.slot))

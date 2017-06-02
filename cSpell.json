@@ -21,7 +21,8 @@
         "critical",
         "criticals",
         "enchanted",
-        "overenchanted"
+        "overenchanted",
+        "selfdps"
     ],
 
     // flagWords - list of words to be always considered incorrect
