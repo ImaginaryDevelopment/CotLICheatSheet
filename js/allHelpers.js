@@ -98,7 +98,7 @@ function getIsLocalStorageAvailable() {
     return true;
   }
   try {
-    var storage = window[type],
+    var storage = window['localStorage'],
       x = '__storage_test__';
     storage.setItem(x, x);
     storage.removeItem(x);

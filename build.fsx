@@ -282,6 +282,8 @@ module Node =
 module Tasks =
     open Newtonsoft.Json.Linq
     type JsonConvert = Newtonsoft.Json.JsonConvert
+
+    // fix for global and module having multiple meanings, depending on if this is browser, or node code
     let fixupNodeTypes () =
         let path = "node_modules/@types/node/index.d.ts"
         File.ReadAllText path
