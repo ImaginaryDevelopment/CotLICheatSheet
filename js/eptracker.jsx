@@ -937,9 +937,13 @@ class CruApp extends React.Component {
     }
     if(formationSaves){
       console.group("onImportGameDataClick: formationSaves import");
-      console.log('importing formationSaves');
-      var mergedFormations = Formation.mergeImportFormations(formationSaves, this.props.referenceData.crusaders);
-      console.log('onImportGameDataClick.mergedFormations', mergedFormations);
+      try{
+        console.log('importing formationSaves');
+        var mergedFormations = Formation.mergeImportFormations(formationSaves, this.props.referenceData.crusaders);
+        console.log('onImportGameDataClick.mergedFormations', mergedFormations);
+      } catch(ex){
+        console.error(ex);
+      }
       console.groupEnd();
     }
     data.mainSelectedTab = 0;
