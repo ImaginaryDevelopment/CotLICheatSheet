@@ -529,7 +529,7 @@ var Formation = (() =>{
         // (selectedWorldId, saveName, formationIds, dpsChar,kaineXP) => {
           console.log('saving formation campaign/worldId:' + campaignId + ', saveName:' + saveName, save);
         exports.saveFormation(campaignId, saveName, save.formationIds, save.dpsChar, save.kaineXP)
-      })
+      });
     });
     return result;
   };
@@ -541,7 +541,7 @@ var Talents = (()=>{
   var exports = {};
   var getTalentMeta = exports.getTalentMeta = (fGetDps, value, max, costForNextLevel) =>{
     var dpsBuff = fGetDps(value);
-    var nextDps = fGetDps(value + 1);
+    var nextDps = fGetDps(+value + 1);
     var showingMessage = typeof dpsBuff == "string";
     var showingMax = false;
     // max is sometimes a string
@@ -568,7 +568,11 @@ var Talents = (()=>{
    * @param {number} lvl
    * @return {number|string}
    */
-  exports.getPassiveCrits = (critChance,lvl) => critChance < 1 ? "no crit chance entered":critChance * lvl / 100;
+  exports.getPassiveCrits = (critChance,lvl) => {
+    var result = !(critChance !=null) || critChance < 1 ? "no crit chance entered":critChance * lvl / 100;
+    return result;
+  }
+
   /**
    * @param {number} cooldown
    * @param {number} lvl
@@ -676,7 +680,7 @@ var Talents = (()=>{
         var t = tic.td[name];
         //  var getNextCost = name => getCanReadTalent(name) ? props.talents[name].costs[props[name] + 1] : undefined;
 
-        t.nextCost = getCanReadTalent(name) && t.level < t.max ? t.getCost(t.level + 1) : null;
+        t.nextCost = getCanReadTalent(name) && t.level < t.max ? t.getCost(+t.level + 1) : null;
         t.getDps = data;
         t.spent = getCumulativeCost(name);
         if(!Number.isNaN(+t.spent) && !isNaN(+t.spent))

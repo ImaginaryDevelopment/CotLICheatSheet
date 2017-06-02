@@ -585,6 +585,9 @@ var HeroGameData = props => {
     });
 
     // consider mapping the parsed raw section collapsible at least at the highest level
+    if(!Array.isArray(props.mappedHeroes))
+      console.warn("mapped Heroes is messed up or not present");
+
 
     return (<div>
         <button onClick={() => props.onImportGameDataClick(props.mappedHeroes,props.mappedLoot, props.mappedTalents,props.mappedFormations)}>import</button>
@@ -903,24 +906,28 @@ class CruApp extends React.Component {
     // return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
     var cruTagGridData = cruTagGrid.readOrDefault(undefined);
     var data = copyObject(cruTagGridData);
-    try
-    {
-      if(!(data != null))
-        throw error("onImportGameDataClick: data was not present");
-      if(!(this.props != null) || !(this.props.referenceData != null))
-        throw error("onImportGameDataClick: props or referenceData was not present");
-      var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
-      data.ownedCrusaderIds = ownedCrusaderIds;
-      var ep = {}
-      heroes.filter(h => h.Owned).map(h => {
-        var crusader = this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0];
-        ep[crusader.id] = h.Ep;
-      });
-      data.enchantmentPoints = ep;
-      console.log('imported hero game data');
-    }
-    catch (ex){
-      console.error('could not import hero game data', ex);
+    if(heroes != null){
+      try
+      {
+        if(!(data != null))
+          throw error("onImportGameDataClick: data was not present");
+        if(!(this.props != null) || !(this.props.referenceData != null))
+          throw error("onImportGameDataClick: props or referenceData was not present");
+        var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
+        data.ownedCrusaderIds = ownedCrusaderIds;
+        var ep = {}
+        heroes.filter(h => h.Owned).map(h => {
+          var crusader = this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0];
+          ep[crusader.id] = h.Ep;
+        });
+        data.enchantmentPoints = ep;
+        console.log('imported hero game data');
+      }
+      catch (ex){
+        console.error('could not import hero game data', ex);
+      }
+    } else{
+      console.warn("heroes was not populated before importGameDataClick");
     }
     // loot looks like this:
     // {heroBenchSlot : x.crusader.slot,heroName: x.crusader.displayName, heroSlotId : x.crusader.id, slot: x.lootItem.slot, lootId : x.lootItem.lootId, rarity: x.lootItem.rarity,countOrLegendaryLevel:x.lootItem.count})

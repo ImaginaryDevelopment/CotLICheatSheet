@@ -114,11 +114,12 @@ app.RaritySelect = props =>{
   /**
    * @typedef TalentInputContainer
    * @type {Object}
+   * @property {number} critChance
+   * @property {number} stormRiderPercentage
    * @property {TrinketContainer} tc
-   * @property {Object<string,TalentInfo>} td
    * @property {DpsInfo} dpsInfo
-   * @property {number => void} onStormsBuildingChange
-   * @property {number => void} onPassiveCriticalsChange
+   * @property {Object<string,TalentInfo>} td
+   * @property {Object<number,number>} rarityMultMap
    */
 app.Inputs = props =>
 {
@@ -128,6 +129,7 @@ app.Inputs = props =>
      * @type TalentInputContainer
      */
     var tic = props.tic;
+    var critChance = tic.critChance;
 
 
     var getNextCost = name => getCanReadTalent(name) ? props.talents[name].costs[props[name] + 1] : undefined;
@@ -159,32 +161,7 @@ app.Inputs = props =>
         var tdInfo = talentDict[name];
         switch(name){
             case "passiveCriticals":
-                var headers = (
-                    <tr data-row={18}>
-                        <th><h3>Passive Criticals</h3></th>
-                        <td />
-                        <td colSpan={2} />
-                        <th>current dps buff</th>
-                        <th>next level dps buff</th>
-                        <th>percent improvement</th>
-                        <th>Score(larger is better)</th>
-                        <td></td>
-                        {/*<td><TextInputUnc value={props.idols} onChange={props.onIdolsChange} /></td>*/}
-                        <td />
-                    </tr>);
-                var ti = (<app.TalentInput
-                            key={name}
-                            dataRow="passiveCriticals"
-                            value={tdInfo.level}
-                            getDps={x => props.critChance < 1 ? "no crit chance entered":props.critChance * x / 100}
-                            max="50"
-                            costForNextLevel={getNextCost("passiveCriticals")}
-                            onChange={tdInfo.onChange} />);
-                return ([headers, ti,
-                        (<tr key={name + "1"}>
-                            <td>Cost for Next Level</td><td>{tdInfo.nextCost}</td>
-                        </tr>),(<tr key={name+"2"}><td>Cumulative Cost</td><td>{tdInfo.spent}</td></tr>)
-                ]);
+                return makeTalentTrArray(tdInfo,i);
             case "surplusCooldown":
                 return makeTalentTrArray(tdInfo, i);
             case "overenchanted":
@@ -215,18 +192,11 @@ app.Inputs = props =>
 
     var TextInputUnc = app.TextInputUnc;
 
-            // dpsInfo:{
-            //     cru: talentSelectedCrusader, //props.crusaders.find(cru => cru.id === props.selectedHeroId),
-            //     ep:talentSelectedCrusader && talentSelectedCrusader.mainDpsEP || 0, //props.mainDpsEP,
-            //     slotEp: talentSelectedCrusader && talentSelectedCrusader.dpsSlotEP, //  props.dpsSlotEP,
-            //     epics: talentSelectedCrusader && talentSelectedCrusader.mainDpsEpics, // props.mainDpsEpics,
-            //     slotEpics: talentSelectedCrusader && talentSelectedCrusader.dpsSlotEpics //props.dpsSlotEpics
-            // }
     return (<table>
         <thead>
             </thead>
             <tbody>
-            <tr><th>Crit Chance %</th><td><TextInputUnc type="number" min="0" max="300" onChange={props.onCritChanceChange} value={props.critChance} /></td><td>%</td><td title="D"></td><th colSpan={5}>Horn and Cornucopia Trinkets</th></tr>
+            <tr><th>Crit Chance %</th><td><TextInputUnc type="number" min="0" max="300" onChange={props.onCritChanceChange} value={critChance} /></td><td>%</td><td title="D"></td><th colSpan={5}>Horn and Cornucopia Trinkets</th></tr>
             <tr><th>Ability Cooldown %</th><td>{cooldown}</td><td title="C"></td><td></td><th className="rarity1 black">Common:</th><th className="rarity2 black">Uncommon:</th><th className="rarity3 black">Rare:</th><th className="rarity4 black">Epic:</th><th>Total:</th></tr>
             <tr><th>Enchantment Points on main dps</th><td>{effectiveEP}</td><th colSpan={2}></th>
                 <td title="E4"><TextInputUnc type="number" value={tic.tc.common} min="0" onChange={props.onCooldownCommonChange} /></td>
@@ -298,7 +268,6 @@ app.Inputs = props =>
 app.Inputs.displayName = 'Inputs';
 app.Inputs.propTypes = {
     onCritChanceChange: React.PropTypes.func.isRequired,
-    critChance:React.PropTypes.number.isRequired,
     // hero may not be selected
     selectedHeroId:React.PropTypes.string,
     // hero may not be selected yet
@@ -345,14 +314,13 @@ var talentCalc = props =>{
 
         var getCanReadTalent = name => props.saved[name] != null && props.referenceData.talents[name].costs != null && props.referenceData.talents[name].costs.length > props.saved[name];
 
-        // stormRiderPercentage={getNumberOrDefault(props.saved.stormRiderPercentage,0)} onStormRiderPercentageChange={val => props.changeSaveState({stormRiderPercentage:val})}
-
         /**
          * @type TalentInputContainer
          */
         var tic = {
             stormRiderPercentage: saved.stormRiderPercentage,
             rarityMultMap: props.referenceData.talents.rideTheStorm.rarityMultMap,
+            critChance: getNumberOrDefault(props.saved.critChance, 0),
             tc:{common:getNumberOrDefault(saved.cooldownCommon), uncommon:getNumberOrDefault(saved.cooldownUncommon), rare: getNumberOrDefault(saved.cooldownRare), epic: getNumberOrDefault(saved.cooldownEpic)},
             td:{
                 passiveCriticals:{level:saved.passiveCriticals, max: 50, getCost: null},
@@ -391,7 +359,7 @@ var talentCalc = props =>{
             tic={tic}
             crusaders={crusaders}
             talents={props.referenceData.talents}
-            critChance={getNumberOrDefault(props.saved.critChance, 0)} onCritChanceChange={val => (props.changeSaveState({critChance: inspect(+val || 0, 'changeSaveState crit')}))}
+            onCritChanceChange={val => (props.changeSaveState({critChance: inspect(+val || 0, 'changeSaveState crit')}))}
             idols={props.saved.idols} onIdolsChange={val => props.changeSaveState({idols:val})}
             sortTalents={props.sortTalents} onSortTalentChange={props.onSortTalentsChange}
             onCooldownCommonChange={val => props.changeSaveState({cooldownCommon: +val || 0})}
