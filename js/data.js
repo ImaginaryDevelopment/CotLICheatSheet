@@ -2477,6 +2477,134 @@ window.jsonData =
       ]
     },
     {
+      "id": "04c",
+      "tier": 2,
+      "displayName": "Danni the Daring Damsel",
+      "image": "DanniTheDaringDamsel_48.png",
+      "slot": 4,
+      "event": "May: Trek Through the Hidden Temple",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
+      "tags": [
+        "human",
+        "female",
+        "support",
+        "gold",
+        "event"
+      ],
+      "heroId": 87,
+      "gear": [
+        "ability - Eye Candy",
+        "ability - Penny in Your Pocket",
+        "alldps"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Tattered Dress",
+          "lootId": 1490
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Patchy Dress",
+          "lootId": 1491
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Ripped Dress",
+          "lootId": 1492
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Freshly Ironed Dress of Damsel Distress",
+          "lootId": 1493
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Ornate Hand-Stitched Dress of Desireability",
+          "lootId": 1494
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Disgusting Hairbrush",
+          "lootId": 1495
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Toothy Hairbrush",
+          "lootId": 1496
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Relatively Clean Hairbrush",
+          "lootId": 1497
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Impecably Crafted Soft Bristled Hair Brush",
+          "lootId": 1498
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Fabulous Blonde Hairbrush of Gently Wafting Curls",
+          "lootId": 1524,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Divinely Crafted Hair Brush of Silken Curls",
+          "lootId": 1499
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Divinely Crafted Hair Brush of Silken Curls",
+          "lootId": 1525,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Crude Dagger",
+          "lootId": 1500
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Scavenged Dagger",
+          "lootId": 1501
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Sharpened Dagger",
+          "lootId": 1502
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Carefully Tied Ceremonial Dagger of Sacrifices",
+          "lootId": 1503
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Pure Metal Damsel Dagger of Sharpened Slices",
+          "lootId": 1504
+        }
+      ]
+    },
+    {
       "id": "05",
       "displayName": "The Washed Up Hermit",
       "image": "mini_Hermit.jpg",
@@ -2773,7 +2901,7 @@ window.jsonData =
       "displayName": "Serpent King Draco",
       "image": "SerpentKingDraco_48.png",
       "slot": 5,
-      "event": "June: Trek Through the Hidden Temple",
+      "event": "May: Trek Through the Hidden Temple",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
       "tags": [
         "animal",
@@ -3686,7 +3814,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 4,
-          "name": "Super Absorbsant Striped Bar Cloth of A Thousand Spills",
+          "name": "Super Absorbant Striped Bar Cloth of A Thousand Spills",
           "lootId": 935
         },
         {
@@ -6357,6 +6485,11 @@ window.jsonData =
           "name": "Not At All Weatherproof Umbrella of Patterns",
           "lootId": 1206
         }
+      ],
+      "gear": [
+        "ability - Healthy Attraction",
+        "ability - Know Me",
+        "alldps"
       ]
     },
     {
@@ -6742,7 +6875,7 @@ window.jsonData =
       "displayName": "Montana James",
       "image": "MontanaJames_48.png",
       "slot": 12,
-      "event": "June: Trek Through the Hidden Temple",
+      "event": "May: Trek Through the Hidden Temple",
       "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
       "tags": [
         "male",
@@ -6778,9 +6911,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Deathly Grail of Most Likely The Wrong One",
+          "lootId": 1526,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Skull Shaped Chalice of a Thousand Deaths",
           "lootId": 1143
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Skull Shaped Chalice of a Thousand Deaths",
+          "lootId": 1527,
+          "golden": true
         },
         {
           "slot": 1,
@@ -6808,9 +6955,23 @@ window.jsonData =
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "Poisonous Snake Skin Whip of Still Being Alive",
+          "lootId": 1522,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
           "name": "Magically Imbued Force Whip of Exploration",
           "lootId": 1144
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Magically Imbued Force Whip of Exploration",
+          "lootId": 1523,
+          "golden": true
         },
         {
           "slot": 2,
@@ -8264,9 +8425,23 @@ window.jsonData =
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "Incredibly Realistic Invisible-Laser Laser Gun of Shininess",
+          "lootId": 1488,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
           "name": "Plunger-Launching Infinity Gun of Rodents",
           "lootId": 1131
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Plunger-Launching Infinity Gun of Rodents",
+          "lootId": 1489,
+          "golden": true
         },
         {
           "slot": 2,
@@ -10372,6 +10547,119 @@ window.jsonData =
       ]
     },
     {
+      "id": "19c",
+      "tier": 2,
+      "displayName": "Polly the Parrot",
+      "slot": 19,
+      "image": "PollyTheParrot_48.png",
+      "event": "May: Trek Through the Hidden Temple",
+      "eventLink": "http://crusaders-of-the-lost-idols.wikia.com/wiki/Trek_Through_the_Hidden_Temple",
+      "tags": [
+        "animal",
+        "male",
+        "support",
+        "event"
+      ],
+      "heroId": 88,
+      "gear": [
+        "ability - Instant Regret",
+        "ability - Tough Nut to Crack",
+        "alldps"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Chipped Bird Toy",
+          "lootId": 1505
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Old Bird Toy",
+          "lootId": 1506
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "New Bird Toy",
+          "lootId": 1507
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Especially Fun Bird Toy of Pecking and Clawing",
+          "lootId": 1508
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Insanely Complex Bird Toy of Avian Overstimulation",
+          "lootId": 1509
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Rotting Coconut",
+          "lootId": 1510
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Uncracked Coconut",
+          "lootId": 1511
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Split Coconut",
+          "lootId": 1512
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Tasty Coconut Concoction of Parrot Power",
+          "lootId": 1513
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Fruity Delicious Coconut Punch of Perfection",
+          "lootId": 1514
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Broken Mirror",
+          "lootId": 1515
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Scum-Covered Mirror",
+          "lootId": 1516
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Distorted Mirror",
+          "lootId": 1517
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Perfect Mirror of Proper Parrot Pronunciation",
+          "lootId": 1518
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Ornate Mirror of the Flying Jungle King",
+          "lootId": 1519
+        }
+      ]
+    },
+    {
       "id": "20",
       "displayName": "Nate Dragon",
       "image": "mini_Nate.jpg",
@@ -10775,9 +11063,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Super Glowing Sparking Arm Cannon of Instant Death",
+          "lootId": 1520,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Tri-Barrelled Arm Cannon of Laser Guided Destruction",
           "lootId": 1180
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Tri-Barrelled Arm Cannon of Laser Guided Destruction",
+          "lootId": 1521,
+          "golden": true
         },
         {
           "slot": 1,

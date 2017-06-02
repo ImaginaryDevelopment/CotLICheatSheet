@@ -136,8 +136,8 @@ app.Inputs = props =>
     var {cooldown, dpsHero, effectiveEP, getStormRiderPercentageFromRarity, talentDict, defaultOrder,currentStormRider, nextStormRider, spent: totalDpsIdols} = talents.getTalentDisplay(tic);
 
     // need to be able to opt out of sorting
-    var sortByScore = true;
-    var sortedDpsTalentNames = sortByScore ?  Object.keys(talentDict).sort((name1,name2) => {
+    var sortByScore = props.sortTalents;
+    var sortedDpsTalentNames = sortByScore ? Object.keys(talentDict).sort((name1,name2) => {
         var x1 = talentDict[name1].score.sortScore;
         var x2 = talentDict[name2].score.sortScore;
         if(x1 == null && x2 == null)
@@ -205,6 +205,9 @@ app.Inputs = props =>
                             (<td>{nextStormRider}</td>));
             case "stormsBuilding":
                 return makeTalentTrArray(tdInfo, i);
+            default :
+                console.warn("talent not found", name);
+
         }
     });
     console.log('dpsHero',dpsHero);
@@ -235,7 +238,7 @@ app.Inputs = props =>
             <tr><th>Main Dps</th><td colSpan={2}><HeroSelect crusaders={props.crusaders} selectedHeroId={props.selectedHeroId} onHeroChange={props.onHeroChange} /></td><th>Slot</th></tr>
             <tr><th>Main Crusader Enchantments</th><td>{tic.dpsInfo.ep}</td><td> Epics: {tic.dpsInfo.epics}</td><td className="textcenter vcenter">{dpsHero && dpsHero.cru ? dpsHero.cru.slot: ""}</td><th colSpan={6}>Put your levels for other talents here to calculate how much you have spent.</th></tr>
             <tr><th>Alt Crusader Enchantments</th><td>{tic.dpsInfo.slotEp - tic.dpsInfo.ep}</td><td>Other Epics: {tic.dpsInfo.slotEpics}</td><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
-            <tr data-row={8}><th colSpan={2} /><th><Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents} /></th><th />
+            <tr data-row={8}><th colSpan={2} /><th><Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents} />Sort Talents</th><th />
                 <td title="timeORama"><TextInputUnc value={props.timeORama} type="number" min="0" max="20" onChange={props.onTimeORamaChange}/></td>
                 <td title="massiveCriticals"><TextInputUnc value={props.massiveCriticals} type="number" min="0" max="25" onChange={props.onMassiveCriticalsChange}/></td>
                 <td title="speedRunner"><TextInputUnc value={props.speedRunner} type="number" min="0" max="20" onChange={props.onSpeedRunnerChange}/></td>
@@ -361,6 +364,7 @@ var talentCalc = props =>{
                 wellEquipped:{level:saved.wellEquipped, max: 50, getCost: null},
                 rideTheStorm:{level:saved.rideTheStorm, max: 25, getCost: null},
                 stormsBuilding:{level:saved.stormsBuilding, max: 15, getCost: null},
+                swapDay:{level:saved.swapDay, max:50, getCost:null}
             },
             dpsInfo:{
                 cru: talentSelectedCrusader, //props.crusaders.find(cru => cru.id === props.selectedHeroId),

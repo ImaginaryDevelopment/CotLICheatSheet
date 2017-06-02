@@ -249,12 +249,12 @@
    * @param {?boolean} debug
    * @return {string}
    */
-  var getItemId = (cruId, gearSlot, debug = false) => {
+  var getItemId = exports.getItemId = (cruId, gearSlot, debug = false) => {
     if (gearSlot != 0 && gearSlot != 1 && gearSlot != 2)
       throw "invalid gearSlot passed";
     var result = app.crusaderGear && app.crusaderGear[cruId] && (app.crusaderGear[cruId]["s" + gearSlot.toString()] || app.crusaderGear[cruId]["slot" + gearSlot]);
     if (debug)
-      console.log('getItemId', cruId, gearSlot, app.crusaderGear && app.crusaderGear[cruId]);
+      console.log('getItemId', cruId, gearSlot, app.crusaderGear && app.crusaderGear[cruId], result);
     return result;
   }
   /**
@@ -444,6 +444,7 @@
         return 1.25;
       case 3:
         return 1.5;
+      // epic
       case 4:
         if (item.golden === true)
           return 2.5;
@@ -813,6 +814,38 @@
     mindy.globalDps = "Mindy isn't setup for calculations yet";
   };
 
+  ////Dani the Damsel in Distress
+  var dani = getCrusader('04c');
+  dani.calculate = function() {
+    crusaderSetup(dani);
+    var eyeMult = 1;
+    var numMales = currentWorld.countTags('male');
+    var numFemales = currentWorld.countTags('female');
+    var adjacent = currentWorld.whatsAdjacent(dani.spot);
+    //flirty
+    dani.globalDps *= 1.15;
+    // dagger is handled by crusader setup
+
+    if (montana.inFormation) {
+      eyeMult = 3;
+    }
+    // eye candy
+    if (dpsChar.tags.includes('male')) {
+      dani.globalDps *= 1 + 0.5 * eyeMult * itemAbility(dani,1) * (1 + legendaryFactor(dani,2));
+    }
+    // penny in your pocket
+    dani.globalGold *= 1 + Math.pow(0.1 * itemAbility(dani,0),numMales);
+    // boggins.critChance += 3 * legendaryFactor(boggins, 0);
+    dani.critChance += 3;
+    if (numMales > numFemales) {
+      dani.globalDps *= 1 + legendaryFactor(dani,1);
+      var dpsSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
+      if (adjacent.includes(dpsSpot)) {
+        dani.globalDps *= 1 + legendaryFactor(dani,0);
+      }
+    }
+  };
+
   //////Slot 5 //The Washed Up Hermit
   var hermit = getCrusader("05");
   hermit.calculate = function () {
@@ -1032,6 +1065,36 @@
     }
   };
 
+  ////Grandmora
+  /**
+   * @type {Crusader}
+   */
+  var grandmora = getCrusader('05d');
+  grandmora.calculate = function() {
+    crusaderSetup(grandmora);
+    var numBehind = Math.max(currentWorld.columnTest(currentWorld.columnNum(grandmora.spot) - 1),1);
+    var numAhead = Math.max(currentWorld.columnTest(currentWorld.columnNum(grandmora.spot) + 1),1);
+    var adjacent = currentWorld.whatsAdjacent(grandmora.spot);
+    if (currentWorld.columnNum(grandmora.spot) == currentWorld.columnNum(dpsChar.spot) - 1) {
+      grandmora.globalDPS *= 1 + 3 * itemAbility(grandmora,0) / numBehind;
+    } else if (karen.isDPS) {
+      grandmora.globalDPS *= 1 + 3 * itemAbility(grandmora,0) * itemAbility(karen,0) / numBehind;
+    }
+    if (currentWorld.columnNum(grandmora.spot) == currentWorld.columnNum(dpsChar.spot) + 1) {
+      grandmora.globalDPS *= 1 + 0.75 * itemAbility(grandmora,1) * numAhead;
+    } else if (karen.isDPS) {
+      grandmora.globalDPS *= 1 + 0.75 * itemAbility(grandmora,1) * itemAbility(karen,0) * numAhead;
+    }
+    if (currentWorld.countTags('alien') > 1) {
+      grandmora.globalDPS *= 1 + legendaryFactor(grandmora,0);
+    }
+    if (dpsChar.tags.includes('human')) {
+      grandmora.globalDPS *= 1 + legendaryFactor(grandmora,1);
+    }
+    if (adjacent.includes(dpsChar.spot)) {
+      grandmora.globalDPS *= 1 + 2 * legendaryFactor(grandmora,2);
+    }
+  };
   ////Larry the Leprechaun
   /**
    * @type {Crusader}
@@ -2003,6 +2066,19 @@
     }
   };
 
+  ////Spaceking
+  var spaceking = getCrusader('16c');
+  spaceking.calculate = function() {
+    crusaderSetup(spaceking);
+    if (spaceking.isDPS) {
+      spaceking.globalDPS *= 1 + currentWorld.countTags('alien') * itemAbility(spaceking,2) * (1 + legendaryFactor(spaceking,2));
+      spaceking.globalDPS *= 1 + 0.25 * currentWorld.countTags('female') * itemAbility(spaceking,1) * (1 + legendaryFactor(spaceking,1));
+      if (currentWorld.countTags('human') == 1) {
+        spaceking.globalDPS *= 1 + legendaryFactor(spaceking,0);
+      }
+    }
+  };
+
   //////Slot 17 //King Reginald IV
   var reginald = getCrusader("17");
   reginald.calculate = function () {
@@ -2178,6 +2254,25 @@
       }
     }
   };
+
+  ////Polly the Parrot
+  var polly = getCrusader('19c');
+  polly.calculate = function() {
+    crusaderSetup(polly);
+    polly.globalDPS *= 1 + 0.5 * currentWorld.countTags('tank') * itemAbility(polly,0);
+    polly.globalDPS *= 1 + 0.33 * numAttacking * itemAbility(polly,1) * (1 + legendaryFactor(polly,2));
+    if (currentWorld.countTags('animal') > 2) {
+      polly.globalDPS *= 1 + legendaryFactor(polly,1);
+    }
+    // Legendary Toy
+    var spot = getCrusaderSpot(app.formationIds, polly.id);
+    var dpsSpot = dpsChar && getCrusaderSpot(app.formationIds, dpsChar.id);
+    var isInColumnWithDps = getAreInSameColumn(currentWorld, spot, dpsSpot);
+    if (isInColumnWithDps) {
+      polly.globalDPS *= 1 + legendaryFactor(polly,0);
+    }
+  };
+
 
   //////Slot 20 //Nate Dragon
   var nate = getCrusader("20");
@@ -3011,8 +3106,10 @@
     adjacents.map(spotWithAdj => gardeners.setAdjacent(spotWithAdj[0], spotWithAdj[1]));
   })();
 
-var carnival = new World(4, "Carnival of Sorrows", 9);
-var newMoon = new World(5, "Emo's New Moon",12);
+  var carnival = new World(4, "Carnival of Sorrows", 9);
+  var newMoon = new World(5, "Emo's New Moon",12);
+
+
   var getWorldById = exports.getWorldById = id => {
     var worlds =
       [ worldsWake,

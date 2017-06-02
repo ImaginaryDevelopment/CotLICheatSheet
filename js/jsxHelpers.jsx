@@ -13,6 +13,20 @@ app.Checkbox = props =>
       readOnly={props.readonly} />);
 app.Checkbox.displayName ="Checkbox";
 
+app.UnorderedList = props =>{
+  var items = (props.sorter ? props.items.slice(0).sort(props.sorter) : props.items);
+  // if(props.displayMap != null)
+  //   items = items.map(displayMap)
+  return (<ul>{items.map(item => (<li key={props.keyMaker(item)}>{props.displayMap ? props.displayMap(item):item}</li>))}
+  </ul>);
+};
+app.UnorderedList.propTypes = {
+  sorter:React.PropTypes.func,
+  items:React.PropTypes.array.isRequired,
+  keyMaker:React.PropTypes.func.isRequired,
+  displayMap:React.PropTypes.func
+}
+
 app.GearBox = props => {
 
   var makeBox = (slot) => {
