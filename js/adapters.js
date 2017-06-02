@@ -512,7 +512,7 @@ var Formation = (() =>{
         var saveSlot = slotSave.save_id;
         // console.log('mergeImportFormations. slotSave.formation', slotSave.formation);
         // need to adapt this from hero_ids to formationIds ("01a", "11c", ...)
-        var formationIds = slotSave.formation.map(heroId =>
+        var formationIds = slotSave.f.map(heroId =>
           // player data uses -1 for no one in slot
           heroId < 1 ? null :
           crusaders.find(c => c.heroId == heroId).id
