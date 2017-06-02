@@ -57,6 +57,7 @@ var debounceChange = function (callback, e, ...args) {
     args.unshift(e.target.value);
     debounce(() => callback(...args), 500);
 };
+
 // reworked without let, since the browser support for it is low
 // accept either param being an array, or neither, or any combination
 const flattenArrays = (a,b) => {

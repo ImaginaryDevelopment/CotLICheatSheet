@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "./Scripts/",      // path to output directory
+        "sourceMap": true,           // allow sourceMap support
+        "strictNullChecks": true,    // enable strict null checks as a best practice
+        "module": "none",             // specify module code generation
+        "jsx": "preserve",              // use typescript to transpile jsx to js
+        "target": "es6",             // specify ECMAScript target version
+        "allowJs": false,            // allow a partial TypeScript and JavaScript codebase
+        "declaration": true,         // generate .d.ts files
+        "declarationDir": "./src/"
+    },
+    "include": [
+        "./src/"
+    ],
+    "exclude":[
+        "*.d.ts"// ,
+        // "node_modules"
+    ]
+
+}

@@ -282,6 +282,13 @@ module Node =
 module Tasks =
     open Newtonsoft.Json.Linq
     type JsonConvert = Newtonsoft.Json.JsonConvert
+    let fixupNodeTypes () =
+        let path = "node_modules/@types/node/index.d.ts"
+        File.ReadAllText path
+        |> replace "declare var global: NodeJS.Global;" "declare var global: NodeJS.Global | any;"
+        |> replace "declare var module: NodeModule;" "declare var module: NodeModule | any;"
+        |> fun text -> File.WriteAllText(path, text)
+
     let compileTS failForExitCode = fun (changes:FileChange seq option) ->
         let changes = changes |> Option.map List.ofSeq
         let compileTS (relPath:string) =
