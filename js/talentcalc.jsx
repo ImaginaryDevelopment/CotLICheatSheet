@@ -84,10 +84,12 @@ app.RaritySelect = props =>{
     return (<select value={props.rarity} onChange={e => props.onChange ? props.onChange(e.target.value): null}>{options}</select>);
 }
 app.NonDpsTalent = props =>
-                (<td title={props.name}><TextInputUnc value={props[props.name]} type="number" min={props.min} max={props.max} onChange={props.onChange}/></td>);
+                (<td title={props.name}><TextInputUnc value={props.value} type="number" min={props.min} max={props.max} onChange={props.onChange}/></td>);
 app.NonDpsTalent.displayName = "NonDpsTalent";
 app.NonDpsTalent.propTypes={
-    onChange:React.PropTypes.func.isRequired
+    onChange:React.PropTypes.func.isRequired,
+    name:React.PropTypes.string.isRequired,
+    value:React.PropTypes.number.isRequired
 }
 
   /**
@@ -130,6 +132,7 @@ app.NonDpsTalent.propTypes={
 app.Inputs = props =>
 {
 
+    // this is for dps talents only
     var getCanReadTalent = name => props[name] != null && props.talents[name].costs != null && props.talents[name].costs.length > props[name];
     /**
      * @type TalentInputContainer
@@ -197,7 +200,39 @@ app.Inputs = props =>
 
 
     var TextInputUnc = app.TextInputUnc;
-
+//  var nonTicTalents = [
+//             "timeORama",
+//             "massiveCriticals",
+//             "speedRunner",
+//             "enduranceTraining",
+//             "goldOSplosion",
+//             "sniper",
+//             "everyLastCent",
+//             "spendItAll",
+//             "upgradeThemAll",
+//             "scavenger",
+//             "speedLooter",
+//             "efficientCrusading",
+//             "doingItAgain",
+//             "deepIdolScavenger",
+//             "extraTraining",
+//             "tripleTierTrouble",
+//             "stormRiderPercentage",
+//             "extendedSpawns",
+//             "clickTastrophy",
+//             "instantSatisfaction",
+//         ];
+//         var ntt = {};
+//         nonTicTalents.map(name =>{
+//             var pascalCased = name[0].toUpperCase() + name.substr(1);
+//             ntt.name={
+//                 value:props.saved[name],
+//                 onChange:createChangeHandler(name)
+//             };
+//         });
+    // var nonDpsTalents = props.nonDpsTalents;
+    var ndt = props.nonDpsTalents;
+    var makeNonDpsItem = (name,max) => (<NonDpsTalent name={name} value={ndt[name].value} min={0} max={max} onChange={ndt[name].onChange} />);
     return (<table>
         <thead>
             </thead>
@@ -215,22 +250,22 @@ app.Inputs = props =>
             <tr><th>Main Crusader Enchantments</th><td>{tic.dpsInfo.ep}</td><td> Epics: {tic.dpsInfo.epics}</td><td className="textcenter vcenter">{dpsHero && dpsHero.cru ? dpsHero.cru.slot: ""}</td><th colSpan={6}>Put your levels for other talents here to calculate how much you have spent.</th></tr>
             <tr><th>Alt Crusader Enchantments</th><td>{tic.dpsInfo.slotEp - tic.dpsInfo.ep}</td><td>Other Epics: {tic.dpsInfo.slotEpics}</td><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
             <tr data-row={8}><th colSpan={2} /><th><Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents} />Sort Talents</th><th />
-                <td title="timeORama"><TextInputUnc value={props.timeORama} type="number" min="0" max="20" onChange={props.onTimeORamaChange}/></td>
-                <td title="massiveCriticals"><TextInputUnc value={props.massiveCriticals} type="number" min="0" max="25" onChange={props.onMassiveCriticalsChange}/></td>
-                <td title="speedRunner"><TextInputUnc value={props.speedRunner} type="number" min="0" max="20" onChange={props.onSpeedRunnerChange}/></td>
-                <td title="enduranceTraining"><TextInputUnc value={props.enduranceTraining} type="number" min="0" max="20" onChange={props.onEnduranceTrainingChange}/></td>
-                <td title="goldOSplosion"><TextInputUnc value={props.goldOSplosion} type="number" min="0" max="25" onChange={props.onGoldOSplosionChange}/></td>
-                <td title="sniper"><TextInputUnc value={props.sniper} type="number" min="0" max="40" onChange={props.onSniperChange}/></td>
+                {makeNonDpsItem("timeORama",20)}
+                {makeNonDpsItem("massiveCriticals",25)}
+                {makeNonDpsItem("speedRunner",20)}
+                {makeNonDpsItem("enduranceTraining",20)}
+                {makeNonDpsItem("goldOSplosion",25)}
+                {makeNonDpsItem("sniper",40)}
             </tr>
             <tr data-row={9}><th colSpan={4} /><th>Every Last Cent</th><th>Spend it all</th><th>Upgrade them all</th><th>Scavenger</th><th>Speed Looter</th><th>Efficient Crusading</th></tr>
             <tr data-row={10}>
-                <th colSpan="4" />
-                <td title="everyLastCent"><TextInputUnc value={props.everyLastCent} type="number" min="0" max="20" onChange={props.onEveryLastCentChange}/></td>
-                <td title="spendItAll"><TextInputUnc type="number" min="0" max="1" value={props.spendItAll} onChange={props.onSpendItAllChange}/></td>
-                <td title="upgradeThemAll"><TextInputUnc type="number" min="0" max="1" value={props.upgradeThemAll} onChange={props.onUpgradeThemAllChange}/></td>
-                <td title="scavenger"><TextInputUnc value={props.scavenger} type="number" min="0" max="50" onChange={props.onScavengerChange}/></td>
-                <td title="speedLooter"><TextInputUnc value={props.speedLooter} type="number" min="0" max="1" onChange={props.onSpeedLooterChange}/></td>
-                <td title="efficientCrusading"><TextInputUnc value={props.efficientCrusading} type="number" min="0" max="25" onChange={props.onEfficientCrusadingChange}/></td>
+                <th colSpan={4} />
+                {makeNonDpsItem("everyLastCent",20)}
+                {makeNonDpsItem("spendItAll",1)}
+                {makeNonDpsItem("upgradeThemAll",1)}
+                {makeNonDpsItem("scavenger",50)}
+                {makeNonDpsItem("speedLooter",1)}
+                {makeNonDpsItem("efficientCrusading",25)}
             </tr>
             <tr data-row={11}>
                 <th/><td />
@@ -239,10 +274,10 @@ app.Inputs = props =>
             <tr data-row={12}>
                 <th/><td />
                 <th colSpan={2} />
-                <td title="doingItAgain"><TextInputUnc value={props.doingItAgain} type="number" min="0" max="1" onChange={props.onDoingItAgainChange}/></td>
-                <td title="deepIdolScavenger"><TextInputUnc value={props.deepIdolScavenger} type="number" min="0" max="25" onChange={props.onDeepIdolScavengerChange}/></td>
-                <td title="extraTraining"><TextInputUnc value={props.extraTraining} type="number" min="0" max="40" onChange={props.onExtraTrainingChange}/></td>
-                <td title="tripleTierTrouble"><TextInputUnc value={props.tripleTierTrouble} type="number" min="0" max="1" onChange={props.onTripleTierTroubleChange}/></td>
+                {makeNonDpsItem("doingItAgain",1)}
+                {makeNonDpsItem("deepIdolScavenger",25)}
+                {makeNonDpsItem("extraTraining",40)}
+                {makeNonDpsItem("tripleTierTrouble",1)}
                 <td />
                 <td></td>
                 </tr>
@@ -255,10 +290,10 @@ app.Inputs = props =>
             <tr >
                 <th/><td />
                 <th colSpan={2} />
-                <NonDpsTalent name="extendedSpawns" extendedSpawns={props.extendedSpawns} min={0} max={40} onChange={props.onExtendedSpawnsChange} />
-                <NonDpsTalent name="clickTastrophy" clickTastrophy={props.clickTastrophy} min={0} max={40} onChange={props.onClickTastrophyChange} />
-                <NonDpsTalent name="instantSatisfaction" instantSatisfaction={props.instantSatisfaction} min={0} max={40} onChange={props.onInstantSatisfactionChange} />
-                <NonDpsTalent name="sprintMode" sprintMode={props.sprintMode} min={0} max={10} onChange={props.onSprintModeChange} />
+                {makeNonDpsItem("extendedSpawns",40)}
+                {makeNonDpsItem("clickTastrophy",40)}
+                {makeNonDpsItem("instantSatisfaction",40)}
+                {makeNonDpsItem("sprintMode",10)}
             </tr>
 
             <tr data-row={14} />
@@ -381,6 +416,39 @@ var talentCalc = props =>{
             saveStateMod[name] = val;
             props.changeSaveState(saveStateMod);
         };
+        var nonTicTalents = [
+            "timeORama",
+            "massiveCriticals",
+            "speedRunner",
+            "enduranceTraining",
+            "goldOSplosion",
+            "sniper",
+            "everyLastCent",
+            "spendItAll",
+            "upgradeThemAll",
+            "scavenger",
+            "speedLooter",
+            "efficientCrusading",
+            "doingItAgain",
+            "deepIdolScavenger",
+            "extraTraining",
+            "tripleTierTrouble",
+            "stormRiderPercentage",
+            "extendedSpawns",
+            "clickTastrophy",
+            "instantSatisfaction",
+            "idolsOverTime",
+            "sprintMode",
+            "superiorTraining"
+        ];
+        var ntt = {};
+        nonTicTalents.map(name =>{
+            // var pascalCased = name[0].toUpperCase() + name.substr(1);
+            ntt[name]={
+                value:getNumberOrDefault(props.saved[name],0),
+                onChange:createChangeHandler(name)
+            };
+        });
         return (<app.Inputs {...props}
             tic={tic}
             crusaders={crusaders}
@@ -394,22 +462,7 @@ var talentCalc = props =>{
             onCooldownEpicChange={val => props.changeSaveState({cooldownEpic: +val || 0})}
             selectedHeroId={typeof(props.saved.talentCalcHeroId) ==="string"? props.saved.talentCalcHeroId : undefined} onHeroChange={val => props.changeSaveState({talentCalcHeroId:val})}
             timeORama={getNumberOrDefault(props.saved.timeORama)} onTimeORamaChange={val => props.changeSaveState({timeORama:val})}
-            massiveCriticals={getNumberOrDefault(props.saved.massiveCriticals,0)} onMassiveCriticalsChange={val => props.changeSaveState({massiveCriticals:val})}
-            speedRunner={getNumberOrDefault(props.saved.speedRunner,0)} onSpeedRunnerChange={val => props.changeSaveState({speedRunner:val})}
-            enduranceTraining={getNumberOrDefault(props.saved.enduranceTraining,0)} onEnduranceTrainingChange={val => props.changeSaveState({enduranceTraining:val})}
-            goldOSplosion={getNumberOrDefault(props.saved.goldOSplosion,0)} onGoldOSplosionChange={val => props.changeSaveState({goldOSplosion:val})}
-            sniper={getNumberOrDefault(props.saved.sniper,0)} onSniperChange={val => props.changeSaveState({sniper:val})}
-            everyLastCent={getNumberOrDefault(props.saved.everyLastCent,0)} onEveryLastCentChange={val => props.changeSaveState({everyLastCent:val})}
-            spendItAll={getNumberOrDefault(props.saved.spendItAll,0)} onSpendItAllChange={val => props.changeSaveState({spendItAll:val})}
-            upgradeThemAll={getNumberOrDefault(props.saved.upgradeThemAll,0)} onUpgradeThemAllChange={val => props.changeSaveState({upgradeThemAll:val})}
-            scavenger={getNumberOrDefault(props.saved.scavenger,0)} onScavengerChange={val => props.changeSaveState({scavenger:val})}
-            speedLooter={getNumberOrDefault(props.saved.speedLooter,0)} onSpeedLooterChange={val => props.changeSaveState({speedLooter:val})}
-            efficientCrusading={getNumberOrDefault(props.saved.efficientCrusading,0)} onEfficientCrusadingChange={val => props.changeSaveState({efficientCrusading:val})}
-            doingItAgain={getNumberOrDefault(props.saved.doingItAgain,0)} onDoingItAgainChange={val => props.changeSaveState({doingItAgain:val})}
-            deepIdolScavenger={getNumberOrDefault(props.saved.deepIdolScavenger,0)} onDeepIdolScavengerChange={val => props.changeSaveState({deepIdolScavenger:val})}
-            extraTraining={getNumberOrDefault(props.saved.extraTraining,0)} onExtraTrainingChange={val => props.changeSaveState({extraTraining:val})}
-            tripleTierTrouble={getNumberOrDefault(props.saved.tripleTierTrouble,0)} onTripleTierTroubleChange={val => props.changeSaveState({tripleTierTrouble:val})}
-            stormRiderPercentage={getNumberOrDefault(props.saved.stormRiderPercentage,0)} onStormRiderPercentageChange={val => props.changeSaveState({stormRiderPercentage:val})}
+            nonDpsTalents={ntt}
             extendedSpawns={getNumberOrDefault(props.saved.extendedSpawns,0)} onExtendedSpawnsChange={createChangeHandler('extendedSpawns')}
             clickTastrophy={getNumberOrDefault(props.saved.clickTastrophy,0)} onClickTastrophyChange={createChangeHandler('clickTastrophy')}
             instantSatisfaction={getNumberOrDefault(props.saved.instantSatisfaction,0)} onInstantSatisfactionChange={createChangeHandler('instantSatisfaction')}
