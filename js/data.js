@@ -523,6 +523,40 @@ window.jsonData =
     },
     "everyLastCent": {
       "talentId": 26
+    },
+    "extendedSpawns":{
+      "talentId": 27,
+      "num_levels":40
+    },
+    "Click-tastrophy":{
+      "talentId": 28,
+      "num_levels":40
+
+    },
+    "Instant Satisfaction":{
+      "talentId": 29,
+      "num_levels":21
+
+    },
+    "Idle Increases":{
+      "talentId": 30,
+      "num_levels":40
+    },
+    "Legendary Benefits":{
+      "talentId": 31,
+      "num_levels":50
+    },
+    "Idols Over Time":{
+      "talentId": 32,
+      "num_levels":20
+    },
+    "Sprint Mode":{
+      "talentId": 33,
+      "num_levels":10
+    },
+    "Superior Training":{
+      "talentId": 34,
+      "num_levels":80
     }
   },
   "missionTags": [

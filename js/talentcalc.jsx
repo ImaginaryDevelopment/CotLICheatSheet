@@ -83,6 +83,12 @@ app.RaritySelect = props =>{
 
     return (<select value={props.rarity} onChange={e => props.onChange ? props.onChange(e.target.value): null}>{options}</select>);
 }
+app.NonDpsTalent = props =>
+                (<td title={props.name}><TextInputUnc value={props[props.name]} type="number" min={props.min} max={props.max} onChange={props.onChange}/></td>);
+app.NonDpsTalent.displayName = "NonDpsTalent";
+app.NonDpsTalent.propTypes={
+    onChange:React.PropTypes.func.isRequired
+}
 
   /**
    * @typedef TrinketContainer
@@ -228,7 +234,7 @@ app.Inputs = props =>
             </tr>
             <tr data-row={11}>
                 <th/><td />
-                <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th>Extra Training</th><th>Triple Tier Trouble</th><th></th><th>Total:</th>
+                <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th>Extra Training</th><th>Triple Tier Trouble</th><th></th><th></th>
             </tr>
             <tr data-row={12}>
                 <th/><td />
@@ -241,6 +247,20 @@ app.Inputs = props =>
                 <td></td>
                 </tr>
             <tr data-row={13} />
+
+            <tr>
+                <th/><td />
+                <th colSpan={2} /><th>Extended Spawns</th><th>Click-tastrophy</th><th>Instant Satisfaction</th><th>Sprint Mode</th><th></th><th></th>
+            </tr>
+            <tr >
+                <th/><td />
+                <th colSpan={2} />
+                <NonDpsTalent name="extendedSpawns" extendedSpawns={props.extendedSpawns} min={0} max={40} onChange={props.onExtendedSpawnsChange} />
+                <NonDpsTalent name="clickTastrophy" clickTastrophy={props.clickTastrophy} min={0} max={40} onChange={props.onClickTastrophyChange} />
+                <NonDpsTalent name="instantSatisfaction" instantSatisfaction={props.instantSatisfaction} min={0} max={40} onChange={props.onInstantSatisfactionChange} />
+                <NonDpsTalent name="sprintMode" sprintMode={props.sprintMode} min={0} max={10} onChange={props.onSprintModeChange} />
+            </tr>
+
             <tr data-row={14} />
             <tr data-row={15}>
                 <th>Storm Rider Percentage</th>
@@ -355,11 +375,17 @@ var talentCalc = props =>{
             ti.name = name;
             tic.td[name].onChange = x => props.changeSaveState(objectFromNameValue(name,x));
         });
+        var createChangeHandler = name => val =>
+        {
+            var saveStateMod = {};
+            saveStateMod[name] = val;
+            props.changeSaveState(saveStateMod);
+        };
         return (<app.Inputs {...props}
             tic={tic}
             crusaders={crusaders}
             talents={props.referenceData.talents}
-            onCritChanceChange={val => (props.changeSaveState({critChance: inspect(+val || 0, 'changeSaveState crit')}))}
+            onCritChanceChange={val => (props.changeSaveState({critChance: app.inspect(+val || 0, 'changeSaveState crit')}))}
             idols={props.saved.idols} onIdolsChange={val => props.changeSaveState({idols:val})}
             sortTalents={props.sortTalents} onSortTalentChange={props.onSortTalentsChange}
             onCooldownCommonChange={val => props.changeSaveState({cooldownCommon: +val || 0})}
@@ -384,6 +410,9 @@ var talentCalc = props =>{
             extraTraining={getNumberOrDefault(props.saved.extraTraining,0)} onExtraTrainingChange={val => props.changeSaveState({extraTraining:val})}
             tripleTierTrouble={getNumberOrDefault(props.saved.tripleTierTrouble,0)} onTripleTierTroubleChange={val => props.changeSaveState({tripleTierTrouble:val})}
             stormRiderPercentage={getNumberOrDefault(props.saved.stormRiderPercentage,0)} onStormRiderPercentageChange={val => props.changeSaveState({stormRiderPercentage:val})}
+            extendedSpawns={getNumberOrDefault(props.saved.extendedSpawns,0)} onExtendedSpawnsChange={createChangeHandler('extendedSpawns')}
+            clickTastrophy={getNumberOrDefault(props.saved.clickTastrophy,0)} onClickTastrophyChange={createChangeHandler('clickTastrophy')}
+            instantSatisfaction={getNumberOrDefault(props.saved.instantSatisfaction,0)} onInstantSatisfactionChange={createChangeHandler('instantSatisfaction')}
          />);
 };
 talentCalc.displayName = 'TalentCalc';
