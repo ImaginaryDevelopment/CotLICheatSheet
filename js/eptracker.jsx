@@ -540,7 +540,7 @@ class CruTagGrid extends React.Component {
 var SavedFormation = props => {
   var {clId, saves} = props;
   var cId = (/(\d+)$/).exec(clId)[1];
-  var world = app.mathCalc.getWorldById(cId);
+  var world = mathCalc.getWorldById(cId);
   var name= world && world.name || clId;
   console.log(saves);
   var mapCru = cru => (<li key={cru.id}>{cru.displayName}</li>);

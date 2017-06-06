@@ -23,7 +23,8 @@
         "enchanted",
         "overenchanted",
         "selfdps",
-        "cooldown"
+        "cooldown",
+        "spaceking"
     ],
 
     // flagWords - list of words to be always considered incorrect
