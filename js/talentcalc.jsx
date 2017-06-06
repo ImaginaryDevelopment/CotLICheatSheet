@@ -241,7 +241,7 @@ app.Inputs = props =>
                 </tr>
                 <tr data-row={11}>
                     <th/><td />
-                    <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th className="lightGreen">Extra Training</th><th>Triple Tier Trouble</th><th></th><th></th>
+                    <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th title="if you can cap, raising the level cap is best for dps" className="lightGreen">Extra Training</th><th>Triple Tier Trouble</th><th></th><th></th>
                 </tr>
                 <tr data-row={12}>
                     <th/><td />
@@ -263,7 +263,7 @@ app.Inputs = props =>
                     <th>Instant Satisfaction</th>
                     <th>Idols Over Time</th>
                     <th>Sprint Mode</th>
-                    <th>Superior Training</th>
+                    <th title="if you can cap, raising the level cap is best for dps" className="lightGreen">Superior Training</th>
                     <th></th>
                 </tr>
                 <tr >
