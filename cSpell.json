@@ -27,7 +27,9 @@
         "spaceking",
         "Littlefoot",
         "Legendaries",
-        "tastrophy"
+        "tastrophy",
+        "Splosion",
+        "vcenter"
     ],
 
     // flagWords - list of words to be always considered incorrect
