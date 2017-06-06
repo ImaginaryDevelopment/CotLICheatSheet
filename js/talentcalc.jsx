@@ -202,10 +202,11 @@ app.Inputs = props =>
     var TextInputUnc = app.TextInputUnc;
     var ndt = props.nonDpsTalents;
     var makeNonDpsItem = (name,max) => (<NonDpsTalent name={name} value={ndt[name].value} min={0} max={max} onChange={ndt[name].onChange} />);
-    return (<table>
-                <thead>
-                </thead>
-                <tbody>
+    return (
+        <table>
+            <thead>
+            </thead>
+            <tbody>
                 <tr><th>Crit Chance %</th><td><TextInputUnc type="number" min="0" max="300" onChange={props.onCritChanceChange} value={critChance} /></td><td>%</td><td title="D"></td><th colSpan={5}>Horn and Cornucopia Trinkets</th></tr>
                 <tr><th>Ability Cooldown %</th><td>{cooldown}</td><td title="C"></td><td></td><th className="rarity1 black">Common:</th><th className="rarity2 black">Uncommon:</th><th className="rarity3 black">Rare:</th><th className="rarity4 black">Epic:</th><th>Total:</th></tr>
                 <tr><th>Enchantment Points on main dps</th><td>{effectiveEP}</td><th colSpan={2}></th>
@@ -218,7 +219,9 @@ app.Inputs = props =>
                 <tr><th>Main Dps</th><td colSpan={2}><HeroSelect crusaders={props.crusaders} selectedHeroId={props.selectedHeroId} onHeroChange={props.onHeroChange} /></td><th>Slot</th></tr>
                 <tr><th>Main Crusader Enchantments</th><td>{tic.dpsInfo.ep}</td><td> Epics: {tic.dpsInfo.epics}</td><td className="textcenter vcenter">{dpsHero && dpsHero.cru ? dpsHero.cru.slot: ""}</td><th colSpan={6}>Put your levels for other talents here to calculate how much you have spent.</th></tr>
                 <tr><th>Alt Crusader Enchantments</th><td>{tic.dpsInfo.slotEp - tic.dpsInfo.ep}</td><td>Other Epics: {tic.dpsInfo.slotEpics}</td><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
-                <tr data-row={8}><th colSpan={2} /><th><Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents} />Sort Talents</th><th />
+                <tr data-row={8}>
+                    <th>Sort Talents<Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents} /></th><th />
+                    <th colSpan={2} />
                     {makeNonDpsItem("timeORama",20)}
                     {makeNonDpsItem("massiveCriticals",25)}
                     {makeNonDpsItem("speedRunner",20)}
@@ -238,7 +241,7 @@ app.Inputs = props =>
                 </tr>
                 <tr data-row={11}>
                     <th/><td />
-                    <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th>Extra Training</th><th>Triple Tier Trouble</th><th></th><th></th>
+                    <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th className="lightGreen">Extra Training</th><th>Triple Tier Trouble</th><th></th><th></th>
                 </tr>
                 <tr data-row={12}>
                     <th/><td />
@@ -248,13 +251,20 @@ app.Inputs = props =>
                     {makeNonDpsItem("extraTraining",40)}
                     {makeNonDpsItem("tripleTierTrouble",1)}
                     <td />
-                    <td></td>
+                    <td />
                     </tr>
                 <tr data-row={13} />
 
                 <tr>
                     <th/><td />
-                    <th colSpan={2} /><th>Extended Spawns</th><th>Click-tastrophy</th><th>Instant Satisfaction</th><th>Sprint Mode</th><th></th><th></th>
+                    <th colSpan={2} />
+                    <th>Extended Spawns</th>
+                    <th>Click-tastrophy</th>
+                    <th>Instant Satisfaction</th>
+                    <th>Idols Over Time</th>
+                    <th>Sprint Mode</th>
+                    <th>Superior Training</th>
+                    <th></th>
                 </tr>
                 <tr >
                     <th/><td />
@@ -262,7 +272,9 @@ app.Inputs = props =>
                     {makeNonDpsItem("extendedSpawns",40)}
                     {makeNonDpsItem("clickTastrophy",40)}
                     {makeNonDpsItem("instantSatisfaction",40)}
+                    {makeNonDpsItem("idolsOverTime",40)}
                     {makeNonDpsItem("sprintMode",10)}
+                    {makeNonDpsItem("superiorTraining",80)}
                 </tr>
 
                 <tr data-row={14} />
@@ -275,7 +287,7 @@ app.Inputs = props =>
                 <tr data-row={16} />
                 <tr data-row={17}>
                     <th colSpan={5}>Talents</th>
-                    <th colSpan={2}>Idols Spent on DPS Talents:{totalDpsIdols}</th>
+                    <th title="not including Extra Training or Superior Training" colSpan={2}>Idols Spent on DPS Talents:{totalDpsIdols}</th>
                     <td></td>
                     <td />
                     <th />

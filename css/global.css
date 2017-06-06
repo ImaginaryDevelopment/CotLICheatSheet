@@ -38,7 +38,7 @@ div.tags > .img_tag_off{
 #tab td.tags > .tooltip{
     margin: 2px 2px;
 }
-#tab td.tier2 {
+#tab td.tier2, .lightGreen {
     font-weight: bolder;
     color:#44c201;
 }
