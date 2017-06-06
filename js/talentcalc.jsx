@@ -203,94 +203,94 @@ app.Inputs = props =>
     var ndt = props.nonDpsTalents;
     var makeNonDpsItem = (name,max) => (<NonDpsTalent name={name} value={ndt[name].value} min={0} max={max} onChange={ndt[name].onChange} />);
     return (<table>
-        <thead>
-            </thead>
-            <tbody>
-            <tr><th>Crit Chance %</th><td><TextInputUnc type="number" min="0" max="300" onChange={props.onCritChanceChange} value={critChance} /></td><td>%</td><td title="D"></td><th colSpan={5}>Horn and Cornucopia Trinkets</th></tr>
-            <tr><th>Ability Cooldown %</th><td>{cooldown}</td><td title="C"></td><td></td><th className="rarity1 black">Common:</th><th className="rarity2 black">Uncommon:</th><th className="rarity3 black">Rare:</th><th className="rarity4 black">Epic:</th><th>Total:</th></tr>
-            <tr><th>Enchantment Points on main dps</th><td>{effectiveEP}</td><th colSpan={2}></th>
-                <td title="E4"><TextInputUnc type="number" value={tic.tc.common} min="0" onChange={props.onCooldownCommonChange} /></td>
-                <td title="F4"><TextInputUnc type="number" value={tic.tc.uncommon} min="0" onChange={props.onCooldownUncommonChange} /></td>
-                <td><TextInputUnc type="number" value={tic.tc.rare} min="0" onChange={props.onCooldownRareChange} /></td>
-                <td><TextInputUnc type="number" value={tic.tc.epic} min="0" onChange={props.onCooldownEpicChange} /></td>
-                <td>{cooldown.toFixed(2)}</td>
-            </tr>
-            <tr><th>Main Dps</th><td colSpan={2}><HeroSelect crusaders={props.crusaders} selectedHeroId={props.selectedHeroId} onHeroChange={props.onHeroChange} /></td><th>Slot</th></tr>
-            <tr><th>Main Crusader Enchantments</th><td>{tic.dpsInfo.ep}</td><td> Epics: {tic.dpsInfo.epics}</td><td className="textcenter vcenter">{dpsHero && dpsHero.cru ? dpsHero.cru.slot: ""}</td><th colSpan={6}>Put your levels for other talents here to calculate how much you have spent.</th></tr>
-            <tr><th>Alt Crusader Enchantments</th><td>{tic.dpsInfo.slotEp - tic.dpsInfo.ep}</td><td>Other Epics: {tic.dpsInfo.slotEpics}</td><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
-            <tr data-row={8}><th colSpan={2} /><th><Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents} />Sort Talents</th><th />
-                {makeNonDpsItem("timeORama",20)}
-                {makeNonDpsItem("massiveCriticals",25)}
-                {makeNonDpsItem("speedRunner",20)}
-                {makeNonDpsItem("enduranceTraining",20)}
-                {makeNonDpsItem("goldOSplosion",25)}
-                {makeNonDpsItem("sniper",40)}
-            </tr>
-            <tr data-row={9}><th colSpan={4} /><th>Every Last Cent</th><th>Spend it all</th><th>Upgrade them all</th><th>Scavenger</th><th>Speed Looter</th><th>Efficient Crusading</th></tr>
-            <tr data-row={10}>
-                <th colSpan={4} />
-                {makeNonDpsItem("everyLastCent",20)}
-                {makeNonDpsItem("spendItAll",1)}
-                {makeNonDpsItem("upgradeThemAll",1)}
-                {makeNonDpsItem("scavenger",50)}
-                {makeNonDpsItem("speedLooter",1)}
-                {makeNonDpsItem("efficientCrusading",25)}
-            </tr>
-            <tr data-row={11}>
-                <th/><td />
-                <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th>Extra Training</th><th>Triple Tier Trouble</th><th></th><th></th>
-            </tr>
-            <tr data-row={12}>
-                <th/><td />
-                <th colSpan={2} />
-                {makeNonDpsItem("doingItAgain",1)}
-                {makeNonDpsItem("deepIdolScavenger",25)}
-                {makeNonDpsItem("extraTraining",40)}
-                {makeNonDpsItem("tripleTierTrouble",1)}
-                <td />
-                <td></td>
+                <thead>
+                </thead>
+                <tbody>
+                <tr><th>Crit Chance %</th><td><TextInputUnc type="number" min="0" max="300" onChange={props.onCritChanceChange} value={critChance} /></td><td>%</td><td title="D"></td><th colSpan={5}>Horn and Cornucopia Trinkets</th></tr>
+                <tr><th>Ability Cooldown %</th><td>{cooldown}</td><td title="C"></td><td></td><th className="rarity1 black">Common:</th><th className="rarity2 black">Uncommon:</th><th className="rarity3 black">Rare:</th><th className="rarity4 black">Epic:</th><th>Total:</th></tr>
+                <tr><th>Enchantment Points on main dps</th><td>{effectiveEP}</td><th colSpan={2}></th>
+                    <td title="E4"><TextInputUnc type="number" value={tic.tc.common} min="0" onChange={props.onCooldownCommonChange} /></td>
+                    <td title="F4"><TextInputUnc type="number" value={tic.tc.uncommon} min="0" onChange={props.onCooldownUncommonChange} /></td>
+                    <td><TextInputUnc type="number" value={tic.tc.rare} min="0" onChange={props.onCooldownRareChange} /></td>
+                    <td><TextInputUnc type="number" value={tic.tc.epic} min="0" onChange={props.onCooldownEpicChange} /></td>
+                    <td>{cooldown.toFixed(2)}</td>
                 </tr>
-            <tr data-row={13} />
-
-            <tr>
-                <th/><td />
-                <th colSpan={2} /><th>Extended Spawns</th><th>Click-tastrophy</th><th>Instant Satisfaction</th><th>Sprint Mode</th><th></th><th></th>
-            </tr>
-            <tr >
-                <th/><td />
-                <th colSpan={2} />
-                {makeNonDpsItem("extendedSpawns",40)}
-                {makeNonDpsItem("clickTastrophy",40)}
-                {makeNonDpsItem("instantSatisfaction",40)}
-                {makeNonDpsItem("sprintMode",10)}
-            </tr>
-
-            <tr data-row={14} />
-            <tr data-row={15}>
-                <th>Storm Rider Percentage</th>
-                <td><TextInputUnc type="number" min="0" step="0.05" max="10" id="stormRiderPercentage" debug={true} value={tic.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
-                <td><RaritySelect gearTypes={props.referenceData.gearTypes} includeGoldens={true}
-                                    onChange={val => props.onStormRiderPercentageChange(getStormRiderPercentageFromRarity(val))} /></td>
-            </tr>
-            <tr data-row={16} />
-            <tr data-row={17}>
-                <th colSpan={5}>Talents</th>
-                <th colSpan={2}>Idols Spent on DPS Talents:{totalDpsIdols}</th>
-                <td></td>
-                <td />
-                <th />
-                {/*<th>Total Idols:</th>*/}
+                <tr><th>Main Dps</th><td colSpan={2}><HeroSelect crusaders={props.crusaders} selectedHeroId={props.selectedHeroId} onHeroChange={props.onHeroChange} /></td><th>Slot</th></tr>
+                <tr><th>Main Crusader Enchantments</th><td>{tic.dpsInfo.ep}</td><td> Epics: {tic.dpsInfo.epics}</td><td className="textcenter vcenter">{dpsHero && dpsHero.cru ? dpsHero.cru.slot: ""}</td><th colSpan={6}>Put your levels for other talents here to calculate how much you have spent.</th></tr>
+                <tr><th>Alt Crusader Enchantments</th><td>{tic.dpsInfo.slotEp - tic.dpsInfo.ep}</td><td>Other Epics: {tic.dpsInfo.slotEpics}</td><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
+                <tr data-row={8}><th colSpan={2} /><th><Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents} />Sort Talents</th><th />
+                    {makeNonDpsItem("timeORama",20)}
+                    {makeNonDpsItem("massiveCriticals",25)}
+                    {makeNonDpsItem("speedRunner",20)}
+                    {makeNonDpsItem("enduranceTraining",20)}
+                    {makeNonDpsItem("goldOSplosion",25)}
+                    {makeNonDpsItem("sniper",40)}
                 </tr>
-            {
-                rows
-            }
-        </tbody>
-            <tfoot>
+                <tr data-row={9}><th colSpan={4} /><th>Every Last Cent</th><th>Spend it all</th><th>Upgrade them all</th><th>Scavenger</th><th>Speed Looter</th><th>Efficient Crusading</th></tr>
+                <tr data-row={10}>
+                    <th colSpan={4} />
+                    {makeNonDpsItem("everyLastCent",20)}
+                    {makeNonDpsItem("spendItAll",1)}
+                    {makeNonDpsItem("upgradeThemAll",1)}
+                    {makeNonDpsItem("scavenger",50)}
+                    {makeNonDpsItem("speedLooter",1)}
+                    {makeNonDpsItem("efficientCrusading",25)}
+                </tr>
+                <tr data-row={11}>
+                    <th/><td />
+                    <th colSpan={2} /><th>Doing it Again</th><th>Deep Idol Scavenger</th><th>Extra Training</th><th>Triple Tier Trouble</th><th></th><th></th>
+                </tr>
+                <tr data-row={12}>
+                    <th/><td />
+                    <th colSpan={2} />
+                    {makeNonDpsItem("doingItAgain",1)}
+                    {makeNonDpsItem("deepIdolScavenger",25)}
+                    {makeNonDpsItem("extraTraining",40)}
+                    {makeNonDpsItem("tripleTierTrouble",1)}
+                    <td />
+                    <td></td>
+                    </tr>
+                <tr data-row={13} />
+
                 <tr>
+                    <th/><td />
+                    <th colSpan={2} /><th>Extended Spawns</th><th>Click-tastrophy</th><th>Instant Satisfaction</th><th>Sprint Mode</th><th></th><th></th>
+                </tr>
+                <tr >
+                    <th/><td />
+                    <th colSpan={2} />
+                    {makeNonDpsItem("extendedSpawns",40)}
+                    {makeNonDpsItem("clickTastrophy",40)}
+                    {makeNonDpsItem("instantSatisfaction",40)}
+                    {makeNonDpsItem("sprintMode",10)}
+                </tr>
+
+                <tr data-row={14} />
+                <tr data-row={15}>
+                    <th>Storm Rider Percentage</th>
+                    <td><TextInputUnc type="number" min="0" step="0.05" max="10" id="stormRiderPercentage" debug={true} value={tic.stormRiderPercentage} onChange={props.onStormRiderPercentageChange} /></td>
+                    <td><RaritySelect gearTypes={props.referenceData.gearTypes} includeGoldens={true}
+                                        onChange={val => props.onStormRiderPercentageChange(getStormRiderPercentageFromRarity(val))} /></td>
+                </tr>
+                <tr data-row={16} />
+                <tr data-row={17}>
+                    <th colSpan={5}>Talents</th>
+                    <th colSpan={2}>Idols Spent on DPS Talents:{totalDpsIdols}</th>
+                    <td></td>
+                    <td />
+                    <th />
+                    {/*<th>Total Idols:</th>*/}
+                    </tr>
+                {
+                    rows
+                }
+            </tbody>
+            <tfoot>
+                <tr className="dpsHeaderRow">
                     <th>
                         not accounted for
                     </th>
-                    <td>
+                    <td colSpan={3}>
                         <ul>
                             <li>Storm Rider talents : Littlefoot xp, Thalia Legendaries</li>
                             <li>Tier 4 dps talents</li>
