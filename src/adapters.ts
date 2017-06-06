@@ -26,6 +26,7 @@ interface TalentReferenceData{
 }
 enum Tag{
   alien,
+  angel,
   animal,
   dps,
   dragon,
@@ -33,6 +34,7 @@ enum Tag{
   event,
   female,
   gold,
+  healer,
   human,
   leprechaun,
   magic,
@@ -41,7 +43,8 @@ enum Tag{
   robot,
   royal,
   supernatural,
-  support
+  support,
+  tank
 }
 declare enum Slot{
   Slot0 = 0,

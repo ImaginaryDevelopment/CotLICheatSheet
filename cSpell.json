@@ -31,6 +31,7 @@
         "Splosion",
         "vcenter",
         "alldps",
+        "boggins",
         "dani",
         "groklok",
         "kaine",
@@ -40,12 +41,15 @@
         "arachno",
         "Artaxes",
         "khouri",
+        "oogyBoogy","Boogy", "oogy",
         "snickette",
         "soldierette",
         "rayna",
         "sisaron",
         "Scaredy",
-        "Conflagrate"
+        "Conflagrate",
+        "ghostbeard",
+        "adjacents"
     ],
 
     // flagWords - list of words to be always considered incorrect

@@ -3,18 +3,26 @@
 /// <reference path="allHelpers.ts" />
 var Tag;
 (function (Tag) {
-    Tag[Tag["dps"] = 0] = "dps";
-    Tag[Tag["gold"] = 1] = "gold";
-    Tag[Tag["male"] = 2] = "male";
-    Tag[Tag["female"] = 3] = "female";
-    Tag[Tag["alien"] = 4] = "alien";
-    Tag[Tag["animal"] = 5] = "animal";
-    Tag[Tag["robot"] = 6] = "robot";
-    Tag[Tag["dragon"] = 7] = "dragon";
-    Tag[Tag["leprechaun"] = 8] = "leprechaun";
-    Tag[Tag["orc"] = 9] = "orc";
-    Tag[Tag["elf"] = 10] = "elf";
-    Tag[Tag["support"] = 11] = "support";
+    Tag[Tag["alien"] = 0] = "alien";
+    Tag[Tag["angel"] = 1] = "angel";
+    Tag[Tag["animal"] = 2] = "animal";
+    Tag[Tag["dps"] = 3] = "dps";
+    Tag[Tag["dragon"] = 4] = "dragon";
+    Tag[Tag["elf"] = 5] = "elf";
+    Tag[Tag["event"] = 6] = "event";
+    Tag[Tag["female"] = 7] = "female";
+    Tag[Tag["gold"] = 8] = "gold";
+    Tag[Tag["healer"] = 9] = "healer";
+    Tag[Tag["human"] = 10] = "human";
+    Tag[Tag["leprechaun"] = 11] = "leprechaun";
+    Tag[Tag["magic"] = 12] = "magic";
+    Tag[Tag["male"] = 13] = "male";
+    Tag[Tag["orc"] = 14] = "orc";
+    Tag[Tag["robot"] = 15] = "robot";
+    Tag[Tag["royal"] = 16] = "royal";
+    Tag[Tag["supernatural"] = 17] = "supernatural";
+    Tag[Tag["support"] = 18] = "support";
+    Tag[Tag["tank"] = 19] = "tank";
 })(Tag || (Tag = {}));
 /**
  * @typedef {Object} FormationSave

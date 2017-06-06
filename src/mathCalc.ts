@@ -519,7 +519,7 @@
     if (rabbit.clicking) {
       rabbit.globalDps *= 1 + 0.25 * itemAbility(rabbit, 2);
     }
-    rabbit.globalDps *= 1 + 0.25 * currentWorld.countTags('robot') * legendaryFactor(rabbit, 0);
+    rabbit.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.robot) * legendaryFactor(rabbit, 0);
   };
 
   ////Graham
@@ -620,7 +620,7 @@
         pam.globalDps *= 2;
       }
     }
-    pam.globalDps *= 1 + 0.25 * currentWorld.countTags('dps') * legendaryFactor(pam, 1);
+    pam.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.dps) * legendaryFactor(pam, 1);
     if (numAdjacent <= 3) {
       pam.globalDps *= 1 + 1 * legendaryFactor(pam, 2);
     }
@@ -646,17 +646,17 @@
       dpsAffected = true;
     }
     if (dpsAffected) {
-      veronica.globalDps *= 1 + 0.25 * (1 + currentWorld.countTags("robot")) * itemAbility(veronica, 0) * (1 + legendaryFactor(veronica, 0));
+      veronica.globalDps *= 1 + 0.25 * (1 + currentWorld.countTags(Tag.robot)) * itemAbility(veronica, 0) * (1 + legendaryFactor(veronica, 0));
     }
     if (!dpsAffected && karen == dpsChar) {
-      veronica.globalDps *= 1 + 0.25 * (1 + currentWorld.countTags("robot")) * itemAbility(veronica, 0) * (1 + legendaryFactor(veronica, 0)) * 0.5 * itemAbility(karen, 0);
+      veronica.globalDps *= 1 + 0.25 * (1 + currentWorld.countTags(Tag.robot)) * itemAbility(veronica, 0) * (1 + legendaryFactor(veronica, 0)) * 0.5 * itemAbility(karen, 0);
       karen.effects *= 1;
     }
     if (countShots) {
       veronica.globalDps *= 1 + 2 * itemAbility(veronica, 2) / 5;
     }
-    veronica.globalDps *= 1 + 0.25 * currentWorld.countTags('robot') * legendaryFactor(veronica, 1);
-    veronica.globalDps *= 1 + 0.5 * currentWorld.countTags('elf') * legendaryFactor(veronica, 2);
+    veronica.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.robot) * legendaryFactor(veronica, 1);
+    veronica.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.elf) * legendaryFactor(veronica, 2);
   };
 
   ////Arachnobuddy
@@ -690,7 +690,7 @@
         if (adjCruId != null) {
           numAdjacent += 1;
         }
-        if (adjCru && adjCru.tags.includes("human")) {
+        if (adjCru && adjCru.tags.includes(Tag.human)) {
           noHumansAdjacent = false;
         }
       }
@@ -728,11 +728,11 @@
         }
       }
       sally.globalDps *= 4 - 0.25 * femalesAdjacent;
-      sally.globalDps *= 1 + 0.2 * currentWorld.countTags('male') * legendaryFactor(sally, 0);
+      sally.globalDps *= 1 + 0.2 * currentWorld.countTags(Tag.male) * legendaryFactor(sally, 0);
       if (numAdjacent >= 4) {
         sally.globalDps *= 1 + 1 * legendaryFactor(sally, 1);
       }
-      sally.globalDps *= 1 + 0.2 * (currentWorld.filled - currentWorld.countTags('supernatural')) * legendaryFactor(sally, 2);
+      sally.globalDps *= 1 + 0.2 * (currentWorld.filled - currentWorld.countTags(Tag.supernatural)) * legendaryFactor(sally, 2);
     }
   };
 
@@ -741,7 +741,7 @@
   karen.effects = 0;
   karen.deaths = 0;
   karen.calculate = function () {
-    karen.globalDps *= 1 + 0.25 * currentWorld.countTags('animal') * legendaryFactor(karen, 1);
+    karen.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.animal) * legendaryFactor(karen, 1);
     karen.globalDps *= 1 + karen.deaths * legendaryFactor(karen, 2);
   };
   karen.finalCalculate = function () {
@@ -760,7 +760,7 @@
       sasha.globalDps *= 1 + 0.3 * itemAbility(sasha, 1) * (1 + legendaryFactor(sasha, 2)) * 0.5 * itemAbility(karen, 0);
       karen.effects += 1;
     }
-    sasha.globalDps *= 1 + 0.5 * currentWorld.countTags('tank') * legendaryFactor(sasha, 0);
+    sasha.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.tank) * legendaryFactor(sasha, 0);
     app
       .formationIds
       .map((cruId, i) => {
@@ -816,8 +816,8 @@
   dani.calculate = function() {
     var spot = getCrusaderSpot(app.formationIds, groklok.id);
     var eyeMult = 1;
-    var numMales = currentWorld.countTags('male');
-    var numFemales = currentWorld.countTags('female');
+    var numMales = currentWorld.countTags(Tag.male);
+    var numFemales = currentWorld.countTags(Tag.female);
     var adjacent = currentWorld.whatsAdjacent(spot);
     //flirty
     dani.globalDps *= 1.15;
@@ -861,7 +861,7 @@
         hermit.globalDps *= 3;
       }
       hermit.globalDps *= 1 + (currentWorld.spots - currentWorld.filled) * legendaryFactor(hermit, 0);
-      hermit.globalDps *= 1 + 0.25 * currentWorld.countTags('supernatural') * legendaryFactor(hermit, 2);
+      hermit.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.supernatural) * legendaryFactor(hermit, 2);
     }
     if (dpsChar && dpsChar.tags.includes(Tag.human)) {
       hermit.globalDps *= 1 + legendaryFactor(hermit, 1);
@@ -890,13 +890,13 @@
         if (!(adjCru != null))
           continue;
         var adjCruSpot = getCrusaderSpot(app.formationIds, adjCru.id);
-        if (adjCru.tags.includes("female")) {
+        if (adjCru.tags.includes(Tag.female)) {
           femaleAdjacent = true;
         }
-        if (adjCru.tags.includes("leprechaun")) {
+        if (adjCru.tags.includes(Tag.leprechaun)) {
           leprechaunAdjacent = true;
         }
-        if (adjCru.tags.includes("animal")) {
+        if (adjCru.tags.includes(Tag.animal)) {
           animalAdjacent = true;
         }
         if (dpsChar && adjCruId == dpsChar.id) {
@@ -954,9 +954,9 @@
    */
   draco.calculate = function (formationIds) {
     if (draco == dpsChar) {
-      var royals = currentWorld.countTags("royal");
-      var animals = currentWorld.countTags("animal");
-      var robots = currentWorld.countTags("robot");
+      var royals = currentWorld.countTags(Tag.royal);
+      var animals = currentWorld.countTags(Tag.animal);
+      var robots = currentWorld.countTags(Tag.robot);
       var nonRoyalHumans = 0;
       formationIds
         .filter(cruId => cruId != null && cruId != 0)
@@ -989,7 +989,7 @@
     var spot = getCrusaderSpot(app.formationIds, henry.id);
     if (henry == dpsChar) {
       var noOneBehind = true;
-      henry.globalDps *= currentWorld.filled - currentWorld.countTags('human');
+      henry.globalDps *= currentWorld.filled - currentWorld.countTags(Tag.human);
       var adjacent = currentWorld.whatsAdjacent(spot);
       for (var i = 0; i < adjacent.length && noOneBehind; i++) {
         var adjCruSpot = getCrusaderSpot(app.formationIds, adjacent[i].id);
@@ -1003,7 +1003,7 @@
     if (alanSpot != null) {
       henry.globalDps *= 1 + legendaryFactor(henry, 0);
     }
-    henry.globalDps *= 1 + 0.2 * (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(henry, 1);
+    henry.globalDps *= 1 + 0.2 * (currentWorld.filled - currentWorld.countTags(Tag.human)) * legendaryFactor(henry, 1);
   };
 
   //////Slot 6 //Detective Kaine
@@ -1033,7 +1033,7 @@
     var xpGold = 1 + 0.25 * kaine.XP * kaineLegendaryFactor;
     console.log('kaine xpGold', xpGold, kaineLegendaryFactor);
     kaine.globalGold *= xpGold || 1;
-    kaine.globalGold *= 1 + 0.25 * currentWorld.countTags('gold') * legendaryFactor(kaine, 2) || 1;
+    kaine.globalGold *= 1 + 0.25 * currentWorld.countTags(Tag.gold) * legendaryFactor(kaine, 2) || 1;
   };
 
   ////Mister the Monkey
@@ -1043,7 +1043,7 @@
   var mister = getCrusader("06a");
   mister.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, mister.id);
-    var numAnimals = currentWorld.countTags('animal');
+    var numAnimals = currentWorld.countTags(Tag.animal);
     var numBehind = currentWorld.getFilledColumnSpots(currentWorld.columnNum(spot) - 1);
     mister.globalGold *= Math.pow(1 + (0.15 + 0.05 * numAnimals) * itemAbility(mister, 1) * (1 + legendaryFactor(mister, 2)), numBehind);
     mister.globalDps *= 1 + 0.25 * numBehind * legendaryFactor(mister, 1);
@@ -1078,7 +1078,7 @@
     } else if (karen.isDPS) {
       grandmora.globalDps *= 1 + 0.75 * itemAbility(grandmora,1) * itemAbility(karen,0) * numAhead;
     }
-    if (currentWorld.countTags('alien') > 1) {
+    if (currentWorld.countTags(Tag.alien) > 1) {
       grandmora.globalDps *= 1 + legendaryFactor(grandmora,0);
     }
     if (dpsChar && dpsChar.tags.includes(Tag.human)) {
@@ -1110,8 +1110,8 @@
     if (numAdjacent >= 6) {
       larry.globalGold *= 1.25;
     }
-    larry.globalDps *= 1 + 0.25 * currentWorld.countTags('magic') * legendaryFactor(larry, 0);
-    larry.globalDps *= 1 + 0.5 * currentWorld.countTags('leprechaun') * legendaryFactor(larry, 1);
+    larry.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.magic) * legendaryFactor(larry, 0);
+    larry.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.leprechaun) * legendaryFactor(larry, 1);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
     if (karenSpot != null && !adjacent.includes(karenSpot)) {
       larry.globalGold *= 1 + 0.1 * 1.25 * itemAbility(larry, 0) * (1 + legendaryFactor(larry, 2)) * 0.5 * itemAbility(karen, 0);
@@ -1126,7 +1126,7 @@
   bernard.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, bernard.id);
     var numAdjacent = 0;
-    var numFemales = currentWorld.countTags('female');
+    var numFemales = currentWorld.countTags(Tag.female);
     var adjacent = currentWorld.whatsAdjacent(spot);
     var tipsPercent = 0.2 * itemAbility(bernard, 0);
     var tipsGoldPercent = 0.2 * itemAbility(bernard, 2) * (1 + numFemales) * (1 + legendaryFactor(bernard, 2));
@@ -1143,7 +1143,7 @@
     }
     bernard.globalGold *= 1 + tipsPercent * tipsGoldPercent;
     bernard.globalGold *= 1 + legendaryFactor(bernard, 0);
-    bernard.globalDps *= 1 + 0.25 * currentWorld.countTags('female') * legendaryFactor(bernard, 1);
+    bernard.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.female) * legendaryFactor(bernard, 1);
   };
 
   //////Slot 7 //The Princess
@@ -1161,7 +1161,7 @@
     if (dpsChar && !dpsChar.tags.includes(Tag.event)) {
       princess.globalDps *= 1 + legendaryFactor(princess, 1);
     }
-    princess.globalDps *= 1 + 0.25 * currentWorld.countTags('royal') * legendaryFactor(princess, 2);
+    princess.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.royal) * legendaryFactor(princess, 2);
   };
 
   ////RoboTurkey
@@ -1212,7 +1212,7 @@
       karen.effects += 1;
       turkey.globalDps *= 1 + legendaryFactor(turkey, 1) * 0.5 * itemAbility(karen, 0);
     }
-    globalDps *= 1 + 0.25 * currentWorld.countTags('robot') * legendaryFactor(turkey, 0);
+    globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.robot) * legendaryFactor(turkey, 0);
     if (mommaSpot != null) {
       globalDps *= 1 + legendaryFactor(turkey, 2);
     }
@@ -1224,7 +1224,7 @@
   ////Ranger Rayna
   var rayna = getCrusader("07b");
   rayna.calculate = function () {
-    var numAnimals = currentWorld.countTags('animal');
+    var numAnimals = currentWorld.countTags(Tag.animal);
     if (rayna == dpsChar) {
       rayna.globalDps *= 1 + 0.2 * numAnimals * itemAbility(rayna, 2) * (1 + legendaryFactor(rayna, 0));
       if (numAnimals >= 4) {
@@ -1235,7 +1235,7 @@
         rayna.globalDps *= 1 + legendaryFactor(rayna, 1);
       }
     }
-    rayna.globalDps *= 1 + 0.25 * currentWorld.countTags('animal') * legendaryFactor(rayna, 2);
+    rayna.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.animal) * legendaryFactor(rayna, 2);
   };
 
   ////Baenarall, Angel of Hope
@@ -1270,7 +1270,7 @@
         }
       });
     bae.globalDps *= 1 + diversityBonus / 100;
-    bae.globalDps *= 1 + (currentWorld.filled - currentWorld.countTags('event')) * 0.05 * (1 + legendaryFactor(bae, 2));
+    bae.globalDps *= 1 + (currentWorld.filled - currentWorld.countTags(Tag.event)) * 0.05 * (1 + legendaryFactor(bae, 2));
     if (currentWorld.countTags(Tag.supernatural) < 3) {
       bae.globalDps *= 1 + legendaryFactor(bae, 0);
     }
@@ -1291,7 +1291,7 @@
     if (dpsChar && dpsChar.tags.includes(Tag.female)) {
       natalie.globalDps *= 1 + legendaryFactor(natalie, 0);
     }
-    natalie.globalGold *= 1 + 0.25 * currentWorld.countTags('human') * legendaryFactor(natalie, 1);
+    natalie.globalGold *= 1 + 0.25 * currentWorld.countTags(Tag.human) * legendaryFactor(natalie, 1);
     if (nateSpot != null) {
       natalie.globalDps *= 1 + legendaryFactor(natalie, 2);
     }
@@ -1316,7 +1316,7 @@
     if (dpsChar && dpsChar.tags.includes(Tag.human)) {
       billy.globalDps *= 1 + 0.5 * (1 + legendaryFactor(billy, 0));
     }
-    billy.globalDps *= 1 + 0.1 * currentWorld.countTags('human') * legendaryFactor(billy, 1);
+    billy.globalDps *= 1 + 0.1 * currentWorld.countTags(Tag.human) * legendaryFactor(billy, 1);
     billy.globalGold *= 1 + 0.1 * monstersOnscreen * legendaryFactor(billy, 2);
   };
 
@@ -1331,8 +1331,8 @@
     if (cindySpot != null) {
       karl.globalGold *= 1.2;
     }
-    karl.globalDps *= 1 + 0.5 * currentWorld.countTags('orc') * legendaryFactor(karl, 0);
-    karl.globalDps *= 1 + 0.5 * currentWorld.countTags('elf') * legendaryFactor(karl, 1);
+    karl.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.orc) * legendaryFactor(karl, 0);
+    karl.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.elf) * legendaryFactor(karl, 1);
   };
 
   //////Slot 9 //Jason
@@ -1413,7 +1413,7 @@
     if (robbieSpot != null) {
       broot.globalDps *= 1 + legendaryFactor(broot, 1);
     }
-    broot.globalDps *= 1 + 0.25 * currentWorld.countTags('animal') * legendaryFactor(broot, 2);
+    broot.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.animal) * legendaryFactor(broot, 2);
   };
 
   ////Paul the Pilgrim
@@ -1427,7 +1427,7 @@
     }
     paul.globalGold = 1 + 0.33 * itemAbility(paul, 0) * (1 + 0.5 * petraBonus);
     paul.globalDps = 1 + 0.25 * itemAbility(paul, 0) * (1 + 0.5 * petraBonus);
-    paul.globalDps *= 1 + 0.5 * currentWorld.countTags('tank') * legendaryFactor(paul, 0);
+    paul.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.tank) * legendaryFactor(paul, 0);
   };
 
   //////Slot 10 //Artaxes the Lion
@@ -1480,8 +1480,8 @@
     if (groklok == dpsChar && currentWorld.columnNum(spot) == currentWorld.columnNum(groklokSpot)) {
       drizzle.globalDps *= 5;
     }
-    drizzle.globalDps *= 1 + 0.5 * currentWorld.countTags('orc') * legendaryFactor(drizzle, 0);
-    drizzle.globalDps *= 1 + 0.25 * currentWorld.countTags('elf') * legendaryFactor(drizzle, 1);
+    drizzle.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.orc) * legendaryFactor(drizzle, 0);
+    drizzle.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.elf) * legendaryFactor(drizzle, 1);
     if (groklokSpot != null) {
       drizzle.globalDps *= 1 + legendaryFactor(drizzle, 2);
     }
@@ -1518,7 +1518,7 @@
       bubba.globalGold *= 1 + 0.1 * (1 + legendaryFactor(bubba, 1)) * 0.5 * itemAbility(karen, 0);
       karen.effects += 1;
     }
-    bubba.globalDps *= 1 + 0.5 * currentWorld.countTags('orc') * legendaryFactor(bubba, 2);
+    bubba.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.orc) * legendaryFactor(bubba, 2);
   };
 
   ////Sisaron the Dragon Sorceress
@@ -1544,8 +1544,8 @@
       sisaron.globalDps *= 1 + magicModifier * itemAbility(sisaron, 1) * (1 + legendaryFactor(sisaron, 0)) * 0.5 * itemAbility(karen, 0) / numAdjacent;
       karen.effects += 1;
     }
-    sisaron.globalDps *= 1 + 0.5 * currentWorld.countTags('dragon') * legendaryFactor(sisaron, 1);
-    sisaron.globalDps *= 1 + 0.25 * currentWorld.countTags('magic') * legendaryFactor(sisaron, 2);
+    sisaron.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.dragon) * legendaryFactor(sisaron, 1);
+    sisaron.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.magic) * legendaryFactor(sisaron, 2);
   };
 
   //////Slot 11 //Khouri, the Witch Doctor
@@ -1607,7 +1607,7 @@
     var brogonSpot = getCrusaderSpot(app.formationIds, brogon.id);
     var adjacent = currentWorld.whatsAdjacent(brogonSpot);
     var numAdjacent = 0;
-    var numRoyal = currentWorld.countTags('royal');
+    var numRoyal = currentWorld.countTags(Tag.royal);
 
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
     if (dpsChar && getAreInSameColumn(currentWorld, brogonSpot, dpsCharSpot)) {
@@ -1620,7 +1620,7 @@
     if (karen == dpsChar && !adjacent.includes(karenSpot)) {
       karen.effects += 1;
     }
-    brogon.globalDps *= 1 + 0.5 * currentWorld.countTags('dragon') * legendaryFactor(brogon, 1);
+    brogon.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.dragon) * legendaryFactor(brogon, 1);
     for (var i = 0; i < adjacent.length; i++) {
       var adjCruId = app.formationIds[adjacent[i]];
       if (adjCruId) {
@@ -1647,8 +1647,8 @@
     if (karen == dpsChar) {
       karen.effects += 1;
     }
-    halfblood.globalDps *= 1 + 0.25 * currentWorld.countTags('male') * legendaryFactor(halfblood, 0);
-    halfblood.globalDps *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(halfblood, 1);
+    halfblood.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.male) * legendaryFactor(halfblood, 0);
+    halfblood.globalDps *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags(Tag.human)) * legendaryFactor(halfblood, 1);
     if (dpsChar && dpsChar.tags.includes(Tag.male)) {
       halfblood.globalDps *= 1 + legendaryFactor(halfblood, 2);
     }
@@ -1673,26 +1673,26 @@
         .find(cru => cru.id == adjCruId);
       if (!(adjCru != null))
         continue;
-      if (adjCru.tags.includes('human')) {
+      if (adjCru.tags.includes(Tag.human)) {
         humansAdj += 1;
       } else {
         nonHumansAdj += 1;
       }
-      if (adjCru.tags.includes('female')) {
+      if (adjCru.tags.includes(Tag.female)) {
         femalesAdj += 1;
       }
-      if (adjCru.tags.includes('male')) {
+      if (adjCru.tags.includes(Tag.male)) {
         malesAdj += 1;
       }
     }
     if (humansAdj > nonHumansAdj) {
-      foresight.globalDps *= Math.pow(1 + 0.1 * legendaryFactor(foresight, 0), currentWorld.countTags('human'));
-      foresight.globalGold *= Math.pow(1 + 0.05 * legendaryFactor(foresight, 1), currentWorld.countTags('human'));
+      foresight.globalDps *= Math.pow(1 + 0.1 * legendaryFactor(foresight, 0), currentWorld.countTags(Tag.human));
+      foresight.globalGold *= Math.pow(1 + 0.05 * legendaryFactor(foresight, 1), currentWorld.countTags(Tag.human));
     }
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
     if (humansAdj < nonHumansAdj) {
-      foresight.globalDps *= Math.pow(1 + 0.1 * legendaryFactor(foresight, 0), currentWorld.filled - currentWorld.countTags('human'));
-      foresight.globalGold *= Math.pow(1 + 0.05 * legendaryFactor(foresight, 1), currentWorld.filled - currentWorld.countTags('human'));
+      foresight.globalDps *= Math.pow(1 + 0.1 * legendaryFactor(foresight, 0), currentWorld.filled - currentWorld.countTags(Tag.human));
+      foresight.globalGold *= Math.pow(1 + 0.05 * legendaryFactor(foresight, 1), currentWorld.filled - currentWorld.countTags(Tag.human));
     } else if (karenSpot != null) {
       foresight.globalGold *= 1 + 0.1 * legendaryFactor(foresight, 0);
       foresight.globalDps *= 1 + 0.05 * legendaryFactor(foresight, 1);
@@ -1701,7 +1701,7 @@
     if (malesAdj >= femalesAdj) {
       karen.effects += 1;
     }
-    if (currentWorld.countTags('supernatural') >= 4) {
+    if (currentWorld.countTags(Tag.supernatural) >= 4) {
       foresight *= 1 + legendaryFactor(foresight, 2);
     }
   };
@@ -1751,7 +1751,7 @@
         }
       }
       rocky.globalDps *= 1 + 0.5 * itemAbility(rocky, 0) * numFemales;
-      rocky.globalDps *= 1 + 0.2 * currentWorld.countTags('female') * legendaryFactor(rocky, 0);
+      rocky.globalDps *= 1 + 0.2 * currentWorld.countTags(Tag.female) * legendaryFactor(rocky, 0);
       if (numFemales >= 3) {
         rocky.globalDps *= 1 + legendaryFactor(rocky, 1);
       }
@@ -1774,7 +1774,7 @@
     if (countShots) {
       montana.globalDps *= 1 + 2 * itemAbility(montana, 0) * (1 + legendaryFactor(montana, 2)) / 5;
     }
-    montana.globalDps *= 1 + 0.25 * currentWorld.countTags('female') * legendaryFactor(montana, 0);
+    montana.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.female) * legendaryFactor(montana, 0);
     if (dpsChar && dpsChar.tags.includes(Tag.animal)) {
       montana.globalDps *= 1 + legendaryFactor(montana, 1);
     }
@@ -1785,7 +1785,7 @@
   helper.calculate = function () {
     var helperSpot = getCrusaderSpot(app.formationIds, helper.id);
     if (underAttack && currentWorld.columnNum(helperSpot) == currentWorld.maxColumn) {
-      helper.globalDps *= 1 + 0.5 + 0.2 * currentWorld.countTags('tank');
+      helper.globalDps *= 1 + 0.5 + 0.2 * currentWorld.countTags(Tag.tank);
     }
     helper.globalGold *= 1 + 0.1 * monstersOnscreen * itemAbility(helper, 1);
     if (numAttacking > 0) {
@@ -1794,7 +1794,7 @@
     if (dpsChar && dpsChar.tags.includes(Tag.leprechaun)) {
       helper.globalDps *= 1 + legendaryFactor(helper, 1);
     }
-    if (currentWorld.countTags('leprechaun') >= 2) {
+    if (currentWorld.countTags(Tag.leprechaun) >= 2) {
       helper.globalDps *= 1 + legendaryFactor(helper, 2);
     }
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
@@ -1840,7 +1840,7 @@
         }
       }
       soldierette.globalDps *= 1 + 0.2 * numAttacking;
-      soldierette.globalDps *= 1 + currentWorld.countTags('healer') * legendaryFactor(soldierette, 2);
+      soldierette.globalDps *= 1 + currentWorld.countTags(Tag.healer) * legendaryFactor(soldierette, 2);
     }
     soldierette.globalDps *= 1 + 0.1 * numAttacking * legendaryFactor(soldierette, 1);
   };
@@ -1852,9 +1852,9 @@
     var adjacent = currentWorld.whatsAdjacent(snicketteSpot);
     var numAdjacent = 0;
     if (dpsChar && dpsChar.tags.includes(Tag.human)) {
-      snickette.globalDps *= 1 + (0.5 + 0.1 * currentWorld.countTags('human')) * itemAbility(snickette, 0);
+      snickette.globalDps *= 1 + (0.5 + 0.1 * currentWorld.countTags(Tag.human)) * itemAbility(snickette, 0);
     }
-    if (currentWorld.countTags('leprechaun') >= 2) {
+    if (currentWorld.countTags(Tag.leprechaun) >= 2) {
       snickette.globalDps *= 1 + 0.5;
     }
     for (var i = 0; i < adjacent.length; i++) {
@@ -1875,7 +1875,7 @@
     if (dpsChar && currentWorld.columnNum(dpsCharSpot) == currentWorld.columnNum(snicketteSpot)) {
       snickette.globalDps *= 1 + legendaryFactor(snickette, 0);
     }
-    snickette.globalGold *= 1 + 0.1 * currentWorld.countTags('human') * legendaryFactor(snickette, 1);
+    snickette.globalGold *= 1 + 0.1 * currentWorld.countTags(Tag.human) * legendaryFactor(snickette, 1);
     var larrySpot = getCrusaderSpot(app.formationIds, larry.id);
     if (larrySpot != null) {
       snickette.globalDps *= 1 + legendaryFactor(snickette, 2);
@@ -1906,14 +1906,14 @@
     if (dpsChar && adjacent.includes(dpsCharSpot)) {
       santa.globalDps *= 1 + legendaryFactor(santa, 1);
     }
-    santa.globalGold *= 1 + 0.1 * currentWorld.countTags('robot') * legendaryFactor(santa, 2);
+    santa.globalGold *= 1 + 0.1 * currentWorld.countTags(Tag.robot) * legendaryFactor(santa, 2);
   };
 
   ////Leerion, the Royal Dwarf
   var leerion = getCrusader('14b');
   leerion.calculate = function () {
-    leerion.globalGold *= 1 + (0.25 + 0.1 * currentWorld.countTags('female') + 0.15 * currentWorld.countTags('royal')) * itemAbility(leerion, 2) * (1 + legendaryFactor(leerion, 0));
-    leerion.globalDps *= 1 + 0.25 * currentWorld.countTags('female') * legendaryFactor(leerion, 1);
+    leerion.globalGold *= 1 + (0.25 + 0.1 * currentWorld.countTags(Tag.female) + 0.15 * currentWorld.countTags(Tag.royal)) * itemAbility(leerion, 2) * (1 + legendaryFactor(leerion, 0));
+    leerion.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.female) * legendaryFactor(leerion, 1);
     var sashaSpot = getCrusaderSpot(app.formationIds, sasha.id);
     if (sashaSpot != null) {
       leerion.globalDps *= 1 + legendaryFactor(leerion, 2);
@@ -1937,22 +1937,22 @@
         .find(cru => cru.id == adjCruId);
       if (!(adjCru != null))
         continue;
-      if (adjCru.tags.includes('animal')) {
+      if (adjCru.tags.includes(Tag.animal)) {
         animalsAdj += 1;
       }
-      if (adjCru.tags.includes('human')) {
+      if (adjCru.tags.includes(Tag.human)) {
         humansAdj += 1;
       }
-      if (adjCru.tags.includes('male')) {
+      if (adjCru.tags.includes(Tag.male)) {
         malesAdj += 1;
       }
-      if (adjCru.tags.includes('female')) {
+      if (adjCru.tags.includes(Tag.female)) {
         femalesAdj += 1;
       }
     }
     katie.globalGold *= (1 + boost * Math.min(animalsAdj, 2)) * (1 + boost * Math.min(malesAdj, 2)) * (1 + boost * Math.min(femalesAdj, 2)) * (1 + boost * Math.min(humansAdj, 2));
-    katie.globalGold *= 1 + 0.25 * currentWorld.countTags('gold') * legendaryFactor(katie, 1);
-    katie.globalDps *= 1 + 0.25 * currentWorld.countTags('human') * legendaryFactor(katie, 0);
+    katie.globalGold *= 1 + 0.25 * currentWorld.countTags(Tag.gold) * legendaryFactor(katie, 1);
+    katie.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.human) * legendaryFactor(katie, 0);
     var dpsBoost = boost / 2 * legendaryFactor(katie, 2);
     katie.globalDps *= (1 + dpsBoost * Math.min(animalsAdj, 2)) * (1 + dpsBoost * Math.min(malesAdj, 2)) * (1 + dpsBoost * Math.min(femalesAdj, 2)) * (1 + dpsBoost * Math.min(humansAdj, 2));
   };
@@ -1964,8 +1964,8 @@
     var adjacent = currentWorld.whatsAdjacent(salSpot);
     var numAdjacent = 0;
     if (sal == dpsChar) {
-      sal.globalDps *= 1 + 0.25 * currentWorld.countTags('female') * legendaryFactor(sal, 0);
-      sal.globalDps *= 1 + 0.25 * currentWorld.countTags('royal') * legendaryFactor(sal, 1);
+      sal.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.female) * legendaryFactor(sal, 0);
+      sal.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.royal) * legendaryFactor(sal, 1);
     }
     for (var i = 0; i < adjacent.length; i++) {
       var adjCruId = app.formationIds[adjacent[i]];
@@ -1985,7 +1985,7 @@
     var columnsAhead = currentWorld.maxColumn - currentWorld.columnNum(wendySpot);
     if (wendy == dpsChar) {
       wendy.globalDps *= 1 + 0.25 * monstersOnscreen * (1 + legendaryFactor(wendy, 1));
-      wendy.globalDps *= 1 + 0.5 * currentWorld.countTags('magic') * legendaryFactor(wendy, 0);
+      wendy.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.magic) * legendaryFactor(wendy, 0);
       wendy.globalDps *= 1 + 0.25 * columnsAhead * legendaryFactor(wendy, 2);
     }
   };
@@ -1998,7 +1998,7 @@
       if (brootSpot != null) {
         robbie.globalDps *= 1 + legendaryFactor(robbie, 0);
       }
-      robbie.globalDps *= 1 + 0.5 * currentWorld.countTags('tank') * legendaryFactor(robbie, 1);
+      robbie.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.tank) * legendaryFactor(robbie, 1);
       robbie.globalDps *= 1 + 0.1 * monstersOnscreen * legendaryFactor(robbie, 2);
     }
   };
@@ -2008,13 +2008,13 @@
   val.calculate = function () {
     var valSpot = getCrusaderSpot(app.formationIds, val.id);
     var adjacent = currentWorld.whatsAdjacent(valSpot);
-    if (currentWorld.countTags('animal') > currentWorld.countTags('human')) {
+    if (currentWorld.countTags(Tag.animal) > currentWorld.countTags(Tag.human)) {
       val.globalDps *= 1 + 0.5 * itemAbility(val, 2) * (1 + legendaryFactor(val, 0));
     }
-    if (dpsChar && dpsChar.tags.includes('royal')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.royal)) {
       val.globalDps *= 1 + legendaryFactor(val, 1);
     }
-    val.globalDps *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(val, 2);
+    val.globalDps *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags(Tag.human)) * legendaryFactor(val, 2);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
     if (karen == dpsChar && !adjacent.includes(karenSpot)) {
       karen.effects += 1;
@@ -2024,8 +2024,8 @@
   //////Slot 16 //Fire Phoenix
   var phoenix = getCrusader("16");
   phoenix.calculate = function () {
-    phoenix.globalDps *= 1 + 0.25 * currentWorld.countTags('supernatural') * legendaryFactor(phoenix, 0);
-    if (dpsChar && dpsChar.tags.includes('supernatural')) {
+    phoenix.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.supernatural) * legendaryFactor(phoenix, 0);
+    if (dpsChar && dpsChar.tags.includes(Tag.supernatural)) {
       phoenix.globalDps *= 1 + legendaryFactor(phoenix, 2);
     }
   };
@@ -2035,7 +2035,7 @@
   alan.calculate = function () {
     var alanSpot = getCrusaderSpot(app.formationIds, alan.id);
     var adjacent = currentWorld.whatsAdjacent(alanSpot);
-    alan.globalDps *= 1 + 0.5 * currentWorld.countTags('angel') * legendaryFactor(alan, 2);
+    alan.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.angel) * legendaryFactor(alan, 2);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
     if (karen == dpsChar && !adjacent.includes(karenSpot)) {
       karen.effects += 2;
@@ -2049,7 +2049,7 @@
     var oogyBoogy = 1 / (1 - 0.15 * itemAbility(fright, 2)) || 1;
     fright.globalDps *= oogyBoogy || 1;
     fright.s2 = "dpsMult:" + oogyBoogy + "\r\n";
-    var helmetLegPerRobot = 1 + 0.5 * currentWorld.countTags('robot') * legendaryFactor(fright, 0) || 1;
+    var helmetLegPerRobot = 1 + 0.5 * currentWorld.countTags(Tag.robot) * legendaryFactor(fright, 0) || 1;
     fright.s0 = "dpsMult:" + helmetLegPerRobot + "\r\n";
     fright.globalDps *= helmetLegPerRobot;
     //frightingCircuits?
@@ -2059,7 +2059,7 @@
     if (turkeySpot != null) {
       fright.globalDps *= 1 + 0.25 * legendaryFactor(fright, 1);
     }
-    if (dpsChar && dpsChar.tags.includes('robot')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.robot)) {
       fright.globalDps *= 1 + legendaryFactor(fright, 2);
     }
   };
@@ -2068,9 +2068,9 @@
   var spaceking = getCrusader('16c');
   spaceking.calculate = function() {
     if (spaceking.isDPS) {
-      spaceking.globalDPS *= 1 + currentWorld.countTags('alien') * itemAbility(spaceking,2) * (1 + legendaryFactor(spaceking,2));
-      spaceking.globalDPS *= 1 + 0.25 * currentWorld.countTags('female') * itemAbility(spaceking,1) * (1 + legendaryFactor(spaceking,1));
-      if (currentWorld.countTags('human') == 1) {
+      spaceking.globalDPS *= 1 + currentWorld.countTags(Tag.alien) * itemAbility(spaceking,2) * (1 + legendaryFactor(spaceking,2));
+      spaceking.globalDPS *= 1 + 0.25 * currentWorld.countTags(Tag.female) * itemAbility(spaceking,1) * (1 + legendaryFactor(spaceking,1));
+      if (currentWorld.countTags(Tag.human) == 1) {
         spaceking.globalDPS *= 1 + legendaryFactor(spaceking,0);
       }
     }
@@ -2079,16 +2079,16 @@
   //////Slot 17 //King Reginald IV
   var reginald = getCrusader("17");
   reginald.calculate = function () {
-    if (dpsChar && dpsChar.tags.includes('royal')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.royal)) {
       reginald.globalDps *= 1 + 2 * itemAbility(reginald, 2) * (1 + legendaryFactor(reginald, 1));
     }
-    reginald.globalDps *= 1 + 0.25 * currentWorld.countTags('royal') * legendaryFactor(reginald, 0);
+    reginald.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.royal) * legendaryFactor(reginald, 0);
   };
 
   ////Queen Siri
   var siri = getCrusader('17a');
   siri.calculate = function () {
-    if (dpsChar && dpsChar.tags.includes('female')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.female)) {
       siri.globalDps *= 1 + 1 * itemAbility(siri, 2);
       siri.globalDps *= 1 + legendaryFactor(siri, 0);
     }
@@ -2096,7 +2096,7 @@
     if (thaliaSpot != null) {
       siri.globalDps *= 1 + legendaryFactor(siri, 1);
     }
-    if (currentWorld.countTags('female') > currentWorld.countTags('male')) {
+    if (currentWorld.countTags(Tag.female) > currentWorld.countTags(Tag.male)) {
       siri.globalDps *= 1 + legendaryFactor(siri, 2);
     }
   };
@@ -2105,8 +2105,8 @@
   var boggins = getCrusader('17b');
   boggins.calculate = function () {
     var diversityCount = 0;
-    if (dpsChar && dpsChar.tags.includes('animal')) {
-      boggins.globalDps *= 1 + (2 + 0.125 * currentWorld.countTags('human')) * itemAbility(boggins, 0) * (1 + legendaryFactor(boggins, 1));
+    if (dpsChar && dpsChar.tags.includes(Tag.animal)) {
+      boggins.globalDps *= 1 + (2 + 0.125 * currentWorld.countTags(Tag.human)) * itemAbility(boggins, 0) * (1 + legendaryFactor(boggins, 1));
     }
     app
       .formationIds
@@ -2115,7 +2115,7 @@
         var cru = jsonData
           .crusaders
           .find(refCru => refCru.id == cruId);
-        if (!cru.tags.includes('human') && !cru.tags.includes('animal')) {
+        if (!cru.tags.includes(Tag.human) && !cru.tags.includes(Tag.animal)) {
           diversityCount += 1;
         }
       });
@@ -2130,14 +2130,14 @@
     var adjacent = currentWorld.whatsAdjacent(squigglesSpot);
     var humansAdj = 0;
     if (squiggles == dpsChar) {
-      squiggles.globalDps *= 1 + (1.5 - 0.25 * currentWorld.countTags('royal')) * itemAbility(squiggles, 0);
-      squiggles.globalDps *= 1 + 0.1 * (currentWorld.filled - currentWorld.countTags('royal'));
+      squiggles.globalDps *= 1 + (1.5 - 0.25 * currentWorld.countTags(Tag.royal)) * itemAbility(squiggles, 0);
+      squiggles.globalDps *= 1 + 0.1 * (currentWorld.filled - currentWorld.countTags(Tag.royal));
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
         var adjCru = adjCruId && jsonData
           .crusaders
           .find(cru => cru.id == adjCruId);
-        if (adjCru && adjCru.tags.includes('human')) {
+        if (adjCru && adjCru.tags.includes(Tag.human)) {
           humansAdj += 1;
         }
       }
@@ -2147,7 +2147,7 @@
       if (humansAdj >= 4) {
         squiggles.globalDps *= 1 + legendaryFactor(squiggles, 1);
       }
-      squiggles.globalDps *= 1 + (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(squiggles, 0);
+      squiggles.globalDps *= 1 + (currentWorld.filled - currentWorld.countTags(Tag.human)) * legendaryFactor(squiggles, 0);
       var peteSpot = getCrusaderSpot(app.formationIds, pete.id);
       if (peteSpot != null) {
         squiggles.globalDps *= 1 + legendaryFactor(squiggles, 2);
@@ -2158,7 +2158,7 @@
   //////Slot 18 //Thalia, the Thunder King
   var thalia = getCrusader("18");
   thalia.calculate = function () {
-    if (dpsChar && dpsChar.tags.includes('royal')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.royal)) {
       thalia.globalDps *= 1 + legendaryFactor(thalia, 1);
     }
   };
@@ -2169,7 +2169,7 @@
     var adjacent = currentWorld.whatsAdjacent(frosty);
     var numAdjacent = 0;
     if (frosty == dpsChar) {
-      frosty.globalDps *= 1 + 2 * currentWorld.countTags('supernatural') * itemAbility(frosty, 0) * (1 + legendaryFactor(frosty, 1));
+      frosty.globalDps *= 1 + 2 * currentWorld.countTags(Tag.supernatural) * itemAbility(frosty, 0) * (1 + legendaryFactor(frosty, 1));
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
         if (adjCruId) {
@@ -2208,24 +2208,24 @@
     var cindySpot = getCrusaderSpot(app.formationIds, cindy.id);
     var distances = currentWorld.findDistances(cindySpot);
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    var distance = dpsChar && distances[dpsCharSpot];
+    var distance = dpsCharSpot && distances[dpsCharSpot];
     if (distance > 0) {
       cindy.globalDps *= 1 + 0.5 * distance * (1 + 10 * currentStage / 50) * itemAbility(cindy, 1);
     } else if (karen == dpsChar) {
       karen.effects += 1;
     }
     cindy.globalDps *= 1 + Math.min(killedThisStage / 100, 2) * (1 + legendaryFactor(cindy, 0));
-    if (dpsChar && dpsChar.tags.includes('orc')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.orc)) {
       cindy.globalDps *= 1 + legendaryFactor(cindy, 1);
     }
-    cindy.globalGold *= 1 + 0.25 * currentWorld.countTags('orc') * legendaryFactor(cindy, 2);
+    cindy.globalGold *= 1 + 0.25 * currentWorld.countTags(Tag.orc) * legendaryFactor(cindy, 2);
   };
 
   //////Slot 19 //Merci, the Mad Wizard
   var merci = getCrusader("19");
   merci.calculate = function () {
     merci.globalDps *= 1 + Math.min(0.025 * monstersOnscreen * itemAbility(merci, 0) * (1 + legendaryFactor(merci, 1)), 1 + legendaryFactor(merci, 2)) * monstersOnscreen;
-    if (dpsChar && dpsChar.tags.includes('magic')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.magic)) {
       merci.globalDps *= 1 + legendaryFactor(merci, 0);
     }
   };
@@ -2245,7 +2245,7 @@
       paulMult = 1.5;
     }
     if (petra == dpsChar) {
-      petra.globalDps *= 1 + 0.5 * currentWorld.countTags('elf') * paulMult * itemAbility(petra, 0);
+      petra.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.elf) * paulMult * itemAbility(petra, 0);
       if (paulSpot != null && adjacent.includes(paulSpot)) {
         petra.globalDps *= 1 + 2 * paulMult;
       }
@@ -2255,9 +2255,9 @@
   ////Polly the Parrot
   var polly = getCrusader('19c');
   polly.calculate = function() {
-    polly.globalDps *= 1 + 0.5 * currentWorld.countTags('tank') * itemAbility(polly,0);
+    polly.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.tank) * itemAbility(polly,0);
     polly.globalDps *= 1 + 0.33 * numAttacking * itemAbility(polly,1) * (1 + legendaryFactor(polly,2));
-    if (currentWorld.countTags('animal') > 2) {
+    if (currentWorld.countTags(Tag.animal) > 2) {
       polly.globalDps *= 1 + legendaryFactor(polly,1);
     }
     // Legendary Toy
@@ -2283,7 +2283,7 @@
     if (natalieSpot != null) {
       nate.globalDps *= 1 + legendaryFactor(nate, 0);
     }
-    nate.globalDps *= 1 + 0.25 * currentWorld.countTags('male') * legendaryFactor(nate, 1);
+    nate.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.male) * legendaryFactor(nate, 1);
     if (nateXP)
       nate.globalDps *= 1 + 0.1 * nateXP * legendaryFactor(nate, 2);
     };
@@ -2292,17 +2292,17 @@
   var kiz = getCrusader('20a');
   kiz.calculate = function () {
     if (kiz == dpsChar) {
-      kiz.globalDps *= 1 + 0.2 * itemAbility(kiz, 0) * currentWorld.countTags('male');
-      kiz.globalDps *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags('human')) * legendaryFactor(kiz, 0);
+      kiz.globalDps *= 1 + 0.2 * itemAbility(kiz, 0) * currentWorld.countTags(Tag.male);
+      kiz.globalDps *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags(Tag.human)) * legendaryFactor(kiz, 0);
       var billySpot = getCrusaderSpot(app.formationIds, billy.id);
       if (billySpot != null) {
         kiz.globalDps *= 1 + legendaryFactor(kiz, 1);
       }
-      if (currentWorld.countTags('royal') === 0) {
+      if (currentWorld.countTags(Tag.royal) === 0) {
         kiz.globalDps *= 1 + 2 * legendaryFactor(kiz, 2);
       }
     }
-    kiz.globalDps *= 1 + 0.1 * (currentWorld.filled - currentWorld.countTags('human'));
+    kiz.globalDps *= 1 + 0.1 * (currentWorld.filled - currentWorld.countTags(Tag.human));
   };
 
   ////Robo-Rudolph
@@ -2317,18 +2317,18 @@
         var adjCru = adjCruId && jsonData
           .crusaders
           .find(cru => cru.id == adjCruId);
-        if (adjCru && adjCru.tags.includes('robot')) {
+        if (adjCru && adjCru.tags.includes(Tag.robot)) {
           robotAdj = true;
         }
       }
       if (robotAdj) {
         rudolph.globalDps *= 1 + 2 * itemAbility(rudolph, 0);
       }
-      rudolph.globalDps *= 1 + 1 * currentWorld.countTags('robot') * itemAbility(rudolph, 1);
-      rudolph.globalDps *= 1 + 0.5 * currentWorld.countTags('robot') * legendaryFactor(rudolph, 1);
-      rudolph.globalDps *= 1 + 0.25 * currentWorld.countTags('animal') * legendaryFactor(rudolph, 2);
+      rudolph.globalDps *= 1 + 1 * currentWorld.countTags(Tag.robot) * itemAbility(rudolph, 1);
+      rudolph.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.robot) * legendaryFactor(rudolph, 1);
+      rudolph.globalDps *= 1 + 0.25 * currentWorld.countTags(Tag.animal) * legendaryFactor(rudolph, 2);
     }
-    if (dpsChar && dpsChar.tags.includes('robot')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.robot)) {
       rudolph.globalDps *= 1 + legendaryFactor(rudolph, 0);
     }
   };
@@ -2345,19 +2345,19 @@
         .crusaders
         .find(cru => cru.id == adjCruId);
 
-      if (adjCru && adjCru.tags.includes('robot')) {
+      if (adjCru && adjCru.tags.includes(Tag.robot)) {
         robotsAdj = 1;
       }
     }
     if (exterminator == dpsChar) {
       exterminator.globalDps *= 1 + 1 * robotsAdj * itemAbility(exterminator, 0) * (1 + legendaryFactor(exterminator, 0));
-      exterminator.globalDps *= 1 + 0.5 * currentWorld.countTags('robot') * itemAbility(exterminator, 0);
-      if (currentWorld.countTags('robot') > currentWorld.countTags('human')) {
+      exterminator.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.robot) * itemAbility(exterminator, 0);
+      if (currentWorld.countTags(Tag.robot) > currentWorld.countTags(Tag.human)) {
         exterminator.globalDps *= 1 + legendaryFactor(exterminator, 2);
       }
     }
-    exterminator.globalGold *= 1 + 0.1 * (currentWorld.countTags('robot') - robotsAdj);
-    exterminator.globalGold *= 1 + 0.25 * currentWorld.countTags('robot') * legendaryFactor(exterminator, 1);
+    exterminator.globalGold *= 1 + 0.1 * (currentWorld.countTags(Tag.robot) - robotsAdj);
+    exterminator.globalGold *= 1 + 0.25 * currentWorld.countTags(Tag.robot) * legendaryFactor(exterminator, 1);
   };
 
   ////Gloria, the Good Witch
@@ -2378,7 +2378,7 @@
     if (dpsChar && adjacent.includes(dpsCharSpot)) {
       gloria.globalDps *= 1 + legendaryFactor(gloria, 1);
     }
-    if (dpsChar && dpsChar.tags.includes('animal')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.animal)) {
       gloria.globalDps *= 1 + legendaryFactor(globalDps, 2);
     }
   };
@@ -2409,10 +2409,10 @@
       }
       shadow.globalDps *= 1 + 3 * jasonMult * itemAbility(shadow, 0) * (1 + legendaryFactor(shadow, 0)) / numAdjacent;
     }
-    if (dpsChar && dpsChar.tags.includes('supernatural')) {
+    if (dpsChar && dpsChar.tags.includes(Tag.supernatural)) {
       shadow.globalDps *= 1 + legendaryFactor(shadow, 1);
     }
-    shadow.globalDps *= 1 + 0.5 * currentWorld.countTags('magic') * legendaryFactor(shadow, 2);
+    shadow.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.magic) * legendaryFactor(shadow, 2);
   };
 
   ////Ilsa, the Insane Wizard
@@ -2424,20 +2424,20 @@
     var deflecting = 0;
     var magicMult = 0;
     var correction = 1;
-    if (dpsChar && dpsChar.zapped) {
+    if (dpsChar && (dpsChar as any).zapped) {
       correction *= 1 + 0.2 * itemAbility(turkey, 1);
     }
-    if (dpsChar && dpsChar.smashed) {
+    if (dpsChar && (dpsChar as any).smashed) {
       correction *= 1.25;
     }
     var merciSpot = getCrusaderSpot(app.formationIds, merci.id);
     if (ilsa == dpsChar) {
-      ilsa.globalDps *= 1 + (0.5 + currentWorld.countTags('magical')) * itemAbility(ilsa, 0);
+      ilsa.globalDps *= 1 + (0.5 + currentWorld.countTags(Tag.magic)) * itemAbility(ilsa, 0);
       if (merciSpot != null) {
         deflecting = Math.min(2.5 * monstersOnscreen * itemAbility(merci, 0), 100);
       }
       ilsa.globalDps *= 2 + 2 * deflecting / 100;
-      ilsa.globalDps *= 1 + 0.5 * currentWorld.countTags('magic') * legendaryFactor(ilsa, 2);
+      ilsa.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.magic) * legendaryFactor(ilsa, 2);
     }
     for (var i = 0; i < adjacent.length; i++) {
       var adjCruId = app.formationIds[adjacent[i]];
@@ -2464,9 +2464,9 @@
     if (countShots) {
       greyskull.globalDps *= 1 + 2 * itemGreyShots(greyskull, 2) / 10;
     }
-    greyskull.globalDps *= 1 + 0.5 * currentWorld.countTags('tank') * legendaryFactor(greyskull, 0);
-    greyskull.globalDps *= 1 + 0.2 * currentWorld.countTags('tank') * legendaryFactor(greyskull, 1);
-    if (dpsChar && dpsChar.tags.includes('human')) {
+    greyskull.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.tank) * legendaryFactor(greyskull, 0);
+    greyskull.globalDps *= 1 + 0.2 * currentWorld.countTags(Tag.tank) * legendaryFactor(greyskull, 1);
+    if (dpsChar && dpsChar.tags.includes(Tag.human)) {
       greyskull.globalDps *= 1 + legendaryFactor(greyskull, 2);
     }
   };
@@ -2484,8 +2484,8 @@
       eiralon.globalDps *= 1 + 1 * itemAbility(eiralon, 0) * 0.5 * itemAbility(karen, 0);
       karen.effects += 1;
     }
-    eiralon.globalDps *= 1 + currentWorld.countTags('healer') * legendaryFactor(eiralon, 0);
-    eiralon.globalDps *= 1 + 0.5 * currentWorld.countTags('magic') * legendaryFactor(eiralon, 1);
+    eiralon.globalDps *= 1 + currentWorld.countTags(Tag.healer) * legendaryFactor(eiralon, 0);
+    eiralon.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.magic) * legendaryFactor(eiralon, 1);
     if (dpsChar && adjacent.includes(dpsCharSpot)) {
       eiralon.globalDps *= 1 + legendaryFactor(eiralon, 2);
     }
@@ -2586,7 +2586,7 @@
     descent.setAdjacent(6, [3, 4, 7, 8]);
     descent.setAdjacent(7, [4, 5, 6, 8]);
     descent.setAdjacent(8, [6, 7]);
-    for (i = 0; i < descent.spots; i++) {
+    for (var i = 0; i < descent.spots; i++) {
       switch (true) {
         case(i === 0):
           descent.setColumn(i, 1);
@@ -2648,7 +2648,7 @@
     ghostbeard.setAdjacent(11, [8, 9, 10, 12]);
     ghostbeard.setAdjacent(12, [9, 11]);
 
-    for (i = 0; i < ghostbeard.spots; i++) {
+    for (var i = 0; i < ghostbeard.spots; i++) {
       switch (true) {
         case(i < 3):
           ghostbeard.setColumn(i, 1);
@@ -2735,7 +2735,7 @@
     grimm.setAdjacent(9, [7, 8, 10]);
     grimm.setAdjacent(10, [8, 9]);
 
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       if (i < 2) {
         grimm.setColumn(i, 1);
       } else if (i < 5) {
@@ -2820,7 +2820,7 @@
     mischief.setAdjacent(10, [7, 8, 9, 11]);
     mischief.setAdjacent(11, [8, 10]);
 
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       if (i < 1) {
         mischief.setColumn(i, 1);
       } else if (i < 2) {
@@ -2877,7 +2877,7 @@
       ],
       [2, x, 7, x, 13]
     ]
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       if (i < 3) {
         player.setColumn(i, 1);
       } else if (i < 6) {
@@ -2940,7 +2940,7 @@
         [3, x, x, x, x]
       ];
 
-    for (i = 0; i <= 11; i++) {
+    for (var i = 0; i <= 11; i++) {
       if (i < 4) {
         itt.setColumn(i, 1);
       } else if (i < 5) {
@@ -3003,7 +3003,7 @@
       [3, x, x, x, x]
     ];
 
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
       if (i < 4) {
         park.setColumn(i, 1);
       } else if (i < 6) {
