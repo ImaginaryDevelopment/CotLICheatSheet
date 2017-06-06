@@ -24,6 +24,9 @@ interface String {
     before(delimiter:string): string;
     after(delimiter:string): string;
 }
+interface Array<T>{
+    includes(item:T): boolean;
+}
 
 var findJsParent = () =>
     ((typeof module !== "undefined" && module && module.exports

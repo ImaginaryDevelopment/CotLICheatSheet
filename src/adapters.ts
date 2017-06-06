@@ -25,17 +25,20 @@ interface TalentReferenceData{
   name:string
 }
 enum Tag{
-  dps,
-  gold,
-  male,
-  female,
   alien,
   animal,
-  robot,
+  dps,
   dragon,
-  leprechaun,
-  orc,
   elf,
+  female,
+  gold,
+  human,
+  leprechaun,
+  magic,
+  male,
+  orc,
+  robot,
+  royal,
   support
 }
 declare enum Slot{
