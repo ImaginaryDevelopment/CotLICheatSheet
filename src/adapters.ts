@@ -30,6 +30,7 @@ enum Tag{
   dps,
   dragon,
   elf,
+  event,
   female,
   gold,
   human,
@@ -39,6 +40,7 @@ enum Tag{
   orc,
   robot,
   royal,
+  supernatural,
   support
 }
 declare enum Slot{
