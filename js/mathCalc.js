@@ -1076,23 +1076,23 @@
     var numAhead = Math.max(currentWorld.columnTest(currentWorld.columnNum(grandmora.spot) + 1),1);
     var adjacent = currentWorld.whatsAdjacent(grandmora.spot);
     if (currentWorld.columnNum(grandmora.spot) == currentWorld.columnNum(dpsChar.spot) - 1) {
-      grandmora.globalDPS *= 1 + 3 * itemAbility(grandmora,0) / numBehind;
+      grandmora.globalDps *= 1 + 3 * itemAbility(grandmora,0) / numBehind;
     } else if (karen.isDPS) {
-      grandmora.globalDPS *= 1 + 3 * itemAbility(grandmora,0) * itemAbility(karen,0) / numBehind;
+      grandmora.globalDps *= 1 + 3 * itemAbility(grandmora,0) * itemAbility(karen,0) / numBehind;
     }
     if (currentWorld.columnNum(grandmora.spot) == currentWorld.columnNum(dpsChar.spot) + 1) {
-      grandmora.globalDPS *= 1 + 0.75 * itemAbility(grandmora,1) * numAhead;
+      grandmora.globalDps *= 1 + 0.75 * itemAbility(grandmora,1) * numAhead;
     } else if (karen.isDPS) {
-      grandmora.globalDPS *= 1 + 0.75 * itemAbility(grandmora,1) * itemAbility(karen,0) * numAhead;
+      grandmora.globalDps *= 1 + 0.75 * itemAbility(grandmora,1) * itemAbility(karen,0) * numAhead;
     }
     if (currentWorld.countTags('alien') > 1) {
-      grandmora.globalDPS *= 1 + legendaryFactor(grandmora,0);
+      grandmora.globalDps *= 1 + legendaryFactor(grandmora,0);
     }
     if (dpsChar.tags.includes('human')) {
-      grandmora.globalDPS *= 1 + legendaryFactor(grandmora,1);
+      grandmora.globalDps *= 1 + legendaryFactor(grandmora,1);
     }
     if (adjacent.includes(dpsChar.spot)) {
-      grandmora.globalDPS *= 1 + 2 * legendaryFactor(grandmora,2);
+      grandmora.globalDps *= 1 + 2 * legendaryFactor(grandmora,2);
     }
   };
   ////Larry the Leprechaun
@@ -2071,10 +2071,10 @@
   spaceking.calculate = function() {
     crusaderSetup(spaceking);
     if (spaceking.isDPS) {
-      spaceking.globalDPS *= 1 + currentWorld.countTags('alien') * itemAbility(spaceking,2) * (1 + legendaryFactor(spaceking,2));
-      spaceking.globalDPS *= 1 + 0.25 * currentWorld.countTags('female') * itemAbility(spaceking,1) * (1 + legendaryFactor(spaceking,1));
+      spaceking.globalDps *= 1 + currentWorld.countTags('alien') * itemAbility(spaceking,2) * (1 + legendaryFactor(spaceking,2));
+      spaceking.globalDps *= 1 + 0.25 * currentWorld.countTags('female') * itemAbility(spaceking,1) * (1 + legendaryFactor(spaceking,1));
       if (currentWorld.countTags('human') == 1) {
-        spaceking.globalDPS *= 1 + legendaryFactor(spaceking,0);
+        spaceking.globalDps *= 1 + legendaryFactor(spaceking,0);
       }
     }
   };
@@ -2259,17 +2259,17 @@
   var polly = getCrusader('19c');
   polly.calculate = function() {
     crusaderSetup(polly);
-    polly.globalDPS *= 1 + 0.5 * currentWorld.countTags('tank') * itemAbility(polly,0);
-    polly.globalDPS *= 1 + 0.33 * numAttacking * itemAbility(polly,1) * (1 + legendaryFactor(polly,2));
+    polly.globalDps *= 1 + 0.5 * currentWorld.countTags('tank') * itemAbility(polly,0);
+    polly.globalDps *= 1 + 0.33 * numAttacking * itemAbility(polly,1) * (1 + legendaryFactor(polly,2));
     if (currentWorld.countTags('animal') > 2) {
-      polly.globalDPS *= 1 + legendaryFactor(polly,1);
+      polly.globalDps *= 1 + legendaryFactor(polly,1);
     }
     // Legendary Toy
     var spot = getCrusaderSpot(app.formationIds, polly.id);
     var dpsSpot = dpsChar && getCrusaderSpot(app.formationIds, dpsChar.id);
     var isInColumnWithDps = getAreInSameColumn(currentWorld, spot, dpsSpot);
     if (isInColumnWithDps) {
-      polly.globalDPS *= 1 + legendaryFactor(polly,0);
+      polly.globalDps *= 1 + legendaryFactor(polly,0);
     }
   };
 
