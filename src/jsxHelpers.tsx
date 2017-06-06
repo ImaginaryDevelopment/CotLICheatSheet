@@ -329,18 +329,25 @@ var TagCountsComponent = app.TagCountsComponent =
  * @param {Array<string>|undefined} filterTags
  * @param {function|undefined} onFilterTagClick
  */
-(missionTagIds, crusaders, filterTags, onFilterTagClick) =>
+(missionTagIds:Tag[], crusaders:Crusader[], filterTags:Tag[] | undefined, onFilterTagClick:any) =>
 {
     var tagCounts: JSX.Element[]= [];
     missionTagIds.map(tagId => {
         var count = crusaders.map(function (crusader){
             return crusader.tags.indexOf(tagId) != -1 ? 1 : 0;
         }).reduce((a,b) =>  a + b, 0);
+        var tag:string = tagId as any;
         var classes = "img_tag";
         if(filterTags && filterTags[tagId]){
           classes += " active";
         }
-        tagCounts.push(<span key={tagId} className={classes} title={tagId} onClick={onFilterTagClick ? onFilterTagClick.bind(self,tagId): null}>{count}</span>);
+        tagCounts.push(
+          <span
+            key={tag}
+            className={classes}
+            title={tag}
+            onClick={onFilterTagClick ? onFilterTagClick.bind(self,tagId): null}
+            >{count}</span>);
     });
     return tagCounts;
 }
