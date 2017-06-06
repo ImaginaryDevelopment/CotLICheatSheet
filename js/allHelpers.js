@@ -1,252 +1,327 @@
-/* global ga */
-var loggedStorageFailure = false;
-const isDefined = function(o){
-    return typeof(o) !== 'undefined' && o !== null;
-};
-
-var getNumberOrDefault = (x, defaultValue) =>
-  Number.isNaN(+x) || !(x != null) ? defaultValue : +x;
-
-/**
- *
- * @param {object} source
- * @param {object} toMerge
- */
-// behavior is undefined for arrays.. what should it do?
-const copyObject = (source,toMerge, defaultValue) => {
-    var target = toMerge ? toMerge : {};
-    if(!(source != null) && defaultValue != null)
-      return defaultValue;
-    Object.keys(source)
-      .filter(prop => !(prop in target))
-      .map(prop =>
-        target[prop] = source[prop]
-    );
-    return target;
-};
-
-/**
- *
- * @param {string} s
- */
-const trim = function(s) {
-    return s.trim();
-};
-
-// starts at 0
-// input 0 -> [], 1 -> [0]
-const createRange = n => Array.apply(null, {length:n}).map(Number.call, Number);
-
-const debounce = (function(){
+/* global ga global module window */
+"use strict";
+var findJsParent = () => ((typeof module !== "undefined" && module && module.exports
+    || typeof module !== "undefined" && module)
+    || typeof global !== "undefined" && global
+    || typeof window !== "undefined" && window);
+(function (exports, exposeYourself) {
+    exports.findJsParent = exports.findJsParent || findJsParent;
+    var loggedStorageFailure = false;
+    exports.isDefined = function (o) {
+        return o != null;
+    };
+    String['trim'] = function (s) {
+        if (s != null)
+            return s.trim();
+        return s;
+    };
+    // adding static and instance methods
+    String['contains'] = (s, delimiter) => s != null && delimiter != null && delimiter != "" && s.indexOf(delimiter) >= 0;
+    String.prototype.contains = function (delimiter) {
+        return String.contains(this, delimiter);
+    };
+    exports.before = (s, delimiter) => {
+        if (!delimiter)
+            throw Error('no delimiter provided in "' + s + "'.before(delimiter)");
+        var i = s.indexOf(delimiter);
+        if (i < 0)
+            throw Error("delimiter('" + delimiter + "') not found in '" + s + "'");
+        return s.substr(0, i);
+    };
+    String.prototype.before = function (delimiter) {
+        return exports.before(this, delimiter);
+    };
+    exports.after = (s, delimiter) => {
+        if (!delimiter)
+            throw Error('no delimiter provided in "' + s + "'.after(delimiter)");
+        var i = s.indexOf(delimiter);
+        if (i < 0)
+            throw Error("delimiter('" + delimiter + "') not found in '" + s + "'");
+        return s.substr(s.indexOf(delimiter) + delimiter.length);
+    };
+    String.prototype.after = function (delimiter) {
+        return exports.after(this, delimiter);
+    };
+    exports.getNumberOrDefault = (x, defaultValue) => Number.isNaN(+x) || !(x != null) ? defaultValue : +x;
+    /**
+     *
+     * @param {object} source
+     * @param {object} toMerge
+     */
+    // behavior is undefined for arrays.. what should it do?
+    exports.copyObject = (source, toMerge, defaultValue) => {
+        var target = toMerge ? toMerge : {};
+        if (!(source != null) && defaultValue != null)
+            return defaultValue;
+        Object.keys(source)
+            .filter(prop => !(prop in target))
+            .map(prop => target[prop] = source[prop]);
+        return target;
+    };
+    /**
+     *
+     * @param {string} s
+     */
+    exports.trim = function (s) {
+        return s.trim();
+    };
+    // starts at 0
+    // input 0 -> [], 1 -> [0]
+    exports.createRange = n => Array.apply(null, { length: n }).map(Number.call, Number);
+    var debounce = (function () {
         var timer = 0;
-        return (function(callback, ms){
-            if(typeof(callback) !== "function")
+        return (function (callback, ms) {
+            if (typeof (callback) !== "function")
                 throw callback;
             // this method does not ever throw, or complain if passed an invalid id
             clearTimeout(timer);
-            timer = setTimeout(callback,ms); //setTimeout(callback,ms);
+            timer = setTimeout(callback, ms); //setTimeout(callback,ms);
         });
     })();
-
-var debounceChange = function (callback, e, ...args) {
-    if(!isDefined(callback)){
-        console.info('no callback for debounceChange',e.target, typeof(callback),callback);
-        return;
-    }
-    e.persist();
-    args.unshift(e.target.value);
-    debounce(() => callback(...args), 500);
-};
-
-// reworked without let, since the browser support for it is low
-// accept either param being an array, or neither, or any combination
-const flattenArrays = (a,b) => {
-        var isAa = Array.isArray(a),isAb = Array.isArray(b);
-        if(isAa && !isAb){
-            var result1 = a.slice(0);
-            result1.push(b);
-            return result1;
+    if (exposeYourself)
+        exports.debounce = debounce;
+    exports.debounceChange = function (callback, e, ...args) {
+        if (!exports.isDefined(callback)) {
+            console.info('no callback for debounceChange', e.target, typeof (callback), callback);
+            return;
         }
-        if(isAa && isAb){
-            return a.concat(b);
-        }
-        if(!isAa && isAb){
-            var result2 = [a].concat(b);
-            return result2;
-        }
-        return [a,b];
+        e.persist();
+        args.unshift(e.target.value);
+        debounce(() => callback(...args), 500);
     };
-
-// otherClasses: allows/adapts to inputs of type string or array
-const addClasses = (defaultClasses=[], otherClasses=[]) =>{
-    var unwrappedClasses = defaultClasses.reduce(flattenArrays,[]);
-    var otherClassesX = Array.isArray(otherClasses) ? otherClasses : otherClasses.split(" ");
-    unwrappedClasses = otherClassesX.reduce(flattenArrays,[]).concat(unwrappedClasses);
-    return unwrappedClasses.filter(isDefined).map(trim).join(' ').trim();
-};
-
-/**
- *
- * @param {number} x
- */
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-function getIsLocalStorageAvailable() {
-  if (typeof(localStorage) !== 'undefined' && (typeof(localStorage.setItem) === 'function') && typeof(localStorage.getItem) === 'function'){
-    return true;
-  }
-  try {
-    var storage = window['localStorage'],
-      x = '__storage_test__';
-    storage.setItem(x, x);
-    storage.removeItem(x);
-    console.info('storage is available!');
-    return true;
-  }
-  catch(e) {
-    if(!loggedStorageFailure){
-      loggedStorageFailure = true;
-      console.info('failed to test storage available');
+    exports.flattenArray = (a, recurse) => {
+        if (!(a != null))
+            return [];
+        if (Array.isArray(a)) {
+            var b = a;
+            var result = [].concat.apply([], b);
+            if (!recurse)
+                return result;
+            var index;
+            while ((index = result.findIndex(Array.isArray)) > -1)
+                result.splice(index, 1, ...result[index]);
+            return result;
+        }
+        return [a];
+    };
+    /** @return {Array} */
+    exports.toClassArray = (x) => {
+        if (!(x != null))
+            return [];
+        if (typeof x === "string") {
+            x = x.trim();
+            if (x === "")
+                return [];
+            if (x.contains(" ")) {
+                return x.split(" ").map(x => x.trim());
+            }
+            return [x];
+        }
+        if (Array.isArray(x)) {
+            x = [].concat.apply([], x.filter(x => x != null).map(exports.toClassArray));
+            return x;
+        }
+    };
+    // otherClasses: allows/adapts to inputs of type string or array
+    exports.addClasses = (defaultClasses = [], otherClasses = []) => {
+        var result = exports.toClassArray(defaultClasses).concat(exports.toClassArray(otherClasses));
+        return result.filter(exports.isDefined).map(String.trim).join(' ').trim();
+    };
+    /**
+     *
+     * @param {number} x
+     */
+    exports.numberWithCommas = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+    exports.getIsLocalStorageAvailable = () => {
+        if (typeof (localStorage) !== 'undefined' && (typeof (localStorage.setItem) === 'function') && typeof (localStorage.getItem) === 'function') {
+            return true;
+        }
+        try {
+            var storage = exports['localStorage'], x = '__storage_test__';
+            storage.setItem(x, x);
+            storage.removeItem(x);
+            console.info('storage is available!');
+            return true;
+        }
+        catch (e) {
+            if (!loggedStorageFailure) {
+                loggedStorageFailure = true;
+                console.info('failed to test storage available');
+            }
+            return false;
+        }
+    };
+    /**
+     *
+     * @param {string} key
+     * @param {*} value
+     */
+    exports.storeIt = function (key, value) {
+        var canStore = exports.getIsLocalStorageAvailable();
+        if (canStore) {
+            var stringy = JSON.stringify(value);
+            //console.info('storing:' + key,value);
+            localStorage.setItem(key, stringy);
+        }
+    };
+    /**
+     *
+     * @param {string} key
+     * @param {*} defaultValue
+     */
+    exports.readIt = function (key, defaultValue) {
+        if (exports.getIsLocalStorageAvailable()) {
+            var item = localStorage.getItem(key);
+            if (typeof (item) !== 'undefined' && item != null) {
+                // console.info("read item from localStorage", key,item);
+                try {
+                    return JSON.parse(item);
+                }
+                catch (ex) {
+                    return defaultValue;
+                }
+            }
+            else {
+                return defaultValue;
+            }
+        }
+        else {
+            return defaultValue;
+        }
+    };
+    /**
+     *
+     * @param {string} category
+     * @param {string} action
+     * @param {string} labelOpt
+     * @param {number} numberValueOpt
+     */
+    exports.gaEvent = (category, action, labelOpt, numberValueOpt) => typeof ga != "undefined" && ga ? ga('send', 'event', category, action, labelOpt, numberValueOpt) : null;
+    exports.padLeft = (nr, n, str) => {
+        return Array(n - String(nr).length + 1).join(str || '0') + nr;
+    };
+    exports.add = function (a, b) {
+        return a + b;
+    };
+    /**
+     *
+     * @param {number|Date} x
+     */
+    exports.getDayOfWeek = (x) => {
+        if (!(x != null))
+            return undefined;
+        var day = x;
+        if (typeof x == "object") {
+            if (x instanceof Date) {
+                day = x.getDay();
+            }
+            else {
+                console.warn("unexpected date object", x); // eslint-disable-line no-console
+                return undefined;
+            }
+        }
+        switch (day) {
+            case 0: return "Sunday";
+            case 1: return "Monday";
+            case 2: return "Tuesday";
+            case 3: return "Wednesday";
+            case 4: return "Thursday";
+            case 5: return "Friday";
+            case 6: return "Saturday";
+            default:
+                console.error("unexpected day : " + day); // eslint-disable-line no-console
+        }
+        return undefined;
+    };
+    /**
+     *
+     * @param {*} data
+     * @param {string} title
+     * @param {*} extraData
+     */
+    exports.inspect = (data, title, extraData) => {
+        if (extraData)
+            console.log(title || 'inspect', data, extraData); // eslint-disable-line no-console
+        else
+            console.log(title || 'inspect', data); // eslint-disable-line no-console
+        return data;
+    };
+    // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+    // polyfill for older browsers, which this project really doesn't need
+    if (!Object.keys) {
+        Object.keys = (function () {
+            'use strict';
+            var hasOwnProperty = Object.prototype.hasOwnProperty, hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString'), dontEnums = [
+                'toString',
+                'toLocaleString',
+                'valueOf',
+                'hasOwnProperty',
+                'isPrototypeOf',
+                'propertyIsEnumerable',
+                'constructor'
+            ], dontEnumsLength = dontEnums.length;
+            return function (obj) {
+                if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+                    throw new TypeError('Object.keys called on non-object');
+                }
+                var result = [], prop, i;
+                for (prop in obj) {
+                    if (hasOwnProperty.call(obj, prop)) {
+                        result.push(prop);
+                    }
+                }
+                if (hasDontEnumBug) {
+                    for (i = 0; i < dontEnumsLength; i++) {
+                        if (hasOwnProperty.call(obj, dontEnums[i])) {
+                            result.push(dontEnums[i]);
+                        }
+                    }
+                }
+                return result;
+            };
+        }());
     }
-    return false;
-  }
-}
-
-/**
- *
- * @param {string} key
- * @param {*} value
- */
-var storeIt = function(key,value){
-  var canStore = getIsLocalStorageAvailable();
-  if(canStore){
-    var stringy = JSON.stringify(value);
-    //console.info('storing:' + key,value);
-    localStorage.setItem(key,stringy);
-  }
-};
-/**
- *
- * @param {string} key
- * @param {*} defaultValue
- */
-var readIt = function(key,defaultValue){
-  if(getIsLocalStorageAvailable()){
-    var item = localStorage.getItem(key);
-    if(typeof(item) !== 'undefined' && item != null){
-      // console.info("read item from localStorage", key,item);
-      try{
-        return JSON.parse(item);
-      }
-      catch (ex)
-      {
-        return defaultValue;
-      }
-    } else {
-      return defaultValue;
-    }
-  } else {
-    return defaultValue;
-  }
-};
-
-/**
- *
- * @param {string} category
- * @param {string} action
- * @param {string} labelOpt
- * @param {number} numberValueOpt
- */
-var gaEvent = (category,action,labelOpt,numberValueOpt) =>
-  typeof ga != "undefined" && ga ? ga('send','event',category, action, labelOpt, numberValueOpt) : null;
-
-function padLeft(nr, n, str){
-    return Array(n-String(nr).length+1).join(str||'0')+nr;
-}
-var add = function(a,b){
-  return a + b;
-};
-
-/**
- *
- * @param {number|Date} x
- */
-var getDayOfWeek = x =>{
-  if(!(x != null))
-    return undefined;
-
-  var day = x;
-  if(typeof x == "object"){
-    if(x instanceof Date){
-        day = x.getDay();
-    } else {
-      console.warn("unexpected date object", x); // eslint-disable-line no-console
-      return undefined;
-    }
-  }
-
-      switch(day){
-        case 0: return "Sunday";
-        case 1: return "Monday";
-        case 2: return "Tuesday";
-        case 3: return "Wednesday";
-        case 4: return "Thursday";
-        case 5: return "Friday";
-        case 6: return "Saturday";
-        default:
-        console.error("unexpected day : " + day); // eslint-disable-line no-console
-      }
-    return undefined;
-  };
-
-
-/**
- *
- * @param {*} data
- * @param {string} title
- * @param {*} extraData
- */
-var inspect = (data,title, extraData) =>
-{
-  if(extraData)
-    console.log(title || 'inspect', data,extraData); // eslint-disable-line no-console
-  else
-    console.log(title|| 'inspect', data); // eslint-disable-line no-console
-  return data;
-};
-/**
- *
- * @param {() => any} f
- * @param {*} data
- * @param {string} title
- * @param {boolean} logSuccess
- */
-var tryCaptureThrow =  (f, data, title, logSuccess) => {
-  try{
-    var result = f();
-    if(logSuccess===true)
-      console.info(title || 'tryCaptureThrowSuccess'); // eslint-disable-line no-console
-    return result;
-  } catch(ex){
-    if(title){
-      console.warn(title, data); // eslint-disable-line no-console
-    } else
-    console.warn(data); // eslint-disable-line no-console
-    throw ex;
-  }
-};
-var tryCaptureLog = (f,data,title) => {
-  try{
-    return f();
-  } catch (ex){
-    if(title){
-      console.error(title,data); // eslint-disable-line no-console
-    } else console.error(data); // eslint-disable-line no-console
-  }
-
-}
-
-// adapted from http://stackoverflow.com/a/14438954/57883
-Array.prototype['distinct'] = Array.prototype['distinct'] || function(v, i, s) {return (s || this).filter((v,i,a) => a.indexOf(v) === i);};
+    /**
+     *
+     * @param {() => any} f
+     * @param {*} data
+     * @param {string} title
+     * @param {boolean} logSuccess
+     */
+    exports.tryCaptureThrow = (f, data, title, logSuccess) => {
+        try {
+            var result = f();
+            if (logSuccess === true)
+                console.info(title || 'tryCaptureThrowSuccess'); // eslint-disable-line no-console
+            return result;
+        }
+        catch (ex) {
+            if (title) {
+                console.warn(title, data); // eslint-disable-line no-console
+            }
+            else
+                console.warn(data); // eslint-disable-line no-console
+            throw ex;
+        }
+    };
+    /**
+     * @param {string} title
+     */
+    exports.tryCaptureLog = (f, data, title) => {
+        try {
+            return f();
+        }
+        catch (ex) {
+            if (title) {
+                console.error(title, data); // eslint-disable-line no-console
+            }
+            else
+                console.error(data); // eslint-disable-line no-console
+        }
+    };
+    // adapted from http://stackoverflow.com/a/14438954/57883
+    Array.prototype['distinct'] = Array.prototype['distinct'] || function (v, i, s) { return (s || this).filter((v, i, a) => a.indexOf(v) === i); };
+})(findJsParent(), false);
+//# sourceMappingURL=allHelpers.js.map
