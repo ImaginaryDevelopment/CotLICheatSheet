@@ -187,8 +187,8 @@ app.Inputs = props =>
                 return makeTalentTrArray(tdInfo, i, (<td>Other Epics:{tic.dpsInfo.slotEpics}</td>));
             case "rideTheStorm":
                 return makeTalentTrArray(tdInfo, i,
-                            (<td>{currentStormRider}</td>),
-                            (<td>{nextStormRider}</td>));
+                            (<td>Current Storm Rider:{currentStormRider}</td>),
+                            (<td>Next Storm Rider: {nextStormRider}</td>));
             case "stormsBuilding":
                 return makeTalentTrArray(tdInfo, i);
             default :
@@ -284,8 +284,21 @@ app.Inputs = props =>
             {
                 rows
             }
-            {/* this was on index 22 : td5={<td>Unspent Idols:</td>}*/}
         </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        not accounted for
+                    </th>
+                    <td>
+                        <ul>
+                            <li>Storm Rider talents : Littlefoot xp, Thalia Legendaries</li>
+                            <li>Tier 4 dps talents</li>
+                            <li>Legendaries/abilities that depend on being under attack/not under attack. dead crusaders</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
         );
 };
