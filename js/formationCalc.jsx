@@ -448,7 +448,7 @@
                 this.setState({kaineXP: value});
             };
             var lootId = app.mathCalc.getItemId(kaine.id, 1, true);
-            console.log('formcalc', kaine.loot);
+            // console.log('formcalc', kaine.loot);
             var rarity = Loot.getRarityByItemId(lootId,kaine.loot);
             // this should also be conditional on having the legendary that needs it
             var kaineXpComponent =

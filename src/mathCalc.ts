@@ -25,7 +25,7 @@
 /** @param {App} app */
 (function(app,exposeYourself:boolean){
   /** module mathCalc */
-  var my = exports.mathCalc = {};
+  var my :any = app.mathCalc = {};
   var dpsChar:Crusader|null = null;
   //https://github.com/Microsoft/TypeScript/wiki/JsDoc-support-in-JavaScript
 
@@ -36,7 +36,7 @@
    * @param {string} id - a Crusader identifier like 04b
    * @return {Crusader}
    */
-  var getCrusader = exports.getCrusader = id => jsonData
+  var getCrusader = my.getCrusader = id => jsonData
     .crusaders
     .find(c => c.id == id);
 
@@ -246,7 +246,7 @@
    * @param {?boolean} debug
    * @return {string}
    */
-  var getItemId = exports.getItemId = (cruId, gearSlot, debug = false) => {
+  var getItemId = my.getItemId = (cruId, gearSlot, debug = false) => {
     if (gearSlot != 0 && gearSlot != 1 && gearSlot != 2)
       throw "invalid gearSlot passed";
     var result = app.crusaderGear && app.crusaderGear[cruId] && (app.crusaderGear[cruId]["s" + gearSlot.toString()] || app.crusaderGear[cruId]["slot" + gearSlot]);
@@ -3106,7 +3106,7 @@
   var newMoon = new World(5, "Emo's New Moon",12);
 
 
-  var getWorldById = exports.getWorldById = id => {
+  var getWorldById = my.getWorldById = id => {
     var worlds =
       [ worldsWake,
       descent,
@@ -3130,7 +3130,7 @@
   var globalDps = 1;
   var globalGold = 1;
 
-  exports.setDPS = function (id) {
+  my.setDPS = function (id) {
     var crusader = getCrusader(id);
     dpsChar = crusader;
   };
@@ -3150,7 +3150,7 @@
    * @param {Array<string>} formationIds
    * @return {Object} globalDps and globalGold container
    */
-  exports.calculateMultipliers = formationIds => {
+  my.calculateMultipliers = formationIds => {
     var globalDps = 1;
     var globalGold = 1;
     // some of the methods this calls rely on the global state =/ have not worked on
@@ -3191,11 +3191,10 @@
     };
     return result;
   };
-  exports.setWorldById = (worldId, formationIds) => {
+  my.setWorldById = (worldId, formationIds) => {
     currentWorld = getWorldById(worldId);
     // // apparently chicken + egg, get if(formationIds != null)
-    exports.calculateMultipliers(formationIds);
-
+    my.calculateMultipliers(formationIds);
   }
 
   // for (var i in formation) {  formation[i].calculate();  globalDps *=
