@@ -113,26 +113,13 @@ var LootV2 = app.LootV2 = (function () {
   * @param {number | string} lootIdOrCompound
   * @return boolean
   */
-  var getIsGolden = (refGear,lootIdOrCompound) => {
+  var getIsGolden = (loot:[LootItem],lootIdOrCompound) => {
     var lootId = getLootIdFromLootIdOrCompound(lootIdOrCompound);
     // can't fallback to compound string possibility, the only way we'd have one is if this item was in the data before
-    var item = refGear.find(g => g.lootId == lootId);
+    var item = loot.find(g => g.lootId == lootId);
     return item && item.golden === true;
   };
   my.getIsGolden = getIsGolden;
-
-  /**
-   * @param {number | string} lootIdOrCompound
-   * @param {Array<Loot>} refGear
-   */
-  var getRarityByItemId = (lootIdOrCompound,refGear) => {
-    console.log("v2 getRarityByItemId");
-    var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
-    var item = refGear.find(g => g.lootId==lootId);
-    // if(!(item != null) || !(item.rarity != null) || isNaN(item.rarity))
-    //   debugger;
-    return item && item.rarity;
-  };
 
   // how would we define a V2? as a valid lootId or an item obtained from looking up the lootId?
   // my.getIsV2 = ???
@@ -140,33 +127,44 @@ var LootV2 = app.LootV2 = (function () {
    * @param {number | string} lootIdOrCompound
    * @param {Array<Loot>} refGear
    */
-  var getRarityByItemId = (lootIdOrCompound,refGear) =>{
+  var getRarityByItemId = (lootIdOrCompound,loot:LootItem[]) =>{
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
-    if(!(refGear != null)){
-      console.warn('no refGear provided', lootIdOrCompound);
+    if(!(loot != null)){
+      console.warn('no loot provided', lootIdOrCompound);
       if(app && app.throw === true)
         throw Error('no refGear provided'+ lootIdOrCompound);
       // debugger;
       return 0;
     }
-    var item = refGear.find(g => g.lootId == lootId);
+    var item = loot.find(g => g.lootId == lootId);
     // if(!(item != null) || !(item.rarity != null) || isNaN(item.rarity))
     //   debugger;
     return item && item.rarity;
   };
   my.getRarityByItemId = getRarityByItemId;
 
-  my.getLLevel = (compound, refGear) =>{
-    if(!compound)
+  // should return the legendary level if legendary
+  // should return 0 on non-legendary rarity items
+  // should return undefined if refGear is not provided (in the event refGear for a specific crusader is not loaded)
+  // should return 1 for any legendary rarity level where it a legendary level wasn't provided in the compound
+  my.getLLevel = (compound, loot?:LootItem[]) =>{
+    if(!(compound != null))
       return undefined;
-    if(typeof(compound) != "string" && typeof(compound) != "number")
+    // this case is semi-expected, loot may not always be present for a crusader
+    if(!(loot != null)){
+      return undefined;
+    }
+
+    if(typeof(compound) != "string" && typeof(compound) != "number"){
+      console.warn("bad value passed as compound, expected number, string, or undefined", compound);
       return null;
+    }
     var x = compound.toString();
     var compoundIndex = x.indexOf("_");
     if(compoundIndex >=0 && x.length > compoundIndex)
       return x.slice(compoundIndex + 1);
     // if there is no _ and it is rarity 5, then fallback to 1
-    var rarity = getRarityByItemId(compound, refGear);
+    var rarity = getRarityByItemId(compound, loot);
     if(rarity == 5)
       return 1;
 

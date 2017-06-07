@@ -145,12 +145,58 @@ describe('LootV2 module', function() {
       });
     });
   });
-  return describe('getRarityByItemId', function() {
+  describe('getRarityByItemId', function() {
     return it('should work on a number', function() {
       var actual, expected, refGear;
       expected = 2;
       refGear = [makeGear(7, false, expected)];
       actual = LootV2.getRarityByItemId(7, refGear);
+      return assert.equal(actual, expected);
+    });
+  });
+  return describe('getLLevel', function() {
+    var getLLevel;
+    getLLevel = function(lootId, rarity, input) {
+      var actual, refGear;
+      refGear = [makeGear(lootId, false, rarity)];
+      return actual = LootV2.getLLevel(input, refGear);
+    };
+    it('should return the legendary level if legendary', function() {
+      var actual, expected;
+      expected = 2;
+      actual = getLLevel(8, 5, "8_2");
+      return assert.equal(actual, expected);
+    });
+    it('should return 0 on non-legendary', function() {
+      var actual, expected;
+      expected = 0;
+      actual = getLLevel(10, 4, "10_");
+      return assert.equal(actual, expected);
+    });
+    it('should return undefined for no refGear', function() {
+      var actual, expected;
+      expected = void 0;
+      actual = LootV2.getLLevel("11_", void 0);
+      return assert.equal(actual, expected);
+    });
+    it('should work on a number', function() {
+      var actual, expected;
+      expected = 1;
+      actual = getLLevel(8, 5, 8);
+      return assert.equal(actual, expected);
+    });
+    it('should work on a non-golden', function() {
+      var actual, expected, refGear;
+      expected = 1;
+      refGear = [makeGear(9, false, 5)];
+      actual = LootV2.getLLevel(8, refGear);
+      return assert.equal(actual, expected);
+    });
+    return it('should return 0 on a non-legendary', function() {
+      var actual, expected, refGear;
+      expected = 0;
+      refGear = [makeGear(9, false, 4)];
+      actual = LootV2.getLLevel(8, refGear);
       return assert.equal(actual, expected);
     });
   });

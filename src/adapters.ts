@@ -90,15 +90,17 @@ declare enum Slot{
   Slot2 = 2
 
 }
-interface Loot{
+// encapsulates Gear, Trinkets, etc..
+// is not the same format as gameData.Json loot
+interface LootItem{
   lootId:number
   name:string
   rarity:number
   slot:number
-  golden:boolean
+  golden?:boolean
 }
-// once we figure out what this is, name it properly
-interface LootAlt{
+// data that has come in via network capture, is not the same format as gameData.json
+interface HeroLootItem{
   loot_id:number
   count:number
   slot:Slot
@@ -117,7 +119,7 @@ interface Crusader{
   calculate?: () => void
   gear?:string[]
   heroId:number
-  loot:Loot[]
+  loot:LootItem[]
 }
 
 /**
@@ -169,7 +171,7 @@ interface Crusader{
    * @property {number} heroId
    */
 
-  app.parseLoot = (crusaders:Crusader[],lootData?:LootAlt[]) =>{
+  app.parseLoot = (crusaders:Crusader[],lootData?:HeroLootItem[]) =>{
       if(!(lootData != null))
         return;
       console.log('attempting to parse loot');
@@ -198,7 +200,7 @@ interface Crusader{
 
         return 0;
       };
-      var unMapped:LootAlt[] = [];
+      var unMapped:HeroLootItem[] = [];
       var lootMapped =
         lootData
           .map(l =>
