@@ -373,7 +373,8 @@
             this.props.model.missionTags.map(function (tag) {
                 var count = self.props.model.crusaders.map(function (crusader) {
                     return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
-                }).reduce((a, b) => a + b, undefined);
+                })
+                    .reduce((a, b) => a + b, 0);
                 var classes = "img_tag";
                 if (self.props.filterTags && self.props.filterTags[tag.id]) {
                     classes += " active";

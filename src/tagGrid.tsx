@@ -474,7 +474,9 @@
       this.props.model.missionTags.map(function(tag){
           var count = self.props.model.crusaders.map(function (crusader:Crusader){
               return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
-          }).reduce((a:number,b:number):number => a + b, undefined);
+          })
+            // typescript is forcing me to provide the 0 initial value
+            .reduce((a:number,b:number):number => a + b,0);
           var classes = "img_tag";
           if(self.props.filterTags && self.props.filterTags[tag.id]){
             classes += " active";
