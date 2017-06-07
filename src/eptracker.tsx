@@ -1,4 +1,4 @@
-/* global Clipboard React */
+/* global React */
 // data is in window.jsonData
 // reference heroId data at http://pastebin.com/Bf5UgsBC
 // reference lootId data at http://pastebin.com/vJNceSJZ

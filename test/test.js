@@ -16,19 +16,18 @@ describe('LootV1 module', () =>{
     // bushwhacker has an id 5 gear item =(
     it("should be return true for a V1 number 0-5", () =>{
         var expected = true;
-        for(var i = 0; i++; i<=5){
+        for(var i = 0; i<=5; i++){
             var actual = LootV1.getIsV1(i);
             assert.equal(actual,expected);
         }
     });
     it("should return false for a V2 number >= 6", () =>{
       var expected = false;
-      for(var i = 6; i++; i<=1000){
+      for(var i = 6; i <= 1010; i++){
         var actual = LootV1.getIsV1(i);
         assert.equal(actual,expected);
       }
     });
-
 });
 
 describe('loot module', () =>{

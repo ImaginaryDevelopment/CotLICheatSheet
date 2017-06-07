@@ -23,6 +23,8 @@ let (|EndsWithI|_|) (s:string) (x:string) =
 type System.String with
     static member Delimit delimiter (items:string seq) =
         String.Join(delimiter,items |> Array.ofSeq)
+    static member ContainsI delimiter (x:string) =
+        x.IndexOf(delimiter, StringComparison.InvariantCultureIgnoreCase) >= 0
 module Seq =
     open System.Collections
     // cast one by one, return result only if all items were sucessful
@@ -106,11 +108,10 @@ module Disposable =
                 y.Dispose()
         )
 
-type WatchItParams = {Files:string; FRunOnce: FileChange seq option -> unit; RunImmediately:bool }
+type WatchItParams = {Files:FileIncludes; FRunOnce: FileChange seq option -> unit; RunImmediately:bool }
 // setup watcher and return disposable to close it
 let watchIt wip =
-    let inc = !! wip.Files
-    let watcher = inc |> WatchChanges (fun changes ->
+    let watcher = wip.Files |> WatchChanges (fun changes ->
         tracefn "%A" changes
         wip.FRunOnce (Some changes)
     )
@@ -366,47 +367,23 @@ module Tasks =
             |> Seq.iter compileTS
         printfn ""
 
-
-    let babelOn5 () =
-        // run jsx compilation
-        let babels = [
-            "src/eptracker.jsx"
-            "src/talentcalc.jsx"
-            "src/needsBabel.js"
-        ]
-        let getJsDir path =
-            Path.GetDirectoryName path
-            |> fun x -> Path.Combine(x, "js")
-        let babel relPath =
-            let targetPath =
-                let fullPath = Path.GetFullPath relPath
-                match fullPath with
-                |EndsWithI ".jsx" ->
-                    ".react.js"
-                | x -> Path.GetExtension x
-                |> sprintf "%s%s" (fullPath |> Path.GetFileNameWithoutExtension)
-                |> fun x ->
-                    let destination = Path.Combine(fullPath |> Path.GetDirectoryName |> getJsDir, x)
-                    printfn "destination:%s" destination
-                    destination
-            let result,_ = Proc.runWithOutput "node" (sprintf "node_modules/babel-cli/bin/babel %s -o %s -s --presets react" relPath targetPath) (TimeSpan.FromSeconds 2.)
-            if result.ExitCode <> 0 then
-                result.Messages
-                |> Seq.iter (printfn "babel-msg:%s")
-                result.Errors
-                |> Seq.iter(printfn "babel-err:%s")
-                failwithf "Task failed: %i" result.ExitCode
-            else
-                result.Messages
-                |> Seq.iter (printfn "babel-msg:%s")
-        babels
-        |> Seq.iter babel
-
     let makeCoffee = fun _ ->
         let coffeeGlob = !! "src/**/*.coffee" ++ "test/**/*.coffee"
 
         let compileCoffee relPath =
-            let cmd, args = "node", sprintf "node_modules/coffee-script/bin/coffee -b -m --no-header -c %s" relPath
+            trace <| sprintf "CompileCoffee:%s" relPath
+            let generateMaps = relPath |> String.ContainsI "test" |> not
+            let ``top-level function wrapper`` = false
+            let suppressGeneratedByHeader = true
+            let args = [
+                yield "node_modules/coffee-script/bin/coffee"
+                if not ``top-level function wrapper`` then yield "-b"
+                if generateMaps then yield "-m"
+                if suppressGeneratedByHeader then yield "--no-header"
+                yield "-c"
+                yield relPath
+            ]
+            let cmd, args = "node", args |> String.Delimit " "
             let fullText = sprintf "%s %s" cmd args
             let result,_ = Proc.runWithOutput cmd args (TimeSpan.FromSeconds 2.)
             Proc.printVerboseResult (Some {ErrorForeColor= ConsoleColor.Red; ProblemRegex=None}) "Coffee" (Some fullText) result
@@ -437,11 +414,15 @@ Target "Tsc" (fun _ -> Tasks.compileTS true None)
 
 // Targets
 Target "Watch" (fun _ ->
+    let tsWatch = !! "src/**/*.tsx?" ++ "test/**/*.tsx?" -- "**/*.d.ts"
+    tsWatch |> String.Delimit ";"
+    |> sprintf "tsWatch:%s"
+    |> trace
     watchAllTheThings [
         // type WatchItParams = {Files:string; FRunOnce: FileChange seq option -> unit; RunImmediately:bool }
-            {Files =  "src/**/*.jsx";FRunOnce = (fun _changesOpt -> Tasks.babelOn5()); RunImmediately = true}
-            {Files =  "test/**/*.coffee";FRunOnce = (fun _changesOpt -> Tasks.makeCoffee()); RunImmediately = true}
-            {   Files ="test/**/*.js"; FRunOnce = Tasks.test(fun r ->
+            {Files= tsWatch;FRunOnce = (fun changesOpt -> Tasks.compileTS false (changesOpt)); RunImmediately = true}
+            {Files =  !! "test/**/*.coffee";FRunOnce = (fun _changesOpt -> Tasks.makeCoffee()); RunImmediately = true}
+            {   Files = !! "test/**/*.js"; FRunOnce = Tasks.test(fun r ->
                         Console.Error.WriteLine(sprintf "Tests failed with %i" r.ExitCode) |> ignore
                     )
                 RunImmediately = true
@@ -510,45 +491,8 @@ Target "NpmRestore" (fun _ ->
     |> ignore
 )
 
-Target "Babel" (fun _ ->
-    // run jsx compilation
-    let babels = [
-        "src/eptracker.jsx"
-        "src/talentcalc.jsx"
-        "src/needsBabel.js"
-    ]
-    let getJsDir path =
-        Path.GetDirectoryName path
-        |> fun x -> Path.Combine(x, "js")
-    let babel relPath =
-        let targetPath =
-            let fullPath = Path.GetFullPath relPath
-            match fullPath with
-            |EndsWithI ".jsx" ->
-                ".react.js"
-            | x -> Path.GetExtension x
-            |> sprintf "%s%s" (fullPath |> Path.GetFileNameWithoutExtension)
-            |> fun x ->
-                let destination = Path.Combine(fullPath |> Path.GetDirectoryName |> getJsDir, x)
-                printfn "destination:%s" destination
-                destination
-        let result,_ = Proc.runWithOutput "node" (sprintf "node_modules/babel-cli/bin/babel %s -o %s -s --presets react" relPath targetPath) (TimeSpan.FromSeconds 2.)
-        if result.ExitCode <> 0 then
-            result.Messages
-            |> Seq.iter (printfn "babel-msg:%s")
-            result.Errors
-            |> Seq.iter(printfn "babel-err:%s")
-            failwithf "Task failed: %i" result.ExitCode
-        else
-            result.Messages
-            |> Seq.iter (printfn "babel-msg:%s")
-    babels
-    |> Seq.iter babel
-)
-
 // this runs npm install to download packages listed in package.json
-For "Babel" ["SetupNode"]
-For "Test" ["Babel";"Coffee"]
+For "Test" ["SetupNode";"Coffee"]
 Target "Default" (fun _ ->
     trace "Hello World from FAKE"
 )
