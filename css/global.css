@@ -72,19 +72,19 @@ outline-color: green;
 .rarity0{
     background:black;
 }
-.rarity1{
+.rarity1, .common{
     background:white;
 }
-.rarity2{
+.rarity2, .uncommon{
     background:green;
 }
-.rarity3{
+.rarity3, .rare{
     background:blue;
 }
-.rarity4{
+.rarity4, .epic{
     background:purple;
 }
-.rarity5{
+.rarity5, .legendary{
     background:orange;
 }
 .golden{
@@ -114,7 +114,7 @@ tr.dps .sharedEp{
 .vcenter{
     vertical-align: center
 }
-.textcenter{
+.textCenter{
     text-align: center
 }
 

@@ -110,7 +110,7 @@
   };
 
   var GearSelect = (props,debug) => {
-    // v1/1.5 loot should be transformed on url or localstorage load
+    // v1/1.5 loot should be transformed on url or localStorage load
 
     if(debug === true)
       console.group("GearSelect");
@@ -222,7 +222,7 @@
                                       onLlChange={props.onLlChange} />);
 
         var $tagsOrGearColumn = (<CruTagRowTagsOrGear mode={props.mode} isGearMode={props.isGearMode} dps={props.dps} missionTags={props.missionTags} cru={cru} baseUrl={baseUrl} gearTd={$gearTd} />);
-        var $tagCountColumn = props.mode !== "mine" || !props.isGearMode ? (<td key="tagcount" data-key="tagcount">{cru.tags.length}</td>) : null;
+        var $tagCountColumn = props.mode !== "mine" || !props.isGearMode ? (<td key="tagCount" data-key="tagCount">{cru.tags.length}</td>) : null;
         var trClasses = cru.tags.indexOf('dps') >= 0 ? 'dps' : '';
         return (<tr className={trClasses}>
             {$formation}

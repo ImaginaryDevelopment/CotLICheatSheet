@@ -49,7 +49,10 @@
         "Scaredy",
         "Conflagrate",
         "ghostbeard",
-        "adjacents"
+        "adjacents",
+        "imaginarydevelopment",
+        "plnkr",
+        "wikibase"
     ],
 
     // flagWords - list of words to be always considered incorrect

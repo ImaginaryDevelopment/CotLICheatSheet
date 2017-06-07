@@ -54,12 +54,12 @@
         <td><app.TextInputUnc type="number" min="0" step={props.step} max={props.max ? props.max : undefined} value={props.value} onChange={props.onChange}/></td>
         {props.td1 ? props.td1 : <td />}
         {props.td2 ? props.td2 : <td />}
-        <td className="textcenter">{dpsText}</td>
-        <td data-talent={props.dataRow} className="textcenter">
+        <td className="textCenter">{dpsText}</td>
+        <td data-talent={props.dataRow} className="textCenter">
             {!meta.showingMessage && typeof (meta.nextDps) == "number" ? meta.nextDps.toFixed(2) : null}
         </td>
-        <td className="textcenter">{!meta.showingMessage && typeof (meta.nextDps) == "number" ? (meta.impr * 100).toFixed(2) + '%' : null}</td>
-        <td className="textcenter">{scoreText}</td>
+        <td className="textCenter">{!meta.showingMessage && typeof (meta.nextDps) == "number" ? (meta.impr * 100).toFixed(2) + '%' : null}</td>
+        <td className="textCenter">{scoreText}</td>
     </tr>);
     };
     app.RaritySelect = props => {
@@ -190,7 +190,7 @@
                     <td>{cooldown.toFixed(2)}</td>
                 </tr>
                 <tr><th>Main Dps</th><td colSpan={2}><app.HeroSelect crusaders={props.crusaders} selectedHeroId={props.selectedHeroId} onHeroChange={props.onHeroChange}/></td><th>Slot</th></tr>
-                <tr><th>Main Crusader Enchantments</th><td>{tic.dpsInfo.ep}</td><td> Epics: {tic.dpsInfo.epics}</td><td className="textcenter vcenter">{dpsHero && dpsHero.cru ? dpsHero.cru.slot : ""}</td><th colSpan={6}>Put your levels for other talents here to calculate how much you have spent.</th></tr>
+                <tr><th>Main Crusader Enchantments</th><td>{tic.dpsInfo.ep}</td><td> Epics: {tic.dpsInfo.epics}</td><td className="textCenter vcenter">{dpsHero && dpsHero.cru ? dpsHero.cru.slot : ""}</td><th colSpan={6}>Put your levels for other talents here to calculate how much you have spent.</th></tr>
                 <tr><th>Alt Crusader Enchantments</th><td>{tic.dpsInfo.slotEp - tic.dpsInfo.ep}</td><td>Other Epics: {tic.dpsInfo.slotEpics}</td><td /><th>Time-O-Rama</th><th>Massive Criticals</th><th>Speed Runner</th><th>Endurance Training</th><th>Gold-o-Splosion</th><th>Sniper</th></tr>
                 <tr data-row={8}>
                     <th>Sort Talents<app.Checkbox onChange={props.onSortTalentsChange} checked={props.sortTalents}/></th><th />
