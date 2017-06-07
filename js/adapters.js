@@ -1,6 +1,14 @@
 // any adapter code or functionality that doesn't need jsx
 // on the fence about domain layer code
 /// <reference path="allHelpers.ts" />
+var Rarity;
+(function (Rarity) {
+    Rarity[Rarity["Common"] = 1] = "Common";
+    Rarity[Rarity["Uncommon"] = 2] = "Uncommon";
+    Rarity[Rarity["Rare"] = 3] = "Rare";
+    Rarity[Rarity["Epic"] = 4] = "Epic";
+    Rarity[Rarity["Legendary"] = 5] = "Legendary";
+})(Rarity || (Rarity = {}));
 var Sorting;
 (function (Sorting) {
     Sorting[Sorting["up"] = 0] = "up";

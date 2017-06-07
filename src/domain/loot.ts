@@ -7,6 +7,46 @@
 */
 // until this thing is made into more conventional modules
 
+// number or compound
+type LootIdentifier = number | string
+enum ReferenceChecked {
+  Unknown,
+  Found,
+  NotFound
+}
+interface LootVItem {
+  lLevel:number
+  isInReference:ReferenceChecked
+  compoundish:LootIdentifier
+}
+// by definition these can't have a reference
+interface LootV1Item extends LootVItem{
+  kind: "V1"
+  isInReference:ReferenceChecked.Unknown
+  isGolden:boolean
+  rarity: Rarity
+}
+// just because it is V2 doesn't mean we found it in a loot lookup to know rarity, or isGolden
+interface LootV2Id extends LootVItem{
+  kind: "V2"
+  lootId:number
+  isInReference:ReferenceChecked.Unknown | ReferenceChecked.NotFound
+  // compound string may say it is golden
+  isGolden?:boolean
+}
+
+interface LootV2Item extends LootVItem{
+  kind: "V2Found"
+  isInReference:ReferenceChecked.Found
+  isGolden:boolean
+  rarity:Rarity
+}
+
+type LootV2ish = LootV2Id | LootV2Item
+type LootItemUnion = LootV1Item | LootV2ish;
+function assertNever(x: never): never {
+    throw new Error("Unexpected object: " + x);
+}
 var app = (typeof module !== "undefined" && module && module.exports
   || typeof module !== "undefined" && module)
   || typeof global !== "undefined" && global
@@ -21,7 +61,7 @@ var LootV1 = app.LootV1 = (function () {
    *
    * @param {number | string} itemIdentifier
    */
-  var getIsV1 = itemIdentifier => {
+  var getIsV1 = (itemIdentifier?:number|string) => {
     if(!itemIdentifier)
       return itemIdentifier == 0;
     if(typeof(itemIdentifier) == "number" && itemIdentifier <= 5)
@@ -87,37 +127,86 @@ var LootV1 = app.LootV1 = (function () {
 
 var LootV2 = app.LootV2 = (function () {
   var my:any = {};
+  var getIsCompoundish = (lootIdOrCompound:LootIdentifier) => typeof(lootIdOrCompound) == "string" && (lootIdOrCompound.indexOf("_") >= 0 || lootIdOrCompound.indexOf("g") >= 0);
+  var decomposeCompoundish = (lootIdOrCompound:LootIdentifier) => {
+    if(!(lootIdOrCompound != null))
+      return lootIdOrCompound;
+    if(getIsCompoundish(lootIdOrCompound))
+    {
+      var c = lootIdOrCompound as string;
+      var compoundIndex_ = c.indexOf("_");
+      var compoundIndexG = c.indexOf("g");
+
+      var lootId = +c.slice(0,Math.max(compoundIndex_,compoundIndexG));
+      var lLevel:number = +c.slice(Math.max(compoundIndex_,compoundIndexG));
+
+      return {lootId:lootId, isGolden: compoundIndexG >=0, compoundish: lootIdOrCompound, lLevel: lLevel};
+    }
+    if(typeof lootIdOrCompound === "number")
+      return {lootId:lootIdOrCompound as number, isGolden:undefined, compoundish: lootIdOrCompound, lLevel:undefined};
+  };
+
   /**
    * @param {number | string} lootIdOrCompound
   */
-  var getLootIdFromLootIdOrCompound  = lootIdOrCompound =>
+  var getLootIdFromLootIdOrCompound  = (lootIdOrCompound:LootIdentifier) : (number|undefined) =>
   {
-    var isCompoundish = typeof(lootIdOrCompound) == "string" && (lootIdOrCompound.indexOf("_") >= 0 || lootIdOrCompound.indexOf("g") >= 0);
-    var lootId;
-    if(isCompoundish)
-    {
-      var compoundIndex_ = lootIdOrCompound.indexOf("_");
-      var compoundIndexG = lootIdOrCompound.indexOf("g");
-
-      lootId = +lootIdOrCompound.slice(0,Math.max(compoundIndex_,compoundIndexG));
-    } else lootId = +lootIdOrCompound;
-
-    // if(!(lootId != null) || lootId < 5 || typeof lootId !=="number" || isNaN(lootId) || Number.isNaN(lootId))
-    //   debugger;
-    return lootId;
+    if(!(lootIdOrCompound != null))
+      return lootIdOrCompound;
+   var decomposed = decomposeCompoundish(lootIdOrCompound);
+   return decomposed!.lootId;
   };
   my.getLootIdFromLootIdOrCompound = getLootIdFromLootIdOrCompound;
 
+  var getLootishFromId = my.getLootItemFromCompound = (compoundish:LootIdentifier, loot?:LootItem[]) : (LootV2ish | null | undefined) =>{
+    if(!(compoundish != null))
+      return compoundish;
+    if(typeof compoundish != "string" && typeof compoundish != "number"){
+      console.warn("bad value passed as compound, expected number, string, or undefined", compoundish);
+      return null;
+    }
+    var decomposed = decomposeCompoundish(compoundish);
+    if(!(decomposed != null))
+      return decomposed;
+    var refLoot = loot != null ? loot.find(l => l.lootId == decomposed!.lootId) : undefined;
+    if(!(refLoot != null))
+      return {
+        kind:"V2",
+        lootId:decomposed!.lootId,
+        isInReference: ReferenceChecked.NotFound,
+        compoundish: compoundish,
+        isGolden: decomposed!.isGolden || false,
+        lLevel: decomposed!.lLevel || 0,
+    };
+    var rarity = refLoot!.rarity;
+    return {
+      kind:"V2Found",
+      lootId:decomposed!.lootId,
+      isInReference:ReferenceChecked.Found,
+      compoundish:compoundish,
+      isGolden: refLoot.golden || false,
+      lLevel: decomposed!.lLevel || (rarity > 4 ? 1 : 0),
+      rarity: rarity as Rarity
+      };
+    };
+
+  my.getLootishFromId = getLootishFromId;
   /**
   * @param {Array<Loot>} refGear
   * @param {number | string} lootIdOrCompound
   * @return boolean
   */
-  var getIsGolden = (loot:[LootItem],lootIdOrCompound) => {
-    var lootId = getLootIdFromLootIdOrCompound(lootIdOrCompound);
-    // can't fallback to compound string possibility, the only way we'd have one is if this item was in the data before
-    var item = loot.find(g => g.lootId == lootId);
-    return item && item.golden === true;
+  var getIsGolden = (loot:[LootItem],compoundish) => {
+    let lootish = getLootishFromId(compoundish,loot);
+    if(!(lootish!=null))
+      return false;
+    switch(lootish.kind){
+      case "V2Found":
+        return lootish.isGolden;
+      case "V2":
+        return lootish.isGolden;
+      default: return assertNever(lootish); // error here if there are missing cases
+    }
   };
   my.getIsGolden = getIsGolden;
 
@@ -127,19 +216,23 @@ var LootV2 = app.LootV2 = (function () {
    * @param {number | string} lootIdOrCompound
    * @param {Array<Loot>} refGear
    */
-  var getRarityByItemId = (lootIdOrCompound,loot:LootItem[]) =>{
-    var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
+  var getRarityByItemId = (compoundish:LootIdentifier,loot:LootItem[]):(number|undefined) =>{
     if(!(loot != null)){
-      console.warn('no loot provided', lootIdOrCompound);
+      console.warn('no loot provided', compoundish);
       if(app && app.throw === true)
-        throw Error('no refGear provided'+ lootIdOrCompound);
+        throw Error('no loot provided'+ compoundish);
       // debugger;
       return 0;
     }
-    var item = loot.find(g => g.lootId == lootId);
-    // if(!(item != null) || !(item.rarity != null) || isNaN(item.rarity))
-    //   debugger;
-    return item && item.rarity;
+    let lootish = getLootishFromId(compoundish, loot);
+    if(!(lootish!=null))
+      return 0;
+    switch(lootish.kind){
+      case "V2Found":
+        return lootish.rarity;
+      case "V2":
+        return undefined;
+    }
   };
   my.getRarityByItemId = getRarityByItemId;
 
@@ -147,28 +240,17 @@ var LootV2 = app.LootV2 = (function () {
   // should return 0 on non-legendary rarity items
   // should return undefined if refGear is not provided (in the event refGear for a specific crusader is not loaded)
   // should return 1 for any legendary rarity level where it a legendary level wasn't provided in the compound
-  my.getLLevel = (compound, loot?:LootItem[]) =>{
-    if(!(compound != null))
+  my.getLLevel = (compoundish, loot?:LootItem[]) =>{
+    if(!(compoundish != null))
       return undefined;
     // this case is semi-expected, loot may not always be present for a crusader
     if(!(loot != null)){
       return undefined;
     }
-
-    if(typeof(compound) != "string" && typeof(compound) != "number"){
-      console.warn("bad value passed as compound, expected number, string, or undefined", compound);
-      return null;
-    }
-    var x = compound.toString();
-    var compoundIndex = x.indexOf("_");
-    if(compoundIndex >=0 && x.length > compoundIndex)
-      return x.slice(compoundIndex + 1);
-    // if there is no _ and it is rarity 5, then fallback to 1
-    var rarity = getRarityByItemId(compound, loot);
-    if(rarity == 5)
-      return 1;
-
-    return null;
+    let lootish = getLootishFromId(compoundish, loot)
+    if(lootish!= null)
+    return lootish!.lLevel;
+    return undefined;
   };
   my.changeLLevel = (lootIdOrCompound,level) =>{
     var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);

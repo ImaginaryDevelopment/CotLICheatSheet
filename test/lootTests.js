@@ -185,11 +185,18 @@ describe('LootV2 module', function() {
       actual = getLLevel(8, 5, 8);
       return assert.equal(actual, expected);
     });
-    it('should work on a non-golden', function() {
+    it('should return null for items not found', function() {
+      var actual, expected, refGear;
+      expected = null;
+      refGear = [];
+      actual = LootV2.getLLevel(8, refGear);
+      return assert.equal(actual, expected);
+    });
+    it('should work on a golden', function() {
       var actual, expected, refGear;
       expected = 1;
-      refGear = [makeGear(9, false, 5)];
-      actual = LootV2.getLLevel(8, refGear);
+      refGear = [makeGear(6, true, 5)];
+      actual = LootV2.getLLevel(6, refGear);
       return assert.equal(actual, expected);
     });
     return it('should return 0 on a non-legendary', function() {

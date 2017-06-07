@@ -92,6 +92,7 @@ describe 'LootV2 module', ->
       refGear = [makeGear 7,false,expected]
       actual = LootV2.getRarityByItemId 7, refGear
       assert.equal actual,expected
+
   # should return the legendary level if legendary
   # should return 0 on non-legendary rarity items
   # in the event refGear for a specific crusader is not loaded
@@ -120,10 +121,16 @@ describe 'LootV2 module', ->
       expected = 1
       actual = getLLevel 8, 5, 8
       assert.equal actual,expected
-    it 'should work on a non-golden', ->
-      expected = 1
-      refGear = [makeGear 9,false,5]
+
+    it 'should return null for items not found', ->
+      expected = null
+      refGear = []
       actual = LootV2.getLLevel 8, refGear
+      assert.equal actual,expected
+    it 'should work on a golden', ->
+      expected = 1
+      refGear = [makeGear 6,true,5]
+      actual = LootV2.getLLevel 6, refGear
       assert.equal actual,expected
     it 'should return 0 on a non-legendary', ->
       expected = 0

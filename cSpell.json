@@ -52,7 +52,9 @@
         "adjacents",
         "imaginarydevelopment",
         "plnkr",
-        "wikibase"
+        "wikibase",
+        "compoundish",
+        "lootish"
     ],
 
     // flagWords - list of words to be always considered incorrect

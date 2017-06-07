@@ -31,6 +31,14 @@ interface TalentReferenceData{
   name:string
 }
 
+enum Rarity {
+  Common=1,
+  Uncommon=2,
+  Rare=3,
+  Epic=4,
+  Legendary=5
+}
+
 enum Sorting {
   up,
   down
@@ -90,6 +98,7 @@ declare enum Slot{
   Slot2 = 2
 
 }
+
 // encapsulates Gear, Trinkets, etc..
 // is not the same format as gameData.Json loot
 interface LootItem{
