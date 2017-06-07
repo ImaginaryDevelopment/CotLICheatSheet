@@ -403,10 +403,8 @@ module Tasks =
         |> Seq.iter babel
 
     let makeCoffee = fun _ ->
-        let coffees = [
-            "test/eptracker.jsx.tests.coffee"
-            // "test/allHelpers.tests.coffee"
-        ]
+        let coffeeGlob = !! "src/**/*.coffee" ++ "test/**/*.coffee"
+
         let compileCoffee relPath =
             let cmd, args = "node", sprintf "node_modules/coffee-script/bin/coffee -b -m --no-header -c %s" relPath
             let fullText = sprintf "%s %s" cmd args
@@ -414,7 +412,8 @@ module Tasks =
             Proc.printVerboseResult (Some {ErrorForeColor= ConsoleColor.Red; ProblemRegex=None}) "Coffee" (Some fullText) result
             if result.ExitCode <> 0 then
                 failwithf "Task failed: %i" result.ExitCode
-        coffees
+
+        coffeeGlob
         |> Seq.iter compileCoffee
 
     let test fOnError = fun _ ->
