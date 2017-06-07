@@ -5,3 +5,4 @@ chrome.crx
 *.log
 .paket/
 *.map
+*.d.ts

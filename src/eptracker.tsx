@@ -179,7 +179,7 @@
 
   var CruTagRow = props => {
         var cru = props.crusader;
-        var baseUrl = window.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
+        var baseUrl = app.location.host === "run.plnkr.co"? '//imaginarydevelopment.github.io/CotLICheatSheet/' : '';
         var $image = cru.image ? <img src={ baseUrl + 'media/portraits/' + cru.image} className='img_portrait' /> : null;
         var isOwned = props.owned || cru.slot == cru.id && cru.slot < 21;
         var $epBox = (<CruTagRowFormationEpBox isEpMode={props.isEpMode} isOwned={isOwned} onEpChange={props.onEpChange} enchantmentPoints={props.enchantmentPoints} effectiveEp={props.effectiveEp} />);
@@ -276,11 +276,6 @@
 
   };
 
-  enum Sorting {
-    up,
-    down
-  }
-
   interface Model{
     crusaders:any[]
     missionTags:any[]
@@ -292,16 +287,17 @@
     epSort?:Sorting
     nameSort?:Sorting
     filterOwned:number
-    mode:string
+    mode?:"mine"
     isEpMode:boolean
-    isBuildingFormation:string
+    isBuildingFormation?: "formation"
     isGearMode:boolean
     enchantmentPoints:number
     formationIds:string[]
     ownedCrusaderIds:string[]
     filterTags:object
     model:Model
-    crusaderGear:object
+    crusaderGear?:object
+    sharingIsCaring:number
   }
   interface CruTagGridState{
     crusaderGear:object
@@ -334,7 +330,7 @@
     }
     onModeChangeClicked(){
       console.info('onModeChangeClicked');
-      this.props.updateSave({mode:this.props.mode === "" ? "mine": ""});
+      this.props.updateSave({mode:this.props.mode !== "mine" ? "mine": undefined});
     }
     onEpClick(){
       this.props.updateSave({isEpMode: this.props.isEpMode? false : true})
@@ -486,7 +482,7 @@
       this.props.model.missionTags.map(function(tag){
           var count = self.props.model.crusaders.map(function (crusader:Crusader){
               return crusader.tags.indexOf(tag.id) != -1 ? 1 : 0;
-          }).reduce((a:number,b:number):number => a + b);
+          }).reduce((a:number,b:number):number => a + b, undefined);
           var classes = "img_tag";
           if(self.props.filterTags && self.props.filterTags[tag.id]){
             classes += " active";
@@ -496,8 +492,9 @@
 
       var countDisplay = totalCrusaders === sortedCrusaders.length ? totalCrusaders : (sortedCrusaders.length + " of " + totalCrusaders);
       var formationRow;
+      var epFilterComponent;
       if(isMineMode){
-        var epFilterComponent = (
+        epFilterComponent = (
           <select
               value={this.state.epFilter}
               onChange={e => this.setState({epFilter:app.inspect(e.target.value,"epFilter.val")})}>
@@ -510,10 +507,10 @@
         );
         formationRow=(
           <tr>
-            <th>SharingIsCaring <TextInputUnc className={["medium"]} value={this.props.sharingIsCaring} type="number" onChange={val => this.props.updateSave({sharingIsCaring: +val})} /></th>
-            <th><Checkbox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
-            <th colSpan="2"><Checkbox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
-            <th><Checkbox checked={this.props.isGearMode} onChange={this.onGearClick} />Track gear</th>
+            <th>SharingIsCaring <app.TextInputUnc className={["medium"]} value={this.props.sharingIsCaring} type="number" onChange={val => this.props.updateSave({sharingIsCaring: +val})} /></th>
+            <th><app.Checkbox checked={this.props.isEpMode} onChange={this.onEpClick} />Track EP</th>
+            <th colSpan={2}><app.Checkbox checked={isBuildingFormation} onChange={this.onFormationClick} /> Build Formation</th>
+            <th><app.Checkbox checked={this.props.isGearMode} onChange={this.onGearClick} />Track gear</th>
             <th></th>
           </tr>
         );
@@ -522,20 +519,20 @@
       var tagsTh2 = !isMineMode || !this.props.isGearMode ? (<th className="tags clickable">{tagCounts}</th>) : null;
       var countsTh = !isMineMode || !this.props.isGearMode? (<th>Counts</th>) : null;
       var sharingTh = isMineMode && this.props.isEpMode ?
-      (<th colSpan="2"></th>): null;
+      (<th colSpan={2}></th>): null;
       return (<table id="tab">
       <thead>
         <tr>
           { isMineMode && !isBuildingFormation ? <th>Owned <Filter on={this.props.filterOwned} filterClick={this.filterOwnedClick} /></th>
             : isMineMode && isBuildingFormation ? <th></th> : null}
           <th></th>
-          <th colSpan="2">Crusader</th>
+          <th colSpan={2}>Crusader</th>
           {tagsTh}
           <th></th>
         </tr>
         <tr>
           {isMineMode ? <th title="owned">{totalOwned}</th> : null}
-          <th>(count:{countDisplay})</th><th colSpan="2"><Checkbox checked={isMineMode} onChange={this.onModeChangeClicked} />Mine</th>
+          <th>(count:{countDisplay})</th><th colSpan={2}><app.Checkbox checked={isMineMode} onChange={this.onModeChangeClicked} />Mine</th>
           {tagsTh2}
           {countsTh}
         </tr>
@@ -543,7 +540,7 @@
         <tr>
           { isMineMode? (<th>EP<i className={getSortClasses(this.props.epSort)} onClick={this.onEpSortClick}></i>{epFilterComponent}</th>) : null}
           <th >Slot<i className={getSortClasses(this.props.slotSort)} onClick={this.onSlotSortClick}></i></th>
-          <th colSpan="2">Name<i className={getSortClasses(this.props.nameSort)} onClick={this.onNameSortClick}></i></th>
+          <th colSpan={2}>Name<i className={getSortClasses(this.props.nameSort)} onClick={this.onNameSortClick}></i></th>
           <th />
           <th />
         </tr>
@@ -575,7 +572,8 @@
 
   var SavedFormation = props => {
     var {clId, saves} = props;
-    var cId = (/(\d+)$/).exec(clId)[1];
+    var m = (/(\d+)$/).exec(clId);
+    var cId = m!= null && m.length && m.length > 0 && m[1];
     var world = app.mathCalc.getWorldById(cId);
     var name= world && world.name || clId;
     console.log(saves);
@@ -588,7 +586,7 @@
     var sorter = (sf1,sf2) => sf1.id > sf2.id ? 1 : -1;
     // put sorter in later
     return ( <li key={clId} data-key={clId}>{name}
-                <UnorderedList sorter={sorter} items={saves} keyMaker={sf => sf.id} displayMap={displayMap} />
+                <app.UnorderedList sorter={sorter} items={saves} keyMaker={sf => sf.id} displayMap={displayMap} />
               </li>);
   };
 
@@ -629,40 +627,40 @@
 
       return (<div>
           <button onClick={() => props.onImportGameDataClick(props.mappedHeroes,props.mappedLoot, props.mappedTalents,props.mappedFormations)}>import</button>
-          <Tabs>
-            <Pane label="Heroes and EP">
+          <app.Tabs>
+            <app.Pane label="Heroes and EP">
               <div><div>{ heroLIs.length + " items"}</div>
                 <ul>
                   {heroLIs}
                 </ul>
               </div>
-            </Pane>
-            <Pane label="Gear">
+            </app.Pane>
+            <app.Pane label="Gear">
               <div><div>{gearLIs.length + " gear items"}</div>
               <ul>
                 {gearLIs}
                 </ul>
-                {createClipperButton(JSON.stringify(gear))}
+                {app.createClipperButton(JSON.stringify(gear))}
               </div>
-            </Pane>
-            <Pane label="Talents">
+            </app.Pane>
+            <app.Pane label="Talents">
               <div>
                 <ul>
                   {talentLIs}
                 </ul>
               </div>
-            </Pane>
-            <Pane label="Other Loot">
+            </app.Pane>
+            <app.Pane label="Other Loot">
               <div>
                 <ul>
                   {lootLIs}
                 </ul>
               </div>
-            </Pane>
-            <Pane label="Parsed Raw">
+            </app.Pane>
+            <app.Pane label="Parsed Raw">
                 <pre>{JSON.stringify(props.data,null,2)}</pre>
-            </Pane>
-            <Pane label="Formations">
+            </app.Pane>
+            <app.Pane label="Formations">
               <div>
                 <ul>
                   {formationLIs}
@@ -672,11 +670,11 @@
                   {rawFormationLIs}
                 </ul>
               </div>
-            </Pane>
-          </Tabs>
+            </app.Pane>
+          </app.Tabs>
       </div>);
   };
-  HeroGameData.displayName = 'HeroGameData';
+  (HeroGameData as any).displayName = 'HeroGameData';
 
   var LegendaryReduction = props =>{
     var ldr = props.legendaryReductionDate;
@@ -731,15 +729,15 @@
   var Exporter = props =>
   (
     <div>
-    <Tabs>
-      <Pane label="Network-Data Importer">
+    <app.Tabs>
+      <app.Pane label="Network-Data Importer">
         <div>
           <p>This is for importing game data from the Crusader Automata (chrome extension) or directly from game network traffic.</p>
-          <TextAreaInputUnc onChange={props.onNetworkDataTextInputChange} value={props.networkDataRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
+          <app.TextAreaInputUnc onChange={props.onNetworkDataTextInputChange} value={props.networkDataRaw} placeHolder='{"success":true,"details":{"abilities":{' className={'fullwidth'} />
           <button onClick={props.onLoadNetworkDataClick}>Parse game data</button>
           <button onClick={props.onClearGameDataParseClick}>Clear Parsed Game Data</button>
 
-          {inspect(props.networkDataJson,'exporter networkDataJson')? (
+          {app.inspect(props.networkDataJson,'exporter networkDataJson')? (
             <HeroGameData heroMap={props.heroMap}
                           crusaders={props.crusaders}
                           data={props.networkDataJson}
@@ -751,17 +749,17 @@
                           onImportGameDataClick={props.onImportGameDataClick} />)
               : null}
       </div>
-        </Pane>
-        <Pane label="Import/Export">
+        </app.Pane>
+        <app.Pane label="Import/Export">
         <div>
           <p>This is for importing and exporting the CotLICheatSheet data to/from other players. Also you can use it to make a backup of your CotLICheatSheet data.</p>
         <button onClick={ () => props.onImportAppStateFromUrlClick()}>Import AppStateFrom Url</button>
         <button onClick={ props.onGenerateUrlClick}>Generate AppState Url</button>
-        <TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","isEpMode":true,"enchantmentPoints":'/>
+        <app.TextAreaInputUnc className={'fullwidth'} onChange={props.onImportTextChange} placeHolder='{"slotSort":"up","mode":"mine","isEpMode":true,"enchantmentPoints":'/>
         <button onClick={props.onImportSiteStateClick} >{props.importText}</button>
         {app.getIsUrlLoaded() ? null : <button onClick={props.onUpdateClick}>Update Export Text</button> }
-        <div>Prettify output?<Checkbox checked={props.exportPretty} onChange={props.onExportPrettyClick} /></div>
-        { inspect(props.exportPretty,"exportPretty") === true ?
+        <div>Prettify output?<app.Checkbox checked={props.exportPretty} onChange={props.onExportPrettyClick} /></div>
+        { app.inspect(props.exportPretty,"exportPretty") === true ?
           (<pre title="export text" id="clipperText" style={props.stateStyle}>{JSON.stringify(props.json,null, '\t')}</pre>)
           : (<div title="export text" id="clipperText" style={props.stateStyle}>{JSON.stringify(props.json)}</div>)
         }
@@ -771,8 +769,8 @@
         </div>
         {props.clipper}
         </div>
-      </Pane>
-      </Tabs>
+      </app.Pane>
+      </app.Tabs>
       </div>
   );
   var provideSavedDefaults = saved => {
@@ -793,7 +791,29 @@
         saved.filterOwned = 0;
   };
 
-  class CruApp extends React.Component {
+  interface ReferenceData{
+    crusaders: any[]
+    talents: any[]
+    missionTags: any[]
+  }
+  interface CruAppProps{
+    referenceData:ReferenceData
+  }
+  //  var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,
+  //       mappedFormations:mappedFormations,
+  //       saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
+  interface CruAppState extends CruAppNetworkData{
+    lastRead?:object
+    error?:string
+    url?:string
+    networkDataRaw?:string
+    textState?:string
+    urlBase?:string
+    exportPretty?:boolean
+    sortTalents?:boolean
+  }
+
+  class CruApp extends React.Component<CruAppProps,CruAppState> {
     constructor(props){
       // duh-duh-duh-duh SUPER PROPS!
       super(props);
@@ -803,154 +823,65 @@
       });
       this.state = this.getInitialState();
     }
-    getInitialState(){
-      if (Clipboard){
-        window.clipboard = new Clipboard('.btn');
+    getInitialState(): CruAppState{
+      if (app.Clipboard){
+        app.clipboard = new app.Clipboard('.btn');
       }
-      var state = {};
+      var state:CruAppState = ({} as CruAppState);
       // auto import is safe now, the storage mechanism will not allow saves with a custom url
       if(app.getIsUrlLoaded()){
         try
         {
-          var urlData = getParameterByName("appGameState");
+          var urlData = app.getParameterByName("appGameState");
           state.saved = this.importAppState(urlData);
         }
         catch (ex){
           return state;
         }
       } else {
-        var read = cruTagGrid.readOrDefault(undefined);
-        var state = {lastRead:read};
+        var read = app.cruTagGrid.readOrDefault(undefined);
+        state = {lastRead:read} as CruAppState;
         state.saved = read ? read : {};
-        if(getIsLocalFileSystem()){
-          var networkDataJson = readIt("gameDataJson",undefined);
+        if(app.getIsLocalFileSystem()){
+          var networkDataJson = app.readIt("gameDataJson",undefined);
           state.networkDataJson=networkDataJson;
         }
       }
       // provide defaults
       provideSavedDefaults(state.saved);
-      scrubSavedData(state.saved);
+      app.scrubSavedData(state.saved);
 
-      // this is convienent for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
-      window.saved = state.saved;
+      // this is convenient for dev, but could easily cause the site to STAY broken for a single user if bad data gets in.
+      app.saved = state.saved;
       return state;
     }
     componentDidUpdate(prevProps, prevState){
       if(prevState.saved != this.state.saved){
-        cruTagGrid.store(this.state.saved);
-        window.saved = this.state.saved;
+        app.cruTagGrid.store(this.state.saved);
+        app.saved = this.state.saved;
       }
-    }
-    loadNetworkData(parsedOrUnparsedData){
-      // console.log('loadNetworkData',parsedOrUnparsedData);
-      var json = typeof(parsedOrUnparsedData) != "string" ? parsedOrUnparsedData : null;
-      if(!(json != null))
-      try{
-        json = JSON.parse(parsedOrUnparsedData);
-        console.log('parse success');
-      } catch (ex){
-        console.error(ex);
-        this.setState({error:ex});
-        return;
-      }
-      if(getIsLocalFileSystem()){
-        storeIt("gameDataJson",json);
-      }
-      var heroMap = {};
-      this.props.referenceData.crusaders.map(c =>{
-        heroMap[c.heroId] = c;
-      });
-      var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000): null;
-      console.log("legendaryReductionImport", legendaryReductionDate || json.details.stats);
-      var getOrGetFromDetails = name => json[name] || (json.details && json.details[name]);
-
-      // account for pasting just the heroes section of json, or the whole data packet
-      var mappedHeroes = parseNetworkDataHeroesSection(heroMap, getOrGetFromDetails("heroes"));
-      var mappedLoot = parseLoot(this.props.referenceData.crusaders,getOrGetFromDetails("loot"));
-      var mappedTalents = parseTalents(this.props.referenceData.talents,getOrGetFromDetails("talents"));
-      window.mappedTalents=mappedTalents;
-      var mappedFormations = parseFormationSaves(getOrGetFromDetails("formation_saves"));
-      console.log('loadNetworkData.mappedFormations', mappedFormations);
-      window.mappedFormations = mappedFormations;
-
-      window.heroMap = this.props.heroMap;
-      var stateMods = {networkDataJson:json, mappedLoot:mappedLoot, mappedHeroes:mappedHeroes, mappedTalents:mappedTalents,
-        mappedFormations:mappedFormations,
-        saved:this.mergeSaveState({legendaryReductionDate: legendaryReductionDate})};
-      console.log('loadNetworkData setting state', stateMods);
-      this.setState(stateMods);
     }
     // network-data importer
     findNetworkData(){
-      console.group("findNetworkData");
-      if(this.state.networkDataRaw){
-        console.log('findNetworkData: using networkDataRaw');
-        this.loadNetworkData(this.state.networkDataRaw);
-      }
-      else if (window.heroesRaw || window.lootRaw){
-        var data = {};
-        data.details = {};
-        if(window.heroesRaw){
-          try{
-            if(typeof(window.heroesRaw) == "string"){
-              console.log('starting heroesRaw parse');
-              data.details.heroes = JSON.parse(window.heroesRaw);
-            }
-            else{
-              console.log('starting heroesRaw import');
-              data.details.heroes = window.heroesRaw;
-            }
-          } catch (ex){
-            console.error(ex);
-          }
-        }
-        if(window.lootRaw){
-          try{
-          if(typeof(window.lootRaw) == "string"){
-          console.log('starting lootRaw parse');
-          data.details.loot = JSON.parse(window.lootRaw);
-          } else {
-            console.log('starting lootRaw import');
-            data.details.loot = window.lootRaw;
-          }
-          } catch (ex){
-            console.error(ex);
-          }
-        }
-        if(window.talentsRaw){
-          try{
-          if(typeof(window.talentsRaw) == "string"){
-          console.log('starting talentsRaw parse');
-          data.details.talents = JSON.parse(window.talentsRaw);
-          } else {
-            console.log('starting talentsRaw import');
-            data.details.talents = window.talentsRaw;
-          }
-          } catch (ex){
-            console.error(ex);
-          }
-        }
-        this.loadNetworkData(data);
-      }
-      console.groupEnd();
+      return app.NetworkData.findNetworkData(this.state.networkDataRaw,this.props.referenceData, this.setState, this.mergeSaveState);
     }
     onClearGameDataParseClick(){
       console.log('onClearGameDataParseClick');
-      this.setState({networkDataJson:null});
+      this.setState({networkDataJson:undefined});
     }
     // network data merge method
     onImportGameDataClick(heroes,loot,talents,formationSaves){
       // heroes looks like this:
       // return {Name:crusader && crusader.displayName,Slot:(crusader && crusader.id),HeroId:h.hero_id,Ep:h.disenchant,Owned:h.owned?true:false};
-      var cruTagGridData = cruTagGrid.readOrDefault(undefined);
-      var data = copyObject(cruTagGridData);
+      var cruTagGridData = app.cruTagGrid.readOrDefault(undefined);
+      var data = app.copyObject(cruTagGridData);
       if(heroes != null){
         try
         {
           if(!(data != null))
-            throw error("onImportGameDataClick: data was not present");
+            throw Error("onImportGameDataClick: data was not present");
           if(!(this.props != null) || !(this.props.referenceData != null))
-            throw error("onImportGameDataClick: props or referenceData was not present");
+            throw Error("onImportGameDataClick: props or referenceData was not present");
           var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
           data.ownedCrusaderIds = ownedCrusaderIds;
           var ep = {}
@@ -972,19 +903,19 @@
       // merged should look like this :
       // crusaderGear:{"01":{"slot0":4,"slot1":4,"slot2":4},
       if(loot && loot.gear){
-        mergeImportLoot(data,loot)
+        app.mergeImportLoot(data,loot)
         console.log('imported loot game data');
       }
       // console.log('importing talents?', talents);
       if(talents){
         console.log('onImportGameDataClick talents', talents);
-        mergeImportTalents(data,talents);
+        app.mergeImportTalents(data,talents);
       }
       if(formationSaves){
         console.group("onImportGameDataClick: formationSaves import");
         try{
           console.log('importing formationSaves');
-          var mergedFormations = Formation.mergeImportFormations(formationSaves, this.props.referenceData.crusaders);
+          var mergedFormations = app.Formation.mergeImportFormations(formationSaves, this.props.referenceData.crusaders);
           console.log('onImportGameDataClick.mergedFormations', mergedFormations);
         } catch(ex){
           console.error(ex);
@@ -992,22 +923,22 @@
         console.groupEnd();
       }
       data.mainSelectedTab = 0;
-      cruTagGrid.store(data);
+      app.cruTagGrid.store(data);
 
       this.setState({saved:data});
 
     }
     changeSaveState(newData){
       if(newData.usesExtension === true){
-        gaEvent("extension", "landing");
+        app.gaEvent("extension", "landing");
         delete newData.usesExtension;
       }
 
       var merged = this.mergeSaveState(newData);
       console.log('changeSaveState',merged);
       this.setState({saved: merged});
-      cruTagGrid.store(merged);
-      window.saved = merged;
+      app.cruTagGrid.store(merged);
+      app.saved = merged;
     }
     onImportSiteStateClick(){
       console.log('onImportSiteStateClick',arguments);
@@ -1020,43 +951,43 @@
           this.changeSaveState({ownedCrusaderIds:data.ownedCrusaderIds});
         } else {
           var data = JSON.parse(this.state.textState);
-          cruTagGrid.store(data);
-          scrubSavedData(data);
+          app.cruTagGrid.store(data);
+          app.scrubSavedData(data);
           this.setState({saved:data});
         }
       }
       // wipe out saved data
       else{
-        cruTagGrid.store(undefined);
+        app.cruTagGrid.store(undefined);
         this.setState({saved:{}});
         // this should be able to be removed once we find out why it is putting things in a bad state
         window.location.reload(false);
       }
     }
-    importAppState(data,reload){
-      if(!data && getIsLocalFileSystem())
+    importAppState(data,reload?:boolean):(CruAppSaveState|{}) {
+      if(!data && app.getIsLocalFileSystem())
         throw "importAppState called without any data";
       if(!data)
-        return;
+        return {};
       var parsed = JSON.parse(data);
       // this potentially can add lots of unused properties into the state that will be stored into html5 local storage and never deleted.
-      cruTagGrid.store(parsed);
-      if(reload)
-        window.location.reload(false);
+      app.cruTagGrid.store(parsed);
+      if(reload === true && app.location)
+        app.location.reload(false);
       return parsed;
     }
     onGenerateUrlClick(){
-      var data = cruTagGrid.readOrDefault();
+      var data = app.cruTagGrid.readOrDefault();
       var stringified = JSON.stringify(data);
-      var baseUrl = window.location.origin + window.location.pathname;
-      var url = baseUrl + exportToUrl("appGameState", stringified);
+      var baseUrl = app.location.origin + app.location.pathname;
+      var url = baseUrl + app.exportToUrl("appGameState", stringified);
       this.setState({url:url,urlBase:baseUrl});
     }
     mergeSaveState(newData){
-      return copyObject(this.state.saved,newData);
+      return app.copyObject(this.state.saved,newData);
     }
     render(){
-      var w = window,
+      var w = app,
       d = document,
       e = d.documentElement,
       g = d.getElementsByTagName('body')[0],
@@ -1071,7 +1002,7 @@
         background:"black"
       };
       var importText = this.state.textState ? 'Import Data from Textbox' : 'Clear All Saved Data';
-      var clipper = createInputClipperButton("clipperText");
+      var clipper = app.createInputClipperButton("clipperText");
       // console.log('clipper', clipper);
 
       var heroMap = {};
@@ -1079,11 +1010,11 @@
       this.props.referenceData.crusaders.map(c =>{
         heroMap[c.heroId] = c;
       });
-      window.networkDataJson = this.state.networkDataJson;
-      window.crusaderGear = this.state.saved.crusaderGear;
+      app.networkDataJson = this.state.networkDataJson;
+      app.crusaderGear = this.state.saved != null && this.state.saved.crusaderGear;
       var trackEvent = (title,onChange) => {
         return function(){
-          gaEvent('event',title);
+          app.gaEvent('event',title);
           onChange(arguments);
         };
       }
@@ -1092,7 +1023,7 @@
                     onImportTextChange={val => this.setState({textState:val})}
                     exportPretty={this.state.exportPretty || false}
                     onExportPrettyClick={e => this.setState({exportPretty:this.state.exportPretty === true ? false : true})}
-                    // networkgame section?
+                    // networkGame section?
                     onNetworkDataTextInputChange={val => { console.log("setting networkDataRaw"); this.setState({networkDataRaw:val});}}
                     onLoadNetworkDataClick={this.findNetworkData}
                     networkDataRaw={this.state.networkDataRaw}
@@ -1109,10 +1040,10 @@
                     onImportSiteStateClick={this.onImportSiteStateClick}
                     onGenerateUrlClick={trackEvent('generateUrl',this.onGenerateUrlClick)}
                     onImportAppStateFromUrlClick={() => {
-                      gaEvent('import','gameState');
-                      this.importAppState(importFromUrl("appGameState"),true);
+                      app.gaEvent('import','gameState');
+                      this.importAppState(app.importFromUrl("appGameState"),true);
                     }}
-                    onUpdateClick={() => !app.getIsUrlLoaded() ?  this.setState({lastRead:cruTagGrid.readOrDefault(undefined)}): null}
+                    onUpdateClick={() => !app.getIsUrlLoaded() ?  this.setState({lastRead:app.cruTagGrid.readOrDefault(undefined)}): null}
                     clipper={clipper}
                     stateStyle={stateStyle}
                     json={this.state.lastRead}
@@ -1124,11 +1055,11 @@
           <div>{JSON.stringify(this.state.error)}</div>
 
           <div className="onGreen">Install the extension to auto-load your data from <a href="https://chrome.google.com/webstore/detail/crusaders-automaton/dhlljphpeodbcliiafbedkbkiifdgdjk">Crusader Automaton</a></div>
-        <Tabs selected={this.state.saved.mainSelectedTab} onTabChange={val => {
-            gaEvent('navigation','click',tabName(val));
+        <app.Tabs selected={this.state.saved && this.state.saved.mainSelectedTab} onTabChange={val => {
+            app.gaEvent('navigation','click',tabName(val));
             this.changeSaveState({mainSelectedTab:val});
             }}>
-          <Pane label="Crusaders">
+          <app.Pane label="Crusaders">
             <div>
               <LegendaryReduction legendaryReductionDate={ldr} />
               <CruTagGrid model={props.referenceData}
@@ -1136,38 +1067,38 @@
                           epSort={this.state.saved.epSort}
                           nameSort={this.state.saved.nameSort}
                           mode={this.state.saved.mode}
-                          isEpMode={this.state.saved.isEpMode}
-                          isGearMode={this.state.saved.isGearMode}
-                          crusaderGear={this.state.saved.crusaderGear}
-                          sharingIsCaring={this.state.saved.sharingIsCaring}
-                          enchantmentPoints={this.state.saved.enchantmentPoints}
-                          ownedCrusaderIds={this.state.saved.ownedCrusaderIds}
+                          isEpMode={this.state.saved.isEpMode || false}
+                          isGearMode={this.state.saved.isGearMode || false}
+                          crusaderGear={this.state.saved && this.state.saved.crusaderGear}
+                          sharingIsCaring={this.state.saved.sharingIsCaring || 0}
+                          enchantmentPoints={this.state.saved.enchantmentPoints || 0}
+                          ownedCrusaderIds={this.state.saved.ownedCrusaderIds || []}
                           isBuildingFormation={this.state.saved.isBuildingFormation}
-                          formationIds={this.state.saved.formationIds}
-                          filterTags={this.state.saved.filterTags}
-                          filterOwned={this.state.saved.filterOwned}
+                          formationIds={this.state.saved.formationIds || []}
+                          filterTags={this.state.saved.filterTags || {}}
+                          filterOwned={this.state.saved.filterOwned || 0}
                           updateSave={this.changeSaveState} />
             </div>
-          </Pane>
-          <Pane label="Talents">
-            <TalentCalc
+          </app.Pane>
+          <app.Pane label="Talents">
+            <app.TalentCalc
               changeSaveState={this.changeSaveState}
               saved={this.state.saved}
               referenceData={this.props.referenceData}
               sortTalents={this.state.sortTalents || false}
               onSortTalentsChange={() => {var nextState = {sortTalents: this.state.sortTalents === true ? false : true}; console.log('nextState', nextState); return this.setState(nextState);}}
               />
-          </Pane>
-          <Pane label="FormationCalc">
-            <FormationCalc />
-          </Pane>
-          <Pane label="Extension and raw Import/Export">
+          </app.Pane>
+          <app.Pane label="FormationCalc">
+            <app.FormationCalc />
+          </app.Pane>
+          <app.Pane label="Extension and raw Import/Export">
             <div>
               {this.state.url? <div><a href={this.state.url}>{this.state.urlBase}</a></div> : null}
               {importArea}
             </div>
-          </Pane>
-          </Tabs>
+          </app.Pane>
+          </app.Tabs>
           <div className="onGreen">
           </div>
         </div>);
@@ -1175,19 +1106,19 @@
   }
 
   ReactDOM.render(
-        <CruApp referenceData={jsonData} />,
+        <CruApp referenceData={app.jsonData as ReferenceData} />,
           document.getElementById('crusaders_holder')
   );
 
   var exportCrusaderData = (refData,playerFields,refFields) =>{
-    var data = cruTagGrid.readOrDefault();
+    var data = app.cruTagGrid.readOrDefault();
     if(!(data!=null))
       throw Error("cruTagGrid data not found");
     if(!(refData != null))
       throw Error("jsonData not found");
     var crusaders = refData.crusaders;
     return crusaders.map(cru =>{
-      var r = {};
+      var r:any = {};
       refFields.map(refFieldName =>{
         r[refFieldName] = cru[refFieldName];
       });
@@ -1211,5 +1142,5 @@
       return r;
     });
   };
-  window.exportCrusaderData = exportCrusaderData;
+  app.exportCrusaderData = exportCrusaderData;
 })(findJsParent(), false);

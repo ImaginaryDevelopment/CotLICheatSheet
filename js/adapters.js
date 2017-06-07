@@ -1,6 +1,11 @@
 // any adapter code or functionality that doesn't need jsx
 // on the fence about domain layer code
 /// <reference path="allHelpers.ts" />
+var Sorting;
+(function (Sorting) {
+    Sorting[Sorting["up"] = 0] = "up";
+    Sorting[Sorting["down"] = 1] = "down";
+})(Sorting || (Sorting = {}));
 var Tag;
 (function (Tag) {
     Tag[Tag["alien"] = 0] = "alien";
@@ -40,15 +45,15 @@ var Tag;
  * @property {Object} stats - unmapped stats
  * @property {FormationSaveMap} formation_saves
  */
-(function (exports, exposeYourself) {
+(function (app, exposeYourself) {
     var getTalentsAsArray = talents => {
-        return Object.keys(talents).map(k => exports.copyObject(talents[k], { name: k }));
+        return Object.keys(talents).map(k => app.copyObject(talents[k], { name: k }));
     };
     if (exposeYourself === true)
-        exports.getTalentsAsArray = getTalentsAsArray;
+        app.getTalentsAsArray = getTalentsAsArray;
     // talent reference data
     // data is an object keyed to talentIds as a string
-    exports.parseTalents = (talents, data) => {
+    app.parseTalents = (talents, data) => {
         if (!(data != null))
             return;
         console.log('attempting to parse talents');
@@ -66,7 +71,7 @@ var Tag;
      * @property {string} id
      * @property {number} heroId
      */
-    exports.parseLoot = (crusaders, lootData) => {
+    app.parseLoot = (crusaders, lootData) => {
         if (!(lootData != null))
             return;
         console.log('attempting to parse loot');
@@ -142,7 +147,7 @@ var Tag;
         }).filter(l => l != null);
         return { gear: lootMapped, items: items };
     };
-    exports.parseFormationSaves = (data) => {
+    app.parseFormationSaves = (data) => {
         console.log('parseFormationSaves');
         if (!(data != null))
             return;
@@ -151,7 +156,7 @@ var Tag;
     };
     // data is the object to merge the loot into
     // so it will hold save data in the format we will keep it in, in storage
-    exports.mergeImportLoot = (data, loot) => {
+    app.mergeImportLoot = (data, loot) => {
         console.log('mergeImportLoot', data);
         if (loot.gear) {
             try {
@@ -188,13 +193,13 @@ var Tag;
             });
         }
     };
-    exports.mergeImportTalents = (data, talents) => {
+    app.mergeImportTalents = (data, talents) => {
         console.log('mergeImportTalents', talents);
         if (!(talents != null))
             return;
         talents.filter(t => t.name != null).map(t => data[t.name] = t.level);
     };
-    exports.parseNetworkDataHeroesSection = (heroMap, heroes) => {
+    app.parseNetworkDataHeroesSection = (heroMap, heroes) => {
         if (!(heroes != null))
             return;
         console.log('parseNetworkDataHeroesSection', heroes.length);
@@ -206,7 +211,7 @@ var Tag;
         return mapped;
     };
     // expect data is a string, and it starts with { or [
-    exports.exportToUrl = (key, data) => {
+    app.exportToUrl = (key, data) => {
         if (!data.startsWith("{") && !data.startsWith("["))
             throw "error data is bad";
         // hints from http://stackoverflow.com/questions/6807180/how-to-escape-a-json-string-to-have-it-in-a-url
@@ -217,7 +222,7 @@ var Tag;
         return '?' + key + '=' + encoded;
     };
     // from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-    exports.getParameterByName = (name, url) => {
+    app.getParameterByName = (name, url) => {
         if (!url) {
             url = window.location.href;
         }
@@ -229,14 +234,14 @@ var Tag;
             return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     };
-    exports.importFromUrl = key => {
-        return exports.getParameterByName(key);
+    app.importFromUrl = key => {
+        return app.getParameterByName(key);
     };
     // assumes anything with a query on it, is a url loaded/loading app state
-    exports.getIsUrlLoaded = () => exports.location.search !== null && exports.location.search !== "";
-    exports.getIsLocalFileSystem = () => window.location.protocol && window.location.protocol == "file:";
-    exports.tryInitializeClipboard = () => exports.Clipboard && new exports.Clipboard('.btn');
-    exports.crusaderFilter = (ownedCrusaderIds, crusader, filterOwned, filterTags, isBuildingFormation, formationIds, ep, epFilterInput) => {
+    app.getIsUrlLoaded = () => app.location.search !== null && app.location.search !== "";
+    app.getIsLocalFileSystem = () => window.location.protocol && window.location.protocol == "file:";
+    app.tryInitializeClipboard = () => app.Clipboard && new app.Clipboard('.btn');
+    app.crusaderFilter = (ownedCrusaderIds, crusader, filterOwned, filterTags, isBuildingFormation, formationIds, ep, epFilterInput) => {
         var owned = ownedCrusaderIds.indexOf(crusader.id) != -1 || (crusader.slot == crusader.id && crusader.slot < 21);
         var ownershipFilter = (filterOwned == 0)
             || (filterOwned == 1 && (owned || (crusader.slot == crusader.id && crusader.slot < 21)))
@@ -265,7 +270,7 @@ var Tag;
         // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, epFilter,epFilterInput, result);
         return result;
     };
-    exports.heroSelectSorter = (crusaders, dontSort) => {
+    app.heroSelectSorter = (crusaders, dontSort) => {
         var c = crusaders.slice(0);
         if (!dontSort)
             c.sort((a, b) => {
@@ -295,7 +300,7 @@ var Tag;
      *
      */
     // each function in the passed array must return 1, 0, or -1 given 2 crusaders
-    exports.sortCrusaders2 =
+    app.sortCrusaders2 =
         /**
          * @param {Array<Crusader>} crusaders - the crusaders to sort
          * @param {Array<function(Crusader,Crusader)>} fComparisons
@@ -325,18 +330,18 @@ var Tag;
                 return crusaders.slice(0);
             return sorted;
         };
-    exports.filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort, crusaders, epSort, epMap, nameSort, epFilter) => {
+    app.filterSortCrusaders = (ownedCrusaderIds, filterOwned, filterTags, isBuildingFormation, formationIds, slotSort, crusaders, epSort, epMap, nameSort, epFilter) => {
         var filtered = crusaders.filter(function (crusader) {
             var ep = epMap ?
                 epMap[crusader.id] : 0;
-            var result = exports.crusaderFilter(ownedCrusaderIds, crusader, filterOwned, filterTags, isBuildingFormation, formationIds, ep, epFilter);
+            var result = app.crusaderFilter(ownedCrusaderIds, crusader, filterOwned, filterTags, isBuildingFormation, formationIds, ep, epFilter);
             // console.log('filter', crusader,filterOwned, filterTags);
             return result;
         });
-        var sortedCrusaders = exports.sortCrusaders2(filtered, [slotComparer(slotSort), epComparer(epSort, epMap), nameComparer(nameSort)]);
+        var sortedCrusaders = app.sortCrusaders2(filtered, [slotComparer(slotSort), epComparer(epSort, epMap), nameComparer(nameSort)]);
         return sortedCrusaders;
     };
-    exports.scrubSavedData = saved => {
+    app.scrubSavedData = saved => {
         // consider scrubbing old fields into new name/format, then setting the old field to undefined
         // legacy data coming in may look like this:
         //{slotSort:"up",mode:"",epMode:false,sharingIsCaringLevel:0,enchantmentPoints:{},filterOwned:0,ownedCrusaderIds:[], formation:null, filterTags:{}, formationIds:{}};
@@ -356,7 +361,7 @@ var Tag;
             }
             toRemove.map(v => x.splice(x.indexOf(v), 1));
             for (var i = 1; i <= 20; i++) {
-                var proposedValue = exports.padLeft(i, 2);
+                var proposedValue = app.padLeft(i, 2);
                 if (x.indexOf(proposedValue) < 0) {
                     x.push(proposedValue);
                 }
@@ -398,15 +403,15 @@ var Tag;
         }
     };
     // componentizing
-    exports.cruTagGrid = (() => {
+    app.cruTagGrid = (() => {
         var cruTagGridKey = "cruTagGrid";
         var my = {};
         // disable writes to storage if they arrived here from someone else's data link
-        my.store = data => !exports.getIsUrlLoaded() ? exports.storeIt(cruTagGridKey, data) : null;
-        my.readOrDefault = defaultValue => !exports.getIsUrlLoaded() ? exports.readIt(cruTagGridKey, defaultValue) : defaultValue;
+        my.store = data => !app.getIsUrlLoaded() ? app.storeIt(cruTagGridKey, data) : null;
+        my.readOrDefault = defaultValue => !app.getIsUrlLoaded() ? app.readIt(cruTagGridKey, defaultValue) : defaultValue;
         return my;
     })();
-    exports.calcEffectiveEP = (sharingIsCaringLevel, cruEP, slotEP) => {
+    app.calcEffectiveEP = (sharingIsCaringLevel, cruEP, slotEP) => {
         var otherEP = +slotEP - +cruEP;
         var sic = 6 + +(sharingIsCaringLevel || 0);
         // rounding via http://www.jacklmoore.com/notes/rounding-in-javascript/
@@ -418,7 +423,7 @@ var Tag;
     /**
      * @module
      */
-    exports.Formation = (() => {
+    app.Formation = (() => {
         var my = {};
         // not for export
         /**
@@ -429,7 +434,7 @@ var Tag;
             selectedWorldId => {
                 var key = makeKey(selectedWorldId);
                 // copyObject will pass the default value through if the read returns nothing
-                var oldWorldSaves = exports.readIt(key, {});
+                var oldWorldSaves = app.readIt(key, {});
                 return oldWorldSaves;
             };
         /**
@@ -454,7 +459,7 @@ var Tag;
                 var oldWorldSaves = my.getWorldSaves(selectedWorldId);
                 oldWorldSaves[saveName] = { formationIds: formationIds, dpsChar: dpsChar, kaineXP: kaineXP };
                 console.log('saving:', oldWorldSaves[saveName], 'to', key, '.', saveName);
-                exports.storeIt(key, oldWorldSaves);
+                app.storeIt(key, oldWorldSaves);
                 return oldWorldSaves;
             };
         /**
@@ -464,7 +469,7 @@ var Tag;
         my.getFormation =
             (worldId, saveName) => {
                 var key = makeKey(worldId);
-                var worldSaves = exports.readIt(key);
+                var worldSaves = app.readIt(key);
                 console.log('loading', worldSaves);
                 var data = worldSaves[saveName];
                 return data;
@@ -488,7 +493,7 @@ var Tag;
                  * @type {FormationSave}
                  */
                 var campaignSlotFormations = formationSaves[campaignLongId];
-                var oldWorldFormations = exports.Formation.getWorldSaves(campaignId);
+                var oldWorldFormations = app.Formation.getWorldSaves(campaignId);
                 result[campaignId] = oldWorldFormations || {};
                 campaignSlotFormations.map((slotSave) => {
                     var saveSlot = slotSave.id;
@@ -516,7 +521,7 @@ var Tag;
         };
         return my;
     })();
-    exports.Talents = (() => {
+    app.Talents = (() => {
         var my = {};
         var getTalentMeta = my.getTalentMeta = (fGetDps, value, max, costForNextLevel) => {
             var dpsBuff = fGetDps(value);
@@ -602,8 +607,8 @@ var Tag;
                 var cooldown = getCooldown(tic.tc.common, tic.tc.uncommon, tic.tc.rare, tic.tc.epic) * 100;
                 var dpsInfo = tic.dpsInfo;
                 var dpsHero = dpsInfo.cru; //props.crusaders.find(cru => cru.id === props.selectedHeroId);
-                var effectiveEP = exports.calcEffectiveEP(tic.td.sharingIsCaring.level, dpsInfo.ep, dpsInfo.slotEp);
-                var getCumulativeCost = name => getCanReadTalent(name) ? exports.createRange(tic.td[name].level).map(i => tic.td[name].getCost(i + 1)).reduce((a, b) => a + b, 0) : null;
+                var effectiveEP = app.calcEffectiveEP(tic.td.sharingIsCaring.level, dpsInfo.ep, dpsInfo.slotEp);
+                var getCumulativeCost = name => getCanReadTalent(name) ? app.createRange(tic.td[name].level).map(i => tic.td[name].getCost(i + 1)).reduce((a, b) => a + b, 0) : null;
                 var getEnchantBuff = olvl => (olvl * 0.2 + 1) * 0.25;
                 var currentEnchantBuff = getEnchantBuff(tic.td.overenchanted.level);
                 var idkMyBffJill = (() => {
@@ -634,7 +639,7 @@ var Tag;
                             case "overenchanted": return x => ((1 + getEnchantBuff(x) * tic.dpsInfo.ep) - (1 + 0.25 * tic.dpsInfo.ep)) / (1 + 0.25 * tic.dpsInfo.ep);
                             // assumes they have at least common gear in all slots
                             case "setBonus": return x => x * 0.2;
-                            case "sharingIsCaring": return x => (exports.calcEffectiveEP(x, tic.dpsInfo.ep, tic.dpsInfo.slotEp) * currentEnchantBuff - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff * (idkMyBffJill) + 1);
+                            case "sharingIsCaring": return x => (app.calcEffectiveEP(x, tic.dpsInfo.ep, tic.dpsInfo.slotEp) * currentEnchantBuff - currentEnchantBuff * idkMyBffJill) / (currentEnchantBuff * (idkMyBffJill) + 1);
                             case "fastLearners": return getFastLearnersDps;
                             case "wellEquipped": return my.getWellEquippedDps(tic.dpsInfo.epics);
                             case "swapDay": return x => 0.2 * x * (tic.dpsInfo.slotEpics - tic.dpsInfo.epics);
@@ -673,6 +678,106 @@ var Tag;
                 var nextStormRider = getCurrentStormRider(tic.td.rideTheStorm.level + 1);
                 return { cooldown, dpsHero, effectiveEP, getStormRiderPercentageFromRarity, spent, currentStormRider, nextStormRider, defaultOrder, talentDict: tic.td };
             };
+        return my;
+    })();
+    app.NetworkData = (() => {
+        var my = {};
+        var loadNetworkData = (parsedOrUnparsedData, referenceData, setState, mergeSaveState) => {
+            // console.log('loadNetworkData',parsedOrUnparsedData);
+            var json = typeof (parsedOrUnparsedData) != "string" ? parsedOrUnparsedData : null;
+            if (!(json != null))
+                try {
+                    json = JSON.parse(parsedOrUnparsedData);
+                    console.log('parse success');
+                }
+                catch (ex) {
+                    console.error(ex);
+                    setState({ error: ex });
+                    return;
+                }
+            if (app.getIsLocalFileSystem()) {
+                app.storeIt("gameDataJson", json);
+            }
+            var heroMap = {};
+            referenceData.crusaders.map(c => {
+                heroMap[c.heroId] = c;
+            });
+            var legendaryReductionDate = json && json.details && json.details.stats && json.details.stats.legendary_reduction_date ? new Date(+json.details.stats.legendary_reduction_date * 1000) : null;
+            console.log("legendaryReductionImport", legendaryReductionDate || json.details.stats);
+            var getOrGetFromDetails = name => json[name] || (json.details && json.details[name]);
+            // account for pasting just the heroes section of json, or the whole data packet
+            var mappedHeroes = app.parseNetworkDataHeroesSection(heroMap, getOrGetFromDetails("heroes"));
+            var mappedLoot = app.parseLoot(referenceData.crusaders, getOrGetFromDetails("loot"));
+            var mappedTalents = app.parseTalents(referenceData.talents, getOrGetFromDetails("talents"));
+            app.mappedTalents = mappedTalents;
+            var mappedFormations = app.parseFormationSaves(getOrGetFromDetails("formation_saves"));
+            console.log('loadNetworkData.mappedFormations', mappedFormations);
+            app.mappedFormations = mappedFormations;
+            app.heroMap = heroMap;
+            var stateMods = { networkDataJson: json, mappedLoot: mappedLoot, mappedHeroes: mappedHeroes, mappedTalents: mappedTalents,
+                mappedFormations: mappedFormations,
+                saved: mergeSaveState({ legendaryReductionDate: legendaryReductionDate }) };
+            console.log('loadNetworkData setting state', stateMods);
+            setState(stateMods);
+        };
+        my.findNetworkData = (networkDataRaw, referenceData, propHeroMap, setState, mergeSaveState) => {
+            console.group("findNetworkData");
+            if (networkDataRaw) {
+                console.log('findNetworkData: using networkDataRaw');
+                my.loadNetworkData(networkDataRaw);
+            }
+            else if (app.heroesRaw || app.lootRaw) {
+                var data = {};
+                data.details = {};
+                if (app.heroesRaw) {
+                    try {
+                        if (typeof (app.heroesRaw) == "string") {
+                            console.log('starting heroesRaw parse');
+                            data.details.heroes = JSON.parse(app.heroesRaw);
+                        }
+                        else {
+                            console.log('starting heroesRaw import');
+                            data.details.heroes = app.heroesRaw;
+                        }
+                    }
+                    catch (ex) {
+                        console.error(ex);
+                    }
+                }
+                if (app.lootRaw) {
+                    try {
+                        if (typeof (app.lootRaw) == "string") {
+                            console.log('starting lootRaw parse');
+                            data.details.loot = JSON.parse(app.lootRaw);
+                        }
+                        else {
+                            console.log('starting lootRaw import');
+                            data.details.loot = app.lootRaw;
+                        }
+                    }
+                    catch (ex) {
+                        console.error(ex);
+                    }
+                }
+                if (app.talentsRaw) {
+                    try {
+                        if (typeof (app.talentsRaw) == "string") {
+                            console.log('starting talentsRaw parse');
+                            data.details.talents = JSON.parse(app.talentsRaw);
+                        }
+                        else {
+                            console.log('starting talentsRaw import');
+                            data.details.talents = app.talentsRaw;
+                        }
+                    }
+                    catch (ex) {
+                        console.error(ex);
+                    }
+                }
+                my.loadNetworkData(data, referenceData, propHeroMap, setState, mergeSaveState);
+            }
+            console.groupEnd();
+        };
         return my;
     })();
 })(findJsParent(), false);
