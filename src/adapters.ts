@@ -7,6 +7,12 @@
 declare var global:any;
 declare var module:any;
 
+// represents the data in data.js
+interface Model{
+  crusaders:any[]
+  missionTags:any[]
+}
+
 interface FormationSave{
   id:number
   f:number[]
