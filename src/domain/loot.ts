@@ -14,7 +14,7 @@ var app = (typeof module !== "undefined" && module && module.exports
 
 //loot tracking will use V1 whenever the crusader's loot data isn't in data.js (simple compound string of rarity,isGolden,legendary level)
 var LootV1 = app.LootV1 = (function () {
-  var my = {};
+  var my:any= {};
   // 0 is none, 1 is common, 2 is uncommon, 3 is rare, 4 epic, 5 legendary
   // examples 1, "1", "4g", "5g2"
   /**
@@ -84,8 +84,9 @@ var LootV1 = app.LootV1 = (function () {
   my.changeLLevel = changeLLevel;
   return my;
 }());
+
 var LootV2 = app.LootV2 = (function () {
-  var my = {};
+  var my:any = {};
   /**
    * @param {number | string} lootIdOrCompound
   */
@@ -96,9 +97,9 @@ var LootV2 = app.LootV2 = (function () {
     if(isCompoundish)
     {
       var compoundIndex_ = lootIdOrCompound.indexOf("_");
-      var compoundIndexg = lootIdOrCompound.indexOf("g");
+      var compoundIndexG = lootIdOrCompound.indexOf("g");
 
-      lootId = +lootIdOrCompound.slice(0,Math.max(compoundIndex_,compoundIndexg));
+      lootId = +lootIdOrCompound.slice(0,Math.max(compoundIndex_,compoundIndexG));
     } else lootId = +lootIdOrCompound;
 
     // if(!(lootId != null) || lootId < 5 || typeof lootId !=="number" || isNaN(lootId) || Number.isNaN(lootId))
@@ -113,7 +114,8 @@ var LootV2 = app.LootV2 = (function () {
   * @return boolean
   */
   var getIsGolden = (refGear,lootIdOrCompound) => {
-    var lootId = my.getLootIdFromLootIdOrCompound(lootIdOrCompound);
+    var lootId = getLootIdFromLootIdOrCompound(lootIdOrCompound);
+    // can't fallback to compound string possibility, the only way we'd have one is if this item was in the data before
     var item = refGear.find(g => g.lootId == lootId);
     return item && item.golden === true;
   };
@@ -143,7 +145,7 @@ var LootV2 = app.LootV2 = (function () {
     if(!(refGear != null)){
       console.warn('no refGear provided', lootIdOrCompound);
       if(app && app.throw === true)
-        throw error('no refGear provided'+ lootIdOrCompound);
+        throw Error('no refGear provided'+ lootIdOrCompound);
       // debugger;
       return 0;
     }
@@ -182,7 +184,7 @@ var LootV2 = app.LootV2 = (function () {
 }());
 
 var Loot = app.Loot = (function(){
-  var my = {};
+  var my:any = {};
   // id can be V1 compound, lootId, or lootIdCompound (containing legendary level)
   my.getRarityByItemId = (id,refGear) => {
     if(!(id != null)){
