@@ -732,7 +732,7 @@ var Tag;
             console.group("findNetworkData");
             if (networkDataRaw) {
                 console.log('findNetworkData: using networkDataRaw');
-                my.loadNetworkData(networkDataRaw);
+                loadNetworkData(networkDataRaw, referenceData, setState, mergeSaveState);
             }
             else if (app.heroesRaw || app.lootRaw) {
                 var data = {};
@@ -782,7 +782,7 @@ var Tag;
                         console.error(ex);
                     }
                 }
-                my.loadNetworkData(data, referenceData, propHeroMap, setState, mergeSaveState);
+                loadNetworkData(data, referenceData, setState, mergeSaveState);
             }
             console.groupEnd();
         };

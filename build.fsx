@@ -294,6 +294,14 @@ module Tasks =
 
     let compileTS failForExitCode = fun (changes:FileChange seq option) ->
         let changes = changes |> Option.map List.ofSeq
+        let fixupDTsFiles () =
+            let dtsPath = "node_modules/@types/node/index.d.ts"
+            dtsPath
+            |> File.ReadAllText
+            |> replace "declare var global: NodeJS.Global;" "declare var global: NodeJS.Global | any;"
+            |> replace "declare var module: NodeModule;" "declare var module: NodeModule | any;"
+            |> fun text -> File.WriteAllText(dtsPath,text)
+        fixupDTsFiles()
         let compileTS (relPath:string) =
             let configArgs =
                 match changes with
