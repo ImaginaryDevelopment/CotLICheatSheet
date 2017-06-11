@@ -507,10 +507,15 @@ var Tag;
                     var saveSlot = slotSave.id;
                     // console.log('mergeImportFormations. slotSave.formation', slotSave.formation);
                     // need to adapt this from hero_ids to formationIds ("01a", "11c", ...)
-                    var formationIds = slotSave.f.map(heroId => 
-                    // player data uses -1 for no one in slot
-                    heroId < 1 ? null :
-                        crusaders.find(c => c.heroId == heroId).id);
+                    var formationIds = slotSave.f.map(heroId => {
+                        // player data uses -1 for no one in slot
+                        if (heroId < 1)
+                            return null;
+                        var cru = crusaders.find(c => c.heroId == heroId);
+                        if (cru != null)
+                            return cru.id;
+                        return null;
+                    });
                     // console.log('mergeImportFormations formationIds', formationIds);
                     // dpsChar is undefined
                     result[campaignId][saveSlot] = { formationIds: formationIds, dpsChar: undefined, kaineXP: undefined };
@@ -728,7 +733,7 @@ var Tag;
             console.log('loadNetworkData setting state', stateMods);
             setState(stateMods);
         };
-        my.findNetworkData = (networkDataRaw, referenceData, propHeroMap, setState, mergeSaveState) => {
+        my.findNetworkData = (networkDataRaw, referenceData, setState, mergeSaveState) => {
             console.group("findNetworkData");
             if (networkDataRaw) {
                 console.log('findNetworkData: using networkDataRaw');

@@ -297,7 +297,7 @@
     }
     // network-data importer
     findNetworkData(){
-      return app.NetworkData.findNetworkData(this.state.networkDataRaw,this.props.referenceData, this.setState, this.mergeSaveState);
+      return app.NetworkData.findNetworkData(this.state.networkDataRaw,this.props.referenceData, this.setState.bind(this), this.mergeSaveState.bind(this));
     }
     onClearGameDataParseClick(){
       console.log('onClearGameDataParseClick');
@@ -316,12 +316,18 @@
             throw Error("onImportGameDataClick: data was not present");
           if(!(this.props != null) || !(this.props.referenceData != null))
             throw Error("onImportGameDataClick: props or referenceData was not present");
-          var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0].id);
+          var ownedCrusaderIds = heroes.filter(h => h.Owned).map(h => {
+            var cruRef = this.props.referenceData.crusaders.find(c => c.heroId == h.HeroId);
+            if(cruRef !=null)
+              return cruRef.id;
+            return undefined;
+          }).filter(cruId => cruId != null);
           data.ownedCrusaderIds = ownedCrusaderIds;
           var ep = {}
           heroes.filter(h => h.Owned).map(h => {
-            var crusader = this.props.referenceData.crusaders.filter(c => c.heroId == h.HeroId)[0];
-            ep[crusader.id] = h.Ep;
+            var crusader = this.props.referenceData.crusaders.find(c => c.heroId == h.HeroId);
+            if(crusader != null)
+              ep[crusader.id] = h.Ep;
           });
           data.enchantmentPoints = ep;
           console.log('imported hero game data');
