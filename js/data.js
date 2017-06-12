@@ -524,39 +524,37 @@ window.jsonData =
     "everyLastCent": {
       "talentId": 26
     },
-    "extendedSpawns":{
+    "extendedSpawns": {
       "talentId": 27,
-      "num_levels":40
+      "num_levels": 40
     },
-    "Click-tastrophy":{
+    "Click-tastrophy": {
       "talentId": 28,
-      "num_levels":40
-
+      "num_levels": 40
     },
-    "Instant Satisfaction":{
+    "Instant Satisfaction": {
       "talentId": 29,
-      "num_levels":21
-
+      "num_levels": 21
     },
-    "Idle Increases":{
+    "Idle Increases": {
       "talentId": 30,
-      "num_levels":40
+      "num_levels": 40
     },
-    "Legendary Benefits":{
+    "Legendary Benefits": {
       "talentId": 31,
-      "num_levels":50
+      "num_levels": 50
     },
-    "Idols Over Time":{
+    "Idols Over Time": {
       "talentId": 32,
-      "num_levels":20
+      "num_levels": 20
     },
-    "Sprint Mode":{
+    "Sprint Mode": {
       "talentId": 33,
-      "num_levels":10
+      "num_levels": 10
     },
-    "Superior Training":{
+    "Superior Training": {
       "talentId": 34,
-      "num_levels":80
+      "num_levels": 80
     }
   },
   "missionTags": [
@@ -1981,6 +1979,20 @@ window.jsonData =
         "selfdps",
         "alldps",
         "selfdps"
+      ]
+    },
+    {
+      "id": "03c",
+      "heroId": 85,
+      "displayName": "Turps the Tasty",
+      "image": "TurpsTheTasty_48.png",
+      "slot": 3,
+      "tags": [
+        "event",
+        "male",
+        "human",
+        "support",
+        "gold"
       ]
     },
     {
@@ -7310,6 +7322,20 @@ window.jsonData =
         "selfdps",
         "selfdps",
         "alldps"
+      ]
+    },
+    {
+      "id": "13c",
+      "heroId": 86,
+      "displayName": "Sjin the Builder",
+      "image": "SjinTheBuilder_48.png",
+      "slot": 13,
+      "tags": [
+        "event",
+        "male",
+        "human",
+        "support",
+        "supernatural"
       ]
     },
     {
