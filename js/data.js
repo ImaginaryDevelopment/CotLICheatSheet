@@ -1044,6 +1044,112 @@ window.jsonData =
       ]
     },
     {
+      "id": "01d",
+      "heroId": 89,
+      "displayName": "Slisiblyp, the Alien Scientist",
+      "image": "",
+      "slot": 1,
+      "tags": [
+        "alien",
+        "female",
+        "clicker",
+        "support",
+        "event"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Decomposing Pod",
+          "lootId": 1542
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Hatchery Pod",
+          "lootId": 1543
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Chitinous Pod",
+          "lootId": 1544
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Gene-Spliced Pod of Ominous Gestation",
+          "lootId": 1545
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Distressingly Prehensile Birthpod of Horror",
+          "lootId": 1546
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Chipped Knife",
+          "lootId": 1547
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Simple Knife",
+          "lootId": 1548
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Unbreakable Knife",
+          "lootId": 1549
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Exquisite Blade of Impossible Alloys",
+          "lootId": 1550
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Amorphous Hyperblade of Dimensional Cutting",
+          "lootId": 1551
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Nonfunctional Gizmo",
+          "lootId": 1552
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Basic Multitool",
+          "lootId": 1553
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "High-Tech Multitool",
+          "lootId": 1554
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Time-Warping Multitool of Predetermination",
+          "lootId": 1555
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Sentient Future-Tech Omnitool of Self-Invention",
+          "lootId": 1556
+        }
+      ]
+    },
+    {
       "id": "01c",
       "displayName": "Warwick the Warlock",
       "slot": 1,
@@ -1087,7 +1193,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 4,
-          "name": "Warwick GE Cape",
+          "name": "Creepy Warlock's Cloak of Cloaked Creeping",
           "lootId": 1532,
           "golden": true
         },
@@ -1100,7 +1206,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 5,
-          "name": "Warwick LE Cape",
+          "name": "Creepy Warlock's Cloak of Cloaked Creeping",
           "lootId": 1533,
           "golden": true
         },
@@ -2012,91 +2118,105 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 1,
-          "name": "85 - 1 - 1",
+          "name": "Disgusting Sauce",
           "lootId": 1456
         },
         {
           "slot": 0,
           "rarity": 2,
-          "name": "85 - 1 - 2",
+          "name": "Chalky Sauce",
           "lootId": 1457
         },
         {
           "slot": 0,
           "rarity": 3,
-          "name": "85 - 1 - 3",
+          "name": "Tasty Chocolate Sauce",
           "lootId": 1458
         },
         {
           "slot": 0,
           "rarity": 4,
-          "name": "85 - 1 - 4",
+          "name": "Tasteful Dark Chocolate Sauce Dispenser of Doom",
           "lootId": 1459
         },
         {
           "slot": 0,
           "rarity": 5,
-          "name": "85 - 1 - 5",
+          "name": "Premium Chocolate Sauce of the Picky Saucier",
           "lootId": 1460
         },
         {
           "slot": 1,
           "rarity": 1,
-          "name": "85 - 2 - 1",
+          "name": "Bent Fork",
           "lootId": 1461
         },
         {
           "slot": 1,
           "rarity": 2,
-          "name": "85 - 2 - 2",
+          "name": "Twisted Fork",
           "lootId": 1462
         },
         {
           "slot": 1,
           "rarity": 3,
-          "name": "85 - 2 - 3",
+          "name": "Clean Fork",
           "lootId": 1463
         },
         {
           "slot": 1,
           "rarity": 4,
-          "name": "85 - 2 - 4",
+          "name": "Ivory Eatin' Fork of Delicious Memories",
           "lootId": 1464
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "Magical Meat-Teleporting Fork of Neverending Tenderloin",
+          "lootId": 1540,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "85 - 2 - 5",
+          "name": "Shiny Gold-Encrusted Fork of Legendary Meals",
           "lootId": 1465
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Magical Meat-Teleporting Fork of Neverending Tenderloin",
+          "lootId": 1541,
+          "golden": true
         },
         {
           "slot": 2,
           "rarity": 1,
-          "name": "85 - 3 - 1",
+          "name": "Rotting Orange",
           "lootId": 1466
         },
         {
           "slot": 2,
           "rarity": 2,
-          "name": "85 - 3 - 2",
+          "name": "Sad Looking Orange",
           "lootId": 1467
         },
         {
           "slot": 2,
           "rarity": 3,
-          "name": "85 - 3 - 3",
+          "name": "Fresh Orange",
           "lootId": 1468
         },
         {
           "slot": 2,
           "rarity": 4,
-          "name": "85 - 3 - 4",
+          "name": "Triple Threat Orange of Extreme Citrus Delights",
           "lootId": 1469
         },
         {
           "slot": 2,
           "rarity": 5,
-          "name": "85 - 3 - 5",
+          "name": "Freshly Picked Crate of Delicious Orange Oranges",
           "lootId": 1470
         }
       ]
@@ -4110,7 +4230,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 4,
-          "name": "Princess Necklace GE",
+          "name": "Royal Ruby Necklace of Fireproof Foliage",
           "lootId": 1538,
           "golden": true
         },
@@ -4123,7 +4243,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Princess Necklace LE",
+          "name": "Royal Ruby Necklace of Fireproof Foliage",
           "lootId": 1539,
           "golden": true
         }
@@ -7037,6 +7157,125 @@ window.jsonData =
       ]
     },
     {
+      "id": "12d",
+      "heroId": 90,
+      "displayName": "Red, the Ace Pilot",
+      "image": "",
+      "slot": 12,
+      "tags": [
+        "human",
+        "female",
+        "support",
+        "event"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Inert Bomb",
+          "lootId": 1557
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Standard-Issue Bomb",
+          "lootId": 1558
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Gigaton Bomb",
+          "lootId": 1559
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Antimatter Smartbomb of Erasure",
+          "lootId": 1560
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Self-Aware Nanite Bomb of Incredibly Specific Annihilation",
+          "lootId": 1561
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Rusty Peashooter",
+          "lootId": 1562
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Sturdy Machine Gun",
+          "lootId": 1563
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Rapid-Fire Machine Gun",
+          "lootId": 1564
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Recoilless Belt-Fed Bolter of Suppression",
+          "lootId": 1565
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Double-Barrelled Machine Gun of Comical Overkill",
+          "lootId": 1572,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Twin Gauss Cannons of Relentless Perforation",
+          "lootId": 1566
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Double-Barrelled Machine Gun of Comical Overkill",
+          "lootId": 1573,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Sky Lemon",
+          "lootId": 1567
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Plain Plane",
+          "lootId": 1568
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "High-Octane Biplane",
+          "lootId": 1569
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Model 90-3-4 Prototype",
+          "lootId": 1570
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Triple-Winged Travesty of Ludicrous Aeronautics",
+          "lootId": 1571
+        }
+      ]
+    },
+    {
       "id": "12b",
       "displayName": "Montana James",
       "image": "MontanaJames_48.png",
@@ -7250,7 +7489,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 5,
-          "name": "Visciously Curved Elf Blade of Hooking",
+          "name": "Viciously Curved Elf Blade of Hooking",
           "lootId": 1223
         },
         {
@@ -7434,7 +7673,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 4,
-          "name": "Runed Omnidimentional Loot Sack of Galactic Collecting",
+          "name": "Runed Omnidimensional Loot Sack of Galactic Collecting",
           "lootId": 1528,
           "golden": true
         },
@@ -7447,7 +7686,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Runed Omnidimentional Loot Sack of Galactic Collecting",
+          "name": "Runed Omnidimensional Loot Sack of Galactic Collecting",
           "lootId": 1529,
           "golden": true
         }
@@ -7475,91 +7714,91 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 1,
-          "name": "86 - 1 - 1",
+          "name": "Rusted Hammer",
           "lootId": 1471
         },
         {
           "slot": 0,
           "rarity": 2,
-          "name": "86 - 1 - 2",
+          "name": "Dented Hammer",
           "lootId": 1472
         },
         {
           "slot": 0,
           "rarity": 3,
-          "name": "86 - 1 - 3",
+          "name": "Shiny Hammer",
           "lootId": 1473
         },
         {
           "slot": 0,
           "rarity": 4,
-          "name": "86 - 1 - 4",
+          "name": "Comically Proportioned Hammer of the Master Builder",
           "lootId": 1474
         },
         {
           "slot": 0,
           "rarity": 5,
-          "name": "86 - 1 - 5",
+          "name": "Diamond-Encrusted Pure Copper Hammer of the Dwarves",
           "lootId": 1475
         },
         {
           "slot": 1,
           "rarity": 1,
-          "name": "86 - 2 - 1",
+          "name": "Bandaged Hardhat",
           "lootId": 1476
         },
         {
           "slot": 1,
           "rarity": 2,
-          "name": "86 - 2 - 2",
+          "name": "Scuffed Hardhat",
           "lootId": 1477
         },
         {
           "slot": 1,
           "rarity": 3,
-          "name": "86 - 2 - 3",
+          "name": "Brand New Hardhat",
           "lootId": 1478
         },
         {
           "slot": 1,
           "rarity": 4,
-          "name": "86 - 2 - 4",
+          "name": "Personalized Hardhat of the Dedicated Safety Officer",
           "lootId": 1479
         },
         {
           "slot": 1,
           "rarity": 5,
-          "name": "86 - 2 - 5",
+          "name": "Ultra-High Tech Hardhat of the Impervious Builder",
           "lootId": 1480
         },
         {
           "slot": 2,
           "rarity": 1,
-          "name": "86 - 3 - 1",
+          "name": "Torn Safety Vest",
           "lootId": 1481
         },
         {
           "slot": 2,
           "rarity": 2,
-          "name": "86 - 3 - 2",
+          "name": "Tattered Safety Vest",
           "lootId": 1482
         },
         {
           "slot": 2,
           "rarity": 3,
-          "name": "86 - 3 - 3",
+          "name": "Reflective Safety Vest",
           "lootId": 1483
         },
         {
           "slot": 2,
           "rarity": 4,
-          "name": "86 - 3 - 4",
+          "name": "Super Safety Vest of the Superior Builder",
           "lootId": 1484
         },
         {
           "slot": 2,
           "rarity": 5,
-          "name": "86 - 3 - 5",
+          "name": "Fur-Lined Purple Safety Vest of the Stylish Constructor",
           "lootId": 1485
         }
       ]
@@ -8330,7 +8569,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 4,
-          "name": "Katie GE Quiver",
+          "name": "Infinite Arrow Supplying Quiver of the Interdimensional Cupid",
           "lootId": 1530,
           "golden": true
         },
@@ -8343,7 +8582,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Katie LE Quiver",
+          "name": "Infinite Arrow Supplying Quiver of the Interdimensional Cupid",
           "lootId": 1531,
           "golden": true
         }
@@ -11141,7 +11380,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 4,
-          "name": "Kiz GE Mech Leg",
+          "name": "Advanced Mech Leg of Grabbing and Stabbing",
           "lootId": 1536,
           "golden": true
         },
@@ -11154,7 +11393,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 5,
-          "name": "Kiz LE Mech Leg",
+          "name": "Advanced Mech Leg of Grabbing and Stabbing",
           "lootId": 1537,
           "golden": true
         },
@@ -11372,7 +11611,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 4,
-          "name": "Futuretech Nuclear Powered Arm Cannon of Disintigration",
+          "name": "Futuretech Nuclear Powered Arm Cannon of Disintegration",
           "lootId": 713
         },
         {
@@ -11614,7 +11853,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 4,
-          "name": "Shadow Queen GE Cloak",
+          "name": "Cosmic Cloak of Infinite Hem Shadows",
           "lootId": 1534,
           "golden": true
         },
@@ -11627,7 +11866,7 @@ window.jsonData =
         {
           "slot": 0,
           "rarity": 5,
-          "name": "Shadow Queen LE Cloak",
+          "name": "Cosmic Cloak of Infinite Hem Shadows",
           "lootId": 1535,
           "golden": true
         },
@@ -11877,7 +12116,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 4,
-          "name": "Magically Enhanced Radar Featuring Treasure Map of Easiness",
+          "name": "Magically Enhanced Radar-Featuring Treasure Map of Easiness",
           "lootId": 741
         },
         {
