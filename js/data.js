@@ -1047,7 +1047,7 @@ window.jsonData =
       "id": "01d",
       "heroId": 89,
       "displayName": "Slisiblyp, the Alien Scientist",
-      "image": "",
+      "image": "SlisiblypTheAlienScientist_48.png",
       "slot": 1,
       "tags": [
         "alien",
@@ -7160,7 +7160,7 @@ window.jsonData =
       "id": "12d",
       "heroId": 90,
       "displayName": "Red, the Ace Pilot",
-      "image": "",
+      "image": "RedTheAcePilot_48.png",
       "slot": 12,
       "tags": [
         "human",
