@@ -6,8 +6,12 @@
 
     var getFormationDiags = (worldId,formation) =>
             formation
-                .map((cruId,i) =>
-                    ({spot: i, id: cruId,  columnNum: app.mathCalc.getWorldById(worldId).columnNum(i)}))
+                .map((cruId,i) =>{
+                    var world = app.mathCalc.getWorldById(worldId);
+                    if(world != null)
+                        return ({spot: i, id: cruId,  columnNum: world.getColumnNum(i)});
+                    else return {id:undefined};
+                })
                 .filter(data => data.id != null)
                 .map(data =>{
                     var crusader = getCrusader(data.id);
