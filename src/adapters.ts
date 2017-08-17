@@ -595,9 +595,9 @@ interface Crusader{
     /**
      * @param {number} worldId
      */
-    var makeKey = worldId => "worldSaves" + worldId;
+    var makeKey = (worldId:number) => "worldSaves" + worldId;
     my.getWorldSaves =
-      selectedWorldId =>{
+      (selectedWorldId:number) =>{
           var key = makeKey(selectedWorldId);
           // copyObject will pass the default value through if the read returns nothing
           var oldWorldSaves = app.readIt(key, {});
@@ -607,7 +607,7 @@ interface Crusader{
      * @param {number} selectedWorldId
      */
     my.getSaveNames =
-      selectedWorldId =>{
+      (selectedWorldId:number) =>{
         var oldWorldSaves = my.getWorldSaves(selectedWorldId);
         return Object.keys(oldWorldSaves);
     };
@@ -619,7 +619,7 @@ interface Crusader{
      * @param {number?} kaineXP
      */
     my.saveFormation =
-      (selectedWorldId, saveName, formationIds, dpsChar,kaineXP) => {
+      (selectedWorldId:number, saveName:string, formationIds:string[], dpsChar:string,kaineXP?:number) => {
         var key = makeKey(selectedWorldId);
 
         // copyObject will pass the default value through if the read returns nothing

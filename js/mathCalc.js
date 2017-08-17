@@ -1039,7 +1039,12 @@
      */
     var grandmora = getCrusader('05d');
     grandmora.calculate = function () {
-        var spot = getCrusaderSpot(app.formationIds, mister.id);
+        var spot = getCrusaderSpot(app.formationIds, grandmora.id);
+        if (spot == undefined || spot == null)
+            return;
+        var column = currentWorld.getColumnNum(spot);
+        if (column == undefined || column == null)
+            return;
         // how many crusaders behind grandmora?
         var numBehind = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot) - 1), 1);
         var numAhead = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot) + 1), 1);
