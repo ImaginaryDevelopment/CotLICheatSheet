@@ -437,9 +437,9 @@ var Tag;
         /**
          * @param {number} worldId
          */
-        var makeKey = worldId => "worldSaves" + worldId;
+        var makeKey = (worldId) => "worldSaves" + worldId;
         my.getWorldSaves =
-            selectedWorldId => {
+            (selectedWorldId) => {
                 var key = makeKey(selectedWorldId);
                 // copyObject will pass the default value through if the read returns nothing
                 var oldWorldSaves = app.readIt(key, {});
@@ -449,7 +449,7 @@ var Tag;
          * @param {number} selectedWorldId
          */
         my.getSaveNames =
-            selectedWorldId => {
+            (selectedWorldId) => {
                 var oldWorldSaves = my.getWorldSaves(selectedWorldId);
                 return Object.keys(oldWorldSaves);
             };
