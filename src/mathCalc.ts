@@ -2669,51 +2669,50 @@
     }
   })();
 
-  //Grimm X 2 X X X X 0 X 5 X 8 X X 3 X 7 X A 1 X 6 X 9 X X 4 X X X X
-
+  //Grimm X 2 X X X X, 0 X 5 X 8 X, X 3 X 7 X A, 1 X 6 X 9 X, X 4 X X X X
   var grimm = app.grimm = new World(6, "Grimm's Idle Tales", 6);
   (() => {
     var x = null;
     grimm.layout = [
       [
         x,
-        x,
-        x,
-        4,
-        x,
-        9
-      ],
-      [
-        x,
-        x,
         2,
         x,
-        7,
+        x,
+        x,
         x
       ],
       [
         0,
-        1,
         x,
         5,
-        x,
-        10
-      ],
-      [
-        x,
-        x,
-        3,
         x,
         8,
         x
       ],
       [
         x,
+        3,
         x,
+        7,
+        x,
+        10
+      ],
+      [
+        1,
         x,
         6,
         x,
-        11
+        9,
+        x
+      ],
+      [
+        x,
+        4,
+        x,
+        x,
+        x,
+        x
       ]
     ];
     grimm.setAdjacent(0, [1, 2, 3]);

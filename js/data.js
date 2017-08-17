@@ -1047,7 +1047,7 @@ window.jsonData =
       "id": "01d",
       "heroId": 89,
       "displayName": "Slisiblyp, the Alien Scientist",
-      "image": "",
+      "image": "SlisiblypTheAlienScientist_48.png",
       "slot": 1,
       "tags": [
         "alien",
@@ -2222,6 +2222,112 @@ window.jsonData =
       ]
     },
     {
+      "id": "03d",
+      "heroId": 92,
+      "displayName": "RoboQueen",
+      "image": "RoboQueen_48.png",
+      "slot": 3,
+      "tags": [
+        "female",
+        "robot",
+        "royalty",
+        "dps",
+        "event"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Cracked Hair Tube",
+          "lootId": 1591
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Hair Tube",
+          "lootId": 1592
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Pristine Hair Tube",
+          "lootId": 1593
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Infallible Follicle of Amplification",
+          "lootId": 1594
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Radiant Vacuum Tube of Harmonic Havoc",
+          "lootId": 1595
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Rickety Wheel",
+          "lootId": 1596
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Plain Old Wheel",
+          "lootId": 1597
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Snazzy Pair of Wheels",
+          "lootId": 1598
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Quadro-Carriage of Deliverance",
+          "lootId": 1599
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Four-Wheeled Speed Machine of Furiosity",
+          "lootId": 1600
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Aging Power Source",
+          "lootId": 1601
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Standard Power Source",
+          "lootId": 1602
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "High Voltage Power Source",
+          "lootId": 1603
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Ornate Power Source of Absolute Power",
+          "lootId": 1604
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Grossly Overcharged Power Source of Needless Danger",
+          "lootId": 1605
+        }
+      ]
+    },
+    {
       "id": "03b",
       "displayName": "Karen, the Cat Teenager",
       "image": "KarenTheCatTeenager_48.png",
@@ -2738,7 +2844,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Mauve Makeup of a Million Mauling Mines",
+          "name": "Mauve Makeup of a Million Mauling Mimes",
           "lootId": 1203
         }
       ],
@@ -3847,6 +3953,125 @@ window.jsonData =
       ]
     },
     {
+      "id": "06d",
+      "heroId": 93,
+      "displayName": "Zombie Winter",
+      "image": "ZombieWinter_48.png",
+      "slot": 6,
+      "tags": [
+        "supernatural",
+        "male",
+        "event",
+        "gold"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Rusty Dagger",
+          "lootId": 1606
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Worn Dagger",
+          "lootId": 1607
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Keen Dagger",
+          "lootId": 1608
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Burnished Blade of Royal Blood",
+          "lootId": 1609
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Obsidian Blade of Extreme Zombie-Disintegrating",
+          "lootId": 1621,
+          "golden": true
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Extraordinarily Ornate Blade of Sadly Mundane Stabbing",
+          "lootId": 1610
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Obsidian Blade of Extreme Zombie-Disintegrating",
+          "lootId": 1622,
+          "golden": true
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Tattered Scroll",
+          "lootId": 1611
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Damaged Scroll",
+          "lootId": 1612
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Mysterious Scroll",
+          "lootId": 1613
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Ominously Ornate Scroll of Mystic Secrets",
+          "lootId": 1614
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Self-Unfurling Arcane Scroll of Forbidden Knowledge",
+          "lootId": 1615
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Ragged Wolf Pelt",
+          "lootId": 1616
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Old Wolf Pelt",
+          "lootId": 1617
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Fine Wolf Pelt",
+          "lootId": 1618
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Ghostly Wolf Pelt of Canines Past",
+          "lootId": 1619
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Wolf-Hooded Wolf-Tailed Wolf Pelt of Extreme Wolfing",
+          "lootId": 1620
+        }
+      ]
+    },
+    {
       "id": "06b",
       "displayName": "Larry the Leprechaun",
       "image": "mini_Larry.jpg",
@@ -4437,9 +4662,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Spring-Loaded Swiss Army Knife of the Daredevil",
+          "lootId": 1661,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Survival Knife of the Fittest Ranger",
           "lootId": 1157
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Spring-Loaded Swiss Army Knife of the Daredevil",
+          "lootId": 1662,
+          "golden": true
         },
         {
           "slot": 1,
@@ -5712,7 +5951,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Spring-Loaded Pitchfork of Springy-Pitches",
+          "name": "Spring-Loaded Pitchfork of Springy Pitches",
           "lootId": 1218
         }
       ],
@@ -6652,9 +6891,23 @@ window.jsonData =
         },
         {
           "slot": 2,
+          "rarity": 4,
+          "name": "Fire-Immune Burning Orb of the Inferno",
+          "lootId": 1623,
+          "golden": true
+        },
+        {
+          "slot": 2,
           "rarity": 5,
           "name": "Pristine Scrying Orb of the Lost Dragon Kingdoms",
           "lootId": 1142
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Fire-Immune Burning Orb of the Inferno",
+          "lootId": 1624,
+          "golden": true
         }
       ],
       "gear": [
@@ -7160,7 +7413,7 @@ window.jsonData =
       "id": "12d",
       "heroId": 90,
       "displayName": "Red, the Ace Pilot",
-      "image": "",
+      "image": "RedTheAcePilot_48.png",
       "slot": 12,
       "tags": [
         "human",
@@ -7233,7 +7486,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 5,
-          "name": "Twin Gauss Cannons of Relentless Perforation",
+          "name": "Supercharged Gauss Cannon of Relentless Perforation",
           "lootId": 1566
         },
         {
@@ -8186,7 +8439,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Sickeniningly Rich Golden Clover of Golllllld",
+          "name": "Sickeningly Rich Golden Clover of Golllllld",
           "lootId": 1020,
           "golden": true
         }
@@ -8366,9 +8619,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Blackmailing Book of Endless Royal Scandals",
+          "lootId": 1625,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Royal Leather Bound Book of Scandelous Secrets",
           "lootId": 1134
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Blackmailing Book of Endless Royal Scandals",
+          "lootId": 1626,
+          "golden": true
         },
         {
           "slot": 1,
@@ -8752,6 +9019,125 @@ window.jsonData =
           "rarity": 5,
           "name": "Impervious Fish-Scale Cape of the Golden Royal Seal",
           "lootId": 1026,
+          "golden": true
+        }
+      ]
+    },
+    {
+      "id": "15d",
+      "heroId": 94,
+      "displayName": "Penny the Park Planner",
+      "image": "PennyTheParkPlanner_48.png",
+      "slot": 15,
+      "tags": [
+        "event",
+        "human",
+        "female",
+        "support"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Ratty Clipboard",
+          "lootId": 1629
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Weathered Clipboard",
+          "lootId": 1630
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Crisp Clipboard",
+          "lootId": 1631
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "DuraSteel Clipboard of Scribing",
+          "lootId": 1632
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Luminous Electrotablet of Galactic Noting",
+          "lootId": 1633
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Banged-Up Bin",
+          "lootId": 1634
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Reused Recycling Bin",
+          "lootId": 1635
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "The Blue Bin",
+          "lootId": 1636
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Glade-Green Recycling Bin of Harmony",
+          "lootId": 1637
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Segmented Recycling Array of Specificity",
+          "lootId": 1638
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Trashed Trash Pick",
+          "lootId": 1639
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Busted Trash Pick",
+          "lootId": 1640
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Trusty Trash Pick",
+          "lootId": 1641
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Armor-Piercing Trash Pick of Disposal",
+          "lootId": 1642
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Paper-Massaging Grabber of Sensual Pickups",
+          "lootId": 1663,
+          "golden": true
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Glorious Garbage Grabber of Greatness",
+          "lootId": 1643
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Paper-Massaging Grabber of Sensual Pickups",
+          "lootId": 1664,
           "golden": true
         }
       ]
@@ -9144,7 +9530,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Purebread Seaweed Seahorse of the Rapid Currents",
+          "name": "Purebred Seaweed Seahorse of the Rapid Currents",
           "lootId": 1233
         },
         {
@@ -9400,7 +9786,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 5,
-          "name": "Angelic Staff of Impervious Phallanxes",
+          "name": "Angelic Staff of Impervious Phalanxes",
           "lootId": 1114
         },
         {
@@ -9482,9 +9868,23 @@ window.jsonData =
         },
         {
           "slot": 0,
+          "rarity": 4,
+          "name": "Spooky Rubber Mask of Lifelike Fright-o-troning",
+          "lootId": 1627,
+          "golden": true
+        },
+        {
+          "slot": 0,
           "rarity": 5,
           "name": "Satanic Helmet of the Robo-Reaper",
           "lootId": 1210
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Spooky Rubber Mask of Lifelike Fright-o-troning",
+          "lootId": 1628,
+          "golden": true
         },
         {
           "slot": 1,
@@ -9665,6 +10065,112 @@ window.jsonData =
         "alldps",
         "ability - Ladies' Space-Man",
         "ability - Kirkin' It Up"
+      ]
+    },
+    {
+      "id": "17d",
+      "heroId": 95,
+      "displayName": "Beary McBearFace",
+      "image": "BearyMcBearFace_48.png",
+      "slot": 17,
+      "tags": [
+        "event",
+        "animal",
+        "male",
+        "royalty",
+        "dps"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Broken Axe",
+          "lootId": 1644
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Salvaged Axe",
+          "lootId": 1645
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Wood Axe",
+          "lootId": 1646
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Keen Woodsman's Axe of Air-Gapping",
+          "lootId": 1647
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Fanciful Golden Axe of Hacking and Slashing",
+          "lootId": 1648
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Ruptured Fire Extinguisher",
+          "lootId": 1649
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Chilled Fire Extinguisher",
+          "lootId": 1650
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Standard Issue Extinguisher",
+          "lootId": 1651
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "High-Capacity Extinguisher of Blaze Elimination",
+          "lootId": 1652
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Glimmering Golden Extinguisher of Infinite Foam",
+          "lootId": 1653
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Used Match",
+          "lootId": 1654
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Slightly Used Match",
+          "lootId": 1655
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Pre-Lit Matches",
+          "lootId": 1656
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "SparkCo Instalight Microtorches",
+          "lootId": 1657
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Rectangular Sceptre of Fire Conjuration",
+          "lootId": 1658
+        }
       ]
     },
     {
@@ -10531,9 +11037,23 @@ window.jsonData =
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "Stabbin' Grabbin' Spear of Dynamic Action",
+          "lootId": 1659,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
-          "name": "Extravagent Primal Spear of Camper Reduction",
+          "name": "Extravagant Primal Spear of Camper Reduction",
           "lootId": 1162
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Stabbin' Grabbin' Spear of Dynamic Action",
+          "lootId": 1660,
+          "golden": true
         },
         {
           "slot": 2,
@@ -11412,7 +11932,7 @@ window.jsonData =
         {
           "slot": 1,
           "rarity": 3,
-          "name": "Disintigrating Blaster",
+          "name": "Disintegrating Blaster",
           "lootId": 617
         },
         {
@@ -11454,7 +11974,7 @@ window.jsonData =
         {
           "slot": 2,
           "rarity": 5,
-          "name": "Unstable Fuel Pod of Alien Inginuity",
+          "name": "Unstable Fuel Pod of Alien Ingenuity",
           "lootId": 1156
         }
       ],
@@ -12121,9 +12641,23 @@ window.jsonData =
         },
         {
           "slot": 1,
+          "rarity": 4,
+          "name": "Self-X-ing X-Marks-the-Spot Treasure Map of Guaranteed Riches",
+          "lootId": 1589,
+          "golden": true
+        },
+        {
+          "slot": 1,
           "rarity": 5,
           "name": "Electronic Treasure Map of Specific GPS Coordinates",
           "lootId": 1187
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Self-X-ing X-Marks-the-Spot Treasure Map of Guaranteed Riches",
+          "lootId": 1590,
+          "golden": true
         },
         {
           "slot": 2,
@@ -12269,9 +12803,115 @@ window.jsonData =
       ]
     },
     {
+      "id": "24a",
+      "heroId": 91,
+      "displayName": "Agent 79",
+      "image": "Agent79_48.png",
+      "slot": 24,
+      "tags": [
+        "female",
+        "human",
+        "support",
+        "dps",
+        "gold"
+      ],
+      "loot": [
+        {
+          "slot": 0,
+          "rarity": 1,
+          "name": "Unlocked Briefcase",
+          "lootId": 1574
+        },
+        {
+          "slot": 0,
+          "rarity": 2,
+          "name": "Overflowing Briefcase",
+          "lootId": 1575
+        },
+        {
+          "slot": 0,
+          "rarity": 3,
+          "name": "Secure Briefcase",
+          "lootId": 1576
+        },
+        {
+          "slot": 0,
+          "rarity": 4,
+          "name": "Carbon Nanotube Briefcase of Classified Documents",
+          "lootId": 1577
+        },
+        {
+          "slot": 0,
+          "rarity": 5,
+          "name": "Stolen Foreign Briefcase of State Secrets",
+          "lootId": 1578
+        },
+        {
+          "slot": 1,
+          "rarity": 1,
+          "name": "Painted Styrofoam Vest",
+          "lootId": 1579
+        },
+        {
+          "slot": 1,
+          "rarity": 2,
+          "name": "Cracked Bulletproof Vest",
+          "lootId": 1580
+        },
+        {
+          "slot": 1,
+          "rarity": 3,
+          "name": "Solid Bulletproof Vest",
+          "lootId": 1581
+        },
+        {
+          "slot": 1,
+          "rarity": 4,
+          "name": "Well Stocked Bulletproof Vest of Nappies",
+          "lootId": 1582
+        },
+        {
+          "slot": 1,
+          "rarity": 5,
+          "name": "Gold Plated Bulletproof Vest of Imperviousness",
+          "lootId": 1583
+        },
+        {
+          "slot": 2,
+          "rarity": 1,
+          "name": "Cheap Plastic Pistol",
+          "lootId": 1584
+        },
+        {
+          "slot": 2,
+          "rarity": 2,
+          "name": "Burning Hot Pistol",
+          "lootId": 1585
+        },
+        {
+          "slot": 2,
+          "rarity": 3,
+          "name": "Obsidian Pistol",
+          "lootId": 1586
+        },
+        {
+          "slot": 2,
+          "rarity": 4,
+          "name": "Shiny Steel Gun of Wait That's Normal For A Gun",
+          "lootId": 1587
+        },
+        {
+          "slot": 2,
+          "rarity": 5,
+          "name": "Legendary Golden Gun of Silenced Headshots",
+          "lootId": 1588
+        }
+      ]
+    },
+    {
       "id": "24",
       "displayName": "Priestess of Time",
-      "image": "",
+      "image": "PriestessOfTime_48.png",
       "slot": 24,
       "tags": [
         "female",
