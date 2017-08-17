@@ -5,6 +5,9 @@
    * @property {number} rarity
    * @property {string} name
    */
+// interface WorldConstructor {
+//   new(id:number,name:string,spots:number):World
+// }
 /**
    * @typedef {Object} Crusader - a crusader object
    * @property {string} id
@@ -80,53 +83,61 @@
    * @param {number} spots
    * @return {World}
    */
-  // this could stand to have methods moved to World.prototype.X = function...
-  function World(id, name, spots) {
-    var _this = this;
-    this.id = id;
-    this.name = name;
-    this.spots = spots;
-    this.filled = 0;
-    this.maxColumn = 0;
-    var adjacent:number[][] = [];
-    var columnNum:number[][] = [];
-    for (var i = 0; i < this.spots; i++) {
-      adjacent[i] = [];
-      columnNum[i] = [];
-    }
-    this.setAdjacent = function (spot, adjacentArray) {
-      adjacent[spot] = adjacentArray;
-    };
-    this.setColumn = function (spot, columnNumIn) {
-      columnNum[spot] = columnNumIn;
-      if (columnNumIn > _this.maxColumn) {
-        _this.maxColumn = columnNumIn;
+
+  class World {
+    id:number;
+    name:string;
+    spots:number;
+    filled:number;
+    maxColumn:number;
+    layout: (number | null)[][]
+    private columnNum:number[];
+    private adjacent:number[][];
+
+    constructor(id:number, name:string, spots:number) {
+      var _this = this;
+      this.id = id;
+      this.name = name;
+      this.spots = spots;
+      this.filled = 0;
+      this.maxColumn = 0;
+      this.adjacent = [];
+      this.columnNum = [];
+      for (var i = 0; i < this.spots; i++) {
+        this.adjacent[i] = [];
+        this.columnNum[i] = NaN;
       }
-    };
-    this.isAdjacent = function (spot1, spot2) {
+    }
+    setColumn(spot, columnNumIn) {
+      this.columnNum[spot] = columnNumIn;
+      if (columnNumIn > this.maxColumn) {
+        this.maxColumn = columnNumIn;
+      }
+    }
+    isAdjacent(spot1, spot2) {
       var adjacentTest = false;
-      for (var i in adjacent[spot1]) {
+      for (var i in this.adjacent[spot1]) {
         if (i == spot2) {
           adjacentTest = true;
         }
       }
       return adjacentTest;
-    };
-    this.whatsAdjacent = function (spot:number):number[] {
-      return adjacent[spot] || [];
-    };
-    /**
-     * @param {number} spot
-     * @return {number} what column number a slot belongs to
-     */
-    this.columnNum = function (spot) {
-      var result = columnNum[spot];
+    }
+    whatsAdjacent(spot:number | null | undefined):number[] {
+      return spot != null && this.adjacent[spot] || [];
+    }
+      /**
+       * @param {number} spot
+       * @return {number} what column number a slot belongs to
+       */
+    getColumnNum(spot):number{
+      var result = this.columnNum[spot];
       if(typeof result !== "number"){
         console.warn("columnNum is invalid", {worldId:this.id,spots:this.spots,spot,result,maxCol:this.maxColumn});
       }
-      return columnNum[spot];
-    };
-    this.countTags = function (tag) {
+      return this.columnNum[spot];
+    }
+    countTags(tag:Tag):number {
       var count = 0;
       app
         .formationIds
@@ -150,8 +161,8 @@
           }
         });
       return count;
-    };
-    this.getFilledColumnSpots = function (column, tag) {
+    }
+    getFilledColumnSpots(column:number, tag?:Tag) {
       var count = 0;
       app
         .formationIds
@@ -171,8 +182,8 @@
             }
           });
       return count;
-    };
-    this.findDistances = function (spot1) {
+    }
+    findDistances (spot1:number):number[] {
       var visited:boolean[] = [];
       var distance:number[] = [];
       var adjacent:number[] = [];
@@ -181,13 +192,13 @@
       var min = 0;
       // no idea why this is being initialized as an array, then later set to a number
       var minLoc:never[] | number = [];
-      for (var i = 0; i < _this.spots; i++) {
+      for (var i = 0; i < this.spots; i++) {
         visited[i] = false;
         distance[i] = 100;
       }
       distance[spot1] = 0;
       while (running) {
-        adjacent = _this.whatsAdjacent(current);
+        adjacent = this.whatsAdjacent(current);
         visited[current] = true;
         min = 100;
         if (adjacent.length === 0) {
@@ -196,7 +207,7 @@
         for (var j = 0; j < adjacent.length; j++) {
           distance[adjacent[j]] = Math.min(distance[current] + 1, distance[adjacent[j]]);
         }
-        for (j = 0; j <= _this.spots; j++) {
+        for (j = 0; j <= this.spots; j++) {
           if (!visited[j] && distance[j] < min) {
             min = distance[j];
             minLoc = j;
@@ -205,7 +216,8 @@
         if (current == minLoc) {
           running = false;
         }
-        current = minLoc;
+        if(typeof minLoc == "number")
+          current = minLoc;
       }
       for (i = 0; i < distance.length; i++) {
         if (distance[i] == 100) {
@@ -213,8 +225,13 @@
         }
       }
       return distance;
-    };
+    }
+    setAdjacent(spot:number,adjacentArray:number[]):void{
+      this.adjacent[spot] = adjacentArray;
+    }
   }
+  app.World = World;
+
   /**
    *
    * @param {World} currentWorld
@@ -227,7 +244,7 @@
    * @param {number} spot1
    * @param {number} spot2
    */
-  var getAreInSameColumn = (currentWorld, spot1, spot2) => currentWorld != null && getIsValidSpotNumber(currentWorld, spot1) && getIsValidSpotNumber(currentWorld, spot2) && currentWorld.columnNum(spot1) == currentWorld.columnNum(spot2);
+  var getAreInSameColumn = (currentWorld, spot1, spot2) => currentWorld != null && getIsValidSpotNumber(currentWorld, spot1) && getIsValidSpotNumber(currentWorld, spot2) && currentWorld.getColumnNum(spot1) == currentWorld.getColumnNum(spot2);
   /**
    *
    * @param {World} currentWorld
@@ -237,7 +254,7 @@
   var getIsBehind = (currentWorld,
   /*: World */
   front,
-  maybeBehind) => currentWorld != null && getIsValidSpotNumber(currentWorld, front) && getIsValidSpotNumber(currentWorld, maybeBehind) && currentWorld.columnNum(front) == currentWorld.columnNum(maybeBehind) + 1;
+  maybeBehind) => currentWorld != null && getIsValidSpotNumber(currentWorld, front) && getIsValidSpotNumber(currentWorld, maybeBehind) && currentWorld.getColumnNum(front) == currentWorld.getColumnNum(maybeBehind) + 1;
   //returns the itemId, not the rarity or legendary level
   /**
    *
@@ -557,7 +574,7 @@
     var spot = getCrusaderSpot(app.formationIds, jim.id);
     if (jim == dpsChar) {
       if (getIsValidSpotNumber(currentWorld, spot)) {
-        var adjacent = currentWorld.whatsAdjacent(spot);
+        var adjacent = currentWorld.whatsAdjacent(spot || NaN);
         for (var i = 0; i < adjacent.length; i++) {
           var adjCruId = app.formationIds[adjacent[i]];
           if (adjCruId != null)
@@ -610,7 +627,8 @@
     }
     //Co-Pilot
     if (pam == dpsChar) {
-      var adjacent = getIsValidSpotNumber(currentWorld, spot) && currentWorld.whatsAdjacent(spot);
+      var adjacent = getIsValidSpotNumber(currentWorld, spot) && currentWorld.whatsAdjacent(spot || NaN);
+      if(adjacent !== false)
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
         if (adjCruId != null)
@@ -776,14 +794,15 @@
   var groklok = getCrusader("04a");
   groklok.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, groklok.id);
+    var column = currentWorld.getColumnNum(spot);
     var drizzleMult = 1;
-    var numAffected = currentWorld.getFilledColumnSpots(currentWorld.columnNum(spot) + 1);
+    var numAffected = currentWorld.getFilledColumnSpots(column + 1);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karenSpot != null && currentWorld.columnNum(karenSpot) != currentWorld.columnNum(spot) + 1) {
+    if (karenSpot != null && currentWorld.getColumnNum(karenSpot) != column + 1) {
       numAffected += 1;
     }
     var drizzleSpot = getCrusaderSpot(app.formationIds, drizzle.id);
-    if (drizzleSpot != null && currentWorld.columnNum(drizzleSpot) > currentWorld.columnNum(spot)) {
+    if (drizzleSpot != null && (currentWorld.getColumnNum(drizzleSpot) || NaN) > column) {
       drizzleMult = 2;
     }
     //Eligible Receivers
@@ -799,7 +818,7 @@
       groklok.globalDps *= 1 + 1.5 * (1 + legendaryFactor(groklok, 1));
     }
     //Defensive Team
-    if (currentWorld.columnNum(spot) == currentWorld.maxColumn) {
+    if (currentWorld.getColumnNum(spot) == currentWorld.maxColumn) {
       groklok.globalDps *= 1 + 0.1 * numAttacking * (1 + legendaryFactor(groklok, 0));
     }
   };
@@ -837,7 +856,7 @@
     if (numMales > numFemales) {
       dani.globalDps *= 1 + legendaryFactor(dani,1);
       var dpsSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-      if (adjacent.includes(dpsSpot)) {
+      if (adjacent.includes(dpsSpot || NaN)) {
         dani.globalDps *= 1 + legendaryFactor(dani,0);
       }
     }
@@ -902,10 +921,10 @@
         if (dpsChar && adjCruId == dpsChar.id) {
           dpsSmashed = true;
         }
-        if (currentWorld.columnNum(spot) > currentWorld.columnNum(adjCruSpot)) {
+        if (currentWorld.getColumnNum(spot) > currentWorld.getColumnNum(adjCruSpot)) {
           numBehind += 1;
         }
-        if (currentWorld.columnNum(spot) < currentWorld.columnNum(adjCruSpot)) {
+        if (currentWorld.getColumnNum(spot) < currentWorld.getColumnNum(adjCruSpot)) {
           numAhead += 1;
         }
       }
@@ -932,7 +951,7 @@
         kyle.globalDps *= 1 + legendaryFactor(kyle, 1);
       }
     }
-    var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
+    var karenSpot = getCrusaderSpot(app.formationIds, karen.id) || NaN;
     if (karen == dpsChar && !adjacent.includes(karenSpot) && numAdjacent <= 2) {
       kyle.globalDps *= 1 + 0.25 * 0.5 * itemAbility(karen, 0);
       karen.effects += 1;
@@ -992,8 +1011,8 @@
       henry.globalDps *= currentWorld.filled - currentWorld.countTags(Tag.human);
       var adjacent = currentWorld.whatsAdjacent(spot);
       for (var i = 0; i < adjacent.length && noOneBehind; i++) {
-        var adjCruSpot = getCrusaderSpot(app.formationIds, adjacent[i].id);
-        if (currentWorld.columnNum(spot) == currentWorld.columnNum(adjCruSpot) + 1) {
+        var adjCruSpot = getCrusaderSpot(app.formationIds, adjacent[i]);
+        if (currentWorld.getColumnNum(spot) == currentWorld.getColumnNum(adjCruSpot) + 1) {
           noOneBehind = false;
         }
       }
@@ -1017,11 +1036,11 @@
     // don't use >= because javascript
     if (spot == null || (spot === 0 || spot > 0) && app.formationIds[spot] != kaine.id)
       throw Error("indexOf for kaine failed");
-    var numInColumn = currentWorld.getFilledColumnSpots(currentWorld.columnNum(spot));
+    var numInColumn = currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot));
     kaine.globalGold *= Math.pow(1 + 0.2 * itemAbility(kaine, 0), numInColumn) || 1;
     //Karen compatability for A-Ha
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karenSpot != null && (currentWorld.columnNum(spot) != currentWorld.columnNum(karenSpot))) {
+    if (karenSpot != null && (currentWorld.getColumnNum(spot) != currentWorld.getColumnNum(karenSpot))) {
       kaine.globalGold *= (1 + 0.2 * itemAbility(kaine, 0) * 0.5 * itemAbility(karen, 0)) || 1;
       karen.effects += 1;
     }
@@ -1044,11 +1063,11 @@
   mister.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, mister.id);
     var numAnimals = currentWorld.countTags(Tag.animal);
-    var numBehind = currentWorld.getFilledColumnSpots(currentWorld.columnNum(spot) - 1);
+    var numBehind = currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot) - 1);
     mister.globalGold *= Math.pow(1 + (0.15 + 0.05 * numAnimals) * itemAbility(mister, 1) * (1 + legendaryFactor(mister, 2)), numBehind);
     mister.globalDps *= 1 + 0.25 * numBehind * legendaryFactor(mister, 1);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karenSpot != null && currentWorld.columnNum(karenSpot) != currentWorld.columnNum(spot) - 1) {
+    if (karenSpot != null && currentWorld.getColumnNum(karenSpot) != currentWorld.getColumnNum(spot) - 1) {
       karen.effects += 1;
       mister.globalGold *= 1 + (0.15 + 0.05 * numAnimals) * itemAbility(mister, 1) * (1 + legendaryFactor(mister, 2)) * 0.5 * itemAbility(karen, 0);
     }
@@ -1064,16 +1083,17 @@
   var grandmora = getCrusader('05d');
   grandmora.calculate = function() {
     var spot = getCrusaderSpot(app.formationIds, mister.id);
-    var numBehind = Math.max(currentWorld.columnTest(currentWorld.columnNum(spot) - 1),1);
-    var numAhead = Math.max(currentWorld.columnTest(currentWorld.columnNum(spot) + 1),1);
+    // how many crusaders behind grandmora?
+    var numBehind = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot) - 1),1);
+    var numAhead = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot) + 1),1);
     var adjacent = currentWorld.whatsAdjacent(spot);
     var dpsSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (currentWorld.columnNum(spot) == currentWorld.columnNum(dpsSpot) - 1) {
+    if (currentWorld.getColumnNum(spot) == currentWorld.getColumnNum(dpsSpot) - 1) {
       grandmora.globalDps *= 1 + 3 * itemAbility(grandmora,0) / numBehind;
     } else if (dpsChar != null && karen == dpsChar) {
       grandmora.globalDps *= 1 + 3 * itemAbility(grandmora,0) * itemAbility(karen,0) / numBehind;
     }
-    if (currentWorld.columnNum(spot) == currentWorld.columnNum(dpsSpot) + 1) {
+    if (currentWorld.getColumnNum(spot) == currentWorld.getColumnNum(dpsSpot) + 1) {
       grandmora.globalDps *= 1 + 0.75 * itemAbility(grandmora,1) * numAhead;
     } else if (karen.isDPS) {
       grandmora.globalDps *= 1 + 0.75 * itemAbility(grandmora,1) * itemAbility(karen,0) * numAhead;
@@ -1301,7 +1321,7 @@
   var jack = getCrusader("08a");
   jack.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, jack.id);
-    if (currentWorld.columnNum(spot) == currentWorld.maxColumn) {
+    if (currentWorld.getColumnNum(spot) == currentWorld.maxColumn) {
       jack.globalDps *= 1 + 0.1 * numAttacking * itemAbility(jack, 0) * (1 + legendaryFactor(jack, 0));
       jack.globalGold *= 1 + 0.1 * numAttacking * legendaryFactor(jack, 2);
     }
@@ -1339,7 +1359,7 @@
   var jason = getCrusader("09");
   jason.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, jason.id);
-    if (currentWorld.columnNum(spot) == currentWorld.maxColumn && jason == dpsChar && numAttacking > 0) {
+    if (currentWorld.getColumnNum(spot) == currentWorld.maxColumn && jason == dpsChar && numAttacking > 0) {
       jason.globalDps *= 1 + 4 * (1 + legendaryFactor(jason, 2));
     }
     var emoSpot = getCrusaderSpot(app.formationIds, emo.id);
@@ -1356,7 +1376,7 @@
   pete.calculate = function () {
     var spot = getCrusaderSpot(app.formationIds, pete.id);
     var numJoked = 0;
-    var distances = currentWorld.findDistances(spot);
+    var distances = currentWorld.findDistances(spot || NaN);
     var maxDistance = Math
       .max
       .apply(null, distances);
@@ -1391,7 +1411,7 @@
     var spot = getCrusaderSpot(app.formationIds, broot.id);
     var maxColumn = currentWorld.maxColumn;
     var adjacent = currentWorld.whatsAdjacent(spot);
-    if (currentWorld.columnNum(spot) == maxColumn) {
+    if (currentWorld.getColumnNum(spot) == maxColumn) {
       if (robbie == dpsChar) {
         broot.globalDps *= 1 + 0.25 * itemAbility(robbie, 2);
       } else {
@@ -1403,10 +1423,10 @@
     }
     if (robbie == dpsChar) {
       var robbieSpot = getCrusaderSpot(app.formationIds, robbie.id);
-      if (currentWorld.columnNum(spot) > currentWorld.columnNum(robbieSpot)) {
+      if (currentWorld.getColumnNum(spot) > currentWorld.getColumnNum(robbieSpot)) {
         broot.globalDps *= 1 + itemAbility(robbie, 2);
       }
-      if (adjacent.includes(robbieSpot)) {
+      if (adjacent.includes(robbieSpot || NaN)) {
         broot.globalDps *= 1 + itemAbility(robbie, 2);
       }
     }
@@ -1447,7 +1467,7 @@
         }
       });
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karenSpot != null && currentWorld.columnNum(karenSpot) != currentWorld.columnNum(spot) + 1) {
+    if (karenSpot != null && currentWorld.getColumnNum(karenSpot) != currentWorld.getColumnNum(spot) + 1) {
       numRoared += 1;
       if (karen == dpsChar) {
         lion.globalDps *= 1 + 0.5 * itemAbility(lion, 1) * (1 + legendaryFactor(lion, 0)) * 0.5 * itemAbility(karen, 0);
@@ -1465,7 +1485,7 @@
     var spot = getCrusaderSpot(app.formationIds, drizzle.id);
     var adjacent = currentWorld.whatsAdjacent(spot);
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (adjacent && dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (adjacent && dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       drizzle.globalDps *= 1 + 0.2 * itemAbility(drizzle, 1);
     }
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
@@ -1474,10 +1494,10 @@
       karen.effects += 1;
     }
     var groklokSpot = getCrusaderSpot(app.formationIds, groklok.id);
-    if (karenSpot != null && currentWorld.columnNum(spot) < currentWorld.columnNum(groklokSpot) && currentWorld.columnNum(karenSpot) != currentWorld.columnNum(groklokSpot)) {
+    if (karenSpot != null && currentWorld.getColumnNum(spot) < currentWorld.getColumnNum(groklokSpot) && currentWorld.getColumnNum(karenSpot) != currentWorld.getColumnNum(groklokSpot)) {
       karen.effects += 1;
     }
-    if (groklok == dpsChar && currentWorld.columnNum(spot) == currentWorld.columnNum(groklokSpot)) {
+    if (groklok == dpsChar && currentWorld.getColumnNum(spot) == currentWorld.getColumnNum(groklokSpot)) {
       drizzle.globalDps *= 5;
     }
     drizzle.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.orc) * legendaryFactor(drizzle, 0);
@@ -1508,9 +1528,9 @@
       bubba.globalDps *= 1 + 0.25 * numAdjacent * itemAbility(bubba, 1) * (1 + legendaryFactor(bubba, 0)) * 0.5 * itemAbility(karen, 0);
       karen.effects += 1;
     }
-    for (i = 0; i < currentWorld.Spots; i++) {
+    for (i = 0; i < currentWorld.spots; i++) {
       var cruId = app.formationIds[i];
-      if (cruId && currentWorld.columnNum(i) < currentWorld.columnNum(bubbaSpot) - 1 && cruId != karen.id) {
+      if (cruId && currentWorld.getColumnNum(i) < currentWorld.getColumnNum(bubbaSpot) - 1 && cruId != karen.id) {
         bubba.globalGold *= 1 + 0.1 * (1 + legendaryFactor(bubba, 1));
       }
     }
@@ -1538,7 +1558,7 @@
       magicModifier = 4
     }
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (adjacent && dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (adjacent && dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       sisaron.globalDps *= 1 + magicModifier * itemAbility(sisaron, 1) * (1 + legendaryFactor(sisaron, 0)) / numAdjacent;
     } else if (karen == dpsChar) {
       sisaron.globalDps *= 1 + magicModifier * itemAbility(sisaron, 1) * (1 + legendaryFactor(sisaron, 0)) * 0.5 * itemAbility(karen, 0) / numAdjacent;
@@ -1555,7 +1575,7 @@
     var khouriSpot = getCrusaderSpot(app.formationIds, khouri.id);
     var adjacent = currentWorld.whatsAdjacent(khouriSpot);
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       khouri.globalDps *= 1 + 0.3 * itemAbility(khouri, 0);
     } else if (karen == dpsChar) {
       khouri.globalDps *= 1 + 0.3 * itemAbility(khouri, 0) * 0.5 * itemAbility(karen, 0);
@@ -1567,11 +1587,11 @@
     if (dpsChar && dpsChar.tags.includes(Tag.human)) {
       khouri.globalDps *= 1 + legendaryFactor(khouri, 1);
     }
-    if (dpsChar && currentWorld.columnNum(khouriSpot) == currentWorld.columnNum(dpsCharSpot) - 1) {
+    if (dpsChar && currentWorld.getColumnNum(khouriSpot) == currentWorld.getColumnNum(dpsCharSpot) - 1) {
       khouri.globalDps *= 1 + legendaryFactor(khouri, 2);
     }
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karen == dpsChar && currentWorld.columnNum(khouriSpot) != currentWorld.columnNum(karenSpot) - 1) {
+    if (karen == dpsChar && currentWorld.getColumnNum(khouriSpot) != currentWorld.getColumnNum(karenSpot) - 1) {
       karen.effects += 1;
     }
   };
@@ -1580,7 +1600,7 @@
   var momma = getCrusader('11a');
   momma.calculate = function () {
     var mommaSpot = getCrusaderSpot(app.formationIds, momma.id);
-    var distances = currentWorld.findDistances(mommaSpot);
+    var distances = currentWorld.findDistances(mommaSpot || NaN);
     var maxDistance = Math
       .max
       .apply(null, distances);
@@ -1617,7 +1637,7 @@
       karen.effects += 1;
     }
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karen == dpsChar && !adjacent.includes(karenSpot)) {
+    if (karen == dpsChar && !adjacent.includes(karenSpot || NaN)) {
       karen.effects += 1;
     }
     brogon.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.dragon) * legendaryFactor(brogon, 1);
@@ -1637,7 +1657,7 @@
     var adjacent = currentWorld.whatsAdjacent(halfbloodSpot);
     if (dpsChar && !dpsChar.tags.includes(Tag.human)) {
       var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-      if (adjacent.includes(dpsCharSpot)) {
+      if (adjacent.includes(dpsCharSpot || NaN)) {
         halfblood.globalDps *= 1 + 0.5 * itemAbility(halfblood, 1);
       } else if (karen == dpsChar) {
         halfblood.globalDps *= 1 + 0.5 * itemAbility(halfblood, 1) * 0.5 * itemAbility(karen, 0);
@@ -1784,7 +1804,7 @@
   var helper = getCrusader('12c');
   helper.calculate = function () {
     var helperSpot = getCrusaderSpot(app.formationIds, helper.id);
-    if (underAttack && currentWorld.columnNum(helperSpot) == currentWorld.maxColumn) {
+    if (underAttack && currentWorld.getColumnNum(helperSpot) == currentWorld.maxColumn) {
       helper.globalDps *= 1 + 0.5 + 0.2 * currentWorld.countTags(Tag.tank);
     }
     helper.globalGold *= 1 + 0.1 * monstersOnscreen * itemAbility(helper, 1);
@@ -1798,7 +1818,7 @@
       helper.globalDps *= 1 + legendaryFactor(helper, 2);
     }
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karen == dpsChar && currentWorld.columnNum(karenSpot) != currentWorld.columnNum(helperSpot)) {
+    if (karen == dpsChar && currentWorld.getColumnNum(karenSpot) != currentWorld.getColumnNum(helperSpot)) {
       karen.effects += 1;
     }
   };
@@ -1833,7 +1853,7 @@
   soldierette.calculate = function () {
     var soldieretteSpot = getCrusaderSpot(app.formationIds, soldierette.id);
     if (soldierette == dpsChar) {
-      if (currentWorld.columnNum(soldieretteSpot) == currentWorld.maxColumn) {
+      if (currentWorld.getColumnNum(soldieretteSpot) == currentWorld.maxColumn) {
         soldierette.globalDps *= 5;
         if (numAttacking > 0) {
           soldierette.globalDps *= 1 + legendaryFactor(soldierette, 0);
@@ -1865,14 +1885,14 @@
     }
     if (numAdjacent <= 4) {
       var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-      if (dpsChar && adjacent.includes(dpsCharSpot)) {
+      if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
         snickette.globalDps *= 1 + 0.5 * itemAbility(snickette, 1);
       } else if (karen == dpsChar) {
         snickette.globalDps *= 1 + 0.5 * itemAbility(snickette, 1) * 0.5 * itemAbility(karen, 0);
         karen.effects += 1;
       }
     }
-    if (dpsChar && currentWorld.columnNum(dpsCharSpot) == currentWorld.columnNum(snicketteSpot)) {
+    if (dpsChar && currentWorld.getColumnNum(dpsCharSpot) == currentWorld.getColumnNum(snicketteSpot)) {
       snickette.globalDps *= 1 + legendaryFactor(snickette, 0);
     }
     snickette.globalGold *= 1 + 0.1 * currentWorld.countTags(Tag.human) * legendaryFactor(snickette, 1);
@@ -1895,7 +1915,7 @@
   santa.calculate = function () {
     var santaSpot = getCrusaderSpot(app.formationIds, santa.id);
     var adjacent = currentWorld.whatsAdjacent(santaSpot);
-    var numAhead = currentWorld.getFilledColumnSpots(currentWorld.columnNum(santaSpot) + 1);
+    var numAhead = currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(santaSpot) + 1);
     santa.globalGold *= Math.pow(1 + 0.25 * itemAbility(santa, 0) * (1 + legendaryFactor(santa, 0)), numAhead);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
     if (getIsBehind(currentWorld, karenSpot, santaSpot) === false) {
@@ -1903,7 +1923,7 @@
       karen.effects += 1;
     }
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       santa.globalDps *= 1 + legendaryFactor(santa, 1);
     }
     santa.globalGold *= 1 + 0.1 * currentWorld.countTags(Tag.robot) * legendaryFactor(santa, 2);
@@ -1982,7 +2002,7 @@
   var wendy = getCrusader('15a');
   wendy.calculate = function () {
     var wendySpot = getCrusaderSpot(app.formationIds, wendy.id);
-    var columnsAhead = currentWorld.maxColumn - currentWorld.columnNum(wendySpot);
+    var columnsAhead = currentWorld.maxColumn - currentWorld.getColumnNum(wendySpot);
     if (wendy == dpsChar) {
       wendy.globalDps *= 1 + 0.25 * monstersOnscreen * (1 + legendaryFactor(wendy, 1));
       wendy.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.magic) * legendaryFactor(wendy, 0);
@@ -2016,7 +2036,7 @@
     }
     val.globalDps *= 1 + 0.25 * (currentWorld.filled - currentWorld.countTags(Tag.human)) * legendaryFactor(val, 2);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karen == dpsChar && !adjacent.includes(karenSpot)) {
+    if (karen == dpsChar && !adjacent.includes(karenSpot || NaN)) {
       karen.effects += 1;
     }
   };
@@ -2037,7 +2057,7 @@
     var adjacent = currentWorld.whatsAdjacent(alanSpot);
     alan.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.angel) * legendaryFactor(alan, 2);
     var karenSpot = getCrusaderSpot(app.formationIds, karen.id);
-    if (karen == dpsChar && !adjacent.includes(karenSpot)) {
+    if (karen == dpsChar && !adjacent.includes(karenSpot || NaN)) {
       karen.effects += 2;
     }
   };
@@ -2185,7 +2205,7 @@
       frosty.globalDps *= 1 + 0.25 * numAdjacent * legendaryFactor(frosty, 2);
     }
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       frosty.globalDps *= 0.75;
     } else if (karen == dpsChar) {
       frosty.globalDps *= 1 - 0.25 * 0.5 * itemAbility(karen, 0);
@@ -2197,7 +2217,7 @@
   littlefoot.calculate = function () {
     littlefoot.globalDps *= 1 + 0.1 * littlefootXP * itemAbility(littlefoot, 1) * (1 + legendaryFactor(littlefoot, 0));
     var littlefootSpot = getCrusaderSpot(app.formationIds, littlefoot.id);
-    if (currentWorld.columnNum(littlefootSpot) == currentWorld.maxColumn) {
+    if (currentWorld.getColumnNum(littlefootSpot) == currentWorld.maxColumn) {
       littlefoot.globalDps *= 1 + 0.1 * numAttacking * legendaryFactor(littlefoot, 2);
     }
   };
@@ -2206,10 +2226,10 @@
   var cindy = getCrusader('18c');
   cindy.calculate = function () {
     var cindySpot = getCrusaderSpot(app.formationIds, cindy.id);
-    var distances = currentWorld.findDistances(cindySpot);
+    var distances = currentWorld.findDistances(cindySpot || NaN);
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
     var distance = dpsCharSpot && distances[dpsCharSpot];
-    if (distance > 0) {
+    if (distance != null && distance > 0) {
       cindy.globalDps *= 1 + 0.5 * distance * (1 + 10 * currentStage / 50) * itemAbility(cindy, 1);
     } else if (karen == dpsChar) {
       karen.effects += 1;
@@ -2369,13 +2389,13 @@
     if (karen == dpsChar) {
       gloria.globalDps *= 1 + 0.5 * 0.5 * itemAbility(karen, 0);
       karen.effects += 1;
-      if (dpsChar && currentWorld.columnNum(dpsCharSpot) != currentWorld.columnNum(gloriaSpot) + 1) {
+      if (dpsChar && currentWorld.getColumnNum(dpsCharSpot) != currentWorld.getColumnNum(gloriaSpot) + 1) {
         karen.effects += 1;
       }
-    } else if (dpsChar && currentWorld.columnNum(dpsCharSpot) != currentWorld.columnNum(gloriaSpot) + 1) {
+    } else if (dpsChar && currentWorld.getColumnNum(dpsCharSpot) != currentWorld.getColumnNum(gloriaSpot) + 1) {
       gloria.globalDps *= 1.5;
     }
-    if (dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       gloria.globalDps *= 1 + legendaryFactor(gloria, 1);
     }
     if (dpsChar && dpsChar.tags.includes(Tag.animal)) {
@@ -2391,7 +2411,7 @@
     var adjacent = currentWorld.whatsAdjacent(shadowSpot);
     var numAdjacent = 0;
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       for (var i = 0; i < adjacent.length; i++) {
         var adjCruId = app.formationIds[adjacent[i]];
         if (adjCruId) {
@@ -2449,7 +2469,7 @@
     if (numAdjacent == 1) {
       magicMult = 4 * (1 + legendaryFactor(ilsa, 0));
     }
-    if (dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       ilsa.globalDps *= 0.5 + 1 * magicMult / correction;
     } // else if (karen == dpsChar) {}
     if (merciSpot != null && ilsa == dpsChar) {
@@ -2478,7 +2498,7 @@
     var adjacent = currentWorld.whatsAdjacent(eiralonSpot);
     eiralon.globalDps *= 1 + 0.5 * itemAbility(eiralon, 0);
     var dpsCharSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
-    if (dpsChar && currentWorld.columnNum(eiralonSpot) == currentWorld.columnNum(dpsCharSpot)) {
+    if (dpsChar && currentWorld.getColumnNum(eiralonSpot) == currentWorld.getColumnNum(dpsCharSpot)) {
       eiralon.globalDps *= 1 + 1 * itemAbility(eiralon, 0);
     } else if (karen == dpsChar) {
       eiralon.globalDps *= 1 + 1 * itemAbility(eiralon, 0) * 0.5 * itemAbility(karen, 0);
@@ -2486,16 +2506,16 @@
     }
     eiralon.globalDps *= 1 + currentWorld.countTags(Tag.healer) * legendaryFactor(eiralon, 0);
     eiralon.globalDps *= 1 + 0.5 * currentWorld.countTags(Tag.magic) * legendaryFactor(eiralon, 1);
-    if (dpsChar && adjacent.includes(dpsCharSpot)) {
+    if (dpsChar && adjacent.includes(dpsCharSpot || NaN)) {
       eiralon.globalDps *= 1 + legendaryFactor(eiralon, 2);
     }
   };
 
   //Formations 0, x, x, x x, 4, x, x 1, x, 7, x x, 5, x, 9 2, x, 8, x 3, x, x, x
-  var worldsWake = app.worldsWake = new World(1, "World's Wake", 10);
+  var worldsWake : World = app.worldsWake = new World(1, "World's Wake", 10);
   (() => {
     var x = null;
-    worldsWake.layout = [
+    (worldsWake as World).layout = [
       [
         0, x, x, x
       ],
@@ -3098,7 +3118,7 @@
         [9, 10]
       ]
     ];
-    adjacents.map(spotWithAdj => gardeners.setAdjacent(spotWithAdj[0], spotWithAdj[1]));
+    adjacents.map(spotWithAdj => gardeners.setAdjacent(spotWithAdj[0] as number, spotWithAdj[1] as number[]));
   })();
 
   var carnival = new World(4, "Carnival of Sorrows", 9);
@@ -3135,7 +3155,7 @@
   };
 
   //Set Up Formation
-  var currentWorld = worldsWake;
+  var currentWorld : World = worldsWake;
   // this is a checksum variable, nothing should DEPEND on this.
   app.currentWorldId = currentWorld.id;
   // formation[0]=emo; formation[7]=sasha; formation[2]=kaine; formation[3]=panda;
@@ -3191,9 +3211,14 @@
     return result;
   };
   my.setWorldById = (worldId, formationIds) => {
-    currentWorld = getWorldById(worldId);
-    // // apparently chicken + egg, get if(formationIds != null)
-    my.calculateMultipliers(formationIds);
+    var nextWorld = getWorldById(worldId);
+    if(nextWorld != null){
+      currentWorld = nextWorld;
+      // // apparently chicken + egg, get if(formationIds != null)
+      my.calculateMultipliers(formationIds);
+    } else{
+      console.error("no world found for id:" + worldId);
+    }
   }
 
   // for (var i in formation) {  formation[i].calculate();  globalDps *=
