@@ -8733,6 +8733,19 @@ window.jsonData =
       ]
     },
     {
+      "id": "14d",
+      "heroId": 96,
+      "displayName": "The Goldhound",
+      "image": "",
+      "slot": 14,
+      "tags": [
+        "event",
+        "animal",
+        "male",
+        "gold"
+      ]
+    },
+    {
       "id": "14c",
       "displayName": "Katie the Cupid",
       "tier": 2,
@@ -11854,6 +11867,20 @@ window.jsonData =
         "selfdps",
         "alldps",
         "ability - Double Dragon (requires Natalie but effects both)"
+      ]
+    },
+    {
+      "id": "20c",
+      "heroId": 97,
+      "displayName": "Milgrid the Mining Mage",
+      "image": "",
+      "slot": 20,
+      "tags": [
+        "event",
+        "dwarf",
+        "female",
+        "magic",
+        "support"
       ]
     },
     {
