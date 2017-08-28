@@ -170,6 +170,7 @@
             {$tagCountColumn}
         </tr>);
     };
+    CruTagRow['displayName'] = 'CruTagRow';
     var CruGridBody = props => {
         var rows = props.sortedCrusaders
             .map(function (crusader) {
@@ -190,6 +191,7 @@
       {rows}
       </tbody>);
     };
+    CruGridBody['displayName'] = CruGridBody;
     var sortStates = [
         { value: "up", classes: "fa fa-fw fa-sort-up", next: "desc" },
         { value: "desc", classes: "fa fa-fw fa-sort-desc", next: undefined },

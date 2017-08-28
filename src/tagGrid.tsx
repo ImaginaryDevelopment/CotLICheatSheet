@@ -234,6 +234,7 @@
             {$tagCountColumn}
         </tr>);
   };
+  CruTagRow['displayName']='CruTagRow';
 
   var CruGridBody = props =>{
 
@@ -278,6 +279,7 @@
       {rows}
       </tbody>);
   };
+  CruGridBody['displayName'] = CruGridBody;
 
   var sortStates = [
     {value:"up", classes: "fa fa-fw fa-sort-up", next:"desc"},
