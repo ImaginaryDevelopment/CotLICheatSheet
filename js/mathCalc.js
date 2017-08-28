@@ -116,6 +116,8 @@
          * @return {number} what column number a slot belongs to
          */
         getColumnNum(spot) {
+            if (spot == NaN)
+                return NaN;
             var result = this.columnNum[spot];
             if (typeof result !== "number") {
                 console.warn("columnNum is invalid", { worldId: this.id, spots: this.spots, spot, result, maxCol: this.maxColumn });
@@ -1046,8 +1048,8 @@
         if (column == undefined || column == null)
             return;
         // how many crusaders behind grandmora?
-        var numBehind = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot) - 1), 1);
-        var numAhead = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot) + 1), 1);
+        var numBehind = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot || NaN) - 1), 1);
+        var numAhead = Math.max(currentWorld.getFilledColumnSpots(currentWorld.getColumnNum(spot || NaN) + 1), 1);
         var adjacent = currentWorld.whatsAdjacent(spot);
         var dpsSpot = dpsChar && getDpsSpot(app.formationIds, dpsChar);
         if (currentWorld.getColumnNum(spot) == currentWorld.getColumnNum(dpsSpot) - 1) {
