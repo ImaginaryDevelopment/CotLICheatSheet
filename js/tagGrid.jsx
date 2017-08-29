@@ -73,9 +73,9 @@
         }
         return props.gearTd;
     };
-    var GearSelect = (props, debug) => {
+    var GearSelect = (props) => {
         // v1/1.5 loot should be transformed on url or localStorage load
-        if (debug === true)
+        if (props.debug === true)
             console.group("GearSelect");
         try {
             var cruGear = props.cruGear;
@@ -106,8 +106,12 @@
             return (<div data-component="gearSelect">
         <select key={"gear" + slot} title={JSON.stringify(gearInfo) + '\r\n'} data-valueV={selectValueV} data-v={selectV} data-value={value} value={value} onChange={e => props.onGearChange(props.cruId, slot, e.target.value, selectV)} name={"slot" + slot}>{$options}</select>{$ll}{gearInfo && gearInfo.name ? gearInfo.name : null}</div>);
         }
+        catch (ex) {
+            console.error(ex);
+            return (<div>error</div>);
+        }
         finally {
-            if (debug === true)
+            if (props.debug === true)
                 console.groupEnd();
         }
     };
@@ -133,7 +137,14 @@
         if (props.mode !== "mine" || !props.isGearMode)
             return null;
         // gearReference currently looks like [undefined,undefined,undefined,cruGearArray] or cruGearArray
-        var makeSelect = slot => (<GearSelect cruGear={props.cruGear} slot={slot} gearReference={props.gearReference} cruId={props.cruId} gearPossibilities={props.gearTypes} onGearChange={props.onGearChange} onLlChange={props.onLlChange}/>);
+        var makeSelect = slot => {
+            try {
+                return (<GearSelect cruGear={props.cruGear} slot={slot} gearReference={props.gearReference} cruId={props.cruId} gearPossibilities={props.gearTypes} onGearChange={props.onGearChange} onLlChange={props.onLlChange}/>);
+            }
+            catch (ex) {
+                return undefined;
+            }
+        };
         return (<td key="gear" data-key="gear" data-component="CruTagRowGear">
                 {makeSelect(0)}
                 {makeSelect(1)}

@@ -6,3 +6,5 @@ chrome.crx
 .paket/
 *.map
 *.d.ts
+
+paket-files/paket\.restore\.cached
