@@ -22,7 +22,7 @@
     epFilter?:string
   }
 (function(app,exposeYourself:boolean){
-  var getCrusaderDps = function(crusader){
+  var getCrusaderDps = function(crusader:Crusader){
     if (!crusader || !crusader.upgrades){
       return "no data";
     }

@@ -115,6 +115,11 @@ interface HeroLootItem{
   slot:Slot
   id:number
 }
+interface UpgradeContainer{
+    selfdpsassumptions?:string
+    selfdps: number[]
+    gear: any[]
+}
 // refers to my reference data
 interface Crusader{
   /**
@@ -128,7 +133,8 @@ interface Crusader{
   calculate?: () => void
   gear?:string[]
   heroId:number
-  loot:LootItem[]
+  loot:LootItem[] | undefined
+  upgrades?:UpgradeContainer
 }
 
 /**
@@ -215,7 +221,7 @@ interface Crusader{
           .map(l =>
           {
             var crusader = refC.find(cru => cru.loot != null && cru.loot.find(cl => cl.lootId == l.loot_id) != null);
-            var lootItem = crusader && crusader.loot.find(cl => cl.lootId == l.loot_id);
+            var lootItem = crusader && crusader.loot && crusader.loot.find(cl => cl.lootId == l.loot_id);
             // console.log('lootDataMap',l, crusader,lootItem);
             if(!(crusader != null)){
               unMapped.push(l);
@@ -409,13 +415,13 @@ interface Crusader{
     // console.log('filteringCheck',crusader.id,ownershipFilter, tagFilter, formationFilter, epFilter,epFilterInput, result);
     return result;
   };
-  app.heroSelectSorter = (crusaders,dontSort) =>{
+  app.heroSelectSorter = (crusaders:Crusader[],dontSort?:boolean) =>{
     var c = crusaders.slice(0);
       if(!dontSort)
       c.sort((a,b)=> {
-          if(a.tags.includes("dps") && !b.tags.includes("dps"))
+          if(a.tags.includes(Tag.dps) && !b.tags.includes(Tag.dps))
               return -1;
-          if(!a.tags.includes("dps") && b.tags.includes("dps"))
+          if(!a.tags.includes(Tag.dps) && b.tags.includes(Tag.dps))
               return 1;
           if(a.slot < b.slot)
               return -1;
@@ -427,19 +433,19 @@ interface Crusader{
   }
 
   var comparer =
-    (a,b) =>
+    <T extends number | string>(a:T,b:T) =>
       (a < b ? -1 : b < a ? 1 : 0);
+  type SortOpt = "up"|"desc"|undefined
+  var getSortMult = (sortType:SortOpt) => (sortType ==="up"? 1 : sortType ==="desc"? -1 : 0);
 
-  var getSortMult = sortType => (sortType ==="up"? 1 : sortType ==="desc"? -1 : 0);
+  var slotComparer = (sortType:SortOpt) =>
+    (a:Crusader,b:Crusader) => getSortMult(sortType) * comparer(a.slot,b.slot);
 
-  var slotComparer = sortType =>
-    (a,b) => getSortMult(sortType) * comparer(a.slot,b.slot);
+  var epComparer = (sortType:SortOpt,map:{[cId:string]:number}) =>
+    (a:Crusader,b:Crusader) => getSortMult(sortType) * comparer(map[a.id], map[b.id]);
 
-  var epComparer = (sortType,map) =>
-    (a,b) => getSortMult(sortType) * comparer(map[a.id], map[b.id]);
-
-  var nameComparer = sortType =>
-    (a,b) => getSortMult(sortType) * comparer(a.displayName, b.displayName);
+  var nameComparer = (sortType:SortOpt) =>
+    (a:Crusader,b:Crusader) => getSortMult(sortType) * comparer(a.displayName, b.displayName);
 
   // this doesn't seem to work at all
   /**

@@ -2,7 +2,7 @@
     "compilerOptions": {
         "outDir": "./js/",      // path to output directory
         "sourceMap": true,           // allow sourceMap support
-        // "noImplicitAny": true,
+        "noImplicitAny": true,
         // "suppressImplicitAnyIndexErrors":true,
         "strictNullChecks": true,    // enable strict null checks as a best practice
         "module": "none",             // specify module code generation
